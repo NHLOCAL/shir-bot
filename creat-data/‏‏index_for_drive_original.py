@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = 'C:\Users\משתמש\Videos\service-account-file.json'
+SERVICE_ACCOUNT_FILE = r'C:\Users\משתמש\Videos\service-account-file.json'
 
 # Define the folder ID for the desired folder in Google Drive
 FOLDER_ID = '1sMGZLisLMAZKKeCVnkGREZbUW7aXst08'

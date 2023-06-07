@@ -11,7 +11,7 @@ function searchSongs(query, searchBy) {
     return; // Do not perform a search
   }
   
-  fetch('songs.csv')
+  fetch('site/songs.csv')
     .then(function(response) {
       return response.text();
     })
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Fetch CSV data and update the suggestions list
-  fetch('songs.csv')
+  fetch('site/songs.csv')
     .then(function(response) {
       return response.text();
     })

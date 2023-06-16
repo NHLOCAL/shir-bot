@@ -92,7 +92,7 @@ function displayResults(results) {
 
 
 function generateMailtoLink(serial) {
-  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A9%D7%99%D7%A8-%D7%91%D7%95%D7%98&to=mesader.singelim%40gmail.com&body=';
+  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=autoshirbot%40gmail.com&body=';
   return mailtoLink + serial;
 }
 

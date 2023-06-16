@@ -66,29 +66,44 @@ function filterSongs(songs, query, searchBy) {
 
 function displayResults(results) {
   var tableBody = document.querySelector('#resultsTable tbody');
+  
+  // Clear the table body
   tableBody.innerHTML = '';
-  for (var i = 0; i < results.length; i++) {
-    var song = results[i];
-    var row = document.createElement('tr');
-    var serialCell = document.createElement('td');
-    var nameCell = document.createElement('td');
-    var albumCell = document.createElement('td');
-    var singerCell = document.createElement('td');
-    var serialLink = document.createElement('a');
-    serialLink.href = generateMailtoLink(song.serial);
-    serialLink.target = '_blank';
-    serialLink.textContent = song.serial;
-    serialCell.appendChild(serialLink);
-    nameCell.textContent = song.name;
-    albumCell.textContent = song.album;
-    singerCell.textContent = song.singer;
-    row.appendChild(serialCell);
-    row.appendChild(nameCell);
-    row.appendChild(albumCell);
-    row.appendChild(singerCell);
-    tableBody.appendChild(row);
+
+  if (results.length === 0) {
+    // Display instructions and explanations when no results are found
+    var instructionRow = document.createElement('tr');
+    var instructionCell = document.createElement('td');
+    instructionCell.setAttribute('colspan', '4');
+    instructionCell.textContent = 'לא נמצאו תוצאות. אנא נסה חיפוש אחר';
+    instructionRow.appendChild(instructionCell);
+    tableBody.appendChild(instructionRow);
+  } else {
+    // Display the search results
+    for (var i = 0; i < results.length; i++) {
+      var song = results[i];
+      var row = document.createElement('tr');
+      var serialCell = document.createElement('td');
+      var nameCell = document.createElement('td');
+      var albumCell = document.createElement('td');
+      var singerCell = document.createElement('td');
+      var serialLink = document.createElement('a');
+      serialLink.href = generateMailtoLink(song.serial);
+      serialLink.target = '_blank';
+      serialLink.textContent = song.serial;
+      serialCell.appendChild(serialLink);
+      nameCell.textContent = song.name;
+      albumCell.textContent = song.album;
+      singerCell.textContent = song.singer;
+      row.appendChild(serialCell);
+      row.appendChild(nameCell);
+      row.appendChild(albumCell);
+      row.appendChild(singerCell);
+      tableBody.appendChild(row);
+    }
   }
 }
+
 
 
 function generateMailtoLink(serial) {

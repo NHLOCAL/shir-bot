@@ -11,7 +11,7 @@ function searchSongs(query, searchBy) {
     return; // Do not perform a search
   }
   
-  fetch('https://drive.google.com/file/d/1MwVG-xhO_vfX_H5xjDhHHBAf5lL8vNvx/view?usp=drive_link')
+  fetch('site/songs.csv')
     .then(function(response) {
       return response.text();
     })
@@ -107,7 +107,7 @@ function displayResults(results) {
 
 
 function generateMailtoLink(serial) {
-  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=autoshirbot%40gmail.com&body=';
+  var mailtoLink = 'site/songs.csv';
   return mailtoLink + serial;
 }
 
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Fetch CSV data and update the suggestions list
-  fetch('https://drive.google.com/file/d/1MwVG-xhO_vfX_H5xjDhHHBAf5lL8vNvx/view?usp=drive_link')
+  fetch('site/songs.csv')
     .then(function(response) {
       return response.text();
     })

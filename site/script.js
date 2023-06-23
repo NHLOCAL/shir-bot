@@ -66,7 +66,7 @@ function filterSongs(songs, query, searchBy) {
 
 function displayResults(results) {
   var tableBody = document.querySelector('#resultsTable tbody');
-  
+
   // Clear the table body
   tableBody.innerHTML = '';
 
@@ -88,8 +88,7 @@ function displayResults(results) {
       var albumCell = document.createElement('td');
       var singerCell = document.createElement('td');
       var serialLink = document.createElement('a');
-      serialLink.href = generateMailtoLink(song.serial);
-      serialLink.target = '_blank';
+
       serialLink.textContent = song.serial;
       serialCell.appendChild(serialLink);
       nameCell.textContent = song.name;
@@ -100,6 +99,18 @@ function displayResults(results) {
       row.appendChild(albumCell);
       row.appendChild(singerCell);
       tableBody.appendChild(row);
+
+      // Check if the album name does not contain the word "סינגלים" and attach the event listener
+      if (!song.album.toLowerCase().includes('סינגלים')) {
+        serialLink.addEventListener('click', function(event) {
+          event.preventDefault();
+          alert('נכון לעכשיו, רק סינגלים נשלחים!');
+        });
+      } else {
+        serialLink.href = generateMailtoLink(song.serial);
+        serialLink.target = '_blank';
+      }
+
     }
   }
 }

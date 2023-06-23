@@ -11,7 +11,7 @@ function searchSongs(query, searchBy) {
     return; // Do not perform a search
   }
   
-  fetch('site/songs.csv')
+  fetch('https://drive.google.com/file/d/1MwVG-xhO_vfX_H5xjDhHHBAf5lL8vNvx/view?usp=drive_link')
     .then(function(response) {
       return response.text();
     })

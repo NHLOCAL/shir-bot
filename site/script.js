@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Fetch CSV data and update the suggestions list
-  fetch('site/songs.csv')
+  fetch('https://drive.google.com/file/d/1MwVG-xhO_vfX_H5xjDhHHBAf5lL8vNvx/view?usp=drive_link')
     .then(function(response) {
       return response.text();
     })

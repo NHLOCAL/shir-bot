@@ -107,7 +107,7 @@ function displayResults(results) {
 
 
 function generateMailtoLink(serial) {
-  var mailtoLink = 'site/songs.csv';
+  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=autoshirbot%40gmail.com&body=';
   return mailtoLink + serial;
 }
 

@@ -11,7 +11,7 @@ function searchSongs(query, searchBy) {
     return; // Do not perform a search
   }
   
-  fetch('site/songs.csv')
+  fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
     .then(function(response) {
       return response.text();
     })
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Fetch CSV data and update the suggestions list
-  fetch('site/songs.csv')
+  fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
     .then(function(response) {
       return response.text();
     })

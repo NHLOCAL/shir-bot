@@ -118,9 +118,70 @@ function displayResults(results) {
 
 
 function generateMailtoLink(serial) {
-  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=autoshirbot%40gmail.com&body=';
-  return mailtoLink + serial;
+  var baseEmail = 'autoshirbot@gmail.com';
+  var additionalEmail = 'autoshirbot1@gmail.com';
+  
+  // Check if the user has logged in before
+  var hasLoggedIn = checkCookie('hasLoggedIn');
+  
+  // Declare a variable to hold the selected email
+  var email;
+  
+  if (hasLoggedIn) {
+    // Retrieve the email from the cookie
+    email = getCookie('selectedEmail');
+  } else {
+    // Generate a random number between 0 and 1
+    var randomNumber = Math.random();
+  
+    // Select email based on the random number
+    if (randomNumber < 0.5) {
+      email = baseEmail;
+    } else {
+      email = additionalEmail;
+    }
+    
+    // Save the selected email in a cookie
+    setCookie('selectedEmail', email, 365);
+    setCookie('hasLoggedIn', true, 365);
+  }
+  
+  var encodedSerial = encodeURIComponent(serial);
+  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=' + encodeURIComponent(email) + '&body=' + encodedSerial;
+  
+  console.log(hasLoggedIn)
+  return mailtoLink;
 }
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  var expires = '';
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = '; expires=' + date.toUTCString();
+  }
+  document.cookie = name + '=' + (value || '') + expires + '; path=/';
+}
+
+// Function to retrieve a cookie
+function getCookie(name) {
+  var nameEQ = name + '=';
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+}
+
+// Function to check if a cookie exists
+function checkCookie(name) {
+  var cookie = getCookie(name);
+  return cookie !== null;
+}
+
 
 
 

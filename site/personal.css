@@ -8,9 +8,11 @@ table {
   overflow-y: scroll;
 }
 
+
+
 th, td {
-  padding: 8px;
   text-align: right;
+  padding: 8px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -208,16 +210,32 @@ h3.current {
 }
 
 
-#resultsTable table {
+  #resultsTable table {
     table-layout: fixed;
     width: 100%;
   }
   
-#resultsTable th,
-#resultsTable td {
-    width: 25%; /* Adjust the width as per your requirements */
-    word-wrap: break-word; /* Wraps long content within the column */
-    max-width: 300px; /* Optional: Specify a maximum width for the columns */
+  #resultsTable th:nth-child(1),
+  #resultsTable td:nth-child(1) {
+    width: 10%; /* Adjust the width for column 1 */
+  }
+  
+  #resultsTable th:nth-child(2),
+  #resultsTable td:nth-child(2) {
+    width: 40%; /* Adjust the width for column 2 */
+  }
+  
+  #resultsTable th:nth-child(3),
+  #resultsTable td:nth-child(3),
+  #resultsTable th:nth-child(4),
+  #resultsTable td:nth-child(4) {
+    width: 25%; /* Adjust the width for columns 3 and 4 */
+  }
+  
+  #resultsTable th,
+  #resultsTable td {
+    word-wrap: break-word;
+    max-width: 300px;
 }
 
 
@@ -259,7 +277,6 @@ img.button-image {
 .parent-element {
   max-width: 100%;
   width: 100%;
-
 }
 
 
@@ -323,13 +340,48 @@ position: static;
 #resultsTable {
   margin-top: 15vh;
   margin-bottom: 5vh;
-  width: 80%;
+  width: 90%;
   center: auto;
   height: 60%;
-  margin-right: 3vh;
-  margin-left: 3vh;
-  
+  padding: 5px;
 }
+
+#resultsTable table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+th {
+  font-size: 12px;
+  text-align: center;
+}
+
+td {
+  font-size: 12px;
+}
+
+  #resultsTable th:nth-child(1),
+  #resultsTable td:nth-child(1) {
+    width: 20%; /* Adjust the width for column 1 */
+  }
+  
+  #resultsTable th:nth-child(3),
+  #resultsTable td:nth-child(3),
+  #resultsTable th:nth-child(4),
+  #resultsTable td:nth-child(4) {
+    width: 20%; /* Adjust the width for columns 3 and 4 */
+  }
+
+#resultsTable th,
+#resultsTable td {
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
+a {
+  padding: 7px 10px;
+}
+
 
 .fixed-bottom {
   position: fixed;

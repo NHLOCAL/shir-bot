@@ -104,7 +104,7 @@ function displayResults(results) {
       if (!song.album.toLowerCase().includes('סינגלים')) {
         serialLink.addEventListener('click', function(event) {
           event.preventDefault();
-          alert('כרגע רק סינגלים נשלחים, נא נסה שיר אחר!');
+          alert('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
         });
       } else {
         serialLink.href = generateMailtoLink(song.serial);

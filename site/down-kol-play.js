@@ -17,6 +17,7 @@ function downloadSong(song) {
 
 // Function to display the song list in a message box
 function displaySongList() {
+
   var messageBox = document.createElement('div');
   messageBox.style.position = 'fixed';
   messageBox.style.top = '50%';
@@ -46,6 +47,34 @@ function displaySongList() {
   title.style.textAlign = 'center';
   frame.appendChild(title);
 
+  // Create a select all checkbox
+  var selectAllContainer = document.createElement('div');
+  selectAllContainer.style.display = 'flex';
+  selectAllContainer.style.alignItems = 'center';
+
+  var selectAllCheckbox = document.createElement('input');
+  selectAllCheckbox.type = 'checkbox';
+  selectAllCheckbox.id = 'selectAll';
+  selectAllCheckbox.style.marginLeft = '8px';
+  selectAllCheckbox.addEventListener('change', function() {
+    var checkboxes = frame.getElementsByTagName('input');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = selectAllCheckbox.checked;
+    }
+  });
+
+  var selectAllLabel = document.createElement('label');
+  selectAllLabel.htmlFor = 'selectAll';
+  selectAllLabel.appendChild(document.createTextNode('בחר הכל'));
+  selectAllLabel.style.fontWeight = 'bold';
+  selectAllLabel.style.fontSize = '1.2em';
+
+
+  selectAllContainer.appendChild(selectAllCheckbox);
+  selectAllContainer.appendChild(selectAllLabel);
+
+  frame.appendChild(selectAllContainer);
+
   // Create checkboxes for each song
   for (var i = 0; i < playlist.length; i++) {
     var song = playlist[i];
@@ -53,15 +82,19 @@ function displaySongList() {
     var checkboxContainer = document.createElement('div');
     checkboxContainer.style.display = 'flex';
     checkboxContainer.style.alignItems = 'center';
+    checkboxContainer.style.marginBottom = '5px'; // Added margin bottom for spacing
 
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = 'song' + i;
     checkbox.style.marginLeft = '8px';
+    checkbox.style.verticalAlign = 'middle'; // Align checkboxes vertically
 
     var label = document.createElement('label');
     label.htmlFor = 'song' + i;
     label.appendChild(document.createTextNode(song.name));
+    label.style.marginLeft = '5px'; // Added margin left for spacing
+    label.style.verticalAlign = 'middle'; // Align labels vertically
 
     checkboxContainer.appendChild(checkbox);
     checkboxContainer.appendChild(label);

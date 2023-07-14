@@ -56,32 +56,110 @@ function filterSongs(songs, query, searchBy) {
     return (2 * intersection.size) / (tokens1.length + tokens2.length);
   };
 
+  const calculateNormalizedLevenshteinDistance = (str1, str2) => {
+    const len1 = str1.length;
+    const len2 = str2.length;
+
+    if (len1 === 0) return len2;
+    if (len2 === 0) return len1;
+
+    const matrix = Array.from({ length: len1 + 1 }, (_, i) => [i]);
+    matrix[0] = Array.from({ length: len2 + 1 }, (_, i) => i);
+
+    for (let i = 1; i <= len1; i++) {
+      for (let j = 1; j <= len2; j++) {
+        const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j - 1] + cost
+        );
+      }
+    }
+
+    return matrix[len1][len2] / Math.max(len1, len2);
+  };
+
   const queryTokens = query.toLowerCase().split(/\s+/); // Convert query into tokens
   const threshold = 0.6; // Fuzzy search threshold
+  const maxLevenshteinDistance = 0.3; // Maximum normalized Levenshtein distance for relevance
+  const exactMatchRelevance = 2; // Relevance score for exact string matches
 
-  return songs.filter(function(song) {
+  const exactMatches = songs.filter(function(song) {
+    const songValues = Object.values(song).map(function(value) {
+      return value.toLowerCase();
+    });
+
+    if (searchBy === 'all') {
+      // Check for exact string matches
+      return songValues.some(function(value) {
+        return value.includes(query);
+      });
+    } else {
+      const value = song[searchBy];
+      if (value) {
+        return value.includes(query);
+      }
+    }
+    return false;
+  });
+
+  const fuzzyMatches = songs.filter(function(song) {
     const songValues = Object.values(song).map(function(value) {
       return value.toLowerCase();
     });
 
     if (searchBy === 'all') {
       // Perform fuzzy search across all properties
-      return songValues.some(function(value) {
+      const relevanceScores = songValues.map(function(value) {
         const valueTokens = value.split(/\s+/);
         const similarity = calculateDiceCoefficient(queryTokens, valueTokens);
-        return similarity >= threshold || value.match(new RegExp(query, 'gi')); // Use regular expression pattern matching
+        const levenshteinDistance = calculateNormalizedLevenshteinDistance(query, value);
+        return Math.max(similarity, 1 - levenshteinDistance); // Calculate relevance score
+      });
+
+      return relevanceScores.some(function(score) {
+        return score >= threshold;
       });
     } else {
       const value = song[searchBy];
       if (value) {
         const valueTokens = value.toLowerCase().split(/\s+/);
         const similarity = calculateDiceCoefficient(queryTokens, valueTokens);
-        return similarity >= threshold || value.match(new RegExp(query, 'gi')); // Use regular expression pattern matching
+        const levenshteinDistance = calculateNormalizedLevenshteinDistance(query, value);
+        const relevanceScore = Math.max(similarity, 1 - levenshteinDistance); // Calculate relevance score
+        return relevanceScore >= threshold;
       }
     }
     return false;
   });
+
+  const results = [...exactMatches, ...fuzzyMatches].sort(function(a, b) {
+    // Sort results in descending order of relevance score
+    const relevanceScoreA = calculateRelevanceScore(a);
+    const relevanceScoreB = calculateRelevanceScore(b);
+    return relevanceScoreB - relevanceScoreA;
+  });
+
+  return results;
+
+  function calculateRelevanceScore(song) {
+    const songValues = Object.values(song).map(function(value) {
+      return value.toLowerCase();
+    });
+
+    const relevanceScores = songValues.map(function(value) {
+      const valueTokens = value.split(/\s+/);
+      const similarity = calculateDiceCoefficient(queryTokens, valueTokens);
+      const levenshteinDistance = calculateNormalizedLevenshteinDistance(query, value);
+      const exactMatchBonus = value.includes(query) ? exactMatchRelevance : 0;
+      return Math.max(similarity, 1 - levenshteinDistance) + exactMatchBonus; // Calculate relevance score with bonus for exact matches
+    });
+
+    return Math.max(...relevanceScores);
+  }
 }
+
 
 
 function displayResults(results) {

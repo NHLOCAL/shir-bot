@@ -43,20 +43,40 @@ function parseCSV(csvText) {
   return songs;
 }
 
+
+// סינון התוצאות עם חיפוש מטושטש
 function filterSongs(songs, query, searchBy) {
+  // Check if the query string is empty or less than two letters/one number
+  if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
+    return []; // Return an empty array when the query is invalid
+  }
+
+  const calculateDiceCoefficient = (tokens1, tokens2) => {
+    const intersection = new Set(tokens1.filter(token => tokens2.includes(token)));
+    return (2 * intersection.size) / (tokens1.length + tokens2.length);
+  };
+
+  const queryTokens = query.toLowerCase().split(/\s+/); // Convert query into tokens
+  const threshold = 0.6; // Fuzzy search threshold
+
   return songs.filter(function(song) {
-    var values = Object.values(song).map(function(value) {
+    const songValues = Object.values(song).map(function(value) {
       return value.toLowerCase();
     });
+
     if (searchBy === 'all') {
-      return values.some(function(value) {
-        return value.includes(query);
+      // Perform fuzzy search across all properties
+      return songValues.some(function(value) {
+        const valueTokens = value.split(/\s+/);
+        const similarity = calculateDiceCoefficient(queryTokens, valueTokens);
+        return similarity >= threshold || value.match(new RegExp(query, 'gi')); // Use regular expression pattern matching
       });
     } else {
-      var value = song[searchBy];
+      const value = song[searchBy];
       if (value) {
-        value = value.toLowerCase();
-        return value.includes(query);
+        const valueTokens = value.toLowerCase().split(/\s+/);
+        const similarity = calculateDiceCoefficient(queryTokens, valueTokens);
+        return similarity >= threshold || value.match(new RegExp(query, 'gi')); // Use regular expression pattern matching
       }
     }
     return false;
@@ -185,6 +205,9 @@ function checkCookie(name) {
 
 
 
+
+
+// השלמה אוטומטית - לשימוש עתידי
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.getElementById('searchInput');
   var awesomplete = new Awesomplete(searchInput, {

@@ -5,12 +5,37 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   searchSongs(searchInput, searchBy);
 });
 
+
 function searchSongs(query, searchBy) {
   // Check if the query string is empty or less than two letters/one number
   if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
     return; // Do not perform a search
   }
   
+  var tableBody = document.querySelector('#resultsTable tbody');
+  tableBody.innerHTML = ''; // Clear the table body
+  
+  var loadingRow = document.createElement('tr');
+  var loadingCell = document.createElement('td');
+  loadingCell.setAttribute('colspan', '4');
+  
+  var loadingContainer = document.createElement('div');
+  loadingContainer.classList.add('loading-container');
+  
+  var loadingImage = document.createElement('img');
+  loadingImage.src = 'site/loading.gif';
+  loadingImage.classList.add('loading-image');
+  
+  var loadingText = document.createElement('p');
+  loadingText.textContent = 'מחפש...';
+  loadingText.classList.add('loading-text');
+  
+  loadingContainer.appendChild(loadingImage);
+  loadingContainer.appendChild(loadingText);
+  loadingCell.appendChild(loadingContainer);
+  loadingRow.appendChild(loadingCell);
+  tableBody.appendChild(loadingRow);
+
   fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
     .then(function(response) {
       return response.text();
@@ -21,6 +46,7 @@ function searchSongs(query, searchBy) {
       displayResults(results);
     });
 }
+
 
 
 

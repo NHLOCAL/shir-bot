@@ -233,9 +233,9 @@ function displayResults(results) {
     shareButton.addEventListener('click', function () {
       var serial = this.dataset.serial;
       var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
-      openShareModal(shareLink); // Open the share modal overlay
+      copyToClipboard(shareLink); // Copy the share link to clipboard
+      showCopiedMessage(); // Show a message indicating the link has been copied
     });
-
     // Append the share button to the row
     row.appendChild(shareButton);
 
@@ -352,15 +352,26 @@ function updateURLWithoutReload(searchTerm) {
 
 
 function copyToClipboard(text) {
-  const input = document.createElement('input');
-  input.style.position = 'fixed';
-  input.style.opacity = 0;
-  input.value = text;
-  document.body.appendChild(input);
-  input.select();
+  var textArea = document.createElement('textarea');
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
   document.execCommand('copy');
-  document.body.removeChild(input);
+  document.body.removeChild(textArea);
 }
+
+function showCopiedMessage() {
+  var message = document.createElement('div');
+  message.textContent = 'הקישור הועתק ללוח';
+  message.classList.add('copied-message');
+
+  document.body.appendChild(message);
+
+  setTimeout(function () {
+    document.body.removeChild(message);
+  }, 3000);
+}
+
 
 
 function openShareModal(shareLink) {
@@ -378,7 +389,7 @@ function openShareModal(shareLink) {
 
   var link = document.createElement('a');
   link.textContent = 'לחץ כאן';
-  link.href = shareLink;
+  link.dataset.shareLink = shareLink;
   link.target = '_blank';
 
   var closeButton = document.createElement('button');

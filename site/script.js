@@ -244,6 +244,7 @@ function displayResults(results) {
 function generateMailtoLink(serial) {
   var baseEmail = 'autoshirbot@gmail.com';
   var additionalEmail = 'autoshirbot1@gmail.com';
+  var thirdEmail = 'autoshirbot2@gmail.com';
   
   // Check if the user has logged in before
   var hasLoggedIn = checkCookie('hasLoggedIn');
@@ -259,10 +260,12 @@ function generateMailtoLink(serial) {
     var randomNumber = Math.random();
   
     // Select email based on the random number
-    if (randomNumber < 0.5) {
+    if (randomNumber < 1 / 3) {
       email = baseEmail;
-    } else {
+    } else if (randomNumber < 2 / 3) {
       email = additionalEmail;
+    } else {
+      email = thirdEmail;
     }
     
     // Save the selected email in a cookie

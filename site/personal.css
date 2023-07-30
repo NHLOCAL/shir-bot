@@ -16,6 +16,8 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
+
+
 .fixed-bottom {
   position: fixed;
   bottom: 0;
@@ -201,33 +203,34 @@ h3.current {
 }
 
 
-  #resultsTable table {
-    table-layout: fixed;
-    width: 100%;
-  }
-  
-  #resultsTable th:nth-child(1),
-  #resultsTable td:nth-child(1) {
-    width: 10%; /* Adjust the width for column 1 */
-  }
-  
-  #resultsTable th:nth-child(2),
-  #resultsTable td:nth-child(2) {
-    width: 40%; /* Adjust the width for column 2 */
-  }
-  
-  #resultsTable th:nth-child(3),
-  #resultsTable td:nth-child(3),
-  #resultsTable th:nth-child(4),
-  #resultsTable td:nth-child(4) {
-    width: 25%; /* Adjust the width for columns 3 and 4 */
-  }
-  
-  #resultsTable th,
-  #resultsTable td {
-    word-wrap: break-word;
-    max-width: 300px;
+#resultsTable table {
+  width: 100%;
+  table-layout: auto; /* Change from fixed to auto */
 }
+
+#resultsTable th:nth-child(1),
+#resultsTable td:nth-child(1) {
+  width: 15%; /* Adjust the width for column 1 */
+}
+
+#resultsTable th:nth-child(2),
+#resultsTable td:nth-child(2) {
+  width: 45%; /* Adjust the width for column 2 */
+}
+
+#resultsTable th:nth-child(3),
+#resultsTable td:nth-child(3),
+#resultsTable th:nth-child(4),
+#resultsTable td:nth-child(4) {
+  width: 20%; /* Adjust the width for columns 3 and 4 */
+}
+
+#resultsTable th,
+#resultsTable td {
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
 
 
 h3 {
@@ -501,13 +504,15 @@ a {
   font-size: 14px;
   background-color: #5D3AB0;
   color: #fff;
-  border: none;
+  margin: 12px;
+  border: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 3px;
   padding: 6px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: block;
-  margin: 0 auto;
 }
 
 .share-button:hover {

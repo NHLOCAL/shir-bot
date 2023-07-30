@@ -7,6 +7,8 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 
 
 function searchSongs(query, searchBy) {
+  var searchInput = document.getElementById('searchInput');
+  searchInput.value = query; // Fill the search term into the search input
   // Check if the query string is empty or less than two letters/one number
   if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
     return; // Do not perform a search
@@ -37,16 +39,15 @@ function searchSongs(query, searchBy) {
   tableBody.appendChild(loadingRow);
 
   fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
-    .then(function(response) {
+    .then(function (response) {
       return response.text();
     })
-    .then(function(csvText) {
+    .then(function (csvText) {
       var songs = parseCSV(csvText);
       var results = filterSongs(songs, query, searchBy);
       displayResults(results);
     });
 }
-
 
 
 
@@ -309,6 +310,23 @@ function checkCookie(name) {
   return cookie !== null;
 }
 
+
+
+// שיתוף קישור עם URL
+function getSearchTermFromURL() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('search');
+}
+
+window.addEventListener('load', function () {
+  var searchTerm = getSearchTermFromURL();
+  var searchInput = document.getElementById('searchInput');
+  if (searchTerm) {
+    searchInput.value = searchTerm;
+    searchSongs(searchTerm, 'all'); // Perform the search automatically
+  }
+});
 
 
 

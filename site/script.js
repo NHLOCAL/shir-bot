@@ -225,6 +225,22 @@ function displayResults(results) {
       row.appendChild(singerCell);
       tableBody.appendChild(row);
 
+    // Add the share button
+    var shareButton = document.createElement('button');
+    shareButton.textContent = 'שתף';
+    shareButton.classList.add('share-button');
+    shareButton.dataset.serial = song.serial;
+    shareButton.addEventListener('click', function () {
+      var serial = this.dataset.serial;
+      var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
+      openShareModal(shareLink); // Open the share modal overlay
+    });
+
+    // Append the share button to the row
+    row.appendChild(shareButton);
+
+    tableBody.appendChild(row);
+
       // Check if the album name does not contain the word "סינגלים" and attach the event listener
       if (!song.album.toLowerCase().includes('סינגלים')) {
         serialLink.addEventListener('click', function(event) {
@@ -329,7 +345,58 @@ window.addEventListener('load', function () {
 });
 
 
+function updateURLWithoutReload(searchTerm) {
+  var newURL = window.location.protocol + '//' + window.location.host + window.location.pathname + '?search=' + encodeURIComponent(searchTerm);
+  window.history.pushState({ path: newURL }, '', newURL);
+}
 
+
+function copyToClipboard(text) {
+  const input = document.createElement('input');
+  input.style.position = 'fixed';
+  input.style.opacity = 0;
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+}
+
+
+function openShareModal(shareLink) {
+  var overlay = document.createElement('div');
+  overlay.classList.add('modal-overlay');
+
+  var modal = document.createElement('div');
+  modal.classList.add('modal-content');
+
+  var h2 = document.createElement('h2');
+  h2.textContent = 'שתף את השיר';
+
+  var p = document.createElement('p');
+  p.textContent = 'הקישור לשיר:';
+
+  var link = document.createElement('a');
+  link.textContent = 'לחץ כאן';
+  link.href = shareLink;
+  link.target = '_blank';
+
+  var closeButton = document.createElement('button');
+  closeButton.textContent = 'סגור';
+  closeButton.classList.add('share-button');
+  closeButton.addEventListener('click', function () {
+    document.body.removeChild(overlay); // Close the modal overlay
+  });
+
+  modal.appendChild(h2);
+  modal.appendChild(p);
+  modal.appendChild(link);
+  modal.appendChild(closeButton);
+
+  overlay.appendChild(modal);
+
+  document.body.appendChild(overlay);
+}
 
 
 // השלמה אוטומטית - לשימוש עתידי

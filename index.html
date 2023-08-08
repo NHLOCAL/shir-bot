@@ -22,9 +22,10 @@
   
 
 <script>
-// מודעת שדרוג
-
-  document.addEventListener("DOMContentLoaded", function() {
+// מודעת שדרוגים ועדכונים
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if the message has been shown before
+  if (!localStorage.getItem("messageShown")) {
     // Display the modal overlay
     var overlay = document.createElement("div");
     overlay.classList.add("overlay");
@@ -52,8 +53,8 @@
         searchInput.focus();
       }
     });
-	
-	 searchButton.focus();
+    
+    searchButton.focus();
 
     // Close the modal overlay when clicking outside the modal content
     overlay.addEventListener("click", function(event) {
@@ -61,7 +62,11 @@
         overlay.remove();
       }
     });
-  });
+
+    // Mark the message as shown in local storage
+    localStorage.setItem("messageShown", "true");
+  }
+});
 </script>
 
 

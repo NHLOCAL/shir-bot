@@ -17,6 +17,30 @@ th, td {
 }
 
 
+/* Content on the left side */
+.right-item {
+right: 20px;
+float: right;
+top: 5px;
+position: absolute;
+background: none;
+border: none;
+}
+
+
+.feedback-button {
+  float: left;
+  left: 20px;
+  top: 5px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  background: none;
+  border: none;
+}
+
+
 
 .fixed-bottom {
   position: fixed;
@@ -168,6 +192,9 @@ th, td {
 .topnav h3.current {
   color: #73FBFD;
   background-color: #C0C0C0;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(45, 67, 115, 0.5);
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 
@@ -298,8 +325,6 @@ p {
 }
 
 
-
-
 /* מודעת שדרוג */
 .overlay {
   position: fixed;
@@ -355,7 +380,6 @@ p {
 
 
 
-
 @media screen and (max-width: 900px) {
 .topnav {
   height: auto;
@@ -394,7 +418,7 @@ img.button-image {
   display: block;
   float: none;
   text-align: center;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .topnav a:hover,
@@ -411,9 +435,14 @@ float: center;
 position: static;
 }
 
-.left_item {
+.right-item {
+  right: 5px;
+  float: right;
+}
+
+.feedback-button {
+  left: 0px;
   float: left;
-  left: 5px;
 }
 
 .search-input {
@@ -500,6 +529,7 @@ a {
 }
 
 
+/* עיצוב כפתור שיתוף שיר */
 .share-button {
   font-size: 14px;
   background-color: #5D3AB0;

@@ -374,32 +374,32 @@ function openShareModal(shareLink) {
 
 
 function downloadSong(songNumber) {
+  var loadingMessage = document.getElementById('loadingMessage');
+  loadingMessage.classList.add('show'); // Display the loading message
+
   var scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec';
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
-  // Make an HTTP request to the Google Apps Script URL
   fetch(downloadUrl)
     .then(response => response.text())
     .then(downloadLink => {
       if (downloadLink.startsWith("https://")) {
-        // Create a hidden anchor element to trigger the download
         var link = document.createElement('a');
-        link.style.display = 'none';
         link.href = downloadLink;
-        link.target = '_blank'; // Open the download in a new tab/window
         document.body.appendChild(link);
-
-        // Trigger the download by programmatically clicking the anchor element
         link.click();
-
-        // Clean up the anchor element
         document.body.removeChild(link);
+
+        loadingMessage.classList.remove('show'); // Hide the loading message on success
       } else {
-        alert(downloadLink); // Display error message
+        alert(downloadLink);
+        loadingMessage.classList.remove('show'); // Hide the loading message on error
       }
     })
     .catch(error => {
       console.error("Error:", error);
       alert("An error occurred. Please try again later.");
+      loadingMessage.classList.remove('show'); // Hide the loading message on error
     });
 }
+

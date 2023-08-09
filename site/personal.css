@@ -638,3 +638,33 @@ a {
   color: #362266; /* Darker purple color on hover */
 }
 
+
+/* הודעת "מוריד כעת" */
+.loading-message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #362266;
+  background-color: #F3F3F3;
+  font-size: 18px;
+  box-shadow: 2px 5px 15px rgba(45, 67, 115, 0.4);
+  z-index: 9999;
+  align-items: center;
+}
+
+
+.loading-message img {
+  width: 20px;
+  vertical-align: middle;
+  margin-left: 7px;
+}
+
+
+.loading-message.show {
+  display: flex;
+}

@@ -6,6 +6,25 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 });
 
 
+var singleFilterButton = document.getElementById('singleFilter');
+var showSinglesOnly = false;
+
+singleFilterButton.addEventListener('click', function() {
+  showSinglesOnly = !showSinglesOnly;
+
+  if (showSinglesOnly) {
+    this.textContent = 'הצג את כל השירים';
+  } else {
+    this.textContent = 'הצג סינגלים בלבד';
+  }
+
+  // Re-run the search with the updated filter
+  var searchInput = document.getElementById('searchInput').value.toLowerCase();
+  var searchBy = document.getElementById('searchBy').value;
+  searchSongs(searchInput, searchBy);
+});
+
+
 function searchSongs(query, searchBy) {
   var searchInput = document.getElementById('searchInput');
   searchInput.value = query; // Fill the search term into the search input
@@ -44,11 +63,19 @@ function searchSongs(query, searchBy) {
     })
     .then(function (csvText) {
       var songs = parseCSV(csvText);
-      var results = filterSongs(songs, query, searchBy);
+
+      // Apply the selected filter method
+      var filteredSongs;
+      if (showSinglesOnly) {
+        filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
+      } else {
+        filteredSongs = songs;
+      }
+
+      var results = filterSongs(filteredSongs, query, searchBy);
       displayResults(results);
     });
 }
-
 
 
 function parseCSV(csvText) {
@@ -188,7 +215,6 @@ function filterSongs(songs, query, searchBy) {
 }
 
 
-
 function displayResults(results) {
   var tableBody = document.querySelector('#resultsTable tbody');
 
@@ -255,7 +281,6 @@ function displayResults(results) {
     }
   }
 }
-
 
 
 function generateMailtoLink(serial) {
@@ -370,7 +395,6 @@ function showCopiedMessage() {
     document.body.removeChild(message);
   }, 3000);
 }
-
 
 
 function openShareModal(shareLink) {

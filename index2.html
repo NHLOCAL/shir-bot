@@ -449,22 +449,35 @@ function openShareModal(shareLink) {
 
 
 function downloadSong(songNumber) {
-  var scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec';
+  var scriptUrl = 'https://script.google.com/macros/s/AKfycbyXCMTIvbZM75pjHHKQYiOI9XMOlCuiB9Ni5GMnykJ7KCVmcBkb8XbHhqc6wUC91vRm/exec';
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
-  // Create a hidden anchor element to trigger the download
-  var link = document.createElement('a');
-  link.style.display = 'none';
-  link.href = downloadUrl;
-  link.target = '_blank'; // Open the download in a new tab/window
-  document.body.appendChild(link);
+  // Make an HTTP request to the Google Apps Script URL
+  fetch(downloadUrl)
+    .then(response => response.text())
+    .then(downloadLink => {
+      if (downloadLink.startsWith("https://")) {
+        // Create a hidden anchor element to trigger the download
+        var link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = downloadLink;
+        document.body.appendChild(link);
 
-  // Trigger the download by programmatically clicking the anchor element
-  link.click();
+        // Trigger the download by programmatically clicking the anchor element
+        link.click();
 
-  // Clean up the anchor element
-  document.body.removeChild(link);
+        // Clean up the anchor element
+        document.body.removeChild(link);
+      } else {
+        alert(downloadLink); // Display error message
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    });
 }
+
 
 
   </script>

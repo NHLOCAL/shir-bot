@@ -353,14 +353,17 @@ function displayResults(results) {
         });
       } else {
         serialLink.addEventListener('click', function(event) {
-          downloadSong(song.serial);
+          event.preventDefault(); // Prevent the default link behavior
+          var clickedElement = event.target; // The <a> element that was clicked
+          var songNumber = clickedElement.textContent; // Extract the number from the text
+          downloadSong(songNumber);
         });
+
       }
 
     }
   }
 }
-
 
 
 
@@ -447,8 +450,8 @@ function openShareModal(shareLink) {
 
 
 
-
 function downloadSong(songNumber) {
+  console.log(encodeURIComponent(songNumber))
   var scriptUrl = 'https://script.google.com/macros/s/AKfycbyXCMTIvbZM75pjHHKQYiOI9XMOlCuiB9Ni5GMnykJ7KCVmcBkb8XbHhqc6wUC91vRm/exec';
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
@@ -461,6 +464,7 @@ function downloadSong(songNumber) {
         var link = document.createElement('a');
         link.style.display = 'none';
         link.href = downloadLink;
+        link.target = '_blank'; // Open the download in a new tab/window
         document.body.appendChild(link);
 
         // Trigger the download by programmatically clicking the anchor element
@@ -477,8 +481,6 @@ function downloadSong(songNumber) {
       alert("An error occurred. Please try again later.");
     });
 }
-
-
 
   </script>
 </body>

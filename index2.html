@@ -8,7 +8,6 @@
   <meta name="keywords" content="חיפוש שירים, שירים חסידיים,מוזיקה חסידית, מוזיקה יהודית">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>שיר-בוט</title>
-  <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
   <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
   <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
   <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
@@ -19,55 +18,6 @@
     gtag('js', new Date());
     gtag('config', 'G-TGD4VQW4X8');
   </script>
-  
-
-<script>
-// מודעת שדרוגים ועדכונים
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown")) {
-    // Display the modal overlay
-    var overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Ad content
-    modal.innerHTML = `
-      <h2>חדש! הכפלנו את המגבלה היומית</h2>
-      <p>עקב העומס הרב על האתר, נאלצנו להגביל את כמות הבקשות היומיות למשתמש. כעת, לאחר שדרוג המערכת, הכפלנו את כמות הורדות השירים היומית</p>
-      <a href="#" id="searchButton">נסו כעת!</a>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
-    var searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      overlay.remove();
-      var searchInput = document.querySelector("#searchInput");
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
-    
-    searchButton.focus();
-
-    // Close the modal overlay when clicking outside the modal content
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.remove();
-      }
-    });
-
-    // Mark the message as shown in local storage
-    localStorage.setItem("messageShown", "true");
-  }
-});
-</script>
 
 
   
@@ -89,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
       <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
       <button type="submit" class="search-button">חפש</button>
+      <div class="filter-container">
+        <button id="singleFilter" class="filter-button-light">הצג סינגלים בלבד</button>
+      </div>
     </form>
   </div>
 
@@ -138,6 +91,26 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 });
 
 
+var singleFilterButton = document.getElementById('singleFilter');
+var showSinglesOnly = false;
+
+singleFilterButton.addEventListener('click', function() {
+  showSinglesOnly = !showSinglesOnly;
+
+  if (showSinglesOnly) {
+    this.textContent = 'הצג את כל השירים';
+  } else {
+    this.textContent = 'הצג סינגלים בלבד';
+  }
+
+  // Re-run the search with the updated filter
+  var searchInput = document.getElementById('searchInput').value.toLowerCase();
+  var searchBy = document.getElementById('searchBy').value;
+  searchSongs(searchInput, searchBy);
+});
+
+
+
 function searchSongs(query, searchBy) {
   var searchInput = document.getElementById('searchInput');
   searchInput.value = query; // Fill the search term into the search input
@@ -176,7 +149,14 @@ function searchSongs(query, searchBy) {
     })
     .then(function (csvText) {
       var songs = parseCSV(csvText);
-      var results = filterSongs(songs, query, searchBy);
+      // Apply the selected filter method
+      var filteredSongs;
+      if (showSinglesOnly) {
+        filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
+      } else {
+        filteredSongs = songs;
+      }
+      var results = filterSongs(filteredSongs, query, searchBy);
       displayResults(results);
     });
 }

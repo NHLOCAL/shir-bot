@@ -73,7 +73,7 @@ def get_folder_name(service, folder_id, is_singer=False):
 
 def run_now():
 
-    csv_path = 'list-singers.csv'
+    csv_path = 'home/runner/work/shir-bot/shir-bot/creat-data/list-singers.csv'
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)

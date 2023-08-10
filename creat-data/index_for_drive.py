@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = r"C:\Users\משתמש\Videos\service-account-file.json"
+SERVICE_ACCOUNT_FILE = r"C:\Users\משתמש\OneDrive\וידאו\service-account-file.json"
 
 def main(FOLDER_ID, singer_name):
     # Authenticate and create the Drive service
@@ -72,7 +72,7 @@ def get_folder_name(service, folder_id, is_singer=False):
 
 def run_now():
 
-    csv_path = 'list-singers.csv'
+    csv_path = 'list-singers2.csv'
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)
@@ -84,7 +84,8 @@ def run_now():
         except:
             try:
                 main(FOLDER_ID, singer_name)
-            except:
+            except Exception as e:
+                print(e)
                 print('was error')
 
 

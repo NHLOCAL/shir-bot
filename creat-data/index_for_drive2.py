@@ -7,7 +7,6 @@ from google.oauth2 import service_account
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_JSON')
-print(SERVICE_ACCOUNT_FILE)
 
 # Create a temporary JSON file for the credentials
 temp_json_path = os.path.join(os.path.dirname(__file__), 'service-account-file.json')
@@ -20,10 +19,12 @@ def main(FOLDER_ID, singer_name):
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES
     )
+    print(credentials)
     service = build('drive', 'v3', credentials=credentials)
 
     # Create a CSV file and write headers
     csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.csv')
+    print(csv_path)
     is_new_file = not os.path.exists(csv_path)
     
     with open(csv_path, 'a', newline='') as csvfile:

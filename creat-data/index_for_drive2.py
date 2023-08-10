@@ -77,11 +77,13 @@ def run_now():
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)
-        singer_list = [tuple(row) for row in csv_reader]
-    global singer_name
-    for singer_name, FOLDER_ID in singer_list:
+        singer_list = [row for row in csv_reader]
+    
+    for row in singer_list:
+        singer_name, FOLDER_ID = row
+        global singer_name
         try:
-           main(FOLDER_ID, singer_name)
+            main(FOLDER_ID, singer_name)
         except Exception as e:
             print(e)
             print('There was an error processing:', singer_name)

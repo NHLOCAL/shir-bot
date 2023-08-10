@@ -272,7 +272,7 @@ function displayResults(results) {
       if (!song.album.toLowerCase().includes('סינגלים')) {
         serialLink.addEventListener('click', function(event) {
           event.preventDefault();
-          alert('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
+          showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
         });
       } else {
         serialLink.addEventListener('click', function(event) {
@@ -398,8 +398,28 @@ function downloadSong(songNumber) {
     })
     .catch(error => {
       console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
       loadingMessage.classList.remove('show'); // Hide the loading message on error
     });
 }
 
+
+
+// Function to show a message in the center modal overlay
+function showMessage(message) {
+  var modalOverlay = document.getElementById('modalOverlay');
+  var modalMessage = document.getElementById('modalMessage');
+  var modalOkButton = document.getElementById('modalOkButton');
+
+  modalMessage.textContent = message;
+  modalOverlay.style.display = 'flex'; // Display the modal overlay
+
+  // Add event listener to OK button
+  modalOkButton.addEventListener('click', hideMessage);
+}
+
+// Function to hide the modal overlay
+function hideMessage() {
+  var modalOverlay = document.getElementById('modalOverlay');
+  modalOverlay.style.display = 'none'; // Hide the modal overlay
+}

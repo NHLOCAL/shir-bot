@@ -6,7 +6,8 @@ from google.oauth2 import service_account
 
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = os.getenv('ACCESS_KEYS_JSON')
+SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_JSON')
+print(SERVICE_ACCOUNT_FILE)
 
 # Create a temporary JSON file for the credentials
 temp_json_path = os.path.join(os.path.dirname(__file__), 'service-account-file.json')

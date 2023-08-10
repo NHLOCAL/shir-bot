@@ -41,7 +41,8 @@ jobs:
         git commit -m "Add output.csv"  # Commit with a meaningful message
         git push https://${{ secrets.GITHUB_TOKEN }}@github.com/NHLOCAL/shir-bot.git HEAD:main  # Push changes using the token
 
- 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         
 

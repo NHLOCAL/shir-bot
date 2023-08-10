@@ -1,23 +1,23 @@
-name: Run Python Script
+name: Run Python Script and Upload Artifact
 
 on:
-  # workflow_dispatch:  # Allows manual triggering
   push:
-
+    branches:
+      - main
 
 jobs:
-  run_script:
+  run_script_and_upload:
     runs-on: ubuntu-latest
 
     env:
-      SERVICE_ACCOUNT_JSON: ${{ secrets.ACCESS_KEYS_JSON }} # Using the secret
+      SERVICE_ACCOUNT_JSON: ${{ secrets.ACCESS_KEYS_JSON }}
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2
       with:
         python-version: 3.11
 
@@ -33,14 +33,14 @@ jobs:
       env:
         ACTIONS_STEP_DEBUG: true
 
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v9
+    - name: Create Artifact Directory
+      run: mkdir -p artifacts
+          
+    - name: Copy Output File to Artifact Directory
+      run: cp output.csv artifacts/
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
-        author_name: NHLOCAL
-        author_email: NH.LOCAL11@GMAIL.COM
-        message: 'Your commit message'
-        add: 'output.csv'
-        
-        
-
-
+        name: my-artifact
+        path: artifacts

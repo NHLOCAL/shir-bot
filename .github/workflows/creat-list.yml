@@ -1,30 +1,31 @@
-name: Manual Script Execution
+name: Run Python Script
 
 on:
-  workflow_dispatch:  # Allows manual triggering
+  push:
+    workflow_dispatch:  # Allows manual triggering
+
 
 jobs:
   run_script:
     runs-on: ubuntu-latest
+
+    env:
+      SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }} # Using the secret
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: 3.11
 
     - name: Install dependencies
       run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
+    - name: Set up environment variables
+      run: echo "$SERVICE_ACCOUNT_JSON" > service-account-file.json
+
     - name: Run Python script
       run: python creat-data/index_for_drive2.py
-
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -am "Add generated file"
-        git push

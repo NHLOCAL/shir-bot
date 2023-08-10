@@ -1,11 +1,12 @@
 import csv
 import os
+import json
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = r"C:\Users\משתמש\Videos\service-account-file.json"
+SERVICE_ACCOUNT_FILE = os.getenv('ACCESS_KEYS_JSON')
 
 def main(FOLDER_ID, singer_name):
     # Authenticate and create the Drive service
@@ -72,7 +73,7 @@ def get_folder_name(service, folder_id, is_singer=False):
 
 def run_now():
 
-    csv_path = 'list-singers.csv'
+    csv_path = 'home/runner/work/shir-bot/shir-bot/creat-data/list-singers.csv'
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)

@@ -8,6 +8,7 @@ from google.oauth2 import service_account
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_JSON')
 
+
 # Create a temporary JSON file for the credentials
 temp_json_path = os.path.join(os.path.dirname(__file__), 'service-account-file.json')
 with open(temp_json_path, 'w') as temp_json_file:
@@ -16,20 +17,19 @@ with open(temp_json_path, 'w') as temp_json_file:
 
 def main(FOLDER_ID, singer_name):
     # Authenticate and create the Drive service
-    credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES
+    credentials = service_account.Credentials.from_service_account_info(
+        json.loads(SERVICE_ACCOUNT_JSON), scopes=SCOPES
     )
-    print(credentials)
     service = build('drive', 'v3', credentials=credentials)
 
     # Create a CSV file and write headers
-    csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.csv')
-    print(csv_path)
-    is_new_file = not os.path.exists(csv_path)
-    
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(script_dir, 'output.csv')
+    print("CSV Path:", csv_path)  # Debugging line
+
     with open(csv_path, 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        if is_new_file:
+        if os.path.getsize(csv_path) == 0:
             writer.writerow(["Serial Number", "Filename", "Album", "Singer", "File ID"])
 
         # Initialize serial number counter

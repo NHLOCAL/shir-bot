@@ -1,4 +1,5 @@
 import csv
+import sys
 import os
 import json
 from googleapiclient.discovery import build
@@ -93,3 +94,5 @@ def run_now():
 
 if __name__ == '__main__':
     run_now()
+    sys.stdout = open(os.path.join(os.path.dirname(__file__), 'python-script.log'), 'w')
+

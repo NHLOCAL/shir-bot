@@ -29,6 +29,17 @@ jobs:
 
     - name: Run Python script
       run: python creat-data/index_for_drive2.py
+      echo "::set-output name=exit_code::$?"
+      
+    - name: Print Python script output
+      if: ${{ needs.run_script.result == 'failure' }}
+      run: cat ${{ github.workspace }}/python-script.log
+
+    - name: Fail job if Python script failed
+      if: ${{ steps.run-python.outputs.exit_code != 0 }}
+      run: exit 1
+      
+      
 
     - name: Commit and push changes
       run: |

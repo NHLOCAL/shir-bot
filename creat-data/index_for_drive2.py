@@ -6,14 +6,14 @@ from google.oauth2 import service_account
 
 # Set up Google Drive API credentials
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
-SERVICE_ACCOUNT_FILE = os.getenv('SERVICE_ACCOUNT_JSON')
+SERVICE_ACCOUNT_FILE = 'service-account-file.json'
 
 
 def main(FOLDER_ID, singer_name):
     # Authenticate and create the Drive service
-    credentials_info = json.loads(SERVICE_ACCOUNT_FILE)
-    credentials = service_account.Credentials.from_service_account_info(credentials_info, scopes=SCOPES)
-
+    credentials = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES
+    )
     service = build('drive', 'v3', credentials=credentials)
 
     # Create a CSV file and write headers
@@ -86,11 +86,10 @@ def run_now():
         
     for singer_name, FOLDER_ID in singer_list:
         try:
-            print(main(FOLDER_ID, singer_name))
+           main(FOLDER_ID, singer_name)
         except Exception as e:
             print(e)
             print('There was an error processing:', singer_name)
-
 
 if __name__ == '__main__':
     run_now()

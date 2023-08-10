@@ -1,0 +1,30 @@
+name: Manual Script Execution
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+    - name: Run Python script
+      run: python creat-data/index_for_drive2.py
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Add generated file"
+        git push

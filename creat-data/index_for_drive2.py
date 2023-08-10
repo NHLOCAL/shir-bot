@@ -86,8 +86,7 @@ def run_now():
         
     for singer_name, FOLDER_ID in singer_list:
         try:
-            print("Processing singer:", singer_name)
-            main(FOLDER_ID, singer_name)
+            print(main(FOLDER_ID, singer_name))
         except Exception as e:
             print(e)
             print('There was an error processing:', singer_name)

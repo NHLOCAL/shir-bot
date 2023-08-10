@@ -78,7 +78,7 @@ def get_folder_name(service, folder_id, is_singer=False):
 
 def run_now():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, 'list-singers.csv')
+    csv_path = os.path.join(script_dir, 'list-singers2.csv')
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)
@@ -86,13 +86,12 @@ def run_now():
         
     for singer_name, FOLDER_ID in singer_list:
         try:
-           main(FOLDER_ID, singer_name)
-        except:
-            try:
-                main(FOLDER_ID, singer_name)
-            except Exception as e:
-                print(e)
-                print('There was an error processing:', singer_name)
+            print("Processing singer:", singer_name)
+            main(FOLDER_ID, singer_name)
+        except Exception as e:
+            print(e)
+            print('There was an error processing:', singer_name)
+
 
 if __name__ == '__main__':
     run_now()

@@ -72,7 +72,7 @@ def get_folder_name(service, folder_id, is_singer=False):
 
 def run_now():
 
-    csv_path = 'list-singers2.csv'
+    csv_path = 'list-singers.csv'
     
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)

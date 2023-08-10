@@ -31,10 +31,48 @@ def main(FOLDER_ID, singer_name):
 
     print('CSV file created successfully.')
 
-def process_folder(service, writer, folder_id, serial_number, singer_name, parent_folder_id=None):
-    # Rest of your process_folder function
+def process_folder(service, writer, folder_id, serial_number, parent_folder_id=None):
+    # Get all files in the current folder
+    files = service.files().list(
+        q=f"'{folder_id}' in parents and mimeType != 'application/vnd.google-apps.folder'",
+        fields="files(id, name, parents)"
+    ).execute()
 
-# Rest of your get_folder_name function
+    # Process files in the current folder
+    for file in files['files']:
+        filename = file['name']
+        album = get_folder_name(service, file['parents'][0])
+        singer = singer_name
+        file_id = file['id']
+
+        writer.writerow([serial_number, filename, album, singer, file_id])
+        serial_number += 1
+
+    # Traverse subfolders recursively
+    subfolders = service.files().list(
+        q=f"'{folder_id}' in parents and mimeType = 'application/vnd.google-apps.folder'",
+        fields="files(id)"
+    ).execute()
+
+    for subfolder in subfolders['files']:
+        serial_number = process_folder(service, writer, subfolder['id'], serial_number, folder_id)
+
+    return serial_number
+
+def get_folder_name(service, folder_id, is_singer=False):
+    # Retrieve folder metadata
+    folder = service.files().get(fileId=folder_id, fields='name, parents').execute()
+    folder_name = folder['name']
+
+    if is_singer:
+        # Check if the folder has a parent
+        if 'parents' in folder:
+            parent_folder_id = folder['parents'][0]
+            return get_folder_name(service, parent_folder_id, True)
+        else:
+            return folder_name
+    else:
+        return folder_name
 
 def run_now():
     script_dir = os.path.dirname(os.path.abspath(__file__))

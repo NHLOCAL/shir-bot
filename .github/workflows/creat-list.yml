@@ -33,13 +33,13 @@ jobs:
       env:
         ACTIONS_STEP_DEBUG: true
 
-    - name: Commit and push changes
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add -A output.csv
-        git commit -m "Add output.csv"
-        git push
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: NHLOCAL
+          author_email: NH.LOCAL11@GMAIL.COM
+          message: 'Your commit message'
+          add: 'output.csv'
 
 
       env:

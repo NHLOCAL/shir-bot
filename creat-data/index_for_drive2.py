@@ -88,7 +88,8 @@ def run_now():
         except:
             try:
                 main(FOLDER_ID, singer_name)
-            except:
+            except Exception as e:
+                print(e)
                 print('There was an error processing:', singer_name)
 
 if __name__ == '__main__':

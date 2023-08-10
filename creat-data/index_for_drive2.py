@@ -14,8 +14,6 @@ with open(temp_json_path, 'w') as temp_json_file:
 
 
 
-
-
 def main(FOLDER_ID, singer_name):
     # Authenticate and create the Drive service
     credentials = service_account.Credentials.from_service_account_file(

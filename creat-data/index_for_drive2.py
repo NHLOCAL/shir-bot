@@ -17,19 +17,14 @@ def main(FOLDER_ID, singer_name):
     service = build('drive', 'v3', credentials=credentials)
 
     # Create a CSV file and write headers
-    csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.csv')
-    is_new_file = not os.path.exists(csv_path)
-    
-    with open(csv_path, 'a', newline='') as csvfile:
+    with open('output.csv', 'a', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        if is_new_file:
-            writer.writerow(["Serial Number", "Filename", "Album", "Singer", "File ID"])
 
         # Initialize serial number counter
         serial_number = 1
 
         # Traverse folder and process files
-        process_folder(service, writer, FOLDER_ID, serial_number, singer_name)
+        process_folder(service, writer, FOLDER_ID, serial_number)
 
     print('CSV file created successfully.')
 
@@ -83,7 +78,7 @@ def run_now():
     with open(csv_path, 'r') as file:
         csv_reader = csv.reader(file)
         singer_list = [tuple(row) for row in csv_reader]
-        
+    global singer_name
     for singer_name, FOLDER_ID in singer_list:
         try:
            main(FOLDER_ID, singer_name)

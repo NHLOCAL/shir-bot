@@ -37,9 +37,10 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add output.csv  # Add the file to the staging area
-        git commit -m "Add output.csv"  # Commit with a meaningful message
-        git push  # Push the changes
+        git add output.csv
+        git commit -m "Add output.csv"
+        git push https://${{ secrets.PAT_TOKEN }}@github.com/NHLOCAL/shir-bot.git HEAD:main
+ 
         
         
 

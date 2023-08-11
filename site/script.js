@@ -316,7 +316,7 @@ function generateMailtoLink(serial) {
   }
   
   var encodedSerial = encodeURIComponent(serial);
-  var mailtoLink = 'mailto:' + encodeURIComponent(email) + '?subject=%D7%A7%D7%91%D7%9C&body=' + encodedSerial;
+  var mailtoLink = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A7%D7%91%D7%9C&to=' + encodeURIComponent(email) + '&body=' + encodedSerial;
 
   return mailtoLink;
 }

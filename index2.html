@@ -122,10 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
     tableRows.forEach(function(row) {
         var anchorElement = row.querySelector('td a');
         if (anchorElement) {
-            var number = anchorElement.textContent;
-            gtag('event', 'View', {
-                'event_category': 'Element Views',
-                'event_label': 'Element Number: ' + number
+            anchorElement.addEventListener('click', function() {
+                var number = anchorElement.textContent;
+                gtag('event', 'Click', {
+                    'event_category': 'Element Clicks',
+                    'event_label': 'Element Number: ' + number
+                });
             });
         }
     });

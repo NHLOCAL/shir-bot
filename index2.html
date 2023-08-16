@@ -115,6 +115,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var tableRows = document.querySelectorAll('table tr');
+    
+    tableRows.forEach(function(row) {
+        var anchorElement = row.querySelector('td a');
+        if (anchorElement) {
+            var number = anchorElement.textContent;
+            gtag('event', 'View', {
+                'event_category': 'Element Views',
+                'event_label': 'Element Number: ' + number
+            });
+        }
+    });
+});
   </script>
 </body>
 </html>

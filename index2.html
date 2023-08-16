@@ -31,58 +31,7 @@
     gtag('js', new Date());
     gtag('config', 'G-TGD4VQW4X8');
   </script>
-  
 
-<script>
-// מודעת שדרוגים ועדכונים
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown")) {
-    // Display the modal overlay
-    var overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Ad content
-    modal.innerHTML = `
-      <h2>חדש! הכפלנו את המגבלה היומית</h2>
-      <p>עקב העומס הרב על האתר, נאלצנו להגביל את כמות הבקשות היומיות למשתמש. כעת, לאחר שדרוג המערכת, הכפלנו את כמות הורדות השירים היומית</p>
-      <a href="#" id="searchButton">נסו כעת!</a>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
-    var searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      overlay.remove();
-      var searchInput = document.querySelector("#searchInput");
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
-    
-    searchButton.focus();
-
-    // Close the modal overlay when clicking outside the modal content
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.remove();
-      }
-    });
-
-    // Mark the message as shown in local storage
-    localStorage.setItem("messageShown", "true");
-  }
-});
-</script>
-
-
-  
 
 </head>
 <body dir="rtl" style="background-color:#FFFEDB;">

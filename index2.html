@@ -155,5 +155,17 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 
   <script src="site/new-script.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var loadingMessageElement = document.getElementById('loadingMessage');
+    
+    if (loadingMessageElement) {
+        gtag('event', 'View', {
+            'event_category': 'Element Views',
+            'event_label': 'Loading Message'
+        });
+    }
+});
+  </script>
 </body>
 </html>

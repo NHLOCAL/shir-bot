@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var loadingMessageElement = document.getElementById('loadingMessage');
     
     if (loadingMessageElement) {
-        gtag('event', 'View', {
+        gtag('event', 'down_song', {
             'event_category': 'Element Views',
             'event_label': 'Loading Message'
         });
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (anchorElement) {
             anchorElement.addEventListener('click', function() {
                 var number = anchorElement.textContent;
-                gtag('event', 'Click', {
+                gtag('event', 'down_song', {
                     'event_category': 'Element Clicks',
                     'event_label': 'Element Number: ' + number
                 });

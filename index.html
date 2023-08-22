@@ -98,7 +98,11 @@ document.addEventListener("DOMContentLoaded", function() {
         <option value="album">שם האלבום</option>
         <option value="singer">שם הזמר</option>
       </select>
-      <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
+<div class="input-container">
+  <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
+  <div id="textBubble" class="text-bubble">לחפש במאגר של 70,000 שירים</div>
+</div>
+
       <button type="submit" class="search-button">חפש</button>
       <div class="filter-container">
         <button id="singleFilter" class="filter-button-light">הצג סינגלים בלבד</button>
@@ -153,6 +157,24 @@ document.addEventListener("DOMContentLoaded", function() {
     <p>בשימוש במערכת אתם מאשרים את השימוש בכתובת המייל שלכם</p>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const textBubble = document.getElementById("textBubble");
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("focus", function() {
+      textBubble.classList.remove("active");
+    });
+
+    searchInput.addEventListener("input", function() {
+      textBubble.classList.remove("active");
+    });
+
+    setTimeout(function() {
+      textBubble.classList.add("active");
+    }, 1000); // Adjust the delay (in milliseconds) to control when the bubble appears
+  });
+</script>
 
   <script src="site/script.js"></script>
 </body>

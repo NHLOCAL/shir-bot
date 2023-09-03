@@ -33,57 +33,6 @@
   </script>
   
 
-<script>
-// מודעת שדרוגים ועדכונים
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown")) {
-    // Display the modal overlay
-    var overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Ad content
-    modal.innerHTML = `
-      <h2>חדש! הכפלנו את המגבלה היומית</h2>
-      <p>עקב העומס הרב על האתר, נאלצנו להגביל את כמות הבקשות היומיות למשתמש. כעת, לאחר שדרוג המערכת, הכפלנו את כמות הורדות השירים היומית</p>
-      <a href="#" id="searchButton">נסו כעת!</a>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
-    var searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      overlay.remove();
-      var searchInput = document.querySelector("#searchInput");
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
-    
-    searchButton.focus();
-
-    // Close the modal overlay when clicking outside the modal content
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.remove();
-      }
-    });
-
-    // Mark the message as shown in local storage
-    localStorage.setItem("messageShown", "true");
-  }
-});
-</script>
-
-
-  
-
 </head>
 <body dir="rtl" style="background-color:#FFFEDB;">
   <div class="topnav">
@@ -129,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <th>מספר סידורי</th>
           <th>שם השיר</th>
           <th>שם האלבום</th>
-          <th>שם הזמר</th>		  
+          <th>שם הזמר</th>	  
         </tr>
       </thead>
 <tbody>
@@ -143,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function() {
           <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
           <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
           <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
+		  
+		  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
         </div>
       </center>
     </td>
@@ -150,32 +101,66 @@ document.addEventListener("DOMContentLoaded", function() {
 </tbody>
 
     </table>
-	
   </div>
 
   <div class="fixed-bottom">
     <p>בשימוש במערכת אתם מאשרים את השימוש בכתובת המייל שלכם</p>
   </div>
 </div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const textBubble = document.getElementById("textBubble");
-    const searchInput = document.getElementById("searchInput");
 
-    searchInput.addEventListener("focus", function() {
-      textBubble.classList.remove("active");
-    });
+    <!-- Help Section Overlay -->
+    <div class="help-overlay">
+        <div class="help-modal-container">
+            <!-- Close button -->
+            <span class="close-button" onclick="closeHelp()">X</span>
 
-    searchInput.addEventListener("input", function() {
-      textBubble.classList.remove("active");
-    });
+            <!-- Step 1 -->
+            <div class="help-modal">
+                <h2>שלב א' - חיפוש</h2>
+                <p>חפש שם שיר, זמר או אלבום כרצונך. ניתן לחפש באופן חופשי בכל צורה שתרצו, גם לפי שם השיר, שם האלבום או שם הזמר בלבד</p>
+                <img src="help/1.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
 
-    setTimeout(function() {
-      textBubble.classList.add("active");
-    }, 1000); // Adjust the delay (in milliseconds) to control when the bubble appears
-  });
-</script>
+            <!-- Step 2 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ב' - מציאת שיר</h2>
+                <p>עבור על רשימת השירים שנמצאו ומצא את השיר הרצוי לך</p>
+				<img src="help/3.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
 
+            <!-- Step 3 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ג' - בחירת מספר</h2>
+                <p>לחץ על <b>המספר</b> של השיר שבחרת, שים לב שמדובר בסינגל ולא בשיר מאלבום. תוכל לבדוק האם שם האלבום הוא "סינגלים"</p>
+                <img src="help/2.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ד' - שליחת מייל</h2>
+                <p>יפתח לך חלון חדש עם הודעת מייל. פשוט לחץ על שליחה</p>
+                <img src="help/4.png" alt="תמונה קטנה">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ה' - קבלת השיר</h2>
+                <p>כעת לא נותר לך אלא להמתין ותוך כדקה ישלח למייל שלך השיר שביקשת</p>
+				<img src="help/5.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+        </div>
+    </div>
+  <script src="site/messages.js"></script>
   <script src="site/script.js"></script>
 </body>
 </html>

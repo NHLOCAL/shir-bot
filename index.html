@@ -38,7 +38,13 @@
   <div class="topnav">
     <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
     <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר"><img width="50" style="border-radius: 48%;" src="site/NH.LOCAL.jpg" alt="הסמל של המחבר"></a>
-    <center class="parent-element"><h3><img width="85" src="site/logo.png" alt="סמל האתר">שיר-בוט</h3></center>
+	
+	<center class="parent-element">
+	  <h3 id="nextObject">
+		<img width="85" src="site/logo.png" alt="סמל האתר">שיר-בוט
+	  </h3>
+	</center>
+	
     <form id="searchForm" class="search-form">
       <select id="searchBy" name="searchBy" class="search-select">
         <option value="all">הכל</option>
@@ -47,10 +53,11 @@
         <option value="album">שם אלבום</option>
         <option value="singer">שם הזמר</option>
       </select>
-<div class="input-container">
-  <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
-  <div id="textBubble" class="text-bubble">לחפש במאגר של 70,000 שירים</div>
-</div>
+	  
+	<div class="input-container">
+	  <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
+	  <div id="textBubble" class="text-bubble">לחפש במאגר של 70,000 שירים</div>
+	</div>
 
       <button type="submit" class="search-button">חפש</button>
       <div class="filter-container">
@@ -60,53 +67,54 @@
   </div>
 
 
-<div id="loadingMessage" class="loading-message">
-  <img src="site/loading.gif" alt="טעינה" />
-  <span>מוריד...</span>
-</div>
-<div id="modalOverlay" class="modal-overlay">
-  <div class="modal-content">
-    <span id="modalMessage"></span><br>
-    <button id="modalOkButton" style="font-family: tahoma">אישור</button>
-  </div>
-</div>
+	<div id="loadingMessage" class="loading-message">
+	  <img src="site/loading.gif" alt="טעינה" />
+	  <span>מוריד...</span>
+	</div>
+	<div id="modalOverlay" class="modal-overlay">
+	  <div class="modal-content">
+		<span id="modalMessage"></span><br>
+		<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+	  </div>
+	</div>
 
   <div id="resultsTable">
-    <table>
-      <thead>
-        <tr>
-          <th>מספר סידורי</th>
-          <th>שם השיר</th>
-          <th>שם האלבום</th>
-          <th>שם הזמר</th>	  
-        </tr>
-      </thead>
-<tbody>
-  <tr>
-    <td colspan="4">
-      <center id="instructions">
-        <div class="instructions-container">
-          <h3>הוראות שימוש</h3>
-          <p><b>♪</b> חפש שיר באופן חופשי</p>
-          <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
-          <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
-          <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
-          <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
-		  
-		  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
-        </div>
-      </center>
-    </td>
-  </tr>
-</tbody>
+	<table>
+	  <thead>
+		<tr>
+		  <th>מספר סידורי</th>
+		  <th>שם השיר</th>
+		  <th>שם האלבום</th>
+		  <th>שם הזמר</th>	  
+		</tr>
+	  </thead>
+	  
+	<tbody>
+	  <tr>
+		<td colspan="4">
+		  <center id="instructions">
+			<div class="instructions-container">
+			  <h3>הוראות שימוש</h3>
+			  <p><b>♪</b> חפש שיר באופן חופשי</p>
+			  <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
+			  <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
+			  <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
+			  <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
+			  
+			  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
+			</div>
+		  </center>
+		</td>
+	  </tr>
+	</tbody>
 
     </table>
   </div>
 
-  <div class="fixed-bottom">
-    <p>בשימוש במערכת אתם מאשרים את השימוש בכתובת המייל שלכם</p>
-  </div>
-</div>
+	<div class="fixed-bottom">
+		<p>בשימוש במערכת אתם מאשרים את השימוש בכתובת המייל שלכם</p>
+	  </div>
+	</div>
 
     <!-- Help Section Overlay -->
     <div class="help-overlay">

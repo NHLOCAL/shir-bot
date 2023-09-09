@@ -110,3 +110,13 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.style.display = "flex"; // Display the overlay when the button is clicked
     });
 });
+
+
+// Get a reference to the element by its id
+const nextObject = document.getElementById("nextObject");
+
+// Add a click event listener
+nextObject.addEventListener("click", function() {
+// Re-enter the current page without refreshing
+window.location.href = window.location.href;
+});

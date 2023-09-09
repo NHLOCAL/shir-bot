@@ -25,6 +25,9 @@ singleFilterButton.addEventListener('click', function() {
 });
 
 
+// Define a variable to store the CSV data
+var csvData = null;
+
 function searchSongs(query, searchBy) {
   var searchInput = document.getElementById('searchInput');
   searchInput.value = query; // Fill the search term into the search input
@@ -32,49 +35,70 @@ function searchSongs(query, searchBy) {
   if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
     return; // Do not perform a search
   }
-  
+
   var tableBody = document.querySelector('#resultsTable tbody');
   tableBody.innerHTML = ''; // Clear the table body
-  
+
   var loadingRow = document.createElement('tr');
   var loadingCell = document.createElement('td');
   loadingCell.setAttribute('colspan', '4');
-  
+
   var loadingContainer = document.createElement('div');
   loadingContainer.classList.add('loading-container');
-  
+
   var loadingImage = document.createElement('img');
   loadingImage.src = 'site/loading.gif';
   loadingImage.classList.add('loading-image');
-  
+
   var loadingText = document.createElement('p');
   loadingText.textContent = 'מחפש...';
   loadingText.classList.add('loading-text');
-  
+
   loadingContainer.appendChild(loadingImage);
   loadingContainer.appendChild(loadingText);
   loadingCell.appendChild(loadingContainer);
   loadingRow.appendChild(loadingCell);
   tableBody.appendChild(loadingRow);
 
-  fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
-    .then(function (response) {
-      return response.text();
-    })
-    .then(function (csvText) {
-      var songs = parseCSV(csvText);
+  // Check if the CSV data has already been loaded
+  if (csvData) {
+    // Use the existing CSV data for search
+    var songs = parseCSV(csvData);
 
-      // Apply the selected filter method
-      var filteredSongs;
-      if (showSinglesOnly) {
-        filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
-      } else {
-        filteredSongs = songs;
-      }
+    // Apply the selected filter method
+    var filteredSongs;
+    if (showSinglesOnly) {
+      filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
+    } else {
+      filteredSongs = songs;
+    }
 
-      var results = filterSongs(filteredSongs, query, searchBy);
-      displayResults(results);
-    });
+    var results = filterSongs(filteredSongs, query, searchBy);
+    displayResults(results);
+  } else {
+    // Fetch the CSV data if it hasn't been loaded yet
+    fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (csvText) {
+        // Store the CSV data in the variable
+        csvData = csvText;
+
+        var songs = parseCSV(csvData);
+
+        // Apply the selected filter method
+        var filteredSongs;
+        if (showSinglesOnly) {
+          filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
+        } else {
+          filteredSongs = songs;
+        }
+
+        var results = filterSongs(filteredSongs, query, searchBy);
+        displayResults(results);
+      });
+  }
 }
 
 

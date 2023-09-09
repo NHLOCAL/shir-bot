@@ -38,7 +38,13 @@
   <div class="topnav">
     <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
     <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר"><img width="50" style="border-radius: 48%;" src="site/NH.LOCAL.jpg" alt="הסמל של המחבר"></a>
-    <center class="parent-element"><h3><img width="85" src="site/logo.png" alt="סמל האתר">שיר-בוט</h3></center>
+	
+	<center class="parent-element">
+	  <h3 id="nextObject">
+		<img width="85" src="site/logo.png" alt="סמל האתר">שיר-בוט
+	  </h3>
+	</center>
+	
     <form id="searchForm" class="search-form">
       <select id="searchBy" name="searchBy" class="search-select">
         <option value="all">הכל</option>
@@ -56,16 +62,16 @@
   </div>
 
 
-<div id="loadingMessage" class="loading-message">
-  <img src="site/loading.gif" alt="טעינה" />
-  <span>מוריד...</span>
-</div>
-<div id="modalOverlay" class="modal-overlay">
-  <div class="modal-content">
-    <span id="modalMessage"></span><br>
-    <button id="modalOkButton" style="font-family: tahoma">אישור</button>
-  </div>
-</div>
+	<div id="loadingMessage" class="loading-message">
+	  <img src="site/loading.gif" alt="טעינה" />
+	  <span>מוריד...</span>
+	</div>
+	<div id="modalOverlay" class="modal-overlay">
+	  <div class="modal-content">
+		<span id="modalMessage"></span><br>
+		<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+	  </div>
+	</div>
 
   <div id="resultsTable">
     <table>
@@ -77,6 +83,7 @@
           <th>שם הזמר</th>		  
         </tr>
       </thead>
+	  
 <tbody>
   <tr>
     <td colspan="4">
@@ -104,6 +111,8 @@
 </div>
 
   <script src="site/new-script.js"></script>
+  <script src="site/messages.js"></script>
+  
   <script>
 document.addEventListener('DOMContentLoaded', function() {
     var loadingMessageElement = document.getElementById('loadingMessage');

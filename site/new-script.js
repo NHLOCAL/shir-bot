@@ -373,17 +373,34 @@ function openShareModal(shareLink) {
 
 
 
-function downloadSong(songNumber) {
+async function downloadSong(songNumber) {
   var loadingMessage = document.getElementById('loadingMessage');
+  var progressText = document.getElementById('progressText');
+  var progressBar = document.getElementById('progress');
+
+  // Reset progress bar and messages
+  progressText.innerText = "שולח בקשה...";
+  progressBar.style.width = '10%';
+
   loadingMessage.classList.add('show'); // Display the loading message
 
   var scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec'; // Replace with your Google Apps Script web app URL
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
-  fetch(downloadUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
+  try {
+    const response = await fetch(downloadUrl);
+    const data = await response.json();
+
+    if (data.success) {
+      // Display the stages
+      progressText.innerText = "מעבד...";
+      progressBar.style.width = '40%';
+
+      setTimeout(async () => {
+        progressText.innerText = "מוריד...";
+        progressBar.style.width = '75%';
+
+        // Background download continues here
         var link = document.createElement('a');
         link.href = data.downloadLink;
         link.download = data.originalFileName;
@@ -391,18 +408,25 @@ function downloadSong(songNumber) {
         link.click();
         document.body.removeChild(link);
 
+        // Simulate final stage
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
+        progressText.innerText = "המשימה הושלמה!";
+        progressBar.style.width = '100%';
+
         loadingMessage.classList.remove('show'); // Hide the loading message on success
-      } else {
-        alert(data.message);
-        loadingMessage.classList.remove('show'); // Hide the loading message on error
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
+      }, 1000);
+    } else {
+      alert(data.message);
       loadingMessage.classList.remove('show'); // Hide the loading message on error
-    });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
+    loadingMessage.classList.remove('show'); // Hide the loading message on error
+  }
 }
+
+
 
 
 

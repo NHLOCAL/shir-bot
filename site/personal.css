@@ -683,35 +683,6 @@ a {
 }
 
 
-/* הודעת "מוריד כעת" */
-.loading-message {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 12px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: #362266;
-  background-color: #F3F3F3;
-  font-size: 18px;
-  box-shadow: 2px 5px 15px rgba(45, 67, 115, 0.4);
-  z-index: 9999;
-  align-items: center;
-}
-
-.loading-message img {
-  width: 20px;
-  vertical-align: middle;
-  margin-left: 7px;
-}
-
-.loading-message.show {
-  display: flex;
-}
-
-
 /* Styles for the "OK" button */
 #modalOkButton {
   display: inline-block;
@@ -829,4 +800,54 @@ a {
 .helpButton:hover {
   color: white;
   background-color: #362266;
+}
+
+
+/* הודעת "מוריד כעת" */
+.loading-message {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #362266;
+  background-color: #F3F3F3;
+  font-size: 18px;
+  box-shadow: 2px 5px 15px rgba(45, 67, 115, 0.4);
+  z-index: 9999;
+  align-items: center;
+}
+
+.loading-message img {
+  width: 20px;
+  vertical-align: middle;
+  margin-left: 7px;
+}
+
+.loading-message.show {
+  display: flex;
+}
+
+
+.progress-bar-container {
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #ccc;
+  height: 9px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(to right, #3498db, #4D3091); /* Gradient fill */
+  transition: width 0.3s ease-in-out;
 }

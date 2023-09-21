@@ -398,7 +398,7 @@ async function downloadSong(songNumber) {
 
       setTimeout(async () => {
         progressText.innerText = "מוריד...";
-        progressBar.style.width = '75%';
+        progressBar.style.width = '70%';
 
         // Background download continues here
         var link = document.createElement('a');
@@ -410,9 +410,10 @@ async function downloadSong(songNumber) {
 
         // Simulate final stage
         await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
-        progressText.innerText = "המשימה הושלמה!";
+        progressText.innerText = "הושלם!";
         progressBar.style.width = '100%';
 
+        await new Promise(resolve => setTimeout(resolve, 2000));
         loadingMessage.classList.remove('show'); // Hide the loading message on success
       }, 1000);
     } else {

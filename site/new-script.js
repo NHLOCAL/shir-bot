@@ -379,7 +379,7 @@ async function downloadSong(songNumber) {
   var progressBar = document.getElementById('progress');
 
   // Reset progress bar and messages
-  progressText.innerText = "שולח בקשה...";
+  progressText.innerText = "מתכונן...";
   progressBar.style.width = '10%';
 
   loadingMessage.classList.add('show'); // Display the loading message

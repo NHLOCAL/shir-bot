@@ -77,7 +77,7 @@ function searchSongs(query, searchBy) {
     displayResults(results);
   } else {
     // Fetch the CSV data if it hasn't been loaded yet
-    fetch('https://nhlocal.github.io/shir-bot/site/%E2%80%8F%E2%80%8Fsongs%20-%20%D7%A2%D7%95%D7%AA%D7%A7.csv')
+    fetch('https://nhlocal.github.io/shir-bot/site/songs.csv')
       .then(function (response) {
         return response.text();
       })

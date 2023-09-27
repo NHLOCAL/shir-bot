@@ -6,70 +6,88 @@
     <link rel="stylesheet" href="site/personal.css">
 </head>
 <body dir="rtl">
-    <!-- This is where the ad iframe will be displayed -->
+  <!-- This is where the ad iframe will be displayed -->
 
-    <!-- Your JavaScript code to create and append the iframe goes here -->
-    <script>
+  <!-- Your JavaScript code to create and append the iframe goes here -->
+  <script>
+const urlParams = new URLSearchParams(window.location.search);
+const mailValue = urlParams.get('sourcemail');
+
 // מודעת שדרוגים ועדכונים
 document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown before
-  if (1 == 1) { // This condition always evaluates to true, consider modifying it
-    // Create the overlay div element
-    var overlay = document.createElement("div");
-    overlay.classList.add("overlay");
+  // Create the overlay div element
+  var overlay = document.createElement("div");
+  overlay.classList.add("overlay");
 
-    // Create the modal div element
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
+  // Create the modal div element
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
     
-	// Your JavaScript variable containing the value
-	var sourceMail = 'memilel@gmail.com';
+  // Your JavaScript variable containing the value
+  var sourceMail = 'memilel@gmail.com';
 
 	// Create the iframe source URL with the variable
-	var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + sourceMail + '&viewform?embedded=true';
-    // Create the iframe element
-    var iframe = document.createElement("iframe");
-    iframe.src = iframeSrc
-    iframe.width = "400";
-    iframe.height = "400";
-    iframe.frameBorder = "0";
-    iframe.marginHeight = "0";
-    iframe.marginWidth = "0";
+  var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
+  // Create the iframe element
+  var iframe = document.createElement("iframe");
+  iframe.src = iframeSrc
+  iframe.width = "400";
+  iframe.height = "400";
+  iframe.frameBorder = "0";
+  iframe.marginHeight = "0";
+  iframe.marginWidth = "0";
+  
+  // Append the iframe to the modal
+  modal.appendChild(iframe);
 
-    // Append the iframe to the modal
-    modal.appendChild(iframe);
+  // Append the modal to the overlay
+  overlay.appendChild(modal);
 
-    // Append the modal to the overlay
-    overlay.appendChild(modal);
+// Create the confirmation button element
+var confirmButton = document.createElement("a");
+confirmButton.innerText = "אישור"; // Set the button text
 
-    // Append the overlay to the body
-    document.body.appendChild(overlay);
+// Add a class to style the button (you can define the CSS later)
+confirmButton.classList.add("confirm-button");
 
-    // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
-    var searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      overlay.remove();
-      var searchInput = document.querySelector("#searchInput");
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
+// Append the confirmation button to the modal
+modal.appendChild(confirmButton);
 
-    // Set focus on the search button
-    searchButton.focus();
-
-    // Close the modal overlay when clicking outside the modal content
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.remove();
-      }
-    });
-  }
+// Add a click event listener to the confirmation button
+confirmButton.addEventListener("click", function() {
+  // Define the URL you want to navigate to
+  var newURL = "file:///C:/Users/משתמש/Documents/GitHub/shir-bot/index.html";
+  // Use window.location.href to navigate to the new URL
+  window.location.href = newURL;
 });
 
+  // Append the overlay to the body
+  document.body.appendChild(overlay);
+
+  // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
+  var searchButton = document.getElementById("searchButton");
+  searchButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    overlay.remove();
+    var searchInput = document.querySelector("#searchInput");
+    if (searchInput) {
+      searchInput.focus();
+    }
+  });
+
+  // Set focus on the search button
+  searchButton.focus();
+
+  // Close the modal overlay when clicking outside the modal content
+  overlay.addEventListener("click", function(event) {
+    if (event.target === overlay) {
+      overlay.remove();
+    }
+  });
+
+});
 
 		
-    </script>
+  </script>
 </body>
 </html>

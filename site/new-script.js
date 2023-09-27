@@ -247,7 +247,6 @@ function displayResults(resultsToDisplay) {
       var nameCell = document.createElement('td');
       var albumCell = document.createElement('td');
       var singerCell = document.createElement('td');
-      var shareCell = document.createElement('td');
       
       // Create a link for the serial number
       var serialLink = document.createElement('a');
@@ -396,43 +395,6 @@ function showCopiedMessage() {
   setTimeout(function () {
     document.body.removeChild(message);
   }, 3000);
-}
-
-
-
-function openShareModal(shareLink) {
-  var overlay = document.createElement('div');
-  overlay.classList.add('modal-overlay');
-
-  var modal = document.createElement('div');
-  modal.classList.add('modal-content');
-
-  var h2 = document.createElement('h2');
-  h2.textContent = 'שתף את השיר';
-
-  var p = document.createElement('p');
-  p.textContent = 'הקישור לשיר:';
-
-  var link = document.createElement('a');
-  link.textContent = 'לחץ כאן';
-  link.dataset.shareLink = shareLink;
-  link.target = '_blank';
-
-  var closeButton = document.createElement('button');
-  closeButton.textContent = 'סגור';
-  closeButton.classList.add('share-button');
-  closeButton.addEventListener('click', function () {
-    document.body.removeChild(overlay); // Close the modal overlay
-  });
-
-  modal.appendChild(h2);
-  modal.appendChild(p);
-  modal.appendChild(link);
-  modal.appendChild(closeButton);
-
-  overlay.appendChild(modal);
-
-  document.body.appendChild(overlay);
 }
 
 

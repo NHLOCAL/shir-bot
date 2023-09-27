@@ -306,8 +306,6 @@ var displayedResults = 0;
 // Add an event listener to the "Load more" button.
 var loadMoreButton = document.getElementById('loadMoreButton');
 loadMoreButton.addEventListener('click', loadMoreResults);
-// Initially, hide the "Load more" button
-loadMoreButton.style.display = 'none';
 
 // Function to load more results.
 function loadMoreResults() {

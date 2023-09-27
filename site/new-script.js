@@ -392,12 +392,6 @@ window.addEventListener('load', function () {
 });
 
 
-function updateURLWithoutReload(searchTerm) {
-  var newURL = window.location.protocol + '//' + window.location.host + window.location.pathname + '?search=' + encodeURIComponent(searchTerm);
-  window.history.pushState({ path: newURL }, '', newURL);
-}
-
-
 function copyToClipboard(text) {
   var textArea = document.createElement('textarea');
   textArea.value = text;
@@ -420,7 +414,7 @@ function showCopiedMessage() {
 }
 
 
-
+// הורדה אוטומטית של שיר באמצעות אפליקציית גוגל
 async function downloadSong(songNumber) {
   var loadingMessage = document.getElementById('loadingMessage');
   var progressText = document.getElementById('progressText');
@@ -474,7 +468,3 @@ async function downloadSong(songNumber) {
     loadingMessage.classList.remove('show'); // Hide the loading message on error
   }
 }
-
-
-
-

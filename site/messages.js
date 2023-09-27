@@ -120,3 +120,38 @@ nextObject.addEventListener("click", function() {
 // Re-enter the current page without refreshing
 window.location.href = window.location.href;
 });
+
+
+
+// Function to show a message in the center modal overlay
+function showMessage(message) {
+var modalOverlay = document.getElementById('modalOverlay');
+var modalMessage = document.getElementById('modalMessage');
+var modalOkButton = document.getElementById('modalOkButton');
+
+modalMessage.textContent = message;
+modalOverlay.style.display = 'flex'; // Display the modal overlay
+
+// Add event listener to OK button
+modalOkButton.addEventListener('click', hideMessage);
+
+// Add event listener to document to close on click anywhere
+document.addEventListener('click', function(event) {
+  if (event.target === modalOverlay) {
+	hideMessage();
+  }
+});
+
+// Add event listener to document to close on Enter key press
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+	hideMessage();
+  }
+});
+}
+
+// Function to hide the modal overlay
+function hideMessage() {
+var modalOverlay = document.getElementById('modalOverlay');
+modalOverlay.style.display = 'none'; // Hide the modal overlay
+}

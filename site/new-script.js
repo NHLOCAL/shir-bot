@@ -5,6 +5,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   searchSongs(searchInput, searchBy);
 });
 
+var results; // Declare results at the global level
 
 var singleFilterButton = document.getElementById('singleFilter');
 var showSinglesOnly = false;
@@ -71,9 +72,13 @@ function searchSongs(query, searchBy) {
       } else {
         filteredSongs = songs;
       }
-      var results = filterSongs(filteredSongs, query, searchBy);
-      displayResults(results);
+      results = filterSongs(filteredSongs, query, searchBy);
+      displayResults(results.slice(0, 250)); // Display the initial 100 results
+    
+      // Show the "Load more" button after a search is performed
+      loadMoreButton.style.display = 'block';
     });
+
 }
 
 
@@ -216,13 +221,14 @@ function filterSongs(songs, query, searchBy) {
 
 
 
-function displayResults(results) {
+// Function to display search results.
+function displayResults(resultsToDisplay) {
   var tableBody = document.querySelector('#resultsTable tbody');
 
   // Clear the table body
   tableBody.innerHTML = '';
 
-  if (results.length === 0) {
+  if (resultsToDisplay.length === 0) {
     // Display instructions and explanations when no results are found
     var instructionRow = document.createElement('tr');
     var instructionCell = document.createElement('td');
@@ -231,42 +237,28 @@ function displayResults(results) {
     instructionRow.appendChild(instructionCell);
     tableBody.appendChild(instructionRow);
   } else {
-    // Display the search results
-    for (var i = 0; i < results.length; i++) {
-      var song = results[i];
+    // Display the search results for the specified range.
+    for (var i = 0; i < resultsToDisplay.length; i++) {
+      var song = resultsToDisplay[i];
       var row = document.createElement('tr');
+      
+      // Create cells for each column in the table
       var serialCell = document.createElement('td');
       var nameCell = document.createElement('td');
       var albumCell = document.createElement('td');
       var singerCell = document.createElement('td');
+      
+      // Create a link for the serial number
       var serialLink = document.createElement('a');
-
       serialLink.textContent = song.serial;
-      serialCell.appendChild(serialLink);
-      nameCell.textContent = song.name;
-      albumCell.textContent = song.album;
-      singerCell.textContent = song.singer;
-      row.appendChild(serialCell);
-      row.appendChild(nameCell);
-      row.appendChild(albumCell);
-      row.appendChild(singerCell);
-      tableBody.appendChild(row);
-
-    // Add the share button
-    var shareButton = document.createElement('button');
-    shareButton.textContent = 'שתף';
-    shareButton.classList.add('share-button');
-    shareButton.dataset.serial = song.serial;
-    shareButton.addEventListener('click', function () {
-      var serial = this.dataset.serial;
-      var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
-      copyToClipboard(shareLink); // Copy the share link to clipboard
-      showCopiedMessage(); // Show a message indicating the link has been copied
-    });
-    // Append the share button to the row
-    row.appendChild(shareButton);
-
-    tableBody.appendChild(row);
+      
+      // Add an event listener for the serial link
+      serialLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        var clickedElement = event.target; // The <a> element that was clicked
+        var songNumber = clickedElement.textContent; // Extract the number from the text
+        downloadSong(songNumber);
+      });
 
       // Check if the album name does not contain the word "סינגלים" and attach the event listener
       if (!song.album.toLowerCase().includes('סינגלים')) {
@@ -274,18 +266,68 @@ function displayResults(results) {
           event.preventDefault();
           showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
         });
-      } else {
-        serialLink.addEventListener('click', function(event) {
-          event.preventDefault(); // Prevent the default link behavior
-          var clickedElement = event.target; // The <a> element that was clicked
-          var songNumber = clickedElement.textContent; // Extract the number from the text
-          downloadSong(songNumber);
-        });
-
       }
+      
+      // Create the share button
+      var shareButton = document.createElement('button');
+      shareButton.textContent = 'שתף';
+      shareButton.classList.add('share-button');
+      shareButton.dataset.serial = song.serial;
+      
+      // Add an event listener to the share button
+      shareButton.addEventListener('click', function () {
+        var serial = this.dataset.serial;
+        var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
+        copyToClipboard(shareLink); // Copy the share link to clipboard
+        showCopiedMessage(); // Show a message indicating the link has been copied
+      });
 
+      // Fill in the cell values with song information
+      nameCell.textContent = song.name;
+      albumCell.textContent = song.album;
+      singerCell.textContent = song.singer;
+
+      // Append elements to the row
+      serialCell.appendChild(serialLink);
+      row.appendChild(serialCell);
+      row.appendChild(nameCell);
+      row.appendChild(albumCell);
+      row.appendChild(singerCell);
+      row.appendChild(shareButton);
+
+      // Append the row to the table body
+      tableBody.appendChild(row);
     }
   }
+}
+
+
+// Define a variable to keep track of the number of results displayed.
+var displayedResults = 0;
+
+// Add an event listener to the "Load more" button.
+var loadMoreButton = document.getElementById('loadMoreButton');
+loadMoreButton.addEventListener('click', loadMoreResults);
+// Initially, hide the "Load more" button
+loadMoreButton.style.display = 'none';
+
+// Function to load more results.
+function loadMoreResults() {
+  // Increase the number of displayed results by 500.
+  displayedResults += 250;
+
+  // Display the additional results.
+  displayResults(results.slice(0, displayedResults));
+
+  // Hide the "Load more" button if all results are displayed.
+  if (displayedResults >= results.length) {
+    loadMoreButton.style.display = 'none';
+  }
+}
+
+// Initially, hide the "Load more" button if there are fewer than 500 results.
+if (results.length <= 250) {
+  loadMoreButton.style.display = 'none';
 }
 
 
@@ -430,36 +472,3 @@ async function downloadSong(songNumber) {
 
 
 
-
-// Function to show a message in the center modal overlay
-function showMessage(message) {
-var modalOverlay = document.getElementById('modalOverlay');
-var modalMessage = document.getElementById('modalMessage');
-var modalOkButton = document.getElementById('modalOkButton');
-
-modalMessage.textContent = message;
-modalOverlay.style.display = 'flex'; // Display the modal overlay
-
-// Add event listener to OK button
-modalOkButton.addEventListener('click', hideMessage);
-
-// Add event listener to document to close on click anywhere
-document.addEventListener('click', function(event) {
-  if (event.target === modalOverlay) {
-	hideMessage();
-  }
-});
-
-// Add event listener to document to close on Enter key press
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-	hideMessage();
-  }
-});
-}
-
-// Function to hide the modal overlay
-function hideMessage() {
-var modalOverlay = document.getElementById('modalOverlay');
-modalOverlay.style.display = 'none'; // Hide the modal overlay
-}

@@ -5,6 +5,28 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   searchSongs(searchInput, searchBy);
 });
 
+// חיפוש אוטומטי של שיר בקישור עם פרמטר
+const urlParams = new URLSearchParams(window.location.search);
+const searchValue = urlParams.get('search');
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = searchValue || ''; // Set the value if 'search' parameter exists, or set it to an empty string if not.
+});
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = urlParams.get('search');
+  searchInput.value = searchValue || '';
+
+  if (searchValue) {
+    // Simulate search if 'search' parameter is present.
+    const searchBy = document.getElementById('searchBy').value;
+    searchSongs(searchValue, searchBy);
+  }
+});
+
+
 var results; // Declare results at the global level
 
 var singleFilterButton = document.getElementById('singleFilter');

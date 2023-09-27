@@ -247,11 +247,12 @@ function displayResults(resultsToDisplay) {
       var nameCell = document.createElement('td');
       var albumCell = document.createElement('td');
       var singerCell = document.createElement('td');
+      var shareCell = document.createElement('td');
       
       // Create a link for the serial number
       var serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
-      
+
       if (!song.album.toLowerCase().includes('סינגלים')) {
         serialLink.addEventListener('click', function(event) {
           event.preventDefault();
@@ -265,7 +266,33 @@ function displayResults(resultsToDisplay) {
           downloadSong(songNumber);
         });
       }
+	  
+      // Create a button for the album
+      var albumButton = document.createElement('button');
+      albumButton.textContent = song.album;
+      albumButton.classList.add('album-button');
       
+      // Add an event listener to the album button
+      albumButton.addEventListener('click', function(event) {
+        event.preventDefault();
+		var searchBy = 'album'
+        var query = this.textContent;
+		searchSongs(query, searchBy)
+      });
+      
+      // Create a button for the singer
+      var singerButton = document.createElement('button');
+      singerButton.textContent = song.singer;
+      singerButton.classList.add('singer-button');
+      
+      // Add an event listener to the singer button
+      singerButton.addEventListener('click', function(event) {
+        event.preventDefault();
+		var searchBy = 'singer'
+        var query = this.textContent;
+		searchSongs(query, searchBy)
+      });
+
       // Create the share button
       var shareButton = document.createElement('button');
       shareButton.textContent = 'שתף';
@@ -280,13 +307,11 @@ function displayResults(resultsToDisplay) {
         showCopiedMessage(); // Show a message indicating the link has been copied
       });
 
-      // Fill in the cell values with song information
-      nameCell.textContent = song.name;
-      albumCell.textContent = song.album;
-      singerCell.textContent = song.singer;
-
       // Append elements to the row
       serialCell.appendChild(serialLink);
+	  nameCell.textContent = song.name;
+      albumCell.appendChild(albumButton);
+      singerCell.appendChild(singerButton);
       row.appendChild(serialCell);
       row.appendChild(nameCell);
       row.appendChild(albumCell);
@@ -298,6 +323,7 @@ function displayResults(resultsToDisplay) {
     }
   }
 }
+
 
 
 // Define a variable to keep track of the number of results displayed.

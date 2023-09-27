@@ -252,19 +252,17 @@ function displayResults(resultsToDisplay) {
       var serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
       
-      // Add an event listener for the serial link
-      serialLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        var clickedElement = event.target; // The <a> element that was clicked
-        var songNumber = clickedElement.textContent; // Extract the number from the text
-        downloadSong(songNumber);
-      });
-
-      // Check if the album name does not contain the word "סינגלים" and attach the event listener
       if (!song.album.toLowerCase().includes('סינגלים')) {
         serialLink.addEventListener('click', function(event) {
           event.preventDefault();
           showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
+        });
+      } else {
+        serialLink.addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent the default link behavior
+          var clickedElement = event.target; // The <a> element that was clicked
+          var songNumber = clickedElement.textContent; // Extract the number from the text
+          downloadSong(songNumber);
         });
       }
       

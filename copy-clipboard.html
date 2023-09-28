@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Formatted Text to Clipboard</title>
+  <link rel="stylesheet" href="site/styles.css">
+</head>
+<body dir="rtl">
+  <div id="content">
+    <div class="scale-div" style="background-color: #FFF8C5; display: flex; justify-content: center; align-items: center">
+  <div class="about-program">
+    <h3>מה התוכנה עושה?</h3>
+    <p>התוכנה מסדרת את הסינגלים המפוזרים שלכם בתוך תיקיות מסודרות לפי שמות הזמרים</p>
+    <h3>איך התוכנה עובדת?</h3>
+    <p>התוכנה בודקת האם קיים בשם הקובץ שם של זמר כלשהו וכאשר היא מזהה קובץ כזה היא מעבירה אותו לתיקיה המתאימה. בנוסף היא מחפשת בשם האמן במאפייני הקובץ, ומכניסה אותו לתיקיה מתאימה במקרה והשם תקין</p>
+    <h3>האם השימוש בתוכנה מסובך?</h3>
+    <p>ממש לא. השימוש בתוכנה הוא פשוט וקל. והוא מפורט בהרחבה בקובץ העזרה</p>
+    <h3>האם קיימים באגים בתוכנה?</h3>
+    <p>אכן. התוכנה אינה יודעת לזהות שירי דואט. בשיר בו רשומים בשם הקובץ שני זמרים – יועבר השיר לתיקיה של אחד מהם, לפי הרשום ברשימת הסריקה של התוכנה.
+    תקלה נוספת, פחות נפוצה היא זיהוי מוטעה של שמות זמרים. לדוגמה, זמר בשם "אברהם פרידמן" עשוי לעבור לתיקית "אברהם פריד".
+    מלבד זאת, לא מומלץ כלל להפעיל את התוכנה על אלבומים מסודרים, אלא אך ורק על תיקיות סינגלים</p>
+  </div>
+</div>
+  </div>
+  <button onclick="copyFormattedText()">Copy Formatted Text</button>
+
+  <script>
+    function copyFormattedText() {
+      const contentElement = document.getElementById('content');
+      const clonedElement = contentElement.cloneNode(true);
+
+      // Style the cloned element to match the original.
+      clonedElement.style.position = 'absolute';
+      clonedElement.style.left = '-9999px';
+
+      document.body.appendChild(clonedElement);
+
+      const range = document.createRange();
+      range.selectNodeContents(clonedElement);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      try {
+        document.execCommand('copy');
+        alert('Formatted text copied to clipboard.');
+      } catch (err) {
+        console.error('Unable to copy text: ', err);
+      } finally {
+        selection.removeAllRanges();
+        document.body.removeChild(clonedElement);
+      }
+    }
+  </script>
+</body>
+</html>

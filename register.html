@@ -22,70 +22,61 @@ document.addEventListener("DOMContentLoaded", function() {
   // Create the modal div element
   var modal = document.createElement("div");
   modal.classList.add("modal");
-    
+  
   // Your JavaScript variable containing the value
   var sourceMail = 'memilel@gmail.com';
 
-	// Create the iframe source URL with the variable
+  // Create the iframe source URL with the variable
   var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
-  // Create the iframe element
-  var iframe = document.createElement("iframe");
-  iframe.src = iframeSrc
-  iframe.width = "400";
-  iframe.height = "400";
-  iframe.frameBorder = "0";
-  iframe.marginHeight = "0";
-  iframe.marginWidth = "0";
-  
-  // Append the iframe to the modal
-  modal.appendChild(iframe);
+
+  // Create the HTML content you want to add to the modal
+  var htmlContent = `
+    <iframe src="${iframeSrc}" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    <a class="confirm-button">אישור</a><br>
+	<p>מעוניין להכנס להגרלה גם כן?<br><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
+  `;
+
+  // Set the HTML content as the innerHTML of the modal
+  modal.innerHTML = htmlContent;
+
+  // Add a click event listener to the confirmation button
+  modal.querySelector(".confirm-button").addEventListener("click", function() {
+    // Define the URL you want to navigate to
+    var newURL = "https://nhlocal.github.io/shir-bot";
+    // Use window.location.href to navigate to the new URL
+    window.location.href = newURL;
+  });
 
   // Append the modal to the overlay
   overlay.appendChild(modal);
 
-// Create the confirmation button element
-var confirmButton = document.createElement("a");
-confirmButton.innerText = "אישור"; // Set the button text
-
-// Add a class to style the button (you can define the CSS later)
-confirmButton.classList.add("confirm-button");
-
-// Append the confirmation button to the modal
-modal.appendChild(confirmButton);
-
-// Add a click event listener to the confirmation button
-confirmButton.addEventListener("click", function() {
-  // Define the URL you want to navigate to
-  var newURL = "https://nhlocal.github.io/shir-bot";
-  // Use window.location.href to navigate to the new URL
-  window.location.href = newURL;
-});
-
   // Append the overlay to the body
   document.body.appendChild(overlay);
+  
+// Add an event listener to the "Click here for more instructions" button
+document.getElementById('instructionsButton').addEventListener('click', function() {
+  // Reset the modal by clearing its content
+  modal.innerHTML = '';
 
-  // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
-  var searchButton = document.getElementById("searchButton");
-  searchButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    overlay.remove();
-    var searchInput = document.querySelector("#searchInput");
-    if (searchInput) {
-      searchInput.focus();
-    }
-  });
+  // Create a new set of instructions
+  var newInstructions = document.createElement('div');
+  newInstructions.innerHTML = `
+    <h2>הצטרפו להגרלה!</h2>
+    <ol>
+      <li><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
+      <li><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
+      <li>הדביקו את התוכן בהודעת המייל</li>
+      <li>שלחו לחבריכם</li><br>
+    </ol>
+	<p>שימו לב: כל אדם נוסף שנכנס לאתר דרככם, מזכה אותכם בכניסה נוספת להגרלה</p>
+  `;
 
-  // Set focus on the search button
-  searchButton.focus();
-
-  // Close the modal overlay when clicking outside the modal content
-  overlay.addEventListener("click", function(event) {
-    if (event.target === overlay) {
-      overlay.remove();
-    }
-  });
+  // Append the new instructions to the modal
+  modal.appendChild(newInstructions);
+});
 
 });
+
 
 		
   </script>

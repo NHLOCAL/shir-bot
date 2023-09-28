@@ -4,6 +4,7 @@
     <title>Dynamic Ad IFrame</title>
     <link rel="stylesheet" href="site/styles.css">
     <link rel="stylesheet" href="site/personal.css">
+	<script src="site/messages.js"></script>
 <style>
 .refined a {
   margin: 0;
@@ -14,8 +15,13 @@
   text-decoration: underline;
 }
 
-.refined a:hover {
-  color: white;
+.refined a:hover {color: white;}
+
+.refined h2 {margin-bottom: 0px;}
+
+.refined p,li {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 </style>
 </head>
@@ -45,25 +51,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Create the HTML content you want to add to the modal
   var htmlContent = `
+ <div class="refined">
     <h2>הרשמה מהירה</h2>
-	<p>כדי שאתם וחברכם יכנסו להגרלה, יש להירשם כעת</p>
+	<p>כדי שאתה וחברך תכנסו להגרלה, יש להירשם כעת</p>
     <iframe src="${iframeSrc}" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-    <a class="confirm-button">מעבר לאתר</a><br>
-	<div class="refined">
-	  <p>מעוניין להגדיל את סיכויי הזכייה שלך?<br><a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
-	</div>
+
+	<p>מעוניין להגדיל את סיכויי הזכייה שלך?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
+    <br>
+	<a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">לסיום ומעבר לאתר</a>
+</div>
   `;
 
   // Set the HTML content as the innerHTML of the modal
   modal.innerHTML = htmlContent;
-
-  // Add a click event listener to the confirmation button
-  modal.querySelector(".confirm-button").addEventListener("click", function() {
-    // Define the URL you want to navigate to
-    var newURL = "https://nhlocal.github.io/shir-bot";
-    // Use window.location.href to navigate to the new URL
-    window.location.href = newURL;
-  });
 
   // Append the modal to the overlay
   overlay.appendChild(modal);
@@ -81,14 +81,16 @@ document.getElementById('instructionsButton').addEventListener('click', function
   newInstructions.innerHTML = `
   <div class="refined">
     <h2>כיצד נכנסים להגרלה</h2>
+	<p>במספר צעדים פשוטים</p>
     <ol style="list-style-type: none;">
       <li><a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
       <li><a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
       <li>הדביקו את התוכן בהודעת המייל</li>
       <li>שלחו לחבריכם</li><br>
     </ol>
-	<p>שימו לב: כל אדם נוסף שנכנס לאתר דרככם, מזכה אותכם בכניסה נוספת להגרלה!</p>
+	<b>שימו לב:על כל אדם נוסף שנכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
   </div>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור וסיום</a>
   `;
 
   // Append the new instructions to the modal
@@ -103,20 +105,18 @@ document.getElementById('instructionsButton').addEventListener('click', function
 function copyFormattedText() {
   // Define the HTML content you want to copy
   var htmlContent = `
-    <div class="scale-div" style="background-color: #FFF8C5; display: flex; justify-content: center; align-items: center">
-  <div class="about-program">
-    <h3>מה התוכנה עושה?</h3>
-    <p>התוכנה מסדרת את הסינגלים המפוזרים שלכם בתוך תיקיות מסודרות לפי שמות הזמרים</p>
-    <h3>איך התוכנה עובדת?</h3>
-    <p>התוכנה בודקת האם קיים בשם הקובץ שם של זמר כלשהו וכאשר היא מזהה קובץ כזה היא מעבירה אותו לתיקיה המתאימה. בנוסף היא מחפשת בשם האמן במאפייני הקובץ, ומכניסה אותו לתיקיה מתאימה במקרה והשם תקין</p>
-    <h3>האם השימוש בתוכנה מסובך?</h3>
-    <p>ממש לא. השימוש בתוכנה הוא פשוט וקל. והוא מפורט בהרחבה בקובץ העזרה</p>
-    <h3>האם קיימים באגים בתוכנה?</h3>
-    <p>אכן. התוכנה אינה יודעת לזהות שירי דואט. בשיר בו רשומים בשם הקובץ שני זמרים – יועבר השיר לתיקיה של אחד מהם, לפי הרשום ברשימת הסריקה של התוכנה.
-    תקלה נוספת, פחות נפוצה היא זיהוי מוטעה של שמות זמרים. לדוגמה, זמר בשם "אברהם פרידמן" עשוי לעבור לתיקית "אברהם פריד".
-    מלבד זאת, לא מומלץ כלל להפעיל את התוכנה על אלבומים מסודרים, אלא אך ורק על תיקיות סינגלים</p>
-  </div>
+<center id="instructions">
+<div class="instructions-container">
+  <h3>הוראות שימוש</h3>
+  <p><b>♪</b> חפש שיר באופן חופשי</p>
+  <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
+  <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
+  <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
+  <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
+  
+  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
 </div>
+</center>
   `;
 
   // Create a temporary element to hold the HTML content
@@ -140,7 +140,7 @@ function copyFormattedText() {
   try {
     // Copy the selected content to the clipboard
     document.execCommand('copy');
-    alert('Formatted text copied to clipboard.');
+    alert('ההודעה הועתקה ללוח!');
   } catch (err) {
     console.error('Unable to copy text: ', err);
   } finally {

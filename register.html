@@ -4,6 +4,20 @@
     <title>Dynamic Ad IFrame</title>
     <link rel="stylesheet" href="site/styles.css">
     <link rel="stylesheet" href="site/personal.css">
+<style>
+.refined a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.refined a:hover {
+  color: white;
+}
+</style>
 </head>
 <body dir="rtl" style="background-color:#FFFEDB;">
   <!-- This is where the ad iframe will be displayed -->
@@ -31,9 +45,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Create the HTML content you want to add to the modal
   var htmlContent = `
+    <h2>הרשמה מהירה</h2>
+	<p>כדי שאתם וחברכם יכנסו להגרלה, יש להירשם כעת</p>
     <iframe src="${iframeSrc}" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-    <a class="confirm-button">אישור</a><br>
-	<p>מעוניין להכנס להגרלה גם כן?<br><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
+    <a class="confirm-button">מעבר לאתר</a><br>
+	<div class="refined">
+	  <p>מעוניין להגדיל את סיכויי הזכייה שלך?<br><a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
+	</div>
   `;
 
   // Set the HTML content as the innerHTML of the modal
@@ -61,14 +79,16 @@ document.getElementById('instructionsButton').addEventListener('click', function
   // Create a new set of instructions
   var newInstructions = document.createElement('div');
   newInstructions.innerHTML = `
-    <h2>הצטרפו להגרלה!</h2>
-    <ol>
-      <li><a style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
-      <li><a style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
+  <div class="refined">
+    <h2>כיצד נכנסים להגרלה</h2>
+    <ol style="list-style-type: none;">
+      <li><a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
+      <li><a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
       <li>הדביקו את התוכן בהודעת המייל</li>
       <li>שלחו לחבריכם</li><br>
     </ol>
-	<p>שימו לב: כל אדם נוסף שנכנס לאתר דרככם, מזכה אותכם בכניסה נוספת להגרלה</p>
+	<p>שימו לב: כל אדם נוסף שנכנס לאתר דרככם, מזכה אותכם בכניסה נוספת להגרלה!</p>
+  </div>
   `;
 
   // Append the new instructions to the modal

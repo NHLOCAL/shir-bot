@@ -63,8 +63,8 @@ document.getElementById('instructionsButton').addEventListener('click', function
   newInstructions.innerHTML = `
     <h2>הצטרפו להגרלה!</h2>
     <ol>
-      <li><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
-      <li><a style="  margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
+      <li><a style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
+      <li><a style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
       <li>הדביקו את התוכן בהודעת המייל</li>
       <li>שלחו לחבריכם</li><br>
     </ol>
@@ -77,6 +77,58 @@ document.getElementById('instructionsButton').addEventListener('click', function
 
 });
 
+
+
+
+function copyFormattedText() {
+  // Define the HTML content you want to copy
+  var htmlContent = `
+    <div class="scale-div" style="background-color: #FFF8C5; display: flex; justify-content: center; align-items: center">
+  <div class="about-program">
+    <h3>מה התוכנה עושה?</h3>
+    <p>התוכנה מסדרת את הסינגלים המפוזרים שלכם בתוך תיקיות מסודרות לפי שמות הזמרים</p>
+    <h3>איך התוכנה עובדת?</h3>
+    <p>התוכנה בודקת האם קיים בשם הקובץ שם של זמר כלשהו וכאשר היא מזהה קובץ כזה היא מעבירה אותו לתיקיה המתאימה. בנוסף היא מחפשת בשם האמן במאפייני הקובץ, ומכניסה אותו לתיקיה מתאימה במקרה והשם תקין</p>
+    <h3>האם השימוש בתוכנה מסובך?</h3>
+    <p>ממש לא. השימוש בתוכנה הוא פשוט וקל. והוא מפורט בהרחבה בקובץ העזרה</p>
+    <h3>האם קיימים באגים בתוכנה?</h3>
+    <p>אכן. התוכנה אינה יודעת לזהות שירי דואט. בשיר בו רשומים בשם הקובץ שני זמרים – יועבר השיר לתיקיה של אחד מהם, לפי הרשום ברשימת הסריקה של התוכנה.
+    תקלה נוספת, פחות נפוצה היא זיהוי מוטעה של שמות זמרים. לדוגמה, זמר בשם "אברהם פרידמן" עשוי לעבור לתיקית "אברהם פריד".
+    מלבד זאת, לא מומלץ כלל להפעיל את התוכנה על אלבומים מסודרים, אלא אך ורק על תיקיות סינגלים</p>
+  </div>
+</div>
+  `;
+
+  // Create a temporary element to hold the HTML content
+  var tempElement = document.createElement('div');
+  tempElement.innerHTML = htmlContent;
+
+  // Style the cloned element to match the original.
+  tempElement.style.position = 'absolute';
+  tempElement.style.left = '-9999px';
+
+  // Append the temporary element to the document
+  document.body.appendChild(tempElement);
+
+  // Create a range and select the content
+  var range = document.createRange();
+  range.selectNodeContents(tempElement);
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  try {
+    // Copy the selected content to the clipboard
+    document.execCommand('copy');
+    alert('Formatted text copied to clipboard.');
+  } catch (err) {
+    console.error('Unable to copy text: ', err);
+  } finally {
+    // Clean up
+    selection.removeAllRanges();
+    document.body.removeChild(tempElement);
+  }
+}
 
 		
   </script>

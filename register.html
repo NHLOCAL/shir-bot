@@ -24,7 +24,7 @@
   padding-bottom: 5px;
 }
 
-.note li {
+.note {
   font-size: 13px;
 }
 </style>
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	<p>כדי שאתה וחברך תכנסו להגרלה, יש להירשם כעת</p>
     <iframe src="${iframeSrc}" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 
-	<p>מעוניין להגדיל את סיכויי הזכייה שלך?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
+	<p>מעוניין להגדיל את סיכויי הזכייה שלך פי 100?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות</a></p>
     <br>
 	<a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">לסיום ומעבר לאתר</a>
 </div>
@@ -88,8 +88,8 @@ document.getElementById('instructionsButton').addEventListener('click', function
 	<p>במספר צעדים פשוטים</p>
     <ol style="list-style-type: none;">
       <li><a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A9%D7%99%D7%A8%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%91%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
-	  <li>הכניסו כאן את כתובת המייל שלכם: <input type="text" id="usermail" size="10" />
-</li>
+	  <li>הכניסו כאן את כתובת המייל שלכם: <input dir="ltr" type="text" id="usermail" size="20" />
+	  <p style="font-size: 12px; padding: 0px; margin: 0px">*הכנסת מייל תקין היא הכרחית כדי שנוכל להכניס אתכם להגרלה!</p></li>
       <li><a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
       <li>הדביקו את התוכן בהודעת המייל</li>
       <li>שלחו לחבריכם</li><br>
@@ -123,6 +123,12 @@ function copyFormattedText() {
 
   // Get the value from the input element
   var userMail = inputElement.value;
+  
+  // Check if userMail is empty
+  if (userMail.trim() === '') {
+    alert('לא הוכנסה כתובת מייל!');
+    return; // Exit the function
+  }
  
   // Define the HTML content you want to copy
   var htmlContent = `
@@ -134,8 +140,7 @@ function copyFormattedText() {
   <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
   <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
   <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
-  ${userMail}
-  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
+  <button class="helpButton" id="helpButton">  <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=${userMail}">לחצו כאן למעבר לאתר</a></button>
 </div>
 </center>
   `;

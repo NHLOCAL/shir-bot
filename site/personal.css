@@ -384,14 +384,16 @@ p {
 }
 
 .modal {
-  max-width: 400px;
-  padding: 40px;
-  text-align: center;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 10001;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+    background-color: #F7F0FF;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10001;
 }
+
+
 
 .modal h2 {
   font-size: 24px;
@@ -410,17 +412,29 @@ p {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #5D3AB0;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  background: linear-gradient(90deg, #5D3AB0 25%, #ADB1FF 50%, #5D3AB0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  transition: background-position 0.5s ease;
 }
 
 .modal a:hover {
-  background-color: #362266;
+  background: linear-gradient(90deg, #362266 25%, #5D3AB0 50%, #362266 75%);
+
 }
 
+/* אפקטים של זוהר עבור כפתור הקישור */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
 
 
 

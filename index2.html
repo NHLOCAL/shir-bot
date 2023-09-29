@@ -77,9 +77,6 @@
 </div>
 
 
-
-
-
 	<div id="modalOverlay" class="modal-overlay">
 	  <div class="modal-content">
 		<span id="modalMessage"></span><br>
@@ -103,13 +100,13 @@
     <td colspan="4">
       <center id="instructions">
         <div class="instructions-container">
-          <h3>הוראות שימוש</h3><br>
+          <h3>הוראות שימוש</h3>
           <p><b>♪</b> חפש שיר, זמר או אלבום באופן חופשי</p>
           <p><b>♪</b> עבור על התוצאות ובחר בשיר הרצוי לך</p>
           <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
           <p><b>♪</b> השיר המבוקש ירד ישירות למחשב שלך!</p>
-		  <br>
           <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
+		  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
         <br>
 		</div>
       </center>
@@ -126,6 +123,50 @@
   <div class="fixed-bottom">
     <p>מעוניינים לקבל גישה מלאה למאגר המוזיקלי <b>ב-50% הנחה?</b> <a id="music-in-drive" href="https://forms.gle/couZadvYGJ41hhYs7" target="_blank">הרשמו כאן!</a></p>
   </div>
+</div>
+
+<!-- Help Section Overlay -->
+<div class="help-overlay">
+	<div class="help-modal-container">
+		<!-- Close button -->
+		<span class="close-button" onclick="closeHelp()">X</span>
+
+		<!-- Step 1 -->
+		<div class="help-modal">
+			<h2>שלב א' - חיפוש</h2>
+			<p>חפש שם שיר, זמר או אלבום כרצונך. ניתן לחפש באופן חופשי בכל צורה שתרצו, גם לפי שם השיר, שם האלבום או שם הזמר בלבד</p>
+			<img src="help/1.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 2 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ב' - מציאת שיר</h2>
+			<p>עבור על רשימת השירים שנמצאו ומצא את השיר הרצוי לך</p>
+			<img src="help/3.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 3 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ג' - בחירת מספר</h2>
+			<p>לחץ על <b>המספר</b> של השיר שבחרת, שים לב שמדובר בסינגל ולא בשיר מאלבום. תוכל לבדוק האם שם האלבום הוא "סינגלים"</p>
+			<img src="help/2.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 4 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ד' - הורדת השיר</h2>
+			<p>כעת לא נותר לך אלא להמתין, ותוך זמן קצר השיר שבחרת ירד ישירות למחשב שלך</p>
+			<img src="help/4.2.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+	</div>
 </div>
 
 

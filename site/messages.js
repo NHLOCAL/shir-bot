@@ -42,32 +42,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Mark the message as shown in local storage
     localStorage.setItem("messageShown", "true");
+  } else {
+
+  // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')
+  const resetDate = '2023-09-26';
+  const currentDate = new Date().toLocaleDateString('en-US');
+
+  // Check if the current date has passed the reset date
+  if (currentDate > resetDate) {
+    // Reset the message display status
+    localStorage.removeItem('messageShown');
+    }
   }
+  
+
+ 
+
 });
 
-// Function to clear all cookies
-function clearAllCookies() {
-  var cookies = document.cookie.split(";");
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i];
-    var eqPos = cookie.indexOf("=");
-    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  }
+
+// Function to set a cookie with an expiration date
+function setCookie(name, value, daysToExpire) {
+  var expirationDate = new Date();
+  expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + expirationDate.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
-// Check if it's Sunday and clear cookies
-function checkAndClearCookies() {
-  var today = new Date();
-  if (0 === 0) { // Sunday (0 represents Sunday)
-    clearAllCookies();
-  }
-}
-
-// Automatically check and clear cookies when the user opens the site
-checkAndClearCookies();
-
-
+// Usage example: Set a cookie named "myCookie" with a value "cookieValue" that expires in 7 days
+setCookie("myCookie", "cookieValue", 7);
 
 
 

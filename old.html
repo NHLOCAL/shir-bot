@@ -31,8 +31,9 @@
     gtag('js', new Date());
     gtag('config', 'G-TGD4VQW4X8');
   </script>
-</head>
+  
 
+</head>
 <body dir="rtl" style="background-color:#FFFEDB;">
   <div class="topnav">
     <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
@@ -47,9 +48,9 @@
     <form id="searchForm" class="search-form">
       <select id="searchBy" name="searchBy" class="search-select">
         <option value="all">הכל</option>
-        <option value="serial">מספר סידורי</option>
+        <option value="serial">מס' סידורי</option>
         <option value="name">שם השיר</option>
-        <option value="album">שם האלבום</option>
+        <option value="album">שם אלבום</option>
         <option value="singer">שם הזמר</option>
       </select>
 	  
@@ -66,15 +67,16 @@
   </div>
 
 
-<div id="loadingMessage" class="loading-message">
-  <div class="progress-bar-container">
-    <img src="site/loading.gif" alt="טעינה" />
-    <span id="progressText"></span>
-    <div class="progress-bar">
-      <div id="progress" class="progress"></div>
-    </div>
-  </div>
-</div>
+	<div id="loadingMessage" class="loading-message">
+	  <img src="site/loading.gif" alt="טעינה" />
+	  <span>מוריד...</span>
+	</div>
+	<div id="modalOverlay" class="modal-overlay">
+	  <div class="modal-content">
+		<span id="modalMessage"></span><br>
+		<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+	  </div>
+	</div>
 
 
 	<div id="modalOverlay" class="modal-overlay">
@@ -85,105 +87,96 @@
 	</div>
 
   <div id="resultsTable">
-    <table>
-      <thead>
-        <tr>
-          <th>מספר סידורי</th>
-          <th>שם השיר</th>
-          <th>שם האלבום</th>
-          <th>שם הזמר</th>		  
-        </tr>
-      </thead>
+	<table>
+	  <thead>
+		<tr>
+		  <th>מספר סידורי</th>
+		  <th>שם השיר</th>
+		  <th>שם האלבום</th>
+		  <th>שם הזמר</th>	  
+		</tr>
+	  </thead>
 	  
-<tbody>
-  <tr>
-    <td colspan="4">
-      <center id="instructions">
-        <div class="instructions-container">
-          <h3>הוראות שימוש</h3>
-          <p><b>♪</b> חפש שיר, זמר או אלבום באופן חופשי</p>
-          <p><b>♪</b> עבור על התוצאות ובחר בשיר הרצוי לך</p>
-          <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
-          <p><b>♪</b> השיר המבוקש ירד ישירות למחשב שלך!</p>
-          <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
-		  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
-        <br>
-		</div>
-      </center>
-    </td>
-  </tr>
-</tbody>
+	<tbody>
+	  <tr>
+		<td colspan="4">
+		  <center id="instructions">
+			<div class="instructions-container">
+			  <h3>הוראות שימוש</h3>
+			  <p><b>♪</b> חפש שיר באופן חופשי</p>
+			  <p><b>♪</b> לחץ על המספר הסידורי של השיר</p>
+			  <p><b>♪</b> זה יוביל אותך להודעת מייל, שלח אותה</p>
+			  <p><b>♪</b> תוך כדקה, ישלח אליך השיר המבוקש</p>
+			  <p class="disclaimer">שים לב שבמערכת זו ניתן להוריד סינגלים בלבד!</p>
+			  
+			  <button class="helpButton" id="helpButton">לחץ כאן לקבלת עזרה מפורטת</button>
+			</div>
+		  </center>
+		</td>
+	  </tr>
+	</tbody>
 
     </table>
-<!-- Add this button in your HTML where you want it to appear -->
-<button id="loadMoreButton">טען עוד</button>
-	
   </div>
-<!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-  <div class="fixed-bottom">
-    <p>מעוניינים לקבל גישה מלאה למאגר המוזיקלי <b>ב-50% הנחה?</b> <a id="music-in-drive" href="https://forms.gle/couZadvYGJ41hhYs7" target="_blank">הרשמו כאן!</a></p>
-  </div>
-</div>
-
-<!-- Help Section Overlay -->
-<div class="help-overlay">
-	<div class="help-modal-container">
-		<!-- Close button -->
-		<span class="close-button" onclick="closeHelp()">X</span>
-
-		<!-- Step 1 -->
-		<div class="help-modal">
-			<h2>שלב א' - חיפוש</h2>
-			<p>חפש שם שיר, זמר או אלבום כרצונך. ניתן לחפש באופן חופשי בכל צורה שתרצו, גם לפי שם השיר, שם האלבום או שם הזמר בלבד</p>
-			<img src="help/1.png" alt="תמונה בינונית">
-			<div class="prev-step" onclick="showStep(1)">◄</div>
-			<div class="next-step" onclick="showStep(-1)">►</div>
-		</div>
-
-		<!-- Step 2 -->
-		<div class="help-modal" style="display: none;">
-			<h2>שלב ב' - מציאת שיר</h2>
-			<p>עבור על רשימת השירים שנמצאו ומצא את השיר הרצוי לך</p>
-			<img src="help/3.png" alt="תמונה בינונית">
-			<div class="prev-step" onclick="showStep(1)">◄</div>
-			<div class="next-step" onclick="showStep(-1)">►</div>
-		</div>
-
-		<!-- Step 3 -->
-		<div class="help-modal" style="display: none;">
-			<h2>שלב ג' - בחירת מספר</h2>
-			<p>לחץ על <b>המספר</b> של השיר שבחרת, שים לב שמדובר בסינגל ולא בשיר מאלבום. תוכל לבדוק האם שם האלבום הוא "סינגלים"</p>
-			<img src="help/2.png" alt="תמונה בינונית">
-			<div class="prev-step" onclick="showStep(1)">◄</div>
-			<div class="next-step" onclick="showStep(-1)">►</div>
-		</div>
-
-		<!-- Step 4 -->
-		<div class="help-modal" style="display: none;">
-			<h2>שלב ד' - הורדת השיר</h2>
-			<p>כעת לא נותר לך אלא להמתין, ותוך זמן קצר השיר שבחרת ירד ישירות למחשב שלך</p>
-			<img src="help/4.2.png" alt="תמונה בינונית">
-			<div class="prev-step" onclick="showStep(1)">◄</div>
-			<div class="next-step" onclick="showStep(-1)">►</div>
-		</div>
+<!-- בשימוש במערכת אתם מאשרים את השימוש בכתובת המייל שלכם -->
+	<div class="fixed-bottom">
+		<p>מעוניינים לקבל גישה מלאה למאגר המוזיקלי <b>ב-50% הנחה?</b> <a style="" id="music-in-drive" href="https://forms.gle/couZadvYGJ41hhYs7" target="_blank">הרשמו כאן!</a></p>
+	  </div>
 	</div>
-</div>
 
+    <!-- Help Section Overlay -->
+    <div class="help-overlay">
+        <div class="help-modal-container">
+            <!-- Close button -->
+            <span class="close-button" onclick="closeHelp()">X</span>
 
-  <script src="site/new-script.js"></script>
+            <!-- Step 1 -->
+            <div class="help-modal">
+                <h2>שלב א' - חיפוש</h2>
+                <p>חפש שם שיר, זמר או אלבום כרצונך. ניתן לחפש באופן חופשי בכל צורה שתרצו, גם לפי שם השיר, שם האלבום או שם הזמר בלבד</p>
+                <img src="help/1.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ב' - מציאת שיר</h2>
+                <p>עבור על רשימת השירים שנמצאו ומצא את השיר הרצוי לך</p>
+				<img src="help/3.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ג' - בחירת מספר</h2>
+                <p>לחץ על <b>המספר</b> של השיר שבחרת, שים לב שמדובר בסינגל ולא בשיר מאלבום. תוכל לבדוק האם שם האלבום הוא "סינגלים"</p>
+                <img src="help/2.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ד' - שליחת מייל</h2>
+                <p>יפתח לך חלון חדש עם הודעת מייל. פשוט לחץ על שליחה</p>
+                <img src="help/4.png" alt="תמונה קטנה">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="help-modal" style="display: none;">
+                <h2>שלב ה' - קבלת השיר</h2>
+                <p>כעת לא נותר לך אלא להמתין ותוך כדקה ישלח למייל שלך השיר שביקשת</p>
+				<img src="help/5.png" alt="תמונה בינונית">
+                <div class="prev-step" onclick="showStep(1)">◄</div>
+                <div class="next-step" onclick="showStep(-1)">►</div>
+            </div>
+        </div>
+    </div>
   <script src="site/messages.js"></script>
-  
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var loadingMessageElement = document.getElementById('loadingMessage');
-    
-    if (loadingMessageElement) {
-        gtag('event', 'down_song', {
-            'event_category': 'Element down',
-            'event_label': 'Loading Message'
-        });
-    }
-});
-  </script>
+  <script src="site/script.js"></script>
 </body>
 </html>

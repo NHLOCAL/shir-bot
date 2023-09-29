@@ -901,3 +901,38 @@ a {
   Padding: 5px;
   border-radius: 5px;
 }
+
+
+
+
+/* Add the ripple effect using ::before pseudo-element */
+.ripple-header::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    animation: ripple 2s linear;
+    animation-fill-mode: forwards;
+    border-radius: inherit; /* Ensure the ripple covers the entire header */
+    z-index: -1; /* Place the ripple behind the header content */
+}
+
+header.clicked::after {
+  animation: ripple 2s linear;
+}
+
+/* Define the ripple animation */
+@keyframes ripple {
+  0% {
+    width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}

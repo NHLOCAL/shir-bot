@@ -1,7 +1,7 @@
 // מודעת שדרוגים ועדכונים
 document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown2")) {
+  if (!localStorage.getItem("messageShown")) {
     // Display the modal overlay
     var overlay = document.createElement("div");
     overlay.classList.add("overlay");
@@ -11,9 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Ad content
     modal.innerHTML = `
-      <h2>חדש! עזרה מפורטת בליווי תמונות</h2>
-      <p>מסתבכים עם השימוש במערכת? שלחתם קישור לחבריכם והם הסתבכו? קבלו את העזרה החדשה והמורחבת שתנחה אתכם צעד אחד צעד</p>
-      <a href="#" id="searchButton">אישור</a>
+      <h2>מערכת חדשה עם הורדה ישירה!</h2>
+      <p>לאחר טרחה מרובה, אנו שמחים להציג לכם את המערכת המשודרגת שלנו!</p>
+      <p>כעת תוכלו להוריד שירים ישירות למחשב ללא כניסה למייל.	בנוסף, קיצרנו את זמני החיפוש וייעלנו את טעינת התוצאות.	ופיצ'ר מועיל נוסף - חיפוש זמר/אלבום בלחיצה על השם הרצוי ברשימת השירים</p>
+      <a href="#" id="searchButton">לנסות עכשיו!</a>
     `;
 
     overlay.appendChild(modal);
@@ -40,9 +41,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Mark the message as shown in local storage
-    localStorage.setItem("messageShown2", "true");
+    localStorage.setItem("messageShown", "true");
   }
 });
+
+// Function to clear all cookies
+function clearAllCookies() {
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf("=");
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
+}
+
+// Check if it's Sunday and clear cookies
+function checkAndClearCookies() {
+  var today = new Date();
+  if (today.getDay() === 0) { // Sunday (0 represents Sunday)
+    clearAllCookies();
+  }
+}
+
+// Automatically check and clear cookies when the user opens the site
+checkAndClearCookies();
+
 
 
 

@@ -59,7 +59,7 @@ function clearAllCookies() {
 // Check if it's Sunday and clear cookies
 function checkAndClearCookies() {
   var today = new Date();
-  if (today.getDay() === 0) { // Sunday (0 represents Sunday)
+  if (0 === 0) { // Sunday (0 represents Sunday)
     clearAllCookies();
   }
 }

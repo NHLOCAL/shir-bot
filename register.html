@@ -4,6 +4,7 @@
     <title>הרשמה להגרלה</title>
     <link rel="stylesheet" href="site/styles.css">
     <link rel="stylesheet" href="site/personal.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="site/favicon.ico">
 	<script src="site/messages.js"></script>
 <style>
@@ -14,6 +15,10 @@
   background: none;
   color: inherit;
   text-decoration: underline;
+}
+
+.modal {
+  max-height: 90%;
 }
 
 .refined a:hover {color: white;}
@@ -46,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
   var modal = document.createElement("div");
   modal.classList.add("modal");
   
+  modal.style.overflow = "auto";
+  
   // Your JavaScript variable containing the value
   var sourceMail = 'memilel@gmail.com';
 
@@ -54,10 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Create the HTML content you want to add to the modal
   var htmlContent = `
- <div class="refined">
+<div class="refined">
     <h2>הרשמה מהירה</h2>
 	<p>כדי שאתה וחברך תכנסו להגרלה, יש להירשם כעת</p>
-    <iframe src="${iframeSrc}" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+    <iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
 
 	<p><b>מעוניין להגדיל את סיכויי הזכייה שלך פי 100?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות!</a></b></p>
     <br>

@@ -96,20 +96,44 @@ document.getElementById('instructionsButton').addEventListener('click', function
     </ol>
 	<b>שימו לב:על כל אדם נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
   </div>
-  <hr style="margin: 10px">
-	<ol class="note" style="list-style-type: none;">
-	  <li>מספר הבהרות חשובות:</li>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור ומעבר לאתר</a>
+<div class="refined">
+<br>
+  <a id="notesA">הבהרות חשובות</a>
+  	<ol id="notes" class="note" style="display: none; list-style-type: none;">
 	  <li>א. ההגרלה תיערך בט"ז חשון תשפ"ד, על ידי הבעלים של האתר. הודעה תימסר לזוכה במייל. מנויים קיימים יוכלו להעביר את הזכייה לחבר.</li>
 	  <li>ב. על כל משתמש נוסף שיכנס דרך הקישור האישי שלכם, תיכנסו להגרלה פעם נוספת. אך הדבר מותנה ברישום של המשתמש בכניסה לאתר.</li>
 	  <li>ג. הרישום הוא רק עבור משתמשים חדשים. לא ניתן להירשם פעמיים. (כלומר, אם החבר כבר נרשם דרך מישהו אחר, לא תכנסו להגרלה פעם נוספת)</li>
-	</ol>  
-	</p>
-  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור וסיום</a>
+	</ol>
+</div>
   `;
 
   // Append the new instructions to the modal
   modal.appendChild(newInstructions);
+  
+// Find the element A by its text content
+const elementA = document.getElementById('notesA');
+
+// Add a click event listener to element A
+elementA.addEventListener('click', function(event) {
+  // Prevent the default behavior of the anchor element
+  event.preventDefault();
+  // Find the element OL with the id "notes"
+  const elementOL = document.getElementById('notes');
+  // Display or hide the element OL as needed
+  if (elementOL.style.display === 'none') {
+    elementOL.style.display = 'block';
+  } else {
+    elementOL.style.display = 'none';
+  }
+});  
+
+
 });
+
+
+
+
 
 });
 

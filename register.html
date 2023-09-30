@@ -90,18 +90,19 @@ document.getElementById('instructionsButton').addEventListener('click', function
   var newInstructions = document.createElement('div');
   newInstructions.innerHTML = `
   <div class="refined">
-    <h2>כיצד נכנסים להגרלה כפול 100?</h2>
+    <h2>כיצד תכנסו להגרלה כפול 100?</h2>
 	<p>תוכלו לעשות זאת במספר צעדים פשוטים</p>
     <ol style="list-style-type: none;">
-      <li>⌀ <a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%9E%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
-	  <p style="display: none; font-size: 12px; padding: 0px; margin: 0px">לא עבד? <a class="refined" href="mailto:?subject=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%9E%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2..." target="_blank">לחצו כאן</a></p>
-	  <li>⌀ הכניסו כאן את כתובת המייל שלכם: <input dir="ltr" type="email" id="usermail" size="27" />
+	  <li><b>♪</b> רשמו את המייל שלכם: <input dir="ltr" type="email" id="usermail" size="20" />
 	  <p style="font-size: 12px; padding: 0px; margin: 0px">*הכנסת מייל תקין היא הכרחית כדי שנוכל להכניס אתכם להגרלה!</p></li>
-      <li>⌀ <a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת הודעה מוכנה ללוח</li>
-      <li>⌀ הדביקו את התוכן בהודעת המייל</li>
-      <li>⌀ שלחו לחבריכם</li><br>
+      <li><b>♪</b> <a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת ההודעה המוכנה ללוח</li>
+	  <li><b>♪</b> <a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%9E%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
+	  <p style="display: none; font-size: 12px; padding: 0px; margin: 0px">לא עבד? <a class="refined" href="mailto:?subject=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%9E%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2..." target="_blank">לחצו כאן</a></p>
+      <li><b>♪</b> הדביקו את התוכן בהודעת המייל</li>
+      <li><b>♪</b> שלחו לחבריכם</li>
+	  <br>
     </ol>
-	<b>כעת על כל אדם נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
+	<b>הפיצו את הבשורה לחבריכם ועל כל משתמש נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
   </div>
   <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור ומעבר לאתר</a>
 <div class="refined">

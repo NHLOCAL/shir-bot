@@ -8,6 +8,30 @@
 	<link rel="icon" type="image/x-icon" href="site/favicon.ico">
 	<script src="site/messages.js"></script>
 <style>
+.copy-container input[type="text"],
+.copy-container input[type="email"] {
+  flex-grow: 1;
+  font-family: Tahoma;
+  padding: 3px 5px 3px 5px; /* Reduced padding */
+  border: 1px solid #a98ff3; /* Lighter purple border */
+  border-radius: 3px;
+}
+
+.copy-container #copy-button {
+  background-color: #663399; /* Dark purple button background */
+  color: #fff; /* White button text color */
+  border: none;
+  font-family: Tahoma;
+  border-radius: 3px;
+  padding: 3px 5px 3px 5px; /* Reduced padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copy-container #copy-button:hover {
+  background-color: #4b2873;
+}
+
 .refined a {
   margin: 0;
   padding: 0;
@@ -93,7 +117,7 @@ document.getElementById('instructionsButton').addEventListener('click', function
     <h2>כיצד תכנסו להגרלה כפול 100?</h2>
 	<p>תוכלו לעשות זאת במספר צעדים פשוטים</p>
     <ol style="list-style-type: none;">
-	  <li><b>♪</b> רשמו את המייל שלכם: <input dir="ltr" type="email" id="usermail" size="20" />
+	  <li><b>♪</b> רשמו את המייל שלכם: <input placeholder="address@gmail.com" dir="ltr" type="email" id="usermail" size="20" />
 	  <p style="font-size: 12px; padding: 0px; margin: 0px">*הכנסת מייל תקין היא הכרחית כדי שנוכל להכניס אתכם להגרלה!</p></li>
       <li><b>♪</b> <a class="refined" onclick="copyFormattedText()">לחצו כאן</a> להעתקת ההודעה המוכנה ללוח</li>
 	  <li><b>♪</b> <a class="refined" href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%E2%9C%A8+%D7%A8%D7%95%D7%A6%D7%99%D7%9D+%D7%9C%D7%94%D7%95%D7%A8%D7%99%D7%93+%D7%A1%D7%99%D7%A0%D7%92%D7%9C%D7%99%D7%9D+%D7%91%D7%90%D7%95%D7%A4%D7%9F+%D7%97%D7%95%D7%A4%D7%A9%D7%99+%D7%9E%D7%AA%D7%95%D7%9A+%D7%9E%D7%90%D7%92%D7%A8+%D7%A9%D7%9C+70%2C000+%D7%A9%D7%99%D7%A8%D7%99%D7%9D%3F+%D7%9B%D7%93%D7%90%D7%99+%D7%A9%D7%AA%D7%A6%D7%99%D7%A6%D7%95+%D7%A8%D7%92%D7%A2...&to=" target="_blank">לחצו כאן</a> לפתיחת הודעת מייל באופן אוטומטי</li>
@@ -104,7 +128,17 @@ document.getElementById('instructionsButton').addEventListener('click', function
     </ol>
 	<b>הפיצו את הבשורה לחבריכם ועל כל משתמש נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
   </div>
-  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור ומעבר לאתר</a>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">אישור ומעבר לאתר</a><br><br>
+  <p Style="font-size: 14px">הסתבכם? רוצים לשלוח גם בפלטפורמות אחרות? העתיקו את הקישור האוטומטי שלכם ושלחו לחבריכם בכל דרך שתרצו!</p>
+<div dir="ltr" class="copy-container">
+  <input type="text" size="25" dir="ltr" id="text1" value="https://nhlocal.github.io/shir-bot/register?sourcemail=" readonly>
+  <input id="text2" size="15" dir="ltr" type="email" placeholder="address@gmail.com">
+  <button id="copy-button" onclick="copyToClipboard()">העתק</button>
+</div>
+
+
+
+
 <div class="refined">
 <br>
   <a id="notesA">הבהרות חשובות</a>
@@ -117,9 +151,9 @@ document.getElementById('instructionsButton').addEventListener('click', function
 </div>
   `;
 
-  // Append the new instructions to the modal
-  modal.appendChild(newInstructions);
-  
+// Append the new instructions to the modal
+modal.appendChild(newInstructions);
+
 // Find the element A by its text content
 const elementA = document.getElementById('notesA');
 
@@ -135,14 +169,12 @@ elementA.addEventListener('click', function(event) {
   } else {
     elementOL.style.display = 'none';
   }
-});  
+}); 
+
+
 
 
 });
-
-
-
-
 
 });
 
@@ -252,7 +284,49 @@ function copyFormattedText() {
   }
 }
 
-		
+
+// Step 1: Define the copyToClipboard function.
+function copyToClipboard() {
+  // Step 2: Get references to both text inputs.
+  const text1 = document.getElementById("text1");
+  const text2 = document.getElementById("text2");
+  
+  // Step 3: Check if the email input field is empty.
+  const emailInput = text2.value.trim();
+  if (emailInput === "") {
+    // If it's empty, display a warning message.
+    alert("לא הכנסת את כתובת המייל שלך!");
+    return; // Exit the function without copying.
+  }
+
+  // Step 4: Concatenate the values of the two input fields.
+  const combinedText = text1.value + emailInput;
+
+  // Step 5: Create a temporary textarea element to copy the combined text.
+  const tempTextarea = document.createElement("textarea");
+  tempTextarea.value = combinedText;
+
+  // Step 6: Append the textarea to the document.
+  document.body.appendChild(tempTextarea);
+
+  // Step 7: Select the text inside the textarea.
+  tempTextarea.select();
+
+  // Step 8: Copy the selected text to the clipboard.
+  document.execCommand("copy");
+
+  // Step 9: Remove the temporary textarea from the document.
+  document.body.removeChild(tempTextarea);
+
+  // Step 10: Provide user feedback (optional).
+  const copyButton = document.getElementById("copy-button");
+  copyButton.innerText = "✓";
+  setTimeout(() => {
+    copyButton.innerText = "העתק";
+  }, 2000); // Reset button text after 2 seconds (optional).
+}
+
+	
   </script>
 </body>
 </html>

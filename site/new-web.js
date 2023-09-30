@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Step 1: Define an array of possible content for the footer.
 const footerContent = [
-  "מעדיפים את האתר הישן? <a>למעבר מיידי</a>",
+  "מעדיפים את האתר הישן? <a href='https://nhlocal.github.io/shir-bot/old'>למעבר מיידי</a>",
   "מעוניינים לקבל גישה למאגר המוזיקלי המלא <b>ב-50% הנחה?</b> <a id='music-in-drive' href='https://forms.gle/couZadvYGJ41hhYs7' target='_blank'>הרשמו כאן!</a>",
   "<b>טיפ:</b> נסו להעביר את העכבר על שם אמן או אלבום וללחוץ עליו!",
 ];

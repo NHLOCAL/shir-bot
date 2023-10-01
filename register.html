@@ -92,24 +92,47 @@ document.addEventListener("DOMContentLoaded", function() {
   // Create the iframe source URL with the variable
   var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
 
-  // Create the HTML content you want to add to the modal
-  var htmlContent = `
-<div class="refined">
-    <h2>ברוכים הבאים לשיר-בוט!</h2>
-	<p>רגע לפני שאנחנו מעבירים אותך לאתר שיר-בוט<br>כדי שאתה וחברך תכנסו להגרלה, יש להירשם כעת</p>
-    <iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+// Check if the URL contains the "sourcemail" parameter with the value "campaign"
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign') {
+    // Create the HTML content for the alternative message
+    var htmlContent = `
+    <div class="refined">
+        <h2>ברוכים הבאים לשיר-בוט!</h2>
+        <p>רוצים להכנס להגרלה הגדולה ללא תשלום?</p>
 
-	<p><b>מעוניין להגדיל את סיכויי הזכייה שלך פי 100?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות!</a></b></p>
-    <br>
-	<a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">לסיום ומעבר לשיר-בוט</a>
-</div>
-  `;
+<p><b>פרס ראשון:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025 + מנוי לחבר לבחירתכם! - בשווי 300 ₪</p>
 
-  // Set the HTML content as the innerHTML of the modal
-  modal.innerHTML = htmlContent;
+<p><b>פרס שני:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025! - בשווי 150 ₪</p>
 
-  // Append the modal to the overlay
-  overlay.appendChild(modal);
+<p><b>פרס שלישי:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב לשלושה חודשים - בשווי 50 ₪</p>
+
+        <p><b>על כל משתמש שיכנס וירשם לאתר דרככם, תכנסו להגרלה פעם נוספת!</b></p>
+    </div>
+	<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות!</a>
+    `;
+} else {
+    // Create the default HTML content
+    var htmlContent = `
+    <div class="refined">
+        <h2>ברוכים הבאים לשיר-בוט!</h2>
+        <p>רגע לפני שאנחנו מעבירים אותך לאתר שיר-בוט<br>כדי שאתה וחברך תכנסו להגרלה, יש להירשם כעת</p>
+        <iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+        <p><b>מעוניין להגדיל את סיכויי הזכייה שלך פי 100?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות!</a></b></p>
+        <br>
+        <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/">לסיום ומעבר לשיר-בוט</a>
+    </div>
+    `;
+}
+
+// Set the HTML content as the innerHTML of the modal
+modal.innerHTML = htmlContent;
+
+// Append the modal to the overlay
+overlay.appendChild(modal);
 
   // Append the overlay to the body
   document.body.appendChild(overlay);

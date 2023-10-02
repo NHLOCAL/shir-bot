@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Step 1: Define an array of possible content for the footer.
 const footerContent = [
-  "רוצים להכנס בחינם להגרלה על 4 מנויים למאגר המכיל <b>500 גי'גה של מוזיקה</b>? <a href='https://nhlocal.github.io/shir-bot/register?sourcemail=campaign' target='_blank'>הירשם כעת!</a>",
+  "רוצים להכנס בחינם להגרלה על 4 מנויים למאגר המכיל <b>500 גי'גה של מוזיקה</b>? <a href='https://nhlocal.github.io/shir-bot/register?sourcemail=campaign&utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023'>הירשם כעת!</a>",
   "מעדיפים את האתר הישן? <a href='https://nhlocal.github.io/shir-bot/old'>למעבר מיידי</a>",
   "מעוניינים לקבל גישה למאגר המוזיקלי המלא <b>ב-50% הנחה?</b> <a id='music-in-drive' href='https://forms.gle/couZadvYGJ41hhYs7' target='_blank' onclick='conversion_music_drive()'>הרשמו כאן!</a>",
   "<b>טיפ:</b> נסו להעביר את העכבר על שם אמן או אלבום וללחוץ עליו!",

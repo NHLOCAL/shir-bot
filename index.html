@@ -176,6 +176,7 @@
   <script src="site/new-web.js"></script>
   
   <script>
+// מאזיני אירועים עבור ניתוח גוגל
 document.addEventListener('DOMContentLoaded', function() {
     var loadingMessageElement = document.getElementById('loadingMessage');
     
@@ -186,6 +187,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loadingMessageElement = document.getElementById('music-in-drive');
+    
+    if (loadingMessageElement) {
+        gtag('event', 'down_song', {
+            'event_category': 'Element down',
+            'event_label': 'Loading Message'
+        });
+    }
+})
+
+document.addEventListener("DOMContentLoaded", function() {
+const musicInDriveElement = document.getElementById("music-in-drive");
+
+musicInDriveElement.addEventListener("click", function() {
+  // Send the event to Google Analytics
+  gtag('event', 'conversion', {
+	'send_to': 'G-TGD4VQW4X8',
+	'value': 1, // NIS 1
+	'currency': 'NIS' // Currency type
+  });
+});
+});
+
   </script>
 </body>
 </html>

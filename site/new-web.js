@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const footerContent = [
   "רוצים להכנס בחינם להגרלה על 4 מנויים למאגר המכיל <b>500 גי'גה של מוזיקה</b>? <a href='https://nhlocal.github.io/shir-bot/register?sourcemail=campaign' target='_blank'>הירשם כעת!</a>",
   "מעדיפים את האתר הישן? <a href='https://nhlocal.github.io/shir-bot/old'>למעבר מיידי</a>",
-  "מעוניינים לקבל גישה למאגר המוזיקלי המלא <b>ב-50% הנחה?</b> <a id='music-in-drive' href='https://forms.gle/couZadvYGJ41hhYs7' target='_blank'>הרשמו כאן!</a>",
+  "מעוניינים לקבל גישה למאגר המוזיקלי המלא <b>ב-50% הנחה?</b> <a id='music-in-drive' href='https://forms.gle/couZadvYGJ41hhYs7' target='_blank' onclick='conversion_music_drive()'>הרשמו כאן!</a>",
   "<b>טיפ:</b> נסו להעביר את העכבר על שם אמן או אלבום וללחוץ עליו!",
 ];
 
@@ -88,3 +88,13 @@ setInterval(updateFooterContent, 10000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();
+
+// רישום אירוע עבור ניתוח גוגל
+function conversion_music_drive() {
+  // Send the event to Google Analytics
+  gtag('event', 'conversion', {
+    'event_category': 'Registration',
+	'value': 1, // NIS 1
+	'currency': 'NIS' // Currency type
+  });
+};

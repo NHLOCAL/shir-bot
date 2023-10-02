@@ -188,6 +188,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+// Add an event listener to the search form
+document.querySelector('#searchForm').addEventListener('submit', function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get the search query from the input field
+    const searchQuery = document.querySelector('#searchInput').value;
+
+    // Send an event to Google Analytics
+    gtag('event', 'search', {
+        'event_category': 'Search',
+        'event_label': searchQuery
+    });
+});
+
   </script>
 </body>
 </html>

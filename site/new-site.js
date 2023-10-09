@@ -1,7 +1,7 @@
 // מודעת שדרוגים ועדכונים
 document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown")) {
+  if (!localStorage.getItem("messageShown1")) {
     // Display the modal overlay
     var overlay = document.createElement("div");
     overlay.classList.add("overlay");
@@ -11,10 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Ad content
     modal.innerHTML = `
-      <h2>מערכת חדשה עם הורדה ישירה!</h2>
-      <p>לאחר טרחה מרובה, אנו שמחים להציג לכם את המערכת המשודרגת שלנו!</p>
-      <p>כעת תוכלו להוריד שירים ישירות למחשב ללא כניסה למייל.	בנוסף, קיצרנו את זמני החיפוש וייעלנו את טעינת התוצאות.	ופיצ'ר מועיל נוסף - חיפוש זמר/אלבום בלחיצה על השם הרצוי ברשימת השירים</p>
-      <a href="#" class="efectButton" id="searchButton">לנסות עכשיו!</a>
+      <h2>הגרלה על פרסים במאות שקלים במתנה!</h2>
+      <p>הכנסו עכשיו להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי ויותר!</p><br>
+		<p><b>פרס ראשון:</b><br>
+		מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025 + מנוי לחבר לבחירתכם! - בשווי 300 ₪</p><br>
+
+		<p><b>פרס שני ופרס שלישי:</b><br>
+		לפרטים מלאים לחצו על הכפתור ועברו להרשמה...</p>
+      <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=campaign&utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">אני רוצה לקבל כרטיס!</a>
+	  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לדילוג ומעבר לאתר</a>
     `;
 
     overlay.appendChild(modal);
@@ -30,8 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
         searchInput.focus();
       }
     });
-    
-    searchButton.focus();
 
     // Close the modal overlay when clicking outside the modal content
     overlay.addEventListener("click", function(event) {
@@ -45,17 +48,17 @@ document.addEventListener("DOMContentLoaded", function() {
   } else {
 
   // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')
-  const resetDate = '2023-09-26';
+  const resetDate = '2023-10-09';
   const currentDate = new Date().toLocaleDateString('en-US');
 
   // Check if the current date has passed the reset date
   if (currentDate > resetDate) {
     // Reset the message display status
-    localStorage.removeItem('messageShown');
+    localStorage.removeItem('messageShown1');
     }
   }
-});
 
+});
 
 
 // פרסומת מתחלפת לכותרת התחתונה

@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var results; // Declare results at the global level
 
 var singleFilterButton = document.getElementById('singleFilter');
-var showSinglesOnly = false;
+var showSinglesOnly = true;
 
 singleFilterButton.addEventListener('click', function() {
   showSinglesOnly = !showSinglesOnly;

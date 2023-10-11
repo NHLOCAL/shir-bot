@@ -259,6 +259,10 @@ function displayResults(resultsToDisplay) {
     instructionRow.appendChild(instructionCell);
     tableBody.appendChild(instructionRow);
   } else {
+	  
+	const theadElement = document.querySelector("#resultsTable thead");
+	theadElement.style.display = "table-header-group";
+	
     // Display the search results for the specified range.
     for (var i = 0; i < resultsToDisplay.length; i++) {
       var song = resultsToDisplay[i];

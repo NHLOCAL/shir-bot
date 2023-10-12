@@ -81,7 +81,7 @@ function searchSongs(query, searchBy) {
   loadingRow.appendChild(loadingCell);
   tableBody.appendChild(loadingRow);
 
-  fetch('https://nhlocal.github.io/shir-bot/site/songs.csv')
+  fetch('https://nhlocal.github.io/shir-bot/site/new-songs.csv')
     .then(function (response) {
       return response.text();
     })

@@ -11,14 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Ad content
     modal.innerHTML = `
-      <h2>הגרלה על פרסים במאות שקלים במתנה!</h2>
+      <h2>∯ הכנסו להגרלה באפס מאמץ! ∯</h2>
+	  <h4 style="color: red">כעת זה קלי קלות! נסו אותנו!</h4><br>
       <p>הכנסו עכשיו להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי ויותר!</p><br>
 		<p><b>פרס ראשון:</b><br>
 		מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025 + מנוי לחבר לבחירתכם! - בשווי 300 ₪</p><br>
 
 		<p><b>פרס שני ופרס שלישי:</b><br>
 		לפרטים מלאים לחצו על הכפתור ועברו להרשמה...</p>
-      <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=campaign&utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">אני רוצה לקבל כרטיס!</a>
+      <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=campaign&utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">קח אותי לדקה!</a>
 	  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לדילוג ומעבר לאתר</a>
     `;
 

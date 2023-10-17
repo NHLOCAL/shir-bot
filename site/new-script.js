@@ -426,25 +426,29 @@ async function downloadSong(songNumber) {
 
   // Reset progress bar and messages
   progressText.innerText = "עובד...";
-  progressBar.style.width = '10%';
+  progressBar.style.width = '15%';
 
   loadingMessage.classList.add('show'); // Display the loading message
 
   var scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec'; // Replace with your Google Apps Script web app URL
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
-  try {
+  try {	
     const response = await fetch(downloadUrl);
+	
+    progressText.innerText = "עובד...";
+    progressBar.style.width = '40%';
+	
     const data = await response.json();
-
+	
     if (data.success) {
       // Display the stages
       progressText.innerText = "מעבד...";
-      progressBar.style.width = '40%';
+      progressBar.style.width = '60%';
 
       setTimeout(async () => {
         progressText.innerText = "מוריד...";
-        progressBar.style.width = '70%';
+        progressBar.style.width = '80%';
 
         // Background download continues here
         var link = document.createElement('a');

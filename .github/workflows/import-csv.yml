@@ -34,10 +34,16 @@ jobs:
       env:
         file_id: ${{ secrets.GOOGLE_DRIVE_FILE_ID }}
 
-    - name: Commit and push changes
+    - name: Configure Git
       run: |
         git config user.name "NHLOCAL"
         git config user.email "nh.local11@gmail.com"
+      
+    - name: Commit changes
+      run: |
         git add $output_file
         git commit -m "Add downloaded CSV"
+      
+    - name: Push changes
+      run: |
         git push

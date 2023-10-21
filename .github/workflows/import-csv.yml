@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: 3.8  # Use the Python version you prefer
+        python-version: '3.10'  # Use the Python version you prefer
 
     - name: Install dependencies
       run: pip install gdown
@@ -30,7 +30,7 @@ jobs:
         output_file="output22.csv"
 
         # Download the file
-        gdown "https://drive.google.com/uc?id=$file_id" -O $output_file
+        gdown "https://drive.google.com/uc?id=$file_id" -O site/$output_file
       env:
         file_id: ${{ secrets.GOOGLE_DRIVE_FILE_ID }}
 

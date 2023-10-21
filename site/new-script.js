@@ -90,7 +90,12 @@ function searchSongs(query, searchBy) {
       // Apply the selected filter method
       var filteredSongs;
       if (showSinglesOnly) {
-        filteredSongs = songs.filter(song => song.album.toLowerCase().includes('סינגלים'));
+        filteredSongs = songs.filter(song => {
+  const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
+  const singerContainsSingles = song.singer.toLowerCase().includes('סינגלים');
+
+  return albumContainsSingles || singerContainsSingles;
+});
       } else {
         filteredSongs = songs;
       }
@@ -278,7 +283,10 @@ function displayResults(resultsToDisplay) {
       var serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
 
-      if (!song.album.toLowerCase().includes('סינגלים')) {
+      if (
+		(!song.album.toLowerCase().includes('סינגלים')) &&
+		(!song.singer.toLowerCase().includes('סינגלים'))
+		) {
         serialLink.addEventListener('click', function(event) {
           event.preventDefault();
           showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');

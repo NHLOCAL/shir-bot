@@ -1,0 +1,40 @@
+name: Download File from Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  download-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Python and pip
+      run: |
+        sudo apt-get update
+        sudo apt-get install python3
+        sudo apt-get install python3-pip
+      shell: bash
+
+    - name: Install gdown
+      run: |
+        pip3 install gdown
+      shell: bash
+
+    - name: Download File
+      run: |
+        gdown --id YOUR_FILE_ID --output newsingles.csv
+      env:
+        YOUR_FILE_ID: "1TMiSV0sBCPn29KDs4rkdZMxRpvWG2TvP"
+
+    - name: Commit and Push
+      run: |
+        git config --global user.email "nh.local11@gmail.com"
+        git config --global user.name "NHLOCAL"
+        git add newsingles.csv
+        git commit -m "Download file from Google Drive"
+        git push

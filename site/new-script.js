@@ -81,30 +81,47 @@ function searchSongs(query, searchBy) {
   loadingRow.appendChild(loadingCell);
   tableBody.appendChild(loadingRow);
 
-  fetch('https://nhlocal.github.io/shir-bot/site/new-songs.csv')
+// Define the URLs for both CSV files
+const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-songs.csv';
+const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/output23.csv'; // Replace with the actual URL
+
+// Create a function to fetch CSV data
+function fetchCSV(url) {
+  return fetch(url)
     .then(function (response) {
       return response.text();
-    })
-    .then(function (csvText) {
-      var songs = parseCSV(csvText);
-      // Apply the selected filter method
-      var filteredSongs;
-      if (showSinglesOnly) {
-        filteredSongs = songs.filter(song => {
-  const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
-  const singerContainsSingles = song.singer.toLowerCase().includes('סינגלים');
-
-  return albumContainsSingles || singerContainsSingles;
-});
-      } else {
-        filteredSongs = songs;
-      }
-      results = filterSongs(filteredSongs, query, searchBy);
-      displayResults(results.slice(0, 250)); // Display the initial 100 results
-    
-      // Show the "Load more" button after a search is performed
-      loadMoreButton.style.display = 'block';
     });
+}
+
+// Fetch data from both CSV files in parallel
+Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
+  .then(function ([currentCSVText, additionalCSVText]) {
+    // Parse both CSV data
+    const currentSongs = parseCSV(currentCSVText);
+    const additionalSongs = parseCSV(additionalCSVText);
+
+    // Combine both sets of songs
+    const allSongs = currentSongs.concat(additionalSongs);
+
+    // Apply the selected filter method
+    var filteredSongs;
+    if (showSinglesOnly) {
+      filteredSongs = allSongs.filter(song => {
+        const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
+        const singerContainsSingles = song.singer.toLowerCase().includes('סינגלים');
+        return albumContainsSingles || singerContainsSingles;
+      });
+    } else {
+      filteredSongs = allSongs;
+    }
+
+    results = filterSongs(filteredSongs, query, searchBy);
+    displayResults(results.slice(0, 250)); // Display the initial 100 results
+
+    // Show the "Load more" button after a search is performed
+    loadMoreButton.style.display = 'block';
+  });
+
 
 }
 

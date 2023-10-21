@@ -15,9 +15,7 @@ jobs:
 
     - name: Download File
       run: |
-        Invoke-WebRequest -Uri "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" -OutFile "file.csv"
-      env:
-        YOUR_FILE_ID: 1TMiSV0sBCPn29KDs4rkdZMxRpvWG2TvP
+        curl -L "https://docs.google.com/uc?export=download&id=1X1hSFrgrar5T8kE8pHlDbwXHoAEeRcPs" > file.csv
 
     - name: Commit and Push
       run: |

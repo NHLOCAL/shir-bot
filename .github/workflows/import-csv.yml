@@ -1,9 +1,8 @@
 name: Download CSV from Google Drive
 
 on:
-  push:
-    branches:
-      - main  # Change this to your preferred branch
+  schedule:
+    - cron: '53 3 * * *'
 
 jobs:
   download:

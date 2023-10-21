@@ -1,26 +1,43 @@
-name: Download File from Google Drive
+name: Download CSV from Google Drive
 
 on:
   push:
     branches:
-      - main
+      - main  # Change this to your preferred branch
 
 jobs:
-  download-file:
-    runs-on: windows-latest
+  download:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Check out the code
       uses: actions/checkout@v3
 
-    - name: Download File
-      run: |
-        curl -L "https://docs.google.com/uc?export=download&id=1X1hSFrgrar5T8kE8pHlDbwXHoAEeRcPs" > file.csv
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.10  # Use the Python version you prefer
 
-    - name: Commit and Push
+    - name: Install dependencies
+      run: pip install gdown
+
+    - name: Download CSV from Google Drive
       run: |
-        git config --global user.email "nh.local11@gmail.com"
-        git config --global user.name "NHLOCAL"
-        git add file.csv
-        git commit -m "Download file from Google Drive"
+        # Specify the Google Drive file ID for your CSV
+        file_id="1X1hSFrgrar5T8kE8pHlDbwXHoAEeRcPs"
+
+        # Specify the output file name
+        output_file="output.csv"
+
+        # Download the file
+        gdown "https://drive.google.com/uc?id=$file_id" -O $output_file
+      env:
+        file_id: ${{ secrets.GOOGLE_DRIVE_FILE_ID }}
+
+    - name: Commit and push changes
+      run: |
+        git config user.name "NHLOCAL"
+        git config user.email "nh.local11@gmail.com"
+        git add $output_file
+        git commit -m "Add downloaded CSV"
         git push

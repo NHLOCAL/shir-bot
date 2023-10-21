@@ -7,27 +7,15 @@ on:
 
 jobs:
   download-file:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Python and pip
-      run: |
-        sudo apt-get update
-        sudo apt-get install python3
-        sudo apt-get install python3-pip
-      shell: bash
-
-    - name: Install gdown
-      run: |
-        pip3 install gdown
-      shell: bash
-
     - name: Download File
       run: |
-        wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1TMiSV0sBCPn29KDs4rkdZMxRpvWG2TvP'-O newsingles.csv
+        Invoke-WebRequest -Uri "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" -OutFile "file.csv"
       env:
         YOUR_FILE_ID: 1TMiSV0sBCPn29KDs4rkdZMxRpvWG2TvP
 
@@ -35,6 +23,6 @@ jobs:
       run: |
         git config --global user.email "nh.local11@gmail.com"
         git config --global user.name "NHLOCAL"
-        git add newsingles.csv
+        git add file.csv
         git commit -m "Download file from Google Drive"
         git push

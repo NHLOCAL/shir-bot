@@ -1,0 +1,49 @@
+name: Download CSV from Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install gdown
+
+    - name: Download CSV from Google Drive
+      run: |
+        # Specify the Google Drive file ID for your CSV
+        file_id="1DXYTtzUVVxWSu9wDBjNDZW5YrLKJtiWL"
+
+        # Specify the output file name
+        output_file="new-singles.csv"
+
+        # Download the file
+        gdown "https://drive.google.com/uc?id=$file_id" -O site/$output_file
+      env:
+        file_id: ${{ secrets.GOOGLE_DRIVE_FILE_ID }}
+
+    - name: Configure Git
+      run: |
+        git config user.name "nhlocal"
+        git config user.email "nh.local11@gmail.com"
+      
+    - name: Commit changes
+      run: |
+        git add -f site/
+        git commit -m "Add downloaded CSV to the 'site' folder"
+      
+    - name: Push changes
+      run: |
+        git push

@@ -134,17 +134,22 @@ function parseCSV(csvText) {
     var line = lines[i].trim();
     if (line) {
       var columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-      var song = {
-        serial: columns[0].trim(),
-        name: columns[1].trim(),
-        album: columns[2].trim(),
-        singer: columns[3].trim()
-      };
-      songs.push(song);
+      if (columns.length >= 4) {
+        var song = {
+          serial: columns[0].trim(),
+          name: columns[1].trim(),
+          album: columns[2].trim(),
+          singer: columns[3].trim()
+        };
+        songs.push(song);
+      } else {
+        console.warn('Skipped a line with insufficient columns:', line);
+      }
     }
   }
   return songs;
 }
+
 
 
 // סינון התוצאות עם חיפוש מטושטש

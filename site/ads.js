@@ -97,9 +97,8 @@ updateFooterContent();
 
 // מאזין אירועים ללחיצה על פרסומת
 function beatplus_ad() {
-gtag('event', 'ad_click', {
-  'event_category': 'Ads',
-  'event_label': 'BeatPlus Ad Click' // You can customize the label
-});
-
-};
+    gtag('event', 'ad_click', {
+      'event_category': 'Ads',
+      'event_label': 'BeatPlus Ad Click' // You can customize the label
+    });
+}

@@ -83,7 +83,7 @@ function searchSongs(query, searchBy) {
 
 // Define the URLs for both CSV files
 const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-songs.csv';
-const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/output23.csv'; // Replace with the actual URL
+const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv'; // Replace with the actual URL
 
 // Create a function to fetch CSV data
 function fetchCSV(url) {

@@ -2,7 +2,7 @@ name: Download CSV from Google Drive
 
 on:
   schedule:
-    - cron: '22 23 * * *'
+    - cron: '30 22 * * *'
 
 jobs:
   download:
@@ -26,7 +26,7 @@ jobs:
         file_id="1DXYTtzUVVxWSu9wDBjNDZW5YrLKJtiWL"
 
         # Specify the output file name
-        output_file="output23.csv"
+        output_file="new-singles.csv"
 
         # Download the file
         gdown "https://drive.google.com/uc?id=$file_id" -O site/$output_file

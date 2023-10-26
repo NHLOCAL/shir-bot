@@ -1,7 +1,7 @@
 // מודעת שדרוגים ועדכונים
 document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown1")) {
+  if (!localStorage.getItem("messageShown3")) {
     // Display the modal overlay
     var overlay = document.createElement("div");
     overlay.classList.add("overlay");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Mark the message as shown in local storage
-    localStorage.setItem("messageShown", "true");
+    localStorage.setItem("messageShown3", "true");
   } else {
 
   // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Check if the current date has passed the reset date
   if (currentDate > resetDate) {
     // Reset the message display status
-    localStorage.removeItem('messageShown1');
+    localStorage.removeItem('messageShown3');
     }
   }
 

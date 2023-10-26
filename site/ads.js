@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
   } else {
 
   // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')
-  const resetDate = '2023-10-09';
+  const resetDate = '2023-10-28';
   const currentDate = new Date().toLocaleDateString('en-US');
 
   // Check if the current date has passed the reset date

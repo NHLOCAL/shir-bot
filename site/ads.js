@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Ad content
     modal.innerHTML = `
 	<h1 style="color: red">הזדמנות אחרונה!</h1>
-	<p>נותרו ימים אחרונים להכנס להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי</p>
+	<p>הכנסו כעת להגרלה - נותרו ימים אחרונים!</p>
 	<iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="350" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
 	<br><br>
 	<p><b>מעוניינים לקבל כרטיסי הגרלה נוספים?<a style="" <a href="https://nhlocal.github.io/shir-bot/register?utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">תנו רק דקה!</a>

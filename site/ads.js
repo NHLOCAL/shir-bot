@@ -9,18 +9,18 @@ document.addEventListener("DOMContentLoaded", function() {
     var modal = document.createElement("div");
     modal.classList.add("modal");
 
+	const mailValue = 'Last-Chance';
+	
+	var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
+	
     // Ad content
     modal.innerHTML = `
-      <h2>∯ הכנסו להגרלה באפס מאמץ! ∯</h2>
-	  <h4 style="color: red">כעת זה קלי קלות! נסו אותנו!</h4><br>
-      <p>הכנסו עכשיו להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי ויותר!</p><br>
-		<p><b>פרס ראשון:</b><br>
-		מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025 + מנוי לחבר לבחירתכם! - בשווי 300 ₪</p><br>
-
-		<p><b>פרס שני ופרס שלישי:</b><br>
-		לפרטים מלאים לחצו על הכפתור ועברו להרשמה...</p>
-      <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=campaign&utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">קח אותי לדקה!</a>
-	  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לדילוג ומעבר לאתר</a>
+	<h1 style="color: red">הזדמנות אחרונה!</h1>
+	<p>נותרו ימים אחרונים להכנס להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי</p>
+	<iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="350" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+	<br><br>
+	<p><b>מעוניינים לקבל כרטיסי הגרלה נוספים?<a style="" <a href="https://nhlocal.github.io/shir-bot/register?utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">תנו רק דקה!</a>
+	  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לסיום ומעבר לאתר</a>
     `;
 
     overlay.appendChild(modal);

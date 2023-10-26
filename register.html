@@ -86,7 +86,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Check if the URL contains the "sourcemail" parameter with the value "campaign"
 const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign' || !urlParams.has('sourcemail')) {
+if (
+  (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign') ||
+  (!urlParams.has('sourcemail') && urlParams.get('utm_source') !== 'shir_bot_site')
+) {
     // Create the HTML content for the alternative message
     var htmlContent = `
     <div class="refined">
@@ -106,8 +109,41 @@ if (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign' ||
     </div>
 	<a style="" id="instructionsButton">איך אני יכול לקבל כרטיס?</a>
     `;
+} else if (urlParams.has('utm_source') && urlParams.get('utm_source') === 'shir_bot_site') {
+
+    var htmlContent = `
+  <div class="refined">
+    <h2>כך תכנסו להגרלה עשרות פעמים בקלי קלות</h2>
+	<br>
+    <ol style="list-style-type: none;">
+      <li><b>♪</b> מלאו את כתובת המייל שלכם והעתיקו את הקישור היחודי שלכם</li>
+      <li><b>♪</b> הפיצו את הקישור לחבריכם. בצ'אט, במייל או בכל דרך אחרת</li>
+	  <br>
+    </ol>
+	
+	<div dir="ltr" class="copy-container">
+	  <input type="text" size="20" dir="ltr" id="text1" value="https://nhlocal.github.io/shir-bot/register?sourcemail=" readonly disabled> +
+	  <input id="text2" size="15" dir="ltr" type="email" placeholder="הכנס כתובת מייל">
+	  <button id="copy-button" onclick="copyToClipboard()">העתק</button>
+	</div><br>
+
+	<b>הפיצו את הבשורה לחבריכם ועל כל משתמש נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
+  </div>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/?utm_source=register_page&utm_medium=web&utm_campaign=Lottery_2023&utm_id=Lottery_2023">סיום ומעבר לשיר-בוט</a>
+
+<div class="refined">
+<br>
+  <a id="notesA">מידע נוסף</a>
+  	<ol id="notes" class="note" style="display: none; list-style-type: none;">
+	  <li>א. ההגרלה תיערך בט"ז חשון תשפ"ד, על ידי הבעלים של האתר. הודעה תימסר לזוכה במייל. מנויים קיימים יוכלו להעביר את הזכייה לחבר.</li>
+	  <li>ב. על כל משתמש נוסף שיכנס דרך הקישור האישי שלכם, תיכנסו להגרלה פעם נוספת. אך הדבר מותנה ברישום של המשתמש בכניסה לאתר.</li>
+	  <li>ג. הרישום הוא רק עבור משתמשים חדשים. לא ניתן להירשם פעמיים. (כלומר, אם החבר כבר נרשם דרך מישהו אחר, לא תכנסו להגרלה פעם נוספת)</li>
+	  <li>ד. ניתן להיכנס להגרלה ללא הגבלת פעמים. המספר 100 מתייחס למקרה בו נרשמו דרככם 100 אנשים.</li>
+	</ol>
+</div>
+    `;	
 } else {
-    // Create the default HTML content
+
     var htmlContent = `
     <div class="refined">
         <h2>ברוכים הבאים לשיר-בוט!</h2>
@@ -118,7 +154,10 @@ if (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign' ||
         <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/?utm_source=personal_sending_email&utm_medium=mail&utm_campaign=Lottery_2023&utm_id=Lottery_2023">לסיום ומעבר לשיר-בוט</a>
     </div>
     `;
+	
 }
+
+
 
 // Set the HTML content as the innerHTML of the modal
 modal.innerHTML = htmlContent;
@@ -126,11 +165,13 @@ modal.innerHTML = htmlContent;
 // Append the modal to the overlay
 overlay.appendChild(modal);
 
-  // Append the overlay to the body
-  document.body.appendChild(overlay);
+// Append the overlay to the body
+document.body.appendChild(overlay);
   
 // Add an event listener to the "Click here for more instructions" button
-document.getElementById('instructionsButton').addEventListener('click', function() {
+document.getElementById('instructionsButton').addEventListener('click', performAction);
+
+function performAction() {
   // Reset the modal by clearing its content
   modal.innerHTML = '';
 
@@ -172,6 +213,8 @@ document.getElementById('instructionsButton').addEventListener('click', function
 	</ol>
 </div>
   `;
+  
+
 
 // Append the new instructions to the modal
 modal.appendChild(newInstructions);
@@ -194,9 +237,7 @@ elementA.addEventListener('click', function(event) {
 }); 
 
 
-
-
-});
+};
 
 });
 

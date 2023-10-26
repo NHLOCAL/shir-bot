@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Mark the message as shown in local storage
-    localStorage.setItem("messageShown3", "true");
+    localStorage.setItem("messageShown3", "false");
   } else {
 
   // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')

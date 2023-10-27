@@ -5,6 +5,14 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   searchSongs(searchInput, searchBy);
 });
 
+
+
+// Add an event listener to the button
+document.getElementById('newsFilter').addEventListener('click', function() {
+  // Call the searchSongs function with the specified parameters
+  searchSongs('סינגלים חדשים - תשפד', 'singer');
+});
+
 // חיפוש אוטומטי של שיר בקישור עם פרמטר
 const urlParams = new URLSearchParams(window.location.search);
 const searchValue = urlParams.get('search');

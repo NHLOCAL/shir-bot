@@ -7,8 +7,9 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 
 
 
-// Add an event listener to the button
+// הצגת הסינגלים החדשים
 document.getElementById('newsFilter').addEventListener('click', function() {
+  event.preventDefault(); // Prevent form submission
   // Call the searchSongs function with the specified parameters
   searchSongs('סינגלים חדשים - תשפד', 'singer');
 });
@@ -48,11 +49,6 @@ singleFilterButton.addEventListener('click', function() {
   } else {
     this.textContent = 'הצג סינגלים בלבד';
   }
-
-  // Re-run the search with the updated filter
-  var searchInput = document.getElementById('searchInput').value.toLowerCase();
-  var searchBy = document.getElementById('searchBy').value;
-  searchSongs(searchInput, searchBy);
 });
 
 

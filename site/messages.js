@@ -26,7 +26,7 @@ setCookie("myCookie", "cookieValue", 7);
 
     setTimeout(function() {
       textBubble.classList.add("active");
-    }, 1000); // Adjust the delay (in milliseconds) to control when the bubble appears
+    }, 700); // Adjust the delay (in milliseconds) to control when the bubble appears
   });
 
 

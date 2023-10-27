@@ -242,7 +242,8 @@ function filterSongs(songs, query, searchBy) {
     return false;
   });
 
-  const results = [...exactMatches, ...fuzzyMatches].sort(function(a, b) {
+  // Combine exact and fuzzy matches while ensuring uniqueness
+  const results = [...new Set([...exactMatches, ...fuzzyMatches])].sort(function(a, b) {
     // Sort results in descending order of relevance score
     const relevanceScoreA = calculateRelevanceScore(a);
     const relevanceScoreB = calculateRelevanceScore(b);

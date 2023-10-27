@@ -8,12 +8,13 @@
   text-align: center;
   position: absolute;
   z-index: 9999;
-  top: 150%; /* Position the bubble below the input */
+  top: 140%; /* Position the bubble below the input */
   left: 50%;
   transform: translateX(-50%);
   transform: translateX(-50%);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  width: 300px;
+  box-shadow: 0 0 3px 3px rgba(59, 76, 99, 0.5);
 }  
 
 .text-bubble.active {
@@ -704,7 +705,7 @@ a {
   margin-top: 13px;
 }
 
-.filter-button-light {
+.filter-container button {
   font-family: Tahoma;
   font-size: 14px;
   background-color: #F3F3F3; /* Light gray color */
@@ -718,9 +719,25 @@ a {
   border: 1px solid #DADADA;
 }
 
-.filter-button-light:hover {
-  background-color: #EDEDED; /* Lighter gray color on hover */
-  color: #362266; /* Darker purple color on hover */
+
+.filter-container button:hover {
+  background-color: #EDEDED;
+  color: #362266;
+}
+
+#newsFilter {
+  background: linear-gradient(135deg, #9370DB, #87CEEB);
+  color: #fff; /* White text color for contrast */
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly raised shadow */
+  border: 1px solid #9370DB; /* A border in the initial color */
+}
+
+#newsFilter:hover {
+  background: linear-gradient(135deg, #483D8B, #7CA993); /* Dark blue-purple to darker green gradient on hover */
+  color: #FFD700; /* Light yellow text color on hover for contrast */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+  border: 1px solid #7CA993; /* A slightly darker green border on hover */
 }
 
 

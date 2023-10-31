@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <title>ברוכים הבאים לשיר-בוט</title>
+    <link rel="stylesheet" href="site/styles.css">
+    <link rel="stylesheet" href="site/personal.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="site/favicon.ico">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+	<script src="https://nhlocal.github.io/general-settings.js"></script>
+<style>
+.copy-container input[type="text"],
+.copy-container input[type="email"] {
+  flex-grow: 1;
+  font-family: Tahoma;
+  padding: 3px 5px 3px 5px; /* Reduced padding */
+  border: 1px solid #a98ff3; /* Lighter purple border */
+  border-radius: 3px;
+}
+
+.copy-container #copy-button {
+  background-color: #663399; /* Dark purple button background */
+  color: #fff; /* White button text color */
+  border: none;
+  font-family: Tahoma;
+  border-radius: 3px;
+  padding: 3px 5px 3px 5px; /* Reduced padding */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copy-container #copy-button:hover {
+  background-color: #4b2873;
+}
+
+.refined a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.modal {
+  max-height: 90%;
+}
+
+.refined a:hover {color: white;}
+
+.refined h2 {margin-bottom: 0px;}
+
+.refined p,li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.note {
+  font-size: 13px;
+}
+</style>
+</head>
+<body dir="rtl" style="background-color:#FFFEDB;">
+
+  <script>
+const urlParams = new URLSearchParams(window.location.search);
+const mailValue = urlParams.get('sourcemail');
+
+// מודעת שדרוגים ועדכונים
+document.addEventListener("DOMContentLoaded", function() {
+  // Create the overlay div element
+  var overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+
+  // Create the modal div element
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  
+  modal.style.overflow = "auto";
+  
+  // Your JavaScript variable containing the value
+  var sourceMail = 'memilel@gmail.com';
+
+  // Create the iframe source URL with the variable
+  var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
+
+// Check if the URL contains the "sourcemail" parameter with the value "campaign"
+const urlParams = new URLSearchParams(window.location.search);
+if (
+  (urlParams.has('sourcemail') && urlParams.get('sourcemail') === 'campaign') ||
+  (!urlParams.has('sourcemail') && urlParams.get('utm_source') !== 'shir_bot_site')
+) {
+    // Create the HTML content for the alternative message
+    var htmlContent = `
+    <div class="refined">
+        <h2>ברוכים הבאים לשיר-בוט!</h2>
+        <p>הכנסו עכשיו להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי ויותר!</p>
+
+<p><b>פרס ראשון:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025 + מנוי לחבר לבחירתכם! - בשווי 300 ₪</p>
+
+<p><b>פרס שני:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב מזמן הזכייה ועד ינואר 2025! - בשווי 150 ₪</p>
+
+<p><b>פרס שלישי:</b><br>
+מנוי חינם למאגר המוזיקלי בדרייב לשלושה חודשים - בשווי 50 ₪</p>
+
+        <p><b>ההגרלה תתקיים בט"ז חשון תשפ"ד</b></p>
+    </div>
+	<a style="" id="instructionsButton">איך אני יכול לקבל כרטיס?</a>
+    `;
+} else if (urlParams.has('utm_source') && urlParams.get('utm_source') === 'shir_bot_site') {
+
+    var htmlContent = `
+  <div class="refined">
+    <h2>כך תכנסו להגרלה עשרות פעמים בקלי קלות</h2>
+	<br>
+    <ol style="list-style-type: none;">
+      <li><b>♪</b> מלאו את כתובת המייל שלכם והעתיקו את הקישור היחודי שלכם</li>
+      <li><b>♪</b> הפיצו את הקישור לחבריכם. בצ'אט, במייל או בכל דרך אחרת</li>
+	  <br>
+    </ol>
+	
+	<div dir="ltr" class="copy-container">
+	  <input type="text" size="20" dir="ltr" id="text1" value="https://nhlocal.github.io/shir-bot/register?sourcemail=" readonly disabled> +
+	  <input id="text2" size="15" dir="ltr" type="email" placeholder="הכנס כתובת מייל">
+	  <button id="copy-button" onclick="copyToClipboard()">העתק</button>
+	</div><br>
+
+	<b>הפיצו את הבשורה לחבריכם ועל כל משתמש נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
+  </div>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/?utm_source=register_page&utm_medium=web&utm_campaign=Lottery_2023&utm_id=Lottery_2023">סיום ומעבר לשיר-בוט</a>
+
+<div class="refined">
+<br>
+  <a id="notesA">מידע נוסף</a>
+  	<ol id="notes" class="note" style="display: none; list-style-type: none;">
+	  <li>א. ההגרלה תיערך בט"ז חשון תשפ"ד, על ידי הבעלים של האתר. הודעה תימסר לזוכה במייל. מנויים קיימים יוכלו להעביר את הזכייה לחבר.</li>
+	  <li>ב. על כל משתמש נוסף שיכנס דרך הקישור האישי שלכם, תיכנסו להגרלה פעם נוספת. אך הדבר מותנה ברישום של המשתמש בכניסה לאתר.</li>
+	  <li>ג. הרישום הוא רק עבור משתמשים חדשים. לא ניתן להירשם פעמיים. (כלומר, אם החבר כבר נרשם דרך מישהו אחר, לא תכנסו להגרלה פעם נוספת)</li>
+	  <li>ד. ניתן להיכנס להגרלה ללא הגבלת פעמים. המספר 100 מתייחס למקרה בו נרשמו דרככם 100 אנשים.</li>
+	</ol>
+</div>
+    `;	
+} else {
+
+    var htmlContent = `
+    <div class="refined">
+        <h2>ברוכים הבאים לשיר-בוט!</h2>
+        <p>רגע... רוצים להכנס להגרלה על 4 מנויים למאגר מוזיקה בדרייב המכיל <b>500 גי'גה</b> של תוכן מוזיקלי ויותר?!</p>
+        <iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="400" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+        <p><b>מעוניין להגדיל את סיכויי הזכייה שלך פי 100?<a style="" id="instructionsButton">לחץ כאן כעת להוראות נוספות!</a></b></p>
+        <br>
+        <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/?utm_source=personal_sending_email&utm_medium=mail&utm_campaign=Lottery_2023&utm_id=Lottery_2023">לסיום ומעבר לשיר-בוט</a>
+    </div>
+    `;
+	
+}
+
+
+
+// Set the HTML content as the innerHTML of the modal
+modal.innerHTML = htmlContent;
+
+// Append the modal to the overlay
+overlay.appendChild(modal);
+
+// Append the overlay to the body
+document.body.appendChild(overlay);
+  
+// Add an event listener to the "Click here for more instructions" button
+document.getElementById('instructionsButton').addEventListener('click', performAction);
+
+function performAction() {
+  // Reset the modal by clearing its content
+  modal.innerHTML = '';
+
+  // Create a new set of instructions
+  var newInstructions = document.createElement('div');
+  newInstructions.innerHTML = `
+  <div class="refined">
+    <h2>כך תכנסו להגרלה עשרות פעמים בקלי קלות</h2>
+	<br>
+    <ol style="list-style-type: none;">
+      <li><b>♪</b> מלאו את כתובת המייל שלכם והעתיקו את הקישור היחודי שלכם</li>
+      <li><b>♪</b> הפיצו את הקישור לחבריכם. בצ'אט, במייל או בכל דרך אחרת</li>
+	  <br>
+    </ol>
+	
+	<div dir="ltr" class="copy-container">
+	  <input type="text" size="20" dir="ltr" id="text1" value="https://nhlocal.github.io/shir-bot/register?sourcemail=" readonly disabled> +
+	  <input id="text2" size="15" dir="ltr" type="email" placeholder="הכנס כתובת מייל">
+	  <button id="copy-button" onclick="copyToClipboard()">העתק</button>
+	</div><br>
+
+	<b>הפיצו את הבשורה לחבריכם ועל כל משתמש נוסף שיכנס לאתר דרככם, תכנסו להגרלה פעם נוספת!</b>
+	
+
+  </div>
+  <a class="confirm-button" href="https://nhlocal.github.io/shir-bot/?utm_source=register_page&utm_medium=web&utm_campaign=Lottery_2023&utm_id=Lottery_2023">סיום ומעבר לשיר-בוט</a>
+
+
+
+
+<div class="refined">
+<br>
+  <a id="notesA">מידע נוסף</a>
+  	<ol id="notes" class="note" style="display: none; list-style-type: none;">
+	  <li>א. ההגרלה תיערך בט"ז חשון תשפ"ד, על ידי הבעלים של האתר. הודעה תימסר לזוכה במייל. מנויים קיימים יוכלו להעביר את הזכייה לחבר.</li>
+	  <li>ב. על כל משתמש נוסף שיכנס דרך הקישור האישי שלכם, תיכנסו להגרלה פעם נוספת. אך הדבר מותנה ברישום של המשתמש בכניסה לאתר.</li>
+	  <li>ג. הרישום הוא רק עבור משתמשים חדשים. לא ניתן להירשם פעמיים. (כלומר, אם החבר כבר נרשם דרך מישהו אחר, לא תכנסו להגרלה פעם נוספת)</li>
+	  <li>ד. ניתן להיכנס להגרלה ללא הגבלת פעמים. המספר 100 מתייחס למקרה בו נרשמו דרככם 100 אנשים.</li>
+	</ol>
+</div>
+  `;
+  
+
+
+// Append the new instructions to the modal
+modal.appendChild(newInstructions);
+
+// Find the element A by its text content
+const elementA = document.getElementById('notesA');
+
+// Add a click event listener to element A
+elementA.addEventListener('click', function(event) {
+  // Prevent the default behavior of the anchor element
+  event.preventDefault();
+  // Find the element OL with the id "notes"
+  const elementOL = document.getElementById('notes');
+  // Display or hide the element OL as needed
+  if (elementOL.style.display === 'none') {
+    elementOL.style.display = 'block';
+  } else {
+    elementOL.style.display = 'none';
+  }
+}); 
+
+
+};
+
+});
+
+function copyFormattedText() {
+
+  // Get a reference to the input element by its id
+  var inputElement = document.getElementById('usermail');
+
+  // Get the value from the input element
+  var userMail = inputElement.value;
+  
+  // Check if userMail is empty
+  if (userMail.trim() === '') {
+    alert('לא הוכנסה כתובת מייל!');
+    return; // Exit the function
+  }
+ 
+  // Define the HTML content you want to copy
+  var htmlContent = `
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body style="background-color: #ffffcc; direction: rtl;">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="width: 900px; margin: auto;">
+        <tr>
+            <td>
+                <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fff; max-width: 650px; margin: auto; border-radius: 5px 5px 0px 0px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                    <tr>
+                        <td style="text-align: center;">
+                            <img src="https://nhlocal.github.io/shir-bot/help/title.png" alt="תמונת האתר" width="700" style="display: block; margin: 0 auto; max-width: 100%; border: 5px;">
+                            <h2 style="color: #362266;">שיר-בוט - המאגר המוזיקלי הגדול ביותר</h2>
+                            <br>
+                            <p style="font-size: 17px; line-height: 1.6; color: #555;">
+                                יום טוב, יש לנו המלצה עבורכם!
+                            </p>
+                            <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                                התכוננו לצלול לעולם המוזיקה כמו שלא עשיתם מעולם. אנחנו היעד האחד שלכם לאוסף מדהים של למעלה מ-70,000 שירים המכסים מגוון רחב של ז'אנרים
+                            </p>
+                            <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                                שיר-בוט הוא אתר המכיל מגוון עצום של סגנונות מוזיקליים. מהלחנים המסורתיים של המוזיקה החסידית ועד לצלילים התוססים של המוזיקה המזרחית. מהקלאסיקה מחממת הלב של פרחי לונדון ובן-ציון שנקר, ועד לצלילים החדשניים של מוזיקה אלטרנטיבית, הכל במקום אחד
+                            </p>
+                            <img src="https://nhlocal.github.io/shir-bot/help/prtscrn.png" alt="תמונת האתר" width="700" style="display: block; margin: 0 auto; max-width: 100%; border: 5px;">
+							<br>
+                            <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                                אז בין אם אתם במצב רוח של נוסטלגיה או להוטים לגלות את הלהיטים האחרונים, שיר-בוט יספק אתכם. האוסף הנרחב שלנו משתרע על פני תקופות שונות, סגנונות ותרבויות שונות כדי לתת מענה לכל העדפה מוזיקלית
+                            </p>
+                            <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                                אל תפספסו את ההזדמנות לחקור את עולם המוזיקה המגוון באמצעות שיר-בוט. התחילו את המסע המוזיקלי שלכם עכשיו!
+                            </p>
+                            <!-- Add a button to visit the website -->
+                            <p style="margin-top: 20px;">
+                                <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=${userMail}&utm_source=personal_sending_email&utm_medium=mail&utm_campaign=Lottery_2023&utm_id=Lottery_2023" style="display: inline-block; background-color: #5D3AB0; color: #fff; padding: 10px 20px; font-size: 20px; border-radius: 5px; text-decoration: none; transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;">בקרו באתר</a>
+                            </p>
+                    </tr>
+                </table>
+                <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #D7C0FF; max-width: 650px; margin: auto; border-radius: 0px 0px 5px 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
+                    <tr>
+                        <td style="text-align: center;">
+                            <b style="font-size: 16px; line-height: 1.6; color: #555;">
+                                מעוניינים להיכנס להגרלה על מנוי כפול לשנה<br>למאגר בדרייב המכיל 500 ג'יגה של מוזיקה ושמע<br>בשווי כולל של 300 ש"ח?<br>
+                                <a href="https://nhlocal.github.io/shir-bot/register?sourcemail=${userMail}&utm_source=personal_sending_email&utm_medium=mail&utm_campaign=Lottery_2023&utm_id=Lottery_2023" style="margin-top: 8px; display: inline-block; background-color: white; color: #5D3AB0; padding: 3px; font-size: 16px; border-radius: 5px;">הירשמו כעת!</a>
+                            </b><br><br>
+                            <b style="font-size: 16px; line-height: 1.6; color: #4A2E8C; text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;">
+                                רוצים להגדיל את סיכויי הזכיה שלכם?<br>היכנסו לקישור לעיל ושימו לב לפרטים!<br>כל משתמש נוסף שיכנס לאתר דרככם<br>יזכה אתכם בכניסה נוספת להגרלה!
+                            </b><br>
+                        </td>
+                    </tr>
+                </table>						
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+  `;
+
+  // Create a temporary element to hold the HTML content
+  var tempElement = document.createElement('div');
+  tempElement.innerHTML = htmlContent;
+
+  // Style the cloned element to match the original.
+  tempElement.style.position = 'absolute';
+  tempElement.style.left = '-9999px';
+
+  // Append the temporary element to the document
+  document.body.appendChild(tempElement);
+
+  // Create a range and select the content
+  var range = document.createRange();
+  range.selectNodeContents(tempElement);
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  try {
+    // Copy the selected content to the clipboard
+    document.execCommand('copy');
+    alert('ההודעה הועתקה ללוח!');
+  } catch (err) {
+    console.error('Unable to copy text: ', err);
+  } finally {
+    // Clean up
+    selection.removeAllRanges();
+    document.body.removeChild(tempElement);
+  }
+}
+
+
+// Step 1: Define the copyToClipboard function.
+function copyToClipboard() {
+  // Step 2: Get references to both text inputs.
+  const text1 = document.getElementById("text1");
+  const text2 = document.getElementById("text2");
+  
+  // Step 3: Check if the email input field is empty.
+  const emailInput = text2.value.trim();
+  if (emailInput === "") {
+    // If it's empty, display a warning message.
+    alert("לא הכנסת את כתובת המייל שלך!");
+    return; // Exit the function without copying.
+  }
+
+  // Step 4: Concatenate the values of the two input fields.
+  const combinedText = text1.value + emailInput;
+
+  // Step 5: Create a temporary textarea element to copy the combined text.
+  const tempTextarea = document.createElement("textarea");
+  tempTextarea.value = combinedText;
+
+  // Step 6: Append the textarea to the document.
+  document.body.appendChild(tempTextarea);
+
+  // Step 7: Select the text inside the textarea.
+  tempTextarea.select();
+
+  // Step 8: Copy the selected text to the clipboard.
+  document.execCommand("copy");
+
+  // Step 9: Remove the temporary textarea from the document.
+  document.body.removeChild(tempTextarea);
+
+  // Step 10: Provide user feedback (optional).
+  const copyButton = document.getElementById("copy-button");
+  copyButton.innerText = "✓";
+  setTimeout(() => {
+    copyButton.innerText = "העתק";
+  }, 2000); // Reset button text after 2 seconds (optional).
+}
+
+	
+  </script>
+</body>
+</html>

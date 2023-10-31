@@ -1,5 +1,5 @@
 // מודעת שדרוגים ועדכונים
-document.addEventListener("DOMContentLoaded", function() {
+/* document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
   if (!localStorage.getItem("messageShown")) {
     // Display the modal overlay
@@ -57,8 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-});
-
+}); */
 
 // פרסומת מתחלפת לכותרת התחתונה
 

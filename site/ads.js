@@ -1,5 +1,5 @@
 // מודעת שדרוגים ועדכונים
-/* document.addEventListener("DOMContentLoaded", function() {
+ document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
   if (!localStorage.getItem("messageShown")) {
     // Display the modal overlay
@@ -15,12 +15,10 @@
 	
     // Ad content
     modal.innerHTML = `
-	<h1 style="color: red">הזדמנות אחרונה!</h1>
-	<p>הכנסו כעת להגרלה - נותרו ימים אחרונים!</p>
-	<iframe src="${iframeSrc}" style="max-width: 100%" width="400" height="350" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
-	<br><br>
-	<p><b>מעוניינים לקבל כרטיסי הגרלה נוספים?<a style="" <a href="https://nhlocal.github.io/shir-bot/register?utm_source=shir_bot_site&utm_medium=site&utm_campaign=Lottery_2023&utm_id=Lottery_2023" class="efectButton">תנו רק דקה!</a>
-	  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לסיום ומעבר לאתר</a>
+	<h2>תקלה באתר</h2>
+	<p>לצערינו, עקב תקלה חמורה, ההורדה מהאתר לא פעילה כרגע. עדיין ניתן לסייר באתר ולבצע חיפוש</p>
+	<p>נא נסו שוב מאוחר יותר</p>
+	<a style="" class="efectButton" href="#" id="searchButton">אישור</a>
     `;
 
     overlay.appendChild(modal);
@@ -57,7 +55,7 @@
     }
   }
 
-}); */
+});
 
 // פרסומת מתחלפת לכותרת התחתונה
 

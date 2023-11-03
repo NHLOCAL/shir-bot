@@ -17,9 +17,8 @@
     modal.innerHTML = `
 	<h2>תקלה באתר</h2>
 	<p>לצערינו, עקב תקלה חמורה, ההורדה מהאתר לא פעילה כרגע. עדיין ניתן לסייר באתר ולבצע חיפוש</p>
-	<p>כרגע ניתן להשתמש באתר הישן ולקבל את השירים למייל</p>
-	<a style="" <a href="https://nhlocal.github.io/shir-bot/old">לאתר הישן</a>
-		  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לכניסה לאתר הרגיל</a>
+	<p>נא נסו שוב מאוחר יותר</p>
+	<a style="" class="efectButton" href="#" id="searchButton">אישור</a>
     `;
 
     overlay.appendChild(modal);

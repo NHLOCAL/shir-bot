@@ -308,7 +308,7 @@ function displayResults(results) {
 
 
 function generateMailtoLink(serial) {
-  var baseEmail = 'autoshirbot@gmail.com';
+  var baseEmail = 'autoshirbot1@gmail.com';
   var additionalEmail = 'autoshirbot1@gmail.com';
   var thirdEmail = 'autoshirbot2@gmail.com';
   

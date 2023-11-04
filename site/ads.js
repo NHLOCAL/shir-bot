@@ -1,4 +1,5 @@
 // מודעת שדרוגים ועדכונים
+/*
  document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown before
   if (!localStorage.getItem("messageShown")) {
@@ -57,6 +58,7 @@
   }
 
 });
+*/
 
 // פרסומת מתחלפת לכותרת התחתונה
 

@@ -52,11 +52,16 @@ table {
 }
 
 
-
-th, td {
+td {
+  border-bottom: none;
   text-align: right;
   padding: 8px;
+}
+
+th {
   border-bottom: 1px solid #ddd;
+  text-align: right;
+  padding: 8px;
 }
 
 
@@ -991,4 +996,45 @@ header.clicked::after {
     width: 100%;
     opacity: 0;
   }
+}
+
+
+
+
+/* עיצוב עבור כפתורי הקודם והבא */
+#prevSection,
+#nextSection {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #EDEDED; /* Light gray background */
+    color: #555; /* Dark gray text color */
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s, color 0.3s; /* Smooth transition on hover */
+    border: 2px solid #666699; /* Border style similar to the helpButton */
+}
+
+#prevSection {
+    right: 10px;
+}
+
+#nextSection {
+    left: 10px;
+}
+
+#prevSection:hover,
+#nextSection:hover {
+    background: #362266; /* Darker purple background on hover */
+    color: white; /* White text color on hover */
+}
+
+#prevSection:active,
+#nextSection:active {
+    background: #5D3AB0; /* Dark purple background on click */
+    color: white; /* White text color on click */
 }

@@ -98,3 +98,96 @@ function beatplus_ad() {
       'event_label': 'BeatPlus Ad Click' // You can customize the label
     });
 }
+
+
+
+// קוד להצגת מודעות בחזית האתר באופן אוטומטי
+const newContent1 = `
+<h3>תהילים להצלחת המערכה</h3>
+	  <p style="text-align: justify"><b><small>א</small></b> לַמְנַצֵּחַ מִזְמוֹר לְדָוִד:  <b><small>ב</small></b> שְׁמַע אֱלֹהִים קוֹלִי בְשִׂיחִי מִפַּחַד אוֹיֵב תִּצֹּר חַיָּי:  <b><small>ג</small></b> תַּסְתִּירֵנִי מִסּוֹד מְרֵעִים מֵרִגְשַׁת פֹּעֲלֵי אָוֶן: <b><small>ד</small></b> אֲשֶׁר שָׁנְנוּ כַחֶרֶב לְשׁוֹנָם דָּרְכוּ חִצָּם דָּבָר מָר: <b><small>ה</small></b> לִירוֹת בַּמִּסְתָּרִים תָּם פִּתְאֹם יֹרֻהוּ וְלֹא יִירָאוּ: <b><small>ו</small></b> יְחַזְּקוּ לָמוֹ דָּבָר רָע יְסַפְּרוּ לִטְמוֹן מוֹקְשִׁים אָמְרוּ מִי יִרְאֶה לָּמוֹ: <b><small>ז</small></b> יַחְפְּשׂוּ עוֹלֹת תַּמְנוּ חֵפֶשׂ מְחֻפָּשׂ וְקֶרֶב אִישׁ וְלֵב עָמֹק: <b><small>ח</small></b> וַיֹּרֵם אֱלֹהִים חֵץ פִּתְאוֹם הָיוּ מַכּוֹתָם:<b><small>ט</small></b> וַיַּכְשִׁילוּהוּ עָלֵימוֹ לְשׁוֹנָם יִתְנֹדֲדוּ כָּל רֹאֵה בָם: <b><small>י</small></b> וַיִּירְאוּ כָּל אָדָם וַיַּגִּידוּ פֹּעַל אֱלֹהִים וּמַעֲשֵׂהוּ הִשְׂכִּילוּ: <b><small>יא</small></b> יִשְׂמַח צַדִּיק בַּיהוָה וְחָסָה בוֹ וְיִתְהַלְלוּ כָּל יִשְׁרֵי לֵב:</p>
+	  <button class="helpButton" id="helpButton" onclick='openHelp()'>לחץ כאן לקבלת עזרה מפורטת</button>
+`;
+const newContent2 = `
+<h3>נסו את האתר הישן</h3><p>נתקלים בבעיות בשימוש או בהורדה? נסו את האתר הישן וקבלו את השירים באמצעות שליחת מייל<br><br>שימו לב כי האתר הישן אינו מתעדכן כרגע בשירים חדשים או בשיפורי ממשק</p>
+<button class="helpButton" onclick="location.href='https://nhlocal.github.io/shir-bot/old'">למעבר לאתר הישן</button>
+`;
+const newContent3 = `
+<h3>בלאגן במחשב? זה הפתרון</h3><p>מיואשים מכמויות הבלאגן במאגרי המוזיקה שלכם?<br><br>קבלו את התוכנה שתבצע לכם סדר בקבצי המוזיקה שלכם בתוך דקות!<br><br>התוכנה פועלת באמצעות מערכות אוטומציה מתוחכמות בשילוב מגוון של כלים</p>
+<img style="border-radius: 1%; max-width: 70%; height: auto;" src="https://github.com/NHLOCAL/Singles-Sorter/blob/main/versions.data/program-screen.png?raw=true" alt="צילום מסך - מסדר הסינגלים">
+<button class="helpButton" onclick="location.href='https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot&utm_medium=site'">להורדת התוכנה</button>
+`;
+
+const contentSection = document.getElementById("instructions-container");
+const prevButton = document.getElementById("prevSection");
+const nextButton = document.getElementById("nextSection");
+
+// Define an array of new content
+const newContents = [newContent1, newContent2, newContent3];
+let currentContentIndex = 0;
+
+// Function to update the content section
+function updateContent() {
+	contentSection.innerHTML = newContents[currentContentIndex];
+}
+
+// Event listeners for previous and next buttons
+prevButton.addEventListener("click", () => {
+	currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
+	updateContent();
+});
+
+nextButton.addEventListener("click", () => {
+	currentContentIndex = (currentContentIndex + 1) % newContents.length;
+	updateContent();
+});
+
+// Automatically change content every 10 seconds
+setInterval(() => {
+	currentContentIndex = (currentContentIndex + 1) % newContents.length;
+	updateContent();
+}, 30000);
+
+// Initial content update
+updateContent();
+
+
+
+// הודעת עזרה מפורטת
+
+let currentStep = 1;
+
+function showStep(stepChange) {
+	currentStep += stepChange;
+	const modalSteps = document.querySelectorAll('.help-modal');
+	
+	if (currentStep < 1) {
+		currentStep = 1;
+	} else if (currentStep > modalSteps.length) {
+		currentStep = modalSteps.length;
+	}
+
+	// Hide all steps
+	modalSteps.forEach(step => {
+		step.style.display = 'none';
+	});
+
+	// Show the current step
+	modalSteps[currentStep - 1].style.display = 'block';
+}
+
+function openHelp() {
+    // Get a reference to the Help button
+    // Get a reference to the Help button
+    const helpButton = document.getElementById("helpButton");
+
+    // Get a reference to the Help overlay
+    const overlay = document.querySelector(".help-overlay");
+
+    // Show the Help overlay
+    overlay.style.display = "flex"; // Display the overlay when the button is clicked
+}
+
+function closeHelp() {
+	const overlay = document.querySelector('.help-overlay');
+	overlay.style.display = 'none';
+}

@@ -30,52 +30,6 @@ setCookie("myCookie", "cookieValue", 7);
   });
 
 
-
-
-
-// הודעת עזרה מפורטת
-
-let currentStep = 1;
-
-function showStep(stepChange) {
-	currentStep += stepChange;
-	const modalSteps = document.querySelectorAll('.help-modal');
-	
-	if (currentStep < 1) {
-		currentStep = 1;
-	} else if (currentStep > modalSteps.length) {
-		currentStep = modalSteps.length;
-	}
-
-	// Hide all steps
-	modalSteps.forEach(step => {
-		step.style.display = 'none';
-	});
-
-	// Show the current step
-	modalSteps[currentStep - 1].style.display = 'block';
-}
-
-function closeHelp() {
-	const overlay = document.querySelector('.help-overlay');
-	overlay.style.display = 'none';
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Get a reference to the Help button
-    const helpButton = document.getElementById("helpButton");
-
-    // Get a reference to the Help overlay
-    const overlay = document.querySelector(".help-overlay");
-
-    // Add a click event listener to the Help button
-    helpButton.addEventListener("click", function () {
-        // Show the Help overlay
-        overlay.style.display = "flex"; // Display the overlay when the button is clicked
-    });
-});
-
-
 // Get a reference to the element by its id
 const nextObject = document.getElementById("nextObject");
 

@@ -124,32 +124,39 @@ const nextButton = document.getElementById("nextSection");
 // Define an array of new content
 const newContents = [newContent1, newContent2, newContent3];
 let currentContentIndex = 0;
+let interval; // Declare the interval variable outside the setInterval function
 
 // Function to update the content section
 function updateContent() {
-	contentSection.innerHTML = newContents[currentContentIndex];
+    contentSection.innerHTML = newContents[currentContentIndex];
+}
+
+// Function to handle the automatic content change
+function startAutoChange() {
+    interval = setInterval(() => {
+        currentContentIndex = (currentContentIndex + 1) % newContents.length;
+        updateContent();
+    }, 10000); // Reduced the interval to 10 seconds for the example
 }
 
 // Event listeners for previous and next buttons
 prevButton.addEventListener("click", () => {
-	currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
-	updateContent();
+    currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
+    updateContent();
+    clearInterval(interval); // Reset the interval on arrow click
+    startAutoChange(); // Restart the automatic change
 });
 
 nextButton.addEventListener("click", () => {
-	currentContentIndex = (currentContentIndex + 1) % newContents.length;
-	updateContent();
+    currentContentIndex = (currentContentIndex + 1) % newContents.length;
+    updateContent();
+    clearInterval(interval); // Reset the interval on arrow click
+    startAutoChange(); // Restart the automatic change
 });
-
-// Automatically change content every 10 seconds
-setInterval(() => {
-	currentContentIndex = (currentContentIndex + 1) % newContents.length;
-	updateContent();
-}, 30000);
 
 // Initial content update
 updateContent();
-
+startAutoChange(); // Start the automatic content change
 
 
 // הודעת עזרה מפורטת

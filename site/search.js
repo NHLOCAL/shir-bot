@@ -62,6 +62,7 @@ function searchSongs(query, searchBy) {
   }
   
   var tableBody = document.querySelector('#resultsTable tbody');
+
   tableBody.innerHTML = ''; // Clear the table body
   
   var loadingRow = document.createElement('tr');
@@ -275,9 +276,11 @@ function filterSongs(songs, query, searchBy) {
 
 
 
-// Function to display search results.
 function displayResults(resultsToDisplay) {
   var tableBody = document.querySelector('#resultsTable tbody');
+  
+  var table = document.getElementById('resultsTable');
+  table.classList.add('custom-table');
 
   // Clear the table body
   tableBody.innerHTML = '';
@@ -291,66 +294,72 @@ function displayResults(resultsToDisplay) {
     instructionRow.appendChild(instructionCell);
     tableBody.appendChild(instructionRow);
   } else {
-	  
-	const theadElement = document.querySelector("#resultsTable thead");
-	theadElement.style.display = "table-header-group";
-	
+    const theadElement = document.querySelector(".custom-table thead");
+    theadElement.style.display = "table-header-group";
+
     // Display the search results for the specified range.
     for (var i = 0; i < resultsToDisplay.length; i++) {
       var song = resultsToDisplay[i];
       var row = document.createElement('tr');
-      
+
       // Create cells for each column in the table
       var serialCell = document.createElement('td');
       var nameCell = document.createElement('td');
       var albumCell = document.createElement('td');
       var singerCell = document.createElement('td');
-      
+
       // Create a link for the serial number
       var serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
 
       if (
-		(!song.album.toLowerCase().includes('סינגלים')) &&
-		(!song.singer.toLowerCase().includes('סינגלים'))
-		) {
-        serialLink.addEventListener('click', function(event) {
+        (!song.album.toLowerCase().includes('סינגלים')) &&
+        (!song.singer.toLowerCase().includes('סינגלים'))
+      ) {
+        serialLink.addEventListener('click', function (event) {
           event.preventDefault();
           showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
         });
       } else {
-        serialLink.addEventListener('click', function(event) {
-          event.preventDefault(); // Prevent the default link behavior
-          var clickedElement = event.target; // The <a> element that was clicked
-          var songNumber = clickedElement.textContent; // Extract the number from the text
-          downloadSong(songNumber);
+        // Update the event listener to target the entire row
+        row.addEventListener('click', function (event) {
+          // Check if the click occurred on a button or a link
+          if (
+            event.target.tagName !== 'BUTTON' &&
+            //event.target.tagName !== 'A' &&
+            !event.target.classList.contains('share-button')
+          ) {
+            event.preventDefault(); // Prevent the default link behavior
+            var songNumber = song.serial; // Extract the number from the text
+            downloadSong(songNumber);
+          }
         });
       }
-	  
+
       // Create a button for the album
       var albumButton = document.createElement('button');
       albumButton.textContent = song.album;
       albumButton.classList.add('album-button');
-      
+
       // Add an event listener to the album button
-      albumButton.addEventListener('click', function(event) {
+      albumButton.addEventListener('click', function (event) {
         event.preventDefault();
-		var searchBy = 'album'
+        var searchBy = 'album';
         var query = this.textContent;
-		searchSongs(query, searchBy)
+        searchSongs(query, searchBy);
       });
-      
+
       // Create a button for the singer
       var singerButton = document.createElement('button');
       singerButton.textContent = song.singer;
       singerButton.classList.add('singer-button');
-      
+
       // Add an event listener to the singer button
-      singerButton.addEventListener('click', function(event) {
+      singerButton.addEventListener('click', function (event) {
         event.preventDefault();
-		var searchBy = 'singer'
+        var searchBy = 'singer';
         var query = this.textContent;
-		searchSongs(query, searchBy)
+        searchSongs(query, searchBy);
       });
 
       // Create the share button
@@ -358,7 +367,7 @@ function displayResults(resultsToDisplay) {
       shareButton.textContent = 'שתף';
       shareButton.classList.add('share-button');
       shareButton.dataset.serial = song.serial;
-      
+
       // Add an event listener to the share button
       shareButton.addEventListener('click', function () {
         var serial = this.dataset.serial;
@@ -369,7 +378,7 @@ function displayResults(resultsToDisplay) {
 
       // Append elements to the row
       serialCell.appendChild(serialLink);
-	  nameCell.textContent = song.name;
+      nameCell.textContent = song.name;
       albumCell.appendChild(albumButton);
       singerCell.appendChild(singerButton);
       row.appendChild(serialCell);
@@ -383,6 +392,7 @@ function displayResults(resultsToDisplay) {
     }
   }
 }
+
 
 
 

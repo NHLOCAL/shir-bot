@@ -177,6 +177,7 @@ border: none;
 }
 
 #resultsTable {
+  border-spacing: 0;
   position: fixed;
   margin-left: 3%;
   margin-right: 3%;
@@ -290,7 +291,8 @@ h3.current {
 
 #resultsTable table {
   width: 100%;
-  table-layout: auto; /* Change from fixed to auto */
+  table-layout: auto;
+  border-spacing: 0;
 }
 
 #resultsTable th:nth-child(1),
@@ -1037,4 +1039,36 @@ header.clicked::after {
 #nextSection:active {
     background: #5D3AB0; /* Dark purple background on click */
     color: white; /* White text color on click */
+}
+
+
+
+/* Add a mouseover effect for the table row */
+.custom-table tbody tr:hover {
+  background-color: #fff9c4; /* Lighter shade of yellow for mouseover effect */
+}
+
+/* Add a click effect for the table row */
+.custom-table tbody tr:active {
+  background-color: #fff176; /* Even lighter yellow for click effect */
+}
+
+/* Change the cursor to a pointer for clickable elements */
+.custom-table tbody tr, .custom-table tbody tr a, .custom-table tbody tr button {
+  cursor: pointer;
+}
+
+/* Add rounded corners to the table cells */
+.custom-table tbody td, .custom-table tbody th {
+  border-radius: 0px; /* Adjust the radius as needed */
+}
+
+/* Ensure the highlighting appears as one sequence without dividing the space between the cells */
+.custom-table tbody tr td {
+  border-collapse: collapse;
+}
+
+/* Remove the space between the cells */
+.custom-table tbody td, .custom-table tbody th {
+  padding: 10px; /* Adjust the padding as needed */
 }

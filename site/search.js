@@ -312,29 +312,27 @@ function displayResults(resultsToDisplay) {
       var serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
 
-      if (
-        (!song.album.toLowerCase().includes('סינגלים')) &&
-        (!song.singer.toLowerCase().includes('סינגלים'))
-      ) {
-        serialLink.addEventListener('click', function (event) {
-          event.preventDefault();
-          showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
-        });
-      } else {
-        // Update the event listener to target the entire row
-        row.addEventListener('click', function (event) {
-          // Check if the click occurred on a button or a link
+      // Update the event listener to target the entire row
+      row.addEventListener('click', function (event) {
+        // Check if the click occurred on a button or a link
+        if (
+          event.target.tagName !== 'BUTTON' &&
+          !event.target.classList.contains('share-button')
+        ) {
+          event.preventDefault(); // Prevent the default link behavior
+          var songNumber = song.serial; // Extract the number from the text
+
+          // Check the conditions before allowing the download
           if (
-            event.target.tagName !== 'BUTTON' &&
-            //event.target.tagName !== 'A' &&
-            !event.target.classList.contains('share-button')
+            (!song.album.toLowerCase().includes('סינגלים')) &&
+            (!song.singer.toLowerCase().includes('סינגלים'))
           ) {
-            event.preventDefault(); // Prevent the default link behavior
-            var songNumber = song.serial; // Extract the number from the text
+            showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
+          } else {
             downloadSong(songNumber);
           }
-        });
-      }
+        }
+      });
 
       // Create a button for the album
       var albumButton = document.createElement('button');
@@ -392,6 +390,7 @@ function displayResults(resultsToDisplay) {
     }
   }
 }
+
 
 
 

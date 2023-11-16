@@ -313,26 +313,7 @@ function displayResults(resultsToDisplay) {
       serialLink.textContent = song.serial;
 
       // Update the event listener to target the entire row
-      row.addEventListener('click', function (event) {
-        // Check if the click occurred on a button or a link
-        if (
-          event.target.tagName !== 'BUTTON' &&
-          !event.target.classList.contains('share-button')
-        ) {
-          event.preventDefault(); // Prevent the default link behavior
-          var songNumber = song.serial; // Extract the number from the text
-
-          // Check the conditions before allowing the download
-          if (
-            (!song.album.toLowerCase().includes('סינגלים')) &&
-            (!song.singer.toLowerCase().includes('סינגלים'))
-          ) {
-            showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
-          } else {
-            downloadSong(songNumber);
-          }
-        }
-      });
+      row.addEventListener('click', createRowClickListener(song));
 
       // Create a button for the album
       var albumButton = document.createElement('button');
@@ -340,12 +321,7 @@ function displayResults(resultsToDisplay) {
       albumButton.classList.add('album-button');
 
       // Add an event listener to the album button
-      albumButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        var searchBy = 'album';
-        var query = this.textContent;
-        searchSongs(query, searchBy);
-      });
+      albumButton.addEventListener('click', createButtonClickListener('album', song.album));
 
       // Create a button for the singer
       var singerButton = document.createElement('button');
@@ -353,12 +329,7 @@ function displayResults(resultsToDisplay) {
       singerButton.classList.add('singer-button');
 
       // Add an event listener to the singer button
-      singerButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        var searchBy = 'singer';
-        var query = this.textContent;
-        searchSongs(query, searchBy);
-      });
+      singerButton.addEventListener('click', createButtonClickListener('singer', song.singer));
 
       // Create the share button
       var shareButton = document.createElement('button');
@@ -367,12 +338,7 @@ function displayResults(resultsToDisplay) {
       shareButton.dataset.serial = song.serial;
 
       // Add an event listener to the share button
-      shareButton.addEventListener('click', function () {
-        var serial = this.dataset.serial;
-        var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
-        copyToClipboard(shareLink); // Copy the share link to clipboard
-        showCopiedMessage(); // Show a message indicating the link has been copied
-      });
+      shareButton.addEventListener('click', createShareButtonClickListener(song.serial));
 
       // Append elements to the row
       serialCell.appendChild(serialLink);
@@ -389,7 +355,48 @@ function displayResults(resultsToDisplay) {
       tableBody.appendChild(row);
     }
   }
+
+  // Helper function to create a closure for the row click listener
+  function createRowClickListener(song) {
+    return function(event) {
+      // Check if the click occurred on a button or a link
+      if (
+        event.target.tagName !== 'BUTTON' &&
+        !event.target.classList.contains('share-button')
+      ) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Check the conditions before allowing the download
+        if (
+          (!song.album.toLowerCase().includes('סינגלים')) &&
+          (!song.singer.toLowerCase().includes('סינגלים'))
+        ) {
+          showMessage('באתר זה נשלחים סינגלים בלבד, נא נסה שיר אחר!');
+        } else {
+          downloadSong(song.serial);
+        }
+      }
+    };
+  }
+
+  // Helper function to create a closure for button click listener
+  function createButtonClickListener(searchBy, query) {
+    return function(event) {
+      event.preventDefault();
+      searchSongs(query, searchBy);
+    };
+  }
+
+  // Helper function to create a closure for share button click listener
+  function createShareButtonClickListener(serial) {
+    return function() {
+      var shareLink = window.location.origin + window.location.pathname + '?search=' + serial;
+      copyToClipboard(shareLink); // Copy the share link to clipboard
+      showCopiedMessage(); // Show a message indicating the link has been copied
+    };
+  }
 }
+
 
 
 

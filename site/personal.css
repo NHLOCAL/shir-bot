@@ -1004,6 +1004,7 @@ header.clicked::after {
 
 
 /* עיצוב עבור כפתורי הקודם והבא */
+
 #prevSection,
 #nextSection {
     position: fixed;
@@ -1041,34 +1042,50 @@ header.clicked::after {
     color: white; /* White text color on click */
 }
 
+@media screen and (max-width: 600px) {
+    #prevSection,
+    #nextSection {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+		bottom: 50px;
+		top: unset;
+    }
+	
+	#prevSection {
+		right: 40%;
+	}
+
+	#nextSection {
+		left: 40%;
+	}
+}
 
 
-/* Add a mouseover effect for the table row */
+
+
+/* אפקטים עבור לחיצה ומעבר על שורה בטבלה */
+
 .custom-table tbody tr:hover {
-  background-color: #fff9c4; /* Lighter shade of yellow for mouseover effect */
+  background-color: #fff9c4;
 }
 
-/* Add a click effect for the table row */
 .custom-table tbody tr:active {
-  background-color: #fff176; /* Even lighter yellow for click effect */
+  background-color: #fff176;
 }
 
-/* Change the cursor to a pointer for clickable elements */
 .custom-table tbody tr, .custom-table tbody tr a, .custom-table tbody tr button {
   cursor: pointer;
 }
 
-/* Add rounded corners to the table cells */
 .custom-table tbody td, .custom-table tbody th {
-  border-radius: 0px; /* Adjust the radius as needed */
+  border-radius: 0px;
 }
 
-/* Ensure the highlighting appears as one sequence without dividing the space between the cells */
 .custom-table tbody tr td {
   border-collapse: collapse;
 }
 
-/* Remove the space between the cells */
 .custom-table tbody td, .custom-table tbody th {
   padding: 10px; /* Adjust the padding as needed */
 }

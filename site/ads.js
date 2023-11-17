@@ -136,7 +136,7 @@ function startAutoChange() {
     interval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
         updateContent();
-    }, 25000); // Reduced the interval to 10 seconds for the example
+    },8000); // Reduced the interval to 10 seconds for the example
 }
 
 // Event listeners for previous and next buttons

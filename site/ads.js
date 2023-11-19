@@ -1,8 +1,8 @@
 // מודעת שדרוגים ועדכונים
-/*
- document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown before
-  if (!localStorage.getItem("messageShown")) {
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if the message has been shown during the current visit
+  if (!localStorage.getItem("messageShown4")) {
     // Display the modal overlay
     var overlay = document.createElement("div");
     overlay.classList.add("overlay");
@@ -10,23 +10,21 @@
     var modal = document.createElement("div");
     modal.classList.add("modal");
 
-	const mailValue = 'Last-Chance';
-	
-	var iframeSrc = 'https://docs.google.com/forms/d/e/1FAIpQLSf92occd-B1zfRIJ9UPaFvVeVNTfvu8gxK5M5HEbTGVgPWSUA/viewform?entry.181289636=' + mailValue + '&viewform?embedded=true';
-	
     // Ad content
     modal.innerHTML = `
-	<h2>תקלה באתר</h2>
-	<p>לצערינו, עקב תקלה חמורה, ההורדה מהאתר לא פעילה כרגע. עדיין ניתן לסייר באתר ולבצע חיפוש</p>
-	<p>כרגע ניתן להשתמש באתר הישן ולקבל את השירים למייל</p>
-	<a style="" <a href="https://nhlocal.github.io/shir-bot/old">לאתר הישן</a>
-		  <br><br><a href="#" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לכניסה לאתר הרגיל</a>
+      <h2>ההגרלה הגדולה - רשימת הזוכים</h2>
+      <p><b>פרס ראשון:</b></p><p>הזוכה הוא - si*******4@gmail.com</p>
+      <p><b>פרס שני:</b></p><p>הזוכה הוא - e******9@gmail.com</p>
+      <p><b>פרס שלישי:</b></p><p>הזוכה הוא - m**********2@gmail.com</p>
+      <br><p>הודעה נמסרה לזוכים במייל</p>
+      <a style="" <a href="#" id="searchButton">אישור</a>
+      <br><br><a href="https://nhlocal.github.io/shir-bot/old" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לכניסה לאתר הישן</a>
     `;
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // Close the modal overlay and move to the search input when clicking "חפש שירים עכשיו"
+    // Close the modal overlay and move to the search input when clicking "אישור"
     var searchButton = document.getElementById("searchButton");
     searchButton.addEventListener("click", function(event) {
       event.preventDefault();
@@ -35,6 +33,14 @@
       if (searchInput) {
         searchInput.focus();
       }
+
+      // Set local storage to indicate that the message has been shown during the current visit
+      localStorage.setItem("messageShown4", "true");
+
+      // Set a cookie with an expiration date of 30 days
+      var expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 30);
+      document.cookie = "messageShown4=true; expires=" + expirationDate.toUTCString() + "; path=/";
     });
 
     // Close the modal overlay when clicking outside the modal content
@@ -43,22 +49,12 @@
         overlay.remove();
       }
     });
-
-  } else {
-
-  // Define the reset date as 'yyyy-mm-dd' format (e.g., '2023-09-26')
-  const resetDate = '2023-10-25';
-  const currentDate = new Date().toLocaleDateString('en-US');
-
-  // Check if the current date has passed the reset date
-  if (currentDate > resetDate) {
-    // Reset the message display status
-    localStorage.removeItem('messageShown');
-    }
   }
-
 });
-*/
+
+
+
+
 
 // פרסומת מתחלפת לכותרת התחתונה
 

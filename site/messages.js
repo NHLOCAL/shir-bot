@@ -12,6 +12,7 @@ setCookie("myCookie", "cookieValue", 7);
 
 
 // בועת המלצה לחפש בתוך 70 אלף שירים
+/*
   document.addEventListener("DOMContentLoaded", function() {
     const textBubble = document.getElementById("textBubble");
     const searchInput = document.getElementById("searchInput");
@@ -28,7 +29,7 @@ setCookie("myCookie", "cookieValue", 7);
       textBubble.classList.add("active");
     }, 700); // Adjust the delay (in milliseconds) to control when the bubble appears
   });
-
+*/
 
 // Get a reference to the element by its id
 const nextObject = document.getElementById("nextObject");

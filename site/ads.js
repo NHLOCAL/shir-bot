@@ -99,18 +99,22 @@ function beatplus_ad() {
 
 // קוד להצגת מודעות בחזית האתר באופן אוטומטי
 const newContent1 = `
-<h3>תהילים להצלחת המערכה</h3>
+<h3>תפילה להצלחת המערכה</h3>
 	  <p style="text-align: justify"><b><small>א</small></b> לַמְנַצֵּחַ מִזְמוֹר לְדָוִד:  <b><small>ב</small></b> שְׁמַע אֱלֹהִים קוֹלִי בְשִׂיחִי מִפַּחַד אוֹיֵב תִּצֹּר חַיָּי:  <b><small>ג</small></b> תַּסְתִּירֵנִי מִסּוֹד מְרֵעִים מֵרִגְשַׁת פֹּעֲלֵי אָוֶן: <b><small>ד</small></b> אֲשֶׁר שָׁנְנוּ כַחֶרֶב לְשׁוֹנָם דָּרְכוּ חִצָּם דָּבָר מָר: <b><small>ה</small></b> לִירוֹת בַּמִּסְתָּרִים תָּם פִּתְאֹם יֹרֻהוּ וְלֹא יִירָאוּ: <b><small>ו</small></b> יְחַזְּקוּ לָמוֹ דָּבָר רָע יְסַפְּרוּ לִטְמוֹן מוֹקְשִׁים אָמְרוּ מִי יִרְאֶה לָּמוֹ: <b><small>ז</small></b> יַחְפְּשׂוּ עוֹלֹת תַּמְנוּ חֵפֶשׂ מְחֻפָּשׂ וְקֶרֶב אִישׁ וְלֵב עָמֹק: <b><small>ח</small></b> וַיֹּרֵם אֱלֹהִים חֵץ פִּתְאוֹם הָיוּ מַכּוֹתָם:<b><small>ט</small></b> וַיַּכְשִׁילוּהוּ עָלֵימוֹ לְשׁוֹנָם יִתְנֹדֲדוּ כָּל רֹאֵה בָם: <b><small>י</small></b> וַיִּירְאוּ כָּל אָדָם וַיַּגִּידוּ פֹּעַל אֱלֹהִים וּמַעֲשֵׂהוּ הִשְׂכִּילוּ: <b><small>יא</small></b> יִשְׂמַח צַדִּיק בַּיהוָה וְחָסָה בוֹ וְיִתְהַלְלוּ כָּל יִשְׁרֵי לֵב:</p>
 	  <button class="helpButton" id="helpButton" onclick='openHelp()'>לחץ כאן לקבלת עזרה מפורטת</button>
 `;
 const newContent2 = `
-<h3>נסו את האתר הישן</h3><p>נתקלים בבעיות בשימוש או בהורדה? נסו את האתר הישן וקבלו את השירים באמצעות שליחת מייל<br><br>שימו לב כי האתר הישן אינו מתעדכן כרגע בשירים חדשים או בשיפורי ממשק</p>
-<button class="helpButton" onclick="location.href='https://nhlocal.github.io/shir-bot/old'">למעבר לאתר הישן</button>
+  <h3>הרשמו לקבלת עדכונים</h3>
+  <p>הרשמו כעת לרשימת התפוצה של שיר בוט, כדי לקבל את העדכונים והחידושים האחרונים באתר<br><br>
+  בהמשך צפויים בונוסים ותכונות מיוחדות לרשומים בלבד</p>
+  <p>בין הבונוסים: אפשרות הורדה של מספר שירים בו זמנית, אפשרות להשפיע על התכונות והשיפורים העתידיים באתר, עדכון על פיצ'רים ושדרוגים ועוד</p>
+  <button class="helpButton" onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A6%D7%A8%D7%A3+%D7%90%D7%95%D7%AA%D7%99+%D7%9C%D7%A7%D7%91%D7%9C%D7%AA+%D7%A2%D7%93%D7%9B%D7%95%D7%A0%D7%99%D7%9D+%D7%A2%D7%9C+%D7%94%D7%90%D7%AA%D7%A8!&to=shir-bot%2Bsubscribe%40googlegroups.com', '_blank')">לרישום מיידי</button>
 `;
+
 const newContent3 = `
-<h3>בלאגן במחשב? זה הפתרון</h3><p>מיואשים מכמויות הבלאגן במאגרי המוזיקה שלכם?<br><br>קבלו את התוכנה שתבצע לכם סדר בקבצי המוזיקה שלכם בתוך דקות!<br><br>התוכנה פועלת באמצעות מערכות אוטומציה מתוחכמות בשילוב מגוון של כלים</p>
+<h3>בלאגן במחשב? זה הפתרון</h3><p>מיואשים מחוסר הסדר בתיקיות המוזיקה שלכם?<br><br>קבלו את התוכנה שתבצע לכם סדר בקבצי המוזיקה שלכם בתוך דקות!<br><br>התוכנה פועלת באמצעות מערכות אוטומציה מתוחכמות בשילוב מגוון של כלים</p>
 <img style="border-radius: 1%; max-width: 70%; height: auto;" src="https://github.com/NHLOCAL/Singles-Sorter/blob/main/versions.data/program-screen.png?raw=true" alt="צילום מסך - מסדר הסינגלים">
-<button class="helpButton" onclick="location.href='https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot&utm_medium=site'">להורדת התוכנה</button>
+<button class="helpButton" onclick="window.open('https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot&utm_medium=site', '_blank')">להורדת התוכנה</button>
 `;
 
 const contentSection = document.getElementById("instructions-container");

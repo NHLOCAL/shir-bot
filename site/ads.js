@@ -1,5 +1,5 @@
 // מודעת שדרוגים ועדכונים
-
+/*
 document.addEventListener("DOMContentLoaded", function() {
   // Check if the message has been shown during the current visit
   if (!localStorage.getItem("messageShown4")) {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
-
+*/
 
 
 

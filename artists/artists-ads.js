@@ -24,7 +24,7 @@ function updateFooterContent() {
 }
 
 // Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 5000);
+setInterval(updateFooterContent, 3000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();

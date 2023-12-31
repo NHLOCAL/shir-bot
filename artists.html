@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="חיפוש חופשי והורדה בתוך מאגר של עשרות אלפי שירים">
+  <meta name="description" content="מאגר מוזיקה בדרייב">
+  <meta name="description" content="מאגר שירים חרדי: הורדת שירים חינם באופן פשוט וקליל">
+  <meta name="description" content="שיר-בוט: הפלטפורמה להורדת שירים חרדיים ברמה הגבוהה ביותר">
+  <meta name="description" content="מוזיקה חסידית בלחיצת כפתור: שיר-בוט מציע הורדת שירים לקהל החרדי">
+  <meta name="description" content="שירים חרדיים בהורדה מהירה: הפלטפורמה שמקנה גישה למגוון השירים הפופולריים">
+  <meta name="description" content="שיר-בוט: המערכת לחיפוש והורדת שירים חרדיים לנייד ולמחשב">
+  <meta name="description" content="הזמרים החרדיים הפופולריים במקום אחד: הורדת שירים בקלות ובמהירות">
+  <meta name="description" content="גלו את עולם השירים החרדיים: שיר-בוט מציע הורדה של מאגר עשרות אלפי שירים">
+  <meta name="description" content="חיפוש מותאם אישית: הורדת שירים חרדיים לפי אלבום, זמר ועוד">
+  <meta name="description" content="הגע לשירים שאתה מחפש: שיר-בוט מספק הורדה מהירה ונוחה של שירים חרדיים">
+  <meta name="description" content="שירים חרדיים באיכות מעולה: הורדה של שירים בכל הז'אנרים החרדיים הנפוצים">
+  <meta name="keywords" content="הורדת שירים, מוזיקה בדרייב, שירים בדרייב, שירים חרדיים, מוזיקה חסידית, שיר-בוט, מאגר שירים, חיפוש שירים, זמרים חרדיים, שירים חסידיים, הורדה מהירה, מספר סידורי, אלבום, זמר, חרדים, יהדות, טקסטים, תורה, מוסיקליות, מועדים, אמנות">
+  <meta name="keywords" content="song downloads, Chassidic songs, Jewish music, Shir-Bot, song database, song search, Chassidic singers, Chassidic music, fast download, serial number, album, singer, Chassidic, Judaism, lyrics, Torah, musicality, holidays, art">
+  <meta name="keywords" content="חיפוש שירים, שירים חסידיים,מוזיקה חסידית, מוזיקה יהודית">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>שיר בוט - פורטל האמנים</title>
+  <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+  <link rel="icon" type="image/x-icon" href="site/favicon.ico">
+  <link rel="stylesheet" href="site/styles.css">
+  <link rel="stylesheet" href="site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
+
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר"><img width="50" style="border-radius: 48%;" src="site/NH.LOCAL.jpg" alt="הסמל של המחבר"></a>
+	
+	<center class="parent-element">
+	  <h3 id="nextObject">
+		<img width="85" src="site/logo.png" alt="סמל האתר">פורטל האמנים
+	  </h3>
+      <a href="index.html" style="background-color: inherit">עמוד ראשי</a>
+	</center>
+  </header>
+<form id="searchForm" class="search-form">
+  <select id="searchBy" name="searchBy" class="search-select">
+    <option value="all"> <i class="fas fa-globe"></i> הכל</option>
+    <option value="serial"><i class="fas fa-list-ol"></i> מספר סידורי</option>
+    <option value="name"><i class="fas fa-music"></i> שם השיר</option>
+    <option value="album"><i class="fas fa-album"></i> שם האלבום</option>
+    <option value="singer"><i class="fas fa-microphone"></i> שם הזמר</option>
+  </select>
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="הזן מילות מפתח..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+  <div class="filter-container">
+    <button id="newsFilter" class="filter-button-light">הצג שירים חדשים</button>
+    <button id="singleFilter">הצג את כל השירים</button>
+  </div>
+</form>
+  </div>
+
+
+	<div id="loadingMessage" class="loading-message">
+	  <div class="progress-bar-container">
+		<img src="site/loading.gif" alt="טעינה" />
+		<span id="progressText"></span>
+		<div class="progress-bar">
+		  <div id="progress" class="progress"></div>
+		</div>
+	  </div>
+	</div>
+
+
+	<div id="modalOverlay" class="modal-overlay">
+	  <div class="modal-content">
+		<span id="modalMessage"></span><br>
+		<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+	  </div>
+	</div>
+
+  <div id="resultsTable">
+    <table>
+      <thead style="display: none">
+        <tr>
+          <th>מספר סידורי</th>
+          <th>שם השיר</th>
+          <th>שם האלבום</th>
+          <th>שם הזמר</th>		  
+        </tr>
+      </thead>
+	  
+	<tbody>
+	  <tr>
+		<td style="border-bottom: 0;" colspan="4">
+		  <center id="instructions">
+			
+			<button id="prevSection">&lt;</button>
+			<button id="nextSection">&gt;</button>
+			
+			<div id="instructions-container" class="instructions-container">
+			</div>
+		  </center>
+		</td>
+	  </tr>
+	</tbody>
+
+    </table>
+<!-- Add this button in your HTML where you want it to appear -->
+<button id="loadMoreButton">טען עוד</button>
+	
+  </div>
+<!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+  <div class="fixed-bottom">
+    <p></p>
+  </div>
+</div>
+
+<!-- Help Section Overlay -->
+<div class="help-overlay">
+	<div class="help-modal-container">
+		<!-- Close button -->
+		<span class="close-button" onclick="closeHelp()">X</span>
+
+		<!-- Step 1 -->
+		<div class="help-modal">
+			<h2>שלב א' - חיפוש</h2>
+			<p>חפש שם שיר, זמר או אלבום כרצונך. ניתן לחפש באופן חופשי בכל צורה שתרצו, גם לפי שם השיר, שם האלבום או שם הזמר בלבד</p>
+			<img src="help/1.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 2 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ב' - מציאת שיר</h2>
+			<p>עבור על רשימת השירים שנמצאו ומצא את השיר הרצוי לך</p>
+			<img src="help/3.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 3 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ג' - בחירת שיר</h2>
+			<p>לחץ על השיר שבחרת, שים לב שמדובר בסינגל ולא בשיר מאלבום. תוכל לבדוק האם שם האלבום או האמן מכיל את המילה "סינגלים"</p>
+			<img src="help/2.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+
+		<!-- Step 4 -->
+		<div class="help-modal" style="display: none;">
+			<h2>שלב ד' - הורדת השיר</h2>
+			<p>כעת לא נותר לך אלא להמתין, ותוך זמן קצר השיר שבחרת ירד ישירות למחשב שלך</p><p>ניתן להמשיך להשתמש באתר בזמן ההורדה</p>
+			<img src="help/4.2.png" alt="תמונה בינונית">
+			<div class="prev-step" onclick="showStep(1)">◄</div>
+			<div class="next-step" onclick="showStep(-1)">►</div>
+		</div>
+	</div>
+</div>
+  <script src="site/search.js"></script>
+  <script src="site/messages.js"></script>
+  <script src="artists/artists-ads.js"></script>
+  
+  <script>
+// מאזיני אירועים עבור ניתוח גוגל
+document.addEventListener('DOMContentLoaded', function() {
+    var loadingMessageElement = document.getElementById('loadingMessage');
+    
+    if (loadingMessageElement) {
+        gtag('event', 'down_song', {
+            'event_category': 'Element down',
+            'event_label': 'Loading Message'
+        });
+    }
+});
+
+
+// Add an event listener to the search form
+document.querySelector('#searchForm').addEventListener('submit', function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get the search query from the input field
+    const searchQuery = document.querySelector('#searchInput').value;
+
+    // Send an event to Google Analytics
+    gtag('event', 'search', {
+        'event_category': 'Search',
+        'event_label': searchQuery
+    });
+});
+
+  </script>
+</body>
+</html>

@@ -74,3 +74,32 @@ function hideMessage() {
 var modalOverlay = document.getElementById('modalOverlay');
 modalOverlay.style.display = 'none'; // Hide the modal overlay
 }
+
+
+// מאזיני אירועים עבור ניתוח גוגל
+document.addEventListener('DOMContentLoaded', function() {
+    var loadingMessageElement = document.getElementById('loadingMessage');
+    
+    if (loadingMessageElement) {
+        gtag('event', 'down_song', {
+            'event_category': 'Element down',
+            'event_label': 'Loading Message'
+        });
+    }
+});
+
+
+// Add an event listener to the search form
+document.querySelector('#searchForm').addEventListener('submit', function(event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get the search query from the input field
+    const searchQuery = document.querySelector('#searchInput').value;
+
+    // Send an event to Google Analytics
+    gtag('event', 'search', {
+        'event_category': 'Search',
+        'event_label': searchQuery
+    });
+});

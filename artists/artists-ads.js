@@ -7,7 +7,7 @@ let currentContentIndex = 0;
 let interval;
 
 // Fetch data from CSV file
-fetch('artist-list.csv')
+fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
   .then(response => response.text())
   .then(data => {
     // Parse CSV data

@@ -22,17 +22,19 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
       const paragraphC = columns[3] || ''; // Use an empty string if column C is empty
       const imageLink = columns[4] || '';   // Use an empty string if column D is empty
 
-      const newContent = `
-        <h3>${artist}</h3>
-        ${imageLink ? `<img src="${imageLink}" width="100">` : ''}
-        <p style="text-align: justify"><b>${artist}</b> ${paragraphA}</p>
-        <p style="text-align: justify">${paragraphB}</p>
-        <p style="text-align: justify">${paragraphC}</p>
-        <button class="helpButton" onclick='searchNow("${artist}")'>חפשו "${artist}"</button>
-        <p><small style="text-align: right">המידע והתמונות באדיבות ויקיפדיה</small></p>
+      const adContent = `
+        <div class="ad-container">
+          <h3>${artist}</h3>
+          ${imageLink ? `<img src="${imageLink}" width="100">` : ''}
+          <p style="text-align: justify"><b>${artist}</b> ${paragraphA}</p>
+          <p style="text-align: justify">${paragraphB}</p>
+          <p style="text-align: justify">${paragraphC}</p>
+          <button class="helpButton" onclick='searchNow("${artist}")'>חפשו "${artist}"</button>
+          <p><small style="text-align: right">המידע והתמונות באדיבות ויקיפדיה</small></p>
+        </div>
       `;
 
-      newContents.push(newContent);
+      newContents.push(adContent);
     }
 
     // Initial content update
@@ -43,7 +45,7 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
 
 // Function to update the content section
 function updateContent() {
-  contentSection.innerHTML = newContents[currentContentIndex];
+  contentSection.innerHTML = newContents.join('');
 }
 
 // Function to handle the automatic content change

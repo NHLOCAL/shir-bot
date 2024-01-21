@@ -335,34 +335,42 @@ p {
 
 /* עיצוב הוראות שימוש */
 .instructions-container {
-  max-width: 400px;
+  max-width: 1200px; /* Adjust the max-width to your preference */
   text-align: center;
   margin: auto;
-  padding: 0;
+  padding: 10px; /* Add some padding to the container */
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 2px solid #ddd;
+  display: flex; /* Use flexbox to arrange ads in a row */
+  justify-content: space-between; /* Distribute ads evenly */
+}
+
+.instructions-container .ad-container {
+  width: 30%; /* Set the width of each ad container */
+  box-sizing: border-box; /* Include padding and border in the width */
+  padding: 10px;
 }
 
 .instructions-container h3 {
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: 18px; /* Adjust the font size */
   color: #362266;
-  padding: 8px;
   border-bottom: 1px solid #ddd;
 }
 
 .instructions-container p {
-  margin-bottom: 15px;
-  font-size: 16px;
-  padding: 0 20px;
+  margin-bottom: 10px; /* Adjust the margin */
+  font-size: 14px; /* Adjust the font size */
 }
 
 .instructions-container .disclaimer {
   color: #474747;
-  padding: 0 20px 0px;
+  margin-top: 10px; /* Add margin to the disclaimer */
 }
+
+
 
 
 .loading-container {

@@ -7,12 +7,14 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 2px solid #ddd;
   display: flex; /* Use flexbox to arrange ads in a row */
+  flex-wrap: wrap; /* Allow ads to wrap to the next line */
   justify-content: space-between; /* Distribute ads evenly */
 }
 
 .instructions-container .ad-container {
-  width: 30%; /* Set the width of each ad container */
+  width: calc(30% - 20px); /* Set the width of each ad container with some spacing */
   box-sizing: border-box; /* Include padding and border in the width */
+  margin-bottom: 20px; /* Add bottom margin for spacing between rows */
   padding: 10px;
 }
 

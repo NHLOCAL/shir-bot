@@ -30,7 +30,6 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
           <p style="text-align: justify">${paragraphB}</p>
           <p style="text-align: justify">${paragraphC}</p>
           <button class="helpButton" onclick='searchNow("${artist}")'>חפשו "${artist}"</button>
-          <p><small style="text-align: right">המידע והתמונות באדיבות ויקיפדיה</small></p>
         </div>
       `;
 
@@ -74,3 +73,8 @@ nextButton.addEventListener("click", () => {
 // Initial content update
 updateContent();
 startAutoChange(); // Start the automatic content change
+
+
+function searchNow(query) {	
+	searchSongs(query, 'singer')	
+}

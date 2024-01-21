@@ -6,21 +6,17 @@ let newContents = []; // Array to store the dynamic content
 let currentContentIndex = 0;
 let interval;
 
-// Fetch data from CSV file
-fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
-  .then(response => response.text())
+// Fetch data from JSON file
+fetch('artist/artist-data.json')
+  .then(response => response.json())
   .then(data => {
-    // Parse CSV data
-    const rows = data.split('\n');
-    
-    // Iterate over rows and populate newContents array
-    for (let i = 1; i < rows.length; i++) {
-      const columns = rows[i].split(',');
-      const artist = columns[0];
-      const paragraphA = columns[1];
-      const paragraphB = columns[2] || ''; // Use an empty string if column B is empty
-      const paragraphC = columns[3] || ''; // Use an empty string if column C is empty
-      const imageLink = columns[4] || '';   // Use an empty string if column D is empty
+    // Iterate over data and populate newContents array
+    data.forEach(item => {
+      const artist = item.artist;
+      const paragraphA = item.paragraphA;
+      const paragraphB = item.paragraphB || '';
+      const paragraphC = item.paragraphC || '';
+      const imageLink = item.imageLink || '';
 
       const adContent = `
         <div class="ad-container">
@@ -30,17 +26,18 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
           <p style="text-align: justify">${paragraphB}</p>
           <p style="text-align: justify">${paragraphC}</p>
           <button class="helpButton" onclick='searchNow("${artist}")'>חפשו "${artist}"</button>
+          <p><small style="text-align: right">המידע והתמונות באדיבות ויקיפדיה</small></p>
         </div>
       `;
 
       newContents.push(adContent);
-    }
+    });
 
     // Initial content update
     updateContent();
     startAutoChange(); // Start the automatic content change
   })
-  .catch(error => console.error('Error fetching CSV:', error));
+  .catch(error => console.error('Error fetching JSON:', error));
 
 // Function to update the content section
 function updateContent() {
@@ -73,8 +70,3 @@ nextButton.addEventListener("click", () => {
 // Initial content update
 updateContent();
 startAutoChange(); // Start the automatic content change
-
-
-function searchNow(query) {	
-	searchSongs(query, 'singer')	
-}

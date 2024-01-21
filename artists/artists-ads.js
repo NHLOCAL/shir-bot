@@ -2,25 +2,23 @@ const contentSection = document.getElementById("instructions-container");
 const prevButton = document.getElementById("prevSection");
 const nextButton = document.getElementById("nextSection");
 
-let newContents = []; // Array to store the dynamic content
+let newContents = [];
 let currentContentIndex = 0;
 let interval;
 
-// Fetch data from CSV file
-fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
-  .then(response => response.text())
-  .then(data => {
-    // Parse CSV data
-    const rows = data.split('\n');
-    
-    // Iterate over rows and populate newContents array
-    for (let i = 1; i < rows.length; i++) {
-      const columns = rows[i].split(',');
-      const artist = columns[0];
-      const paragraphA = columns[1];
-      const paragraphB = columns[2] || ''; // Use an empty string if column B is empty
-      const paragraphC = columns[3] || ''; // Use an empty string if column C is empty
-      const imageLink = columns[4] || '';   // Use an empty string if column D is empty
+// Fetch data from CSV file using PapaParse
+Papa.parse('https://nhlocal.github.io/shir-bot/artists/artist-list.csv', {
+  download: true,
+  header: true,
+  complete: function (results) {
+    const data = results.data;
+
+    for (let i = 0; i < data.length; i++) {
+      const artist = data[i].Artist;
+      const paragraphA = data[i].ParagraphA;
+      const paragraphB = data[i].ParagraphB || '';
+      const paragraphC = data[i].ParagraphC || '';
+      const imageLink = data[i].ImageLink || '';
 
       const adContent = `
         <div class="ad-container">
@@ -36,43 +34,41 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
       newContents.push(adContent);
     }
 
-    // Initial content update
     updateContent();
-    startAutoChange(); // Start the automatic content change
-  })
-  .catch(error => console.error('Error fetching CSV:', error));
+    startAutoChange();
+  },
+  error: function (error) {
+    console.error('Error fetching and parsing CSV:', error);
+  }
+});
 
-// Function to update the content section
 function updateContent() {
   contentSection.innerHTML = newContents.join('');
 }
 
-// Function to handle the automatic content change
 function startAutoChange() {
   interval = setInterval(() => {
     currentContentIndex = (currentContentIndex + 1) % newContents.length;
     updateContent();
-  }, 8000); // Reduced the interval to 8 seconds for the example
+  }, 8000);
 }
 
-// Event listeners for previous and next buttons
 prevButton.addEventListener("click", () => {
   currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
   updateContent();
-  clearInterval(interval); // Reset the interval on arrow click
-  startAutoChange(); // Restart the automatic change
+  clearInterval(interval);
+  startAutoChange();
 });
 
 nextButton.addEventListener("click", () => {
   currentContentIndex = (currentContentIndex + 1) % newContents.length;
   updateContent();
-  clearInterval(interval); // Reset the interval on arrow click
-  startAutoChange(); // Restart the automatic change
+  clearInterval(interval);
+  startAutoChange();
 });
 
-// Initial content update
 updateContent();
-startAutoChange(); // Start the automatic content change
+startAutoChange();
 
 
 function searchNow(query) {	

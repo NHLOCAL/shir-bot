@@ -82,7 +82,7 @@ function updateFooterContent() {
 }
 
 // Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 10000);
+setInterval(updateFooterContent, 8000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();
@@ -106,7 +106,9 @@ const newContent2 = `
 `;
 
 const newContent1 = `
-  <h3>קבלו גישה מלאה ל-70,000 שירים בדרייב</h3>
+      <h3 style="animation: colorTransition 2s infinite;">
+      קבלו גישה מלאה ל-70,000 שירים בדרייב
+    </h3>
   <p>מעוניינים לקבל גישה לכלל השירים שבאתר? הרשמו כעת, וקבלו גישה למאגר המלא בדרייב</p>
 
   <p>המאגר כולל מגוון רחב של ז'אנרים, כולל מוזיקה חסידית, מזרחית, ישראלית, אלטרנטיבית, מוזיקה קלאסית ועוד ועוד</p>
@@ -149,7 +151,7 @@ function startAutoChange() {
     interval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
         updateContent();
-    },8000); // Reduced the interval to 10 seconds for the example
+    },12000); // Reduced the interval to 10 seconds for the example
 }
 
 // Event listeners for previous and next buttons

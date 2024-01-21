@@ -30,7 +30,6 @@ fetch('https://nhlocal.github.io/shir-bot/artists/artist-list.csv')
           <p style="text-align: justify">${paragraphB}</p>
           <p style="text-align: justify">${paragraphC}</p>
           <button class="helpButton" onclick='searchNow("${artist}")'>חפשו "${artist}"</button>
-
         </div>
       `;
 

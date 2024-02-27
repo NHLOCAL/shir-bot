@@ -1,7 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 
 def create_sitemap(directory, base_url, update_frequency, priority):
     # Create root element
@@ -11,7 +11,7 @@ def create_sitemap(directory, base_url, update_frequency, priority):
     # Iterate through HTML files in directory
     for filename in os.listdir(directory):
         if filename.endswith(".html"):
-            loc = urljoin(base_url, filename)
+            loc = urljoin(base_url, quote(filename, safe=''))
             url = ET.SubElement(root, "url")
             loc_elem = ET.SubElement(url, "loc")
             loc_elem.text = loc
@@ -30,7 +30,7 @@ def create_sitemap(directory, base_url, update_frequency, priority):
 
     # Beautify XML (optional)
     xml_str = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
-    with open("sitemap.xml", "w") as f:
+    with open("sitemap-artists.xml", "w") as f:
         f.write(xml_str)
 
 # Set parameters

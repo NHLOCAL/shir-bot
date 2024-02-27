@@ -1,0 +1,686 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>נועם הפקות</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspנועם הפקות</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>63837</a></td>
+                <td>01-דאנסוף הדרך</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63838</a></td>
+                <td>02-כחול לבן</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63839</a></td>
+                <td>03-בנק המזרחי</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63840</a></td>
+                <td>04-עולם הזה</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63841</a></td>
+                <td>05-השקט שלפני הסערה</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63842</a></td>
+                <td>06-הבית</td>
+                <td>בחצי הלילה 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63843</a></td>
+                <td>01-חסידי-ג'יי</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63844</a></td>
+                <td>02-תוצרת הארץ</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63845</a></td>
+                <td>03-המזרח התיכון</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63846</a></td>
+                <td>04-יבוא אישי</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63847</a></td>
+                <td>05-המתנה</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63848</a></td>
+                <td>06-טוקר שואו</td>
+                <td>בחצי הלילה 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63849</a></td>
+                <td>01-פתיחה</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63850</a></td>
+                <td>02-משיח</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63851</a></td>
+                <td>03-מה שהיה</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63852</a></td>
+                <td>04-כל היום</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63853</a></td>
+                <td>05-יצליח</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63854</a></td>
+                <td>06-אם אשכחך</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63855</a></td>
+                <td>07-ניגון</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63856</a></td>
+                <td>08-ניגון 2</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63857</a></td>
+                <td>09-ניגון 3</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63858</a></td>
+                <td>10-ניגון 4</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63859</a></td>
+                <td>11-ניגון 5</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63860</a></td>
+                <td>12-שר מהלב</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63861</a></td>
+                <td>13-מתגעגע</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63862</a></td>
+                <td>14-מחרוזת שבת</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63863</a></td>
+                <td>15-מילים יפות</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63864</a></td>
+                <td>16-מחרוזת קצבי</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63865</a></td>
+                <td>17-שיר הצפרדע</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63866</a></td>
+                <td>18-המשך המחרוזת</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63867</a></td>
+                <td>19-מחרוזת עולמי</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63868</a></td>
+                <td>20-על עולם</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63869</a></td>
+                <td>21-קצבי טירוף</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63870</a></td>
+                <td>22-הלוואי</td>
+                <td>בחצי הלילה 3</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63871</a></td>
+                <td>01-א-פריילעך</td>
+                <td>בחצי הלילה 4</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63872</a></td>
+                <td>02-פליי-ליסט</td>
+                <td>בחצי הלילה 4</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63873</a></td>
+                <td>03-ים תיכוני</td>
+                <td>בחצי הלילה 4</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63874</a></td>
+                <td>05-אנחנו לא צריכים</td>
+                <td>בחצי הלילה 4</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63875</a></td>
+                <td>01-אלי אתה</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63876</a></td>
+                <td>02-ניגון דביקות</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63877</a></td>
+                <td>03-אך לאלוקים</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63878</a></td>
+                <td>04-ניגון לשבת ויו''ט</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63879</a></td>
+                <td>05-אנעים זמירות</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63880</a></td>
+                <td>06-ניגון התוועדות</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63881</a></td>
+                <td>07-אשרינו</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63882</a></td>
+                <td>08-ניגון הכנה</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63883</a></td>
+                <td>09-אבינו מלכנו</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63884</a></td>
+                <td>10-ניגון יחידות</td>
+                <td>התוועדות חסידית 1</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63885</a></td>
+                <td>01-רבונו של עולם</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63886</a></td>
+                <td>02-והריקותי לכם ברכה</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63887</a></td>
+                <td>03-ניגון הכנה</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63888</a></td>
+                <td>04-ניגון ריקוד</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63889</a></td>
+                <td>05-קול דודי דופק</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63890</a></td>
+                <td>06-מחרוזת חסידית</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63891</a></td>
+                <td>07-רחמנא דעני לעניי</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63892</a></td>
+                <td>08-קאפעליע</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63893</a></td>
+                <td>09-פריילאך</td>
+                <td>התוועדות חסידית 2</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63894</a></td>
+                <td>01-1. ויאתיו כל</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63895</a></td>
+                <td>02-2. אבינו מלכינו</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63896</a></td>
+                <td>03-3. כבקרת</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63897</a></td>
+                <td>04-4. יוונים</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63898</a></td>
+                <td>05-5. על הניסים</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63899</a></td>
+                <td>06-6. מעוז צור</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63900</a></td>
+                <td>07-7. והיא שעמדה</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63901</a></td>
+                <td>08-8. התורה והאומות</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63902</a></td>
+                <td>09-9. נחם</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63903</a></td>
+                <td>10-10. מכניסי רחמים</td>
+                <td>חגים וזמנים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63904</a></td>
+                <td>Misc - Track 01</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63905</a></td>
+                <td>Misc - Track 02</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63906</a></td>
+                <td>Misc - Track 03</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63907</a></td>
+                <td>Misc - Track 04</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63908</a></td>
+                <td>Misc - Track 05</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63909</a></td>
+                <td>Misc - Track 06</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63910</a></td>
+                <td>Misc - Track 07</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63911</a></td>
+                <td>Misc - Track 08</td>
+                <td>חסידי מיקס</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63912</a></td>
+                <td>01-ניגון ריקוד סטולין</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63913</a></td>
+                <td>02-מה ידידות</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63914</a></td>
+                <td>03-יחדשהו</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63915</a></td>
+                <td>04-ניגון ריקוד מוצש''ק</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63916</a></td>
+                <td>05-מארש מנוחה ושמחה א</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63917</a></td>
+                <td>06-ניגון ריקוד חתונה</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63918</a></td>
+                <td>07-בר יוחאי</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63919</a></td>
+                <td>08-ניגון קה אכסוף</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63920</a></td>
+                <td>09-מארש מנוחה ושמחה ב</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+              <tr>
+                <td><a>63921</a></td>
+                <td>10-דבקה הכתרה</td>
+                <td>ניגוני קרלין עתיקים</td>
+                <td>נועם הפקות</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

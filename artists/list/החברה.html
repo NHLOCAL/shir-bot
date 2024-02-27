@@ -1,0 +1,672 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>החברה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspהחברה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>47057</a></td>
+                <td>01-יהא שלמא</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47058</a></td>
+                <td>02-שמע קולנו</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47059</a></td>
+                <td>03-וברוך</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47060</a></td>
+                <td>04-מי בן שיח</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47061</a></td>
+                <td>05-כי מלאכיו</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47062</a></td>
+                <td>06-שמע ה</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47063</a></td>
+                <td>07-ויתן בפי</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47064</a></td>
+                <td>08-זכרינו לחיים</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47065</a></td>
+                <td>09-כן יהי רצון</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47066</a></td>
+                <td>10-לב טהור</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47067</a></td>
+                <td>11-מיקס א-קפלה</td>
+                <td>החברה 1</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47068</a></td>
+                <td>01-לך</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47069</a></td>
+                <td>02-שלום</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47070</a></td>
+                <td>03-מי זה</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47071</a></td>
+                <td>04-אודך</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47072</a></td>
+                <td>05-ואני</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47073</a></td>
+                <td>06-את פניך</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47074</a></td>
+                <td>07-שמחתי</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47075</a></td>
+                <td>08-ד' ישמרך</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47076</a></td>
+                <td>09-ענבי</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47077</a></td>
+                <td>10-יהי ה</td>
+                <td>החברה 2</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47078</a></td>
+                <td>01-חזקו</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47079</a></td>
+                <td>02-קל מסתתר</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47080</a></td>
+                <td>03-למען אחי</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47081</a></td>
+                <td>04-אשר לו</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47082</a></td>
+                <td>05-יחל</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47083</a></td>
+                <td>06-רננו</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47084</a></td>
+                <td>07-יגעתי</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47085</a></td>
+                <td>08-רצה</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47086</a></td>
+                <td>09-אם עוונות</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47087</a></td>
+                <td>10-ישישו</td>
+                <td>החברה 3</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47088</a></td>
+                <td>01 גם כי אלך</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47089</a></td>
+                <td>02 ממקומך</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47090</a></td>
+                <td>03 אליך</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47091</a></td>
+                <td>04 שמחה</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47092</a></td>
+                <td>05 והיו למשיסה</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47093</a></td>
+                <td>06 אם אשכחך</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47094</a></td>
+                <td>07 אנא השם</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47095</a></td>
+                <td>08 שפכי</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47096</a></td>
+                <td>09 נחמו</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47097</a></td>
+                <td>10 מיקס</td>
+                <td>ווקאלי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47098</a></td>
+                <td>01 Chai</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47099</a></td>
+                <td>02 Uvichein</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47100</a></td>
+                <td>03 Nachpisa</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47101</a></td>
+                <td>04 I'm A Jew</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47102</a></td>
+                <td>05 Kee Tov Zamrah</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47103</a></td>
+                <td>06 Kee Yitzpineini</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47104</a></td>
+                <td>07 V'lirushalayim</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47105</a></td>
+                <td>08 Mee Kell Kamocha</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47106</a></td>
+                <td>09 Peace</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47107</a></td>
+                <td>10 Ad Olam</td>
+                <td>חי</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47108</a></td>
+                <td>01 רצועה 1</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47109</a></td>
+                <td>02 רצועה 2</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47110</a></td>
+                <td>03 רצועה 3</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47111</a></td>
+                <td>04 רצועה 4</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47112</a></td>
+                <td>05 רצועה 5</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47113</a></td>
+                <td>06 רצועה 6</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47114</a></td>
+                <td>07 רצועה 7</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47115</a></td>
+                <td>08 רצועה 8</td>
+                <td>ישיש</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47116</a></td>
+                <td>ויצל נפשותנו</td>
+                <td>סינגלים</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47117</a></td>
+                <td>יהא שלמה רבא</td>
+                <td>סינגלים</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47118</a></td>
+                <td>כי ה הוא</td>
+                <td>סינגלים</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47119</a></td>
+                <td>The Chevra - A Capella Mix</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47120</a></td>
+                <td>The Chevra - Es Panecha</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47121</a></td>
+                <td>The Chevra - Hashem</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47122</a></td>
+                <td>The Chevra - Invei</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47123</a></td>
+                <td>The Chevra - Ken Yehi Ratzon</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47124</a></td>
+                <td>The Chevra - Ki Malachav</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47125</a></td>
+                <td>The Chevra - Lecha</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47126</a></td>
+                <td>The Chevra - Lev Tahor</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47127</a></td>
+                <td>The Chevra - Mi Bon Siach</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47128</a></td>
+                <td>The Chevra - Mi Ze</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47129</a></td>
+                <td>The Chevra - Odcha</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47130</a></td>
+                <td>The Chevra - Shalom</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47131</a></td>
+                <td>The Chevra - Shema</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47132</a></td>
+                <td>The Chevra - Shma Koleinu</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47133</a></td>
+                <td>The Chevra - Somachti</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47134</a></td>
+                <td>The Chevra - Ubaruch</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47135</a></td>
+                <td>The Chevra - Va'ani</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47136</a></td>
+                <td>The Chevra - Veiten Befi</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47137</a></td>
+                <td>The Chevra - Y'hi Hashem</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47138</a></td>
+                <td>The Chevra - Yehe Shelama</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+              <tr>
+                <td><a>47139</a></td>
+                <td>The Chevra - Zochreinu Lechaim</td>
+                <td>תקיה חדשה</td>
+                <td>החברה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

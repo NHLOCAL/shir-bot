@@ -1,0 +1,686 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>עקיבא געלב</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspעקיבא געלב</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>25812</a></td>
+                <td>01-ואתה מרום</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25813</a></td>
+                <td>02-זה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25814</a></td>
+                <td>03-עוזר</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25815</a></td>
+                <td>04-למלך</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25816</a></td>
+                <td>05-מזל טוב</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25817</a></td>
+                <td>06-תפילה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25818</a></td>
+                <td>07-רק שמחה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25819</a></td>
+                <td>08-ויעזר</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25820</a></td>
+                <td>09-לא ימלט</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25821</a></td>
+                <td>10-אקוד</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25822</a></td>
+                <td>11-האדרת</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25823</a></td>
+                <td>12-נקדישך</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25824</a></td>
+                <td>13-מאי דהוה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25825</a></td>
+                <td>14-בשמחה רבה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25826</a></td>
+                <td>15-בתורה</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25827</a></td>
+                <td>16-רועינו</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25828</a></td>
+                <td>17-אנת הוא</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25829</a></td>
+                <td>18-דע לך בני</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25830</a></td>
+                <td>19-פרייליך אינטרו</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25831</a></td>
+                <td>20-בא יבא</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25832</a></td>
+                <td>21-הן עם</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25833</a></td>
+                <td>22-פתאום</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25834</a></td>
+                <td>23-בם בם</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25835</a></td>
+                <td>24-ישמע</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25836</a></td>
+                <td>25-בן פייגא</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25837</a></td>
+                <td>26-כי לא יטוש</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25838</a></td>
+                <td>27-ירושלים שבלב</td>
+                <td>דאנס 365 1</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25839</a></td>
+                <td>01 יא יא - ידיים באויר</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25840</a></td>
+                <td>02 הנני</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25841</a></td>
+                <td>03 הזמן קצר</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25842</a></td>
+                <td>04 הכל לטובה</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25843</a></td>
+                <td>05 אליהו הנביא</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25844</a></td>
+                <td>06 אומר</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25845</a></td>
+                <td>07 יברכך</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25846</a></td>
+                <td>08 בטחו - שמילי אונגר</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25847</a></td>
+                <td>09 אדמה ושמים</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25848</a></td>
+                <td>10 אש</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25849</a></td>
+                <td>11 לך אתן</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25850</a></td>
+                <td>12 פדותך</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25851</a></td>
+                <td>13 בסיעתא דשמיא</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25852</a></td>
+                <td>14 סיני</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25853</a></td>
+                <td>15 הוא כלל</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25854</a></td>
+                <td>16 מלוך</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25855</a></td>
+                <td>17 שנית</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25856</a></td>
+                <td>18 תזכה</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25857</a></td>
+                <td>19 אלף בית גימל</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25858</a></td>
+                <td>20 ניגון ברסלב</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25859</a></td>
+                <td>21 קרעסטיר</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25860</a></td>
+                <td>22 מבוא עם מקדשי</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25861</a></td>
+                <td>23 עם מקדשי</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25862</a></td>
+                <td>24 אשת חיל</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25863</a></td>
+                <td>25 לפיכך</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25864</a></td>
+                <td>26 בטחו - דדי</td>
+                <td>דאנס 365 2</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25865</a></td>
+                <td>אלבום טאנץ 365 - חלק 2 - דוגמה</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25866</a></td>
+                <td>בכל יום</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25867</a></td>
+                <td>ואזכה</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25868</a></td>
+                <td>מחרוזת ריקודי חתונה</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25869</a></td>
+                <td>מחרוזת ריקודים</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25870</a></td>
+                <td>עקיבא גלב - וטובה היא בעיניו</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25871</a></td>
+                <td>עקיבא געלב & זלמן לייב פרידמן - נחמו עמי</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25872</a></td>
+                <td>עקיבא געלב - א אידעלע</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25873</a></td>
+                <td>עקיבא געלב וילד הפלא זלמן לייב פרידמן נחמו עמי</td>
+                <td>סינגלים</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25874</a></td>
+                <td>-עקיבא געלב - נחמו עמי - חסידי</td>
+                <td>עקיבא געלב</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25875</a></td>
+                <td>01-ניגון החכמה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25876</a></td>
+                <td>02-ואני בחסדך</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25877</a></td>
+                <td>03-מנחה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25878</a></td>
+                <td>04-פתח לנו</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25879</a></td>
+                <td>05-צדק ומשפט</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25880</a></td>
+                <td>06-קרליבך</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25881</a></td>
+                <td>07-אנא השם</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25882</a></td>
+                <td>08-ברכנו בשלום</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25883</a></td>
+                <td>09-יבנה המקדש</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25884</a></td>
+                <td>10-ריבון</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25885</a></td>
+                <td>11-רצונך</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25886</a></td>
+                <td>12-מה תשתוחחי</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25887</a></td>
+                <td>13-למה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25888</a></td>
+                <td>14-באשעפער</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25889</a></td>
+                <td>15-אחת שאלתי</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25890</a></td>
+                <td>16-המלאך</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25891</a></td>
+                <td>17-היום תאמצנו</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25892</a></td>
+                <td>18-עלה קטן</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25893</a></td>
+                <td>19-אל תירא</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25894</a></td>
+                <td>20-יעלה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25895</a></td>
+                <td>21-תורה הקדושה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>25896</a></td>
+                <td>22-קול ברמה</td>
+                <td>רילקס 365</td>
+                <td>עקיבא געלב</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

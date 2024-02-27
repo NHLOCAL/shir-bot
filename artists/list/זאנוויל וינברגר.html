@@ -1,0 +1,686 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>זאנוויל וינברגר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspזאנוויל וינברגר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>9582</a></td>
+                <td>01 ברכת כהנים</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9583</a></td>
+                <td>02 יהי חסדך</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9584</a></td>
+                <td>03 אל הנער הזה</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9585</a></td>
+                <td>04 ריבון העולמים - ידעתי</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9586</a></td>
+                <td>05 הנה ימים באים</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9587</a></td>
+                <td>06 מים רבים</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9588</a></td>
+                <td>07 תזכנו</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9589</a></td>
+                <td>08 חננו ה'</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9590</a></td>
+                <td>09 ותיק</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9591</a></td>
+                <td>10 הנסתרות</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9592</a></td>
+                <td>11 תפילת האמהות</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9593</a></td>
+                <td>12 עד מתי</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9594</a></td>
+                <td>13 אנא בכח</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9595</a></td>
+                <td>14 כל העולם</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9596</a></td>
+                <td>15 הללוהו</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9597</a></td>
+                <td>16 שערי דמעות</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9598</a></td>
+                <td>17 אזכרה</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9599</a></td>
+                <td>18 עד אנה</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9600</a></td>
+                <td>19 השיבנו</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9601</a></td>
+                <td>20 השבת</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9602</a></td>
+                <td>21 זכור ה'</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9603</a></td>
+                <td>22 קץ הפלאות</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9604</a></td>
+                <td>23 הרחמן</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9605</a></td>
+                <td>24 תמיד בכל יום</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9606</a></td>
+                <td>25 תולדותם</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9607</a></td>
+                <td>26 אשר בחר</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9608</a></td>
+                <td>27 נשמה</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9609</a></td>
+                <td>28 ניגון באבוב</td>
+                <td>א לחיים מיט זאנוויל ווינברגר</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9610</a></td>
+                <td>01 הללוהו</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9611</a></td>
+                <td>02 ברכנו</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9612</a></td>
+                <td>03 ותחזינה</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9613</a></td>
+                <td>04 זוכרי זמירות</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9614</a></td>
+                <td>05 אנא ה</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9615</a></td>
+                <td>06 כלל ישראל</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9616</a></td>
+                <td>07 יתומים היינו</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9617</a></td>
+                <td>08 ואזכה</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9618</a></td>
+                <td>09 ישראל נושע</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9619</a></td>
+                <td>10 מי ימלל</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9620</a></td>
+                <td>11 להתענג</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9621</a></td>
+                <td>12 מן השמים</td>
+                <td>זאנוויל מן השמים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9622</a></td>
+                <td>, אהר'לע סאמט & מקהלת מלכות  אלו הם הצדיקים</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9623</a></td>
+                <td>, אהר'לע סאמט, מלכות  אורך ימים Zanvil, Samet, Malchus  Orech Yomim  Dirshu</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9624</a></td>
+                <td>, הערשי סגל, מלכות  מחרוזת ריקודים</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9625</a></td>
+                <td>01 ארלה סאמט ו ניגון באבוב</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9626</a></td>
+                <td>03 מקהלת מלכות ו'אמר רבי עקיבא' וואקלי</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9627</a></td>
+                <td>05 זכור שניים עשר שבטים  מוטי ויזל ו</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9628</a></td>
+                <td>08 רחמנא  </td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9629</a></td>
+                <td>10 ערי ישראל  מוטי ויזל ו</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9630</a></td>
+                <td>11 אמונה  </td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9631</a></td>
+                <td>704 דע לפני מי  </td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9632</a></td>
+                <td>אהר לע סאמט מלכות אורך ימים Zanvil Samet Malchus Orech Yomim Dirshu.136</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9633</a></td>
+                <td>אורות בענד</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9634</a></td>
+                <td>אורייתא  לוי פולקוביץ, מקהלת מלכות, , אהרלה סאמט, שלמה כהן, יואלי קליין, מאיר אדלר (64  kbps)</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9635</a></td>
+                <td>אורך ימים</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9636</a></td>
+                <td>אזכרה , מקהלת מלכות, חסידימלעך, הערשי סגל 13996241444</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9637</a></td>
+                <td>אמונה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9638</a></td>
+                <td>אמת כי אתה הוא יוצרם</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9639</a></td>
+                <td>אני אומר כן</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9640</a></td>
+                <td>אש תמיד</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9641</a></td>
+                <td>בהתוועדות בהיכל נוקיה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9642</a></td>
+                <td>בכל צער וצער</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9643</a></td>
+                <td>הושיעה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9644</a></td>
+                <td>והגית</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9645</a></td>
+                <td>והנה נער בוכה  חסידי</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9646</a></td>
+                <td>ומלכות  ותחזינה  חסידי</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9647</a></td>
+                <td>ומלכות א'רקידלה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9648</a></td>
+                <td>ומקהלת מלכות  אמונה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9649</a></td>
+                <td>זועק עם רבבות 'שערי שמים פתח'</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9650</a></td>
+                <td>יוסי אונזער-ברודער</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9651</a></td>
+                <td>יצירת ה'הדרן' 2</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9652</a></td>
+                <td>יתומים היינו  חסידי</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9653</a></td>
+                <td>יתומים היינו</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9654</a></td>
+                <td>למדני</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9655</a></td>
+                <td>מה אשיב</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9656</a></td>
+                <td>מה ידידות</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9657</a></td>
+                <td>מחדש את הקלסיקה של ר משה גולדמן  הבן יקיר לי</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9658</a></td>
+                <td>מלכות ואורות פותחים את אלול עם התפילה המרטיטה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9659</a></td>
+                <td>מקהלת מלכות, &amp; תזמורת פייער  פן פן כן כן   Malchus Choir, Zanvil Weinberger &amp; Fire (64  kbps)</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9660</a></td>
+                <td>ניגון באבוב מקהלת מלכות ארלה סאמט </td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9661</a></td>
+                <td>ניגון באבוב</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9662</a></td>
+                <td>נישט געדייגעט אידן</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9663</a></td>
+                <td>עד הנה</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9664</a></td>
+                <td>רחמנא</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9665</a></td>
+                <td>שערי שמים</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>9666</a></td>
+                <td>תקע בשופר</td>
+                <td>סינגלים</td>
+                <td>זאנוויל וינברגר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

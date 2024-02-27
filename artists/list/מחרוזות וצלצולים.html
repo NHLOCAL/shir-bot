@@ -1,0 +1,966 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מחרוזות וצלצולים</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמחרוזות וצלצולים</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>62406</a></td>
+                <td>מחרוזת חתונה מקפיצה</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62407</a></td>
+                <td>מחרוזת טראנס</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62408</a></td>
+                <td>מחרוזת יואלי קליין</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62409</a></td>
+                <td>מחרוזת ריקודים D J  FM</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62410</a></td>
+                <td>מיקס חוני מילקי</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62411</a></td>
+                <td>מיקס מאייעס</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62412</a></td>
+                <td>מיקס נחת</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62413</a></td>
+                <td>מיקס ניסו סלוב</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62414</a></td>
+                <td>מיקס ניסים בלאק</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62415</a></td>
+                <td>מיקס רג'ה</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62416</a></td>
+                <td>מיקס שרולי ברונכר</td>
+                <td>מחרוזות וצלצולים</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62417</a></td>
+                <td>01 יש תקוה חנוכה עד</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62418</a></td>
+                <td>1</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62419</a></td>
+                <td>DJ TwoTone - שמחת בית השואבה מיקס 18216</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62420</a></td>
+                <td>Dj שלומי טויטו - סט הלהיטים לשנת תשע''ט</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62421</a></td>
+                <td>הרקדה</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62422</a></td>
+                <td>חתונה חו''ל1</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62423</a></td>
+                <td>חתונה חו''ל2</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62424</a></td>
+                <td>מוסיקה חסידית ברצף</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62425</a></td>
+                <td>מוצש מחרוזת</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62426</a></td>
+                <td>מחרוזת גאולה ומשיח 01</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62427</a></td>
+                <td>מחרוזת דידן נצח 02</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62428</a></td>
+                <td>מחרוזת חנוכה</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62429</a></td>
+                <td>מחרוזת צעד תימני</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62430</a></td>
+                <td>מחרוזת ריקודים</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62431</a></td>
+                <td>מחרוזת שבת'דיק 03</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62432</a></td>
+                <td>מחרוזת שובה 04</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62433</a></td>
+                <td>מחרוזת שירי חבד</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62434</a></td>
+                <td>מחרוזת שירי שבת - הפרויקט של רביבו</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62435</a></td>
+                <td>מחרוזת שירים שקטים</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62436</a></td>
+                <td>מחרוזת שירים</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62437</a></td>
+                <td>מחרוזת תימנית</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62438</a></td>
+                <td>מיקס חסידי</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62439</a></td>
+                <td>מיקס ריקודים חסידי</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62440</a></td>
+                <td>סט דתי 2019</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62441</a></td>
+                <td>סט דתי עמירם בן לולו</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62442</a></td>
+                <td>סט חורף חסידי 2018 chassidic winnter set</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62443</a></td>
+                <td>סט חסידי רמיקס מטורף שווה מאוד!!!-[www_flvto_com]</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62444</a></td>
+                <td>סט חסידיי</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62445</a></td>
+                <td>סט חסידית מזרחית 2012 הועלה לדוסינט</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62446</a></td>
+                <td>סט להיטים 2020</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62447</a></td>
+                <td>סט להיטים דתי - מזרחי - 2017 - דיג'י יוסי חן -DJ Yossi Hen - 053-526-2596</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62448</a></td>
+                <td>סט להיטים דתי 2011 DJ רועי הרוש [upo.co.il]</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62449</a></td>
+                <td>סט להיטים דתי 2018 dj </td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62450</a></td>
+                <td>סט להיטים חסידי הפי דיגי אס</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62451</a></td>
+                <td>סט פורים חדש</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62452</a></td>
+                <td>סט פורים עד דלא ידע - תשעח</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62453</a></td>
+                <td>ערוך מחר</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62454</a></td>
+                <td>רמיקס  2009 חסידי מזרחי</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62455</a></td>
+                <td>רמיקס מנגינות פסח</td>
+                <td>מחרוזות</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62456</a></td>
+                <td>Hallelu - Shulem Lemmer, Neranena Choir, Shua Friedהללו - שלום למר, מקהלת נרננה, יהושע פריד</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62457</a></td>
+                <td>Mameh Rochel- Freilach Band, Daskal, Green, Shira. מאמע רחל פרייליך, דסקל, ילד פלא גרין, מקהלת ש (1)</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62458</a></td>
+                <td>מחרוזת חתונה זאנויל</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62459</a></td>
+                <td>מחרוזת חתונה יענקי רוביו</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62460</a></td>
+                <td>מיכה  גממרמן נטירוף</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62461</a></td>
+                <td>ממלא</td>
+                <td>מחרוזות חתונה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62462</a></td>
+                <td>-מחרוזת חתונה-כניסת חתן וכלה-וישמע-כיצד מרקדין-</td>
+                <td>חתן וכלה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62463</a></td>
+                <td>01 כל זמן שאני רואה חתן וכלה</td>
+                <td>חתן וכלה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62464</a></td>
+                <td>09 חתן וכלה</td>
+                <td>חתן וכלה</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62465</a></td>
+                <td>01 חתן דומה למלך</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62466</a></td>
+                <td>02 לבנימין</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62467</a></td>
+                <td>03 וביום שמחתכם</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62468</a></td>
+                <td>03 ענבי הגפן</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62469</a></td>
+                <td>03-עוד ישמע-מ. רוט</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62470</a></td>
+                <td>04---mesameach</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62471</a></td>
+                <td>04-ישיש עלייך-מ. רוט</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62472</a></td>
+                <td>05 בחכמה יבנה בית</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62473</a></td>
+                <td>07-והא כחתן</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62474</a></td>
+                <td>07-לכבוד החתן</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62475</a></td>
+                <td>08 עוד ישמע 2</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62476</a></td>
+                <td>09---chosson-vekallah</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62477</a></td>
+                <td>1 עוד ישמע</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62478</a></td>
+                <td>11 עלינו</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62479</a></td>
+                <td>11 שמח תשמח</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62480</a></td>
+                <td>21-מלכה'לה-ש. גרטנר ושירה</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62481</a></td>
+                <td>23-בשפע ברכות-ש. גרטנר ושירה</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62482</a></td>
+                <td>אורייתא</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62483</a></td>
+                <td>בורא עולם</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62484</a></td>
+                <td>בחכמה יבנה בית</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62485</a></td>
+                <td>דורות</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62486</a></td>
+                <td>הורה מירון</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62487</a></td>
+                <td>המה המה</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62488</a></td>
+                <td>הנה קל</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62489</a></td>
+                <td>הפכת</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62490</a></td>
+                <td>ויחון עם</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62491</a></td>
+                <td>חתן דומה למלך</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62492</a></td>
+                <td>חתן וכלה</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62493</a></td>
+                <td>טוב ה'</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62494</a></td>
+                <td>טראכט גוט</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62495</a></td>
+                <td>ידידים</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62496</a></td>
+                <td>כי הרבית</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62497</a></td>
+                <td>כל זמן</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62498</a></td>
+                <td>ליבי</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62499</a></td>
+                <td>למלך א-ל חי וקיים</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62500</a></td>
+                <td>משכני</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62501</a></td>
+                <td>ניגון שמחה חב''ד</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62502</a></td>
+                <td>פתיחה - עוד ישמע</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62503</a></td>
+                <td>קדשם</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62504</a></td>
+                <td>קח את שלי</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62505</a></td>
+                <td>שהחיינו </td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62506</a></td>
+                <td>שוש תשיש </td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62507</a></td>
+                <td>שמח תשמח</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62508</a></td>
+                <td>שמח</td>
+                <td>שמח</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62509</a></td>
+                <td>01 פתיחה</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62510</a></td>
+                <td>04 מי בן שיח</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62511</a></td>
+                <td>04-מי אדיר</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62512</a></td>
+                <td>04מי בן שיח</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62513</a></td>
+                <td>22 אם אשכחך</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62514</a></td>
+                <td>אין עוד</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62515</a></td>
+                <td>אם אשכחך</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62516</a></td>
+                <td>אשר ברא</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62517</a></td>
+                <td>ברכת הבנים</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62518</a></td>
+                <td>גם כי אלך</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62519</a></td>
+                <td>הוא יברך</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62520</a></td>
+                <td>הכל לטובה</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62521</a></td>
+                <td>ותן בנו</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62522</a></td>
+                <td>כי נחם</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62523</a></td>
+                <td>מדוע</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62524</a></td>
+                <td>מהרה </td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62525</a></td>
+                <td>מי אדיר</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62526</a></td>
+                <td>מי בן שיח</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62527</a></td>
+                <td>משמח</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62528</a></td>
+                <td>רופא</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62529</a></td>
+                <td>שמח</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+              <tr>
+                <td><a>62530</a></td>
+                <td>תפילת כלה</td>
+                <td>שקט</td>
+                <td>מחרוזות וצלצולים</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

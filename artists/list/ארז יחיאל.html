@@ -1,0 +1,511 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ארז יחיאל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspארז יחיאל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>57012</a></td>
+                <td>01-פרק ק''כ</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57013</a></td>
+                <td>02-פרק קכ''א</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57014</a></td>
+                <td>03-פרק קכ''ב</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57015</a></td>
+                <td>04-פרק קכ''ג</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57016</a></td>
+                <td>05-פרק קכ''ד</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57017</a></td>
+                <td>06-פרק קכ''ה</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57018</a></td>
+                <td>07-פרק קכ''ו</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57019</a></td>
+                <td>08-פרק קכ''ז</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57020</a></td>
+                <td>09-פרק קכ''ח</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57021</a></td>
+                <td>10-פרק קכ''ט</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57022</a></td>
+                <td>11-פרק ק''ל</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57023</a></td>
+                <td>12-פרק קל''א</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57024</a></td>
+                <td>13-פרק קל''ב</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57025</a></td>
+                <td>14-פרק קל''ג</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57026</a></td>
+                <td>15-פרק קל''ד</td>
+                <td>15 שירי המעלות בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57027</a></td>
+                <td>01-היום הרת עולם</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57028</a></td>
+                <td>02-כשאין לך מילים</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57029</a></td>
+                <td>03-הללויה</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57030</a></td>
+                <td>04-מתי</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57031</a></td>
+                <td>05-נושא תפילה</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57032</a></td>
+                <td>06-נעימה</td>
+                <td>היום הרת עולם</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57033</a></td>
+                <td>01-לכו נרננה-הרינו-מכתם לדוד</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57034</a></td>
+                <td>02-לדוד משכיל</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57035</a></td>
+                <td>03-למנצח מזמור לדוד</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57036</a></td>
+                <td>04-למנצח משכיל לבני קרח</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57037</a></td>
+                <td>05-למנצח אל תשחת לדוד</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57038</a></td>
+                <td>06-למנצח על ידותון</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57039</a></td>
+                <td>07-תפילה למשה</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57040</a></td>
+                <td>08-הודו לה</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57041</a></td>
+                <td>09-על נהרות בבל</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57042</a></td>
+                <td>10-הללויה</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57043</a></td>
+                <td>11-רבונו של עולם</td>
+                <td>התיקון הכללי בניגון מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57044</a></td>
+                <td>01-וידוי</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57045</a></td>
+                <td>02-מבקשים</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57046</a></td>
+                <td>03-לא עוד מלחמות</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57047</a></td>
+                <td>04-יושב לבד</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57048</a></td>
+                <td>05-זמיר שר</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57049</a></td>
+                <td>06-בוקר חדש</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57050</a></td>
+                <td>07-העשיר</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57051</a></td>
+                <td>08-יוצאת אל החרבה</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57052</a></td>
+                <td>09-אל תתייאש</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57053</a></td>
+                <td>10-הבט בטוב</td>
+                <td>וידוי</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57054</a></td>
+                <td>01-אוחילה לאל</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57055</a></td>
+                <td>02-בני עבדך</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57056</a></td>
+                <td>03-לך אלי</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57057</a></td>
+                <td>04-מה לך נירדם</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57058</a></td>
+                <td>05-שמע קולי</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57059</a></td>
+                <td>06-קול שופר</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57060</a></td>
+                <td>07-ישן אל תרדם</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57061</a></td>
+                <td>08-לדוד מזמור</td>
+                <td>ימים נוראים בניגון תימני מיוחד</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57062</a></td>
+                <td>ארז יחיאל - רק תחייך</td>
+                <td>סינגלים</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57063</a></td>
+                <td>הנני בידך (ווקאלי)</td>
+                <td>סינגלים</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57064</a></td>
+                <td>01-אדון הסליחות</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57065</a></td>
+                <td>02-בן אדם</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57066</a></td>
+                <td>03-למענך אלוקי</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57067</a></td>
+                <td>04-עננו</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57068</a></td>
+                <td>05-י-ה שמעך</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57069</a></td>
+                <td>06-שיר למעלות אשא</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57070</a></td>
+                <td>07-שיר למעלות ממעקים</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+              <tr>
+                <td><a>57071</a></td>
+                <td>08-א-ל נורא עלילא</td>
+                <td>סליחות מקול הנשמה</td>
+                <td>ארז יחיאל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

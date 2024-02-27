@@ -1,0 +1,595 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שלוימי טויסיג</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשלוימי טויסיג</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>28229</a></td>
+                <td>01 עזרי</td>
+                <td>חמישה קולות</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28230</a></td>
+                <td>02 ברענג שוין</td>
+                <td>חמישה קולות</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28231</a></td>
+                <td>03 קיוינו לו</td>
+                <td>חמישה קולות</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28232</a></td>
+                <td>04 שמע ישראל</td>
+                <td>חמישה קולות</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28233</a></td>
+                <td>05 ממעמקים</td>
+                <td>חמישה קולות</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28234</a></td>
+                <td>01 ניסים ונפלאות</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28235</a></td>
+                <td>02 גם כי אלך</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28236</a></td>
+                <td>03 העכער</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28237</a></td>
+                <td>04 ויהא רעוא</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28238</a></td>
+                <td>05 ששון ושמחה</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28239</a></td>
+                <td>06 ואפיל תחינתי</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28240</a></td>
+                <td>07 להודות</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28241</a></td>
+                <td>08 המחדש</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28242</a></td>
+                <td>09 א סך בעסער</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28243</a></td>
+                <td>10 ירושלים</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28244</a></td>
+                <td>11 לה' הארץ</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28245</a></td>
+                <td>12כדאי</td>
+                <td>טויסיג 2</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28246</a></td>
+                <td>01 אל תירא</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28247</a></td>
+                <td>02 מודים אנחנו</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28248</a></td>
+                <td>03 יהי יהי</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28249</a></td>
+                <td>04 הריני מזמן</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28250</a></td>
+                <td>05 והבוטחים</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28251</a></td>
+                <td>06 השם אלוקי</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28252</a></td>
+                <td>07 כי המלכות</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28253</a></td>
+                <td>08 הרחמן</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28254</a></td>
+                <td>09 מי שמאמין</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28255</a></td>
+                <td>10 כי אתה</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28256</a></td>
+                <td>11 קלי אתה</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28257</a></td>
+                <td>12 והאר</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28258</a></td>
+                <td>13 השבת</td>
+                <td>מודים אנחנו</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28259</a></td>
+                <td>01 - הודו לה'</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28260</a></td>
+                <td>02 - לקראת שבת</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28261</a></td>
+                <td>03 - מאי דהוה</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28262</a></td>
+                <td>04 - אדיר היום</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28263</a></td>
+                <td>05 - קדשנו</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28264</a></td>
+                <td>06 - מאמע</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28265</a></td>
+                <td>07 - ניגון השלוחים חב''ד</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28266</a></td>
+                <td>08 - בשירה ובזמרה</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28267</a></td>
+                <td>09 - כל המשמח</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28268</a></td>
+                <td>10 - ידיד נפש</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28269</a></td>
+                <td>11 -  בשורות טובות</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28270</a></td>
+                <td>12 - טאטע-רבי</td>
+                <td>מכאן ואילך</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28271</a></td>
+                <td>01 נשבעתי</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28272</a></td>
+                <td>02 אנא מלך</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28273</a></td>
+                <td>03 למען</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28274</a></td>
+                <td>04 פתחי לי</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28275</a></td>
+                <td>05 מוציא אסירים</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28276</a></td>
+                <td>06 לב טהור</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28277</a></td>
+                <td>07 יהי</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28278</a></td>
+                <td>08 לחונן</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28279</a></td>
+                <td>09 הרחמן</td>
+                <td>נשבעתי</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28280</a></td>
+                <td>- הרב שלמה טויסיג ומקהלת שיר ושבח - חד גדיא - חסידי</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28281</a></td>
+                <td>- ר שלמה טויסיג ומוטי איילוביץ - די ניגון - חסידי</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28282</a></td>
+                <td>01 הרב שלמה טויסיג בסינגל חדש וקיצבי – נאך אביסל</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28283</a></td>
+                <td>28 - שלומי טויסיג - קה אכסוף</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28284</a></td>
+                <td>אין גדולה כגדולתך</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28285</a></td>
+                <td>אין גדולה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28286</a></td>
+                <td>בשורות טובות</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28287</a></td>
+                <td>די ניגון</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28288</a></td>
+                <td>הן בכל אלה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28289</a></td>
+                <td>יצחק פוקס ושלוימי טויסיג לד' הארץ ומלואה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28290</a></td>
+                <td>כבוד הבית</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28291</a></td>
+                <td>לה' הארץ</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28292</a></td>
+                <td>לקראת שבת</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28293</a></td>
+                <td>מאי דהוה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28294</a></td>
+                <td>מחרוזת חתונה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28295</a></td>
+                <td>מחרוזת ריקודים 1</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28296</a></td>
+                <td>מחרוזת ריקודים 2</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28297</a></td>
+                <td>סינגלים, שלמה טויסיג - נאך אביסל</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28298</a></td>
+                <td>ר שלמה טויסיג ומשולם גרינברגר לעתיד לבוא R Shloime Taus.134</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28299</a></td>
+                <td>ר' שלמה טויסיג מגיש את לחנו של חולה הקורונה לכו נרננה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+              <tr>
+                <td><a>28300</a></td>
+                <td>שלוימי טויסיג ויצחק פוקס - מי יעלה</td>
+                <td>סינגלים</td>
+                <td>שלוימי טויסיג</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

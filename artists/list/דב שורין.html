@@ -1,0 +1,413 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>דב שורין</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspדב שורין</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>45388</a></td>
+                <td>01-כי לישעותך</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45389</a></td>
+                <td>02-ולא ינתשו עוד</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45390</a></td>
+                <td>03-תשובה יידן</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45391</a></td>
+                <td>04-תשתפכנה</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45392</a></td>
+                <td>05-אבדו גוים</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45393</a></td>
+                <td>06-אלה ברכב</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45394</a></td>
+                <td>07-דרך התורה</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45395</a></td>
+                <td>08-לד' הישועה</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45396</a></td>
+                <td>09-הוא הטיב</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45397</a></td>
+                <td>10-ועשו לי מקדש</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45398</a></td>
+                <td>11-אנחנו נתגבר</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45399</a></td>
+                <td>12-הנה לא ינום</td>
+                <td>אדוני הארץ</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45400</a></td>
+                <td>01-מי יעלה</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45401</a></td>
+                <td>02-גל עיני</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45402</a></td>
+                <td>03-אני יהודי</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45403</a></td>
+                <td>04-זכרני נא</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45404</a></td>
+                <td>05-כי עמך</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45405</a></td>
+                <td>06-ספייקי אפל'ס</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45406</a></td>
+                <td>07-ועינינו</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45407</a></td>
+                <td>08-ואני</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45408</a></td>
+                <td>09-אבא תדבר איתי</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45409</a></td>
+                <td>1-מקדש מלך</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45410</a></td>
+                <td>11-חברון</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45411</a></td>
+                <td>12-מדריכני</td>
+                <td>אוהב ה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45412</a></td>
+                <td>01-לעשות נקמה</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45413</a></td>
+                <td>02-שיר של רחל</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45414</a></td>
+                <td>03-כי קרוב יום ה</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45415</a></td>
+                <td>04-להרוג את הערפאטים</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45416</a></td>
+                <td>05-ד' יגמור</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45417</a></td>
+                <td>06-תיקון</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45418</a></td>
+                <td>07-בעמד ענן</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45419</a></td>
+                <td>08-רחם</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45420</a></td>
+                <td>09-כל גוים סבבוני</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45421</a></td>
+                <td>10-זכרני נא</td>
+                <td>נקמה</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45422</a></td>
+                <td>01-משנכנס אדר</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45423</a></td>
+                <td>02-תפוחים מקוצצים</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45424</a></td>
+                <td>03-ליהודים</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45425</a></td>
+                <td>04-שיר של ברוך</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45426</a></td>
+                <td>05-מדינת השטיחים</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45427</a></td>
+                <td>06-להרוג את ה'המנ'רטס</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45428</a></td>
+                <td>07-לשתות לעוף</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45429</a></td>
+                <td>08-חייב איניש</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45430</a></td>
+                <td>09-אני יהודי</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45431</a></td>
+                <td>10-לעשות נקמה</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45432</a></td>
+                <td>11-ארוממך</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+              <tr>
+                <td><a>45433</a></td>
+                <td>12-אחד מהם</td>
+                <td>פורים אקסטזי</td>
+                <td>דב שורין</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

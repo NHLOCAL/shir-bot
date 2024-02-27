@@ -1,0 +1,315 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יומי לואי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיומי לואי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>11464</a></td>
+                <td>אהבת ה'</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11465</a></td>
+                <td>ארוממך</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11466</a></td>
+                <td>אשת חיל</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11467</a></td>
+                <td>יעלה ויבוא</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11468</a></td>
+                <td>מה נאמר</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11469</a></td>
+                <td>משה קיבל</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11470</a></td>
+                <td>פן כן</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11471</a></td>
+                <td>קדוש</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11472</a></td>
+                <td>תן לו</td>
+                <td>אהבת ה'</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11473</a></td>
+                <td>01מחרוזת פריילעך</td>
+                <td>יומי לואי  סימפיני + יומי</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11474</a></td>
+                <td>02מחרוזת דיסקו</td>
+                <td>יומי לואי  סימפיני + יומי</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11475</a></td>
+                <td>03מחרוזת רוק</td>
+                <td>יומי לואי  סימפיני + יומי</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11476</a></td>
+                <td>04מחרוזת פאנק</td>
+                <td>יומי לואי  סימפיני + יומי</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11477</a></td>
+                <td>05מחרוזת ישראלי</td>
+                <td>יומי לואי  סימפיני + יומי</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11478</a></td>
+                <td>01 כל הטוב</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11479</a></td>
+                <td>02 המלך</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11480</a></td>
+                <td>03 אשרי מי</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11481</a></td>
+                <td>04 יגדל</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11482</a></td>
+                <td>05 ישמחו</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11483</a></td>
+                <td>06 כי אנו</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11484</a></td>
+                <td>07 לבדו</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11485</a></td>
+                <td>08 מה לך</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11486</a></td>
+                <td>09 אבינו</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11487</a></td>
+                <td>10 השיבינו</td>
+                <td>כל הטוב</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11488</a></td>
+                <td>39 - יומי לואי - אשת חיל - [Windos.Co]</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11489</a></td>
+                <td>ונתנה תוקף - יומי לואי ומקהלת ידידים</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11490</a></td>
+                <td>יומי לואי - מי שברך לחולים</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11491</a></td>
+                <td>יומי לואי מגיש מי שברך לחולים</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11492</a></td>
+                <td>מחרוזת דאנס מקפיצה</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11493</a></td>
+                <td>מחרוזת ריקודים</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11494</a></td>
+                <td>קראהמה טאנץ</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11495</a></td>
+                <td>שיר חדש לחתונה</td>
+                <td>סינגלים</td>
+                <td>יומי לואי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

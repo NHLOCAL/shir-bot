@@ -1,0 +1,644 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יונתן שווארץ</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיונתן שווארץ</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>50858</a></td>
+                <td>01-הבל הבלים</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50859</a></td>
+                <td>02-אינטערן חופה</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50860</a></td>
+                <td>03-אגרת הרמבן</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50861</a></td>
+                <td>04-רפאנו</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50862</a></td>
+                <td>05-דער קאנדאקטער</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50863</a></td>
+                <td>06-קדיש</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50864</a></td>
+                <td>07-א גוטע איד</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50865</a></td>
+                <td>08-קאלטע קאווע</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50866</a></td>
+                <td>09-פייער</td>
+                <td>א גוטע בשורה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50867</a></td>
+                <td>01-א גוטע וואך</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50868</a></td>
+                <td>02-אדיר איום</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50869</a></td>
+                <td>03-אל תירא</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50870</a></td>
+                <td>04-איש חסיד</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50871</a></td>
+                <td>05-המבדיל</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50872</a></td>
+                <td>06-ג-ט פון אברהם</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50873</a></td>
+                <td>07-אליהו</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50874</a></td>
+                <td>08-אינטערן בריק</td>
+                <td>א גוטע וואך</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50875</a></td>
+                <td>01-אפאר מיליאן</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50876</a></td>
+                <td>02-א דארפסמאן</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50877</a></td>
+                <td>03-א גאסט</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50878</a></td>
+                <td>04-א גוטע תירוץ</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50879</a></td>
+                <td>05-ברוך ה</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50880</a></td>
+                <td>06-א גוטע ניגון</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50881</a></td>
+                <td>07-א מאמעס געבעט</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50882</a></td>
+                <td>08-כי אתה הוא מלך</td>
+                <td>א גוטע ניגון</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50883</a></td>
+                <td>01-מענטשעלע טראכט</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50884</a></td>
+                <td>02-קיינמאל נישט אליין</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50885</a></td>
+                <td>03-אויסגעצויגן</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50886</a></td>
+                <td>04-א גוטע נשמה</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50887</a></td>
+                <td>05-לטובה</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50888</a></td>
+                <td>06-א בחור אין ישיבה</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50889</a></td>
+                <td>07-תומכי שבת</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50890</a></td>
+                <td>08-בני בני</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50891</a></td>
+                <td>09-א צייטונג</td>
+                <td>א גוטע נשמה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50892</a></td>
+                <td>01-שבח והודאה</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50893</a></td>
+                <td>02-מאמע רחל</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50894</a></td>
+                <td>03-דאגה מנין</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50895</a></td>
+                <td>04-בני חיי ומזוני</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50896</a></td>
+                <td>05-די נעסט</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50897</a></td>
+                <td>06-שלא עשני גוי</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50898</a></td>
+                <td>07-די פאסטיכער</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50899</a></td>
+                <td>08-א קלוגע פאלק</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50900</a></td>
+                <td>09-צוויי קיען</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50901</a></td>
+                <td>10-זכות תשב''ר</td>
+                <td>א גוטער איד</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50902</a></td>
+                <td>01-מי שטרח</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50903</a></td>
+                <td>02-גיט שבת</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50904</a></td>
+                <td>03-שלום עליכם</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50905</a></td>
+                <td>04-אשת חיל</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50906</a></td>
+                <td>05-נר נשמה</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50907</a></td>
+                <td>06-מארש</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50908</a></td>
+                <td>07-מנוחה ושמחה</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50909</a></td>
+                <td>08-ל''ט מלאכות</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50910</a></td>
+                <td>09-יום שבת קודש-פרה שומרת שבת</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50911</a></td>
+                <td>10-יה רבון שבת אחים</td>
+                <td>א גיטן שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50912</a></td>
+                <td>01-אז א שידוך</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50913</a></td>
+                <td>02-די טרערן גלעזל</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50914</a></td>
+                <td>03-חד גדיא</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50915</a></td>
+                <td>04-דבר והיפוכו</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50916</a></td>
+                <td>05-די פארגעסענע טלית'ל</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50917</a></td>
+                <td>06-אין א גוטע שעה</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50918</a></td>
+                <td>07-אהבת ישראל</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50919</a></td>
+                <td>08-אברהם מיט תרח</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50920</a></td>
+                <td>09-רצה ה</td>
+                <td>אין א גוטע שעה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50921</a></td>
+                <td>01-קול דודי</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50922</a></td>
+                <td>02-תנו שבח</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50923</a></td>
+                <td>03-שבת איז שיין</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50924</a></td>
+                <td>04-ימלוך ד' לעולם</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50925</a></td>
+                <td>05-רבון</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50926</a></td>
+                <td>06-מי שמאמין</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50927</a></td>
+                <td>07-רזא דשבת</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50928</a></td>
+                <td>08-מודה אני-ניגון דז'יקוב</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50929</a></td>
+                <td>09-שומרי מצוותיה</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50930</a></td>
+                <td>10-וייתי לנא</td>
+                <td>אן עונג שבת</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50931</a></td>
+                <td>01-מוזיקה</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50932</a></td>
+                <td>02-מוזיקה התעוררות</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50933</a></td>
+                <td>03-יונתן שווארץ</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50934</a></td>
+                <td>04-אביש בראדט</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50935</a></td>
+                <td>05-ניגונים לחופה</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>50936</a></td>
+                <td>06-אחר חופה</td>
+                <td>קבלת פנים וחופה</td>
+                <td>יונתן שווארץ</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

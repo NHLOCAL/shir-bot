@@ -1,0 +1,273 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אוונט</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאוונט</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>31759</a></td>
+                <td>01-פתיחה</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31760</a></td>
+                <td>02-בדגל אגודה-עוצו עצה</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31761</a></td>
+                <td>03-אליך</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31762</a></td>
+                <td>04-פתחו</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31763</a></td>
+                <td>05-יהודי פשוט</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31764</a></td>
+                <td>06-וואק אפ</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31765</a></td>
+                <td>07-סיום</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31766</a></td>
+                <td>08-תורה</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31767</a></td>
+                <td>09-מחרוזת פורים</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31768</a></td>
+                <td>10-שים שלום</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31769</a></td>
+                <td>11-חסד ואמת</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31770</a></td>
+                <td>12-וקווי ה-הא יגאל</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31771</a></td>
+                <td>13-עורה כבודי-ציון</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31772</a></td>
+                <td>14-אני מאמין</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31773</a></td>
+                <td>15-תורת ה-ובכן-שבשפלינו</td>
+                <td>האוונט ח''א</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31774</a></td>
+                <td>01-מן המיצר</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31775</a></td>
+                <td>02-עומדות היו</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31776</a></td>
+                <td>03 - Somewhere A Star - ומצדיקי</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31777</a></td>
+                <td>04-לאט-מהר-מחרוזת להיטים</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31778</a></td>
+                <td>05-שמייכל</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31779</a></td>
+                <td>06-רק שבת אחד</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31780</a></td>
+                <td>07-מחרוזת נוסטלגיה</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31781</a></td>
+                <td>08-ענווים</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31782</a></td>
+                <td>09-אנחנו מאמינים</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31783</a></td>
+                <td>10-רבותי-שלא עשני גוי</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+              <tr>
+                <td><a>31784</a></td>
+                <td>11-הענטלעך</td>
+                <td>האוונט ח''ב</td>
+                <td>אוונט</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,1400 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>עמירן דביר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspעמירן דביר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>25496</a></td>
+                <td>02-מחרוזת שקטים</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25497</a></td>
+                <td>03-מי ששכן</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25498</a></td>
+                <td>04-מחרוזת הורה</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25499</a></td>
+                <td>05-שביל לחופה</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25500</a></td>
+                <td>06-זה הזמן</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25501</a></td>
+                <td>07-והוא כחתן</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25502</a></td>
+                <td>08-מחרוזת תורה</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25503</a></td>
+                <td>09-מחרוזת חתונה</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25504</a></td>
+                <td>10-תפילה לעני</td>
+                <td>זה הזמן</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25505</a></td>
+                <td>'לזמר ניגון' – עמירן דביר שר ר' נחמן מברסלב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25506</a></td>
+                <td>- עמירן דביר - אם תרצו - מקורי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25507</a></td>
+                <td>- עמירן דביר - שיר מזמור לדוד - מקורי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25508</a></td>
+                <td>- עמירן דביר וחברים - הנני - חסידי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25509</a></td>
+                <td>- עמירן דביר ולירון לב - מחרוזת סוכות - עממי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25510</a></td>
+                <td>Happy 5 Kolot</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25511</a></td>
+                <td>אורי אלטבוים _ עמירן דביר - בלדת השמש והירח</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25512</a></td>
+                <td>אריק ועמירן דביר ומקהלת נרננה קומזיץ אלול תש פ Arik Ami.134</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25513</a></td>
+                <td>ברוכים הבאים חתן כלה</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25514</a></td>
+                <td>גאולה - עמירן דביר   Redemption Amiran Dvir</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25515</a></td>
+                <td>גשם גשם מיטפטף</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25516</a></td>
+                <td>דספזלטוב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25517</a></td>
+                <td>החתול והעכבר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25518</a></td>
+                <td>הנר שלי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25519</a></td>
+                <td>הפרטיזנים - רימיקס</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25520</a></td>
+                <td>הרגע להודות</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25521</a></td>
+                <td>ועל הכל</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25522</a></td>
+                <td>ועמירן דביר - כל יום</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25523</a></td>
+                <td>זה הזמן</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25524</a></td>
+                <td>חתן כלה</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25525</a></td>
+                <td>ישיבת נהורא & עמירן דביר - בעבור אבותינו</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25526</a></td>
+                <td>כל יום</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25527</a></td>
+                <td>לזמר ניגון - רמיקס</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25528</a></td>
+                <td>לקראת מתן תורה - זיו השכינה</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25529</a></td>
+                <td>נודה לך</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25530</a></td>
+                <td>נצור לשונך</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25531</a></td>
+                <td>סול מי- עמירן דביר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25532</a></td>
+                <td>עמירן דביר - ברכת האב (Prod. By Sruli)</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25533</a></td>
+                <td>עמירן דביר - דספזלטוב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25534</a></td>
+                <td>עמירן דביר - מי שם פה</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25535</a></td>
+                <td>עמירן דביר - סול מי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25536</a></td>
+                <td>עמירן דביר דספזלטוב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25537</a></td>
+                <td>עמירן דביר הרגע להודות</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25538</a></td>
+                <td>עמירן דביר והלהקה - אנא בכח</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25539</a></td>
+                <td>עמירן דביר והלהקה - הרקדה חסידית</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25540</a></td>
+                <td>עמירן דביר לזמר ניגון</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25541</a></td>
+                <td>עמירן דביר לרגל בר המצווה ברכת האב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25542</a></td>
+                <td>עמירן דביר, אריק דביר & מקהלת נרננה - זיץ חסידי אלול תשפ</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25543</a></td>
+                <td>עמירן דביר-החתול והעכבר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25544</a></td>
+                <td>עמירן דביר-הנר הפנימי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25545</a></td>
+                <td>עמירן דביר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25546</a></td>
+                <td>עמירן ואריק דביר ושוקי סלומון שבט אחים</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25547</a></td>
+                <td>עמירן</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25548</a></td>
+                <td>צמד רעים, עמירן דביר - מחרוזת שירו למלך (לייב)</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25549</a></td>
+                <td>ריקוד הפינגווין - עמירן דביר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25550</a></td>
+                <td>ריקוד הפינגווין</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25551</a></td>
+                <td>שבט אחים- עמירן דביר</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25552</a></td>
+                <td>שועתי   עמירן דביר   יניב בן משיח   SHIVATI   Amiran Dvir   Yaniv Ben Mashiach</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25553</a></td>
+                <td>שוקי סלומון _ עמירן דביר - שיר הביטחון</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25554</a></td>
+                <td>שוקי סלומון ועמירן דביר לקראת פורים והשנה ''שיר הביטחון''</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25555</a></td>
+                <td>שושביניו</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25556</a></td>
+                <td>שיר הפרטיזנים היהודי</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25557</a></td>
+                <td>שלוימי קצנלבוגן & עמירן דביר - קרוב</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25558</a></td>
+                <td>שנה ראשונה עמירן דביר הקליפ הרשמי.136</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25559</a></td>
+                <td>שנה ראשונה</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25560</a></td>
+                <td>תהלים קי''ט אות ו</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25561</a></td>
+                <td>תרקדו</td>
+                <td>סינגלים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25562</a></td>
+                <td>01-מחרוזת ליהודים</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25563</a></td>
+                <td>02-ליהודים</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25564</a></td>
+                <td>03-חייב איניש</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25565</a></td>
+                <td>04-על הניסים</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25566</a></td>
+                <td>05-שושנת יעקב</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25567</a></td>
+                <td>06-ותוסף אסתר</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25568</a></td>
+                <td>07-מחרוזת משנכנס</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25569</a></td>
+                <td>08-משנכנס אדר</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25570</a></td>
+                <td>10-ליהודים</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25571</a></td>
+                <td>10-משנכנס</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25572</a></td>
+                <td>11-את המן תלוי</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25573</a></td>
+                <td>12-ככה יעשה</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25574</a></td>
+                <td>13-ומרדכי יצא</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25575</a></td>
+                <td>14-סיום</td>
+                <td>עמירן דביר פורים</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25576</a></td>
+                <td>Track 01</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25577</a></td>
+                <td>Track 02</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25578</a></td>
+                <td>Track 03</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25579</a></td>
+                <td>Track 04</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25580</a></td>
+                <td>Track 05</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25581</a></td>
+                <td>Track 06</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25582</a></td>
+                <td>Track 07</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25583</a></td>
+                <td>Track 08</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25584</a></td>
+                <td>Track 09</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25585</a></td>
+                <td>Track 10</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25586</a></td>
+                <td>Track 11</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25587</a></td>
+                <td>Track 12</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25588</a></td>
+                <td>Track 13</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25589</a></td>
+                <td>Track 14</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25590</a></td>
+                <td>Track 15</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25591</a></td>
+                <td>Track 16</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25592</a></td>
+                <td>Track 17</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25593</a></td>
+                <td>Track 18</td>
+                <td>רגוע 1</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25594</a></td>
+                <td>Track 01</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25595</a></td>
+                <td>Track 02</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25596</a></td>
+                <td>Track 03</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25597</a></td>
+                <td>Track 04</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25598</a></td>
+                <td>Track 05</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25599</a></td>
+                <td>Track 06</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25600</a></td>
+                <td>Track 07</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25601</a></td>
+                <td>Track 08</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25602</a></td>
+                <td>Track 09</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25603</a></td>
+                <td>Track 10</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25604</a></td>
+                <td>Track 11</td>
+                <td>רגוע 2</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25605</a></td>
+                <td>Track 01</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25606</a></td>
+                <td>Track 02</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25607</a></td>
+                <td>Track 03</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25608</a></td>
+                <td>Track 04</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25609</a></td>
+                <td>Track 05</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25610</a></td>
+                <td>Track 06</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25611</a></td>
+                <td>Track 07</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25612</a></td>
+                <td>Track 08</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25613</a></td>
+                <td>Track 09</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25614</a></td>
+                <td>Track 10</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25615</a></td>
+                <td>Track 11</td>
+                <td>רגוע 3</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25616</a></td>
+                <td>01-שוש אשיש</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25617</a></td>
+                <td>02-שמח</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25618</a></td>
+                <td>03-אשר ברא</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25619</a></td>
+                <td>04-שמעתי</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25620</a></td>
+                <td>05-הוי דן</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25621</a></td>
+                <td>06-מכניסי רחמים</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25622</a></td>
+                <td>07-תפילה לעני</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25623</a></td>
+                <td>08-אנעים זמירות</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25624</a></td>
+                <td>09-כי אתה</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25625</a></td>
+                <td>10-שערי שמים</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25626</a></td>
+                <td>11-הכול יודוך</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25627</a></td>
+                <td>12-אמת</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25628</a></td>
+                <td>13-רחם</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25629</a></td>
+                <td>14-תורה הקדושה</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25630</a></td>
+                <td>15-לכבוד החתן</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25631</a></td>
+                <td>16-כי הטוב</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25632</a></td>
+                <td>17-ישיש</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25633</a></td>
+                <td>18-והיה</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25634</a></td>
+                <td>19-יערב</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25635</a></td>
+                <td>20-חוק וזמן</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25636</a></td>
+                <td>21-והוא כחתן</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25637</a></td>
+                <td>22-מאמינים</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25638</a></td>
+                <td>23-הקב''ה</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25639</a></td>
+                <td>24-סיום</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25640</a></td>
+                <td>25-שמע ישראל</td>
+                <td>שוש אשיש</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25641</a></td>
+                <td>01-שמרה נפשי</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25642</a></td>
+                <td>02-אתה תקום</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25643</a></td>
+                <td>03-יחד</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25644</a></td>
+                <td>04-ונשגב</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25645</a></td>
+                <td>05-ניגון מזמור לדוד</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25646</a></td>
+                <td>06-מוריה</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25647</a></td>
+                <td>07-אב הרחמים</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25648</a></td>
+                <td>08-אל תקצוף</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25649</a></td>
+                <td>09-במידת הרחמים</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25650</a></td>
+                <td>10-יודו לה' חסדו</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25651</a></td>
+                <td>11-יצליח</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25652</a></td>
+                <td>12-פיה פתחה</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25653</a></td>
+                <td>13-מהרה ה</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25654</a></td>
+                <td>14-מי אדיר</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25655</a></td>
+                <td>15-אדון עולם</td>
+                <td>שמרה נפשי ח''א</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25656</a></td>
+                <td>01-ברוך הגבר</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25657</a></td>
+                <td>02-יידען</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25658</a></td>
+                <td>03-מלך</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25659</a></td>
+                <td>04-זכרני נא</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25660</a></td>
+                <td>05-עוד ישמע</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25661</a></td>
+                <td>06-הלילה</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25662</a></td>
+                <td>07-פום פה</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25663</a></td>
+                <td>08-מי שאמר</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25664</a></td>
+                <td>09-מברוק עליך</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25665</a></td>
+                <td>10-ענני</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25666</a></td>
+                <td>11-האפ קאזאק</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25667</a></td>
+                <td>12-ניגון שמחה</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25668</a></td>
+                <td>13-הבל הבלים</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25669</a></td>
+                <td>14-ניגון שמחה 2</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25670</a></td>
+                <td>15-מאמע רחל</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25671</a></td>
+                <td>16-לראות את הכאב</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25672</a></td>
+                <td>17-אלוקים נתן לך במתנה</td>
+                <td>שמרה נפשי ח''ב</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25673</a></td>
+                <td>01-והוא כחתן</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25674</a></td>
+                <td>02-מי אדיר</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25675</a></td>
+                <td>03-תהיה שמח</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25676</a></td>
+                <td>04-אמן</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25677</a></td>
+                <td>05-מודה אני</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25678</a></td>
+                <td>06-ימים על ימי מלך</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25679</a></td>
+                <td>07-לכל זמן ועת</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25680</a></td>
+                <td>08-רות</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25681</a></td>
+                <td>09-רואים רחוק</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+              <tr>
+                <td><a>25682</a></td>
+                <td>10-נער הייתי</td>
+                <td>תהיה שמח</td>
+                <td>עמירן דביר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

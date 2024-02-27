@@ -1,0 +1,714 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>צליל וזמר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspצליל וזמר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>26952</a></td>
+                <td>01-אחת שאלתי</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26953</a></td>
+                <td>02-אשרינו</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26954</a></td>
+                <td>03-כך היא דרכה</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26955</a></td>
+                <td>04-נחמו</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26956</a></td>
+                <td>05-ויציב ונכון</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26957</a></td>
+                <td>06-פאר וכבוד</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26958</a></td>
+                <td>07-רחם</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26959</a></td>
+                <td>08-ציפור קטנה</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26960</a></td>
+                <td>09-ברוך שנתן</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26961</a></td>
+                <td>10-והיה באחרית הימים</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26962</a></td>
+                <td>11-הנה מה טוב</td>
+                <td>1-ציפור קטנה</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26963</a></td>
+                <td>01-והיה בעת ההיא</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26964</a></td>
+                <td>01-יענך</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26965</a></td>
+                <td>03-לא ישא גוי</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26966</a></td>
+                <td>04-הוא יושיענו</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26967</a></td>
+                <td>05-סימן טוב</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26968</a></td>
+                <td>06-קול רינה</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26969</a></td>
+                <td>07-כאיל תערוג</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26970</a></td>
+                <td>08-אויבישטער</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26971</a></td>
+                <td>09-ברוך הוא</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26972</a></td>
+                <td>10-האדרת</td>
+                <td>2-כאיל תערוג</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26973</a></td>
+                <td>01-על חומותיך</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26974</a></td>
+                <td>02-אל תירא</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26975</a></td>
+                <td>03-Jews Of Silnce</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26976</a></td>
+                <td>04-אשא עיני</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26977</a></td>
+                <td>05-מחרוזת שבת</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26978</a></td>
+                <td>06-אור חדש</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26979</a></td>
+                <td>07-לכל זמן</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26980</a></td>
+                <td>08-י-ה ריבון</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26981</a></td>
+                <td>09-הקשיבה</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26982</a></td>
+                <td>10-צליל וזמר</td>
+                <td>3-אור חדש</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26983</a></td>
+                <td>01-כי נחם</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26984</a></td>
+                <td>02-הרחמן</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26985</a></td>
+                <td>03-אני מאמין</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26986</a></td>
+                <td>04-לכה דודי</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26987</a></td>
+                <td>05-חברים</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26988</a></td>
+                <td>06-משיח</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26989</a></td>
+                <td>07-פתחו לי</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26990</a></td>
+                <td>08-מעין עולם הבא</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26991</a></td>
+                <td>09-הטיבה ברצונך</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26992</a></td>
+                <td>10-הפורש</td>
+                <td>4-כי נחם</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26993</a></td>
+                <td>01-התעוררי</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26994</a></td>
+                <td>02-הנה אנוכי</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26995</a></td>
+                <td>03-Let Us Grow</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26996</a></td>
+                <td>04-הבן יקיר לי</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26997</a></td>
+                <td>05-סימן טוב</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26998</a></td>
+                <td>06-ושמחת</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>26999</a></td>
+                <td>07-בצאת ישראל</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27000</a></td>
+                <td>08-מי כהשם</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27001</a></td>
+                <td>09-ובאו האובדים</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27002</a></td>
+                <td>10-כי בשמחה</td>
+                <td>5-בצאת ישראל</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27003</a></td>
+                <td>01-קול רנה</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27004</a></td>
+                <td>02-לא ישא</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27005</a></td>
+                <td>03-לא מאוחר</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27006</a></td>
+                <td>04-עץ חיים</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27007</a></td>
+                <td>05-שומר ישראל</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27008</a></td>
+                <td>06-טוב להודות</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27009</a></td>
+                <td>07-תחזיר אותנו</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27010</a></td>
+                <td>08-סימן טוב</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27011</a></td>
+                <td>09-אחת שאלתי</td>
+                <td>6-אחת שאלתי</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27012</a></td>
+                <td>01-כל ישראל</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27013</a></td>
+                <td>02-כי הם</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27014</a></td>
+                <td>03-Be The Best </td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27015</a></td>
+                <td>04-התעוררי</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27016</a></td>
+                <td>05-על זאת</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27017</a></td>
+                <td>06-אדיר במרום</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27018</a></td>
+                <td>07-אליך</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27019</a></td>
+                <td>08-הנה מה טוב</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27020</a></td>
+                <td>09-מחרוזת אנגלית</td>
+                <td>7-תהיה הכי טוב</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27021</a></td>
+                <td>01-אדיר</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27022</a></td>
+                <td>02-זה היום</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27023</a></td>
+                <td>03-רחוק</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27024</a></td>
+                <td>04-ברכינו</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27025</a></td>
+                <td>05-הנה אנחנו כאן</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27026</a></td>
+                <td>06-יבנה</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27027</a></td>
+                <td>07-קול ברמה</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27028</a></td>
+                <td>08-שמע</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27029</a></td>
+                <td>09-נחמו</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27030</a></td>
+                <td>10-ותן בנו</td>
+                <td>8-שמע קולינו</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27031</a></td>
+                <td>01-התעוררי</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27032</a></td>
+                <td>02-הוא יושיענו</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27033</a></td>
+                <td>03-והיה</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27034</a></td>
+                <td>04-תתגדל</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27035</a></td>
+                <td>05-כאיל</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27036</a></td>
+                <td>06-לא ישא</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27037</a></td>
+                <td>07-בצאת ישראל</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27038</a></td>
+                <td>08-אני מאמין</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27039</a></td>
+                <td>09-אוי משיח</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+              <tr>
+                <td><a>27040</a></td>
+                <td>10-השיבנו</td>
+                <td>נעימות צליל וזמר</td>
+                <td>צליל וזמר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

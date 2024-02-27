@@ -1,0 +1,322 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>עמוסי דיקן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspעמוסי דיקן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>62813</a></td>
+                <td>01-חסד ואמת</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62814</a></td>
+                <td>02-כה אמר השם</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62815</a></td>
+                <td>03-על פיו יביא</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62816</a></td>
+                <td>04-פדה בשלום נפשי</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62817</a></td>
+                <td>05-רחם בחסדך</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62818</a></td>
+                <td>06-מה אשיב להשם</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62819</a></td>
+                <td>07-המלאך הגואל</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62820</a></td>
+                <td>08-אנא השם</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62821</a></td>
+                <td>09-ידיד נפש</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62822</a></td>
+                <td>10-והביאותים</td>
+                <td>קולות הנשמה 1</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62823</a></td>
+                <td>01-וזכינו</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62824</a></td>
+                <td>02-לכה דודי</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62825</a></td>
+                <td>03-מדרכות פריז</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62826</a></td>
+                <td>04-ניגון קראקוב</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62827</a></td>
+                <td>05-נכספה</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62828</a></td>
+                <td>06-התעוררי</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62829</a></td>
+                <td>07-ויאתיו כל</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62830</a></td>
+                <td>08-הרועה הבודד</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62831</a></td>
+                <td>09-רגש</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62832</a></td>
+                <td>10-ניגון מבית אבא</td>
+                <td>קולות הנשמה 2</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62833</a></td>
+                <td>01-כאיל תערוג</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62834</a></td>
+                <td>02-אחינו</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62835</a></td>
+                <td>03-תהלה</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62836</a></td>
+                <td>04-מארש</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62837</a></td>
+                <td>05-מזורקה</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62838</a></td>
+                <td>06-ישימך</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62839</a></td>
+                <td>07-מחרוזת</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62840</a></td>
+                <td>08-מודה אני</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62841</a></td>
+                <td>09-ממקומך</td>
+                <td>קולות הנשמה 3</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62842</a></td>
+                <td>01-אדון השלום</td>
+                <td>קולות הנשמה 4</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62843</a></td>
+                <td>02-לולי</td>
+                <td>קולות הנשמה 4</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62844</a></td>
+                <td>03-אב הרחמים</td>
+                <td>קולות הנשמה 4</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+              <tr>
+                <td><a>62845</a></td>
+                <td>04-ערבה</td>
+                <td>קולות הנשמה 4</td>
+                <td>עמוסי דיקן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

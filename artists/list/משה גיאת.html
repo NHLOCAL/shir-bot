@@ -1,0 +1,749 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>משה גיאת</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמשה גיאת</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>58883</a></td>
+                <td>01-אליאור</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58884</a></td>
+                <td>02-שמור אלי</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58885</a></td>
+                <td>03-אלעד</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58886</a></td>
+                <td>04-נכספים</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58887</a></td>
+                <td>05-אינטה עומרי</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58888</a></td>
+                <td>06-חלומות בלבן</td>
+                <td>אליאור</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58889</a></td>
+                <td>מג אליך אקרא יה!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58890</a></td>
+                <td>מג אנא בחסדך!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58891</a></td>
+                <td>מג זהו אלי!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58892</a></td>
+                <td>מג חכמה בינה!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58893</a></td>
+                <td>מג יחביבי יה בני!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58894</a></td>
+                <td>מג מח יום ליום יביע נגילה הללויה!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58895</a></td>
+                <td>מג פתיחה בו אדם למה תדאג על הדמים נעימה לי עירך!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58896</a></td>
+                <td>מג פתיחה השם אודך!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58897</a></td>
+                <td>משה גיאת אל מאוד נעלה!!s</td>
+                <td>זהו אלי</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58898</a></td>
+                <td>01-מזלי</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58899</a></td>
+                <td>02-שמור אותי</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58900</a></td>
+                <td>03-תורת אש</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58901</a></td>
+                <td>04-שבת מנוחה</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58902</a></td>
+                <td>05-אגדלך</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58903</a></td>
+                <td>06-שמחים ישראל</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58904</a></td>
+                <td>07-ארוממך</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58905</a></td>
+                <td>08-בתי  צאי</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58906</a></td>
+                <td>09-טעיתי כשה אובד</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58907</a></td>
+                <td>10-קול רינה</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58908</a></td>
+                <td>11-שר הממונה</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58909</a></td>
+                <td>12-אשת חיל</td>
+                <td>טעיתי כשה אובד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58910</a></td>
+                <td>01-אליך אקרא יה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58911</a></td>
+                <td>02-יה חביבי יה חביבי</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58912</a></td>
+                <td>03-זהו אלי וגואלי</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58913</a></td>
+                <td>04-בשרו נא הגאולה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58914</a></td>
+                <td>05-פתיחה - יביע אומר - נגילה הללויה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58915</a></td>
+                <td>06-אנא בחסדך</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58916</a></td>
+                <td>07-אל מאוד נעלה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58917</a></td>
+                <td>08-אל תדאג על הדמים - נעימה לי עירך</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58918</a></td>
+                <td>09-חכמה בינה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58919</a></td>
+                <td>10-מחרוזת - שמע אלוקי - צא מזה</td>
+                <td>כינור דוד</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58920</a></td>
+                <td>01-יבוא משיח</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58921</a></td>
+                <td>02-אלי'ה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58922</a></td>
+                <td>03-קריה יפיפיה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58923</a></td>
+                <td>04-אמא</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58924</a></td>
+                <td>05-בטח בה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58925</a></td>
+                <td>06-אהבת רעיה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58926</a></td>
+                <td>08-שמח בני</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58927</a></td>
+                <td>09-קול ברמה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58928</a></td>
+                <td>10-עיני צופיה</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58929</a></td>
+                <td>11-כי אשמרה שבת</td>
+                <td>כתר</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58930</a></td>
+                <td>01-פעמון זהב</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58931</a></td>
+                <td>02-נגילה הללויה</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58932</a></td>
+                <td>03-השקיני יין</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58933</a></td>
+                <td>04-חביבי יא-בני</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58934</a></td>
+                <td>05-תודה לאמא</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58935</a></td>
+                <td>06-על משכבי בלילות</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58936</a></td>
+                <td>07-כתר של זהב</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58937</a></td>
+                <td>08-יומה יומה</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58938</a></td>
+                <td>09-אלי יה אלי</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58939</a></td>
+                <td>10-נורה נורה</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58940</a></td>
+                <td>11-לרקוד נולדה</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58941</a></td>
+                <td>12-חלומות</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58942</a></td>
+                <td>13-יא-רוחי</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58943</a></td>
+                <td>14-יהלומה</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58944</a></td>
+                <td>15-שירו שירו</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58945</a></td>
+                <td>16-יה רם</td>
+                <td>להיטים של זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58946</a></td>
+                <td>01-מצהלות</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58947</a></td>
+                <td>02-ירושלים יפת עיניים</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58948</a></td>
+                <td>03-אברהם אבינו</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58949</a></td>
+                <td>04-יתגדל</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58950</a></td>
+                <td>05-כלייא אל אללה</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58951</a></td>
+                <td>06-תן לנו אורה</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58952</a></td>
+                <td>07-חלומות בלבן</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58953</a></td>
+                <td>08-הללויה</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58954</a></td>
+                <td>09-דברים נסתרים</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58955</a></td>
+                <td>10-רפאני</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58956</a></td>
+                <td>11-בין ערביים</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58957</a></td>
+                <td>12-מחרוזת לברית מילה</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58958</a></td>
+                <td>13-ימסהרני</td>
+                <td>מצהלות</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58959</a></td>
+                <td>07 נגילה הללויה-ברית מילה</td>
+                <td>סינגלים</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58960</a></td>
+                <td>01-נורה נורה</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58961</a></td>
+                <td>02-שירו שירו</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58962</a></td>
+                <td>03-יה - רם</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58963</a></td>
+                <td>04-נדודים</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58964</a></td>
+                <td>05-פעמון זהב</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58965</a></td>
+                <td>06 נגילה הללויה</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58966</a></td>
+                <td>07-אליהו אחי</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58967</a></td>
+                <td>08-יומה יומה</td>
+                <td>פעמון זהב</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58968</a></td>
+                <td>01-תודה לאמא</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58969</a></td>
+                <td>02-עלמת החן</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58970</a></td>
+                <td>03-שמור אלי על חיילי</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58971</a></td>
+                <td>04-על משכבי בלילות</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58972</a></td>
+                <td>05-האוסקר</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58973</a></td>
+                <td>06-איזה לילה</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58974</a></td>
+                <td>07-אוהב אוהב</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58975</a></td>
+                <td>08-שר ומנגן</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+              <tr>
+                <td><a>58976</a></td>
+                <td>09-סלמאת</td>
+                <td>תודה לאמא</td>
+                <td>משה גיאת</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

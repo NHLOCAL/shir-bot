@@ -1,0 +1,623 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מיקי רוזנבאום</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמיקי רוזנבאום</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>46135</a></td>
+                <td>01-מזמור לדוד</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46136</a></td>
+                <td>02-שומרים הפקד</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46137</a></td>
+                <td>03-הבט</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46138</a></td>
+                <td>04-לכה דודי</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46139</a></td>
+                <td>05-טוב להודות</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46140</a></td>
+                <td>06-פיה פתחה</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46141</a></td>
+                <td>07-אשת חיל</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46142</a></td>
+                <td>08-שירו למלך</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46143</a></td>
+                <td>09-המלך נמרוד</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46144</a></td>
+                <td>10-יחד יחד</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46145</a></td>
+                <td>11-בשם השם</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46146</a></td>
+                <td>12-אני מאמין</td>
+                <td>בצוותא 1</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46147</a></td>
+                <td>01-כה אמר</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46148</a></td>
+                <td>02-טוב להודות</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46149</a></td>
+                <td>03-מהרה</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46150</a></td>
+                <td>04-אם אשכחך</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46151</a></td>
+                <td>05-אשת חיל</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46152</a></td>
+                <td>06-ניגון חב''ד</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46153</a></td>
+                <td>07-התנערי</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46154</a></td>
+                <td>08-רחם</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46155</a></td>
+                <td>09-ממקומך</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46156</a></td>
+                <td>10-בואי בשלום</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46157</a></td>
+                <td>11-תהא השעה הזאת</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46158</a></td>
+                <td>12-אם אשכחך</td>
+                <td>בצוותא 2</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46159</a></td>
+                <td>01-מארש גור</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46160</a></td>
+                <td>02-ניגון חיג'אז</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46161</a></td>
+                <td>03-מי בן שיח</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46162</a></td>
+                <td>04-ניגון קראקוב</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46163</a></td>
+                <td>05-ניגון לא תבושי גור</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46164</a></td>
+                <td>06-בואי בשלום</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46165</a></td>
+                <td>07-ניגון סאטמאר</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46166</a></td>
+                <td>08-ניגון אודסה</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46167</a></td>
+                <td>09-אדרבה</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46168</a></td>
+                <td>10-חתן כלה מזל טוב</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46169</a></td>
+                <td>11-המלאך הגואל</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46170</a></td>
+                <td>12-ניגונו של מוישל'ה</td>
+                <td>בצוותא 3</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46171</a></td>
+                <td>01-בלבבי</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46172</a></td>
+                <td>02-כשהנשמה מאירה</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46173</a></td>
+                <td>03-ניגון לשבת</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46174</a></td>
+                <td>04-אנעים זמירות</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46175</a></td>
+                <td>05-לכה דודי</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46176</a></td>
+                <td>06-יש אהבה</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46177</a></td>
+                <td>07-יהי שלום</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46178</a></td>
+                <td>08-מזמור לדוד</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46179</a></td>
+                <td>09-עץ חיים</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46180</a></td>
+                <td>10-שלא נבוש</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46181</a></td>
+                <td>11-ציון תמתי</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46182</a></td>
+                <td>12-שורשים</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46183</a></td>
+                <td>13-רבות בנות</td>
+                <td>בצוותא 4</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46184</a></td>
+                <td>01-זה היום</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46185</a></td>
+                <td>02-מהרה</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46186</a></td>
+                <td>03-במרום</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46187</a></td>
+                <td>04-בתורתו</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46188</a></td>
+                <td>05-אני מאמין</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46189</a></td>
+                <td>06-למען אחי ורעי</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46190</a></td>
+                <td>07-הגלה נא</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46191</a></td>
+                <td>08-צבי תפארתו</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46192</a></td>
+                <td>09-שירה חדשה</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46193</a></td>
+                <td>10-סיום</td>
+                <td>זה היום</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46194</a></td>
+                <td>01-הכי טוב להיות בשמחה תמיד</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46195</a></td>
+                <td>02-טוב להודות</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46196</a></td>
+                <td>03-מחרוזת סימן טוב</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46197</a></td>
+                <td>04-שירו למלך</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46198</a></td>
+                <td>05-שיר למעלות</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46199</a></td>
+                <td>06-אשר ברא</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46200</a></td>
+                <td>07-מחרוזת יחד-כולנו ביחד</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46201</a></td>
+                <td>08-אני מאמין</td>
+                <td>כרטיס ביקור</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46202</a></td>
+                <td>01-הודו לה</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46203</a></td>
+                <td>02-מה טובו</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46204</a></td>
+                <td>03-אחותנו</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46205</a></td>
+                <td>04-אל אשר תלכי</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46206</a></td>
+                <td>05-אנעים זמירות</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46207</a></td>
+                <td>06-בואי בשלום</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46208</a></td>
+                <td>07-למען אחי</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46209</a></td>
+                <td>08-מלאכי עליון</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>46210</a></td>
+                <td>09-פסיפס</td>
+                <td>פסיפס</td>
+                <td>מיקי רוזנבאום</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

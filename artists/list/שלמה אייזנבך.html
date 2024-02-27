@@ -1,0 +1,539 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שלמה אייזנבך</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשלמה אייזנבך</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>36602</a></td>
+                <td>01-יהי רצון מלפני אבינו שבשמים</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36603</a></td>
+                <td>02-ובמקהלות</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36604</a></td>
+                <td>03-רבוש''ע-ספירת העומר</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36605</a></td>
+                <td>04-כי הוא לבדו</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36606</a></td>
+                <td>05-רצה והחליצנו</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36607</a></td>
+                <td>06-ובצל כנפיך</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36608</a></td>
+                <td>07-מי כד' אלקינו</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36609</a></td>
+                <td>08-צור ישראל</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36610</a></td>
+                <td>09-ישתבח שמך</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36611</a></td>
+                <td>10-רבי ישמעאל אומר</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36612</a></td>
+                <td>11-קידוש ליל שבת</td>
+                <td>להודות ולהלל</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36613</a></td>
+                <td>01-שומע כל בכיות</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36614</a></td>
+                <td>02-אמר רבי אלעזר 1</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36615</a></td>
+                <td>03-רבש''ע-הוצאת ס''ת ליו''ט</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36616</a></td>
+                <td>04-את צמח דוד</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36617</a></td>
+                <td>05-אבינו מלכנו זכור רחמיך</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36618</a></td>
+                <td>06-אתה יודע רזי עולם</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36619</a></td>
+                <td>07-אני מאמין</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36620</a></td>
+                <td>08-אמר רבי אלעזר 2</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36621</a></td>
+                <td>09-יוונים</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36622</a></td>
+                <td>10-קול ה</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36623</a></td>
+                <td>11-עזרת אבותינו</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36624</a></td>
+                <td>12-לא תחמוד</td>
+                <td>רזי עולם</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36625</a></td>
+                <td>01-אחינו</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36626</a></td>
+                <td>02-אמר ר' אלעזר</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36627</a></td>
+                <td>03-ובנוחה יאמר</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36628</a></td>
+                <td>04-מה טובו אוהליך יעקב</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36629</a></td>
+                <td>05-שאו שערים</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36630</a></td>
+                <td>06-בעבור דוד עבדיך</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36631</a></td>
+                <td>07-רזא דשבת</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36632</a></td>
+                <td>08-זרעא חי' וקימא</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36633</a></td>
+                <td>09-וביום שמחתכם</td>
+                <td>שר את יוסל'ה רוזנבלט</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36634</a></td>
+                <td>01-אתה יצרת</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36635</a></td>
+                <td>02-ממקומך מלכנו</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36636</a></td>
+                <td>03-ולירושלים עירך</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36637</a></td>
+                <td>04-אהבתי כי ישמע</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36638</a></td>
+                <td>05-מה לך ים</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36639</a></td>
+                <td>06-בעבור דוד עבדך</td>
+                <td>תפילות שלמה 1</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36640</a></td>
+                <td>01-אב הרחמים</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36641</a></td>
+                <td>02-זכור י''ב שבטים</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36642</a></td>
+                <td>03-ד' מלך</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36643</a></td>
+                <td>04-תנא דבי ר' ישמעאל</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36644</a></td>
+                <td>05-מתרצה ברחמים</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36645</a></td>
+                <td>06-שמע ישראל</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36646</a></td>
+                <td>07-יעלה ויבוא</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36647</a></td>
+                <td>08-כי א-ל שומרנו</td>
+                <td>תפילות שלמה 2</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36648</a></td>
+                <td>01-לדוד מזמור</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36649</a></td>
+                <td>02-וקיים לנו</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36650</a></td>
+                <td>03-עזרא הסופר</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36651</a></td>
+                <td>04-אמר ר' אלעזר</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36652</a></td>
+                <td>05-בריך שמיה</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36653</a></td>
+                <td>06-ומפני חטאנו</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36654</a></td>
+                <td>07-אחינו</td>
+                <td>תפילות שלמה 3</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36655</a></td>
+                <td>01-הקדמה לאשרי עם המקהלה</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36656</a></td>
+                <td>02-אשרי</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36657</a></td>
+                <td>03-צדיק ד' בכל דרכיו</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36658</a></td>
+                <td>04-קדיש 1</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36659</a></td>
+                <td>05-קדיש 2</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36660</a></td>
+                <td>06-אתה ריצצת ראשי לויתן</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36661</a></td>
+                <td>07-איך נפתח פה לפניך</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36662</a></td>
+                <td>08-רצועה 8</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36663</a></td>
+                <td>09-רצועה 9</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36664</a></td>
+                <td>10-רצועה 10</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+              <tr>
+                <td><a>36665</a></td>
+                <td>11-רצה עתירתם</td>
+                <td>תפילות שלמה 4</td>
+                <td>שלמה אייזנבך</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

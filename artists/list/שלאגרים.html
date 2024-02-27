@@ -1,0 +1,350 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שלאגרים</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשלאגרים</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>64140</a></td>
+                <td>01 בירושלים</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64141</a></td>
+                <td>02 ימים</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64142</a></td>
+                <td>03 קראקוב ניגון </td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64143</a></td>
+                <td>04 רגש ניגון </td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64144</a></td>
+                <td>05 שאו שערים</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64145</a></td>
+                <td>06 שמחנו</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64146</a></td>
+                <td>07 דוד מלך</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64147</a></td>
+                <td>08 שישו ושמחו</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64148</a></td>
+                <td>09 ברוך הבא</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64149</a></td>
+                <td>10 אחכה לו</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64150</a></td>
+                <td>11 שמח</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64151</a></td>
+                <td>12 הוא כלל</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64152</a></td>
+                <td>13 אדם דואג</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64153</a></td>
+                <td>14 לא ישא גוי</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64154</a></td>
+                <td>15 עומדות</td>
+                <td>שלאגרים 1</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64155</a></td>
+                <td>01 ובא לציון</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64156</a></td>
+                <td>02 ירושלים</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64157</a></td>
+                <td>03 כיצד מרקדין</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64158</a></td>
+                <td>04 משה ואהרון</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64159</a></td>
+                <td>05 שאו שערים</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64160</a></td>
+                <td>06 תמיד בשמחה</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64161</a></td>
+                <td>07 ירושלים אורו של עולם</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64162</a></td>
+                <td>08 מודים</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64163</a></td>
+                <td>09 כל מי</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64164</a></td>
+                <td>10 משיח</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64165</a></td>
+                <td>11 בגלל אבות</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64166</a></td>
+                <td>12 וידעו</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64167</a></td>
+                <td>13 כשם שאני</td>
+                <td>שלאגרים 2</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64168</a></td>
+                <td>shellagrem1.wav02!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64169</a></td>
+                <td>shellagrem1.wav03!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64170</a></td>
+                <td>shellagrem1.wav04!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64171</a></td>
+                <td>shellagrem1.wav05!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64172</a></td>
+                <td>shellagrem1.wav06!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64173</a></td>
+                <td>shellagrem1.wav07!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64174</a></td>
+                <td>shellagrem1.wav08!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64175</a></td>
+                <td>shellagrem1.wav09!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+              <tr>
+                <td><a>64176</a></td>
+                <td>shellagrem1.wav10!s</td>
+                <td>שלאגרים 3</td>
+                <td>שלאגרים</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

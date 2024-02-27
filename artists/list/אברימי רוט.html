@@ -1,0 +1,966 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אברימי רוט</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאברימי רוט</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>1225</a></td>
+                <td>אברימי רוט - זהר השבת</td>
+                <td>אברימי רוט</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1226</a></td>
+                <td>קה ריבון</td>
+                <td>אברימי רוט</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1227</a></td>
+                <td>01 אמת ויציב</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1228</a></td>
+                <td>02 אדיר במרומים</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1229</a></td>
+                <td>02 רצועה 2</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1230</a></td>
+                <td>03 ועל הכל</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1231</a></td>
+                <td>03 רצועה 3</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1232</a></td>
+                <td>04 כי חנונך</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1233</a></td>
+                <td>04 רצועה 4</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1234</a></td>
+                <td>05 השם אלוקים</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1235</a></td>
+                <td>05 רצועה 5</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1236</a></td>
+                <td>06 משה ואהרן</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1237</a></td>
+                <td>06 רצועה 6</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1238</a></td>
+                <td>07 זכור</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1239</a></td>
+                <td>07 רצועה 7</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1240</a></td>
+                <td>08 רצועה 8</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1241</a></td>
+                <td>08 תתקבל</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1242</a></td>
+                <td>09 יצווה</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1243</a></td>
+                <td>10 מי אדיר</td>
+                <td>אמת ויציב</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1244</a></td>
+                <td>01-אתה נגלית</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1245</a></td>
+                <td>02-האזינה</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1246</a></td>
+                <td>03-ממקומך</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1247</a></td>
+                <td>04-אלקי נשמה</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1248</a></td>
+                <td>05-מאמעלע</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1249</a></td>
+                <td>06-בצאת ישראל</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1250</a></td>
+                <td>07-השיר שהלווים</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1251</a></td>
+                <td>08-מנוחה ושמחה</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1252</a></td>
+                <td>09-אלקי עד שלא נוצרתי</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1253</a></td>
+                <td>10-המבדיל</td>
+                <td>אתה נגלית</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1254</a></td>
+                <td>01 ישמח משה</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1255</a></td>
+                <td>02 אחת שאלתי</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1256</a></td>
+                <td>03 בואו שעריו בתודה</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1257</a></td>
+                <td>04 הבן יקיר לי אפרים</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1258</a></td>
+                <td>05 כבד את אביך ואת אמך</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1259</a></td>
+                <td>06 קיוויתי ה' קיוותה נפשי</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1260</a></td>
+                <td>07 עוד ישמע בהרי יהודה</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1261</a></td>
+                <td>08 מודה אני</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1262</a></td>
+                <td>09 אשר ברא ששון ושמחה</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1263</a></td>
+                <td>10 קומי רוני בלילה</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1264</a></td>
+                <td>11 ברכי נפשי</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1265</a></td>
+                <td>12 שלח לחמך על פני המים</td>
+                <td>התלהבות</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1266</a></td>
+                <td>01-והכן</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1267</a></td>
+                <td>02-לכו בנים</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1268</a></td>
+                <td>03-שועת</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1269</a></td>
+                <td>04-אנא מלך</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1270</a></td>
+                <td>05-צמאה</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1271</a></td>
+                <td>06-אלוקי</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1272</a></td>
+                <td>07-והביאותים</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1273</a></td>
+                <td>08-מלאכי השרת</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1274</a></td>
+                <td>09-פנה לעלבון</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1275</a></td>
+                <td>10-רחם בחסדך</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1276</a></td>
+                <td>11-מחרוזת שמחה</td>
+                <td>1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1277</a></td>
+                <td>01-מחרוזת מי האיש</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1278</a></td>
+                <td>02-קנא לשימך</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1279</a></td>
+                <td>03-למרנן ורבנן</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1280</a></td>
+                <td>04-על כל זמן</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1281</a></td>
+                <td>5 שומר ישראל</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1282</a></td>
+                <td>6 אוחילה לקל</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1283</a></td>
+                <td>7 מחרוזת ניגוני ריקוד</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1284</a></td>
+                <td>8 צמאה לך נפשי</td>
+                <td>2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1285</a></td>
+                <td>01 בואי בשלום</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1286</a></td>
+                <td>01 רצועה 1</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1287</a></td>
+                <td>02 אלוקי נשמה</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1288</a></td>
+                <td>02 רצועה 2</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1289</a></td>
+                <td>03 ירוון מדשן</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1290</a></td>
+                <td>03 רצועה 3</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1291</a></td>
+                <td>04 כי שמחתי</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1292</a></td>
+                <td>04 רצועה 4</td>
+                <td>זמירוט יאמרו</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1293</a></td>
+                <td>01-מה נאמר</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1294</a></td>
+                <td>02-מלאכי השרת</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1295</a></td>
+                <td>03-אם אשכחך</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1296</a></td>
+                <td>04-לכה דודי</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1297</a></td>
+                <td>05-לכו בנים</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1298</a></td>
+                <td>06-כמים</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1299</a></td>
+                <td>07-לשמוע</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1300</a></td>
+                <td>08-ד' שמעה</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1301</a></td>
+                <td>09-על הכול</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1302</a></td>
+                <td>10-דודי</td>
+                <td>מלאכי השרת</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1303</a></td>
+                <td>Track 01</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1304</a></td>
+                <td>Track 02</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1305</a></td>
+                <td>Track 03</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1306</a></td>
+                <td>Track 04</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1307</a></td>
+                <td>Track 05</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1308</a></td>
+                <td>Track 06</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1309</a></td>
+                <td>Track 07</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1310</a></td>
+                <td>Track 08</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1311</a></td>
+                <td>Track 09</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1312</a></td>
+                <td>Track 10</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1313</a></td>
+                <td>Track 11</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1314</a></td>
+                <td>Track 12</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1315</a></td>
+                <td>Track 13</td>
+                <td>נעימות אברימי 1</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1316</a></td>
+                <td>Track 01</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1317</a></td>
+                <td>Track 02</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1318</a></td>
+                <td>Track 03</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1319</a></td>
+                <td>Track 05</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1320</a></td>
+                <td>Track 06</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1321</a></td>
+                <td>Track 07</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1322</a></td>
+                <td>Track 08</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1323</a></td>
+                <td>Track 09</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1324</a></td>
+                <td>Track 10</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1325</a></td>
+                <td>Track 11</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1326</a></td>
+                <td>Track 12</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1327</a></td>
+                <td>Track 13</td>
+                <td>נעימות אברימי 2</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1328</a></td>
+                <td>01 לכו נרננה</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1329</a></td>
+                <td>02 ארבעים שנה</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1330</a></td>
+                <td>03 שירו להשם</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1331</a></td>
+                <td>04 שמעה ותשמח</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1332</a></td>
+                <td>05 זמרו להשם</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1333</a></td>
+                <td>06 משה ואהרון</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1334</a></td>
+                <td>07 לכה דודי</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1335</a></td>
+                <td>08 לא תבושי</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1336</a></td>
+                <td>09 צדיק כתמר</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1337</a></td>
+                <td>10 מקולות מים</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1338</a></td>
+                <td>11 ואנפהא</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1339</a></td>
+                <td>13 מעביר יום</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1340</a></td>
+                <td>14 כי הם חיינו</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1341</a></td>
+                <td>15 ה' אלוקיכם אמת</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1342</a></td>
+                <td>17 מלכותך ראו בניך</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1343</a></td>
+                <td>18 ונאמר</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1344</a></td>
+                <td>19 כי אל שומרינו</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1345</a></td>
+                <td>20 ושמרו</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1346</a></td>
+                <td>21 ויכולו השמים</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1347</a></td>
+                <td>22 מגן אבות</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1348</a></td>
+                <td>23 מזמור לדוד</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+              <tr>
+                <td><a>1349</a></td>
+                <td>24 אדון עולם</td>
+                <td>קבלת שבת נוסח גרין</td>
+                <td>אברימי רוט</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

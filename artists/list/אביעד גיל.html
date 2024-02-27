@@ -1,0 +1,679 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אביעד גיל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאביעד גיל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>56392</a></td>
+                <td>01-יש אנשים</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56393</a></td>
+                <td>02-אלי שבשמיים</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56394</a></td>
+                <td>03-אחות קטנה</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56395</a></td>
+                <td>04-חגיגה 2</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56396</a></td>
+                <td>05-חלום</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56397</a></td>
+                <td>06-אם אלך</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56398</a></td>
+                <td>07-אלוקינו</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56399</a></td>
+                <td>08-היכן הילד שלי</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56400</a></td>
+                <td>09-עוד ישמע</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56401</a></td>
+                <td>10-אל תשליכני</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56402</a></td>
+                <td>11-בונס מגה מיקס</td>
+                <td>אחות קטנה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56403</a></td>
+                <td>01-בלבלו אותו</td>
+                <td>בלבלו אותו</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56404</a></td>
+                <td>02-השבת היא מתנה</td>
+                <td>בלבלו אותו</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56405</a></td>
+                <td>03-כסף</td>
+                <td>בלבלו אותו</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56406</a></td>
+                <td>04-עזר עזר</td>
+                <td>בלבלו אותו</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56407</a></td>
+                <td>05-תפוס</td>
+                <td>בלבלו אותו</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56408</a></td>
+                <td>01-עזר עזר</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56409</a></td>
+                <td>02-אל תתבלבל</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56410</a></td>
+                <td>03-דרכינו</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56411</a></td>
+                <td>04-שבת</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56412</a></td>
+                <td>05-בחזרה לקזבלנקה</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56413</a></td>
+                <td>06-טוב טוב</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56414</a></td>
+                <td>07-להיות אדם</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56415</a></td>
+                <td>08-כי לא ינום</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56416</a></td>
+                <td>09-כל הוני</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56417</a></td>
+                <td>10-מודה אני</td>
+                <td>בלהיטי זהב</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56418</a></td>
+                <td>01-מחלון ביתי</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56419</a></td>
+                <td>03-שערי שמיים</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56420</a></td>
+                <td>04-אמא</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56421</a></td>
+                <td>05-ירושלים</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56422</a></td>
+                <td>06-כסף כסף</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56423</a></td>
+                <td>07-בא אחי</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56424</a></td>
+                <td>08-יום עובר</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56425</a></td>
+                <td>09-היכן הילד</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56426</a></td>
+                <td>10-תפילתי</td>
+                <td>כל הוני</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56427</a></td>
+                <td>01-ישתבך שמך</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56428</a></td>
+                <td>02-ואיך זה</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56429</a></td>
+                <td>03-לא לבד</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56430</a></td>
+                <td>04-הללי נפשי</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56431</a></td>
+                <td>05-אני חי</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56432</a></td>
+                <td>06-מחלון ביתי</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56433</a></td>
+                <td>07-חנני</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56434</a></td>
+                <td>08-זמן לשמח</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56435</a></td>
+                <td>09-אמא</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56436</a></td>
+                <td>10-רק לך</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56437</a></td>
+                <td>11-בונוס מגה מיקס</td>
+                <td>לא לבד</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56438</a></td>
+                <td>אל תירא ישראל-01</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56439</a></td>
+                <td>אמא 02</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56440</a></td>
+                <td>בעירי-03</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56441</a></td>
+                <td>דודי ירד לו מכרמו-04</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56442</a></td>
+                <td>ילדי תימן-05</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56443</a></td>
+                <td>כינור דוד-06</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56444</a></td>
+                <td>נילה נעלה-07</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56445</a></td>
+                <td>נישא תפילה-08</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56446</a></td>
+                <td>פעמון זהב-09</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56447</a></td>
+                <td>שמע אלוקי לך המזל-10</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56448</a></td>
+                <td>שפוט השופטים-11</td>
+                <td>נישא תפילה</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56449</a></td>
+                <td>01-אודה לך</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56450</a></td>
+                <td>02-יחד יחד</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56451</a></td>
+                <td>03-נשמת כל חי</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56452</a></td>
+                <td>04-חגיגה בשטח-ראפ תימני</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56453</a></td>
+                <td>05-ילד קטן</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56454</a></td>
+                <td>06-שיר לחתן</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56455</a></td>
+                <td>07-שורשים</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56456</a></td>
+                <td>08-האמונה</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56457</a></td>
+                <td>09-בא מעפר</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56458</a></td>
+                <td>10-מודה אני</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56459</a></td>
+                <td>11-היום הזה</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56460</a></td>
+                <td>12-מתגעגע</td>
+                <td>נשמת כל חי</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56461</a></td>
+                <td>08-היכן הילד שלי</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56462</a></td>
+                <td>אחות קטנה</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56463</a></td>
+                <td>אל תשלכני</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56464</a></td>
+                <td>אלוקים מה נותר רק לבקש</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56465</a></td>
+                <td>אלוקינו שמע קולינו</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56466</a></td>
+                <td>אלי שבשמים בתערובת באתי מתימן</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56467</a></td>
+                <td>אלי שבשמים רחב</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56468</a></td>
+                <td>באתי מתימן</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56469</a></td>
+                <td>האמונה שומרת</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56470</a></td>
+                <td>חגיגה בשטח</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56471</a></td>
+                <td>מחרוזת שירים אביעד גיל</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56472</a></td>
+                <td>נשמת כל חי</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56473</a></td>
+                <td>עוד בטרם למד</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56474</a></td>
+                <td>קח אחי הכל באמונה</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+              <tr>
+                <td><a>56475</a></td>
+                <td>רימיקס</td>
+                <td>סינגלים</td>
+                <td>אביעד גיל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

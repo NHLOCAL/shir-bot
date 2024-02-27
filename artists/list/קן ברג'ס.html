@@ -1,0 +1,455 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>קן ברג'ס</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspקן ברג'ס</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>47589</a></td>
+                <td>01 - Rebuild His Kingdom</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47590</a></td>
+                <td>02 - Hodu</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47591</a></td>
+                <td>03 - Israel</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47592</a></td>
+                <td>04 - Bye Bye</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47593</a></td>
+                <td>05 - Yehi Rotzon</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47594</a></td>
+                <td>06 - Heading For The Good Time</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47595</a></td>
+                <td>07 - No Need To Run</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47596</a></td>
+                <td>08 - The Hand Of God</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47597</a></td>
+                <td>09 - When Eden's River Flows</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47598</a></td>
+                <td>10 - Sholom Rov</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47599</a></td>
+                <td>11 - When the Morning Angel Sings</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47600</a></td>
+                <td>12 - Heavens Windows Have Eyes</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47601</a></td>
+                <td>13 - Ya'ale</td>
+                <td>בנה מלכותו</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47602</a></td>
+                <td>01 - I'll Never Walk Alone In The Desert</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47603</a></td>
+                <td>02 - Heart And Soul</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47604</a></td>
+                <td>03 - Fire</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47605</a></td>
+                <td>04 - Adon Olom</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47606</a></td>
+                <td>05 - The Cloud Of Glory</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47607</a></td>
+                <td>06 - There's A Way</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47608</a></td>
+                <td>07 - The Prince Of Peace</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47609</a></td>
+                <td>08 - Good, Right And Reason</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47610</a></td>
+                <td>09 - The Hero</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47611</a></td>
+                <td>10 - Tehilim</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47612</a></td>
+                <td>11 - Ana Bekoach</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47613</a></td>
+                <td>12 - The King Of The Universe</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47614</a></td>
+                <td>13 - Instrumentals-Mashiach</td>
+                <td>לא לבד במדבר</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47615</a></td>
+                <td>01-מלך העולם</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47616</a></td>
+                <td>02-תפילה לשלום</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47617</a></td>
+                <td>03- מ. ב. ד. הגשר הקדוש</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47618</a></td>
+                <td>04-שיהיה</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47619</a></td>
+                <td>05-מבורך</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47620</a></td>
+                <td>06-אןור חדש</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47621</a></td>
+                <td>07-מאמין</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47622</a></td>
+                <td>08-הדרך היחיד</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47623</a></td>
+                <td>09-D</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47624</a></td>
+                <td>10-ונזכה</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47625</a></td>
+                <td>11-אתה היצלת אותי</td>
+                <td>מלך</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47626</a></td>
+                <td>04 Track 4</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47627</a></td>
+                <td>06 Track 6</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47628</a></td>
+                <td>07 Track 7</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47629</a></td>
+                <td>08 Track 8</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47630</a></td>
+                <td>09 Track 9</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47631</a></td>
+                <td>10 Track 10</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47632</a></td>
+                <td>11 Track 11</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47633</a></td>
+                <td>12 Track 12</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47634</a></td>
+                <td>13 Track 13</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47635</a></td>
+                <td>14 Track 14</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47636</a></td>
+                <td>15 Track 15</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47637</a></td>
+                <td>16 Track 16</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47638</a></td>
+                <td>17 Track 17</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47639</a></td>
+                <td>bridg of holynes</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+              <tr>
+                <td><a>47640</a></td>
+                <td>devoted</td>
+                <td>קן בורג'ס</td>
+                <td>קן ברג'ס</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

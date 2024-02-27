@@ -1,0 +1,343 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>חיים גרין</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspחיים גרין</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>49790</a></td>
+                <td>01 פתיחה - ישיש</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49791</a></td>
+                <td>02 לדור ודור</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49792</a></td>
+                <td>03 בחר בנו</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49793</a></td>
+                <td>04 ניגון שמחה</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49794</a></td>
+                <td>05 מלא ידינו</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49795</a></td>
+                <td>06 להודות</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49796</a></td>
+                <td>07 ניגון סאטמר</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49797</a></td>
+                <td>08 ברוך השם</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49798</a></td>
+                <td>09 וכל מאמינים</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49799</a></td>
+                <td>10 מה נורא</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49800</a></td>
+                <td>11 שוכן עד</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49801</a></td>
+                <td>12 בואי כלה</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49802</a></td>
+                <td>13 ואני קירבת</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49803</a></td>
+                <td>14 ניגון קרליבך</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49804</a></td>
+                <td>15 לחיים</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49805</a></td>
+                <td>16 כבודו</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49806</a></td>
+                <td>17 בספר חיים</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49807</a></td>
+                <td>18 אתה קל</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49808</a></td>
+                <td>19 כל מי</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49809</a></td>
+                <td>20 על הניסים</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49810</a></td>
+                <td>21 באכע</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49811</a></td>
+                <td>22 כי להשם</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49812</a></td>
+                <td>23 לפניו</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49813</a></td>
+                <td>24 אני מה</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49814</a></td>
+                <td>25 אני מאמין</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49815</a></td>
+                <td>27 דידן נצח</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49816</a></td>
+                <td>28 כל הנשמה</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49817</a></td>
+                <td>29 אחכה לו</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49818</a></td>
+                <td>30 תנועל'ה</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49819</a></td>
+                <td>31 שלא עשני גוי</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49820</a></td>
+                <td>32 שלא שלא</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49821</a></td>
+                <td>33 מיין חלום</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49822</a></td>
+                <td>34 יבנה המקדש</td>
+                <td>לחיים גרין</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49823</a></td>
+                <td>יושב בצילו של הקב''ה</td>
+                <td>סינגלים</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49824</a></td>
+                <td>לחרותנו</td>
+                <td>סינגלים</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+              <tr>
+                <td><a>49825</a></td>
+                <td>מהרה</td>
+                <td>סינגלים</td>
+                <td>חיים גרין</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

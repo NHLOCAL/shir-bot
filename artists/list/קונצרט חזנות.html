@@ -1,0 +1,532 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>קונצרט חזנות</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspקונצרט חזנות</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>36466</a></td>
+                <td>01-שהחיינו-ברוין</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36467</a></td>
+                <td>02-שלום עליכם-רוגז'ינסקי</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36468</a></td>
+                <td>03-אב הרחמים-מולר</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36469</a></td>
+                <td>04-מזמור שיר-שטרן</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36470</a></td>
+                <td>05-אמר ר' אלעזר-ברוין</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36471</a></td>
+                <td>06-שים שלום-רוגז'ינסקי</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36472</a></td>
+                <td>07-א ידישע מאמע-מולר</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36473</a></td>
+                <td>08-ובכן-שטרן</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36474</a></td>
+                <td>09-תניא-רוגז'ינסקי</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36475</a></td>
+                <td>10-רחם נא-מולר</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36476</a></td>
+                <td>11-פארוואס זינגט א חזן-שטרן</td>
+                <td>חגיגה של מוזיקה יהודית</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36477</a></td>
+                <td>01-תביאנו-י. רנד</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36478</a></td>
+                <td>02-אב הרחמים-י.מ. הלפגוט</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36479</a></td>
+                <td>03-רחם נא-ח.א. הרשטיק</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36480</a></td>
+                <td>04-עזרת אבותינו-י. רנד</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36481</a></td>
+                <td>05-ד' זכרנו-ח.א. הרשטיק</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36482</a></td>
+                <td>06-טל-א. וי. היינוביץ</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36483</a></td>
+                <td>07-הנני-ח.א. הרשטיק</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36484</a></td>
+                <td>08-רבש''ע ספירת העומר-י.מ. הלפגוט</td>
+                <td>מקהלת שירת ישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36485</a></td>
+                <td>01-זבולון קוורטין-ולירושלים עירך</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36486</a></td>
+                <td>02-נפתלי הרשטיק-מרן די בשמיא</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36487</a></td>
+                <td>03-חים אדלר-וביום שמחתכם</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36488</a></td>
+                <td>04-יעקב מוצן-ועל ידי עבדך</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36489</a></td>
+                <td>05-חיים אליעזר הרשטיק-טיהר רבי ישמעאל עצמו</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36490</a></td>
+                <td>06-נפתלי הרשטיק-תקע בשופר גדול</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36491</a></td>
+                <td>07-חיים אדלר-ריבונו של עולם</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36492</a></td>
+                <td>08-יעקב מוצן-ומפני חטאינו</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36493</a></td>
+                <td>09-נפתלי הרשטיק-מלוך על כל העולם</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36494</a></td>
+                <td>10-יעקב מוצן-אחינו כל בית ישראל</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36495</a></td>
+                <td>11-חיים אדלר-ריבון העולמים</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36496</a></td>
+                <td>12-אשר ברנשטיין-אבינו מלכינו</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36497</a></td>
+                <td>13 - כל החזנים - שיר המעלות</td>
+                <td>פעם בשבעים שנה</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36498</a></td>
+                <td>01-ר' ישמעאל אומר</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36499</a></td>
+                <td>02-עד הנה</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36500</a></td>
+                <td>03-מגן אבות-דואט</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36501</a></td>
+                <td>04-אבינו מלכנו</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36502</a></td>
+                <td>05-יהי רצון</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36503</a></td>
+                <td>06-הטה</td>
+                <td>קונצרט סול-פוד</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36504</a></td>
+                <td>01-שהחיינו</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36505</a></td>
+                <td>02-ספירת העומר</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36506</a></td>
+                <td>03-הללויה</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36507</a></td>
+                <td>04-יבנה המקדש</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36508</a></td>
+                <td>05-יראו עינינו</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36509</a></td>
+                <td>06-אמר ר' אלעזר</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36510</a></td>
+                <td>07-שירו של אבא</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36511</a></td>
+                <td>08-מחרוזת ירושלים</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36512</a></td>
+                <td>09-יוסל יוסל</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36513</a></td>
+                <td>10-ממקומך</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36514</a></td>
+                <td>11-מקהלת היהודים בשבי</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36515</a></td>
+                <td>12-אבינו שבשמים</td>
+                <td>קונצרט תרועה לישראל</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36516</a></td>
+                <td>01-אויפן פריפעטשיק</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36517</a></td>
+                <td>02-א יידישע מאמע-א. היינוביץ</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36518</a></td>
+                <td>03-א דודעלע-ח. אדלר</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36519</a></td>
+                <td>04-ראזשינקעס מיט מאנדלען-נ. הרשטיק</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36520</a></td>
+                <td>05-יאנקעלע-א. היינוביץ</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36521</a></td>
+                <td>06-דער אלטער חזן-נ. הרשטיק</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36522</a></td>
+                <td>07-חזנים אויף פראבע</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36523</a></td>
+                <td>08-דאס יידישע ליד-ח. אדלר</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36524</a></td>
+                <td>09-משה'לע מיין פריינד-א. היינוביץ</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36525</a></td>
+                <td>10-א חזנדל אויף שבת-ח. אדלר</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36526</a></td>
+                <td>11-מאנטל-א. היינוביץ</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36527</a></td>
+                <td>12-פון קאסעוו ביז קיטעוו-נ. הרשטיק</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+              <tr>
+                <td><a>36528</a></td>
+                <td>13-זאל שוין קומען די גאולה</td>
+                <td>שלשה חזנים בשירי אידיש</td>
+                <td>קונצרט חזנות</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,1057 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>סאטמאר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspסאטמאר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>42948</a></td>
+                <td>2-15 מיוחס לבעל הקרן לדוד מסאטמאר</td>
+                <td>סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42949</a></td>
+                <td>41 - סאטמאר - מעין עולם הבא</td>
+                <td>סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42950</a></td>
+                <td>01-שלום עליכם</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42951</a></td>
+                <td>02-אשת חיל</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42952</a></td>
+                <td>03-אזמר בשבחין-סיגוט</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42953</a></td>
+                <td>04-אזמר בשבחין-סאטמאר</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42954</a></td>
+                <td>05-כל מקדש</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42955</a></td>
+                <td>06-מנוחה ושמחה</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42956</a></td>
+                <td>07-ניגון עתיק מסאטמאר</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42957</a></td>
+                <td>08-ניגון ריקוד</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42958</a></td>
+                <td>09-ניגון אודה</td>
+                <td>א שבת אין סאטמאר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42959</a></td>
+                <td>01-המקום</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42960</a></td>
+                <td>02-ברוך</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42961</a></td>
+                <td>03-וכל מאמינים</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42962</a></td>
+                <td>04-זאת התורה</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42963</a></td>
+                <td>05-חמול</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42964</a></td>
+                <td>06-מזמור שיר חנוכת</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42965</a></td>
+                <td>07-מכלכל חיים</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42966</a></td>
+                <td>08-מלך עליון</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42967</a></td>
+                <td>09-עושה שלום</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42968</a></td>
+                <td>10-ניגון הקפה</td>
+                <td>אין קצבה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42969</a></td>
+                <td>01-חסדי ה</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42970</a></td>
+                <td>02-אודה</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42971</a></td>
+                <td>03-וטהר לבם</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42972</a></td>
+                <td>04-השבת</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42973</a></td>
+                <td>05-רצה</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42974</a></td>
+                <td>06-יהללו</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42975</a></td>
+                <td>07-שובה ה</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42976</a></td>
+                <td>08-בורא עולם</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42977</a></td>
+                <td>09-רחם</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42978</a></td>
+                <td>10-ניגון שמחה</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42979</a></td>
+                <td>11-הושיענו</td>
+                <td>בקהל קדושים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42980</a></td>
+                <td>01-ד' אלקי</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42981</a></td>
+                <td>02-אם תשיב</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42982</a></td>
+                <td>03-הטוב</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42983</a></td>
+                <td>04-מדי דברי</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42984</a></td>
+                <td>05-ונזכה</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42985</a></td>
+                <td>06-ניגון שמחה</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42986</a></td>
+                <td>07-ניגון ריקוד</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42987</a></td>
+                <td>08-אבינו מלכנו</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42988</a></td>
+                <td>09-תתקבל</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42989</a></td>
+                <td>10-חזק ימלא</td>
+                <td>ונזכה</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42990</a></td>
+                <td>01-בורא עולם</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42991</a></td>
+                <td>02-נפשי לה</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42992</a></td>
+                <td>03-ותמלוך עלינו</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42993</a></td>
+                <td>04-לפיכך</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42994</a></td>
+                <td>05-ברוך הוא אלוקינו</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42995</a></td>
+                <td>06-להתודע</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42996</a></td>
+                <td>07-ושיויתי</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42997</a></td>
+                <td>08-ואתה אלוקינו</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42998</a></td>
+                <td>09-צדקתך</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>42999</a></td>
+                <td>10-מזל טוב</td>
+                <td>ותמלוך עלינו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43000</a></td>
+                <td>01-על זאת,ברוך הוא</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43001</a></td>
+                <td>02-אנא מלך</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43002</a></td>
+                <td>03- בורא עולם,כי טוב</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43003</a></td>
+                <td>04-בך ה', ריקוד התלהבות</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43004</a></td>
+                <td>05-יברך את בית ישראל</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43005</a></td>
+                <td>06-שמחנו ד', סימן טוב</td>
+                <td>יברך את בית אהרן</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43006</a></td>
+                <td>01-ברוך הוא א</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43007</a></td>
+                <td>02-הנה מה טוב</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43008</a></td>
+                <td>03-אודה ה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43009</a></td>
+                <td>04-ועל הכל</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43010</a></td>
+                <td>05-יקום פורקן</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43011</a></td>
+                <td>06-ברוך הוא ב</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43012</a></td>
+                <td>07-ובכן צדיקים</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43013</a></td>
+                <td>08-ותערב</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43014</a></td>
+                <td>09-אשר ברא</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43015</a></td>
+                <td>10-כי טוב</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43016</a></td>
+                <td>11-ניגון שמחה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43017</a></td>
+                <td>12-לפיכך</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43018</a></td>
+                <td>13-וכל עמך</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43019</a></td>
+                <td>14-חסדי ה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43020</a></td>
+                <td>15-ניגון שמחה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43021</a></td>
+                <td>16-קול רינה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43022</a></td>
+                <td>17-ניגון שמחה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43023</a></td>
+                <td>18-על זאת</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43024</a></td>
+                <td>19-ניגון שמחה</td>
+                <td>להללו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43025</a></td>
+                <td>01-מחרוזת חסידית</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43026</a></td>
+                <td>02-אנעים זמירות</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43027</a></td>
+                <td>03-מהרה</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43028</a></td>
+                <td>04-וכל החיים</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43029</a></td>
+                <td>05-ולירושלים</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43030</a></td>
+                <td>06-מחרוזת ניגונים</td>
+                <td>לטב ולחיין</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43031</a></td>
+                <td>01-ובכן צדיקים</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43032</a></td>
+                <td>02-ישמחו</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43033</a></td>
+                <td>03-קדש</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43034</a></td>
+                <td>04-ממקומך</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43035</a></td>
+                <td>05-ברוך הוא</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43036</a></td>
+                <td>06-ניגון שמחה</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43037</a></td>
+                <td>07-השבת</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43038</a></td>
+                <td>08-כי אתה</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43039</a></td>
+                <td>09-אמרי</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43040</a></td>
+                <td>10-יקום פורקן</td>
+                <td>לכבודו</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43041</a></td>
+                <td>01-שמחו בה</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43042</a></td>
+                <td>02-ממקומך</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43043</a></td>
+                <td>03-יברכך ה</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43044</a></td>
+                <td>04-ניגון וואלץ</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43045</a></td>
+                <td>05-ניגון שמחה</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43046</a></td>
+                <td>06-בורא עולם</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43047</a></td>
+                <td>07-וזכנו</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43048</a></td>
+                <td>08-ניגון מארש</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43049</a></td>
+                <td>09-ניגון התעוררות</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43050</a></td>
+                <td>10-ניגון שמחה</td>
+                <td>ממקומך</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43051</a></td>
+                <td>01-ישראל</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43052</a></td>
+                <td>02-כי בשם</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43053</a></td>
+                <td>03-ברוך הוא רחמנא</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43054</a></td>
+                <td>04-השבת אשר ברא</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43055</a></td>
+                <td>05-אתה הוא והריקותי</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43056</a></td>
+                <td>06-הראינו זרעא  חיא</td>
+                <td>נועם הנשמות</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43057</a></td>
+                <td>01-המקום</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43058</a></td>
+                <td>02-ברוך</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43059</a></td>
+                <td>03-וכל מאמינים</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43060</a></td>
+                <td>04-זאת התורה</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43061</a></td>
+                <td>05-חמול</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43062</a></td>
+                <td>06-מזמור שיר חנוכת</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43063</a></td>
+                <td>07-מכלכל חיים</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43064</a></td>
+                <td>08-מלך עליון</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43065</a></td>
+                <td>09-עושה שלום</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43066</a></td>
+                <td>10-ניגון הקפה</td>
+                <td>ניגוני ימים נוראים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43067</a></td>
+                <td>01 ווען משיח</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43068</a></td>
+                <td>02 שמעתי את תפילתך</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43069</a></td>
+                <td>03 מה נורא המקום הזה</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43070</a></td>
+                <td>04 יהי השם</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43071</a></td>
+                <td>05 מזמור שיר חנוכת הבית</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43072</a></td>
+                <td>06 צדיק כתמר יפרח</td>
+                <td>סאטמר</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43073</a></td>
+                <td>בחורים חסידי סאטמר בקומזיץ עם נערים מישיבה לקירוב</td>
+                <td>סינגלים</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43074</a></td>
+                <td>01-ואמר</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43075</a></td>
+                <td>02-הורינו</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43076</a></td>
+                <td>03-ד' בעזך</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43077</a></td>
+                <td>04-אבינו מלכינו</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43078</a></td>
+                <td>05-ניגון ריקוד</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43079</a></td>
+                <td>06-אנא מלך</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43080</a></td>
+                <td>07-גדול ה</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43081</a></td>
+                <td>08-ושויתי</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43082</a></td>
+                <td>09-יהי רצון, ויקבץ נדחינו</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43083</a></td>
+                <td>10-אודך</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43084</a></td>
+                <td>11-ניגון שמחה</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+              <tr>
+                <td><a>43085</a></td>
+                <td>12-אז אשמור פקודיך</td>
+                <td>קרית מלך רב</td>
+                <td>סאטמאר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

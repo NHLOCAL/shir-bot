@@ -1,0 +1,497 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יואל ראטה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיואל ראטה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>50196</a></td>
+                <td>01 איך וויל לערנען</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50197</a></td>
+                <td>02 האב רחמנות</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50198</a></td>
+                <td>03 אין ברסלב</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50199</a></td>
+                <td>04 טיף אין גריב</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50200</a></td>
+                <td>05 תשובה</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50201</a></td>
+                <td>06 דער רבי זאגט</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50202</a></td>
+                <td>07 אוי טאטע</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50203</a></td>
+                <td>08 נשמה</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50204</a></td>
+                <td>09 איך וויל זיין א צדיק</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50205</a></td>
+                <td>10 איך וויל לערנען</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50206</a></td>
+                <td>11 קוק צו מיין צער</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50207</a></td>
+                <td>12 דער יצר הרע ברענט</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50208</a></td>
+                <td>13 איך דענק דיר</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50209</a></td>
+                <td>14 אומן ראש השנה</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50210</a></td>
+                <td>15 פין יעצט</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50211</a></td>
+                <td>16 נשמה</td>
+                <td>א רעד צום אייבערשטן</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50212</a></td>
+                <td>01 איך זינג צו דיר</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50213</a></td>
+                <td>02 לערנען און דאַווענען</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50214</a></td>
+                <td>03 איך בעט דיר</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50215</a></td>
+                <td>04 פון יעצט</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50216</a></td>
+                <td>05 דאס וועג אַרויס</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50217</a></td>
+                <td>06 איך וויל זיין אַ צדיק</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50218</a></td>
+                <td>07 איך וויל זיין אַ עהרליכער איד</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50219</a></td>
+                <td>08 ניגון שוועתי</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50220</a></td>
+                <td>09 האב רחמנות</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50221</a></td>
+                <td>10 ניגון השיבני</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50222</a></td>
+                <td>11 אוי טאטע</td>
+                <td>איך הייב אהן פון יעצט</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50223</a></td>
+                <td>01 - R' Yoel Roth - Teffilah</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50224</a></td>
+                <td>02 - R' Yoel Roth - Torah</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50225</a></td>
+                <td>03 -R' Yoel Roth - Ales Iz Git</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50226</a></td>
+                <td>04 - R' Yoel Roth - Moshiach</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50227</a></td>
+                <td>05 - R' Yoel Roth - Shabbos</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50228</a></td>
+                <td>06 - R' Yoel Roth - Moharosh</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50229</a></td>
+                <td>07 - R' Yoel Roth - Emunah</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50230</a></td>
+                <td>08 - R' Yoel Roth - Teshvah</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50231</a></td>
+                <td>09 - R' Yoel Roth - Memaleh Kol Almin</td>
+                <td>טאנץ מיט אמונה</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50232</a></td>
+                <td>01 אמונה</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50233</a></td>
+                <td>02 תורה</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50234</a></td>
+                <td>03 סבלנות</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50235</a></td>
+                <td>04 רבי</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50236</a></td>
+                <td>04 שבת</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50237</a></td>
+                <td>06 משיח</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50238</a></td>
+                <td>07 הפצה</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50239</a></td>
+                <td>08 תשובה</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50240</a></td>
+                <td>09 ממלא כל עלמין</td>
+                <td>טאנץ מיט אמונה 2</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50241</a></td>
+                <td>אני לא לבד ר  יואל ראטה</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50242</a></td>
+                <td>טאנץ מיט אמונה</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50243</a></td>
+                <td>לכבוד שבת קודש</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50244</a></td>
+                <td>מוכנים לראש השנה באומן</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50245</a></td>
+                <td>מיט תפלה מיט תפלה</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50246</a></td>
+                <td>ניגון הגאולה</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50247</a></td>
+                <td>ר' יואל ראטה - שיר הקורונה #4</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50248</a></td>
+                <td>ר' יואל ראטה - שיר הקורונה #5</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50249</a></td>
+                <td>ר' יואל ראטה - שיר הקורונה #6</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50250</a></td>
+                <td>ר'_יואל_ראטה_-_שיר_הקורונה_#4</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50251</a></td>
+                <td>ר'_יואל_ראטה_-_שיר_הקורונה_#5</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50252</a></td>
+                <td>ר'_יואל_ראטה_-_שיר_הקורונה_#6</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50253</a></td>
+                <td>רבי</td>
+                <td>סינגלים</td>
+                <td>יואל ראטה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

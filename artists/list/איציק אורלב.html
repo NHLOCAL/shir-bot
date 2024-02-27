@@ -1,0 +1,777 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>איציק אורלב</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאיציק אורלב</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>54571</a></td>
+                <td>Track No02</td>
+                <td>אורלב רמיקסים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54572</a></td>
+                <td>Track No03</td>
+                <td>אורלב רמיקסים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54573</a></td>
+                <td>Track No04</td>
+                <td>אורלב רמיקסים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54574</a></td>
+                <td>01 רצועה 1</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54575</a></td>
+                <td>01-אל עולם</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54576</a></td>
+                <td>02 רצועה 2</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54577</a></td>
+                <td>02-בחלון</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54578</a></td>
+                <td>03 רצועה 3</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54579</a></td>
+                <td>03-תן חיים</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54580</a></td>
+                <td>04 רצועה 4</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54581</a></td>
+                <td>04-מעגלים</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54582</a></td>
+                <td>05 רצועה 5</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54583</a></td>
+                <td>05-אמונה שבלב</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54584</a></td>
+                <td>06 רצועה 6</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54585</a></td>
+                <td>06-שיר הרקדנים</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54586</a></td>
+                <td>07 רצועה 7</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54587</a></td>
+                <td>07-תודה לאבא</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54588</a></td>
+                <td>08 רצועה 8</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54589</a></td>
+                <td>08-שימו לב</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54590</a></td>
+                <td>09 רצועה 9</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54591</a></td>
+                <td>09-ביחד</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54592</a></td>
+                <td>10 רצועה 10</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54593</a></td>
+                <td>10-דודי</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54594</a></td>
+                <td>11 רצועה 11</td>
+                <td>מעגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54595</a></td>
+                <td>אברי בדי טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54596</a></td>
+                <td>הגל האחרון </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54597</a></td>
+                <td>מתגעגע טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54598</a></td>
+                <td>מתגעגע</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54599</a></td>
+                <td>נגשים חלום </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54600</a></td>
+                <td>נגשים חלום טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54601</a></td>
+                <td>נשיר לך </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54602</a></td>
+                <td>עולמו של ילד </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54603</a></td>
+                <td>שיר השריקות </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54604</a></td>
+                <td>שיר השריקות טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54605</a></td>
+                <td>שיר למעלות </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54606</a></td>
+                <td>שיר למעלות טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54607</a></td>
+                <td>שמעה תפילתי </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54608</a></td>
+                <td>תחזיק חזק </td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54609</a></td>
+                <td>תחזיק חזק טראנס</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54610</a></td>
+                <td>01-מתגעגע</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54611</a></td>
+                <td>02-שיר למעלות</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54612</a></td>
+                <td>03-נשיר לך</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54613</a></td>
+                <td>04-נגשים חלום</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54614</a></td>
+                <td>05-שיר השריקות</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54615</a></td>
+                <td>06-עולמו של ילד</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54616</a></td>
+                <td>07-שמעה תפילתי</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54617</a></td>
+                <td>08-תחזיק חזק</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54618</a></td>
+                <td>09 - Everybody</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54619</a></td>
+                <td>10-הגל האחרון</td>
+                <td>מתגעגע</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54620</a></td>
+                <td>01-מתגעגע-רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54621</a></td>
+                <td>02-שיר השריקות-רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54622</a></td>
+                <td>03-תחזיק חזק-רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54623</a></td>
+                <td>04-נגשים חלון-רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54624</a></td>
+                <td>05 - Everybody - רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54625</a></td>
+                <td>06-שיר למעלות-רמיקס</td>
+                <td>מתגעגע רמיקס</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54626</a></td>
+                <td>- איציק-אורלב - ילד שלי - מזרחי</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54627</a></td>
+                <td>1 אל עולם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54628</a></td>
+                <td>2 אל עולם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54629</a></td>
+                <td>3 אל עולם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54630</a></td>
+                <td>55350000 איציק אורלב שי 360 ואלון דה לוקו - שיר למעלות - רמיקס d.j e</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54631</a></td>
+                <td>אור בליבי</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54632</a></td>
+                <td>איציק אורלב - בוא תרקוד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54633</a></td>
+                <td>איציק אורלב - ברכת המלאכים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54634</a></td>
+                <td>איציק אורלב בוא נדליק תאש</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54635</a></td>
+                <td>איציק אורלב לא נשבר Itzik Orlev Lo Nishbar.135</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54636</a></td>
+                <td>איציק אורלב עם ישראל חי</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54637</a></td>
+                <td>אל עולם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54638</a></td>
+                <td>אמונה שבלב</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54639</a></td>
+                <td>בא תרקוד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54640</a></td>
+                <td>בוא נדליק ת'אש</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54641</a></td>
+                <td>בוא תרקוד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54642</a></td>
+                <td>בואי בשלום</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54643</a></td>
+                <td>בכל יום שיבוא- בדואט עם עמירן דביר</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54644</a></td>
+                <td>ברכת הכהנים - רמיקס</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54645</a></td>
+                <td>ברכת הכהנים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54646</a></td>
+                <td>ברכת המלאכים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54647</a></td>
+                <td>ברכת מלאכים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54648</a></td>
+                <td>ה' אחד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54649</a></td>
+                <td>השם אחד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54650</a></td>
+                <td>זה הזמן  רמיקס איציק אורלב ודי ג י יוסי מימון</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54651</a></td>
+                <td>יש מסיבה - רמיקס איציק אורלב</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54652</a></td>
+                <td>יש מסיבה-רמיקס</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54653</a></td>
+                <td>יש מסיבה</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54654</a></td>
+                <td>כל מה שעביד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54655</a></td>
+                <td>כשהייתי ילד</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54656</a></td>
+                <td>להמשיך-בדואט עם איתן ארבוב</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54657</a></td>
+                <td>מוקפת מלאכים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54658</a></td>
+                <td>מלאכים ישירו לך</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54659</a></td>
+                <td>מקודשת</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54660</a></td>
+                <td>נפלתי קמתי</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54661</a></td>
+                <td>נשבע</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54662</a></td>
+                <td>עם ישראל חי - איציק אורלב</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54663</a></td>
+                <td>עם ישראל חי</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54664</a></td>
+                <td>פם פם פם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54665</a></td>
+                <td>פם פם</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54666</a></td>
+                <td>רבון העולמים</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54667</a></td>
+                <td>שיר למעלות - עם אלון דה לוקו</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+              <tr>
+                <td><a>54668</a></td>
+                <td>תפילה - רמיקס</td>
+                <td>סינגלים</td>
+                <td>איציק אורלב</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

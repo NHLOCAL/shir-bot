@@ -1,0 +1,287 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אורי אל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאורי אל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>44268</a></td>
+                <td>01-אמא את חלום</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44269</a></td>
+                <td>02-יגדל אלוהים חי</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44270</a></td>
+                <td>03-מלכי יחיד הוא</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44271</a></td>
+                <td>04-כבר עברו ימים</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44272</a></td>
+                <td>05-רק אליך אלוקי</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44273</a></td>
+                <td>06-מתן תורה</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44274</a></td>
+                <td>07-תשובה</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44275</a></td>
+                <td>08-חנני</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44276</a></td>
+                <td>09-זה הזמן לסלוח</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44277</a></td>
+                <td>10-אל חון עלי</td>
+                <td>אמא את חלום</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44278</a></td>
+                <td>אחי בני תימן</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44279</a></td>
+                <td>אל תשליכני</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44280</a></td>
+                <td>ים של דמעות</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44281</a></td>
+                <td>כנור דוד</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44282</a></td>
+                <td>מחרוזת   להיות אדם  -יום יבוא</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44283</a></td>
+                <td>מחרוזת והאר עינינו</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44284</a></td>
+                <td>מחרוזת שבת</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44285</a></td>
+                <td>עיניך מספרות</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44286</a></td>
+                <td>רחל</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44287</a></td>
+                <td>תפילה</td>
+                <td>כנור דוד</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44288</a></td>
+                <td>01-ים של דמעות</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44289</a></td>
+                <td>02-שבחי ירושלים</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44290</a></td>
+                <td>03-הכול פתוח</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44291</a></td>
+                <td>04-רק אליך,זה הזמן</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44292</a></td>
+                <td>05-להיות אדם, עוד יום יבוא</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44293</a></td>
+                <td>06-ימלא פי תהילתך</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44294</a></td>
+                <td>07-אחי בני תימן</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+              <tr>
+                <td><a>44295</a></td>
+                <td>08-הפרח בגני,סוד המזלות</td>
+                <td>שבחי ירושלים</td>
+                <td>אורי אל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

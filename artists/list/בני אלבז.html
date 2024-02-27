@@ -1,0 +1,1855 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>בני אלבז</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspבני אלבז</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>54767</a></td>
+                <td>21. לעולם ועד בדואט עם בני אלבז רמיקס</td>
+                <td>בני אלבז</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54768</a></td>
+                <td>בני אלבז - מי שמאמין</td>
+                <td>בני אלבז</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54769</a></td>
+                <td>01-מחפש</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54770</a></td>
+                <td>02-אמרו אמן</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54771</a></td>
+                <td>03-אלוקים שלי</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54772</a></td>
+                <td>04-שמע ישראל</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54773</a></td>
+                <td>05-זכני לילד</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54774</a></td>
+                <td>06-כל מה שעשיתי</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54775</a></td>
+                <td>07-אבא נשמה</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54776</a></td>
+                <td>08-אלוקיי</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54777</a></td>
+                <td>09-אבינו מלכנו</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54778</a></td>
+                <td>10-באש ובמיים</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54779</a></td>
+                <td>11-מי יתן</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54780</a></td>
+                <td>12-אלוקים שלי</td>
+                <td>אבא נשמה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54781</a></td>
+                <td>01-רבי שמעון בר יוחאי</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54782</a></td>
+                <td>02-אני יהודי</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54783</a></td>
+                <td>03-שמע בני</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54784</a></td>
+                <td>04-גדי לא קשה לחזור</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54785</a></td>
+                <td>05-בבא סאלי זצ''ל</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54786</a></td>
+                <td>06-ישתבח שמו</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54787</a></td>
+                <td>07-תוף מרים</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54788</a></td>
+                <td>08-כינור דוד</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54789</a></td>
+                <td>09-אמורי סלם</td>
+                <td>אני יהודי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54790</a></td>
+                <td>01-אנא אבי</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54791</a></td>
+                <td>02-לא קשה לחזור בתשובה</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54792</a></td>
+                <td>03-משיח</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54793</a></td>
+                <td>04-באתי עד היכלך</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54794</a></td>
+                <td>05-גאל אותי</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54795</a></td>
+                <td>06-הרב עובדיה שליט''א</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54796</a></td>
+                <td>07-עוד לא נשברתי</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54797</a></td>
+                <td>08-אלוקים נתן לך במתנה</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54798</a></td>
+                <td>09-כי חלצת</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54799</a></td>
+                <td>10-תוף מרים</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54800</a></td>
+                <td>11-יישר כח</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54801</a></td>
+                <td>12-שמע בני מוסר אביך</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54802</a></td>
+                <td>13-כי ידעת</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54803</a></td>
+                <td>14-ישתבח שמו</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54804</a></td>
+                <td>15-מודה אני לפניך</td>
+                <td>ברוכים אתם לה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54805</a></td>
+                <td>01-כולם מבקשים ממך סליחה</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54806</a></td>
+                <td>02-אריה מכלוף בן אסתר</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54807</a></td>
+                <td>03-געגועים לאריה</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54808</a></td>
+                <td>04-איך נחייה בלעדיו</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54809</a></td>
+                <td>05-ר' נחמן שומר על אריה</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54810</a></td>
+                <td>06-ספרדים בוכים איתך</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54811</a></td>
+                <td>07-הוא זכאי</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54812</a></td>
+                <td>08-לא יורדים מהגולן</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54813</a></td>
+                <td>09-תודה לך אריה</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54814</a></td>
+                <td>10-מצפים לנס</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54815</a></td>
+                <td>11-הקדשה לאריה</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54816</a></td>
+                <td>12-הם מקנאים בנו</td>
+                <td>געגועים לאריה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54817</a></td>
+                <td>01-התינוקת</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54818</a></td>
+                <td>02-הם מפחדים</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54819</a></td>
+                <td>03-לא זזים מהמאהל</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54820</a></td>
+                <td>04-ויצמן</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54821</a></td>
+                <td>05-דתי</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54822</a></td>
+                <td>06-אמנון</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54823</a></td>
+                <td>07-מי אל ד' אליו</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54824</a></td>
+                <td>08-גשם</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54825</a></td>
+                <td>09-מעשה שהיה</td>
+                <td>דסי מתגעגעת לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54826</a></td>
+                <td>01-אמא מדליקה נרות</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54827</a></td>
+                <td>02-שנזכה לבנין ביהמק''ש</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54828</a></td>
+                <td>03-אל תסתר פניך</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54829</a></td>
+                <td>04-יישר כח</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54830</a></td>
+                <td>05-ואהבת לרעך כמוך</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54831</a></td>
+                <td>06-מאמין שמשיח יבוא</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54832</a></td>
+                <td>07-עוד לא נשברתי</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54833</a></td>
+                <td>08-ירושלים</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54834</a></td>
+                <td>09-ד' ילחם לכם</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54835</a></td>
+                <td>10-אני ברוב חסדיך</td>
+                <td>דרך האמת</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54836</a></td>
+                <td>01-אלוקים אלוקים-ח. ישראל</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54837</a></td>
+                <td>02-אבינו מלכנו-ד. דרעי</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54838</a></td>
+                <td>03-ממולי רק האל-א. לוי</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54839</a></td>
+                <td>04-מחרוזת הללויה-א. הרוש</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54840</a></td>
+                <td>05-חייך בתקווה-י. מעודה</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54841</a></td>
+                <td>06-גם זו לטובה-ב. מזרחי</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54842</a></td>
+                <td>07-אין כמו אמא-ב. אלבז</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54843</a></td>
+                <td>08-ישראל-ד. ריימונד</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54844</a></td>
+                <td>09-בואי גאולה-ל. ישראלי</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54845</a></td>
+                <td>10-השבח לקל-מ. בן מור</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54846</a></td>
+                <td>11-מגה מיקס</td>
+                <td>האוסף הקצבי</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54847</a></td>
+                <td>01-עת רצון</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54848</a></td>
+                <td>02-הוא אלי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54849</a></td>
+                <td>03-אמא שלי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54850</a></td>
+                <td>04-נגלה לי האור</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54851</a></td>
+                <td>05-עד מתי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54852</a></td>
+                <td>06-וודוי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54853</a></td>
+                <td>07-שלהבת הקדוש</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54854</a></td>
+                <td>08-נחמוני</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54855</a></td>
+                <td>09-אלוקי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54856</a></td>
+                <td>10-תן סימן</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54857</a></td>
+                <td>11-אינך לאבד חבר</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54858</a></td>
+                <td>12-חזור אחי</td>
+                <td>האוסף השקט</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54859</a></td>
+                <td>01-חלום על שלום</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54860</a></td>
+                <td>02-שיר למעלות</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54861</a></td>
+                <td>03-מה אברך</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54862</a></td>
+                <td>04-אנשים יש בעולם</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54863</a></td>
+                <td>05-תפילה</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54864</a></td>
+                <td>06-על כפיו יביא</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54865</a></td>
+                <td>07-לבכות לך</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54866</a></td>
+                <td>08-הטלית</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54867</a></td>
+                <td>09-ירושלים עיר של זהב</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54868</a></td>
+                <td>10-מצאתי את השלווה</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54869</a></td>
+                <td>11-ברכנו</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54870</a></td>
+                <td>12-הנשמה</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54871</a></td>
+                <td>13-אין כמו אמא</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54872</a></td>
+                <td>14-עד חצי מלכות</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54873</a></td>
+                <td>15-השתיקה</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54874</a></td>
+                <td>16-אדובב תפילה</td>
+                <td>השתיקה</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54875</a></td>
+                <td>02-חוזרים לאבא</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54876</a></td>
+                <td>03-אין יותר מה ליקנות אחי</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54877</a></td>
+                <td>04-משה בן יוכבד</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54878</a></td>
+                <td>05-לתת מילים</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54879</a></td>
+                <td>06-הרב אלבז</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54880</a></td>
+                <td>07-שלח לחמך</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54881</a></td>
+                <td>08-קבל נא תשובתי</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54882</a></td>
+                <td>09-זכינו בתורתך</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54883</a></td>
+                <td>10-יום הדין</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54884</a></td>
+                <td>11-יגדל אלקים</td>
+                <td>חוזרים לאבא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54885</a></td>
+                <td>01-תעתועים</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54886</a></td>
+                <td>02-משה ואהרון</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54887</a></td>
+                <td>03-בורא עולם</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54888</a></td>
+                <td>04-שלום לך פוליטיקה</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54889</a></td>
+                <td>05-מלאכים בלבן</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54890</a></td>
+                <td>06-שמע ישראל</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54891</a></td>
+                <td>07-המכתב מלבנון</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54892</a></td>
+                <td>08-צדיק נסתר</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54893</a></td>
+                <td>09-בראשית</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54894</a></td>
+                <td>10-יהי רצון</td>
+                <td>טוב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54895</a></td>
+                <td>01-אבא שבשמיים</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54896</a></td>
+                <td>02-בית כשר בישראל</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54897</a></td>
+                <td>03-מודה אני</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54898</a></td>
+                <td>04-ילדים של בורא עולם</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54899</a></td>
+                <td>05-מציאות</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54900</a></td>
+                <td>06-רחובות ת''א</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54901</a></td>
+                <td>07-מכתב מלבנון</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54902</a></td>
+                <td>08-שרים לעולם</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54903</a></td>
+                <td>09-נשמות שבשמיים</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54904</a></td>
+                <td>10-נעימה</td>
+                <td>ילדים של בורא עולם</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54905</a></td>
+                <td>01-אני חוזר הביתה</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54906</a></td>
+                <td>02-כשנכנסת לתוך חיי</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54907</a></td>
+                <td>03-שרון</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54908</a></td>
+                <td>04-אנא סאבר</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54909</a></td>
+                <td>05-רוקדת הפלמנקו</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54910</a></td>
+                <td>06-אנשים רקדו סירטקי</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54911</a></td>
+                <td>07-חביבי יעני</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54912</a></td>
+                <td>08-כל החיילים חוזרים הביתה</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54913</a></td>
+                <td>09-אך יאבאבא</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54914</a></td>
+                <td>10-גדי</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54915</a></td>
+                <td>11-בניתי לה בית</td>
+                <td>להיטי זהב ח''א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54916</a></td>
+                <td>01-תפילתי שלוחה אליך</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54917</a></td>
+                <td>02-הושעני אלוקי</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54918</a></td>
+                <td>03-אליהו הנביא</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54919</a></td>
+                <td>04-מי יצליני</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54920</a></td>
+                <td>05-שיר תקווה</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54921</a></td>
+                <td>06-על מה חטאתי</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54922</a></td>
+                <td>07-אל תשליכני</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54923</a></td>
+                <td>08-רחל</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54924</a></td>
+                <td>09-תוף מרים</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54925</a></td>
+                <td>10-אהבת צפורה ומרים</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54926</a></td>
+                <td>11-אבי</td>
+                <td>להיטי זהב ח''ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54927</a></td>
+                <td>אורי עמוק בלב יודע</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54928</a></td>
+                <td>אוריאל גם כי אלך</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54929</a></td>
+                <td>אין כמו אמא</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54930</a></td>
+                <td>אל נבקש</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54931</a></td>
+                <td>אל תסתר</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54932</a></td>
+                <td>אל תשליכני</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54933</a></td>
+                <td>אלקים נתן לך</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54934</a></td>
+                <td>אמא מדליקה</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54935</a></td>
+                <td>אנא אבוא אנא אלך</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54936</a></td>
+                <td>אני ברוב חסדייך</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54937</a></td>
+                <td>אני העבד</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54938</a></td>
+                <td>את היום אשתי</td>
+                <td>חלק א</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54939</a></td>
+                <td>ברחובנו הצר</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54940</a></td>
+                <td>ברכנו</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54941</a></td>
+                <td>הולך בדרכך</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54942</a></td>
+                <td>הנשמה</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54943</a></td>
+                <td>השם ילחם</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54944</a></td>
+                <td>השתיקה</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54945</a></td>
+                <td>ואהבת לרעך</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54946</a></td>
+                <td>זה לא קשה לחזור בתשובה</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54947</a></td>
+                <td>יישר כח</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54948</a></td>
+                <td>ירושלים של זהב</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54949</a></td>
+                <td>ירושלים</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54950</a></td>
+                <td>יש לי חלום שיבוא שלום</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54951</a></td>
+                <td>ישתבח שמו</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54952</a></td>
+                <td>כי ידעת</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54953</a></td>
+                <td>כל החילים</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54954</a></td>
+                <td>לנצח אחי</td>
+                <td>חלק ב</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54955</a></td>
+                <td>מאמין שמשיח יבוא</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54956</a></td>
+                <td>מה אברך לו</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54957</a></td>
+                <td>מצאתי תשלוה בתורה</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54958</a></td>
+                <td>נאת עלית על כולנה</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54959</a></td>
+                <td>נחש העיר</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54960</a></td>
+                <td>ניגון</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54961</a></td>
+                <td>עוד לא נשברתי</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54962</a></td>
+                <td>שבחי ירושלים</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54963</a></td>
+                <td>שיר למעלות</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54964</a></td>
+                <td>שמע אלקי אורי</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54965</a></td>
+                <td>שמע בני</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54966</a></td>
+                <td>שנזכה לבנין</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54967</a></td>
+                <td>תודה בורא עולם</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54968</a></td>
+                <td>תן לי כח לישכוח</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54969</a></td>
+                <td>תף מרים</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54970</a></td>
+                <td>תפילה</td>
+                <td>חלק ג</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54971</a></td>
+                <td>01-מודה אני לפניך</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54972</a></td>
+                <td>02-חתן וכלה</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54973</a></td>
+                <td>03-גאל אותי</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54974</a></td>
+                <td>04-אין צדיק שיעשה ולא יחטא</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54975</a></td>
+                <td>05-הרב עובדיה</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54976</a></td>
+                <td>06-כי חלצת נפשי ממות</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54977</a></td>
+                <td>07-על נהרות בבל</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54978</a></td>
+                <td>08-הללו את השם</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54979</a></td>
+                <td>09-נחמן מאומן</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54980</a></td>
+                <td>10-מחרוזת משיח</td>
+                <td>חלק ד</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54981</a></td>
+                <td>אל תתיאש</td>
+                <td>סינגלים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54982</a></td>
+                <td>הושיעני אלוקי</td>
+                <td>סינגלים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54983</a></td>
+                <td>החיים הם גלידה</td>
+                <td>סינגלים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54984</a></td>
+                <td>זה לא יהיה</td>
+                <td>סינגלים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54985</a></td>
+                <td>צו 8</td>
+                <td>סינגלים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54986</a></td>
+                <td>01 - Ben Jad</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54987</a></td>
+                <td>02-רחמים</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54988</a></td>
+                <td>03-פורש כנפיים</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54989</a></td>
+                <td>04-שערי שמים</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54990</a></td>
+                <td>05-עונג שבת</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54991</a></td>
+                <td>06-ניצוצות קדושה</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54992</a></td>
+                <td>07-מלך חי וקיים</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54993</a></td>
+                <td>08-מזמור לדוד</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54994</a></td>
+                <td>09-אבא</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54995</a></td>
+                <td>10-קדוש מעל כולם</td>
+                <td>פורס כנפיים</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54996</a></td>
+                <td>01-אין כמו אמא</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54997</a></td>
+                <td>02-אמא שלי</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54998</a></td>
+                <td>03-אזמר לאמא</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>54999</a></td>
+                <td>04-אמא שלי</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55000</a></td>
+                <td>05-אמא לי אומרת</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55001</a></td>
+                <td>06-לך אמא</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55002</a></td>
+                <td>07-אמא יקרה</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55003</a></td>
+                <td>08-אהבה לאמא</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55004</a></td>
+                <td>09-אמא יקרה לי</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55005</a></td>
+                <td>10-אמא יקרה</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55006</a></td>
+                <td>11-אמא</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55007</a></td>
+                <td>12-אמא שלי</td>
+                <td>שרים לך אמא</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55008</a></td>
+                <td>01-מודה אני לפניך</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55009</a></td>
+                <td>02-באתי עד היכליך</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55010</a></td>
+                <td>03-שבחי ירושלים</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55011</a></td>
+                <td>04-כי ידעת</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55012</a></td>
+                <td>05-אני העבד</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55013</a></td>
+                <td>06-תן לי כח לשכוח</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55014</a></td>
+                <td>07-נחש העיר</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55015</a></td>
+                <td>08-כל החיילים חוזרים הביתה</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55016</a></td>
+                <td>09-אלוקים נותן לך מתנה</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55017</a></td>
+                <td>10-אל נבקש</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+              <tr>
+                <td><a>55018</a></td>
+                <td>11-את היום אשתי</td>
+                <td>תינוקות שנישבו</td>
+                <td>בני אלבז</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

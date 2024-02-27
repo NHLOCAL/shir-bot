@@ -1,0 +1,224 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>חיים בר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspחיים בר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>58016</a></td>
+                <td>גם השנה</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58017</a></td>
+                <td>והלב</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58018</a></td>
+                <td>חיים בר - אבא מכל הלב 2011</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58019</a></td>
+                <td>חיים בר - גם השנה</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58020</a></td>
+                <td>חיים בר - והלב</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58021</a></td>
+                <td>חיים בר - יש בורא לעולם</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58022</a></td>
+                <td>חיים בר צלילי העבר בטעם של פעם</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58023</a></td>
+                <td>חיים בר שמים כחולים</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58024</a></td>
+                <td>חיים בר-והוא אחד</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58025</a></td>
+                <td>חיים בר-מודה מהנשמה</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58026</a></td>
+                <td>חיים ברוין - קול תחנוני</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58027</a></td>
+                <td>טסים לאומן</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58028</a></td>
+                <td>יודי ביאלוסטוצקי מארח את זמרי החתונות המובילים בניו יורק  ''דער רבי איז געזונט''</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58029</a></td>
+                <td>לכה דודי</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58030</a></td>
+                <td>מחשבות</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58031</a></td>
+                <td>עוד מעט שבת - צלצול</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58032</a></td>
+                <td>עוד מעט שבת</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58033</a></td>
+                <td>צלילי העבר</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+              <tr>
+                <td><a>58034</a></td>
+                <td>רבינו</td>
+                <td>סינגלים</td>
+                <td>חיים בר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

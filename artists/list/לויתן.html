@@ -1,0 +1,231 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>לויתן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspלויתן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>46014</a></td>
+                <td>01-התעוררי</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46015</a></td>
+                <td>02-נתן חביבי לב</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46016</a></td>
+                <td>03-מה שהיה הוא שיהיה</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46017</a></td>
+                <td>04-זה היום</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46018</a></td>
+                <td>05-והריחו ביראת ה</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46019</a></td>
+                <td>06-חכמת הנחל</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46020</a></td>
+                <td>07-יחד רם</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46021</a></td>
+                <td>08-מי האיש</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46022</a></td>
+                <td>09-ינון שמו</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46023</a></td>
+                <td>10-ופדויי ה</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46024</a></td>
+                <td>11-לב טהור</td>
+                <td>חכמת הנחל</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46025</a></td>
+                <td>01-ישמח משה</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46026</a></td>
+                <td>02-יתמו</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46027</a></td>
+                <td>03-אשת חיל</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46028</a></td>
+                <td>04-בואי בשלום</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46029</a></td>
+                <td>05-אני מאמין</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46030</a></td>
+                <td>06-לך לבי אמר</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46031</a></td>
+                <td>07-גם כי אלך</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46032</a></td>
+                <td>08-דרור יקרא</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+              <tr>
+                <td><a>46033</a></td>
+                <td>09-נקדישך</td>
+                <td>ישמח משה</td>
+                <td>לויתן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

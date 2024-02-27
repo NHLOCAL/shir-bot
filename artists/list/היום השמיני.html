@@ -1,0 +1,959 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>היום השמיני</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspהיום השמיני</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>7241</a></td>
+                <td>01 - Mazal Tov! (T.t.d.f.)</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7242</a></td>
+                <td>02 - Bounce</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7243</a></td>
+                <td>03 - Harmony</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7244</a></td>
+                <td>04 - Didan (Victory Song)</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7245</a></td>
+                <td>05 - May You Be Blessed</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7246</a></td>
+                <td>06 - All You Got</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7247</a></td>
+                <td>07 - Money Room</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7248</a></td>
+                <td>08 - The Rabbi's Son</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7249</a></td>
+                <td>09 - Cheery Bim</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7250</a></td>
+                <td>10 - By My Side</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7251</a></td>
+                <td>11 - Manhattan 2.0</td>
+                <td>All You Got - 2012</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7252</a></td>
+                <td>01 - Brooklyn</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7253</a></td>
+                <td>02 - CDSG</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7254</a></td>
+                <td>03 - Been a Long Time</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7255</a></td>
+                <td>04 -  Don't Forget</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7256</a></td>
+                <td>05 - Wake Up</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7257</a></td>
+                <td>06 - Krenitz (Babinyu)</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7258</a></td>
+                <td>07 - Broken Hearts</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7259</a></td>
+                <td>08 - Cateye Glasses</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7260</a></td>
+                <td>09 - In the Painting</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7261</a></td>
+                <td>10 - Instrumental</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7262</a></td>
+                <td>11 - Friends on a Hill</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7263</a></td>
+                <td>12 - אזמר בשבחין</td>
+                <td>Brooklyn - 2007</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7264</a></td>
+                <td>01 - Ya'alili</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7265</a></td>
+                <td>02 - Emosai</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7266</a></td>
+                <td>03 - Avraham</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7267</a></td>
+                <td>04 - Smile</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7268</a></td>
+                <td>05 - Tatenyu</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7269</a></td>
+                <td>06 - Chasing Prophecy</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7270</a></td>
+                <td>07 - 8Th Day</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7271</a></td>
+                <td>08 - Yiddish Country</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7272</a></td>
+                <td>09 - Begger Woman</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7273</a></td>
+                <td>10 - Play Your Music</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7274</a></td>
+                <td>11 - Yiddishe Mamma</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7275</a></td>
+                <td>12 - Its Shabbos Now</td>
+                <td>Chasing Prophecy - 2011</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7276</a></td>
+                <td>01 - Hooleh</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7277</a></td>
+                <td>02 - Wait For Your</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7278</a></td>
+                <td>03 - Sing - Along Song</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7279</a></td>
+                <td>04 - Thank You</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7280</a></td>
+                <td>05 - Ker A Velt</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7281</a></td>
+                <td>06 - Fighter</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7282</a></td>
+                <td>07 - Stay</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7283</a></td>
+                <td>08 - Freedom</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7284</a></td>
+                <td>09 - Roaylty in Rhythm</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7285</a></td>
+                <td>10 - Never Afraid</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7286</a></td>
+                <td>11 - Your Name</td>
+                <td>Hooleh - 2014</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7287</a></td>
+                <td>01 - Celebrate</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7288</a></td>
+                <td>02 - Just Like You</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7289</a></td>
+                <td>03 - Inner Flame</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7290</a></td>
+                <td>04 - Tears</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7291</a></td>
+                <td>05 - Days R Comin</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7292</a></td>
+                <td>06 - Utzu Eitzah</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7293</a></td>
+                <td>07 - R' Akiva</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7294</a></td>
+                <td>08 - Jerusalem Stone</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7295</a></td>
+                <td>09 - Champions</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7296</a></td>
+                <td>10 - Rain 2.0</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7297</a></td>
+                <td>11 - Whisper</td>
+                <td>Inner Flame - 2015</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7298</a></td>
+                <td>01 כפיים</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7299</a></td>
+                <td>02 Moses In Me</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7300</a></td>
+                <td>03 One Of A  Kind</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7301</a></td>
+                <td>04 Slow Down</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7302</a></td>
+                <td>05 תורה</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7303</a></td>
+                <td>06 Don't Shy Away</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7304</a></td>
+                <td>07 Everything Is You</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7305</a></td>
+                <td>08 A Better Me</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7306</a></td>
+                <td>09 שוויץ</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7307</a></td>
+                <td>10 רק שמחות</td>
+                <td>Slow Down - 2017</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7308</a></td>
+                <td>01 Rain</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7309</a></td>
+                <td>02 Lama Balue</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7310</a></td>
+                <td>03 טראכט גוט</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7311</a></td>
+                <td>04 Yarmulka</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7312</a></td>
+                <td>05 Furht a Yiddele</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7313</a></td>
+                <td>06 בר יוחאי</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7314</a></td>
+                <td>07 Ku Ka Recoo</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7315</a></td>
+                <td>08 Manhattan</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7316</a></td>
+                <td>09 Penny</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7317</a></td>
+                <td>10 Hasidic Rambler</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7318</a></td>
+                <td>11 Velvet</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7319</a></td>
+                <td>12 איה מקום כבודו</td>
+                <td>Tracht Gut - 2005</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7320</a></td>
+                <td>01 Lucky</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7321</a></td>
+                <td>02 Rollin</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7322</a></td>
+                <td>03 I m Stickin Around</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7323</a></td>
+                <td>04 אלקה דמאיר</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7324</a></td>
+                <td>05 לא עליך</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7325</a></td>
+                <td>06 בזה השער</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7326</a></td>
+                <td>07 שיר התפילין</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7327</a></td>
+                <td>08 Una Meser</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7328</a></td>
+                <td>09 My Way to You</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7329</a></td>
+                <td>10 טראכט גוט רמיקס</td>
+                <td>ברי מזל</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7330</a></td>
+                <td>01 בשובך לציון</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7331</a></td>
+                <td>02 שמח תשמח</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7332</a></td>
+                <td>03 חזק קרוב</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7333</a></td>
+                <td>04 גאולה</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7334</a></td>
+                <td>05 אם אין אני מי לי</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7335</a></td>
+                <td>06 נס של אור</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7336</a></td>
+                <td>07 שמע ישראל</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7337</a></td>
+                <td>08 א ביסעלע מזל</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7338</a></td>
+                <td>09 מגן דוד</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7339</a></td>
+                <td>10 מיין שטעטלע (באבעניו רמיקס</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7340</a></td>
+                <td>11 לשנות את העולם</td>
+                <td>חזק קרוב</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7341</a></td>
+                <td>- היום השמיני - wake up yidden - אנגלית</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7342</a></td>
+                <td>- יום השמיני - Rollin - אנגלית</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7343</a></td>
+                <td>14 יאלילי - היום השמיני</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7344</a></td>
+                <td>8th Day - קנה לך חבר</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7345</a></td>
+                <td>Celebrate</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7346</a></td>
+                <td>Miracle Of Light</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7347</a></td>
+                <td>Moses In Me (Unplugged)</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7348</a></td>
+                <td>אלקא דמאיר</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7349</a></td>
+                <td>גם זו</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7350</a></td>
+                <td>דיסקרייב יאלילי</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7351</a></td>
+                <td>הולה היום השמיני</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7352</a></td>
+                <td>היום השמיני - Lucky (מזל)</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7353</a></td>
+                <td>היום השמיני- קומו יהודים</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7354</a></td>
+                <td>יאלילי - רמיקס</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7355</a></td>
+                <td>יאלילי -רמיקס סיני אביאל</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7356</a></td>
+                <td>יאלילי-רמיקס</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7357</a></td>
+                <td>יום השמיני זה שבת עכשיו</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7358</a></td>
+                <td>להקת היום השמיני - יאלילי - הקליפ הרשמי</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7359</a></td>
+                <td>למה לחכות</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7360</a></td>
+                <td>מחרוזת חג</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7361</a></td>
+                <td>מיין שטעטלע</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7362</a></td>
+                <td>סלברייט</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7363</a></td>
+                <td>קנה לך חבר</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+              <tr>
+                <td><a>7364</a></td>
+                <td>שמע ישראל</td>
+                <td>סינגלים</td>
+                <td>היום השמיני</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

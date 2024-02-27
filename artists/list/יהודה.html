@@ -1,0 +1,392 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יהודה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיהודה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>49962</a></td>
+                <td>01-יש שכר</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49963</a></td>
+                <td>02-יהי רצון</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49964</a></td>
+                <td>03-הללו</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49965</a></td>
+                <td>04-מי בן</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49966</a></td>
+                <td>05-ישיש</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49967</a></td>
+                <td>06-או ירושלים</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49968</a></td>
+                <td>07-הרינו</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49969</a></td>
+                <td>08-סימן טוב</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49970</a></td>
+                <td>09-עד בלי די</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49971</a></td>
+                <td>10-ובכן</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49972</a></td>
+                <td>11-ומחה</td>
+                <td>או ירושלים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49973</a></td>
+                <td>01-אפתח פי</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49974</a></td>
+                <td>02-והאר עינינו</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49975</a></td>
+                <td>03-מי כמוך</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49976</a></td>
+                <td>04-אחינו</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49977</a></td>
+                <td>05-אליהו הנביא</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49978</a></td>
+                <td>06-יהי שלום</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49979</a></td>
+                <td>07-כיצד מרקדין</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49980</a></td>
+                <td>08-מי בן</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49981</a></td>
+                <td>09-י-ה א-לי</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49982</a></td>
+                <td>10-אם אשכחך</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49983</a></td>
+                <td>11-שמע ישראל</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49984</a></td>
+                <td>12-שיר חדש</td>
+                <td>אפתח פי בשירה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49985</a></td>
+                <td>01-דוד מלך</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49986</a></td>
+                <td>02-גאט פון אברהם</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49987</a></td>
+                <td>03- אחכה לו</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49988</a></td>
+                <td>04-ולירושלים</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49989</a></td>
+                <td>05-גבוה גבוה</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49990</a></td>
+                <td>06-לחיים</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49991</a></td>
+                <td>07-בואי בשלום</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49992</a></td>
+                <td>08-עומדות</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49993</a></td>
+                <td>09-אלקי נשמה</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49994</a></td>
+                <td>10-לשנה הבאה</td>
+                <td>גבוה גבוה</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49995</a></td>
+                <td>01-כי לך</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49996</a></td>
+                <td>02-כוס ישועות</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49997</a></td>
+                <td>03-הא יפתח</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49998</a></td>
+                <td>04-מוזיקה בעד הרבי</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>49999</a></td>
+                <td>05-והאר עינינו</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50000</a></td>
+                <td>06-למען ירבו</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50001</a></td>
+                <td>07-מודים</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50002</a></td>
+                <td>08-שמע קולינו</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50003</a></td>
+                <td>09-הפכת</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50004</a></td>
+                <td>10-שלום עליכם</td>
+                <td>מודים</td>
+                <td>יהודה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

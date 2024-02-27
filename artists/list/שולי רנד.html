@@ -1,0 +1,854 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שולי רנד</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשולי רנד</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>27346</a></td>
+                <td>01 עד העונג הבא</td>
+                <td>אקווריום פרויקט מפעל הפיס</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27347</a></td>
+                <td>02 בן מלך שעשוי מאבנים טובות</td>
+                <td>אקווריום פרויקט מפעל הפיס</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27348</a></td>
+                <td>03 המשורר</td>
+                <td>אקווריום פרויקט מפעל הפיס</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27349</a></td>
+                <td>04 מחכים למשיח</td>
+                <td>אקווריום פרויקט מפעל הפיס</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27350</a></td>
+                <td>01-מה התכלית</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27351</a></td>
+                <td>03-בסייעתא דשמיא</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27352</a></td>
+                <td>04-סגולה</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27353</a></td>
+                <td>05-אדוני המשורר</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27354</a></td>
+                <td>06-עליזה</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27355</a></td>
+                <td>07-סיפור-חרדה אובססיבית</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27356</a></td>
+                <td>08-ערפל</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27357</a></td>
+                <td>09-בן מלך</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27358</a></td>
+                <td>10-אבינו מלכנו</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27359</a></td>
+                <td>11-מתוך שינה</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27360</a></td>
+                <td>12-טמבל</td>
+                <td>הופעה בקיסריה ח''א</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27361</a></td>
+                <td>01-שער הדמעות</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27362</a></td>
+                <td>02-סיפור-איך הפסקתי לעשן בשבת</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27363</a></td>
+                <td>03-רפא-אל</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27364</a></td>
+                <td>04-נקודה טוב</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27365</a></td>
+                <td>05-אייכה</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27366</a></td>
+                <td>06-פרייליך</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27367</a></td>
+                <td>07-א'ביסלא אושר</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27368</a></td>
+                <td>08-אלוקי</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27369</a></td>
+                <td>09-תודות</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27370</a></td>
+                <td>10-אחותי</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27371</a></td>
+                <td>11-מה חדש במדע</td>
+                <td>הופעה בקיסריה ח''ב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27372</a></td>
+                <td>01</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27373</a></td>
+                <td>02</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27374</a></td>
+                <td>03</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27375</a></td>
+                <td>04</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27376</a></td>
+                <td>05</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27377</a></td>
+                <td>06</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27378</a></td>
+                <td>07</td>
+                <td>הופעה צוותא</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27379</a></td>
+                <td>01 מה התכלית</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27380</a></td>
+                <td>02 אייכה</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27381</a></td>
+                <td>03 ערפל</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27382</a></td>
+                <td>04 סגולה</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27383</a></td>
+                <td>05 המשורר</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27384</a></td>
+                <td>06 בן מלך שעשוי מאבנים טובות</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27385</a></td>
+                <td>07 נקודה טובה</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27386</a></td>
+                <td>08 מוחין דקטנות</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27387</a></td>
+                <td>09 רפא-אל</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27388</a></td>
+                <td>10 אחותי</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27389</a></td>
+                <td>11 מתוך שינה</td>
+                <td>נקודה טובה</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27390</a></td>
+                <td>& הפרויקט של רביבו  חב''דסקער ניגון</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27391</a></td>
+                <td>-רנד-כאבי-גדילה-1</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27392</a></td>
+                <td>___אחים_אחים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27393</a></td>
+                <td>___בך_בטחו_אבותינו</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27394</a></td>
+                <td>אזמר בשבחין</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27395</a></td>
+                <td>אחים אחים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27396</a></td>
+                <td>אמיר דדון    בין קודש לחול</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27397</a></td>
+                <td>בך בטחו אבותינו</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27398</a></td>
+                <td>בקליפ חדש – הספינה  </td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27399</a></td>
+                <td>בראשית</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27400</a></td>
+                <td>בשיר חדש עוקר הרים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27401</a></td>
+                <td>המשקפיים של נויפלד ו  התרת חלומות</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27402</a></td>
+                <td>הנשמה יורדת</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27403</a></td>
+                <td>התרת חלומות</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27404</a></td>
+                <td>והיא שעמדה  מתוך פרויקט צמאה</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27405</a></td>
+                <td>ויצחק מאיר בדואט מיוחד נפשה חמדה </td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27406</a></td>
+                <td>ונתי ליכטנשטיין  בין קודש לחול  מקורי</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27407</a></td>
+                <td>ונתן גושןבין קודש לחול</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27408</a></td>
+                <td>חיבור נדיר  עמירן דביר ו  בשבע דקות קסומות </td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27409</a></td>
+                <td>חיית הברזל (מאיר אריאל)</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27410</a></td>
+                <td>ידיד נפש</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27411</a></td>
+                <td>כנסיית השכל &    שער הרחמים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27412</a></td>
+                <td>לא תדעי כמה</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27413</a></td>
+                <td>מונית תופת</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27414</a></td>
+                <td>מחכים למשיח  לייב בהופעה</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27415</a></td>
+                <td>מחכים למשיח</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27416</a></td>
+                <td>מים מתוקים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27417</a></td>
+                <td>משניתנה הרשות</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27418</a></td>
+                <td>נכספה</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27419</a></td>
+                <td>עם סיפור הפאנפאנים המיוחד במופע 'סוכות לייב'</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27420</a></td>
+                <td>עמיר בניון     בחייאת  לייב</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27421</a></td>
+                <td>עקדה</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27422</a></td>
+                <td>פרק ה', שיר השירים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27423</a></td>
+                <td>צדיק</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27424</a></td>
+                <td>קרב יום</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27425</a></td>
+                <td>רוץ כצבי </td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27426</a></td>
+                <td>רוץ כצבי</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27427</a></td>
+                <td>רחם</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27428</a></td>
+                <td>שולי רנד - אחד כמוך</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27429</a></td>
+                <td>שיר על התוכי יוסי</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27430</a></td>
+                <td>שיר ערש</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27431</a></td>
+                <td>שירת העשבים</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27432</a></td>
+                <td>שער הדמעות</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27433</a></td>
+                <td>‏‏תיקיה חדשה, בין קודש לחול  עמיר דדון</td>
+                <td>סינגלים</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27434</a></td>
+                <td>01. הילד המשיח</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27435</a></td>
+                <td>02. צדיק</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27436</a></td>
+                <td>03. הספינה</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27437</a></td>
+                <td>04. החקלאים</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27438</a></td>
+                <td>05. עוד טיפה</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27439</a></td>
+                <td>06. עץ ופרי</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27440</a></td>
+                <td>07. אדי</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27441</a></td>
+                <td>08. דע בני אהובי</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27442</a></td>
+                <td>09. אברם</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27443</a></td>
+                <td>10. עבדים</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27444</a></td>
+                <td>11. אבא שלום</td>
+                <td>רצוא ושוב</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27445</a></td>
+                <td>01 גיליתי מחדש</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27446</a></td>
+                <td>02 אם לא הייתי בא עכשיו</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27447</a></td>
+                <td>03 תחפש טוב</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27448</a></td>
+                <td>04 חלל הזמן</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27449</a></td>
+                <td>05 יהודי</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27450</a></td>
+                <td>06 נשבע</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27451</a></td>
+                <td>07 כשאנחנו מנגנים</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27452</a></td>
+                <td>08 קום ישראל</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27453</a></td>
+                <td>09 פרח ועוד פרח</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+              <tr>
+                <td><a>27454</a></td>
+                <td>10 דוד מלכי</td>
+                <td>שולי שר בניון</td>
+                <td>שולי רנד</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

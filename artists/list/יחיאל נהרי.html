@@ -1,0 +1,595 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יחיאל נהרי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיחיאל נהרי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>58456</a></td>
+                <td>דברי ברכה</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58457</a></td>
+                <td>חביבי אל</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58458</a></td>
+                <td>יחיד אל דגול</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58459</a></td>
+                <td>יראת שמים</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58460</a></td>
+                <td>פתיחה טוב להודות</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58461</a></td>
+                <td>צורי תומך</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58462</a></td>
+                <td>שם יהעליך</td>
+                <td>הדינר 1</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58463</a></td>
+                <td>אל ההודאות</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58464</a></td>
+                <td>אל עד לי לעד</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58465</a></td>
+                <td>אל עיר קודשנו</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58466</a></td>
+                <td>נכבש הרי</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58467</a></td>
+                <td>על לבבי</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58468</a></td>
+                <td>פתיחה גדולים</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58469</a></td>
+                <td>תקסים</td>
+                <td>הדינר 2</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58470</a></td>
+                <td>01-אנא ביתי שמם</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58471</a></td>
+                <td>02-שמח נפשי</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58472</a></td>
+                <td>03-לך אנא עורך</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58473</a></td>
+                <td>04-מי שם חקר</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58474</a></td>
+                <td>05-שם יה עליך</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58475</a></td>
+                <td>06-אל בעוני הבט</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58476</a></td>
+                <td>07-אל בעוני הבט</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58477</a></td>
+                <td>08-י-ה זהר תן</td>
+                <td>הופעה בארגנטינה</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58478</a></td>
+                <td>01-מאוול יבורך הבית הזה</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58479</a></td>
+                <td>02-יום פדותי</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58480</a></td>
+                <td>03-מזולזלת</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58481</a></td>
+                <td>04-יבוא דודי לגן עדנו</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58482</a></td>
+                <td>05-מאוול לילה</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58483</a></td>
+                <td>06-כוכב צדק</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58484</a></td>
+                <td>07-דולב</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58485</a></td>
+                <td>08-מוסיקה</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58486</a></td>
+                <td>09-פתיחה</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58487</a></td>
+                <td>10-שימוני משוש</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58488</a></td>
+                <td>11-חומות ציון</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58489</a></td>
+                <td>01-איתנא פה</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58490</a></td>
+                <td>02-זך אל אתה</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58491</a></td>
+                <td>03-מאוול</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58492</a></td>
+                <td>04-אהלל אל</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58493</a></td>
+                <td>05-יעלה יעלה</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58494</a></td>
+                <td>06-יראיח</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58495</a></td>
+                <td>07-מאוול דירשו לאל</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58496</a></td>
+                <td>08-אשיר לך ארץ חמדה</td>
+                <td>חלק ב</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58497</a></td>
+                <td>01-שמחים בצאתם</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58498</a></td>
+                <td>02-כי אשמרה שבת</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58499</a></td>
+                <td>03-פרגון-דולאב</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58500</a></td>
+                <td>04-מאוול אם הזמן בוגד</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58501</a></td>
+                <td>05-אלף לילה ולילה</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58502</a></td>
+                <td>06-יפרח וירבה</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58503</a></td>
+                <td>07-יבעת לי ג'ואב-אלעד לי לעד</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58504</a></td>
+                <td>08-עלבבי ואף אמרין</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58505</a></td>
+                <td>09-בית היכלי</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58506</a></td>
+                <td>רצועה 01</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58507</a></td>
+                <td>רצועה 02</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58508</a></td>
+                <td>רצועה 03</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58509</a></td>
+                <td>רצועה 04</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58510</a></td>
+                <td>רצועה 05</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58511</a></td>
+                <td>רצועה 06</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58512</a></td>
+                <td>רצועה 07</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58513</a></td>
+                <td>רצועה 08</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58514</a></td>
+                <td>רצועה 09</td>
+                <td>חלק א</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58515</a></td>
+                <td>רצועה 01</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58516</a></td>
+                <td>רצועה 02</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58517</a></td>
+                <td>רצועה 03</td>
+                <td>חלק ג</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58518</a></td>
+                <td>01-מעין יבוא עזרי</td>
+                <td>שיר המעלות</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58519</a></td>
+                <td>02-</td>
+                <td>שיר המעלות</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58520</a></td>
+                <td>03-</td>
+                <td>שיר המעלות</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58521</a></td>
+                <td>04-</td>
+                <td>שיר המעלות</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58522</a></td>
+                <td>05-תן לנו עוד ז'שאנס</td>
+                <td>שיר המעלות</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58523</a></td>
+                <td>01-אנא-הבט הבט</td>
+                <td>שירת הלויים</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58524</a></td>
+                <td>02-אלי-אמר</td>
+                <td>שירת הלויים</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58525</a></td>
+                <td>03-אלי יחיד-יחיד</td>
+                <td>שירת הלויים</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58526</a></td>
+                <td>04-ליבי במזרח</td>
+                <td>שירת הלויים</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+              <tr>
+                <td><a>58527</a></td>
+                <td>05-חביבי אתה-בתי צאי</td>
+                <td>שירת הלויים</td>
+                <td>יחיאל נהרי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

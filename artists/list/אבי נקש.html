@@ -1,0 +1,392 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אבי נקש</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאבי נקש</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>44565</a></td>
+                <td>01-שהשם ישמור</td>
+                <td>4x4</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44566</a></td>
+                <td>02-הבריאה</td>
+                <td>4x4</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44567</a></td>
+                <td>03-לכה דודי</td>
+                <td>4x4</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44568</a></td>
+                <td>04-הלילה</td>
+                <td>4x4</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44569</a></td>
+                <td>01-והשיב</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44570</a></td>
+                <td>02-גפן</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44571</a></td>
+                <td>03-כל מאן דעביד</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44572</a></td>
+                <td>04-ידיד נפש</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44573</a></td>
+                <td>05-אחינו</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44574</a></td>
+                <td>06-לכו נרננה</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44575</a></td>
+                <td>07-פיה פתחה</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44576</a></td>
+                <td>08-חכמת שלמה</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44577</a></td>
+                <td>09-בואי בשלום</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44578</a></td>
+                <td>10-מה יתרון</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44579</a></td>
+                <td>11-מודה אני</td>
+                <td>והשיב</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44580</a></td>
+                <td>הלילה</td>
+                <td>סינגלים</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44581</a></td>
+                <td>01-פתיחה</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44582</a></td>
+                <td>02-כיצד מרקדין</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44583</a></td>
+                <td>03-אשר ברא</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44584</a></td>
+                <td>04-שהחיינו</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44585</a></td>
+                <td>05-יודו לה</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44586</a></td>
+                <td>06-אשרי מי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44587</a></td>
+                <td>07-יצליח</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44588</a></td>
+                <td>08-פתיחה</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44589</a></td>
+                <td>09-הא יפתח לבנו</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44590</a></td>
+                <td>10-לא יאחר</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44591</a></td>
+                <td>11-מרקדין</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44592</a></td>
+                <td>12-יערב</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44593</a></td>
+                <td>13-אל תירא</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44594</a></td>
+                <td>14-קומה השם</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44595</a></td>
+                <td>15-זכרני</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44596</a></td>
+                <td>16-אם אשכחך</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44597</a></td>
+                <td>17-פיה פתחה</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44598</a></td>
+                <td>18-ישמח חתני</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44599</a></td>
+                <td>19-הלילה</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44600</a></td>
+                <td>20-שיר ערבי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44601</a></td>
+                <td>21-שיר ערבי 2</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44602</a></td>
+                <td>22-חביבי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44603</a></td>
+                <td>23-שיר ערבי 3</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44604</a></td>
+                <td>24-יא חביבי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44605</a></td>
+                <td>25-יום שנלדתי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44606</a></td>
+                <td>26-אהלן וסהלן</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+              <tr>
+                <td><a>44607</a></td>
+                <td>27-מחרוזת ערבי</td>
+                <td>שניפגש רק בשמחות</td>
+                <td>אבי נקש</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

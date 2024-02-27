@@ -1,0 +1,238 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ברוך חייט</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspברוך חייט</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>48519</a></td>
+                <td>01-אלא בשביל שירה וזמרה</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48520</a></td>
+                <td>02-והיה מידי חודש</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48521</a></td>
+                <td>03-ואני תפילתי</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48522</a></td>
+                <td>04-ניגון</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48523</a></td>
+                <td>05-לולי תורתך</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48524</a></td>
+                <td>06-משכיל לאסף</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48525</a></td>
+                <td>07-הרחמן</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48526</a></td>
+                <td>08-אזכרה אלקים</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48527</a></td>
+                <td>09-הנה אנוכי</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48528</a></td>
+                <td>10-כה אמר השם</td>
+                <td>במערבא שרו</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48529</a></td>
+                <td>01 תהלה לדוד</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48530</a></td>
+                <td>02 י-ה ריבון עולם</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48531</a></td>
+                <td>03 ואתם הדבקים</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48532</a></td>
+                <td>04 ניגון המתמיד</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48533</a></td>
+                <td>05 על חומותיך</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48534</a></td>
+                <td>06 לכה דודי לקראת כלה</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48535</a></td>
+                <td>07 נודה לשמך</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48536</a></td>
+                <td>08 עוד ישמע</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48537</a></td>
+                <td>09 אדון עולם</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48538</a></td>
+                <td>10 awake my brother</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+              <tr>
+                <td><a>48539</a></td>
+                <td>11 ניגון השמחה</td>
+                <td>תהילה לדוד</td>
+                <td>ברוך חייט</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

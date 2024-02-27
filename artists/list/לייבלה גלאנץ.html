@@ -1,0 +1,518 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>לייבלה גלאנץ</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspלייבלה גלאנץ</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>35035</a></td>
+                <td>01-אין כערכך</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35036</a></td>
+                <td>02-שומר ישראל</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35037</a></td>
+                <td>03-ברך עלינו</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35038</a></td>
+                <td>04-תקע בשופר</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35039</a></td>
+                <td>05-צור חיינו, וכל החיים</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35040</a></td>
+                <td>06-תפילת מעריב לחו''ל</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35041</a></td>
+                <td>07-השכיבנו</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35042</a></td>
+                <td>08-עקביא בן מהלל אומר</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35043</a></td>
+                <td>09-הוא יפתח</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35044</a></td>
+                <td>10-א דין תורה מיט גאט</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35045</a></td>
+                <td>11-אזכרה לקדושי השואה</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35046</a></td>
+                <td>12-הלוך וקראת</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35047</a></td>
+                <td>13-בשוב ה</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35048</a></td>
+                <td>14-תנות צרות לא נוכל</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35049</a></td>
+                <td>15-מי שעשה ניסים</td>
+                <td>אין כערכך</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35050</a></td>
+                <td>01-השכיבנו</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35051</a></td>
+                <td>02-ממקומך</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35052</a></td>
+                <td>03-ברכת כהנים</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35053</a></td>
+                <td>04-שים שלום</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35054</a></td>
+                <td>05-בצאת ישראל</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35055</a></td>
+                <td>06-אהבתי</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35056</a></td>
+                <td>07-אב הרחמים</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35057</a></td>
+                <td>08-טל</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35058</a></td>
+                <td>09-שמע ישראל</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35059</a></td>
+                <td>10-לכו נרננה</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35060</a></td>
+                <td>11-מכניסי רחמים</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35061</a></td>
+                <td>12-אמת כי אתה </td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35062</a></td>
+                <td>13-כי הנה כחומר</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35063</a></td>
+                <td>01-השכיבנו</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35064</a></td>
+                <td>02-ממקומך</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35065</a></td>
+                <td>03-ברכת כהנים</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35066</a></td>
+                <td>04-שים שלום</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35067</a></td>
+                <td>05-בצאת ישראל</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35068</a></td>
+                <td>06-אהבתי</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35069</a></td>
+                <td>07-אב הרחמים</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35070</a></td>
+                <td>08-טל</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35071</a></td>
+                <td>09-שמע ישראל</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35072</a></td>
+                <td>10-לכו נרננה</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35073</a></td>
+                <td>11-מכניסי רחמים</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35074</a></td>
+                <td>12-אמת כי אתה </td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35075</a></td>
+                <td>13-כי הנה כחומר</td>
+                <td>שים שלום</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35076</a></td>
+                <td>01-אשרי יושבי ביתך</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35077</a></td>
+                <td>02-תהילה לדוד</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35078</a></td>
+                <td>03-קדיש</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35079</a></td>
+                <td>04-לך שמים</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35080</a></td>
+                <td>05-לכו נרננה</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35081</a></td>
+                <td>06-איך נפתח פה</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35082</a></td>
+                <td>07-אל ארך אפיים</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35083</a></td>
+                <td>08-במוצאי מנוחה</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35084</a></td>
+                <td>09-זוחלים ורועדים</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35085</a></td>
+                <td>10-יוצר אתה</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35086</a></td>
+                <td>11-מרום</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35087</a></td>
+                <td>12-פנה נא אל התלאות</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35088</a></td>
+                <td>13-רצה עתירתם</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35089</a></td>
+                <td>14-המצא לנו בבקשתנו</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35090</a></td>
+                <td>15-תביאנו אל הר קודשך</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35091</a></td>
+                <td>16-שמע קולנו</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35092</a></td>
+                <td>17-השיבנו</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35093</a></td>
+                <td>18-אל תשליכנו מלפניך</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35094</a></td>
+                <td>19-אל תשליכנו לעת זקנה</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>35095</a></td>
+                <td>20-מכניסי רחמים</td>
+                <td>תפילת הסליחות</td>
+                <td>לייבלה גלאנץ</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

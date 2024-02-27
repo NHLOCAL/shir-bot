@@ -1,0 +1,476 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>משפחת ואך</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמשפחת ואך</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>55454</a></td>
+                <td>01-דרך בית לחם</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55455</a></td>
+                <td>02-אחת ירושלים</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55456</a></td>
+                <td>03-אחיי מאתיופיה</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55457</a></td>
+                <td>04-יצחק</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55458</a></td>
+                <td>05-בחום הלב חברון</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55459</a></td>
+                <td>06-אהבה בחברון</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55460</a></td>
+                <td>07-בין תמוז לאב</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55461</a></td>
+                <td>08-מלה אליך</td>
+                <td>ביכורים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55462</a></td>
+                <td>01-אל תירא</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55463</a></td>
+                <td>02-מן האור</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55464</a></td>
+                <td>03-במוצאי יום מנוחה</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55465</a></td>
+                <td>04-אהבת נעורים</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55466</a></td>
+                <td>05-חברון</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55467</a></td>
+                <td>06-את אחי</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55468</a></td>
+                <td>07-למדני אלוהי</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55469</a></td>
+                <td>08-שיר למעלות</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55470</a></td>
+                <td>09-שיר אמנו רחל</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55471</a></td>
+                <td>10-יה ריבון</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55472</a></td>
+                <td>11-אבינו מלכנו</td>
+                <td>בין הזמנים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55473</a></td>
+                <td>01-כינור</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55474</a></td>
+                <td>02-מזמור לדוד</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55475</a></td>
+                <td>03-חופת עננים</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55476</a></td>
+                <td>04-היום הרת עולם</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55477</a></td>
+                <td>05-ציון</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55478</a></td>
+                <td>06-אדון עולם</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55479</a></td>
+                <td>07-דרור יקרא</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55480</a></td>
+                <td>08-מנגד</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55481</a></td>
+                <td>09-ניגון מעדן</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55482</a></td>
+                <td>10-אוחילה</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55483</a></td>
+                <td>11-ילדי</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55484</a></td>
+                <td>12-ירח</td>
+                <td>חופת עננים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55485</a></td>
+                <td>01-אל החיטה</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55486</a></td>
+                <td>02-טל</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55487</a></td>
+                <td>03-אמא</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55488</a></td>
+                <td>04-פיסת חיים</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55489</a></td>
+                <td>05-לכה דודי</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55490</a></td>
+                <td>06-טוב להודות</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55491</a></td>
+                <td>07-התנערי</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55492</a></td>
+                <td>08-קדוש</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55493</a></td>
+                <td>09-היקר מיקר</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55494</a></td>
+                <td>10-אחותנו</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55495</a></td>
+                <td>11-עלי אור</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55496</a></td>
+                <td>12-שמור אחי</td>
+                <td>פיסת חיים</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55497</a></td>
+                <td>01-ניגון של גפן</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55498</a></td>
+                <td>02-שמור וזכור</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55499</a></td>
+                <td>03-בואי בשלום</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55500</a></td>
+                <td>04-יום זה לישראל</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55501</a></td>
+                <td>05-צור משלו</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55502</a></td>
+                <td>06-כי אשמרה</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55503</a></td>
+                <td>07-אגדלך</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55504</a></td>
+                <td>08-בר יוחאי</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55505</a></td>
+                <td>09-אנא בכוח</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55506</a></td>
+                <td>10-ידיד נפש</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55507</a></td>
+                <td>11-המבדיל</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+              <tr>
+                <td><a>55508</a></td>
+                <td>12-אליהו הנביא</td>
+                <td>שבת</td>
+                <td>משפחת ואך</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

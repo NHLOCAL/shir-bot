@@ -1,0 +1,588 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יובל טייב</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיובל טייב</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>58132</a></td>
+                <td>נחמי עמי</td>
+                <td>אביחי חגג</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58133</a></td>
+                <td>02-שירו שיר</td>
+                <td>אור דוד</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58134</a></td>
+                <td>03-שלח לנו משיח</td>
+                <td>אור דוד</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58135</a></td>
+                <td>04-אל בעוני הבט</td>
+                <td>אור דוד</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58136</a></td>
+                <td>05-טקסים קנון אברהם דוד הכהן ז''ל</td>
+                <td>אור דוד</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58137</a></td>
+                <td>01    ק   ץ   ש</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58138</a></td>
+                <td>02  נ ש ƒ    ץ ף    £ ס ף ץ</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58139</a></td>
+                <td>03  נ £ ץ   ש ¥</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58140</a></td>
+                <td>04  נ ¥  נ ש ƒ  נ   ש  £ ש</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58141</a></td>
+                <td>05  ש £ ף  ע ף ץ £</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58142</a></td>
+                <td>06  ¿    ¬ ק ש ש ת</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58143</a></td>
+                <td>07         ש   ¿ נ £</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58144</a></td>
+                <td>08  פ       פ</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58145</a></td>
+                <td>09  נ ¿   ש  פ   ץ ס ר ק ¬</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58146</a></td>
+                <td>10         פ ץ   ש פ</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58147</a></td>
+                <td>11  נ   ¢ ץ £  פ ¢ ץ   ¿</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58148</a></td>
+                <td>12  ס ƒ  נ ף ¥</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58149</a></td>
+                <td>13  פ ¿ ס ש</td>
+                <td>1</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58150</a></td>
+                <td>01  ף נ ק ש נ  ש נ    ש ¬ ש</td>
+                <td>2</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58151</a></td>
+                <td>02    ק ¿ ץ צ ¬  ק   £ פ 1</td>
+                <td>2</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58152</a></td>
+                <td>03    ק ¿ ץ צ ¬  ק   £ פ 2</td>
+                <td>2</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58153</a></td>
+                <td>04    ק ¿ ץ צ ¬  ר ץ   ש   נ ש ¬</td>
+                <td>2</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58154</a></td>
+                <td>05    £ נ  ס ר    ס ץ   ר  ¢ נ £</td>
+                <td>2</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58155</a></td>
+                <td>01-ברכה תשימה</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58156</a></td>
+                <td>03-אבי השקף</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58157</a></td>
+                <td>03-עלזו רעי</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58158</a></td>
+                <td>04-אתה המלך</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58159</a></td>
+                <td>05-מחרוזת טוניסאית</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58160</a></td>
+                <td>06-האזינו כל אחי</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58161</a></td>
+                <td>07-אנא אבי משמיא</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58162</a></td>
+                <td>08-מחרוזת לחתן</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58163</a></td>
+                <td>09-נשמח כולם</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58164</a></td>
+                <td>10-שלום ושלוה</td>
+                <td>האזינו כל אחי</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58165</a></td>
+                <td>01-בן אדם</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58166</a></td>
+                <td>02-למענך</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58167</a></td>
+                <td>03-אדון הסליחות</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58168</a></td>
+                <td>04-יה שמע אביונך</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58169</a></td>
+                <td>05-בזוכרי על משכבי</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58170</a></td>
+                <td>06-אליך ד' נשאתי עיני</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58171</a></td>
+                <td>07-עת שערי רצון</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58172</a></td>
+                <td>08-אל נורא עלילה</td>
+                <td>הסליחות</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58173</a></td>
+                <td>01-מעשה העגל</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58174</a></td>
+                <td>02-צור אבותי</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58175</a></td>
+                <td>03-השב</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58176</a></td>
+                <td>04-תחינת משה</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58177</a></td>
+                <td>05-זכרונות דוד</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58178</a></td>
+                <td>06-מעשה בראשית</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58179</a></td>
+                <td>07-חתן וכלה</td>
+                <td>מעשה בראשית</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58180</a></td>
+                <td>- יובל טייב - מחרוזת הבדלה - מזרחי</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58181</a></td>
+                <td>63B20000 משה פרץ עם יובל טייב בהופעה חיה בביצוע נדיר תפילה לי</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58182</a></td>
+                <td>ארצי המובטחת</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58183</a></td>
+                <td>בן אדם</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58184</a></td>
+                <td>הרבי מילובביץ אמר</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58185</a></td>
+                <td>הרבי מלובאביץ</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58186</a></td>
+                <td>הרבי-דאנס רמיקס</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58187</a></td>
+                <td>הרבי-רמיקס</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58188</a></td>
+                <td>יובל טייב - אין עוד מלבדו</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58189</a></td>
+                <td>יובל טייב - בן אדם</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58190</a></td>
+                <td>יובל טייב - מה אני בלעדיך</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58191</a></td>
+                <td>יובל טייב - נחמוני</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58192</a></td>
+                <td>יובל טייב מה אני בלעדיך.135</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58193</a></td>
+                <td>יובל טייב-עם אחד 2010 [upo.co.il]</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58194</a></td>
+                <td>יובל_טייב_אם_אין_אני_לי_-_דוסינט_-_א!ר_הא!ר!ת</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58195</a></td>
+                <td>מחרוזת חפלה</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58196</a></td>
+                <td>נחמוני</td>
+                <td>סינגלים</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58197</a></td>
+                <td>01-תהליל לבר מצוה</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58198</a></td>
+                <td>02-תהליל לחתונה</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58199</a></td>
+                <td>03-מברוק איל ארסה</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58200</a></td>
+                <td>04-תהליל לכלה</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58201</a></td>
+                <td>05-תהליל ליולדת</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+              <tr>
+                <td><a>58202</a></td>
+                <td>06-תהליל לברית</td>
+                <td>תהליל</td>
+                <td>יובל טייב</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

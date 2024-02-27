@@ -1,0 +1,231 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מוישי בורגר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמוישי בורגר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>51730</a></td>
+                <td>01 והבוטח</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51731</a></td>
+                <td>02 על כל רגע</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51732</a></td>
+                <td>03 לכבוד שבת</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51733</a></td>
+                <td>04 קול דודי</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51734</a></td>
+                <td>05 הזמן קצר</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51735</a></td>
+                <td>06 מלוך</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51736</a></td>
+                <td>07 נחום איש גם-זו</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51737</a></td>
+                <td>08 כל מה</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51738</a></td>
+                <td>09 אליהו הנביא</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51739</a></td>
+                <td>10 כבשה אחת</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51740</a></td>
+                <td>11 בסייעתא דשמיא</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51741</a></td>
+                <td>12 שמעתי</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51742</a></td>
+                <td>13 אדמה ושמיים - אידיש</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51743</a></td>
+                <td>14 בטחו</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51744</a></td>
+                <td>15 מתנה טובה</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51745</a></td>
+                <td>16 נודה לך</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51746</a></td>
+                <td>17 ואני בחסדך</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51747</a></td>
+                <td>18 ניגון שמחה</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51748</a></td>
+                <td>19 ואילו פינו</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+              <tr>
+                <td><a>51749</a></td>
+                <td>20 עשה עימי</td>
+                <td>נעקסט לעוועל טענץ</td>
+                <td>מוישי בורגר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

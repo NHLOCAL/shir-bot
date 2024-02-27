@@ -1,0 +1,917 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>פיאמנטה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspפיאמנטה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>25897</a></td>
+                <td>01-כל המשמח</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25898</a></td>
+                <td>02-ישמחו</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25899</a></td>
+                <td>03-הנסתרות</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25900</a></td>
+                <td>04-ברוך הבא</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25901</a></td>
+                <td>05-הורה אבי</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25902</a></td>
+                <td>06-סלח נא</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25903</a></td>
+                <td>07-אנא בחסדך</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25904</a></td>
+                <td>08-אינסטרומנטלי</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25905</a></td>
+                <td>09-מי זה מלך</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25906</a></td>
+                <td>10-אזכרה</td>
+                <td>בגדול</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25907</a></td>
+                <td>01-משה</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25908</a></td>
+                <td>02-עוד ישמע</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25909</a></td>
+                <td>03-מהרה</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25910</a></td>
+                <td>04-בואי</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25911</a></td>
+                <td>05-ניגון תחיית המתים</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25912</a></td>
+                <td>06-יאל'ה משיח</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25913</a></td>
+                <td>07-הוא אשר</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25914</a></td>
+                <td>08-חביבי</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25915</a></td>
+                <td>09-לשנה הבאה</td>
+                <td>בדרך שאתה אוהב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25916</a></td>
+                <td>01-עוד ישמע</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25917</a></td>
+                <td>02-ברוך אתה</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25918</a></td>
+                <td>03-והא רחום</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25919</a></td>
+                <td>04-אלוקינו</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25920</a></td>
+                <td>05-השם אור לי</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25921</a></td>
+                <td>06-ברכת המזון</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25922</a></td>
+                <td>07-ויוי</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25923</a></td>
+                <td>08-שילוחי מצוה</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25924</a></td>
+                <td>09-הנסתרות</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25925</a></td>
+                <td>10-ויבן עוזיה</td>
+                <td>הופעה חיה בניו יורק ח''א</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25926</a></td>
+                <td>01-חלום של חירות</td>
+                <td>הופעה חיה בניו יורק ח''ב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25927</a></td>
+                <td>02-אגדלך</td>
+                <td>הופעה חיה בניו יורק ח''ב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25928</a></td>
+                <td>03-מחרוזת ערבי</td>
+                <td>הופעה חיה בניו יורק ח''ב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25929</a></td>
+                <td>04-מצוה</td>
+                <td>הופעה חיה בניו יורק ח''ב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25930</a></td>
+                <td>05-בית אדום</td>
+                <td>הופעה חיה בניו יורק ח''ב</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25931</a></td>
+                <td>01-סיסי סטראט</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25932</a></td>
+                <td>02-מצוה</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25933</a></td>
+                <td>03-לזכרונה של אליזרבט ריד</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25934</a></td>
+                <td>04-דיכאון מניק</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25935</a></td>
+                <td>05-אגדלך</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25936</a></td>
+                <td>06-כח הנשמה</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25937</a></td>
+                <td>07-תתכונן</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25938</a></td>
+                <td>08-ברכת המזון</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25939</a></td>
+                <td>09-עוד ישמע</td>
+                <td>הופעה חיה בקראש מאנצ'ון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25940</a></td>
+                <td>01-הודו לה</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25941</a></td>
+                <td>02-יהיו לרצון</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25942</a></td>
+                <td>03-כי לא על הלחם</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25943</a></td>
+                <td>04-בעת ההיא</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25944</a></td>
+                <td>05-תורה</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25945</a></td>
+                <td>06-אל אדון</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25946</a></td>
+                <td>07-ואני תפלתי</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25947</a></td>
+                <td>08-אדון עולם</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25948</a></td>
+                <td>09-אז ישיר</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25949</a></td>
+                <td>10-שיר למעלות</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25950</a></td>
+                <td>11-אבינו מלכנו</td>
+                <td>יהיו לרצון</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25951</a></td>
+                <td>01-ציפי</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25952</a></td>
+                <td>02-ויוי</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25953</a></td>
+                <td>03-רחל</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25954</a></td>
+                <td>04-יהודא</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25955</a></td>
+                <td>05-דוד וגולית</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25956</a></td>
+                <td>06-ג'ני</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25957</a></td>
+                <td>07-חלום של חירות</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25958</a></td>
+                <td>08-מוני</td>
+                <td>מיתרי הלב שלי</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25959</a></td>
+                <td>01-מצוה</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25960</a></td>
+                <td>02-ואף גם זאת</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25961</a></td>
+                <td>03-ד' מלך גואת לבש</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25962</a></td>
+                <td>04-ד' אור לי</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25963</a></td>
+                <td>05-והוא רחום</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25964</a></td>
+                <td>06-שליחי מצוה</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25965</a></td>
+                <td>07-ויבן עוזיהו</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25966</a></td>
+                <td>08-אלקנה</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25967</a></td>
+                <td>09-אברך את ה</td>
+                <td>מצוה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25968</a></td>
+                <td>יש כאן</td>
+                <td>סינגלים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25969</a></td>
+                <td>שיר הבר מצוה</td>
+                <td>סינגלים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25970</a></td>
+                <td>01-מעין עולם הבא</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25971</a></td>
+                <td>02-באזעצן די כלה</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25972</a></td>
+                <td>03-עוד ישמע</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25973</a></td>
+                <td>04-לעתיד לבוא</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25974</a></td>
+                <td>05-אינשאלה יבוא היום</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25975</a></td>
+                <td>06-אני מאמין</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25976</a></td>
+                <td>07-בולגר</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25977</a></td>
+                <td>08-אברהם אבינו - שלום עליכם</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25978</a></td>
+                <td>09-הנה אנכי שולח לכם</td>
+                <td>פדותנו תצמיח</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25979</a></td>
+                <td>01-אשר ברא</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25980</a></td>
+                <td>02-הלילה</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25981</a></td>
+                <td>03-נעימה ירושלמית</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25982</a></td>
+                <td>04-על חומותיך</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25983</a></td>
+                <td>05-ניגונים עתיקים</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25984</a></td>
+                <td>06-מחרוזת ניגונים</td>
+                <td>רק הורה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25985</a></td>
+                <td>01-אחד יחיד ומיוחד</td>
+                <td>שירי האדמורים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25986</a></td>
+                <td>02-ובכן צדיקים</td>
+                <td>שירי האדמורים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25987</a></td>
+                <td>03-ועל ידי זה</td>
+                <td>שירי האדמורים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25988</a></td>
+                <td>04-א גוט יאהר</td>
+                <td>שירי האדמורים</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25989</a></td>
+                <td>01-ישראל בטח בה</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25990</a></td>
+                <td>02-משיח בא היום</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25991</a></td>
+                <td>03-אשא עיני</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25992</a></td>
+                <td>04-אנחנו רוצים משיח עכשיו</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25993</a></td>
+                <td>05-כלו כל הקיצים</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25994</a></td>
+                <td>06-והוא יגאלנו</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25995</a></td>
+                <td>07-אבא חזרתי</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25996</a></td>
+                <td>08-הרבי מלובביץ</td>
+                <td>שמחת הגאולה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25997</a></td>
+                <td>01-חזק</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25998</a></td>
+                <td>02-מחרוזת ריקוד ראשון</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>25999</a></td>
+                <td>03-מחרוזת חביבי</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26000</a></td>
+                <td>04-Ochichornia</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26001</a></td>
+                <td>05-הורה דיסקו</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26002</a></td>
+                <td>06-אילן אילן</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26003</a></td>
+                <td>07-אשר ברא</td>
+                <td>ששון ושמחה</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26004</a></td>
+                <td>01-סימן טוב</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26005</a></td>
+                <td>02-אדיר</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26006</a></td>
+                <td>03-ניגון</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26007</a></td>
+                <td>04-מי הוא</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26008</a></td>
+                <td>05-לכה דודי</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26009</a></td>
+                <td>06-והרקותי</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26010</a></td>
+                <td>07-הנה</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26011</a></td>
+                <td>08-אם אין אני</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26012</a></td>
+                <td>09-הנה מה טוב</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26013</a></td>
+                <td>10-תחיית המתים</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+              <tr>
+                <td><a>26014</a></td>
+                <td>11-אשר ברא</td>
+                <td>תש''מ-1990</td>
+                <td>פיאמנטה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

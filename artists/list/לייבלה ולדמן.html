@@ -1,0 +1,364 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>לייבלה ולדמן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspלייבלה ולדמן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>35096</a></td>
+                <td>01-בראש השנה יכתבון</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35097</a></td>
+                <td>02-כי כשמך כן תהלתך</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35098</a></td>
+                <td>03-אדם יסודו מעפר</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35099</a></td>
+                <td>04-ועל המדינות</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35100</a></td>
+                <td>05-הבן יקיר לי</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35101</a></td>
+                <td>06-זכרנו בזכרון טוב לפניך</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35102</a></td>
+                <td>07-שרפי מעלה</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35103</a></td>
+                <td>08-אתה יודע רזי עולם</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35104</a></td>
+                <td>09-רחמנא דעני לעניי</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35105</a></td>
+                <td>10-אבינו מלכינו</td>
+                <td>ימים  נוראים</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35106</a></td>
+                <td>01-מיין זיידענס חלום</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35107</a></td>
+                <td>02-דער אמאליגער איד</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35108</a></td>
+                <td>03-אין נייעם בית המקדש</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35109</a></td>
+                <td>04-דאס פלעשעל</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35110</a></td>
+                <td>05-עפען אויף דעם תהילים</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35111</a></td>
+                <td>06-דער נייער יאר</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35112</a></td>
+                <td>07-די נייע וועלט</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35113</a></td>
+                <td>08-ואהבת לרעך כמוך</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35114</a></td>
+                <td>09-משה ביים בארג סיני</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35115</a></td>
+                <td>10-שופר של משיח</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35116</a></td>
+                <td>11-דער חזן אין שוהל</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35117</a></td>
+                <td>12-א פראגע</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35118</a></td>
+                <td>13-עבדים היינו</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35119</a></td>
+                <td>14-אמר אביי</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35120</a></td>
+                <td>15-די אייביגע טענה</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35121</a></td>
+                <td>16-מחדש לבנה</td>
+                <td>מיין פאלקס ליד</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35122</a></td>
+                <td>01-כי כשמח</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35123</a></td>
+                <td>02-אדם יסודו מעפר</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35124</a></td>
+                <td>03-בראש השנה יכתבון</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35125</a></td>
+                <td>04-זכרנו בזיכרון טוב</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35126</a></td>
+                <td>05-שרפי מעלה</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35127</a></td>
+                <td>06-אבינו מלכנו</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35128</a></td>
+                <td>07-על הראשונים</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35129</a></td>
+                <td>08-לפיכך אנחנו</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35130</a></td>
+                <td>09-אל תירא</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35131</a></td>
+                <td>10-הבט משמים וראה</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35132</a></td>
+                <td>11-אנא בכוח</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35133</a></td>
+                <td>12-רזא דשבת</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>35134</a></td>
+                <td>13-כי לקח טוב</td>
+                <td>פניני חזנות</td>
+                <td>לייבלה ולדמן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,637 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מיכה גמרמן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמיכה גמרמן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>21381</a></td>
+                <td>01 - מחרוזת פורים</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21382</a></td>
+                <td>02 - מחרוזת פסח</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21383</a></td>
+                <td>03 - מחרוזת שבועות</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21384</a></td>
+                <td>04 - מחרוזת ימים נוראים</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21385</a></td>
+                <td>05 - מחרוזת סוכות</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21386</a></td>
+                <td>06 - מחרוזת חנוכה</td>
+                <td>מועדי ישראל</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21387</a></td>
+                <td>01 רק שמחה</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21388</a></td>
+                <td>02 מיכה עבדך</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21389</a></td>
+                <td>03 זה המקום שלנו</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21390</a></td>
+                <td>04 יהי השם</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21391</a></td>
+                <td>05 בזמן הזה</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21392</a></td>
+                <td>06 help my tOdAy</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21393</a></td>
+                <td>07 שמחה דקדושה</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21394</a></td>
+                <td>08 חנני השם</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21395</a></td>
+                <td>09 הלילה</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21396</a></td>
+                <td>10 בזכרנו את ציון</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21397</a></td>
+                <td>11 שמחה גדולה הלילה</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21398</a></td>
+                <td>12 כי לא אעזבך</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21399</a></td>
+                <td>13 תתקבל</td>
+                <td>מיכה עבדך</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21400</a></td>
+                <td>- יוני ומיכה גמרמן - שלח לי כח - קאבר - מקורי</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21401</a></td>
+                <td>- מיכה גמרמן - כל האור בעולם - מקורי</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21402</a></td>
+                <td>01 רק שמחה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21403</a></td>
+                <td>Micha Gamerman - Essa Einai - מיכה גמרמן - אשא עיני</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21404</a></td>
+                <td>Micha Gamerman - Rak Simcha - מיכה גמרמן - רק שמחה (Official Music Video)</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21405</a></td>
+                <td>Micha Gamerman - Yihye B´seder  מיכה גמרמן - יהיה בסדר</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21406</a></td>
+                <td>אם אשכחך</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21407</a></td>
+                <td>בואי כלה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21408</a></td>
+                <td>בזכרנו את ציון</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21409</a></td>
+                <td>בזמן הזה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21410</a></td>
+                <td>גילה רינה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21411</a></td>
+                <td>גם</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21412</a></td>
+                <td>דרכו של כל אחד</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21413</a></td>
+                <td>הלילה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21414</a></td>
+                <td>ושם תמצאהו</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21415</a></td>
+                <td>חנני השם</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21416</a></td>
+                <td>יהיה בסדר</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21417</a></td>
+                <td>יתן השם</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21418</a></td>
+                <td>מה רבו מעשיך</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21419</a></td>
+                <td>מחר יהיה האות הזה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21420</a></td>
+                <td>מחרוזת שירי פורים  - רמיקס</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21421</a></td>
+                <td>מחרוזת שירים  לשבועות</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21422</a></td>
+                <td>מיכה גמרמן - בעד הנצחי</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21423</a></td>
+                <td>מיכה גמרמן - מחרוזת יום שבת</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21424</a></td>
+                <td>מיכה גמרמן - רבים</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21425</a></td>
+                <td>עזור לי היום</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21426</a></td>
+                <td>רק להודות</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21427</a></td>
+                <td>רק שמחה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21428</a></td>
+                <td>שימי יונייב ותזמורתו מארחים את כוכבי הזמר החסידי במחרוזת חדשה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21429</a></td>
+                <td>שלום עליכם</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21430</a></td>
+                <td>שמחה גדולה הלילה</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21431</a></td>
+                <td>תתקבל</td>
+                <td>סינגלים</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21432</a></td>
+                <td>01 -  עליכם השלום</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21433</a></td>
+                <td>02 - סלחתי</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21434</a></td>
+                <td>03 - עשה למען שמך</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21435</a></td>
+                <td>04 - קשר של קיימא</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21436</a></td>
+                <td>05 - הנר דולק</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21437</a></td>
+                <td>06 - מתחננים</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21438</a></td>
+                <td>07 - מה ידידות</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21439</a></td>
+                <td>08 -  יזכנו</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21440</a></td>
+                <td>09 -  גילה רינה</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21441</a></td>
+                <td>10 - תפילה</td>
+                <td>קשר של קיימא</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21442</a></td>
+                <td>01 מחרוזת תפילות שבת</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21443</a></td>
+                <td>02 מחרוזת ליל שבת</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21444</a></td>
+                <td>03 מחרוזת יום שבת</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21445</a></td>
+                <td>04 מחרוזת סעודה שלישית</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21446</a></td>
+                <td>05 מחרוזת ברכת המזון</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21447</a></td>
+                <td>06 מחרוזת הבדלה</td>
+                <td>שבת עונג</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21448</a></td>
+                <td>01 רק להודות</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21449</a></td>
+                <td>02 באי כלה</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21450</a></td>
+                <td>03 מה אנחנו</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21451</a></td>
+                <td>04 A Child Of Hashem</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21452</a></td>
+                <td>05 יהיה בסדר</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21453</a></td>
+                <td>06 ברוך ה'</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21454</a></td>
+                <td>07 מאה פעמים</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21455</a></td>
+                <td>08 גדולה תורה</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21456</a></td>
+                <td>09 תוזמן קול</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21457</a></td>
+                <td>10 שם תמצאהו</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>21458</a></td>
+                <td>11 מורבו</td>
+                <td>שם תמצאהו</td>
+                <td>מיכה גמרמן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

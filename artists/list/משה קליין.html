@@ -1,0 +1,378 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>משה קליין</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמשה קליין</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>24220</a></td>
+                <td>01 נס</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24221</a></td>
+                <td>02 ברכו את השם</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24222</a></td>
+                <td>03 מה טובו אוהליך</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24223</a></td>
+                <td>04 שבת</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24224</a></td>
+                <td>05 שיר פשוט</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24225</a></td>
+                <td>06 ניצוץ יהודי</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24226</a></td>
+                <td>07 מאיר את דרכי</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24227</a></td>
+                <td>08 דבר נאה ומתקבל</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24228</a></td>
+                <td>09 שמחה שלימה</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24229</a></td>
+                <td>10 בואי בשלום</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24230</a></td>
+                <td>11 אני מאמין</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24231</a></td>
+                <td>12 בונה ירושלים</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24232</a></td>
+                <td>13 וקולו נשמע</td>
+                <td>משה קליין ניצוץ יהודי</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24233</a></td>
+                <td>- משה קליין - בונה ירושלים - חסידי (2)</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24234</a></td>
+                <td>- משה קליין - מה טובו אוהליך - חסידי</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24235</a></td>
+                <td>- משה קליין - ניצוץ יהודי - מקורי</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24236</a></td>
+                <td>- משה קליין - תאיר את דרכי - מזרחי</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24237</a></td>
+                <td>בענבי הגפן</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24238</a></td>
+                <td>ברכו את השם</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24239</a></td>
+                <td>דבר נאה ומתקבל</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24240</a></td>
+                <td>התעוררות יד אהרון - משה קליין - מיקס יניב בלאס</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24241</a></td>
+                <td>וקולו נשמע</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24242</a></td>
+                <td>יברכך</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24243</a></td>
+                <td>לבחור נכון</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24244</a></td>
+                <td>משה קליין & קובי ברומר - לבחור נכון</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24245</a></td>
+                <td>משה קליין - אני מאמין</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24246</a></td>
+                <td>משה קליין - בליבי</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24247</a></td>
+                <td>משה קליין - שבת</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24248</a></td>
+                <td>משה קליין - שיר פשוט</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24249</a></td>
+                <td>משה קליין - שמחה שלימה</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24250</a></td>
+                <td>משה קליין - שמחה שלמה</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24251</a></td>
+                <td>משה קליין בסינגל רביעי – נס</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24252</a></td>
+                <td>משה קליין נס</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24253</a></td>
+                <td>משה קליין, פיני איינהורן - אני מאמין (לייב)</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24254</a></td>
+                <td>משה קליין-שמחה שלמה</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24255</a></td>
+                <td>משה-קליין-עוד-לא-מאוחר</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24256</a></td>
+                <td>נחמוני</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24257</a></td>
+                <td>ענבי הגפן</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24258</a></td>
+                <td>קובי ברומר ומשה קליין עם משאפ יהודי ישראלי</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24259</a></td>
+                <td>קובי ברומר משה קליין משאפ יהודי ישראלי.137</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+              <tr>
+                <td><a>24260</a></td>
+                <td>שמחה שלימה</td>
+                <td>סינגלים</td>
+                <td>משה קליין</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

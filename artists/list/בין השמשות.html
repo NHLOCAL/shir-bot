@@ -1,0 +1,245 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>בין השמשות</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspבין השמשות</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>45244</a></td>
+                <td>01-יש שם בלב</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45245</a></td>
+                <td>02-ברגע של בדידות</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45246</a></td>
+                <td>03-הצד שלך</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45247</a></td>
+                <td>04-קצה החוט</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45248</a></td>
+                <td>05-שנתיים בלעדיך</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45249</a></td>
+                <td>06-הוציאה ממסגר נפשי</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45250</a></td>
+                <td>07-אודי</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45251</a></td>
+                <td>08-צמאה נפשי</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45252</a></td>
+                <td>09-חוקי תנועה</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45253</a></td>
+                <td>10-אחת שאלתי</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45254</a></td>
+                <td>11-אלוקי נשמה</td>
+                <td>סולם</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45255</a></td>
+                <td>יוני גנוט בביצוע מחודש לסינגל הראשון ''בין השמשות''</td>
+                <td>סינגלים</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45256</a></td>
+                <td>01-באתי אלייך</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45257</a></td>
+                <td>02-אור בחדר</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45258</a></td>
+                <td>03-המראות</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45259</a></td>
+                <td>04-לא בחיל</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45260</a></td>
+                <td>05-לאורך בן יהודא</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45261</a></td>
+                <td>06-לך לך</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45262</a></td>
+                <td>07-אני נוסע</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45263</a></td>
+                <td>08-במקרה</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45264</a></td>
+                <td>09-בדממה</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+              <tr>
+                <td><a>45265</a></td>
+                <td>10-שתיקת האדמה</td>
+                <td>שתיקת האדמה</td>
+                <td>בין השמשות</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

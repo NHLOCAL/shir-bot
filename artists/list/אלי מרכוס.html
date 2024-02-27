@@ -1,0 +1,686 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אלי מרכוס</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאלי מרכוס</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>3829</a></td>
+                <td>01 קדיש</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3830</a></td>
+                <td>02 רחמנא</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3831</a></td>
+                <td>03 אבינו מלכנו (ר_ אלתר)</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3832</a></td>
+                <td>04 אבינו מלכנו (מסורתי)</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3833</a></td>
+                <td>05 ונתנה תוקף</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3834</a></td>
+                <td>06 יעלה</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3835</a></td>
+                <td>07 כי הנה כחומר</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3836</a></td>
+                <td>08 כי אנו עמך (תשכ_ד)</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3837</a></td>
+                <td>09 כי אנו עמך (תשי_ז)</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3838</a></td>
+                <td>10 מארש נפוליאון</td>
+                <td>אווירת הימים הנוראים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3839</a></td>
+                <td>01 מחרוזת א</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3840</a></td>
+                <td>02 מחרוזת ב</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3841</a></td>
+                <td>03 מחרוזת ג</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3842</a></td>
+                <td>04 מחרוזת ד</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3843</a></td>
+                <td>05 מחרוזת ה</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3844</a></td>
+                <td>06 מחרוזת ו</td>
+                <td>אלי מרקוס & ארי היל - פרויקט X - מחרוזות</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3845</a></td>
+                <td>01 בחכמה</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3846</a></td>
+                <td>02 אורייתא</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3847</a></td>
+                <td>03 דוד המלך</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3848</a></td>
+                <td>04 אברהם יגל</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3849</a></td>
+                <td>05 וזכנו</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3850</a></td>
+                <td>06 חברון</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3851</a></td>
+                <td>07 הוא יגאל</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3852</a></td>
+                <td>08 ישמע</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3853</a></td>
+                <td>09 עוד ישמע</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3854</a></td>
+                <td>10 אשר ברא</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3855</a></td>
+                <td>11 וידעת</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3856</a></td>
+                <td>12 אם אמרתי</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3857</a></td>
+                <td>13 קדשם</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3858</a></td>
+                <td>14 הוא כלל</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3859</a></td>
+                <td>15 מזל טוב</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3860</a></td>
+                <td>16 התקבצו</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3861</a></td>
+                <td>17 אדיר איום</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3862</a></td>
+                <td>18 מאי דהוה</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3863</a></td>
+                <td>19 והפכתי</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3864</a></td>
+                <td>20 עץ חיים</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3865</a></td>
+                <td>21 אשא עיני</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3866</a></td>
+                <td>22 תשמח</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3867</a></td>
+                <td>23 תודה</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3868</a></td>
+                <td>24 קול המשמח</td>
+                <td>אנרגיה</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3869</a></td>
+                <td>01 שיבנה</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3870</a></td>
+                <td>02 רופא נאמן</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3871</a></td>
+                <td>03 דוד המלך</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3872</a></td>
+                <td>04 קול תורה</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3873</a></td>
+                <td>05 מזל טוב</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3874</a></td>
+                <td>06 חביבי</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3875</a></td>
+                <td>07 אב הרחמים</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3876</a></td>
+                <td>08 אותיות</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3877</a></td>
+                <td>09 קוק אריין</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3878</a></td>
+                <td>10 כלי מחזיק</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3879</a></td>
+                <td>11 ישתבח</td>
+                <td>דוד המלך</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3880</a></td>
+                <td>01 יגעתי</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3881</a></td>
+                <td>02 רחם</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3882</a></td>
+                <td>03 מכלכל חיים</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3883</a></td>
+                <td>04 בכל כחו</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3884</a></td>
+                <td>05 צדיק</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3885</a></td>
+                <td>06 זכרינו</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3886</a></td>
+                <td>07 חלק שלי</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3887</a></td>
+                <td>08 וזכיני</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3888</a></td>
+                <td>09 מלך </td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3889</a></td>
+                <td>10 שוש תשיש</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3890</a></td>
+                <td>11 לטב עביד</td>
+                <td>יגעתי</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3891</a></td>
+                <td>- אלי מרכוס ובערל האניג - מי בן שיח - חסידי</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3892</a></td>
+                <td>01 שלש תנועות - אלי מרקוס</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3893</a></td>
+                <td>אלי מרכוס ומשה טישלר מגישים מחרוזת אנרגטית</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3894</a></td>
+                <td>אלי מרכוס יגעתי</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3895</a></td>
+                <td>אלי מרקוס-מלך העולם</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3896</a></td>
+                <td>אם אשכחך</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3897</a></td>
+                <td>בחתונה</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3898</a></td>
+                <td>בני פרידמן & אלי מרכוס - מחרוזת אנרגיה</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3899</a></td>
+                <td>בני פרידמן ואלי מרכוס מגישים 'מחרוזת להיטים באנגלית של מב''ד</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3900</a></td>
+                <td>בני פרידמן, אלי מרכוס - מחרוזת דאנס חבד</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3901</a></td>
+                <td>גשם</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3902</a></td>
+                <td>הבינוני</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3903</a></td>
+                <td>הלהיטים הנוסטלגיים של מ.ב.ד</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3904</a></td>
+                <td>השמיני ואלי מרכוס - על -חיינו - אנגלית</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3905</a></td>
+                <td>ובעת ההיא</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3906</a></td>
+                <td>כל המשמח</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3907</a></td>
+                <td>מחרוזת 2018</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3908</a></td>
+                <td>מחרוזת חב'ד</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3909</a></td>
+                <td>מלך העולם</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3910</a></td>
+                <td>מנדי ג'רופי, אלי מרכוס, חוני מילקי - כבקרת</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3911</a></td>
+                <td>מתנות קטנות- אלי מרקוס וידידים</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3912</a></td>
+                <td>ניגון חסידי מהר''ש</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+              <tr>
+                <td><a>3913</a></td>
+                <td>פרץ חן מארח את אלי מרכוס לדואט מרגש – בידך (1)</td>
+                <td>סינגלים</td>
+                <td>אלי מרכוס</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

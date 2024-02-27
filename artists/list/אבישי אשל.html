@@ -1,0 +1,371 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אבישי אשל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאבישי אשל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>119</a></td>
+                <td>01 הזמן שנשאר</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>120</a></td>
+                <td>02 אלוקים גדול</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>121</a></td>
+                <td>03 השם אחד</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>122</a></td>
+                <td>04 יום רודף יום</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>123</a></td>
+                <td>05 ביילה ביילה</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>124</a></td>
+                <td>06 ריבונו של עולם (שיר חופה)</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>125</a></td>
+                <td>07 כי אתה</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>126</a></td>
+                <td>08 זה רק מלמעלה</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>127</a></td>
+                <td>09 בואי כלה</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>128</a></td>
+                <td>10 עכשיו שמח</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>129</a></td>
+                <td>11 נגני גיטרה</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>130</a></td>
+                <td>12 עודני ילד</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>131</a></td>
+                <td>13 רק רוצים לרקוד</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>132</a></td>
+                <td>14 גאות ושפל</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>133</a></td>
+                <td>15 מכתב לאבא</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>134</a></td>
+                <td>16 אהבת חינם</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>135</a></td>
+                <td>17 אלוקיי אל תעזבני</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>136</a></td>
+                <td>18 מחרוזת בקצב הבוזוקי</td>
+                <td>השם אחד</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>137</a></td>
+                <td>אבישי אשל - אהבת חינם</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>138</a></td>
+                <td>אבישי אשל - חצי יובל</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>139</a></td>
+                <td>אבישי אשל - מרגיש אחר</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>140</a></td>
+                <td>אבישי אשל - עודני ילד</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>141</a></td>
+                <td>אבישי אשל ה' אחד - רמיקס</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>142</a></td>
+                <td>אבישי אשל, אליהב - אחינו מתחתן - רמיקס</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>143</a></td>
+                <td>אבישי אשל-ה אחד 2011</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>144</a></td>
+                <td>אלירן אלבז ואבישי אשל - מחרוזת כך עוברים חיי הקליפ הרשמי מייל מיוזיק   Eliran Elbaz _ Avishai Eshel Kach Ovrim.mp3מייל מיוזיק</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>145</a></td>
+                <td>כי אתה - רימיקס</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>146</a></td>
+                <td>כי אתה כל החיים שלי</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>147</a></td>
+                <td>רועי הרוש ואבישי אשל - אחד יחד ומיוחד</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>148</a></td>
+                <td>ריבונו של עולם</td>
+                <td>סינגלים</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>149</a></td>
+                <td>- אבישי אשל - אחינו מתחתן - מזרחי</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>150</a></td>
+                <td>- אבישי אשל - דרך הלב - מזרחי</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>151</a></td>
+                <td>- אבישי אשל - להאיר את העולם</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>152</a></td>
+                <td>- מידד טסה ואבישי אשל - אחים - מזרחי</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>153</a></td>
+                <td>אבישי אשל אבא טוב.134</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>154</a></td>
+                <td>אבישי אשל ודיג יי ניסו סלוב אורך ימים Avishai Eshel Dj .134</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>155</a></td>
+                <td>אבישי אשל מחילה.134</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>156</a></td>
+                <td>אין עוד מלבדו חיים ישראל והאחים איציק ואבישי אשל דינר אור החיים .136</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>157</a></td>
+                <td>רק רוצים לרקוד אבישי אשל</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+              <tr>
+                <td><a>158</a></td>
+                <td>שער איציק אשל מידד טסה אבישי אשל איש המידות</td>
+                <td>אבישי אשל</td>
+                <td>אבישי אשל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

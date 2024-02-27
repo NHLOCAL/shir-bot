@@ -1,0 +1,903 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שירי רגש</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשירי רגש</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>27471</a></td>
+                <td>אב הרחמים</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27472</a></td>
+                <td>אבינו מלכינו</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27473</a></td>
+                <td>אדון הכל</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27474</a></td>
+                <td>אדון השלום</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27475</a></td>
+                <td>אדיר איום</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27476</a></td>
+                <td>אודה ה' מאד בפי</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27477</a></td>
+                <td>אודה</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27478</a></td>
+                <td>אודך</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27479</a></td>
+                <td>אוחילה לקל</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27480</a></td>
+                <td>אום אני חומה - פיוט לסוכות</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27481</a></td>
+                <td>אז יבקע</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27482</a></td>
+                <td>אחת,ואני,זעקתי</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27483</a></td>
+                <td>אין ערוך</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27484</a></td>
+                <td>אל תקצוף</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27485</a></td>
+                <td>אלוקי נשמה</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27486</a></td>
+                <td>אם תחנה</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27487</a></td>
+                <td>אמא יקרה לי</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27488</a></td>
+                <td>אנחנו מאמינים</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27489</a></td>
+                <td>אני מאמין</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27490</a></td>
+                <td>בואי בשלום</td>
+                <td>א-ב</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27491</a></td>
+                <td>'דרשו ה</td>
+                <td>ג-ד</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27492</a></td>
+                <td>גבוה גבוה</td>
+                <td>ג-ד</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27493</a></td>
+                <td>גדולה תורה</td>
+                <td>ג-ד</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27494</a></td>
+                <td>הבט</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27495</a></td>
+                <td>הדור נאה</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27496</a></td>
+                <td>הטו אזנכם</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27497</a></td>
+                <td>היום הרת עולם</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27498</a></td>
+                <td>היסח הדעת</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27499</a></td>
+                <td>המלאך-פינקי וובר</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27500</a></td>
+                <td>הנה אנכי</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27501</a></td>
+                <td>השלך</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27502</a></td>
+                <td>התקבצו מלאכים</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27503</a></td>
+                <td>ובירושלים תנוחמו</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27504</a></td>
+                <td>והביאותים</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27505</a></td>
+                <td>והערב נא</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27506</a></td>
+                <td>וזכיני לגדל</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27507</a></td>
+                <td>וזכנו לקבל שבתות</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27508</a></td>
+                <td>וכשם-כנשר</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27509</a></td>
+                <td>ונפשי</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27510</a></td>
+                <td>ונתנה תוקף-יידל ורדיגר</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27511</a></td>
+                <td>ונתנה תוקף-שלמה כהן</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27512</a></td>
+                <td>ונתנה תוקף</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27513</a></td>
+                <td>ושבתי,ולא ינטשו</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27514</a></td>
+                <td>ושויתי</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27515</a></td>
+                <td>יעקב שוואקי ויונתן רזאל והיא שעמדה</td>
+                <td>ה-ו</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27516</a></td>
+                <td>'חנני ה</td>
+                <td>ז-ח</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27517</a></td>
+                <td>זכרנו</td>
+                <td>ז-ח</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27518</a></td>
+                <td>זעקתי</td>
+                <td>ז-ח</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27519</a></td>
+                <td>חמול על מעשיך</td>
+                <td>ז-ח</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27520</a></td>
+                <td>טוב להודות</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27521</a></td>
+                <td>י-ה רבון עולם</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27522</a></td>
+                <td>יוודע בגויים</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27523</a></td>
+                <td>יזכרם</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27524</a></td>
+                <td>יערב</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27525</a></td>
+                <td>יש אמונה</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27526</a></td>
+                <td>ישא ברכה</td>
+                <td>ט-י</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27527</a></td>
+                <td>כאייל תערוג</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27528</a></td>
+                <td>כבודו</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27529</a></td>
+                <td>כי חסדך</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27530</a></td>
+                <td>לא אמות</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27531</a></td>
+                <td>לב טהור</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27532</a></td>
+                <td>לולא תורתך</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27533</a></td>
+                <td>לולי תורתך</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27534</a></td>
+                <td>ליבי</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27535</a></td>
+                <td>לקבל שבים שלמה כהן</td>
+                <td>כ-ל</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27536</a></td>
+                <td>'מי כה</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27537</a></td>
+                <td>מאמע רחל וויין</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27538</a></td>
+                <td>מובדלים</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27539</a></td>
+                <td>מודה</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27540</a></td>
+                <td>מוציא אסירים</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27541</a></td>
+                <td>מוריה</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27542</a></td>
+                <td>מחרוזת איכה</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27543</a></td>
+                <td>מי האיש</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27544</a></td>
+                <td>מכניסי רחמים</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27545</a></td>
+                <td>מלאכי רחמים</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27546</a></td>
+                <td>מלאכי רחמים</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27547</a></td>
+                <td>ממקומך</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27548</a></td>
+                <td>מן המצר-נתי ב</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27549</a></td>
+                <td>מקימי</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27550</a></td>
+                <td>משכיל לדוד</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27551</a></td>
+                <td>נומי נומי</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27552</a></td>
+                <td>נחמו</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27553</a></td>
+                <td>נכספה</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27554</a></td>
+                <td>נצור</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27555</a></td>
+                <td>נקדש</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27556</a></td>
+                <td>שלמה כהן - מעוז צור</td>
+                <td>מ-נ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27557</a></td>
+                <td>סלח נא</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27558</a></td>
+                <td>עד הנה</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27559</a></td>
+                <td>עוגה - עוגה</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27560</a></td>
+                <td>עורה למה תישן</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27561</a></td>
+                <td>על זה היה</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27562</a></td>
+                <td>עלה קטן שלי</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27563</a></td>
+                <td>ענני</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27564</a></td>
+                <td>עשינו לך מנורה</td>
+                <td>ס-ע</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27565</a></td>
+                <td>פנה לעלבון</td>
+                <td>פ-צ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27566</a></td>
+                <td>פתח ליבי</td>
+                <td>פ-צ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27567</a></td>
+                <td>פתח ליבך לזכרם של אייל יפרח, נפתלי פרנקל וגיל-עד שאער</td>
+                <td>פ-צ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27568</a></td>
+                <td>צמאה</td>
+                <td>פ-צ</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27569</a></td>
+                <td>'קול ה</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27570</a></td>
+                <td>קולי שמע</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27571</a></td>
+                <td>קומי עורי</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27572</a></td>
+                <td>קלי אתה</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27573</a></td>
+                <td>קלי</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27574</a></td>
+                <td>רחל</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27575</a></td>
+                <td>רחם</td>
+                <td>ק-ר</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27576</a></td>
+                <td>'שובה ה</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27577</a></td>
+                <td>ישראל ורדיגר-תורה</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27578</a></td>
+                <td>שאו מרום</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27579</a></td>
+                <td>שובי השולמית</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27580</a></td>
+                <td>שוועת עניים</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27581</a></td>
+                <td>שמע בני</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27582</a></td>
+                <td>שתרחמני</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27583</a></td>
+                <td>תורה הקדושה</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27584</a></td>
+                <td>תניא</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27585</a></td>
+                <td>תפילה לעני,</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+              <tr>
+                <td><a>27586</a></td>
+                <td>תפילה לעני</td>
+                <td>ש-ת</td>
+                <td>שירי רגש</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

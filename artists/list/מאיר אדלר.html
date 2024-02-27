@@ -1,0 +1,1120 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מאיר אדלר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמאיר אדלר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>14969</a></td>
+                <td>01-ושמחת בחגך</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14970</a></td>
+                <td>02-הרחמן הוא יקים</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14971</a></td>
+                <td>03-עוז והדר</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14972</a></td>
+                <td>04-רבות בנות</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14973</a></td>
+                <td>05-אנא עבדא</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14974</a></td>
+                <td>06-ניגון קרלין א</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14975</a></td>
+                <td>07-ניגון קרלין ב</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14976</a></td>
+                <td>08-אשרי אדם</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14977</a></td>
+                <td>09-אשרי העם</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14978</a></td>
+                <td>10-ניגון ברסלב</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14979</a></td>
+                <td>11-נאר אמונה</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14980</a></td>
+                <td>12-אחד יחיד</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14981</a></td>
+                <td>13-לעשות נחת</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14982</a></td>
+                <td>14-ניגון ירושלמי עתיק</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14983</a></td>
+                <td>15-אם אין אני</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14984</a></td>
+                <td>16-ותמיד נספר</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14985</a></td>
+                <td>17-ניגון ברסלב קרלין</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14986</a></td>
+                <td>18-ושמחת בחגך קרלין</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14987</a></td>
+                <td>19-כה אמר</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14988</a></td>
+                <td>20-בספר חיים</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14989</a></td>
+                <td>21-יפרח בימיו</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14990</a></td>
+                <td>22-על זאת</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14991</a></td>
+                <td>23-והריקותי לכם ברכה</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14992</a></td>
+                <td>24-וכל קרני</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14993</a></td>
+                <td>25-ניגון ויזניץ בשמחה</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14994</a></td>
+                <td>26-ניגון ויזניץ</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14995</a></td>
+                <td>27-האדרת</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14996</a></td>
+                <td>28-אידעלעך אין איינעם</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14997</a></td>
+                <td>29-ועל ידי זה</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14998</a></td>
+                <td>30-שנשמע ונתבשר</td>
+                <td>אך שמח</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14999</a></td>
+                <td>01-מודה</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15000</a></td>
+                <td>02-רחוק</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15001</a></td>
+                <td>03-ופרוס</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15002</a></td>
+                <td>04-על שלושה</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15003</a></td>
+                <td>05-כי לקח טוב</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15004</a></td>
+                <td>06-בורא עולם</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15005</a></td>
+                <td>07-מלך</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15006</a></td>
+                <td>08-ויעזור</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15007</a></td>
+                <td>09-והראנו</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15008</a></td>
+                <td>10-שישו</td>
+                <td>ברכה ושלום</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15009</a></td>
+                <td>01-בר יוחאי</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15010</a></td>
+                <td>02-בר יוחאי המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15011</a></td>
+                <td>03-ואמרתם</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15012</a></td>
+                <td>04-במירון קבור ר' שמעון</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15013</a></td>
+                <td>05-המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15014</a></td>
+                <td>06-לכבוד התנא האלוקי</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15015</a></td>
+                <td>07-פתיחה להורה</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15016</a></td>
+                <td>08-הורה</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15017</a></td>
+                <td>09-הורה 2</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15018</a></td>
+                <td>09-המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15019</a></td>
+                <td>11-הורה 3</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15020</a></td>
+                <td>12-הורה 4</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15021</a></td>
+                <td>13-המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15022</a></td>
+                <td>14-שלום</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15023</a></td>
+                <td>15-ניגון בר יוחאי 1</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15024</a></td>
+                <td>16-ניגון בר יוחאי 2</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15025</a></td>
+                <td>17-ניגון קרלין</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15026</a></td>
+                <td>18-ניגון קרלין 2</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15027</a></td>
+                <td>19-ניגון חב''ד</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15028</a></td>
+                <td>20-המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15029</a></td>
+                <td>21-ניגון שמחה</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15030</a></td>
+                <td>22-המשך</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15031</a></td>
+                <td>23-תהא השעה הזאת</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15032</a></td>
+                <td>24-אבינו מלכנו</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15033</a></td>
+                <td>25-בר יוחאי קצבי</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15034</a></td>
+                <td>26-ניגון שמח</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15035</a></td>
+                <td>27-לשנה הבאה</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15036</a></td>
+                <td>28-אמר ר' עקיבא</td>
+                <td>לעבעדיג</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15037</a></td>
+                <td>01ומנותר קנקנים</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15038</a></td>
+                <td>מאיר אדלר - Track 10</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15039</a></td>
+                <td>מאיר אדלר - Track 11</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15040</a></td>
+                <td>מאיר אדלר - Track 12</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15041</a></td>
+                <td>מאיר אדלר - Track 2</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15042</a></td>
+                <td>מאיר אדלר - Track 3</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15043</a></td>
+                <td>מאיר אדלר - Track 4</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15044</a></td>
+                <td>מאיר אדלר - Track 5</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15045</a></td>
+                <td>מאיר אדלר - Track 6</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15046</a></td>
+                <td>מאיר אדלר - Track 7</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15047</a></td>
+                <td>מאיר אדלר - Track 8</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15048</a></td>
+                <td>מאיר אדלר - Track 9</td>
+                <td>מאיר אדלר - ניגוני חנוכה</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15049</a></td>
+                <td>01-מחרוזת א</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15050</a></td>
+                <td>02-מחרוזת ב</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15051</a></td>
+                <td>03-מחרוזת ג</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15052</a></td>
+                <td>04-מחרוזת ד</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15053</a></td>
+                <td>05-מחרוזת ה</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15054</a></td>
+                <td>06-מחרוזת ו</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15055</a></td>
+                <td>07-מחרוזת ז</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15056</a></td>
+                <td>08-מחרוזת ח</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15057</a></td>
+                <td>09-מחרוזת ט</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15058</a></td>
+                <td>10-מחרוזת י</td>
+                <td>ניגונים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15059</a></td>
+                <td>- מאיר אדלר ושמעון יואל זינגר - חסל סידור פסח - חסידי</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15060</a></td>
+                <td>01-ישראל בטח בהשם</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15061</a></td>
+                <td>02-ותחזינה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15062</a></td>
+                <td>03-אם אין אני לי</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15063</a></td>
+                <td>04-על זה היה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15064</a></td>
+                <td>05-על כן ציון</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15065</a></td>
+                <td>06-כי לך טוב להודות</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15066</a></td>
+                <td>07-כי נחם</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15067</a></td>
+                <td>08 בר יוחאי א</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15068</a></td>
+                <td>08-נחמו עמי</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15069</a></td>
+                <td>09 בר יוחאי ב</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15070</a></td>
+                <td>09-אמר רבי אלעזר</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15071</a></td>
+                <td>10-והביאותים</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15072</a></td>
+                <td>10-ניגון ברסלב</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15073</a></td>
+                <td>11 אמר ר' עקיבא</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15074</a></td>
+                <td>11-ומשפע</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15075</a></td>
+                <td>11-נאר אמונה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15076</a></td>
+                <td>12 - חי! מחרוזת ריקודים - מאיר אדלר ואבריימי מושקוביץ</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15077</a></td>
+                <td>12-רווח והצלה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15078</a></td>
+                <td>17 ברכת קודש כ''ק אדמו''ר שליט''א</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15079</a></td>
+                <td>17-ניגון ברסלב קרלין</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15080</a></td>
+                <td>אוי באשעפער רחמים</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15081</a></td>
+                <td>אשרי אדם עוז לו בך</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15082</a></td>
+                <td>ובדבר</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15083</a></td>
+                <td>ושבתי בבית ה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15084</a></td>
+                <td>ידידים רוממוך</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15085</a></td>
+                <td>ידידים</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15086</a></td>
+                <td>יזכרם-חיים גנץ-מקהלת נשמה-מאיר אדלר</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15087</a></td>
+                <td>מאיר אדלר-מימיני מיכאל</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15088</a></td>
+                <td>מזל טוב אברומי</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15089</a></td>
+                <td>מי  כעמך ישראל</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15090</a></td>
+                <td>מלכות, סאמט, זאנוויל ומאיר אדלר מרקידים עשרת אלפים איש </td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15091</a></td>
+                <td>עקיבא גרומן ומקהלת מלכות ומאיר אדלר ואהרלה סאמט - קידוש</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15092</a></td>
+                <td>פתחו שערים</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15093</a></td>
+                <td>קידוש עקיבא גרומן מקהלת מלכות מאיר אדלר אהרלה סאמט מענדי ווייס יואלי</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15094</a></td>
+                <td>רננו צדיקים</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15095</a></td>
+                <td>שבשפלינו זכר לנו</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15096</a></td>
+                <td>שיר על הגיוס</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15097</a></td>
+                <td>שעה של שמחה</td>
+                <td>סינגלים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15098</a></td>
+                <td>01 חייב איניש</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15099</a></td>
+                <td>02 משנכנס 2</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15100</a></td>
+                <td>03 ותוסף 3</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15101</a></td>
+                <td>04 ומרדכי יצא 4</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15102</a></td>
+                <td>05 ניגון פורים 5</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15103</a></td>
+                <td>06 ליהודים 6</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15104</a></td>
+                <td>07 ליהודים 7</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15105</a></td>
+                <td>08 ליהודים 8</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15106</a></td>
+                <td>09 וגם חרבונא 9</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15107</a></td>
+                <td>10 ניגון  10</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15108</a></td>
+                <td>11 חג פורים 11</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15109</a></td>
+                <td>12 ניגון 12</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15110</a></td>
+                <td>13 תשועתם 13</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15111</a></td>
+                <td>14 תשועתם 14</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15112</a></td>
+                <td>15 שושנת יעקב 15</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15113</a></td>
+                <td>16 ליהודים ניגון 16</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15114</a></td>
+                <td>17 וכל קרני  17</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>15115</a></td>
+                <td>18 הורה 18</td>
+                <td>שמחת פורים</td>
+                <td>מאיר אדלר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

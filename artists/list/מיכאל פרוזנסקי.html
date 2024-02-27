@@ -1,0 +1,518 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מיכאל פרוזנסקי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמיכאל פרוזנסקי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>21293</a></td>
+                <td>01-לטב עביד</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21294</a></td>
+                <td>02-על שלושה</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21295</a></td>
+                <td>03-פיה פתחה</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21296</a></td>
+                <td>04-על ישראל שלום</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21297</a></td>
+                <td>05-שומר שיראל</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21298</a></td>
+                <td>06-שיבוא</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21299</a></td>
+                <td>07 - Show Me The way</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21300</a></td>
+                <td>08-זה לזה</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21301</a></td>
+                <td>09-מי בן שיח</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21302</a></td>
+                <td>10-תורה</td>
+                <td>mp3</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21303</a></td>
+                <td>01 - Am Echad</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21304</a></td>
+                <td>02 - Simchat Chatanim</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21305</a></td>
+                <td>03 - Aleinu</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21306</a></td>
+                <td>04 - Ain Od Milvado</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21307</a></td>
+                <td>05 - Koli</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21308</a></td>
+                <td>06 - Ashrei Mi</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21309</a></td>
+                <td>07 - Pray</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21310</a></td>
+                <td>08 - Shuva</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21311</a></td>
+                <td>09 - Chaverim</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21312</a></td>
+                <td>10 - Orech Yomim</td>
+                <td>Pruz Control</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21313</a></td>
+                <td>01 מצוה הבא</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21314</a></td>
+                <td>02 התעוררי</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21315</a></td>
+                <td>03 מי האיש</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21316</a></td>
+                <td>04 Shootin' For The Moon</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21317</a></td>
+                <td>05 כל המבקש</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21318</a></td>
+                <td>06 בואו נרקוד</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21319</a></td>
+                <td>07 שובי</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21320</a></td>
+                <td>08 Chitty Bum</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21321</a></td>
+                <td>09 הריני</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21322</a></td>
+                <td>10 וברצונך</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21323</a></td>
+                <td>11 ביה אנא</td>
+                <td>Shootin For The Moon</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21324</a></td>
+                <td>01-אשריך</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21325</a></td>
+                <td>02-ובנה</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21326</a></td>
+                <td>03-שמחו</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21327</a></td>
+                <td>04-הרינו</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21328</a></td>
+                <td>05-ישיש</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21329</a></td>
+                <td>06-לפני מלך</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21330</a></td>
+                <td>07-כה אמר</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21331</a></td>
+                <td>08-עם אתם</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21332</a></td>
+                <td>09-ירושלים</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21333</a></td>
+                <td>10-והביאנו</td>
+                <td>אשריך</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21334</a></td>
+                <td>10.וברצונך</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21335</a></td>
+                <td>Shootin' For The Moon Preview</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21336</a></td>
+                <td>Show me the way</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21337</a></td>
+                <td>אין עוד מלבדו</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21338</a></td>
+                <td>באו נרקוד</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21339</a></td>
+                <td>מחרוזת חתונה</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21340</a></td>
+                <td>מיכאל פרוזנסקי  שמחת חתנים</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21341</a></td>
+                <td>מיכאל פרוזנסקי בחידוש ווקאלי מרהיב ''להתפלל''</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21342</a></td>
+                <td>מיכאל פרוזנסקי</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21343</a></td>
+                <td>שמחת חתנים</td>
+                <td>סינגלים</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21344</a></td>
+                <td>01-תעשה</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21345</a></td>
+                <td>02-שטייג</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21346</a></td>
+                <td>03-אתה שומר עלי</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21347</a></td>
+                <td>04-פרוזבול</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21348</a></td>
+                <td>05-חביבין</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21349</a></td>
+                <td>06-ברכה</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21350</a></td>
+                <td>07-אשירה</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21351</a></td>
+                <td>08-הא</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21352</a></td>
+                <td>09-יזכרם</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21353</a></td>
+                <td>10-ולא</td>
+                <td>פרוזבול</td>
+                <td>מיכאל פרוזנסקי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

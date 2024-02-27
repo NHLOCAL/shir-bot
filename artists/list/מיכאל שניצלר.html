@@ -1,0 +1,1071 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מיכאל שניצלר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמיכאל שניצלר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>52112</a></td>
+                <td>01-ויזכה, כל המבקש, ניגון מצוה טאנץ</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52113</a></td>
+                <td>02-די טרייסט פון א מאמע</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52114</a></td>
+                <td>03-סימן טוב, ניגון סקווירא, ותמהר, ניגוני סטולין</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52115</a></td>
+                <td>04-שלום עליכם</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52116</a></td>
+                <td>05-רחם בחסדך, יבנה המקדש, דרור יקרא</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52117</a></td>
+                <td>06-אם אמרתי</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52118</a></td>
+                <td>07-מצוה טאנץ</td>
+                <td>א אידישע שמחה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52119</a></td>
+                <td>01-דריי מאהל געטאנצען</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52120</a></td>
+                <td>02-די נשמה פלאם</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52121</a></td>
+                <td>03-א נשמה בלייבט ריין</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52122</a></td>
+                <td>04-א ערליכע ברכה</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52123</a></td>
+                <td>05-ר' יעקב'ס פאלאץ</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52124</a></td>
+                <td>06-גוטסקייט פון צדיקים</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52125</a></td>
+                <td>07-בעלי תשובה</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52126</a></td>
+                <td>08-משמח חתן וכלה</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52127</a></td>
+                <td>09-דעם שטיבלס בעל עגלה</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52128</a></td>
+                <td>10-מוזיקאליש</td>
+                <td>די נשמה פלאם 1</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52129</a></td>
+                <td>01-ר' שמחה</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52130</a></td>
+                <td>02-דער טאטע הערט</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52131</a></td>
+                <td>03-א טאנץ אין מירון</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52132</a></td>
+                <td>04-א הארץ וויי</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52133</a></td>
+                <td>05-דער שידוך פון הימל</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52134</a></td>
+                <td>06-אין קיעוו</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52135</a></td>
+                <td>07-מן יימר</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52136</a></td>
+                <td>08-עפשטיינ'ס בעקעריי</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52137</a></td>
+                <td>09-דער הייליגר בארדיטשבר</td>
+                <td>די נשמה פלאם 2</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52138</a></td>
+                <td>01-וברוכים הם</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52139</a></td>
+                <td>02-עד בלי די</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52140</a></td>
+                <td>03-בורא עולם</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52141</a></td>
+                <td>04-קלי</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52142</a></td>
+                <td>05-זכור רחמיך</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52143</a></td>
+                <td>06-פועל ישועות</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52144</a></td>
+                <td>07-על הכול</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52145</a></td>
+                <td>08-ניגון ווארשא</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52146</a></td>
+                <td>09-רפואה שלימה</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52147</a></td>
+                <td>10-אשרי אדם</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52148</a></td>
+                <td>11-רבות בנות</td>
+                <td>וברוכים הם</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52149</a></td>
+                <td>01-אליו</td>
+                <td>טאנץ מיט לחיים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52150</a></td>
+                <td>02-הורה</td>
+                <td>טאנץ מיט לחיים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52151</a></td>
+                <td>03-שמחה</td>
+                <td>טאנץ מיט לחיים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52152</a></td>
+                <td>04-צדקה</td>
+                <td>טאנץ מיט לחיים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52153</a></td>
+                <td>05-דבקה</td>
+                <td>טאנץ מיט לחיים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52154</a></td>
+                <td>01 חמישה קולות</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52155</a></td>
+                <td>02 א ברידרס הארץ</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52156</a></td>
+                <td>04 Yes You Can</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52157</a></td>
+                <td>05 סנדי קענדי</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52158</a></td>
+                <td>06 Rockefeller</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52159</a></td>
+                <td>07 Last Deechenen</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52160</a></td>
+                <td>08 סאיז גיווען גיט</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52161</a></td>
+                <td>09 Shema Yisroel</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52162</a></td>
+                <td>10 Gelecherter Amper</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52163</a></td>
+                <td>11 Zorg Nisht R Yid</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52164</a></td>
+                <td>יום טוב און דער יורען 02</td>
+                <td>יא די קענסט</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52165</a></td>
+                <td>01 01-השלך על ד' יהבך</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52166</a></td>
+                <td>02 02-מיין קינד טרעף מיך</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52167</a></td>
+                <td>03 03-דער מענטש טראכט און ג-ט לאכט</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52168</a></td>
+                <td>04 04-מודה אני</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52169</a></td>
+                <td>05 05-דעם בחור'ס צוואה</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52170</a></td>
+                <td>06 06-די וועלט איז גאר אין מיר</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52171</a></td>
+                <td>07 07-עבדו את ה'  מיט שמחה</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52172</a></td>
+                <td>08 08-די שיך פארציילן</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52173</a></td>
+                <td>09 09-א קוויטעלע</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52174</a></td>
+                <td>10 10-ווער ווארט דאס</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52175</a></td>
+                <td>11 11-גוט מארגן שעפעלע</td>
+                <td>מיין קינד טרעף מיך</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52176</a></td>
+                <td>01 לכף זכות</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52177</a></td>
+                <td>02 א מציאה אין אויבן</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52178</a></td>
+                <td>03 את הכל</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52179</a></td>
+                <td>04 מימיני מיכאל</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52180</a></td>
+                <td>05 פיינע נייעס</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52181</a></td>
+                <td>06 מיין הארץ</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52182</a></td>
+                <td>07 ליבי</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52183</a></td>
+                <td>08 ר' ישעיל'ע</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52184</a></td>
+                <td>09 נאר גוט</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52185</a></td>
+                <td>10 א דאנק</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52186</a></td>
+                <td>11 בושה</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52187</a></td>
+                <td>12 פינקיס הלל</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52188</a></td>
+                <td>13 עד הנה</td>
+                <td>מימיני מיכאל</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52189</a></td>
+                <td>01 מארש</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52190</a></td>
+                <td>02 נאסטאלגיש</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52191</a></td>
+                <td>03 דעבקא</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52192</a></td>
+                <td>04 דביקות</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52193</a></td>
+                <td>05 מארש</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52194</a></td>
+                <td>06 חב_ד_יש</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52195</a></td>
+                <td>07 שבת טיש</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52196</a></td>
+                <td>08 חסידות</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52197</a></td>
+                <td>09 הייבט אייך</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52198</a></td>
+                <td>10 הורא - אמר רבי עקיבא</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52199</a></td>
+                <td>11 אינסטרומענטאל</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52200</a></td>
+                <td>12 יום טוב מדלי</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52201</a></td>
+                <td>מיכאל שניצלער</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52202</a></td>
+                <td>מיכאל שניצלר - עד הנה</td>
+                <td>נאסטאלגיע</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52203</a></td>
+                <td>- מיכאל שניצלר - א בריוו - חסידי אידיש</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52204</a></td>
+                <td>- מיכאל שניצלר - אלקא דמאיר ענני -חסידי</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52205</a></td>
+                <td>- מיכאל שניצלר ומוטי ויזל ובנצי שטיין - אדוני המלך - חסידי</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52206</a></td>
+                <td>את הכל</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52207</a></td>
+                <td>באירוע להורים שכולים</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52208</a></td>
+                <td>כדאי רבי שמעון</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52209</a></td>
+                <td>מימיני מיכאל</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52210</a></td>
+                <td>עד הנה</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52211</a></td>
+                <td>תפלת הדרך</td>
+                <td>סינגלים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52212</a></td>
+                <td>רקידה תמידית ח''א</td>
+                <td>רקידה תמידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52213</a></td>
+                <td>רקידה תמידית ח''ב</td>
+                <td>רקידה תמידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52214</a></td>
+                <td>01-שבת</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52215</a></td>
+                <td>02-אין א קליין געסעלע</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52216</a></td>
+                <td>03-כל ברכאן דלעילא ותתא</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52217</a></td>
+                <td>04-גיט שבת מלאכים</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52218</a></td>
+                <td>05-ערב שבת צופרי</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52219</a></td>
+                <td>06-שלום עליכם</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52220</a></td>
+                <td>07-אשת חיל</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52221</a></td>
+                <td>08-חז''ל שרייבען אינז אזוי</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52222</a></td>
+                <td>09-פראטיג פארטאקס</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52223</a></td>
+                <td>10-סי געווען א איד א גרויסן גביר</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52224</a></td>
+                <td>11-אקוד על אפי</td>
+                <td>שבת פלאם-ברכת הבנים</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52225</a></td>
+                <td>00 פתיח</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52226</a></td>
+                <td>01 אליהו הנביא</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52227</a></td>
+                <td>02 יום השישי</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52228</a></td>
+                <td>03 קום קום</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52229</a></td>
+                <td>04 ותפקוד</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52230</a></td>
+                <td>05 ליכט שמועסן</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52231</a></td>
+                <td>06 טאנץ אין קווארטל</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52232</a></td>
+                <td>07 יענעמ_ס פענסטער</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52233</a></td>
+                <td>08 געלאפן אין די גאסן</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52234</a></td>
+                <td>10 שלומי_ס שבת פארטי</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52235</a></td>
+                <td>11 באלעבאס</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52236</a></td>
+                <td>12 פייגעלע</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52237</a></td>
+                <td>13 פיאסעצנא</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52238</a></td>
+                <td>14 אייגן יחוס</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52239</a></td>
+                <td>15 צור משלו</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52240</a></td>
+                <td>16 ווייל איך דאנק</td>
+                <td>שבתון</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52241</a></td>
+                <td>01-מחרוזת ראשונה</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52242</a></td>
+                <td>02-ותיק</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52243</a></td>
+                <td>03-מיין טייער קינד</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52244</a></td>
+                <td>04-יוסי גרין הורה</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52245</a></td>
+                <td>05-חננו ה</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52246</a></td>
+                <td>06-מחרוזת אחרונה</td>
+                <td>שמחה חסידית</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52247</a></td>
+                <td>01-מחרוזת ריקודים</td>
+                <td>שמחת בית השאובה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52248</a></td>
+                <td>02-אלוקינו</td>
+                <td>שמחת בית השאובה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52249</a></td>
+                <td>03-מחרוזת דיסקו והורה</td>
+                <td>שמחת בית השאובה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52250</a></td>
+                <td>04-די גמרא פארציילט</td>
+                <td>שמחת בית השאובה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+              <tr>
+                <td><a>52251</a></td>
+                <td>05-ריקודים</td>
+                <td>שמחת בית השאובה</td>
+                <td>מיכאל שניצלר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

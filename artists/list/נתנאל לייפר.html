@@ -1,0 +1,273 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>נתנאל לייפר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspנתנאל לייפר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>62787</a></td>
+                <td>01 ניגון החופה</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62788</a></td>
+                <td>02 ניגון ההקפות בחופה</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62789</a></td>
+                <td>03 ניגון מי אדיר</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62790</a></td>
+                <td>04 ניגון ברדיצ וב</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62791</a></td>
+                <td>05 ניגון ברכת כהנים</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62792</a></td>
+                <td>06 ניגון יום טוב</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62793</a></td>
+                <td>07 ניגון מודז יץ</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62794</a></td>
+                <td>08 הניגון שמוליכים איתו צדיקים לגן עדן</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62795</a></td>
+                <td>09 ניגון ארבע בבות</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62796</a></td>
+                <td>10 ניגון הבעל שם טוב</td>
+                <td>פסנתר ניגון</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62797</a></td>
+                <td>01-הייליגר שבעס</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62798</a></td>
+                <td>02-לכה דודי ברסלב</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62799</a></td>
+                <td>03-והיו למשיסה</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62800</a></td>
+                <td>04-שלום עליכם</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62801</a></td>
+                <td>05-ישימך</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62802</a></td>
+                <td>06-אשת חיל</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62803</a></td>
+                <td>07-כל מקדש שביעי</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62804</a></td>
+                <td>08-פרק ית ענך</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62805</a></td>
+                <td>09-י-ה אכסוף</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62806</a></td>
+                <td>10-א-ל אדון</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62807</a></td>
+                <td>11-מזמור לדוד</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62808</a></td>
+                <td>12-ידיד נפש</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62809</a></td>
+                <td>13-ידיד נפש 2</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62810</a></td>
+                <td>14-גם כי אלך</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62811</a></td>
+                <td>15-שבוע טוב</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+              <tr>
+                <td><a>62812</a></td>
+                <td>16-המבדיל</td>
+                <td>פסנתר שבת</td>
+                <td>נתנאל לייפר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

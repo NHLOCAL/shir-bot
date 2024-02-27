@@ -1,0 +1,1337 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ברוך לוין</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspברוך לוין</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>5388</a></td>
+                <td>1 - Golus Medley </td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5389</a></td>
+                <td>2 - Achdus (Feat. Benny Friedman)</td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5390</a></td>
+                <td>3 - Shabbos Medley (Feat. Simcha Leiner)</td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5391</a></td>
+                <td>4 - Torah Medley (Feat. Rivie Schwebel)</td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5392</a></td>
+                <td>5 - Emunah Medley</td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5393</a></td>
+                <td>6 - Moshiach Medley. (Feat. Joey Newcomb)</td>
+                <td>Off The Record</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5394</a></td>
+                <td>03 Lecho Dodi</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5395</a></td>
+                <td>04 The Faltchephony Rebbe</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5396</a></td>
+                <td>05 The Next Gadol Hador</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5397</a></td>
+                <td>06 Someones Child</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5398</a></td>
+                <td>07 Flickering Lights</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5399</a></td>
+                <td>08 The Maggid's Message</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5400</a></td>
+                <td>09 Tour Of Yerushalayim</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5401</a></td>
+                <td>10 A Child's Prayer</td>
+                <td>Touched By A Niggun</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5402</a></td>
+                <td>01 ויהי בישורון</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5403</a></td>
+                <td>02 בנים אתם</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5404</a></td>
+                <td>03 כל ישראל</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5405</a></td>
+                <td>04 בואי בשלום</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5406</a></td>
+                <td>05 יום זה</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5407</a></td>
+                <td>06 ומשפע</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5408</a></td>
+                <td>07 על כל נשימה</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5409</a></td>
+                <td>08 אתה אחד</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5410</a></td>
+                <td>09 אשרי מי</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5411</a></td>
+                <td>10 קום התהלך</td>
+                <td>בנים אתם</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5412</a></td>
+                <td>01-השקיפה</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5413</a></td>
+                <td>02-טוב לחסות</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5414</a></td>
+                <td>03-בני</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5415</a></td>
+                <td>04-תלת</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5416</a></td>
+                <td>05-בטח</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5417</a></td>
+                <td>06-והגית</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5418</a></td>
+                <td>07-מה אשיב</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5419</a></td>
+                <td>08-שיבנה</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5420</a></td>
+                <td>09-רינה</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5421</a></td>
+                <td>10-כל עצמותי</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5422</a></td>
+                <td>11-רפואה</td>
+                <td>השקיפה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5423</a></td>
+                <td>01-בעת</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5424</a></td>
+                <td>02-וזכני</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5425</a></td>
+                <td>03-שומר ישראל</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5426</a></td>
+                <td>04-והוא</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5427</a></td>
+                <td>05-היגיד</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5428</a></td>
+                <td>06-אלוקי</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5429</a></td>
+                <td>07-הודו ושבחו</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5430</a></td>
+                <td>08-את צמח</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5431</a></td>
+                <td>09-גלי</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5432</a></td>
+                <td>10-שמע קולינו</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5433</a></td>
+                <td>11 טעימה מוזיקלית</td>
+                <td>וזכני לגדל בנים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5434</a></td>
+                <td>01-חתן התורה</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5435</a></td>
+                <td>02-הנשמה</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5436</a></td>
+                <td>03-שלום</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5437</a></td>
+                <td>04-כי הוא</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5438</a></td>
+                <td>05-אנעים זמירות</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5439</a></td>
+                <td>06-והוי ידוע</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5440</a></td>
+                <td>07-ועל דע</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5441</a></td>
+                <td>08-כל הברואים</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5442</a></td>
+                <td>09-שמחם</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5443</a></td>
+                <td>10-קשוט</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5444</a></td>
+                <td>11-הקלאסיקות של ברוך</td>
+                <td>חתן התורה</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5445</a></td>
+                <td>01 טוב לי</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5446</a></td>
+                <td>02 שויתי</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5447</a></td>
+                <td>03 זה הקטן</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5448</a></td>
+                <td>04 עודך השם</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5449</a></td>
+                <td>05 הלל אומר</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5450</a></td>
+                <td>06 יהי לרצון</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5451</a></td>
+                <td>07 אתה עמדי</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5452</a></td>
+                <td>08 תאהבו אחד את השני</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5453</a></td>
+                <td>09 משכני</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5454</a></td>
+                <td>10 לב חדש</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5455</a></td>
+                <td>11 מצווה</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5456</a></td>
+                <td>12 אשרי עין</td>
+                <td>לב חדש</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5457</a></td>
+                <td>01 ומחה</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5458</a></td>
+                <td>02 תודה</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5459</a></td>
+                <td>03 אחינו</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5460</a></td>
+                <td>04 ופרצת</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5461</a></td>
+                <td>05 מודים</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5462</a></td>
+                <td>06 אלה</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5463</a></td>
+                <td>07 השיבנו</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5464</a></td>
+                <td>08 תפארת</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5465</a></td>
+                <td>09 שפכי</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5466</a></td>
+                <td>10 טעמו</td>
+                <td>מודים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5467</a></td>
+                <td>- ברוך לוין - תורה ודעת - הרוב באנגלית</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5468</a></td>
+                <td>- ברוך לוין - תן חלקנו - אנגלית חסידי</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5469</a></td>
+                <td>- ברוך לוין וריבי שוועבל וארי שיינפלד וישעיה לוין - אלף קולות - אנגלית (1)</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5470</a></td>
+                <td>02 חתן תורה (ברוך לוין)</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5471</a></td>
+                <td>03 איבי רוטנברג, ברוך לוין - מחרוזת</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5472</a></td>
+                <td>04 ויהיו רחמיך</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5473</a></td>
+                <td>05 אשרינו (ברוך לוין _ שמחה ליינר)</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5474</a></td>
+                <td>18 בטחו, השקיפה - ברוך לוין</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5475</a></td>
+                <td>25 דע לך בני</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5476</a></td>
+                <td>Achoseinu Baruch Levine  Eitan Katz   אחותינו ברוך לוין ואיתן כ״ץ</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5477</a></td>
+                <td>EACC0300 06 איבי רוטנברג, ברוך לוין, שלשלת, שלשלת ג'וניור - מחרו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5478</a></td>
+                <td>The Renewal Song</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5479</a></td>
+                <td>Touched By a Niggun.wmv</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5480</a></td>
+                <td>Umacha ומחה ה דמעה Baruch Levine ברוך לוין</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5481</a></td>
+                <td>We Are One</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5482</a></td>
+                <td>אחותינו - דואט חדש לאיתן כץ וברוך לוין</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5483</a></td>
+                <td>אחותינו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5484</a></td>
+                <td>איתן כץ & ברוך לוין - אחותינו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5485</a></td>
+                <td>אנחנו אחד- ברוך לוין</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5486</a></td>
+                <td>ברוך לוין - ומחה ה' דמעה - ווקאלי</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5487</a></td>
+                <td>ברוך לוין - לב חדש - תקציר האלבום</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5488</a></td>
+                <td>ברוך לוין ואיתן כץ - אחותינו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5489</a></td>
+                <td>ברוך לוין וילד הפלא נוחי קאופמן שרים ותן חלקנו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5490</a></td>
+                <td>ברוך לוין ושמחה ליינר אשרנו</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5491</a></td>
+                <td>הקלסיקות של ברוך</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5492</a></td>
+                <td>והוא קלי</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5493</a></td>
+                <td>והערב נא</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5494</a></td>
+                <td>וזכיני</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5495</a></td>
+                <td>וזכני</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5496</a></td>
+                <td>טוב להודות</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5497</a></td>
+                <td>כדאי מיקס עם ברוך לוין</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5498</a></td>
+                <td>מחרוזת להיטים</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5499</a></td>
+                <td>קויתי</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5500</a></td>
+                <td>קום התהלך</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5501</a></td>
+                <td>תקציר האלבום פדותך</td>
+                <td>סינגלים</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5502</a></td>
+                <td>01 פדותך</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5503</a></td>
+                <td>02 עקיבא ניחמתנו</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5504</a></td>
+                <td>03 מרגישין</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5505</a></td>
+                <td>04 שלום רב</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5506</a></td>
+                <td>05 לא עליך</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5507</a></td>
+                <td>06 ענני</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5508</a></td>
+                <td>07 ושאבתם</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5509</a></td>
+                <td>08 No Words</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5510</a></td>
+                <td>09 קשה עלי</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5511</a></td>
+                <td>10 מי ששכן</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5512</a></td>
+                <td>11 והערב נא</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5513</a></td>
+                <td>12 Second Chance</td>
+                <td>פדותך</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5514</a></td>
+                <td>01 מודים</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5515</a></td>
+                <td>02 כאייל</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5516</a></td>
+                <td>03 תפילת כלה</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5517</a></td>
+                <td>04 ויהיו רחמיך</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5518</a></td>
+                <td>05 קול ברמה</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5519</a></td>
+                <td>06 כתר</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5520</a></td>
+                <td>07 מלך מלכי</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5521</a></td>
+                <td>08 בטחו</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5522</a></td>
+                <td>09 כח</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5523</a></td>
+                <td>10 לכה דודי</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5524</a></td>
+                <td>11 פתחי לי</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5525</a></td>
+                <td>12 אל הנער הזה</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5526</a></td>
+                <td>13 בשם השם</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5527</a></td>
+                <td>14 ישימך</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5528</a></td>
+                <td>15 שומר</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5529</a></td>
+                <td>16 ומחה</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5530</a></td>
+                <td>17 השבעתי</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5531</a></td>
+                <td>18 רבעא</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5532</a></td>
+                <td>19 הסתרה</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5533</a></td>
+                <td>20 עשרה בני אדם</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5534</a></td>
+                <td>21 כרחם</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5535</a></td>
+                <td>22 אתה הורית</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5536</a></td>
+                <td>23 ותערב</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5537</a></td>
+                <td>24 ברכת הבנים</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5538</a></td>
+                <td>25 דע לך בני</td>
+                <td>רילקס - עם שמחה ליינר</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5539</a></td>
+                <td>01 כנפי נשרים</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5540</a></td>
+                <td>02 רחמנא</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5541</a></td>
+                <td>03 והערב</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5542</a></td>
+                <td>04 והנה ה'</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5543</a></td>
+                <td>05 עד מתי</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5544</a></td>
+                <td>06 ממלא כל עלמין</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5545</a></td>
+                <td>07 שערי דמעות</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5546</a></td>
+                <td>08 מלך שוכן</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5547</a></td>
+                <td>09 השיבנו</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5548</a></td>
+                <td>10 את פניך</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5549</a></td>
+                <td>11 מתנות קטנות</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5550</a></td>
+                <td>12 קום התהלך</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5551</a></td>
+                <td>13 כד עייל</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5552</a></td>
+                <td>14 למען אחי</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5553</a></td>
+                <td>15 וכולהון</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5554</a></td>
+                <td>16 ידעתי</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5555</a></td>
+                <td>17 בכל צער</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5556</a></td>
+                <td>18 ומשפע</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5557</a></td>
+                <td>19 נפשי</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5558</a></td>
+                <td>20 המלך</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5559</a></td>
+                <td>21 נשמה</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5560</a></td>
+                <td>22 ואהבת</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5561</a></td>
+                <td>23 אין עוד מלבדו</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5562</a></td>
+                <td>24 אני יוסף</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5563</a></td>
+                <td>25 בואי</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5564</a></td>
+                <td>26 ולירושלים</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5565</a></td>
+                <td>27 הטוב</td>
+                <td>רילקס 2</td>
+                <td>ברוך לוין</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

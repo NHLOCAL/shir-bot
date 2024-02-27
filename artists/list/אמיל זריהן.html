@@ -1,0 +1,385 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אמיל זריהן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאמיל זריהן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>56860</a></td>
+                <td>01-ידיד נפש</td>
+                <td>אוסף פיוטים ח''א</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56861</a></td>
+                <td>02-מתי אור דודי</td>
+                <td>אוסף פיוטים ח''א</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56862</a></td>
+                <td>03-נא רפא שברה כי מטה</td>
+                <td>אוסף פיוטים ח''א</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56863</a></td>
+                <td>04-אל חירם גדול אשירה</td>
+                <td>אוסף פיוטים ח''א</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56864</a></td>
+                <td>05-תושיה כמיל אלמאיה</td>
+                <td>אוסף פיוטים ח''א</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56865</a></td>
+                <td>01-עת דודים כלה</td>
+                <td>אוסף פיוטים ח''ב</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56866</a></td>
+                <td>02-ימולנה-מזולזלת</td>
+                <td>אוסף פיוטים ח''ב</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56867</a></td>
+                <td>03-חלף הגשם</td>
+                <td>אוסף פיוטים ח''ב</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56868</a></td>
+                <td>04-אשיר שירה</td>
+                <td>אוסף פיוטים ח''ב</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56869</a></td>
+                <td>05-תושיה אנדלוס</td>
+                <td>אוסף פיוטים ח''ב</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56870</a></td>
+                <td>01-שיחי לאל</td>
+                <td>אוסף פיוטים ח''ג</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56871</a></td>
+                <td>02-מה לחביב מהלו</td>
+                <td>אוסף פיוטים ח''ג</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56872</a></td>
+                <td>03-שער אשר נסגר</td>
+                <td>אוסף פיוטים ח''ג</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56873</a></td>
+                <td>04-שחר אבקשך</td>
+                <td>אוסף פיוטים ח''ג</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56874</a></td>
+                <td>05-תושייה ג'ירית</td>
+                <td>אוסף פיוטים ח''ג</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56875</a></td>
+                <td>01-יגל יעקב 1</td>
+                <td>אוסף פיוטים ח''ד</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56876</a></td>
+                <td>02-יגל יעקב 2</td>
+                <td>אוסף פיוטים ח''ד</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56877</a></td>
+                <td>03-אלי אלי שמע קולי</td>
+                <td>אוסף פיוטים ח''ד</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56878</a></td>
+                <td>04-כינור אנדלוס</td>
+                <td>אוסף פיוטים ח''ד</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56879</a></td>
+                <td>01-ימולנה-מזולזלת</td>
+                <td>בשירי אנדלוסיה</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56880</a></td>
+                <td>02-אשיר שירה</td>
+                <td>בשירי אנדלוסיה</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56881</a></td>
+                <td>03-אלי אלי שמע קולי</td>
+                <td>בשירי אנדלוסיה</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56882</a></td>
+                <td>04-יגל יעקב 1</td>
+                <td>בשירי אנדלוסיה</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56883</a></td>
+                <td>05-יגל יעקב 2</td>
+                <td>בשירי אנדלוסיה</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56884</a></td>
+                <td>01-ידיד נפש</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56885</a></td>
+                <td>02-שמש אלעשייה</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56886</a></td>
+                <td>03-עת דודים כלה</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56887</a></td>
+                <td>04-נבית סבעייה</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56888</a></td>
+                <td>05-תושייה כמל אלמאיה</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56889</a></td>
+                <td>06-כינור</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56890</a></td>
+                <td>07-קנון מוואל</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56891</a></td>
+                <td>08-עוד</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56892</a></td>
+                <td>09-תושייה אנדלוס</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56893</a></td>
+                <td>10-סעיב עלייה</td>
+                <td>ידיד נפש</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56894</a></td>
+                <td>01-נא רפא שברה כי מטה</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56895</a></td>
+                <td>02-חלף הגשם</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56896</a></td>
+                <td>03-שער אשר נסגר</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56897</a></td>
+                <td>04-אל חירם גדול אשירה</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56898</a></td>
+                <td>05-שיחי לאל</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56899</a></td>
+                <td>06-מתי אור דודי</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56900</a></td>
+                <td>07-שחר אבקשך</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>56901</a></td>
+                <td>08-מה לחביב מלו</td>
+                <td>שירים ופיוטים משירי ידידות</td>
+                <td>אמיל זריהן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

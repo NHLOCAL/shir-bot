@@ -1,0 +1,343 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>זאב וינדיש</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspזאב וינדיש</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>60853</a></td>
+                <td>איש ואשה מלא</td>
+                <td>וינדיש</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60854</a></td>
+                <td>איש ואשה קצר</td>
+                <td>וינדיש</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60855</a></td>
+                <td>והגדת לבנך נתי שיש</td>
+                <td>וינדיש</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60856</a></td>
+                <td>ירושלים רפי ביטון</td>
+                <td>וינדיש</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60857</a></td>
+                <td>01-אבבא</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60858</a></td>
+                <td>02-אנעים זמירות</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60859</a></td>
+                <td>03-יוונית</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60860</a></td>
+                <td>04-פחות אבל כואב</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60861</a></td>
+                <td>05-צימאון</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60862</a></td>
+                <td>06-בשקט בשקט</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60863</a></td>
+                <td>07-ואני תפילתי</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60864</a></td>
+                <td>08-מחול החרבות</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60865</a></td>
+                <td>09-סמבה</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60866</a></td>
+                <td>10-שאו מרום</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60867</a></td>
+                <td>11-מחרוזת 1</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60868</a></td>
+                <td>12-מחרוזת הכול יודך-אבינו מלכנו</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60869</a></td>
+                <td>13-פתחו שערים</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60870</a></td>
+                <td>14-במידת הרחמים</td>
+                <td>חתונה עם וינדיש ח''א</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60871</a></td>
+                <td>01-מחרוזת 1</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60872</a></td>
+                <td>02-כי אתה הוא-למעלה-להושיבי</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60873</a></td>
+                <td>03-עמך-הורה-אומן ר''ה-אשרינו</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60874</a></td>
+                <td>04-זכרני נא</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60875</a></td>
+                <td>05-הקב''ה</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60876</a></td>
+                <td>06-קטשופ</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60877</a></td>
+                <td>07-אדון עולם-שוש תשיש</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60878</a></td>
+                <td>08-יהא שלמא רבא</td>
+                <td>חתונה עם וינדיש ח''ב</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60879</a></td>
+                <td>Track 01</td>
+                <td>לב שמח 1</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60880</a></td>
+                <td>Track 02</td>
+                <td>לב שמח 1</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60881</a></td>
+                <td>Track 03</td>
+                <td>לב שמח 1</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60882</a></td>
+                <td>Track 04</td>
+                <td>לב שמח 1</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60883</a></td>
+                <td>09 - תפוחים ותמרים (2)</td>
+                <td>סינגלים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60884</a></td>
+                <td>01-מחרוזת א</td>
+                <td>תזמורת פורים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60885</a></td>
+                <td>02-מחרוזת ב</td>
+                <td>תזמורת פורים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60886</a></td>
+                <td>03-מחרוזת ג</td>
+                <td>תזמורת פורים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60887</a></td>
+                <td>04-מחרוזת ד</td>
+                <td>תזמורת פורים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+              <tr>
+                <td><a>60888</a></td>
+                <td>05-מחרוזת ה</td>
+                <td>תזמורת פורים</td>
+                <td>זאב וינדיש</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

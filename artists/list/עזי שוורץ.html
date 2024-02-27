@@ -1,0 +1,259 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>עזי שוורץ</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspעזי שוורץ</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>36086</a></td>
+                <td>01-אם אשכחך</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36087</a></td>
+                <td>02-בצאת ישראל</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36088</a></td>
+                <td>03-השכיבנו</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36089</a></td>
+                <td>04-אנא ה</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36090</a></td>
+                <td>05-אבינו שבשמים</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36091</a></td>
+                <td>06-אמר ר' אלעזר</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36092</a></td>
+                <td>07-טל</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36093</a></td>
+                <td>08-מי שעשה ניסים</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36094</a></td>
+                <td>09-אין ערוך לך</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36095</a></td>
+                <td>10-מודים</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36096</a></td>
+                <td>11-מי אדיר</td>
+                <td>עזי וזמרת י-ה</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36097</a></td>
+                <td>01-ובנוחה יאמר</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36098</a></td>
+                <td>02-שים שלום</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36099</a></td>
+                <td>03-מחרוזת ישראלית</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36100</a></td>
+                <td>04-אחינו</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36101</a></td>
+                <td>05-אלוקי עד שלא נוצרתי</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36102</a></td>
+                <td>06-מי שברך</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36103</a></td>
+                <td>07-מעל פסגת הר הצופים</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36104</a></td>
+                <td>08-יגדל</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36105</a></td>
+                <td>09-קציר בעמק</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36106</a></td>
+                <td>10-מתרצה ברחמים</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36107</a></td>
+                <td>11-מחרוזת הימים הנוראים</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36108</a></td>
+                <td>12-ירושלים של זהב</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+              <tr>
+                <td><a>36109</a></td>
+                <td>13-רחם נא</td>
+                <td>שירים ותפילות</td>
+                <td>עזי שוורץ</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

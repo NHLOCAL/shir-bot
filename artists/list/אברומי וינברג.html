@@ -1,0 +1,448 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אברומי וינברג</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאברומי וינברג</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>54439</a></td>
+                <td>01-אהללה</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54440</a></td>
+                <td>02- שישו ושימחו</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54441</a></td>
+                <td>03-עוד ישמע, כיצד מרקדין</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54442</a></td>
+                <td>04-סימן טוב</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54443</a></td>
+                <td>05- ניגון</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54444</a></td>
+                <td>06-ניגון</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54445</a></td>
+                <td>07-יחד</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54446</a></td>
+                <td>08-ניגון</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54447</a></td>
+                <td>09-התקבצו</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54448</a></td>
+                <td>10-קדשם</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54449</a></td>
+                <td>11-לה הארץ</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54450</a></td>
+                <td>12-ניגון</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54451</a></td>
+                <td>13-אשרנו, הטוב הטוב</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54452</a></td>
+                <td>14-עץ חיים</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54453</a></td>
+                <td>15-השיבינו</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54454</a></td>
+                <td>16-ושכנתי</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54455</a></td>
+                <td>17-אוריתא</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54456</a></td>
+                <td>18-ניגון</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54457</a></td>
+                <td>19-עשרה בני אדם</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54458</a></td>
+                <td>20-אין לנו מלך</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54459</a></td>
+                <td>21-ותגמלנו</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54460</a></td>
+                <td>22-הוא יבנה</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54461</a></td>
+                <td>23-מלאכים</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54462</a></td>
+                <td>24-כאיל תערוג</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54463</a></td>
+                <td>25-ותערב</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54464</a></td>
+                <td>26-ותערב קצבי</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54465</a></td>
+                <td>27-יבנה המקדש</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54466</a></td>
+                <td>מחרוזת האלבום</td>
+                <td>להודות ולהלל</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54467</a></td>
+                <td>01 לנגן ולנגן</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54468</a></td>
+                <td>02 עם סגולה</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54469</a></td>
+                <td>03 אשא עיני</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54470</a></td>
+                <td>04 עבדו את ה'</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54471</a></td>
+                <td>05 אהבת ישראל</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54472</a></td>
+                <td>06 אליהו הנביא</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54473</a></td>
+                <td>07 אבא</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54474</a></td>
+                <td>08 שיר עם מטרה</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54475</a></td>
+                <td>09 מעוז צור</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54476</a></td>
+                <td>10 טוב עשית</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54477</a></td>
+                <td>11 אשת חיל</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54478</a></td>
+                <td>12 בואי בשלום</td>
+                <td>לנגן ולנגן</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54479</a></td>
+                <td>ברכת כהנים</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54480</a></td>
+                <td>האלבום להודות ולהלל</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54481</a></td>
+                <td>ונצעק</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54482</a></td>
+                <td>כי אין ייאוש</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54483</a></td>
+                <td>לנגן ולנגן</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54484</a></td>
+                <td>מבינים את החיים</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54485</a></td>
+                <td>נ נ נ נ נ אברומי וינברג בהופעה שיר מטרה</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54486</a></td>
+                <td>עבד נרצה</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54487</a></td>
+                <td>עבדו את ה'</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54488</a></td>
+                <td>עם סגולה</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+              <tr>
+                <td><a>54489</a></td>
+                <td>שרולי ברונכר אברומי וינברג שובו אלי</td>
+                <td>סינגלים</td>
+                <td>אברומי וינברג</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

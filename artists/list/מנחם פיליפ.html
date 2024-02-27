@@ -1,0 +1,483 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מנחם פיליפ</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמנחם פיליפ</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>52508</a></td>
+                <td>01-אל תירא</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52509</a></td>
+                <td>02-נחמו</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52510</a></td>
+                <td>03-והביאנו</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52511</a></td>
+                <td>04-עבדי זמן</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52512</a></td>
+                <td>05-אנא עבדא</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52513</a></td>
+                <td>06-יערב</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52514</a></td>
+                <td>07-ידיד נפש</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52515</a></td>
+                <td>08-כה אמר</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52516</a></td>
+                <td>09-האדם</td>
+                <td>האדם</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52517</a></td>
+                <td>יערב</td>
+                <td>סינגלים</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52518</a></td>
+                <td>עבדי זמן</td>
+                <td>סינגלים</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52519</a></td>
+                <td>01-ניגון חסידיש</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52520</a></td>
+                <td>02-חזק</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52521</a></td>
+                <td>03-יערב</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52522</a></td>
+                <td>04-קול דודי</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52523</a></td>
+                <td>05-סימן טוב</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52524</a></td>
+                <td>06-שבת אחים</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52525</a></td>
+                <td>07-שמח</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52526</a></td>
+                <td>08-לבנימין</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52527</a></td>
+                <td>09-ואמר</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52528</a></td>
+                <td>10-עד עלות השחר</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52529</a></td>
+                <td>11-מזמור לדוד</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52530</a></td>
+                <td>12-ליהודים</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52531</a></td>
+                <td>13-אדון עולם - שחרית</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52532</a></td>
+                <td>14-וקווי ה</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52533</a></td>
+                <td>15-שומר ישראל</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52534</a></td>
+                <td>16-על הניסים</td>
+                <td>עד עלות השחר 1</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52535</a></td>
+                <td>01-מלך</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52536</a></td>
+                <td>02-מועד</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52537</a></td>
+                <td>03-הבט</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52538</a></td>
+                <td>04-חודש</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52539</a></td>
+                <td>05-פינו</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52540</a></td>
+                <td>06-מעלות</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52541</a></td>
+                <td>07-מלבדו</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52542</a></td>
+                <td>08-יגאל</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52543</a></td>
+                <td>09-דדא</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52544</a></td>
+                <td>10-אמת</td>
+                <td>עד עלות השחר 2</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52545</a></td>
+                <td>01-שיר למעלות</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52546</a></td>
+                <td>02-שהחיינו</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52547</a></td>
+                <td>03-דרור יקרא</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52548</a></td>
+                <td>04-אנחנו מאמינים</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52549</a></td>
+                <td>05-פרוק</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52550</a></td>
+                <td>06-יממאמי</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52551</a></td>
+                <td>07-ברוך השם</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52552</a></td>
+                <td>08-יחד</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52553</a></td>
+                <td>09-השם</td>
+                <td>עד עלות השחר 3</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52554</a></td>
+                <td>01-שומר ישראל</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52555</a></td>
+                <td>02-אדון עולם</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52556</a></td>
+                <td>03-אילו פינו</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52557</a></td>
+                <td>04-אלול</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52558</a></td>
+                <td>05-השומר אמת</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52559</a></td>
+                <td>06-שבת אחים</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52560</a></td>
+                <td>07-אחינו</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52561</a></td>
+                <td>08-שירה חדשה</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52562</a></td>
+                <td>09-אל תשליכני</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+              <tr>
+                <td><a>52563</a></td>
+                <td>10-כי ניחם</td>
+                <td>שומר ישראל</td>
+                <td>מנחם פיליפ</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

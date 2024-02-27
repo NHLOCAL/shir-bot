@@ -1,0 +1,280 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אריאל זילבר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאריאל זילבר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>45200</a></td>
+                <td>01-שומר ישראל</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45201</a></td>
+                <td>02-זכרני נא</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45202</a></td>
+                <td>03-כי לא יטוש ה</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45203</a></td>
+                <td>04-ברוש</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45204</a></td>
+                <td>05-דבר אליו</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45205</a></td>
+                <td>06-אנא בכח</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45206</a></td>
+                <td>07-תהא השעה הזאת</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45207</a></td>
+                <td>08-תפילה לעני</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45208</a></td>
+                <td>09-רחם</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45209</a></td>
+                <td>10-אם אשכחך</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45210</a></td>
+                <td>11-אני מאמין</td>
+                <td>ימים כתומים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45211</a></td>
+                <td>אריאל זילבר - שיר הפרנויה </td>
+                <td>סינגלים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45212</a></td>
+                <td>אריאל זילבר מגיש סינגל חדש ''מזמור לתודה''</td>
+                <td>סינגלים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45213</a></td>
+                <td>הגאולה</td>
+                <td>סינגלים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45214</a></td>
+                <td>טרף קל</td>
+                <td>סינגלים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45215</a></td>
+                <td>רפאנו השם</td>
+                <td>סינגלים</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45216</a></td>
+                <td>01-בריון השכונה</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45217</a></td>
+                <td>02-כריש</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45218</a></td>
+                <td>03-יש לי</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45219</a></td>
+                <td>04-יהודי לא מגרש יהודי</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45220</a></td>
+                <td>05-גירוש</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45221</a></td>
+                <td>06-שלום על כולם</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45222</a></td>
+                <td>07-פוליטיקלי קורקט</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45223</a></td>
+                <td>08-יולה יולה יוללה</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45224</a></td>
+                <td>09-יש דין ויש דיין</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45225</a></td>
+                <td>10-קומי חוזרים הביתה</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>45226</a></td>
+                <td>11-כמו דג במים</td>
+                <td>פוליטיקלי קורקט</td>
+                <td>אריאל זילבר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

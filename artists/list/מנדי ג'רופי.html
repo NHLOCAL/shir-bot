@@ -1,0 +1,637 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מנדי ג'רופי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמנדי ג'רופי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>21971</a></td>
+                <td>01-ארץ אשר תמיד</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21972</a></td>
+                <td>02-ולירושלים</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21973</a></td>
+                <td>03-תלמידי חכמים</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21974</a></td>
+                <td>04-שומע</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21975</a></td>
+                <td>05-ובאותו הזמן</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21976</a></td>
+                <td>06-נאמן</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21977</a></td>
+                <td>07-יזכור</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21978</a></td>
+                <td>08-ענוים</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21979</a></td>
+                <td>09-מי יתנני</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21980</a></td>
+                <td>10-עושה שלום</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21981</a></td>
+                <td>11-ואני בחסדך</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21982</a></td>
+                <td>12-עיני כל</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21983</a></td>
+                <td>13-ויבוא יעקב</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21984</a></td>
+                <td>14-בשעה</td>
+                <td>ארץ אשר תמיד</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21985</a></td>
+                <td>01 - היום הוא יבוא</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21986</a></td>
+                <td>02 - ישמח</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21987</a></td>
+                <td>03 - ואהבת</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21988</a></td>
+                <td>04 - הוא אלוקינו</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21989</a></td>
+                <td>05 - ברכת הבית</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21990</a></td>
+                <td>06 - אעופה אשכונה</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21991</a></td>
+                <td>07 - כאיל</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21992</a></td>
+                <td>08 - הפכת</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21993</a></td>
+                <td>09 - מגדול</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21994</a></td>
+                <td>10 - עמדו</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21995</a></td>
+                <td>11 - וישמע</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21996</a></td>
+                <td>12 - פודה ומציל</td>
+                <td>היום הוא יבוא</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21997</a></td>
+                <td>01-ובנו בחרת</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21998</a></td>
+                <td>02-זאת</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>21999</a></td>
+                <td>03-וידעת היום</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22000</a></td>
+                <td>04-תיכון</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22001</a></td>
+                <td>05-אשירה להשם</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22002</a></td>
+                <td>06-לא אעזבך</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22003</a></td>
+                <td>07-פותח</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22004</a></td>
+                <td>08-הטוב</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22005</a></td>
+                <td>09-שכם אחד</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22006</a></td>
+                <td>10-אם אשכחך</td>
+                <td>וידעת היום</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22007</a></td>
+                <td>00 - עלה נעלה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22008</a></td>
+                <td>01 - 01 - בואו ונצא</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22009</a></td>
+                <td>01-בואו ונצא</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22010</a></td>
+                <td>02 - 02 - האל</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22011</a></td>
+                <td>02-האל</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22012</a></td>
+                <td>03 - 03 - בשם ה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22013</a></td>
+                <td>03-בשם ה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22014</a></td>
+                <td>04 - 04 - אל הורית</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22015</a></td>
+                <td>04-אל הורית</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22016</a></td>
+                <td>05 - 05 - מרקדין</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22017</a></td>
+                <td>05-מרקדין</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22018</a></td>
+                <td>06 - 06 - מה יתרון</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22019</a></td>
+                <td>06-מה יתרון</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22020</a></td>
+                <td>07 - 07 - ועל הכול</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22021</a></td>
+                <td>07-ועל הכול</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22022</a></td>
+                <td>08 - 08 - יש תקוה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22023</a></td>
+                <td>08-יש תקוה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22024</a></td>
+                <td>09 - 09 - ונגינותי ננגן</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22025</a></td>
+                <td>09-ונגינותי ננגן</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22026</a></td>
+                <td>10 - 10 - שלום שלום</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22027</a></td>
+                <td>10-שלום שלום</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22028</a></td>
+                <td>11 - 11- עלה נעלה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22029</a></td>
+                <td>11-עלה נעלה</td>
+                <td>מרקדין</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22030</a></td>
+                <td>- אודי דמארי ומנדי גרופי - אני או אתה - מקורי</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22031</a></td>
+                <td>- שמעון וקנין מארח את מנדי גרופי אבישי אשל משה דוויק ועוד - בר יוחאי הוא מלך - מזרחי וקצת חסידי</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22032</a></td>
+                <td>אבי אילסון, משה לוק, מנדי ג'רופי - יפה ותמה</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22033</a></td>
+                <td>אעופה אשכונה</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22034</a></td>
+                <td>בשובי</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22035</a></td>
+                <td>גאולה</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22036</a></td>
+                <td>הושיענו</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22037</a></td>
+                <td>הפכת</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22038</a></td>
+                <td>הרבי</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22039</a></td>
+                <td>ואתם רוקדים</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22040</a></td>
+                <td>וידעת היום</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22041</a></td>
+                <td>יאיר-דוד-ומנדי-גרופי-כולי-שלך</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22042</a></td>
+                <td>לקח טוב</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22043</a></td>
+                <td>מה יתרון</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22044</a></td>
+                <td>מיד הם נגאלים</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22045</a></td>
+                <td>מיד הם נגאלים</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22046</a></td>
+                <td>סומך נופלים</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22047</a></td>
+                <td>על כל רגע ורגע - ווקאלי</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+              <tr>
+                <td><a>22048</a></td>
+                <td>קהל גדול ישובו הנה</td>
+                <td>סינגלים</td>
+                <td>מנדי ג'רופי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

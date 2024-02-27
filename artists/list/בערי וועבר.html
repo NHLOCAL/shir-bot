@@ -1,0 +1,1736 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>בערי וועבר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspבערי וועבר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>5153</a></td>
+                <td>01 כניסת שבת</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5154</a></td>
+                <td>02 געגועים לשבת</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5155</a></td>
+                <td>03 ליל שבת</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5156</a></td>
+                <td>04 וטהר לבנו</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5157</a></td>
+                <td>05 שבת טיש</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5158</a></td>
+                <td>06 לכבוד שבת</td>
+                <td>מחרוזות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5159</a></td>
+                <td>01 Track 01</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5160</a></td>
+                <td>02 Track 02</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5161</a></td>
+                <td>03 Track 03</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5162</a></td>
+                <td>04 Track 04</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5163</a></td>
+                <td>05 Track 05</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5164</a></td>
+                <td>06 Track 06</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5165</a></td>
+                <td>07 Track 07</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5166</a></td>
+                <td>08 Track 08</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5167</a></td>
+                <td>09 Track 09</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5168</a></td>
+                <td>10 Track 10</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5169</a></td>
+                <td>11 Track 11</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5170</a></td>
+                <td>12 Track 12</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5171</a></td>
+                <td>13 Track 13</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5172</a></td>
+                <td>14 Track 14</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5173</a></td>
+                <td>15 Track 15</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5174</a></td>
+                <td>16 Track 16</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5175</a></td>
+                <td>17 Track 17</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5176</a></td>
+                <td>18 Track 18</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5177</a></td>
+                <td>19 Track 19</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5178</a></td>
+                <td>20 Track 20</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5179</a></td>
+                <td>21 Track 21</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5180</a></td>
+                <td>22 Track 22</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5181</a></td>
+                <td>23 Track 23</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5182</a></td>
+                <td>24 Track 24</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5183</a></td>
+                <td>25 Track 25</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5184</a></td>
+                <td>26 Track 26</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5185</a></td>
+                <td>27 Track 27</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5186</a></td>
+                <td>28 Track 28</td>
+                <td>רצועות</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5187</a></td>
+                <td>01 דידן נצח</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5188</a></td>
+                <td>02 גשר צר</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5189</a></td>
+                <td>03 ותמלוך</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5190</a></td>
+                <td>04 אגודה אחת</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5191</a></td>
+                <td>05 רבון</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5192</a></td>
+                <td>06 לישועתך</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5193</a></td>
+                <td>07 יש ענין</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5194</a></td>
+                <td>08 אתה קלי</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5195</a></td>
+                <td>09 השקיפה</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5196</a></td>
+                <td>10 רבי שמעון</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5197</a></td>
+                <td>11 לעתיד לבוא</td>
+                <td>אגודה אחת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5198</a></td>
+                <td>אלוקינו</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5199</a></td>
+                <td>אנחנו וצאצאינו</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5200</a></td>
+                <td>בעזרת ה'</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5201</a></td>
+                <td>כשמת אדם</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5202</a></td>
+                <td>נותנת חיים</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5203</a></td>
+                <td>קל קנא ונוקם</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5204</a></td>
+                <td>שבת היא מלזעוק</td>
+                <td>באלוקים בטחתי</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5205</a></td>
+                <td>01 ויהי בישורון</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5206</a></td>
+                <td>02 שאי ידכם</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5207</a></td>
+                <td>03 לעשות </td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5208</a></td>
+                <td>04 למקדשך טוב</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5209</a></td>
+                <td>05 שהכל </td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5210</a></td>
+                <td>06 תעתי</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5211</a></td>
+                <td>07 ואתה ישראל</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5212</a></td>
+                <td>08 ניגון</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5213</a></td>
+                <td>09 אייליגר בשפר</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5214</a></td>
+                <td>10 אני לדודי</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5215</a></td>
+                <td>11 ואפילו בהסתרה דואט עם יואלי קליין</td>
+                <td>בן מלך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5216</a></td>
+                <td>01-בעזרת</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5217</a></td>
+                <td>02-חיים</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5218</a></td>
+                <td>03-אבינו</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5219</a></td>
+                <td>04-רקידה'לע</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5220</a></td>
+                <td>05-שבת</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5221</a></td>
+                <td>06-דער וועבר</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5222</a></td>
+                <td>07-והערב נא</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5223</a></td>
+                <td>08-יהי רצון</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5224</a></td>
+                <td>09-הנה</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5225</a></td>
+                <td>10-חזק</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5226</a></td>
+                <td>11-באלוקים</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5227</a></td>
+                <td>12-תן בי</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5228</a></td>
+                <td>13-מי מי מי</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5229</a></td>
+                <td>14-ירושלים אונזער היים</td>
+                <td>בעזרת השם יתברך</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5230</a></td>
+                <td>1 - Yismechu B'malchuscho</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5231</a></td>
+                <td>2 - Shabbos Kodesh</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5232</a></td>
+                <td>3 - Nigun</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5233</a></td>
+                <td>4 - Nigun Azamer</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5234</a></td>
+                <td>5 - B'nei Heicholo</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5235</a></td>
+                <td>6 - Mizmor L'dovid</td>
+                <td>לכבוד שבת</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5236</a></td>
+                <td>07 בערי וועבר בסינגל חדש ומקפיץ –  הדרן </td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5237</a></td>
+                <td>23 23ניגון ברדיצ'יבר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5238</a></td>
+                <td>Aheim</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5239</a></td>
+                <td>Lev Nishbar לב נשבר Beri Weber בערי וובר Official Audio Clip.136</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5240</a></td>
+                <td>אדמה ושמים</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5241</a></td>
+                <td>אין עוד מלבדו  בערי ועבר -  Ain Od Milvado - Blue Melody ft.</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5242</a></td>
+                <td>אין עוד מלבדו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5243</a></td>
+                <td>אל תשליכנו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5244</a></td>
+                <td>אנא בכח</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5245</a></td>
+                <td>בין האולם</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5246</a></td>
+                <td>בערי אם טיטלבום</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5247</a></td>
+                <td>בערי ואהרלה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5248</a></td>
+                <td>בערי ובער חתונה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5249</a></td>
+                <td>בערי וובער לב נשבר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5250</a></td>
+                <td>בערי וובער, Dj Ancii - אהיים (רמיקס)</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5251</a></td>
+                <td>בערי וובר - רבינו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5252</a></td>
+                <td>בערי וובר אדמה ושמים</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5253</a></td>
+                <td>בערי וועבר - וטהר ליבנו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5254</a></td>
+                <td>בערי וועבר בחתונה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5255</a></td>
+                <td>בערי וועבר ברמיקס של הניגון קרעסטיר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5256</a></td>
+                <td>בערי וועבר ראש ישיבת 'כוכבי אור' בשיר חדש - 'הכוכב' 22 עם אמנים חסידיים 1</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5257</a></td>
+                <td>בערי מקפיץ</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5258</a></td>
+                <td>געב א שמייכל</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5259</a></td>
+                <td>גשר צר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5260</a></td>
+                <td>הדרן</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5261</a></td>
+                <td>הושע נא</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5262</a></td>
+                <td>השבת</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5263</a></td>
+                <td>ואני תפילתי</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5264</a></td>
+                <td>וטהר ליבנו - בערי</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5265</a></td>
+                <td>וטהר ליבנו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5266</a></td>
+                <td>וייתי לנו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5267</a></td>
+                <td>ושמרו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5268</a></td>
+                <td>יהי רצון</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5269</a></td>
+                <td>יוסף בערי וובער</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5270</a></td>
+                <td>יחד - רמיקס</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5271</a></td>
+                <td>יחד</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5272</a></td>
+                <td>כוכבי אור בערי וועבר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5273</a></td>
+                <td>לא לנו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5274</a></td>
+                <td>לב נשבר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5275</a></td>
+                <td>לך נאה להודות</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5276</a></td>
+                <td>לכו נרננה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5277</a></td>
+                <td>למה - רמיקס</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5278</a></td>
+                <td>מחרוזת חתונה - בערי וועבער</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5279</a></td>
+                <td>מחרוזת פרילך</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5280</a></td>
+                <td>מחרוזת שמח עם בערי</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5281</a></td>
+                <td>מחרוזת שתקפיץ אותכם כל הדרך לאומן</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5282</a></td>
+                <td>מחרוזת</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5283</a></td>
+                <td>משמח בחתונת מוטה פראנק</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5284</a></td>
+                <td>ניגון חבד</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5285</a></td>
+                <td>קרעסטיר</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5286</a></td>
+                <td>רבי נחמן</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5287</a></td>
+                <td>רבינו</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5288</a></td>
+                <td>ריבון כל העולמים</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5289</a></td>
+                <td>ריקוד חמשת הכוכבים</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5290</a></td>
+                <td>שיר לסיום הש''ס</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5291</a></td>
+                <td>שיר על הקורונה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5292</a></td>
+                <td>תודה לך ה' - לזכר ר' שלמה ניימאן ע''ה</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5293</a></td>
+                <td>תעיתי - וקאלי</td>
+                <td>סינגלים</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5294</a></td>
+                <td>01 הריני מקשר</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5295</a></td>
+                <td>02 מכתם לדוד - פרק ט''ז</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5296</a></td>
+                <td>03 לדוד משכיל - פרק ל''ב</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5297</a></td>
+                <td>04 אשרי משכיל - פרק מ''א</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5298</a></td>
+                <td>05 כאייל תערוג - פרק מ''ב</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5299</a></td>
+                <td>06 למנצח אל תשחת - פרק נ''ט</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5300</a></td>
+                <td>07 למנצח על ידותון - פרק ע''ז</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5301</a></td>
+                <td>08 תפילה למשה - פרק צ'</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5302</a></td>
+                <td>09 הודו לה' - פרק ק''ה</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5303</a></td>
+                <td>10 על נהרות בבל - פרק קל''ז</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5304</a></td>
+                <td>11 הללו א-ל - פרק ק''נ</td>
+                <td>עשרה מיני נגינה</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5305</a></td>
+                <td>01 אשא עיני</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5306</a></td>
+                <td>02 כי אנחנו</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5307</a></td>
+                <td>03 ניגון</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5308</a></td>
+                <td>04 גשר צר</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5309</a></td>
+                <td>05 מלאכי רחמים</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5310</a></td>
+                <td>06 רחם</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5311</a></td>
+                <td>07 אבינו</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5312</a></td>
+                <td>08 והכן פרנסתנו</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5313</a></td>
+                <td>09 אם אמרתי</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5314</a></td>
+                <td>10 תן בי</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5315</a></td>
+                <td>11 כח</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5316</a></td>
+                <td>12 אנעים זמירות</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5317</a></td>
+                <td>13 בין האולם</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5318</a></td>
+                <td>14 ניגון</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5319</a></td>
+                <td>15 יהא רעווא</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5320</a></td>
+                <td>16 שפכי</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5321</a></td>
+                <td>17 אנא בכח</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5322</a></td>
+                <td>18 והסר ממני</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5323</a></td>
+                <td>19 אין ערוך לך</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5324</a></td>
+                <td>20 נשמת כל חי</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5325</a></td>
+                <td>21 אהיים</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5326</a></td>
+                <td>22 אם לא אעלה</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5327</a></td>
+                <td>23 ובנה ירושלים</td>
+                <td>פארברענג 1</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5328</a></td>
+                <td>01 1מן המצר</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5329</a></td>
+                <td>02 2רם ונשא גדול ונורא</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5330</a></td>
+                <td>03 3וחוסה נא על בן אהובך</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5331</a></td>
+                <td>04 4בני בני אל תשכח</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5332</a></td>
+                <td>05 5לכו נרננה</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5333</a></td>
+                <td>06.ריבניצ'ער ניגון</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5334</a></td>
+                <td>07 7לולי תורתך</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5335</a></td>
+                <td>08 8אנת זן לכלא</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5336</a></td>
+                <td>09 9שמרה נפשי כי חסיד</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5337</a></td>
+                <td>10 10אלקי נשמה</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5338</a></td>
+                <td>11 11טוב להודות</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5339</a></td>
+                <td>12 12טוב להודות שמח</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5340</a></td>
+                <td>13 13ידיד נפש</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5341</a></td>
+                <td>14 14מלאכים הקדושים</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5342</a></td>
+                <td>15 15גלות ווי גרוס ביסטו</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5343</a></td>
+                <td>16 16על נהרות בבל</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5344</a></td>
+                <td>17 17אם אשכחך</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5345</a></td>
+                <td>18 18ומפני חטאנו</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5346</a></td>
+                <td>19 19ניגון חב''ד</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5347</a></td>
+                <td>20 20השיבנו</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5348</a></td>
+                <td>21 21שתרחמנו</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5349</a></td>
+                <td>22 22ויהיו רחמיך</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5350</a></td>
+                <td>23 23ניגון ברדיצ'יבר</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5351</a></td>
+                <td>24 - Ich Vil (Vocal Version)</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5352</a></td>
+                <td>25 25אם יהיה נדחך</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5353</a></td>
+                <td>26 26רחם נא</td>
+                <td>פארברענג 2</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5354</a></td>
+                <td>01 רצון בוראינו</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5355</a></td>
+                <td>02 קרבן</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5356</a></td>
+                <td>03 געב א שמייכל</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5357</a></td>
+                <td>04 מאן דיהיב</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5358</a></td>
+                <td>05 אביסל</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5359</a></td>
+                <td>06 בכל עת</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5360</a></td>
+                <td>07 חג שמח</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5361</a></td>
+                <td>08 זה דודי</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5362</a></td>
+                <td>09 תורתינו</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5363</a></td>
+                <td>10 איפה כולם</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5364</a></td>
+                <td>11 פרשה</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5365</a></td>
+                <td>12 עוד יוסף חי</td>
+                <td>קרבן</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5366</a></td>
+                <td>01 שהכל</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5367</a></td>
+                <td>02 ניגון לב</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5368</a></td>
+                <td>03 למקדשך</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5369</a></td>
+                <td>04 תעיתי כשה</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5370</a></td>
+                <td>05 מלך</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5371</a></td>
+                <td>06 האיליגע בשפר</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5372</a></td>
+                <td>07 ועתה ישראל</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5373</a></td>
+                <td>08 לעשות את השבת</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5374</a></td>
+                <td>09 שאו ידכם</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5375</a></td>
+                <td>10 ואפילו בהסתרה</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5376</a></td>
+                <td>11 ויהי בישורון</td>
+                <td>שהכל</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5377</a></td>
+                <td>01 ואני בחסדך</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5378</a></td>
+                <td>02 תודה לך השם</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5379</a></td>
+                <td>03 זכור</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5380</a></td>
+                <td>04 ניגון חב''ד</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5381</a></td>
+                <td>05 לכו נרננה</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5382</a></td>
+                <td>06 אחינו</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5383</a></td>
+                <td>07 הננו</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5384</a></td>
+                <td>08 אשא עיני</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5385</a></td>
+                <td>09 שיבנה בית המקדש</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5386</a></td>
+                <td>10 הנשמה</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+              <tr>
+                <td><a>5387</a></td>
+                <td>11 אבא תעזור לנו</td>
+                <td>תודה לך השם</td>
+                <td>בערי וועבר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

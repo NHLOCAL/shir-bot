@@ -1,0 +1,3472 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ליפא שמעלצר</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspליפא שמעלצר</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>14486</a></td>
+                <td>01-קל עליון</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14487</a></td>
+                <td>02-כי הרבית</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14488</a></td>
+                <td>03-ניגון ניקלשבורג</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14489</a></td>
+                <td>04-עד הנה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14490</a></td>
+                <td>05-ניגון שמחה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14491</a></td>
+                <td>06-האט'ס ג'פועלט</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14492</a></td>
+                <td>07-כל העולם כולו</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14493</a></td>
+                <td>08-אברהם יגל</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14494</a></td>
+                <td>09-בשמחה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14495</a></td>
+                <td>10-באלוקים</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14496</a></td>
+                <td>11-אמר ר' עקיבא</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14497</a></td>
+                <td>12-צמאה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14498</a></td>
+                <td>13-התזמורת</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14499</a></td>
+                <td>14-ואהבת</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14500</a></td>
+                <td>15-רבות מחשבות</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14501</a></td>
+                <td>16-אשרי מי</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14502</a></td>
+                <td>17-אקדמות מילין</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14503</a></td>
+                <td>18-שבת שלום ומבורך</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14504</a></td>
+                <td>19-קרוץ מחומר</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14505</a></td>
+                <td>20-מי שמאמין</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14506</a></td>
+                <td>21-כולם אהובים</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14507</a></td>
+                <td>22-נו נו נו</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14508</a></td>
+                <td>23-כי אין לנו מלך</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14509</a></td>
+                <td>24-נעלה לבית המקדש</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14510</a></td>
+                <td>25-אבינו מלכנו</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14511</a></td>
+                <td>26-הכינור</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14512</a></td>
+                <td>27-הורה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14513</a></td>
+                <td>28-אם אין אני לי</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14514</a></td>
+                <td>29-עוד יבוא שלום</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14515</a></td>
+                <td>30-ליבי במזרח</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14516</a></td>
+                <td>31-חתן דומה למלך</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14517</a></td>
+                <td>32-למקדשך תוב</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14518</a></td>
+                <td>33-מזמור לתודה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14519</a></td>
+                <td>34-והקדוש</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14520</a></td>
+                <td>35-אחרון חביב</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14521</a></td>
+                <td>36-מי יעלה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14522</a></td>
+                <td>37-בבואו מאדום</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14523</a></td>
+                <td>38-תמחה</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14524</a></td>
+                <td>39-איין טאג</td>
+                <td>24-6</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14525</a></td>
+                <td>01 ומחכמתך</td>
+                <td>אלבום בר מצווה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14526</a></td>
+                <td>02 הנחת תפילין</td>
+                <td>אלבום בר מצווה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14527</a></td>
+                <td>03 געקניפט און געבינדען</td>
+                <td>אלבום בר מצווה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14528</a></td>
+                <td>04 עליונים ששו</td>
+                <td>אלבום בר מצווה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14529</a></td>
+                <td>01 חצוצרות</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14530</a></td>
+                <td>02 לעולם</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14531</a></td>
+                <td>03 יגדל</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14532</a></td>
+                <td>04 כבודו</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14533</a></td>
+                <td>05 ויהי בנסוע</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14534</a></td>
+                <td>06 Hang up the Phone</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14535</a></td>
+                <td>07 ודבקינו</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14536</a></td>
+                <td>08 ילד קטן</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14537</a></td>
+                <td>09 Leap Of Faith</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14538</a></td>
+                <td>10 רחל</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14539</a></td>
+                <td>11 מזרח</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14540</a></td>
+                <td>12 ליפאס שול</td>
+                <td>אמונה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14541</a></td>
+                <td>01 לשמה</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14542</a></td>
+                <td>02 שועלים</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14543</a></td>
+                <td>03 בגדאד</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14544</a></td>
+                <td>04 מקוה</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14545</a></td>
+                <td>05 שטארקע זאכן</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14546</a></td>
+                <td>06 גמרא במנגינה</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14547</a></td>
+                <td>07 אביי ורבא</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14548</a></td>
+                <td>08 וכן למר</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14549</a></td>
+                <td>09 נישט פארשעמען</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14550</a></td>
+                <td>10 שלם ישלם</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14551</a></td>
+                <td>11 פרצופיהן</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14552</a></td>
+                <td>12 בני מלכים</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14553</a></td>
+                <td>13 זיבן קינדער</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14554</a></td>
+                <td>14 תרי בדחנא</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14555</a></td>
+                <td>15 חסידים הראשונים</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14556</a></td>
+                <td>16 זעכציג טעלערס</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14557</a></td>
+                <td>17 קינוח</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14558</a></td>
+                <td>18 בר פפא</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14559</a></td>
+                <td>19 כבוד התורה</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14560</a></td>
+                <td>20 נאכאמאל</td>
+                <td>בבאליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14561</a></td>
+                <td>01-אהיים</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14562</a></td>
+                <td>02-א כפרה</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14563</a></td>
+                <td>03-מי שאמר</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14564</a></td>
+                <td>04-די מאמע</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14565</a></td>
+                <td>05-געלט</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14566</a></td>
+                <td>06-אבינו מלכנו</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14567</a></td>
+                <td>07-דמיונות</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14568</a></td>
+                <td>08-א קאווע</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14569</a></td>
+                <td>09-בדרך</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14570</a></td>
+                <td>10-וואס איז נייעס</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14571</a></td>
+                <td>11-וכל החיים - לשנה הבאה</td>
+                <td>בדרך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14572</a></td>
+                <td>01-רבותי</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14573</a></td>
+                <td>02-ארבע מידות</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14574</a></td>
+                <td>03-השבינו</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14575</a></td>
+                <td>04-גלגל החוזר</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14576</a></td>
+                <td>05-חלום חלמתי</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14577</a></td>
+                <td>06-ביטחון</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14578</a></td>
+                <td>07-שמעתי</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14579</a></td>
+                <td>08-נישט אום שבת גערעדט</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14580</a></td>
+                <td>09-עשרה הרוגי מלכות</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14581</a></td>
+                <td>10-תזכו למצוות</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14582</a></td>
+                <td>11-זכור</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14583</a></td>
+                <td>12-בלי עין הרע</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14584</a></td>
+                <td>13-אל תדין</td>
+                <td>בלי עין הרע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14585</a></td>
+                <td>01 הקדמה</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14586</a></td>
+                <td>02 געוואלדיג</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14587</a></td>
+                <td>03 בך בטחו</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14588</a></td>
+                <td>04 החוט המשולש</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14589</a></td>
+                <td>05 הן קל כביר</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14590</a></td>
+                <td>06 ירידה לצורך עליה</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14591</a></td>
+                <td>07 חתם סופר</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14592</a></td>
+                <td>08 משקה</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14593</a></td>
+                <td>09 ציקערעל</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14594</a></td>
+                <td>10 איך האב ליב דעהם באשעפער</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14595</a></td>
+                <td>11 הזכירו</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14596</a></td>
+                <td>12 ונשמרתם</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14597</a></td>
+                <td>13 ניסוך המים</td>
+                <td>געוואלדיעג</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14598</a></td>
+                <td>01 נודה לשמך</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14599</a></td>
+                <td>02 הנה אנוכי</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14600</a></td>
+                <td>03 כף על כף</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14601</a></td>
+                <td>04 יגיע כפיך</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14602</a></td>
+                <td>05 אדון כל השמחה</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14603</a></td>
+                <td>06 דאס פינטעלע</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14604</a></td>
+                <td>07 אוהב שלום</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14605</a></td>
+                <td>08 אתה קידשת</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14606</a></td>
+                <td>09 אל תסתכל בקנקן</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14607</a></td>
+                <td>10 אני איתך</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14608</a></td>
+                <td>11 זמן הגאולה</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14609</a></td>
+                <td>12 ונקדשתי</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14610</a></td>
+                <td>13 באחרית הימים</td>
+                <td>דאס פינטלע איד</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14611</a></td>
+                <td>01-תשועתם</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14612</a></td>
+                <td>02-שושנת יעקב</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14613</a></td>
+                <td>03-ארורים כל הרשעים</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14614</a></td>
+                <td>04-רבונו של עולם</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14615</a></td>
+                <td>05-פרוק ית ענך</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14616</a></td>
+                <td>06-שושנת יעקב</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14617</a></td>
+                <td>07-בכל דור ודור</td>
+                <td>הייבט אייך</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14618</a></td>
+                <td>01-יומם ולילה</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14619</a></td>
+                <td>02-שלא עשני גוי</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14620</a></td>
+                <td>03-יושבי ארץ ישראל</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14621</a></td>
+                <td>04-יענער</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14622</a></td>
+                <td>05 -אשר יצר</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14623</a></td>
+                <td>06 - א פושיט איד</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14624</a></td>
+                <td>06-יהודי פשוט</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14625</a></td>
+                <td>07 - הללוהו</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14626</a></td>
+                <td>08 - אוחילה</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14627</a></td>
+                <td>09 - Wake Up</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14628</a></td>
+                <td>10 - בכתב בעל פה</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14629</a></td>
+                <td>11 -אל תתהלל</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14630</a></td>
+                <td>12 - אמן</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14631</a></td>
+                <td>13 - Carry On</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14632</a></td>
+                <td>14-הענטעלעך</td>
+                <td>יהודי פשוט</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14633</a></td>
+                <td>01 אושפיזין</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14634</a></td>
+                <td>02 תיבו תיבו</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14635</a></td>
+                <td>03 קידוש</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14636</a></td>
+                <td>04 ושמחתם לפני</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14637</a></td>
+                <td>05 והשיאנו</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14638</a></td>
+                <td>06 על ישראל</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14639</a></td>
+                <td>07 דחה דחיתני</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14640</a></td>
+                <td>08 נענועים - ד׳ מינים</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14641</a></td>
+                <td>09 רוח הקודש</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14642</a></td>
+                <td>10 מכרכרים ומפזזים</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14643</a></td>
+                <td>11 אתה בחרתנו</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14644</a></td>
+                <td>12 נישט סתם א קלאָץ</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14645</a></td>
+                <td>13 שואבה חשובה</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14646</a></td>
+                <td>14 הקפות</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14647</a></td>
+                <td>15 יסוד צדיק</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14648</a></td>
+                <td>16 צאן קדשים</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14649</a></td>
+                <td>17 דירת ארעי - לשנה הבאה</td>
+                <td>יום טוב</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14650</a></td>
+                <td>01-גם זו לטובה</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14651</a></td>
+                <td>02-אל תסתר</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14652</a></td>
+                <td>03-נאך איין שבת</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14653</a></td>
+                <td>04-חתונה נאכט</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14654</a></td>
+                <td>05-אני מאמין</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14655</a></td>
+                <td>06-ואטהר</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14656</a></td>
+                <td>07-קידוש לבנה</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14657</a></td>
+                <td>08-כח הניגון</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14658</a></td>
+                <td>09-רפאנו</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14659</a></td>
+                <td>10-ותשובה</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14660</a></td>
+                <td>11-לטובה</td>
+                <td>לטובה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14661</a></td>
+                <td>01-השבת-אלי אתה</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14662</a></td>
+                <td>02-א ניגון א אלטע</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14663</a></td>
+                <td>03-אדיר במלוכה</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14664</a></td>
+                <td>04-משיח'ס ניגון</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14665</a></td>
+                <td>05-והשיב לב אבות</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14666</a></td>
+                <td>06-צווישן קאסיב</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14667</a></td>
+                <td>07-פארוואס וויינסטו</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14668</a></td>
+                <td>08-ניגון שמחה</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14669</a></td>
+                <td>09-שיר השירים</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14670</a></td>
+                <td>10-גפן</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14671</a></td>
+                <td>11-יעקב אבינו</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14672</a></td>
+                <td>12-ימים על ימי</td>
+                <td>לעילא ולעילא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14673</a></td>
+                <td>01-הללוי-ה</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14674</a></td>
+                <td>02-בצאת ישראל</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14675</a></td>
+                <td>03-לא לנו</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14676</a></td>
+                <td>04-השם זכרנו</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14677</a></td>
+                <td>05-אהבתי</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14678</a></td>
+                <td>06-מה אשיב</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14679</a></td>
+                <td>07-הודו</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14680</a></td>
+                <td>08-מן המיצר</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14681</a></td>
+                <td>09-אודך</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14682</a></td>
+                <td>10-היום נגילה</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14683</a></td>
+                <td>11-אנא ה</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14684</a></td>
+                <td>12-ברוך הבא</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14685</a></td>
+                <td>13-יהללוך</td>
+                <td>לקרוא את ההלל</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14686</a></td>
+                <td>01 Splash</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14687</a></td>
+                <td>02 Chasan Doma Limelech</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14688</a></td>
+                <td>03 Mimka Dlipa</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14689</a></td>
+                <td>04 Mi Chacham</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14690</a></td>
+                <td>05 The Language Of Music</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14691</a></td>
+                <td>06 Melch Malchai Hamlochim</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14692</a></td>
+                <td>07 Ich Hat Geafent</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14693</a></td>
+                <td>08 Mzmor Lsoda</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14694</a></td>
+                <td>09 Vanpa Nihirim</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14695</a></td>
+                <td>10 Vas Tit Aich Vai</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14696</a></td>
+                <td>11 Er Emtzach</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14697</a></td>
+                <td>12 Chaim</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14698</a></td>
+                <td>13 A Gut Vart</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14699</a></td>
+                <td>14 Hora Yes,Loshon Hora Not</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14700</a></td>
+                <td>15 Achron Achron Choviv</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14701</a></td>
+                <td>16 Meimka D'lipa</td>
+                <td>מעומקא דליפא</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14702</a></td>
+                <td>01-מחרוזת ברכה והצלחה</td>
+                <td>נאר בשמחה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14703</a></td>
+                <td>02-יחדשהו-מזמור שיר</td>
+                <td>נאר בשמחה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14704</a></td>
+                <td>03-יקום פורקן</td>
+                <td>נאר בשמחה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14705</a></td>
+                <td>04-מחרוזת ושמחת</td>
+                <td>נאר בשמחה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14706</a></td>
+                <td>05-נאר בשמחה</td>
+                <td>נאר בשמחה</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14707</a></td>
+                <td>01-עדי עד</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14708</a></td>
+                <td>02-עיני כל אליך</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14709</a></td>
+                <td>03-הענטעלעך</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14710</a></td>
+                <td>04-לב אחד</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14711</a></td>
+                <td>05-הגומל</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14712</a></td>
+                <td>06-טראכט גוט</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14713</a></td>
+                <td>07-וואק אפ</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14714</a></td>
+                <td>08-שבת קודש</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14715</a></td>
+                <td>09-חתן התורה</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14716</a></td>
+                <td>10-אשריך</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14717</a></td>
+                <td>11-תעשה מצוה</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14718</a></td>
+                <td>12-לאמיר שטייגן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14719</a></td>
+                <td>13-מוציא אסירים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14720</a></td>
+                <td>14-מצפים לישועה</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14721</a></td>
+                <td>15-אך טוב וחסד</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14722</a></td>
+                <td>16-ברך עלינו</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14723</a></td>
+                <td>17-על הסלע</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14724</a></td>
+                <td>18-ניגון שומר אמונים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14725</a></td>
+                <td>19-זמרו</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14726</a></td>
+                <td>20-המה כרעו ונפלו</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14727</a></td>
+                <td>21-רבי נחמן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14728</a></td>
+                <td>22-אחי בני תימן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14729</a></td>
+                <td>23-אשת חיל</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14730</a></td>
+                <td>24-ניגון ספרדי</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14731</a></td>
+                <td>25-לך נא</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14732</a></td>
+                <td>26-ימים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14733</a></td>
+                <td>27-ימים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14734</a></td>
+                <td>28-מראה כהן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14735</a></td>
+                <td>29-אשריכם</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14736</a></td>
+                <td>30-ובכן צדיקים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14737</a></td>
+                <td>31-ובכן צדיקים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14738</a></td>
+                <td>32-פרוק ית ענך</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14739</a></td>
+                <td>33-אורך ימים</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14740</a></td>
+                <td>34-א בריוו צו משה'לע</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14741</a></td>
+                <td>35-אהלל</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14742</a></td>
+                <td>36-שלא עשני גוי</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14743</a></td>
+                <td>37-לפיכך</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14744</a></td>
+                <td>38-זכור</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14745</a></td>
+                <td>39-בית נאמן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14746</a></td>
+                <td>40-כל זמן</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14747</a></td>
+                <td>41-גוט שבת</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14748</a></td>
+                <td>42-בכתב בעל פה</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14749</a></td>
+                <td>43-היסח הדעת</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14750</a></td>
+                <td>44-א שמחה</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14751</a></td>
+                <td>45-סימן טוב בביצוע דידן נצח</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14752</a></td>
+                <td>46-ופרצת</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14753</a></td>
+                <td>47-מגדל עיר</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14754</a></td>
+                <td>48-לב של זהב</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14755</a></td>
+                <td>49-הללו</td>
+                <td>נון סטופ</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14756</a></td>
+                <td>- יעקב שוואקי וליפא שמעלצר - סבא קדישא - חסידי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14757</a></td>
+                <td>- ליפא שמעלצר - כדאנק כקען דאנקען - חסידי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14758</a></td>
+                <td>04 ליפא שמעלצר, שלומי גרטנר - עשה, מזמור לתודה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14759</a></td>
+                <td>12 עשרים וחמש שנים - ליפא שמעלצר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14760</a></td>
+                <td>Bar Mitzvah Time</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14761</a></td>
+                <td>I Turn To You</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14762</a></td>
+                <td>Yossi's Night</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14763</a></td>
+                <td>אבי מען לעבט - האסק</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14764</a></td>
+                <td>אבקש בשבילך</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14765</a></td>
+                <td>אחד מי יודע</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14766</a></td>
+                <td>אי די גי דו דם</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14767</a></td>
+                <td>איויה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14768</a></td>
+                <td>אמנם - המשוררים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14769</a></td>
+                <td>אמנם-המשוררים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14770</a></td>
+                <td>אנא ה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14771</a></td>
+                <td>אשת חיל</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14772</a></td>
+                <td>בוהה - רימיקס</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14773</a></td>
+                <td>בחתונת המליון</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14774</a></td>
+                <td>ביקור חולים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14775</a></td>
+                <td>בן פייגא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14776</a></td>
+                <td>ברכת כהנים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14777</a></td>
+                <td>גם זה יעבור</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14778</a></td>
+                <td>געלט - האסק</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14779</a></td>
+                <td>געלט-האסק</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14780</a></td>
+                <td>דיאט</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14781</a></td>
+                <td>הסלט של ליפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14782</a></td>
+                <td>הערשי ויינברגר, ליפא שמעלצר, דובי מייזעלס - אידן אין אמעריקע</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14783</a></td>
+                <td>השיר החדש ליפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14784</a></td>
+                <td>ובנה ירושלים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14785</a></td>
+                <td>והשיב</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14786</a></td>
+                <td>וואס איז נייעס</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14787</a></td>
+                <td>וועק אפ--מקורי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14788</a></td>
+                <td>ונשגב ה' לבדו</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14789</a></td>
+                <td>ורפא ירפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14790</a></td>
+                <td>זכרני נא-ליפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14791</a></td>
+                <td>זכרני נא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14792</a></td>
+                <td>חתם סופר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14793</a></td>
+                <td>כל מי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14794</a></td>
+                <td>כף על כף ליפא שמעלצר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14795</a></td>
+                <td>לא ישא גוי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14796</a></td>
+                <td>ליפא אשר יצר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14797</a></td>
+                <td>ליפא שמלצר וישי ריבו ביצעו את הלהיט נפשי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14798</a></td>
+                <td>ליפא שמעלצר - אוחילה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14799</a></td>
+                <td>ליפא שמעלצר - גמרא במנגינה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14800</a></td>
+                <td>ליפא שמעלצר - געוואלדיג שבגעוואלדיג</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14801</a></td>
+                <td>ליפא שמעלצר - הושענות לפורים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14802</a></td>
+                <td>ליפא שמעלצר - יהודי פשוט פרויקט קפיצת הדרך</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14803</a></td>
+                <td>ליפא שמעלצר - כ'דאנק כ'קען דאנקען</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14804</a></td>
+                <td>ליפא שמעלצר - שאנדער און אדר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14805</a></td>
+                <td>ליפא שמעלצר - תשעת הימים (ווקאלי)</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14806</a></td>
+                <td>ליפא שמעלצר ובלאק - בר מצווה טיים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14807</a></td>
+                <td>ליפא שמעלצר ומ. ידידים מחרוזת ריקודים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14808</a></td>
+                <td>ליפא שמעלצר ומקהלת שירה במחרוזת ריקודים חדשה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14809</a></td>
+                <td>ליפא שמעלצר מקהלת שירה ותשובה ותפילה וצדקה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14810</a></td>
+                <td>ליפא שמעלצר משחרר ''הושענות לפורים''</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14811</a></td>
+                <td>ליפא שמעלצר רבנו נחמן</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14812</a></td>
+                <td>ליפא שמעלצר, מקהלת שירה, הערשי לאנגסאם - א ברודער_ס חתונה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14813</a></td>
+                <td>ליפא-ערבית</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14814</a></td>
+                <td>ליפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14815</a></td>
+                <td>מה לכם לדאוג</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14816</a></td>
+                <td>מודים</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14817</a></td>
+                <td>מזמור לתודה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14818</a></td>
+                <td>מזרח מזרח ליפא שמעלצר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14819</a></td>
+                <td>מיט שמחה - אויף שימחעס</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14820</a></td>
+                <td>מיט שמחה-אויף שימחעס</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14821</a></td>
+                <td>מיין שטעטעלע בעלז</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14822</a></td>
+                <td>מלך רחמן</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14823</a></td>
+                <td>מקור החכמה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14824</a></td>
+                <td>משה רבינו-מונה 4</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14825</a></td>
+                <td>נחמול ג חתונה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14826</a></td>
+                <td>נפשי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14827</a></td>
+                <td>עם אחד</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14828</a></td>
+                <td>ענני</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14829</a></td>
+                <td>פארוואס וויינסטו - זכרון שלמה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14830</a></td>
+                <td>פארוואס וויינסטו-זכרון שלמה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14831</a></td>
+                <td>קומזיץ אברהם מרדכי שווארץ %26 ליפא שמלצער</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14832</a></td>
+                <td>ר' אלימלך - ועינינו תראינה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14833</a></td>
+                <td>ר' אלימלך-ועינינו תראינה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14834</a></td>
+                <td>ראיון עם ליפא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14835</a></td>
+                <td>רבינו נחמן בן פיגא</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14836</a></td>
+                <td>רק לרקוד</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14837</a></td>
+                <td>שבת קודש</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14838</a></td>
+                <td>שטיי אויף</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14839</a></td>
+                <td>שיין ווי די לבנה</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14840</a></td>
+                <td>שירי אוף שימחע'ס</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14841</a></td>
+                <td>שמע</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14842</a></td>
+                <td>שנודער אין אדר</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14843</a></td>
+                <td>תזכה למצוות-ליפא שמעלצר מקורי</td>
+                <td>סינגלים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14844</a></td>
+                <td>01-ותגלה ותראה</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14845</a></td>
+                <td>02-המבדיל</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14846</a></td>
+                <td>03-שטעטל סקווירא</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14847</a></td>
+                <td>04-למרנן ורבנן</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14848</a></td>
+                <td>05-שמחת בית סקווירא</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14849</a></td>
+                <td>06-מי שענה</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14850</a></td>
+                <td>07-כי המלכות</td>
+                <td>סקווירא-ומלכותו</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14851</a></td>
+                <td>01-מודה</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14852</a></td>
+                <td>02-רחם</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14853</a></td>
+                <td>03-בורא</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14854</a></td>
+                <td>04-ארפא</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14855</a></td>
+                <td>05-ברוך</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14856</a></td>
+                <td>06-מארש</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14857</a></td>
+                <td>07-אחים</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14858</a></td>
+                <td>08-וזכנו</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14859</a></td>
+                <td>09-די הייליגע ירושה</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14860</a></td>
+                <td>10-מחרוזת</td>
+                <td>סקווירא-למרנן</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14861</a></td>
+                <td>01-יודו</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14862</a></td>
+                <td>02-כי אורך ימים</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14863</a></td>
+                <td>03-ניגון לג בעומר</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14864</a></td>
+                <td>04-צוה</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14865</a></td>
+                <td>05-אך טוב</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14866</a></td>
+                <td>06-בן בג בג</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14867</a></td>
+                <td>07-ניגון סאטמאר</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14868</a></td>
+                <td>08-וארשתיך</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14869</a></td>
+                <td>09-שוש תשיש</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14870</a></td>
+                <td>10-כל המתפלל</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14871</a></td>
+                <td>11-מרש 1</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14872</a></td>
+                <td>12-מרש 2</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14873</a></td>
+                <td>13-מרש 3</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14874</a></td>
+                <td>14-מרש 4</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14875</a></td>
+                <td>15-מרש חבד</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14876</a></td>
+                <td>16-קל נקמות</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14877</a></td>
+                <td>17-בהדרת קודש</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14878</a></td>
+                <td>18-ישמחו השמים</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14879</a></td>
+                <td>19-יראו</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14880</a></td>
+                <td>20-ופדוי</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14881</a></td>
+                <td>21-שהחיינו</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14882</a></td>
+                <td>22-ימלך</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14883</a></td>
+                <td>23-שמחה</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14884</a></td>
+                <td>24-אם אתם</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14885</a></td>
+                <td>25-ענבי הגפן</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14886</a></td>
+                <td>26-ידיד</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14887</a></td>
+                <td>27-הוא יפתח</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14888</a></td>
+                <td>28-כי לא יטוש</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14889</a></td>
+                <td>29-מלך</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14890</a></td>
+                <td>30-זכרני נא-ברודער</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14891</a></td>
+                <td>31-ניגון בעל שם</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14892</a></td>
+                <td>32-ירושלים</td>
+                <td>פרויקט X1</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14893</a></td>
+                <td>01-אך טוב</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14894</a></td>
+                <td>02-ניגון</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14895</a></td>
+                <td>03-בזו השעה</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14896</a></td>
+                <td>04-אשרי מי</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14897</a></td>
+                <td>05-ועינינו</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14898</a></td>
+                <td>06-בך רבינו</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14899</a></td>
+                <td>07-פתוח</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14900</a></td>
+                <td>08-הגומל</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14901</a></td>
+                <td>09-חתן התורה</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14902</a></td>
+                <td>10-קול מבשר</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14903</a></td>
+                <td>11-ניגון באבא</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14904</a></td>
+                <td>12-הנטלעך</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14905</a></td>
+                <td>13-לא ימישו</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14906</a></td>
+                <td>14-ניגון</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14907</a></td>
+                <td>15-טוב להודות</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14908</a></td>
+                <td>16-שבשפלינו</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14909</a></td>
+                <td>17-ניגון</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14910</a></td>
+                <td>18-מראה כהן</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14911</a></td>
+                <td>19-הרחמן</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14912</a></td>
+                <td>20-קומי רני</td>
+                <td>פרויקט אקס 3</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14913</a></td>
+                <td>01-יצליח - קאליש</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14914</a></td>
+                <td>02-ניגון קרלין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14915</a></td>
+                <td>03-מצליח - קאליש</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14916</a></td>
+                <td>04-אמת - פינקי וובר</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14917</a></td>
+                <td>05-גלה - ברוךלוין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14918</a></td>
+                <td>06-נשמה - קרליבך</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14919</a></td>
+                <td>07-מה מה - איצי וולנר</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14920</a></td>
+                <td>08-תזכה - ליפא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14921</a></td>
+                <td>09-לגבי  - בלד</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14922</a></td>
+                <td>10-אי די ני ני - קרליבך</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14923</a></td>
+                <td>11-כלייזמר חיליק פראנק</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14924</a></td>
+                <td>12-ארבע מידות - ליפא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14925</a></td>
+                <td>13-הודו ושבחו - ברוך לוין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14926</a></td>
+                <td>14-מי כעמך - מ.ב.ד</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14927</a></td>
+                <td>15-שתטע - קאליש</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14928</a></td>
+                <td>16-מרנן - אחים שפירא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14929</a></td>
+                <td>17-הלו ידעת - ברוך לוין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14930</a></td>
+                <td>18-אנא בכח - עובדיה חממה</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14931</a></td>
+                <td>19-עתיד - מ.ב.ד</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14932</a></td>
+                <td>20-שומר ישראל - ברוך לוין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14933</a></td>
+                <td>21-לשם שמים - וורצברגר</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14934</a></td>
+                <td>22-רווח - ירחמיאל ביגון</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14935</a></td>
+                <td>23-אומן הא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14936</a></td>
+                <td>24-הן עם - איצי וולנר</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14937</a></td>
+                <td>25-כי שמש - אחים שפירא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14938</a></td>
+                <td>26-בוא יבוא - מ.ב.ד</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14939</a></td>
+                <td>27-זה היום - ליפא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14940</a></td>
+                <td>28-היגיד - ברוך לוין</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14941</a></td>
+                <td>29-אל תתיאש - מ.ב.ד</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14942</a></td>
+                <td>30-רבותי - ליפא</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14943</a></td>
+                <td>31-ברשות - בריו חקשור</td>
+                <td>פרויקטX2</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14944</a></td>
+                <td>01-אילו ישראל</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14945</a></td>
+                <td>02-שמע</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14946</a></td>
+                <td>03-בכל מכל כל</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14947</a></td>
+                <td>04-די טרער'לע</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14948</a></td>
+                <td>05-חברים</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14949</a></td>
+                <td>06-לכבוד שבת</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14950</a></td>
+                <td>07-ויבשר לנו</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14951</a></td>
+                <td>08-נשיאת כפים</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14952</a></td>
+                <td>09-והוא שעמדה</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14953</a></td>
+                <td>10-מיין שעפעלע</td>
+                <td>שמע</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14954</a></td>
+                <td>01 מה נשתנה</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14955</a></td>
+                <td>02 בו''ה בו''ה</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14956</a></td>
+                <td>03 נקדישך</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14957</a></td>
+                <td>04 ווי לאנג נאך ווי</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14958</a></td>
+                <td>05 איתקפיא</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14959</a></td>
+                <td>06 עגל</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14960</a></td>
+                <td>07 Positive</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14961</a></td>
+                <td>08 Hunger</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14962</a></td>
+                <td>09 הכל תירוצים</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14963</a></td>
+                <td>10 The Beat Of My Heart</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14964</a></td>
+                <td>11 בן פיגא</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14965</a></td>
+                <td>12 פשווערסק</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14966</a></td>
+                <td>13 העיקר הכוונה</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14967</a></td>
+                <td>14 בו''ה בו''ה - גרסה בעברית</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+              <tr>
+                <td><a>14968</a></td>
+                <td>15 עגל - גרסה בעברית</td>
+                <td>תהיו חיוביים</td>
+                <td>ליפא שמעלצר</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

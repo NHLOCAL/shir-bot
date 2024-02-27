@@ -1,0 +1,539 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מחרוזות</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמחרוזות</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>31164</a></td>
+                <td>1 אין עוד מלבדו</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31165</a></td>
+                <td>10 חברון</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31166</a></td>
+                <td>2 והכן פרנסתנו</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31167</a></td>
+                <td>3 על כל רגע</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31168</a></td>
+                <td>4 ניגון הרבי</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31169</a></td>
+                <td>5 ענבי הגפן</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31170</a></td>
+                <td>6 אני מאמין</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31171</a></td>
+                <td>7 קדוש</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31172</a></td>
+                <td>8 עוד ישמע</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31173</a></td>
+                <td>9 קלי קלי למה</td>
+                <td>מחרוזת אין עוד מלבדו</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31174</a></td>
+                <td>בן בג בג</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31175</a></td>
+                <td>דדא ביה</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31176</a></td>
+                <td>הוא יפתח לבינו</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31177</a></td>
+                <td>הורה-ירושלמי</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31178</a></td>
+                <td>הורה-מירון</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31179</a></td>
+                <td>הורה-עממי</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31180</a></td>
+                <td>לכה דודי</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31181</a></td>
+                <td>לפניו נעבוד</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31182</a></td>
+                <td>מי שאמר</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31183</a></td>
+                <td>נעימות</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31184</a></td>
+                <td>על חומותיך</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31185</a></td>
+                <td>רבי שמעון</td>
+                <td>מחרוזת הורה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31186</a></td>
+                <td>אמת</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31187</a></td>
+                <td>אשרי מי</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31188</a></td>
+                <td>ואמר ביום ההוא</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31189</a></td>
+                <td>וטהר ליבינו</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31190</a></td>
+                <td>ורוממו לקל</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31191</a></td>
+                <td>יהי ה</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31192</a></td>
+                <td>יצליח</td>
+                <td>מחרוזת יצליח</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31193</a></td>
+                <td>אתה תקום</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31194</a></td>
+                <td>בהדרת קודש</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31195</a></td>
+                <td>ובא לציון גואל</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31196</a></td>
+                <td>ונשגב</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31197</a></td>
+                <td>ותגלה ותראה</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31198</a></td>
+                <td>יודו לה חסדו</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31199</a></td>
+                <td>מאמינים</td>
+                <td>מחרוזת מאמינים</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31200</a></td>
+                <td>אם אשכחך ירושלים</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31201</a></td>
+                <td>ימלא פי</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31202</a></td>
+                <td>מאמע רחל</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31203</a></td>
+                <td>מקימי</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31204</a></td>
+                <td>ניגון קה אכסוף</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31205</a></td>
+                <td>עד מתי</td>
+                <td>מחרוזת נשמה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31206</a></td>
+                <td>א גהויבען זמן</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31207</a></td>
+                <td>הוא יפתח</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31208</a></td>
+                <td>השמח בחלקו</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31209</a></td>
+                <td>זכרני נא</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31210</a></td>
+                <td>לא ישא גוי</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31211</a></td>
+                <td>מה שהיה</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31212</a></td>
+                <td>מלך</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31213</a></td>
+                <td>נחום איש גמזו</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31214</a></td>
+                <td>פתאום</td>
+                <td>מחרוזת רוק</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31215</a></td>
+                <td>אשת חייל</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31216</a></td>
+                <td>בורא העולם בקניין</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31217</a></td>
+                <td>וישמע</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31218</a></td>
+                <td>ישיש עליך</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31219</a></td>
+                <td>סימן טוב</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31220</a></td>
+                <td>עוד ישמע</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31221</a></td>
+                <td>עוז והדר</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31222</a></td>
+                <td>ענבי הגפן</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31223</a></td>
+                <td>שאו שערים</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31224</a></td>
+                <td>שמח ורוקד</td>
+                <td>מחרוזת שמחות</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31225</a></td>
+                <td>כל צמא</td>
+                <td>מחרוזת שקטה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31226</a></td>
+                <td>מוריה</td>
+                <td>מחרוזת שקטה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31227</a></td>
+                <td>מקימי</td>
+                <td>מחרוזת שקטה</td>
+                <td>מחרוזות</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

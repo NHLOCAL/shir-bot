@@ -1,0 +1,189 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ברוך נפתל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspברוך נפתל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>5566</a></td>
+                <td>01 מאי מאי מאי</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5567</a></td>
+                <td>02 אמת ובשמחה</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5568</a></td>
+                <td>03 קדושים</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5569</a></td>
+                <td>04 מלכנו</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5570</a></td>
+                <td>05 באשעפער</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5571</a></td>
+                <td>06 ויהי נועם</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5572</a></td>
+                <td>07 מי כמוך</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5573</a></td>
+                <td>08 נעשה ונשמע</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5574</a></td>
+                <td>09 דווי הסר</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5575</a></td>
+                <td>10 בשורות טובות</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5576</a></td>
+                <td>11 ניגון החיים</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5577</a></td>
+                <td>12 בעזרת השם 2.0</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5578</a></td>
+                <td>13 דגול מרבבה</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+              <tr>
+                <td><a>5579</a></td>
+                <td>14 יעלה ויבוא</td>
+                <td>האלבום</td>
+                <td>ברוך נפתל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

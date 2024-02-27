@@ -1,0 +1,952 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>נפתלי שניצלער</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspנפתלי שניצלער</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>24524</a></td>
+                <td>אמת </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24525</a></td>
+                <td>יש מנהיג </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24526</a></td>
+                <td>כה אמר</td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24527</a></td>
+                <td>כולנו שמילי אונגר </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24528</a></td>
+                <td>כח </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24529</a></td>
+                <td>כי יעקב </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24530</a></td>
+                <td>כל ימי </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24531</a></td>
+                <td>למען אחי </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24532</a></td>
+                <td>מה גדלו </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24533</a></td>
+                <td>עשר מסעות </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24534</a></td>
+                <td>צעקו</td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24535</a></td>
+                <td>רעבים </td>
+                <td>טביעת אצבע</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24536</a></td>
+                <td>01-אהללה</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24537</a></td>
+                <td>02-בסיעתא דשמיא</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24538</a></td>
+                <td>03-ניגון קרלין</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24539</a></td>
+                <td>04-על הכל</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24540</a></td>
+                <td>05-ניגון שמחה</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24541</a></td>
+                <td>06-ניגון סטולין</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24542</a></td>
+                <td>07-אם אסק</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24543</a></td>
+                <td>08-ניגון יתגדל</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24544</a></td>
+                <td>09-עבדו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24545</a></td>
+                <td>10-קדשם</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24546</a></td>
+                <td>11-הטוב</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24547</a></td>
+                <td>12-ניגון חב''ד</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24548</a></td>
+                <td>13-יזכו לרב טוב</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24549</a></td>
+                <td>14-ניגון סקולען</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24550</a></td>
+                <td>15-ענבי הגפן</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24551</a></td>
+                <td>16-אשרינו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24552</a></td>
+                <td>17-מה לכם לדאוג</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24553</a></td>
+                <td>18-כן תזכנו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24554</a></td>
+                <td>19-טוב להודות</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24555</a></td>
+                <td>20-ניגון קרלין</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24556</a></td>
+                <td>21-הנה אנכי</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24557</a></td>
+                <td>22-ניגון שמחה חב''ד</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24558</a></td>
+                <td>23-ניגון סאטמר</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24559</a></td>
+                <td>24-ברוך השם</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24560</a></td>
+                <td>25-אשריך</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24561</a></td>
+                <td>26-ושמרו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24562</a></td>
+                <td>27-מימיני</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24563</a></td>
+                <td>28-התקבצו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24564</a></td>
+                <td>29-ולא נבוש</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24565</a></td>
+                <td>30-ניגון</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24566</a></td>
+                <td>31-אין כאלוקינו</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24567</a></td>
+                <td>32-כי לך</td>
+                <td>מלא שמחה 1</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24568</a></td>
+                <td>01 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24569</a></td>
+                <td>02 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24570</a></td>
+                <td>03 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24571</a></td>
+                <td>04 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24572</a></td>
+                <td>05 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24573</a></td>
+                <td>06 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24574</a></td>
+                <td>07 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24575</a></td>
+                <td>08 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24576</a></td>
+                <td>09 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24577</a></td>
+                <td>10 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24578</a></td>
+                <td>11 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24579</a></td>
+                <td>12 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24580</a></td>
+                <td>13 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24581</a></td>
+                <td>14 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24582</a></td>
+                <td>15 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24583</a></td>
+                <td>16 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24584</a></td>
+                <td>17 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24585</a></td>
+                <td>18 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24586</a></td>
+                <td>19 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24587</a></td>
+                <td>20 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24588</a></td>
+                <td>21 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24589</a></td>
+                <td>22 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24590</a></td>
+                <td>23 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24591</a></td>
+                <td>24 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24592</a></td>
+                <td>25 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24593</a></td>
+                <td>26 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24594</a></td>
+                <td>27 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24595</a></td>
+                <td>28 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24596</a></td>
+                <td>29 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24597</a></td>
+                <td>30 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24598</a></td>
+                <td>31 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24599</a></td>
+                <td>32 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24600</a></td>
+                <td>33 - Moolei Simcha 2</td>
+                <td>מלא שמחה 2</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24601</a></td>
+                <td>1-01 שלא עשני גוי</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24602</a></td>
+                <td>1-02 שכן חובת</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24603</a></td>
+                <td>1-03 ניגון ניקלסבורג</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24604</a></td>
+                <td>1-04 טוב ה'</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24605</a></td>
+                <td>1-05 אני מאמין</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24606</a></td>
+                <td>1-06 ארשת שפתינו</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24607</a></td>
+                <td>1-07 ניגון</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24608</a></td>
+                <td>1-08 ממלא כל עלמין</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24609</a></td>
+                <td>1-09 ויהיו רחמיך</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24610</a></td>
+                <td>1-10 באבוב ניגון</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24611</a></td>
+                <td>1-11 ואנפאה</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24612</a></td>
+                <td>1-12 סקווער הארא</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24613</a></td>
+                <td>1-13 כדי ר' שמעון</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24614</a></td>
+                <td>1-14 אשרי מי</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24615</a></td>
+                <td>1-15 שובה ה'</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24616</a></td>
+                <td>1-16 אליו</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24617</a></td>
+                <td>1-17 מזמור שיר</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24618</a></td>
+                <td>1-18 ניגון שומר אמונים</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24619</a></td>
+                <td>1-19 ועתה ה'</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24620</a></td>
+                <td>1-20 אגיל ואשמח</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24621</a></td>
+                <td>1-21 ניגון ירושלמי</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24622</a></td>
+                <td>1-22 ועל ידי זה</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24623</a></td>
+                <td>1-23 פרוק ית ענך</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24624</a></td>
+                <td>1-24 אין כגדולתך</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24625</a></td>
+                <td>1-25 קדיש</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24626</a></td>
+                <td>1-26 אמת</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24627</a></td>
+                <td>1-27 ר' שמעון</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24628</a></td>
+                <td>1-28 קרוב ה'</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24629</a></td>
+                <td>1-29 פשיסחא - לייז אונז אויס</td>
+                <td>מלא שמחה 3</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24630</a></td>
+                <td>באבוב ניגון</td>
+                <td>סינגלים</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24631</a></td>
+                <td>מלא שמחה</td>
+                <td>סינגלים</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24632</a></td>
+                <td>נפתלי שניצלער בערי, ליפא, דסקל, שמואלי, לוי, ומקהלת שירה - ריקוד 5 כוכבים</td>
+                <td>סינגלים</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24633</a></td>
+                <td>01 דוד - בערי וועבער</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24634</a></td>
+                <td>02 שימו לב - שמילי אונגר</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24635</a></td>
+                <td>03 שבענו - אייזיק האניג</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24636</a></td>
+                <td>04 שירה - בני פרידמן</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24637</a></td>
+                <td>05 פאר דיר - מענדי ווייס</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24638</a></td>
+                <td>06 כי רצו עבדיך - אברהם פריד</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24639</a></td>
+                <td>07 מי שעשה - שלומי דסקל</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24640</a></td>
+                <td>08 אור בית השואבה - אהר'לה סאמעט</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24641</a></td>
+                <td>09 יהיו לרצון - מוטי שטיינמץ</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24642</a></td>
+                <td>10 עזרת - פינקי וועבער</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24643</a></td>
+                <td>11 שבת שלום ומבורך - דובי מייזעלס</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24644</a></td>
+                <td>12 ענבי הגפן - זאנוויל וויינברגר</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24645</a></td>
+                <td>13 בית המקדש השלישי - ליפא שמעלצר</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+              <tr>
+                <td><a>24646</a></td>
+                <td>14 סוכה'לע - מרדכי בן דוד & יידל</td>
+                <td>שימו לב אל הנשמה</td>
+                <td>נפתלי שניצלער</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

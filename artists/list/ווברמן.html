@@ -1,0 +1,609 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ווברמן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspווברמן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>60779</a></td>
+                <td>01-מחרוזת קצבי</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60780</a></td>
+                <td>02-להתוודע</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60781</a></td>
+                <td>03-שיר עתיק</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60782</a></td>
+                <td>04-מחרוזת יחי</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60783</a></td>
+                <td>05-מחרוזת אידיש</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60784</a></td>
+                <td>06-מחרוזת יבנה המקדש</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60785</a></td>
+                <td>07-ונהפוך הוא</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60786</a></td>
+                <td>08-ליהודים</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60787</a></td>
+                <td>09-שושנת יעקב</td>
+                <td>א פורים טיש מיט'ן רבי'ן</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60788</a></td>
+                <td>Track 01</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60789</a></td>
+                <td>Track 02</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60790</a></td>
+                <td>Track 03</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60791</a></td>
+                <td>Track 04</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60792</a></td>
+                <td>Track 05</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60793</a></td>
+                <td>Track 06</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60794</a></td>
+                <td>Track 07</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60795</a></td>
+                <td>Track 08</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60796</a></td>
+                <td>Track 09</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60797</a></td>
+                <td>Track 10</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60798</a></td>
+                <td>Track 11</td>
+                <td>הקפות שניות</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60799</a></td>
+                <td>01-בר יוחאי</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60800</a></td>
+                <td>02-אמר ר' עקיבא</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60801</a></td>
+                <td>03-ואמרתם</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60802</a></td>
+                <td>04-ר' מאיר אומר</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60803</a></td>
+                <td>05-ניגון מירון</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60804</a></td>
+                <td>06-בהילולי' דבר יוחאי</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60805</a></td>
+                <td>07-ועל ידי זה</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60806</a></td>
+                <td>08-בזכות-לכבוד התנא אלוקי</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60807</a></td>
+                <td>09-מחרוזת ריקודים</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60808</a></td>
+                <td>10-ימים על ימי</td>
+                <td>ל''ג בעומר במירון</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60809</a></td>
+                <td>01-מחרוזת והיא שעמדה</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60810</a></td>
+                <td>02-בצאת ישראל</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60811</a></td>
+                <td>03-מחרוזת קרב יום</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60812</a></td>
+                <td>04-אתה בחרתנו</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60813</a></td>
+                <td>05-חסל</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60814</a></td>
+                <td>06-וספרתם לכם</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60815</a></td>
+                <td>07-מלך רחמן</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60816</a></td>
+                <td>08-מחרוזת אתה בחרתנו</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60817</a></td>
+                <td>09-וראו בניו</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60818</a></td>
+                <td>10-חסל סידור</td>
+                <td>ניגוני פסח</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60819</a></td>
+                <td>1</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60820</a></td>
+                <td>2</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60821</a></td>
+                <td>3</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60822</a></td>
+                <td>4</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60823</a></td>
+                <td>5</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60824</a></td>
+                <td>6</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60825</a></td>
+                <td>7</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60826</a></td>
+                <td>8</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60827</a></td>
+                <td>9</td>
+                <td>עליונים ששו ותחתונים עלזו</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60828</a></td>
+                <td>01-מחרוזת א</td>
+                <td>פורים אין ירושלים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60829</a></td>
+                <td>02-מחרוזת ב</td>
+                <td>פורים אין ירושלים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60830</a></td>
+                <td>01-מחרוזת</td>
+                <td>קול ששון וקול שמחה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60831</a></td>
+                <td>02-מחרוזת</td>
+                <td>קול ששון וקול שמחה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60832</a></td>
+                <td>02-מעוז צור</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60833</a></td>
+                <td>03-ארומימך</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60834</a></td>
+                <td>04-מחרוזת ארומימך</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60835</a></td>
+                <td>05-מחרוזת</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60836</a></td>
+                <td>06-אוי חנוכה</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60837</a></td>
+                <td>07-נר לרגלי</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60838</a></td>
+                <td>08-יונים</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60839</a></td>
+                <td>09-א-לי אתה</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60840</a></td>
+                <td>1-הנרות הללו</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60841</a></td>
+                <td>10-יונים</td>
+                <td>שירי חנוכה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60842</a></td>
+                <td>שירי חנוכה ירושלמי צ''א</td>
+                <td>שירי חנוכה ירושלמי</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60843</a></td>
+                <td>שירי חנוכה ירושלמי צ''ב</td>
+                <td>שירי חנוכה ירושלמי</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60844</a></td>
+                <td>01-מחרוזת</td>
+                <td>שמחת בית השואבה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60845</a></td>
+                <td>02-מחרוזת</td>
+                <td>שמחת בית השואבה</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60846</a></td>
+                <td>01-מחרוזת א</td>
+                <td>שמחת פורים 1</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60847</a></td>
+                <td>02-מחרוזת ב</td>
+                <td>שמחת פורים 1</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60848</a></td>
+                <td>03-מחרוזת ג</td>
+                <td>שמחת פורים 1</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60849</a></td>
+                <td>01-מחרוזת א</td>
+                <td>שמחת פורים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60850</a></td>
+                <td>02-מחרוזת ב</td>
+                <td>שמחת פורים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60851</a></td>
+                <td>03-מחרוזת ג</td>
+                <td>שמחת פורים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+              <tr>
+                <td><a>60852</a></td>
+                <td>04-מחרוזת ד</td>
+                <td>שמחת פורים 2</td>
+                <td>ווברמן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

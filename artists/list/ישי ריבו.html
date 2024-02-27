@@ -1,0 +1,1316 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ישי ריבו</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspישי ריבו</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>13826</a></td>
+                <td>01 אלול תשע ט</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13827</a></td>
+                <td>02 בן אדם</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13828</a></td>
+                <td>03 לך אלי</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13829</a></td>
+                <td>04 אוחילה</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13830</a></td>
+                <td>05 הלב שלי</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13831</a></td>
+                <td>06 נפשי - עם מוטי שטיינמץ</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13832</a></td>
+                <td>07 ה  שמעתי שמעך</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13833</a></td>
+                <td>08 מלוך</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13834</a></td>
+                <td>09 סדר העבודה</td>
+                <td>אלול תשעט</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13835</a></td>
+                <td>01 - והאמת - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13836</a></td>
+                <td>02 - אייכה - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13837</a></td>
+                <td>03 - לבחור נכון - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13838</a></td>
+                <td>04 - נחכה לך - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13839</a></td>
+                <td>05 - בלוז כנעני - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13840</a></td>
+                <td>06 - זהות - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13841</a></td>
+                <td>08 - שקט - לייב</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13842</a></td>
+                <td>10 - כתר מלוכה</td>
+                <td>אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13843</a></td>
+                <td>01 - כלי חמדתו + אינטרו - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13844</a></td>
+                <td>02 - תוכו רצוף אהבה - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13845</a></td>
+                <td>03 - קול דודי - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13846</a></td>
+                <td>04 - אם ננעלו - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13847</a></td>
+                <td>05 - הניסיון הזה - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13848</a></td>
+                <td>06 - עוד ישמע- לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13849</a></td>
+                <td>07 - יראת שמיים + אינטרו - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13850</a></td>
+                <td>08 - אור החיים - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13851</a></td>
+                <td>09 - זוכר אני לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13852</a></td>
+                <td>10 - מקשה אחת זהב - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13853</a></td>
+                <td>11 - קול פעמונים - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13854</a></td>
+                <td>12 - מציל אותי כל יום - לייב</td>
+                <td>במה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13855</a></td>
+                <td>01 - בין לבן לשחור - אינטרו - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13856</a></td>
+                <td>02 - אחת ולתמיד - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13857</a></td>
+                <td>03 - הבוקר יעלה - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13858</a></td>
+                <td>04 - הנה ימים באים - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13859</a></td>
+                <td>05 - לשוב הביתה - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13860</a></td>
+                <td>06 - כמה טוב שבאת - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13861</a></td>
+                <td>07 - רחמי שמים + אינטרו - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13862</a></td>
+                <td>08 - אלול תשע ט - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13863</a></td>
+                <td>09 - בן אדם - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13864</a></td>
+                <td>10 - אוחילה - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13865</a></td>
+                <td>11 - הלב שלי - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13866</a></td>
+                <td>12 - סדר העבודה - לייב</td>
+                <td>קהל</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13867</a></td>
+                <td>01 רצועה 1</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13868</a></td>
+                <td>02 רצועה 2</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13869</a></td>
+                <td>03 רצועה 3</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13870</a></td>
+                <td>04 רצועה 4</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13871</a></td>
+                <td>05 רצועה 5</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13872</a></td>
+                <td>06 רצועה 6</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13873</a></td>
+                <td>07 רצועה 7</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13874</a></td>
+                <td>08 רצועה 8</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13875</a></td>
+                <td>09 רצועה 9</td>
+                <td>מזמרת הארץ</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13876</a></td>
+                <td>& מקהלת ידידים - ישאלוני רעיוני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13877</a></td>
+                <td>&quot;השבעתי אתכם&quot; -ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13878</a></td>
+                <td>- הניסיון הזה - ishay ribo- anisayon haze</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13879</a></td>
+                <td>- כל מעייני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13880</a></td>
+                <td>- כתר מלוכה (רמיקס אהרון קופמן)</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13881</a></td>
+                <td>- כתר מלוכה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13882</a></td>
+                <td>- להביע אהבה (מילים דניאלי זוננפלד ז</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13883</a></td>
+                <td>- לשוב הביתה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13884</a></td>
+                <td>- מטבע הדברים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13885</a></td>
+                <td>- סיבת הסיבות</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13886</a></td>
+                <td>- עוד ישמע</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13887</a></td>
+                <td>- תוכו רצוף אהבה - קליפ</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13888</a></td>
+                <td>03 מקדש מלך - ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13889</a></td>
+                <td>03 עשרה בני אדם - עם ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13890</a></td>
+                <td>07 ושים חלקנו - ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13891</a></td>
+                <td>09 דרכך - ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13892</a></td>
+                <td>11 ימין ה' - ישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13893</a></td>
+                <td>Comme les oiseaux</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13894</a></td>
+                <td>אבישי אשל - ריבונו של עולם</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13895</a></td>
+                <td>אור כזה 1</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13896</a></td>
+                <td>אור כזה 2</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13897</a></td>
+                <td>אור כזה-הפרוייקט של עידן רייכל</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13898</a></td>
+                <td>איפה הם כל אבותינו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13899</a></td>
+                <td>אנשים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13900</a></td>
+                <td>ארץ צבי -ניגון ישראלי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13901</a></td>
+                <td>ארץ צבי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13902</a></td>
+                <td>בן יקיר לי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13903</a></td>
+                <td>דואט השנה עומר אדם וישי ריבו – הלב שלי (1)</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13904</a></td>
+                <td>דרכך</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13905</a></td>
+                <td>הופעת הענק של זמר העשור ישי ריבו בבנייני האומה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13906</a></td>
+                <td>הלב שלי - רמיקס</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13907</a></td>
+                <td>המסובב</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13908</a></td>
+                <td>הנסיון הזה - לייב</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13909</a></td>
+                <td>השבעתי - עם מקהלת ישלצ</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13910</a></td>
+                <td>השבעתי אתכם</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13911</a></td>
+                <td>והאמת - עם שלמה ארצי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13912</a></td>
+                <td>והאמת-שלמה ארצי וישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13913</a></td>
+                <td>והריקותי לכם ברכה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13914</a></td>
+                <td>ולא אתן תנומה לעיני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13915</a></td>
+                <td>ומוטי שטיינמץ - נפשי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13916</a></td>
+                <td>ועקיבא אל תעזבי ידיים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13917</a></td>
+                <td>ושים חלקנו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13918</a></td>
+                <td>זוכר אני Ishay Ribo Zokher Ani LIVE.134</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13919</a></td>
+                <td>חדש ששוני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13920</a></td>
+                <td>חיים ישראל וניגון החיים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13921</a></td>
+                <td>טעימה מאלבום פחד גבהים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13922</a></td>
+                <td>יוסף נטיב, - בשלב הבא</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13923</a></td>
+                <td>ימין ה' רוממה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13924</a></td>
+                <td>ירצה צום עמך עם יצחק מאיר</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13925</a></td>
+                <td>ישאלוני רעיוני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13926</a></td>
+                <td>ישי ריבו & נתן גושן - נחכה לך</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13927</a></td>
+                <td>ישי ריבו - כל מעייני</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13928</a></td>
+                <td>ישי ריבו - נצור Live</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13929</a></td>
+                <td>ישי ריבו בסינגל חדש ''לא נפסיק לחלום''</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13930</a></td>
+                <td>ישי ריבו הלב שלי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13931</a></td>
+                <td>ישי ריבו ועמיר חדד Comme les ois</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13932</a></td>
+                <td>ישי ריבו מפתיע בשיר חדש מלהיב ומרגש ''אני שייך לעם''</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13933</a></td>
+                <td>ישי ריבו-בניון-דדון-ניצחת איתי הכל</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13934</a></td>
+                <td>ישי ריבו-קול דודי Ishay Ribo - Kol dodi</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13935</a></td>
+                <td>ישי-ריבו-ומרדכי-בן-דוד-אתה-זוכר</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13936</a></td>
+                <td>ישי-ריבו-זוכר-אני-Live-המחדש</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13937</a></td>
+                <td>ישי-ריבו-תכף-יפתח</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13938</a></td>
+                <td>כמה טוב שבאת - בהופעה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13939</a></td>
+                <td>כתר מלוכה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13940</a></td>
+                <td>לשוב הביתה  אנגלית ישי ריבו והאחים סלומון</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13941</a></td>
+                <td>לשוב הביתה - ווקאלי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13942</a></td>
+                <td>לשוב הביתה - רימיקס</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13943</a></td>
+                <td>מארח את אלדד ציטרין – אחת ולתמיד</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13944</a></td>
+                <td>מארח את עמיר בניון ואמיר דדון בבריכת הסולטן - ניצחת איתי הכל</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13945</a></td>
+                <td>מחרוזת ישי ריבו יענקי היל</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13946</a></td>
+                <td>מן המיצר</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13947</a></td>
+                <td>מציל אותי כל יום (לייב)</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13948</a></td>
+                <td>מקדש מלך</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13949</a></td>
+                <td>נפשי</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13950</a></td>
+                <td>נתן גושן ו- נחכה לך - רמיקס</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13951</a></td>
+                <td>נתן גושן וישי ריבו - נחכה לך Nathan Goshen Ishay Ribo</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13952</a></td>
+                <td>עבודה שבלב</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13953</a></td>
+                <td>עומר אדם והיא שעמדה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13954</a></td>
+                <td>עקיבא, - אל תעזבי ידיים</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13955</a></td>
+                <td>פחד גבהים הופעה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13956</a></td>
+                <td>פרוק ית ענך</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13957</a></td>
+                <td>צלצול-נפשי - ומוטי שטיימניץ</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13958</a></td>
+                <td>קול פעמונים - רמיקס</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13959</a></td>
+                <td>קרבן אהבה</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13960</a></td>
+                <td>שיבנה בית המקדש</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13961</a></td>
+                <td>שיר החופש הגדול</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13962</a></td>
+                <td>שלמה ארצי ו- והאמת</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13963</a></td>
+                <td>שלמה ארצי עם - והאמת</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13964</a></td>
+                <td>שרולי ונתנאל בקאבר ללהיט נחכה לך של נתן גושן וישי ריבו</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13965</a></td>
+                <td>שרולי ונתנאלנחכה לך (קאבר נתן גושן וישי ריבו)</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13966</a></td>
+                <td>תקציר שטח אפור</td>
+                <td>סינגלים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13967</a></td>
+                <td>01 אור</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13968</a></td>
+                <td>02 אור החיים</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13969</a></td>
+                <td>03 לבדו הוא</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13970</a></td>
+                <td>04 מציל אותי כל יום</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13971</a></td>
+                <td>05 קול פעמונים</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13972</a></td>
+                <td>06 פחד גבהים</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13973</a></td>
+                <td>07 זוכר אני</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13974</a></td>
+                <td>08 דרך הישר-ה</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13975</a></td>
+                <td>09 מקשה אחת זהב</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13976</a></td>
+                <td>10 יצחק ורבקה</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13977</a></td>
+                <td>11 לכשאשתנה</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13978</a></td>
+                <td>12 לולא היותך</td>
+                <td>פחד גבהים</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13979</a></td>
+                <td>01 הנה ימים באים</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13980</a></td>
+                <td>02 אחת ולתמיד</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13981</a></td>
+                <td>03 משגיח מן החלונות</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13982</a></td>
+                <td>04 לשוב הביתה</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13983</a></td>
+                <td>05 שטח אפור</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13984</a></td>
+                <td>06 לים</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13985</a></td>
+                <td>07 Comme Les Oiseaux</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13986</a></td>
+                <td>08 כל הזמן</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13987</a></td>
+                <td>09 אדון עולם</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13988</a></td>
+                <td>10 הבוקר יעלה</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13989</a></td>
+                <td>11 כמה טוב שבאת</td>
+                <td>שטח אפור</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13990</a></td>
+                <td>01 לשם שמיים</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13991</a></td>
+                <td>02 תוכו רצוף אהבה</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13992</a></td>
+                <td>03 מטבע הדברים</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13993</a></td>
+                <td>04 אם ננעלו</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13994</a></td>
+                <td>05 אהלן ווסהלן</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13995</a></td>
+                <td>06 קול דודי</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13996</a></td>
+                <td>07 הניסיון הזה</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13997</a></td>
+                <td>08 אבא יקר</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13998</a></td>
+                <td>09 עוד ישמע</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>13999</a></td>
+                <td>10 גם כי אלך</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+              <tr>
+                <td><a>14000</a></td>
+                <td>11 יגדל</td>
+                <td>תוכו רצוף אהבה</td>
+                <td>ישי ריבו</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

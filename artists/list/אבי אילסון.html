@@ -1,0 +1,245 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אבי אילסון</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאבי אילסון</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>1</a></td>
+                <td>- אבי אילסון - הלוואי - קאוור - מקורי</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>2</a></td>
+                <td>אבי אילסון & דביר כהן והלהקה - מלך העולם - קאבר אמונ[קו]רונה #2</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>3</a></td>
+                <td>אבי אילסון & דביר כהן והלהקה בביצוע רפואה של ברוך לוין</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>4</a></td>
+                <td>אבי אילסון - חתן וגם כלה - רמיקס (עמירם בן לולו & ניסו סלוב)</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>5</a></td>
+                <td>אבי אילסון - שיבוא - רמיקס (די ג'יי חיים פלמן)</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>6</a></td>
+                <td>אבי אילסון - שיבוא</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>7</a></td>
+                <td>אבי אילסון - תן לי אור</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>8</a></td>
+                <td>אבי אילסון חתן  כלה רמיקס</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>9</a></td>
+                <td>אבי אילסון משחרר סינגל חדש ''יש לי הכל''</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>10</a></td>
+                <td>אבי אילסון תן לי אור הרמיקס הרשמי Prod. By Dj Niso Slob.134</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>11</a></td>
+                <td>אשריך</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>12</a></td>
+                <td>והנה ה</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>13</a></td>
+                <td>זמן חופה</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>14</a></td>
+                <td>חמישה קולות</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>15</a></td>
+                <td>חתן וגם כלה</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>16</a></td>
+                <td>מחילה</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>17</a></td>
+                <td>מחרוזת חנוכה  live אבי אילסון</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>18</a></td>
+                <td>מקום לחלום אבי אילסון</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>19</a></td>
+                <td>רחם</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>20</a></td>
+                <td>רפואה</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>21</a></td>
+                <td>שיבוא</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+              <tr>
+                <td><a>22</a></td>
+                <td>תן לי אור - הגרסה בערבית</td>
+                <td>סינגלים</td>
+                <td>אבי אילסון</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

@@ -1,0 +1,350 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>בנצי שטיין</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspבנצי שטיין</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>5116</a></td>
+                <td>-שטיין-מוטי-שיין-ארשת-שפתינו-1</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5117</a></td>
+                <td>בנצי שטיין  - סינגל לקמפיין של חיי תורה</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5118</a></td>
+                <td>בנצי שטיין & אהר'לה סאמעט - איך בין דיינס</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5119</a></td>
+                <td>בנצי שטיין - בן מלך</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5120</a></td>
+                <td>בנצי שטיין - חתונת הקורונה</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5121</a></td>
+                <td>בנצי שטיין בניגון ''אשריך'' לקראת הכנסייה הגדולה</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5122</a></td>
+                <td>בנצי שטיין בסינגל חדש לרגל המעמד ''תורת אמך''</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5123</a></td>
+                <td>בנצי שטיין מגיש יצירה חדשה ''שיר ציון''</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5124</a></td>
+                <td>בנצי שטיין שיר ציון</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5125</a></td>
+                <td>בנצי שטיין-מנדי ווייס</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5126</a></td>
+                <td>חתונה בנצי שטיין</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5127</a></td>
+                <td>מיכאל שניצלר, מוטי ויזל, בנצי שטיין - אדוני המלך</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5128</a></td>
+                <td>שוכי גולדשטיין, בנצי שטיין & קולות - תורה חיים היא</td>
+                <td>סינגלים</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5129</a></td>
+                <td>01 אוטוטו</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5130</a></td>
+                <td>02 נעם אונז שוין אהיים</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5131</a></td>
+                <td>03 קרעסטיר</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5132</a></td>
+                <td>04 מנורה'לע</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5133</a></td>
+                <td>05 די</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5134</a></td>
+                <td>06 בעט ניסים</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5135</a></td>
+                <td>07 אבא</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5136</a></td>
+                <td>08 לבוש מלכות</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5137</a></td>
+                <td>09 אלו הם הצדיקים</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5138</a></td>
+                <td>10 מאיר'ל מיין קינד</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5139</a></td>
+                <td>11 תורה חיים היא</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5140</a></td>
+                <td>12 אבא איתי</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5141</a></td>
+                <td>13 איך בין דיינס</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5142</a></td>
+                <td>14 רבי שמעון העלף אונז שוין</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5143</a></td>
+                <td>15 שיר ציון</td>
+                <td>שיר ציון</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5144</a></td>
+                <td>01 ארשת שפתינו</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5145</a></td>
+                <td>02 שמחו נא</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5146</a></td>
+                <td>03 תורת אמך</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5147</a></td>
+                <td>04 יהודי קדוש</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5148</a></td>
+                <td>05 למדים בתורה</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5149</a></td>
+                <td>06 ר_ שמעון</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5150</a></td>
+                <td>07 שיר הבר מצווה</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5151</a></td>
+                <td>08 מחרוזת ירושלים</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+              <tr>
+                <td><a>5152</a></td>
+                <td>09 מחרוזת רגש</td>
+                <td>שיר ציון #3</td>
+                <td>בנצי שטיין</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

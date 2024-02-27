@@ -1,0 +1,392 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יוני זי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיוני זי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>11548</a></td>
+                <td>01 מסיבה</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11549</a></td>
+                <td>02 Crown</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11550</a></td>
+                <td>03 משיח</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11551</a></td>
+                <td>04 בואי</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11552</a></td>
+                <td>05 אהבה</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11553</a></td>
+                <td>06 ידיד נפש</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11554</a></td>
+                <td>07 להודות</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11555</a></td>
+                <td>08 כח</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11556</a></td>
+                <td>09 עד מתי</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11557</a></td>
+                <td>10 Stripes</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11558</a></td>
+                <td>11 לנצח 2.0</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11559</a></td>
+                <td>12 That's My Songs</td>
+                <td>אהבה</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11560</a></td>
+                <td>01 פתיחה</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11561</a></td>
+                <td>02 אני מאמין</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11562</a></td>
+                <td>03 מה נעשה</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11563</a></td>
+                <td>04 דע מה</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11564</a></td>
+                <td>05 מי אדיר</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11565</a></td>
+                <td>06 טעם וריח</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11566</a></td>
+                <td>08 הללוי-ה</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11567</a></td>
+                <td>09 הושענא</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11568</a></td>
+                <td>10 רק אחד</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11569</a></td>
+                <td>11 אודה</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11570</a></td>
+                <td>12 קדימה_איו!</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11571</a></td>
+                <td>13 UP!</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11572</a></td>
+                <td>14 כל הלילות</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11573</a></td>
+                <td>7 See You Again</td>
+                <td>יוני Z</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11574</a></td>
+                <td>Home</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11575</a></td>
+                <td>live dance medely</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11576</a></td>
+                <td>Yoni Z Live - Dance Medley - יוני זיגלבוים שר שירי ריקוד בחתונה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11577</a></td>
+                <td>אודה - רמיקס</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11578</a></td>
+                <td>אודה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11579</a></td>
+                <td>אפ</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11580</a></td>
+                <td>דע מה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11581</a></td>
+                <td>הושע נא</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11582</a></td>
+                <td>טעם וריח יוני זיגלבוים וגד אלבז</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11583</a></td>
+                <td>טעם וריח</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11584</a></td>
+                <td>יוני זיגלבוים שר שירים שמחים</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11585</a></td>
+                <td>יוניz דע</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11586</a></td>
+                <td>להושיע</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11587</a></td>
+                <td>למעלה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11588</a></td>
+                <td>לנצח</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11589</a></td>
+                <td>מה נעשה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+              <tr>
+                <td><a>11590</a></td>
+                <td>תמשיך קדימה</td>
+                <td>סינגלים</td>
+                <td>יוני זי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

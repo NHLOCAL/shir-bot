@@ -1,0 +1,1211 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>מרדכי שפירא</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמרדכי שפירא</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>23271</a></td>
+                <td>01 פתיחה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23272</a></td>
+                <td>02 עוד ישמע</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23273</a></td>
+                <td>03 יהי החודש</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23274</a></td>
+                <td>04 יפרח, לא תבושי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23275</a></td>
+                <td>05 הנה מה טוב</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23276</a></td>
+                <td>06 ניגון קרלין</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23277</a></td>
+                <td>07 השיבנו</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23278</a></td>
+                <td>08 שמחם</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23279</a></td>
+                <td>09 בורא עולם</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23280</a></td>
+                <td>10 כאפט אריין א וואדקה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23281</a></td>
+                <td>11 המנגן</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23282</a></td>
+                <td>12 עוד ישמע (MBC)</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23283</a></td>
+                <td>13 שים שלום</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23284</a></td>
+                <td>14 ניגון הרבה שלי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23285</a></td>
+                <td>15 ראש חודש כיסלו, ניגון סטפס</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23286</a></td>
+                <td>16 כל הנחלים, ביום ההוא</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23287</a></td>
+                <td>17 First Dance Outro</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23288</a></td>
+                <td>18 This Moment</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23289</a></td>
+                <td>19 אחת</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23290</a></td>
+                <td>20 מי אדיר</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23291</a></td>
+                <td>21 תפילת הנרות</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23292</a></td>
+                <td>22 וזכני</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23293</a></td>
+                <td>23 ברכת כהנים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23294</a></td>
+                <td>24 אם אשכחך</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23295</a></td>
+                <td>25 יום גדול</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23296</a></td>
+                <td>26 עוד ישמע (דדי)</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23297</a></td>
+                <td>27 כבודו</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23298</a></td>
+                <td>28 שים ברכה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23299</a></td>
+                <td>29 שוש תשיש</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23300</a></td>
+                <td>30 One in a Million</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23301</a></td>
+                <td>31 מאמין בניסים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23302</a></td>
+                <td>32 שמחה שלימה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23303</a></td>
+                <td>33 ישיש, דווי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23304</a></td>
+                <td>34 אה יאי, ששון, השם ,Feel The Magic, מהפכה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23305</a></td>
+                <td>35 כל המלמד</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23306</a></td>
+                <td>36 אין עוד מלבדו</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23307</a></td>
+                <td>37 מי כעמך ישראל</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23308</a></td>
+                <td>38 ביחד</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23309</a></td>
+                <td>39 אם אין אני לי (MBD)</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23310</a></td>
+                <td>40 בין קודש לחול</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23311</a></td>
+                <td>41 מהרה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23312</a></td>
+                <td>42 השמיים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23313</a></td>
+                <td>43 אתה קדוש</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23314</a></td>
+                <td>44 אל תעזבי ידיים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23315</a></td>
+                <td>45 יהודי זה הכי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23316</a></td>
+                <td>46 שיר הבעל שם טוב</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23317</a></td>
+                <td>47 מנוחה ושמחה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23318</a></td>
+                <td>48 ניגון אלול</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23319</a></td>
+                <td>49 אבינו מלכנו</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23320</a></td>
+                <td>50 אם אין אני לי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23321</a></td>
+                <td>51 הלב שלי</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23322</a></td>
+                <td>52 אם תרצי, תפילה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23323</a></td>
+                <td>53 כולם אהובים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23324</a></td>
+                <td>54 אני מאמין</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23325</a></td>
+                <td>55 Bring The House Down</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23326</a></td>
+                <td>56 בירושלים</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23327</a></td>
+                <td>57 סיום - ניגון חתונה</td>
+                <td>Sing It</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23328</a></td>
+                <td>01 אחת</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23329</a></td>
+                <td>02 Dancing In The Rain</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23330</a></td>
+                <td>03 אשירה</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23331</a></td>
+                <td>04 אנא השם</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23332</a></td>
+                <td>05 ועל כולם</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23333</a></td>
+                <td>06 Get Back Up Again</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23334</a></td>
+                <td>07 אשת חיל</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23335</a></td>
+                <td>08 24_7</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23336</a></td>
+                <td>09 אבא</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23337</a></td>
+                <td>10 Rollercoaster</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23338</a></td>
+                <td>11 תמיד יש סיבה</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23339</a></td>
+                <td>12 זה טוב</td>
+                <td>אחת</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23340</a></td>
+                <td>01 הכל משמים </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23341</a></td>
+                <td>02 אחד למליון </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23342</a></td>
+                <td>03 יהי רצון מלפניך </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23343</a></td>
+                <td>04 השלום </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23344</a></td>
+                <td>05 תפילה</td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23345</a></td>
+                <td>06 בוקר טוב</td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23346</a></td>
+                <td>07 כל הלילה</td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23347</a></td>
+                <td>08 טוב השם </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23348</a></td>
+                <td>09 אין אנחנו </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23349</a></td>
+                <td>10 מודה אני </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23350</a></td>
+                <td>11 אבינו </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23351</a></td>
+                <td>12 ברכנו </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23352</a></td>
+                <td>13 חברים </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23353</a></td>
+                <td>14 כדי להודות </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23354</a></td>
+                <td>15 ביחד </td>
+                <td>הכל משמים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23355</a></td>
+                <td>01 - כל הדרך</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23356</a></td>
+                <td>01 כל הדרך</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23357</a></td>
+                <td>02 שכר מצוה</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23358</a></td>
+                <td>02 שכר מצווה</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23359</a></td>
+                <td>03 כי מלאכיו</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23360</a></td>
+                <td>04 חזקו</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23361</a></td>
+                <td>04 חיזקו</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23362</a></td>
+                <td>05 שיר המעלות</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23363</a></td>
+                <td>06 עבדו</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23364</a></td>
+                <td>07 היום</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23365</a></td>
+                <td>08 מי כה</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23366</a></td>
+                <td>08 מי כהשם</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23367</a></td>
+                <td>09 לא עליך</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23368</a></td>
+                <td>10 ומלוך</td>
+                <td>כל הדרך</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23369</a></td>
+                <td>01 מחר</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23370</a></td>
+                <td>02 לך</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23371</a></td>
+                <td>03 מי אדיר</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23372</a></td>
+                <td>04 כולם</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23373</a></td>
+                <td>05 Home</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23374</a></td>
+                <td>06 לי</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23375</a></td>
+                <td>07 Smile</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23376</a></td>
+                <td>08 ה' מלך</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23377</a></td>
+                <td>09 ניגון שמחה</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23378</a></td>
+                <td>10 'חסדי ה</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23379</a></td>
+                <td>10 חסדי ה'</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23380</a></td>
+                <td>11 ברכות</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23381</a></td>
+                <td>Brachos (feat. Tzvi Silberstein)</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23382</a></td>
+                <td>Chasdei Hashem</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23383</a></td>
+                <td>Hashem Melech</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23384</a></td>
+                <td>Home</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23385</a></td>
+                <td>Kulam</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23386</a></td>
+                <td>Lecha</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23387</a></td>
+                <td>Li</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23388</a></td>
+                <td>Machar</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23389</a></td>
+                <td>Mi Adir (feat. Yitzy Waldner)</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23390</a></td>
+                <td>Niggun Simcha</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23391</a></td>
+                <td>Smile</td>
+                <td>מחר</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23392</a></td>
+                <td>Al Naharot Bavel Freilach Band ft. Mordechai Shapiro על נהרות בבל מרדכי שפירא ופריילך.136</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23393</a></td>
+                <td>MORDECHAI SHAPIRO - Hakol Mishamayim (Acoustic Version) הכל משמים - מרדכי שפירא אקוסטי</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23394</a></td>
+                <td>Schar Mitzvah שכר מצוה - Mordechai Shapiro [Cover by Chaim Bokchin]</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23395</a></td>
+                <td>אחד למיליון</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23396</a></td>
+                <td>אחד למליון מרדכי שפירא</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23397</a></td>
+                <td>אין עוד מלבדו</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23398</a></td>
+                <td>ביחד</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23399</a></td>
+                <td>בין קודש לחול- אוהד מושקוביץ ומרדכי שפירא</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23400</a></td>
+                <td>היום</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23401</a></td>
+                <td>הכל משמים</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23402</a></td>
+                <td>והיא שעמדה</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23403</a></td>
+                <td>ונקיתי</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23404</a></td>
+                <td>ותתן- מרדכי שפירא וידידים</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23405</a></td>
+                <td>חברים</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23406</a></td>
+                <td>כדי להודות</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23407</a></td>
+                <td>כל הדרך</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23408</a></td>
+                <td>לך הגדולה</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23409</a></td>
+                <td>מחר השמש תזרח</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23410</a></td>
+                <td>מחר</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23411</a></td>
+                <td>מחרוזת חתונה</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23412</a></td>
+                <td>מנחם וינשטיין בקאבר לשיר ותתן לנו של מרדכי שפירא</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23413</a></td>
+                <td>מרדכי  שפירא לך</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23414</a></td>
+                <td>מרדכי שפירא - אבא</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23415</a></td>
+                <td>מרדכי שפירא - אין עוד מלבדו</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23416</a></td>
+                <td>מרדכי שפירא - הכל משמים 1</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23417</a></td>
+                <td>מרדכי שפירא - והיא שעמדה</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23418</a></td>
+                <td>מרדכי שפירא - וניקתי</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23419</a></td>
+                <td>מרדכי שפירא - כי מלאכיו - מי אדיר</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23420</a></td>
+                <td>מרדכי שפירא - לך</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23421</a></td>
+                <td>מרדכי שפירא בשיר המחאה החדש ''אני יהודי!''</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23422</a></td>
+                <td>מרדכי שפירא מחר </td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23423</a></td>
+                <td>מרדכי שפירא מחרוזת להיטים</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23424</a></td>
+                <td>מרדכי שפירא משחרר היום את ''אבא''</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23425</a></td>
+                <td>מרדכי שפירו - ונקיתי</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23426</a></td>
+                <td>מרדכי שפירו ביחד</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23427</a></td>
+                <td>מרדכי-שפירא-הכל-משמיים</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23428</a></td>
+                <td>צמד שירי חופה-מי אדיר ומי בן שיח</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23429</a></td>
+                <td>שכר מצוה - ביצוע מיוחד</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+              <tr>
+                <td><a>23430</a></td>
+                <td>שכר מצוה</td>
+                <td>סינגלים</td>
+                <td>מרדכי שפירא</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

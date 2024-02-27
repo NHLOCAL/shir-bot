@@ -1,0 +1,504 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שמואל ניימאן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשמואל ניימאן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>63156</a></td>
+                <td>01-ניגון פריילך</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63157</a></td>
+                <td>02-הניגון הרומני</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63158</a></td>
+                <td>03-במעלות הניגון</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63159</a></td>
+                <td>04-יצירה רומנית</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63160</a></td>
+                <td>05-מחול הצוענים</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63161</a></td>
+                <td>06-הסוס צוהל והצועני רוקד</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63162</a></td>
+                <td>07-חתן וכלה מזל טוב - עממי</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63163</a></td>
+                <td>08-חתן וכלה מזל טוב - רומני</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63164</a></td>
+                <td>09-הצועני עצוב ושמח</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63165</a></td>
+                <td>10-קדטשקה רומני</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63166</a></td>
+                <td>11-ניגון חצר אבו בצפת</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63167</a></td>
+                <td>12-ניגון שפר</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63168</a></td>
+                <td>13-הורה מצילתיים במירון</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63169</a></td>
+                <td>14-פרייליך במירון</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63170</a></td>
+                <td>15-ניגון נפתולה ממטולה</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63171</a></td>
+                <td>16-דבקה במירון</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63172</a></td>
+                <td>17-מוסטפה</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63173</a></td>
+                <td>18-ניגון ר יוחנן הסנדלר</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63174</a></td>
+                <td>19-הורה רומנית</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63175</a></td>
+                <td>20-ריקוד הבקבוק</td>
+                <td>1-כליזמר ירושלמי</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63176</a></td>
+                <td>01-ניצוצות הקלרינט</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63177</a></td>
+                <td>02-החלילן הצועני</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63178</a></td>
+                <td>03-ריקוד הצוענים הנודדים</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63179</a></td>
+                <td>04-הקלרינט הבוכה</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63180</a></td>
+                <td>05-הקלרינט שמח</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63181</a></td>
+                <td>06-הניגון הרומני</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63182</a></td>
+                <td>07-פריילך חתונה</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63183</a></td>
+                <td>08-ריקוד צועני</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63184</a></td>
+                <td>09-הורה סטקאטו</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63185</a></td>
+                <td>10-רומניה רומניה</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63186</a></td>
+                <td>11-דבקה דרוזית א</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63187</a></td>
+                <td>12-דבקה דרוזית ב</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63188</a></td>
+                <td>13-דרוז ג</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63189</a></td>
+                <td>14-שיר לכת תורכי</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63190</a></td>
+                <td>15-ניגון שחרור הגליל וכיבוש מירון</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63191</a></td>
+                <td>16-דבקה ערבית במירון</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63192</a></td>
+                <td>17-ניגון ערבי צפתי</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63193</a></td>
+                <td>18-ניגון ערבי טברייני</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63194</a></td>
+                <td>19-ניגון ליווי המחותנים</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63195</a></td>
+                <td>20-ניגון לבנוני אי-הזיען</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63196</a></td>
+                <td>21-הורה ליטאית בחתונה</td>
+                <td>2-הכליזמר  וקלרינט</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63197</a></td>
+                <td>01-דוינא</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63198</a></td>
+                <td>02-פריילך אוריינטלי מהמזרח</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63199</a></td>
+                <td>03-ניגון פריילך לחתונה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63200</a></td>
+                <td>04-ריקוד שער ממולדביה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63201</a></td>
+                <td>05-שיר עם רומני - טרניצה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63202</a></td>
+                <td>06-ריקוד סירבה - השדה השניה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63203</a></td>
+                <td>07-בולגר - טרס</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63204</a></td>
+                <td>08-הפריילך מברוקלין</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63205</a></td>
+                <td>09-שיר עם רומני - פעמוני מזחלת השלג</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63206</a></td>
+                <td>10-דבקה אוריה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63207</a></td>
+                <td>11-ברכי נפשי</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63208</a></td>
+                <td>12-כי לישועתך</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63209</a></td>
+                <td>13-ומחה ה' דמעה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63210</a></td>
+                <td>14-על אלה אני בוכיה</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63211</a></td>
+                <td>15-שובה ה' את שביתנו</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63212</a></td>
+                <td>16-וזוכר חסדי אבות</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63213</a></td>
+                <td>17-פיתחו לי שערי צדק</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+              <tr>
+                <td><a>63214</a></td>
+                <td>18-זכרינו לחיים</td>
+                <td>3-מצוה דאנס-נר לשלמה</td>
+                <td>שמואל ניימאן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

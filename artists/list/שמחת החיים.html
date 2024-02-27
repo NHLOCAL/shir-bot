@@ -1,0 +1,2555 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שמחת החיים</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשמחת החיים</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>30069</a></td>
+                <td>01 כי כל פה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30070</a></td>
+                <td>02 אשרי מי</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30071</a></td>
+                <td>04 ניגון עתיק</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30072</a></td>
+                <td>05 נכספה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30073</a></td>
+                <td>06 על זאת‏</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30074</a></td>
+                <td>07 ואלהים מלכי</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30075</a></td>
+                <td>08 ניגון סטאלין</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30076</a></td>
+                <td>09 כי אנו עמך</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30077</a></td>
+                <td>10 ניגון חב''ד</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30078</a></td>
+                <td>11 שומרי מצוותיה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30079</a></td>
+                <td>12 ישמחו במלכותך</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30080</a></td>
+                <td>13 ואתה אמרת</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30081</a></td>
+                <td>14 האדרת והאמונה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30082</a></td>
+                <td>15 צמאה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30083</a></td>
+                <td>16 טייערע ברודער</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30084</a></td>
+                <td>17 כי לך</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30085</a></td>
+                <td>18 נא הקם</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30086</a></td>
+                <td>19 אהללה</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30087</a></td>
+                <td>20 וישמחו</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30088</a></td>
+                <td>21 ניגון</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30089</a></td>
+                <td>22 ניגון פארענטשעס</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30090</a></td>
+                <td>23 אור חדש</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30091</a></td>
+                <td>24 כי הרבית</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30092</a></td>
+                <td>25 וימלא משאלותינו</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30093</a></td>
+                <td>26 יהא רעווא</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30094</a></td>
+                <td>27 ניגון</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30095</a></td>
+                <td>28 ופרצת</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30096</a></td>
+                <td>29 הופ קאזאק</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30097</a></td>
+                <td>30 ובכן צדיקים</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30098</a></td>
+                <td>31 הושיעה את עמך</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30099</a></td>
+                <td>32 וחסד השם</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30100</a></td>
+                <td>33 אוי ריבונו של עולם</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30101</a></td>
+                <td>34 שושנת יעקב</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30102</a></td>
+                <td>35 ותוסף אסתר</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30103</a></td>
+                <td>36 ליהודים</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30104</a></td>
+                <td>37 אם על המלך</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30105</a></td>
+                <td>38 תשועתם</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30106</a></td>
+                <td>39 ליהודים עממי</td>
+                <td>שמחת החיים 1</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30107</a></td>
+                <td>01 Ein Segula</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30108</a></td>
+                <td>02 Ohr Simchas Beis Hoshoeiva</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30109</a></td>
+                <td>03 Bechu Butchi</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30110</a></td>
+                <td>04 Ein Anachni</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30111</a></td>
+                <td>05 Yivorechecha</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30112</a></td>
+                <td>06 Borcheini Uveeni</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30113</a></td>
+                <td>07 Keil Hahoiduois</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30114</a></td>
+                <td>08 Nigun Romaineshe</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30115</a></td>
+                <td>09 Niggun Wertzberger</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30116</a></td>
+                <td>10 Shiri Lo</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30117</a></td>
+                <td>11 Ay Di Velt</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30118</a></td>
+                <td>12 Niggun Reb Shlomo Chesniker</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30119</a></td>
+                <td>13 Niggun Freilach Romaineshe</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30120</a></td>
+                <td>14 Niggun Satmar</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30121</a></td>
+                <td>15 Niggun Ger</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30122</a></td>
+                <td>16 Niggun Amemi</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30123</a></td>
+                <td>17 Ki Lechu</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30124</a></td>
+                <td>18 Niggun Karlin</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30125</a></td>
+                <td>19 Yalzi</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30126</a></td>
+                <td>20 Niggun Ropshitz</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30127</a></td>
+                <td>21 Zamri Bekol</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30128</a></td>
+                <td>22 Kehayoim Hazeh</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30129</a></td>
+                <td>23 Niggun Charkas</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30130</a></td>
+                <td>24 Kivini Loy</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30131</a></td>
+                <td>25 Kenagen Haminagen</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30132</a></td>
+                <td>26 Veshumri</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30133</a></td>
+                <td>27 Shabbos Vee Heilig Bisti</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30134</a></td>
+                <td>28 Hinei Elokeinu</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30135</a></td>
+                <td>29 Mi Yimaleil</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30136</a></td>
+                <td>30 Lishmo</td>
+                <td>שמחת החיים 10</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30137</a></td>
+                <td>01 מחרוזת פרייליך</td>
+                <td>מחרוזות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30138</a></td>
+                <td>02 מחרוזת דיסקו</td>
+                <td>מחרוזות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30139</a></td>
+                <td>03 מחרוזת דבקה</td>
+                <td>מחרוזות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30140</a></td>
+                <td>01 ויתי לנא (סאטמר)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30141</a></td>
+                <td>02 הקפה (סאטמר)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30142</a></td>
+                <td>03 ניגון (קארלין)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30143</a></td>
+                <td>04 טאטע_לע (הרב דן סגל)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30144</a></td>
+                <td>05 ניגון (חיים בנט)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30145</a></td>
+                <td>06 אל תתיאש (MBD)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30146</a></td>
+                <td>07 ניגון</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30147</a></td>
+                <td>08 ניגון (דעש)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30148</a></td>
+                <td>09 וזכני (סאטמר)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30149</a></td>
+                <td>10 בגלל (מאדזיץ)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30150</a></td>
+                <td>11 תורת השם (באבוב)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30151</a></td>
+                <td>12 ניגון (סדיגורה)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30152</a></td>
+                <td>13 אמת (בערי וובער)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30153</a></td>
+                <td>14 חמשה קולות (שלומי וורצברגר)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30154</a></td>
+                <td>15 הושענא (בערי וובער)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30155</a></td>
+                <td>16 לאמיר דעריילען (קלאסיש)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30156</a></td>
+                <td>17 כרך נחמד (MBD)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30157</a></td>
+                <td>18 צדיקים (אוהד)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30158</a></td>
+                <td>19 לקרבינו (נפתלי קמפה)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30159</a></td>
+                <td>20 ניגון (גור)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30160</a></td>
+                <td>21 לחי העולמים</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30161</a></td>
+                <td>22 ניגון (ר_ הערשל רימינוב)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30162</a></td>
+                <td>23 ישמח משה</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30163</a></td>
+                <td>24 יש בורא עולם</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30164</a></td>
+                <td>25 ניגון (ר_ יוחנן הסנדלר)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30165</a></td>
+                <td>26 יומם (מיילך קאהן)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30166</a></td>
+                <td>27 מעין עולם הבא</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30167</a></td>
+                <td>28 ניגון (סיאטין)</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30168</a></td>
+                <td>29 שבת קודש</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30169</a></td>
+                <td>30 לכה דודי</td>
+                <td>רצועות</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30170</a></td>
+                <td>01 ועננו בורא עולם</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30171</a></td>
+                <td>02 די וואך</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30172</a></td>
+                <td>03 אבינו מלכנו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30173</a></td>
+                <td>04 ותגלה</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30174</a></td>
+                <td>05 על הסלע</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30175</a></td>
+                <td>06 כי אלוקים</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30176</a></td>
+                <td>07 רצוננו לעשות</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30177</a></td>
+                <td>08 מה נאמר</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30178</a></td>
+                <td>09 ליבי ובשרי</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30179</a></td>
+                <td>10 אנת הוא זן</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30180</a></td>
+                <td>11 אודה לקל</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30181</a></td>
+                <td>12 טוב 'ה</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30182</a></td>
+                <td>13 כבודו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30183</a></td>
+                <td>14 הוא אלוקינו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30184</a></td>
+                <td>15 ניגון שורות</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30185</a></td>
+                <td>16 אשרינו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30186</a></td>
+                <td>17 ואילו פינו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30187</a></td>
+                <td>18 אחת נשבעתי</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30188</a></td>
+                <td>19 ותבנהו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30189</a></td>
+                <td>21 גדלו</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30190</a></td>
+                <td>22 אלוקינו שבשמים</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30191</a></td>
+                <td>23 צמאה</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30192</a></td>
+                <td>24 רחמנא</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30193</a></td>
+                <td>25 אנא עבדא</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30194</a></td>
+                <td>26 אשרינו חב''ד</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30195</a></td>
+                <td>27 ניגון חב''ד</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30196</a></td>
+                <td>28 הורה חב''ד</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30197</a></td>
+                <td>29 דער רבי</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30198</a></td>
+                <td>30 שיר חב''ד</td>
+                <td>שמחת החיים 2</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30199</a></td>
+                <td>01 ולא נבוש</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30200</a></td>
+                <td>02 אשרינו</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30201</a></td>
+                <td>03 לך אכול</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30202</a></td>
+                <td>04 נודה לשמך</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30203</a></td>
+                <td>05 שלום עליכם</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30204</a></td>
+                <td>06 חברים</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30205</a></td>
+                <td>07 הטוב</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30206</a></td>
+                <td>08 ונזכה</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30207</a></td>
+                <td>09 זה היום</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30208</a></td>
+                <td>10 ניגון וויזניץ</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30209</a></td>
+                <td>11 תורתו</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30210</a></td>
+                <td>12 ידידים</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30211</a></td>
+                <td>13 ניגון קרלין</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30212</a></td>
+                <td>14 ועל הכל</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30213</a></td>
+                <td>15 ישמחו</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30214</a></td>
+                <td>16 ניגון ברסלב</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30215</a></td>
+                <td>17 בענטש</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30216</a></td>
+                <td>18 ממזרח</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30217</a></td>
+                <td>19 אשרי מי</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30218</a></td>
+                <td>20 שלום שלום</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30219</a></td>
+                <td>21 כי שמחתני</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30220</a></td>
+                <td>22 ענבי הגפן</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30221</a></td>
+                <td>23 נודה לך</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30222</a></td>
+                <td>24 בגלל אבות</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30223</a></td>
+                <td>25 וכל מאמינים</td>
+                <td>שמחת החיים 3</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30224</a></td>
+                <td>01 עץ חיים</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30225</a></td>
+                <td>02 בתורה</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30226</a></td>
+                <td>03 יש בתורה</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30227</a></td>
+                <td>04 ונשמח</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30228</a></td>
+                <td>05 הריני מזמן</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30229</a></td>
+                <td>06 פריילאך יידן</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30230</a></td>
+                <td>07 ההללה</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30231</a></td>
+                <td>08 יומטירי</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30232</a></td>
+                <td>09 תשעתם</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30233</a></td>
+                <td>10 ניגון אבוד</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30234</a></td>
+                <td>11 אשרינו</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30235</a></td>
+                <td>12 ניגון</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30236</a></td>
+                <td>13 דרכך</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30237</a></td>
+                <td>14 על אחת</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30238</a></td>
+                <td>15 מיי דהוה</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30239</a></td>
+                <td>16 הבט נא</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30240</a></td>
+                <td>17 חסידים</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30241</a></td>
+                <td>18 וישמיענו</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30242</a></td>
+                <td>19 זה האות</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30243</a></td>
+                <td>20 לפיכך</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30244</a></td>
+                <td>21 ריקוד עוד ישמע</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30245</a></td>
+                <td>22 שיהא הכל</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30246</a></td>
+                <td>23 אני מאמין</td>
+                <td>שמחת החיים 4</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30247</a></td>
+                <td>Simchas Hachayim 5-01-Medley 1</td>
+                <td>שמחת החיים 5</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30248</a></td>
+                <td>Simchas Hachayim 5-02-Medley 2</td>
+                <td>שמחת החיים 5</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30249</a></td>
+                <td>Simchas Hachayim 5-03-Medley 3</td>
+                <td>שמחת החיים 5</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30250</a></td>
+                <td>Simchas Hachayim 5-04-Medley 4</td>
+                <td>שמחת החיים 5</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30251</a></td>
+                <td>Simchas Hachayim 5-05-Medley 5</td>
+                <td>שמחת החיים 5</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30252</a></td>
+                <td>1-01 איתך אני</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30253</a></td>
+                <td>1-02 ר' שמעון</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30254</a></td>
+                <td>1-03 אני ה'</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30255</a></td>
+                <td>1-04 ואהבת</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30256</a></td>
+                <td>1-05 ויהיו רחמיך</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30257</a></td>
+                <td>1-06 יגדיל תורה</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30258</a></td>
+                <td>1-07 ואנפהא</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30259</a></td>
+                <td>1-08 שלא עשני גוי</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30260</a></td>
+                <td>1-09 ותגלה</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30261</a></td>
+                <td>1-10 ניגון לא תבושי</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30262</a></td>
+                <td>1-11 ניגון סטולין</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30263</a></td>
+                <td>1-12 ניגון ויז'ניץ</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30264</a></td>
+                <td>1-13 ותמהר</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30265</a></td>
+                <td>1-14 קומט שוין</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30266</a></td>
+                <td>1-15 ניגון מירון</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30267</a></td>
+                <td>1-16 דבקה פרייגיש</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30268</a></td>
+                <td>1-17 ניגון בויאן</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30269</a></td>
+                <td>1-18 לקל אשר</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30270</a></td>
+                <td>1-19 מעין עולם הבא</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30271</a></td>
+                <td>1-20 ר' יהושע</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30272</a></td>
+                <td>1-21 ממלא כל עלמין</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30273</a></td>
+                <td>1-22 בספר חיים</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30274</a></td>
+                <td>1-23 ניגון באבוב</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30275</a></td>
+                <td>1-24 לזמן</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30276</a></td>
+                <td>1-25 שמו של מלך</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30277</a></td>
+                <td>1-26 ושמחת</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30278</a></td>
+                <td>1-27 קה ריבון</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30279</a></td>
+                <td>1-28 תמיד בשמחה</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30280</a></td>
+                <td>1-29 מודה אני</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30281</a></td>
+                <td>1-30 צדיק</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30282</a></td>
+                <td>1-31 כי לא יטוש</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30283</a></td>
+                <td>1-32 ברוך ה'</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30284</a></td>
+                <td>1-33 נייט נייט</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30285</a></td>
+                <td>1-34 ה' הוא מלכנו</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30286</a></td>
+                <td>1-35 נשמה</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30287</a></td>
+                <td>1-36 ריבונו של עולם</td>
+                <td>שמחת החיים 6</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30288</a></td>
+                <td>01 בואי כלה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30289</a></td>
+                <td>02 ערבים</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30290</a></td>
+                <td>03 ופרצת</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30291</a></td>
+                <td>04 פרוק</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30292</a></td>
+                <td>05 אין גדולה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30293</a></td>
+                <td>06 אני מה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30294</a></td>
+                <td>07 מה נורא</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30295</a></td>
+                <td>08 הנחלת תורה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30296</a></td>
+                <td>09 לפניו</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30297</a></td>
+                <td>10 מה נאמר</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30298</a></td>
+                <td>11 ניגון 1</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30299</a></td>
+                <td>12 ניגון שומרי אמונים</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30300</a></td>
+                <td>13 וקרב פזורינו</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30301</a></td>
+                <td>14 שמחם</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30302</a></td>
+                <td>15 ניגון 2</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30303</a></td>
+                <td>16 תנו שבח</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30304</a></td>
+                <td>17 על הסלע</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30305</a></td>
+                <td>18 ניגון סקולען</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30306</a></td>
+                <td>19 ניגון קרלין</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30307</a></td>
+                <td>20 ניגון אחי כהן, דבקה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30308</a></td>
+                <td>22 ניגון 3</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30309</a></td>
+                <td>23 ואני</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30310</a></td>
+                <td>24 וכל מאמינים</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30311</a></td>
+                <td>25 אחד יחיד</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30312</a></td>
+                <td>26 פשיסחא</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30313</a></td>
+                <td>26 שמונה עשרה, אודה ה'</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30314</a></td>
+                <td>27 פתיחה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30315</a></td>
+                <td>28 אך טוב</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30316</a></td>
+                <td>29 ניגון רש''י</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30317</a></td>
+                <td>30 ניגון 4</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30318</a></td>
+                <td>31 ניגון 5</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30319</a></td>
+                <td>32 אודה ה'</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30320</a></td>
+                <td>33 כל הנשמה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30321</a></td>
+                <td>34 ובאו</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30322</a></td>
+                <td>35 קידוש, תנועל'ה</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30323</a></td>
+                <td>36 אני מאמין</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30324</a></td>
+                <td>37 דידן נצח</td>
+                <td>שמחת החיים 7</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30325</a></td>
+                <td>01 בסיעתא דשמיא</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30326</a></td>
+                <td>01 בסיעתא דשמיה </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30327</a></td>
+                <td>02 אכן</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30328</a></td>
+                <td>03 מנוחה ושמחה - הייליגער שבת</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30329</a></td>
+                <td>03 מנוחה ושמחה</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30330</a></td>
+                <td>04 הושיעה את עמך </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30331</a></td>
+                <td>04 הושיעה את עמך</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30332</a></td>
+                <td>05 מכלכל חיים </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30333</a></td>
+                <td>05 מכלכל חיים</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30334</a></td>
+                <td>06 יברכך</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30335</a></td>
+                <td>07 קערעסטיר ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30336</a></td>
+                <td>07 קרעסטיר ניגון </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30337</a></td>
+                <td>08 ניגון </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30338</a></td>
+                <td>08 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30339</a></td>
+                <td>09 לחיים טובים ולשלום </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30340</a></td>
+                <td>09 לחיים טובים ולשלום</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30341</a></td>
+                <td>10 א ב ג</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30342</a></td>
+                <td>11 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30343</a></td>
+                <td>12 יום זה לישראל</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30344</a></td>
+                <td>13 ישתבח</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30345</a></td>
+                <td>14 סיני</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30346</a></td>
+                <td>15 פדותך</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30347</a></td>
+                <td>16 הני תפילין</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30348</a></td>
+                <td>17 בטח בשם</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30349</a></td>
+                <td>18 מלך</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30350</a></td>
+                <td>19 ניגון.</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30351</a></td>
+                <td>19 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30352</a></td>
+                <td>20 ניגון וויזניץ</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30353</a></td>
+                <td>20 ניגון ויזניץ</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30354</a></td>
+                <td>21 ופרוס עלינו</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30355</a></td>
+                <td>22 אמת</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30356</a></td>
+                <td>23 וימלא משאלותנו</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30357</a></td>
+                <td>24 יראת השם</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30358</a></td>
+                <td>25 שמחנו</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30359</a></td>
+                <td>26 ניגון </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30360</a></td>
+                <td>26 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30361</a></td>
+                <td>27 ועינינו תראינה</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30362</a></td>
+                <td>28 שכן חובת</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30363</a></td>
+                <td>29 ניגון </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30364</a></td>
+                <td>29 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30365</a></td>
+                <td>30 ניגון </td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30366</a></td>
+                <td>30 ניגון</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30367</a></td>
+                <td>31 ימלוך</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30368</a></td>
+                <td>32 את צמח</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30369</a></td>
+                <td>33 ואטהר</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30370</a></td>
+                <td>34 אני מאמין</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30371</a></td>
+                <td>35 לטב עביד</td>
+                <td>שמחת החיים 8</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30372</a></td>
+                <td>01 ושאבתם מים  הקפה שישו ושמחו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30373</a></td>
+                <td>02 לא ימושו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30374</a></td>
+                <td>03 שימו לב</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30375</a></td>
+                <td>04 בעניין השמחה</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30376</a></td>
+                <td>05 איי די וועלט</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30377</a></td>
+                <td>06 ה' הוא אלוקים</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30378</a></td>
+                <td>07 לעתיד לבוא</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30379</a></td>
+                <td>08 אשרינו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30380</a></td>
+                <td>09 אט אט</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30381</a></td>
+                <td>10 ליבא בעי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30382</a></td>
+                <td>11 לב טהור</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30383</a></td>
+                <td>12 ניגון קארלין</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30384</a></td>
+                <td>13 ברוך אתה</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30385</a></td>
+                <td>14 מזמור שיר</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30386</a></td>
+                <td>15 אל תירא</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30387</a></td>
+                <td>16 דידן נצח</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30388</a></td>
+                <td>17 יראה אל עבדיך</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30389</a></td>
+                <td>18 לכבוד התנא  פתחו לי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30390</a></td>
+                <td>19 בר יוחאי - עממי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30391</a></td>
+                <td>20 בר יוחאי - ברקו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30392</a></td>
+                <td>21 בר יוחאי - ירושלמי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30393</a></td>
+                <td>22 ואמרתם</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30394</a></td>
+                <td>23 אמר רבי עקיבא - עממי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30395</a></td>
+                <td>24 אמר רבי עקיבא - מ.ב.ד.</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30396</a></td>
+                <td>25 ניגון מירון</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30397</a></td>
+                <td>26 כי השם</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30398</a></td>
+                <td>27 אשרינו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30399</a></td>
+                <td>28 ניגון חבד 1</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30400</a></td>
+                <td>29 ניגון חבד 2</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30401</a></td>
+                <td>30 והריקותי</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30402</a></td>
+                <td>31 ניגון 1</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30403</a></td>
+                <td>32 ניגון 2</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30404</a></td>
+                <td>33 טוב להודות</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30405</a></td>
+                <td>34 אשר בחר</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30406</a></td>
+                <td>35 רחמנא</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30407</a></td>
+                <td>36 כולנו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30408</a></td>
+                <td>37 הוא אלוקינו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30409</a></td>
+                <td>38 כאפ א טענצל</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30410</a></td>
+                <td>39 הדרן</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30411</a></td>
+                <td>40 חסידים  לחיים  דורות ישרים</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30412</a></td>
+                <td>41 עונג שבת</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30413</a></td>
+                <td>42 ואמר ביום ההוא</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30414</a></td>
+                <td>43 שמחת בית השואבה</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30415</a></td>
+                <td>44 אוהב ה'</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30416</a></td>
+                <td>45 וידעו</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30417</a></td>
+                <td>46 כי טוב ה'</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30418</a></td>
+                <td>47 ניגון חב''ד</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30419</a></td>
+                <td>48 די די</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+              <tr>
+                <td><a>30420</a></td>
+                <td>49 יעמוד</td>
+                <td>שמחת החיים 9</td>
+                <td>שמחת החיים</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

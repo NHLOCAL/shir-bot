@@ -1,0 +1,245 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>אהוד בנאי</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspאהוד בנאי</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>54490</a></td>
+                <td>4 6014789153277872181</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54491</a></td>
+                <td>4 6014789153277872182</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54492</a></td>
+                <td>4 6014789153277872183</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54493</a></td>
+                <td>4 6014789153277872184</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54494</a></td>
+                <td>4 6014789153277872185</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54495</a></td>
+                <td>4 6014789153277872188</td>
+                <td>היא הופיעה כמו הרוח</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54496</a></td>
+                <td>בלוז כנעני</td>
+                <td>סינגלים</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54497</a></td>
+                <td>01-אלה דברים</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54498</a></td>
+                <td>02-שלשה דברים</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54499</a></td>
+                <td>03-לכו נרננה-לכה דודי</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54500</a></td>
+                <td>04-שלום עליכם</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54501</a></td>
+                <td>05-אשת חיל</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54502</a></td>
+                <td>06-אזמר בשבחין</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54503</a></td>
+                <td>07-אל אדון על כל המעשים</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54504</a></td>
+                <td>08-מזמור לדוד</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54505</a></td>
+                <td>09-השמיעני את קולך</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54506</a></td>
+                <td>10-לולי תורתך</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54507</a></td>
+                <td>11-התנערי מעפר</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54508</a></td>
+                <td>12-הנשמה לך</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54509</a></td>
+                <td>13-עת שערי רצון</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54510</a></td>
+                <td>14-צור משלו אכלנו</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+              <tr>
+                <td><a>54511</a></td>
+                <td>15-אודה לאל</td>
+                <td>שיר חדש</td>
+                <td>אהוד בנאי</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

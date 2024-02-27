@@ -1,0 +1,525 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>יוני שלמה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspיוני שלמה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>50767</a></td>
+                <td>01-תנא</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50768</a></td>
+                <td>02-טראכט גוט</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50769</a></td>
+                <td>03-כאיל</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50770</a></td>
+                <td>04-ואלץ</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50771</a></td>
+                <td>05-לדור ודור</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50772</a></td>
+                <td>06-ואתה שלום</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50773</a></td>
+                <td>07-מי שעשה</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50774</a></td>
+                <td>08-יפה</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50775</a></td>
+                <td>09-אך טוב</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50776</a></td>
+                <td>10-שהחיינו</td>
+                <td>טראכט גוט</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50777</a></td>
+                <td>01-אמת</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50778</a></td>
+                <td>02-מקולות מים רבים</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50779</a></td>
+                <td>03-עוד ישמע</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50780</a></td>
+                <td>04-כי שמע</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50781</a></td>
+                <td>אשת חיל</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50782</a></td>
+                <td>הקדוש ברוך הוא</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50783</a></td>
+                <td>מקולות מים רבים</td>
+                <td>מקולות מים רבים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50784</a></td>
+                <td>- יוני שלמה - בטח בהשם - חסידי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50785</a></td>
+                <td>- מנחם לוי ויוני שלמה - וידעו כי אתה - חסידי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50786</a></td>
+                <td>03 הקאפעליע - יוני שלמה</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50787</a></td>
+                <td>06  כי ישמע  יוני שלמה </td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50788</a></td>
+                <td>09 ניגון הקפות - יוני שלמה</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50789</a></td>
+                <td>41 - יוני שלמה - אשת חיל - [Windos.Co]</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50790</a></td>
+                <td>AUD-20160304-WA0049</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50791</a></td>
+                <td>אנעים זמירות</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50792</a></td>
+                <td>בוניך</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50793</a></td>
+                <td>בטח בה'- יוני שלמה</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50794</a></td>
+                <td>הקאפעליע</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50795</a></td>
+                <td>והכל טוב</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50796</a></td>
+                <td>יוני שלמה - אנעים זמירות</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50797</a></td>
+                <td>יוני שלמה - געזונט</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50798</a></td>
+                <td>יוני שלמה - הרנינו</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50799</a></td>
+                <td>יוני שלמה - והכל טוב</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50800</a></td>
+                <td>יוני שלמה - מארש</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50801</a></td>
+                <td>יוני שלמה - ניגון להתוועדות שמח</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50802</a></td>
+                <td>יוני שלמה - ניגון לשבת ויום טוב</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50803</a></td>
+                <td>יוני שלמה - עזרני קל חי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50804</a></td>
+                <td>יוני שלמה - על משמרתי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50805</a></td>
+                <td>יוני שלמה - רבונו של עולם</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50806</a></td>
+                <td>יוני שלמה - שאמיל</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50807</a></td>
+                <td>יוני שלמה בסינגל חדש – געזונט</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50808</a></td>
+                <td>יוני שלמה הכול טוב</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50809</a></td>
+                <td>יוני שלמה על משמרתי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50810</a></td>
+                <td>כרתי ברית</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50811</a></td>
+                <td>מחרוזת הקהל</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50812</a></td>
+                <td>מחרוזת ניסן</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50813</a></td>
+                <td>מנחם לוי, יוני שלמה - וידעו כי אתה</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50814</a></td>
+                <td>ניגון הקפות</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50815</a></td>
+                <td>ניגון קובליץ- יוני שלמה ועמי כהן</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50816</a></td>
+                <td>על משמרתי</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50817</a></td>
+                <td>שובה</td>
+                <td>סינגלים</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50818</a></td>
+                <td>01-ניגון שמחה</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50819</a></td>
+                <td>02-הרנינו</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50820</a></td>
+                <td>03-ריבונו של עולם</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50821</a></td>
+                <td>04-עזרני א-ל חי</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50822</a></td>
+                <td>05-ניגון לשבת ויום טוב</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50823</a></td>
+                <td>06-ניגון שמחה</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50824</a></td>
+                <td>07-מחרוזת שמחה</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50825</a></td>
+                <td>08-אנעים זמירות</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50826</a></td>
+                <td>09-מארש</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50827</a></td>
+                <td>10-ניגון שמח להתוועדות</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+              <tr>
+                <td><a>50828</a></td>
+                <td>11-שאמיל</td>
+                <td>שאמיל-פניני חב''ד</td>
+                <td>יוני שלמה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

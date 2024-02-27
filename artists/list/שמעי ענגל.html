@@ -1,0 +1,406 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שמעי ענגל</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשמעי ענגל</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>30594</a></td>
+                <td>01-גדולי תורה</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30595</a></td>
+                <td>02-הקשיבה</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30596</a></td>
+                <td>03-אין שום יאוש - געוואלד</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30597</a></td>
+                <td>04-נודה</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30598</a></td>
+                <td>05-אין עוד מלבדו</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30599</a></td>
+                <td>06-אומר להם</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30600</a></td>
+                <td>07-גיי אהין</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30601</a></td>
+                <td>08-ניגון קרליבך</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30602</a></td>
+                <td>09-ותיק</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30603</a></td>
+                <td>10 - Ability</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30604</a></td>
+                <td>11-לתעורר</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30605</a></td>
+                <td>12-הכי טוב</td>
+                <td>כלל</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30606</a></td>
+                <td>15 שמעי ענגעל בסינגל חבל לע נ האברך משה יהודה וויינער ע ה</td>
+                <td>סינגלים</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30607</a></td>
+                <td>הכי טוב</td>
+                <td>סינגלים</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30608</a></td>
+                <td>מחרוזת ווקאלית</td>
+                <td>סינגלים</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30609</a></td>
+                <td>01 כד יתבון</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30610</a></td>
+                <td>02 ותיק</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30611</a></td>
+                <td>03 תפילה לעני</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30612</a></td>
+                <td>04 הקשיבה</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30613</a></td>
+                <td>05 כאייל</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30614</a></td>
+                <td>06 ריבון</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30615</a></td>
+                <td>07 אודך</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30616</a></td>
+                <td>08 ותיק</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30617</a></td>
+                <td>09 מתרצה</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30618</a></td>
+                <td>10 כח</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30619</a></td>
+                <td>11 מודים</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30620</a></td>
+                <td>12 מדוע</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30621</a></td>
+                <td>13 מכניסי</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30622</a></td>
+                <td>14 קולות</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30623</a></td>
+                <td>15 בכל צער</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30624</a></td>
+                <td>16 ריבונו</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30625</a></td>
+                <td>17 אני מאמין</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30626</a></td>
+                <td>18 אני מאמין 2</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30627</a></td>
+                <td>19 מלך</td>
+                <td>קלאסיקס</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30628</a></td>
+                <td>01 שנית</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30629</a></td>
+                <td>02 מונקאטש</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30630</a></td>
+                <td>03 לשם יחוד</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30631</a></td>
+                <td>04 חשוב</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30632</a></td>
+                <td>05 אורים ותומים</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30633</a></td>
+                <td>06 ניגון קארלין</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30634</a></td>
+                <td>07 אין דומה לך</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30635</a></td>
+                <td>08 פתח לבי</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30636</a></td>
+                <td>09 אולי</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30637</a></td>
+                <td>10 אני מאמין</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+              <tr>
+                <td><a>30638</a></td>
+                <td>11 דעם רבי'נס טרער</td>
+                <td>שנית</td>
+                <td>שמעי ענגל</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

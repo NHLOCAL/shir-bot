@@ -1,0 +1,497 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>ביני לנדאו</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspביני לנדאו</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>4502</a></td>
+                <td>01 ארמונו של מלך</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4503</a></td>
+                <td>02 מופקר כמדבר</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4504</a></td>
+                <td>03 השושנה העליונה</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4505</a></td>
+                <td>04 אשרי האיש</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4506</a></td>
+                <td>05 עבדים</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4507</a></td>
+                <td>06 אור בהירות הדרך</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4508</a></td>
+                <td>07 לפרוש כנפיים</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4509</a></td>
+                <td>08 מי מנוחות</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4510</a></td>
+                <td>09 משכן</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4511</a></td>
+                <td>10 ברכת כהנים</td>
+                <td>אור בהירות הדרך</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4512</a></td>
+                <td>חותם</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4513</a></td>
+                <td>ידיד נפש</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4514</a></td>
+                <td>יהיו לרצון</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4515</a></td>
+                <td>יונתי בחגויי הסלע</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4516</a></td>
+                <td>כל המייחלים</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4517</a></td>
+                <td>מתוך הפיכה</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4518</a></td>
+                <td>שאנו</td>
+                <td>הופעה</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4519</a></td>
+                <td>01 כחרס הנשבר</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4520</a></td>
+                <td>02 קמעא קמעא</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4521</a></td>
+                <td>03 נקומה נא</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4522</a></td>
+                <td>04 באתי לפניך</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4523</a></td>
+                <td>05 מבוע</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4524</a></td>
+                <td>06 כתר</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4525</a></td>
+                <td>07 בעיירה נידחת</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4526</a></td>
+                <td>08 מה טובו</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4527</a></td>
+                <td>09 הסיפור שלנו</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4528</a></td>
+                <td>10 שער השמיים</td>
+                <td>מבוע</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4529</a></td>
+                <td>01 ביאת המשיח</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4530</a></td>
+                <td>02 והביאתים אל הר קודשי</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4531</a></td>
+                <td>03 יונתי</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4532</a></td>
+                <td>04 חסדך</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4533</a></td>
+                <td>05 ארץ ישראל</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4534</a></td>
+                <td>06 מים רבים</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4535</a></td>
+                <td>07 ידיד נפש</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4536</a></td>
+                <td>08 טעות היתה בידך</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4537</a></td>
+                <td>09 עדרים</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4538</a></td>
+                <td>10 השם שפתי תפתח</td>
+                <td>מעבר לגבולות</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4539</a></td>
+                <td>- ביני לנדאו - ביני לנדאו על כפיו יביא - אלטרנטיבי</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4540</a></td>
+                <td>- ביני לנדאו - בעיירה נידחת - אלטרנטיבי</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4541</a></td>
+                <td>02 רצועה 2</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4542</a></td>
+                <td>03 רצועה 3</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4543</a></td>
+                <td>08 רצועה 8</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4544</a></td>
+                <td>אור חדש </td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4545</a></td>
+                <td>ארמון המלך1</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4546</a></td>
+                <td>ה שפתי תפתח</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4547</a></td>
+                <td>ה' רועי לא יחסר</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4548</a></td>
+                <td>היום הגדול</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4549</a></td>
+                <td>ופדויי ה' ישובון - בתפילה לשובם בשלום במהרה של אייל, נפתלי וגלעד</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4550</a></td>
+                <td>ופדויי ה' ישובון</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4551</a></td>
+                <td>חיזקו ויאמץ לבבכם</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4552</a></td>
+                <td>ייבנה המקדש</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4553</a></td>
+                <td>ישאנו על כנפי השכינה</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4554</a></td>
+                <td>כנפי רוח</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4555</a></td>
+                <td>ניגון לשבת קודש</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4556</a></td>
+                <td>עדרים עדרים</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4557</a></td>
+                <td>קדם</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4558</a></td>
+                <td>שברי מילים</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+              <tr>
+                <td><a>4559</a></td>
+                <td>שמני כחותם על לבך</td>
+                <td>סינגלים</td>
+                <td>ביני לנדאו</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

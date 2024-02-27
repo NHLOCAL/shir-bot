@@ -1,0 +1,413 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>פנחס וולף</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspפנחס וולף</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>53617</a></td>
+                <td>הטוב</td>
+                <td>סינגלים</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53618</a></td>
+                <td>״שירי פנחס 4״</td>
+                <td>סינגלים</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53619</a></td>
+                <td>01 והאר - צבי סילברשטיין</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53620</a></td>
+                <td>02 רצה - שלמה שמחה</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53621</a></td>
+                <td>03 נרננה - דוד גבאי</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53622</a></td>
+                <td>04 וזכני - שלומי גרטנר</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53623</a></td>
+                <td>05 אלוקי - מיכה גמרמן</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53624</a></td>
+                <td>06 הבן יקיר - יואלי גרינפלד</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53625</a></td>
+                <td>07 ואהבת - שמעי מילר</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53626</a></td>
+                <td>08 ידיד נפש - דוד לואי</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53627</a></td>
+                <td>09 טוב להודות - דוד גבאי</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53628</a></td>
+                <td>10 אשא עיני - מיכה גמרמן</td>
+                <td>שירי פנחס 2</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53629</a></td>
+                <td>אלף בית</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53630</a></td>
+                <td>גוט שבת</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53631</a></td>
+                <td>הודו</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53632</a></td>
+                <td>הטוב</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53633</a></td>
+                <td>זה מזה</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53634</a></td>
+                <td>זכרנו</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53635</a></td>
+                <td>טאטע</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53636</a></td>
+                <td>כי הם</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53637</a></td>
+                <td>מוציא אסירים</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53638</a></td>
+                <td>רפאנו</td>
+                <td>שירי פנחס 3</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53639</a></td>
+                <td>01 אתה חונן</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53640</a></td>
+                <td>02 אשר ברא - שלמה שמחה</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53641</a></td>
+                <td>03 ושמרו - צבי זילברשטיין</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53642</a></td>
+                <td>04 יום יום - דוד לואי</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53643</a></td>
+                <td>05 ממקומך - מיכה גמרמן</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53644</a></td>
+                <td>06 ברוך קל עליון</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53645</a></td>
+                <td>07 שמע בני</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53646</a></td>
+                <td>08 וטהר - שלמה שמחה</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53647</a></td>
+                <td>09 ה  הושיעה</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53648</a></td>
+                <td>10 שלום עליכם</td>
+                <td>שירי פנחס 4</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53649</a></td>
+                <td>01 שלום עליכם (Dancing with the Malachim)</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53650</a></td>
+                <td>02 עושה שלום</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53651</a></td>
+                <td>03 אל אדון</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53652</a></td>
+                <td>04 מנוחה ושמחה</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53653</a></td>
+                <td>05 להתענג</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53654</a></td>
+                <td>06 ידיד נפש</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53655</a></td>
+                <td>07 טוב להודות</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53656</a></td>
+                <td>08 ברוך אל עליון</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53657</a></td>
+                <td>09 ממקומך</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53658</a></td>
+                <td>10 שלום עליכם</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53659</a></td>
+                <td>11 נרננה</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53660</a></td>
+                <td>12 קדשנו</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53661</a></td>
+                <td>13 ושמרו</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+              <tr>
+                <td><a>53662</a></td>
+                <td>14 גוט שאבעס</td>
+                <td>שירי פנחס 5</td>
+                <td>פנחס וולף</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

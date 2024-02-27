@@ -1,0 +1,1036 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>סקולען</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspסקולען</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>43311</a></td>
+                <td>14-ניגון סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43312</a></td>
+                <td>36 אוהבי ה' - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43313</a></td>
+                <td>37 אוהבי ה' - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43314</a></td>
+                <td>42 וביום השבת - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43315</a></td>
+                <td>43 וביום השבת - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43316</a></td>
+                <td>44 זכרו תורת משה - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43317</a></td>
+                <td>45 זכרו תורת משה ניגון - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43318</a></td>
+                <td>50 משוך חסדך - סקולען</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43319</a></td>
+                <td>53 סקולען וואלץ</td>
+                <td>סקולען</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43320</a></td>
+                <td>01 שירו לו א</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43321</a></td>
+                <td>02 שירו לו ב</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43322</a></td>
+                <td>03 לא תבושי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43323</a></td>
+                <td>04 שבת היא</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43324</a></td>
+                <td>05 ישובו לי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43325</a></td>
+                <td>06 ניגון א</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43326</a></td>
+                <td>07 ניגון וולס</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43327</a></td>
+                <td>08 בטחו בהשם</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43328</a></td>
+                <td>09 קוה קויתי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43329</a></td>
+                <td>10 וישמחו כל חוסי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43330</a></td>
+                <td>11 ניגון חופה</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43331</a></td>
+                <td>12 אם אמרתי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43332</a></td>
+                <td>13 אחת נשבעתי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43333</a></td>
+                <td>14 הגלה נא</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43334</a></td>
+                <td>15 אור זרוע</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43335</a></td>
+                <td>16 צדיק כתמר יפרח</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43336</a></td>
+                <td>17 כל הנשמה תהלל קה</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43337</a></td>
+                <td>18 פנה אליי</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43338</a></td>
+                <td>19 בינו נא</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43339</a></td>
+                <td>20 ניגון ב</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43340</a></td>
+                <td>21 הלל הוא היה אומר</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43341</a></td>
+                <td>22 אל יבושו בי קוויך</td>
+                <td>א סקולענע פארברענג</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43342</a></td>
+                <td>01-קידוש ניגון</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43343</a></td>
+                <td>02-וביום השבת</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43344</a></td>
+                <td>03-אוהבי ה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43345</a></td>
+                <td>04-ניגון ריקוד</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43346</a></td>
+                <td>05-אוי אוי אוי שבת</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43347</a></td>
+                <td>06-משוך חסדך</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43348</a></td>
+                <td>07-וטהר לבנו</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43349</a></td>
+                <td>08-ועינינו תראינה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43350</a></td>
+                <td>09-הגומל חסדים טובים</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43351</a></td>
+                <td>10-וואלס</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43352</a></td>
+                <td>11-אני מאמין</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43353</a></td>
+                <td>12-אתה סתר לי</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43354</a></td>
+                <td>13-ניגון שמחה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43355</a></td>
+                <td>14-עזי וזמרת י-ה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43356</a></td>
+                <td>15-חסדי ד'-ניגון שמחה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43357</a></td>
+                <td>16-מה תתהלל</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43358</a></td>
+                <td>17-המאיר לארץ</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43359</a></td>
+                <td>18-בנה ביתך-אחת שאלתי</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43360</a></td>
+                <td>19-ליהודים היתה אורה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43361</a></td>
+                <td>20-נפשי חכתה לה</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43362</a></td>
+                <td>21-ימים על ימי מלך</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43363</a></td>
+                <td>22-למקדשך תוב</td>
+                <td>הגומל חסדים טובים</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43364</a></td>
+                <td>01-אשרי תבחר</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43365</a></td>
+                <td>02-השיבה</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43366</a></td>
+                <td>03-לספר</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43367</a></td>
+                <td>04-שבת קודש</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43368</a></td>
+                <td>05-ניגוני סקולען</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43369</a></td>
+                <td>06-ותתן לי</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43370</a></td>
+                <td>07-ניגון</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43371</a></td>
+                <td>08-השם עוזי</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43372</a></td>
+                <td>09-יהי לרצון</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43373</a></td>
+                <td>10-אליהו הנביא</td>
+                <td>השיבה לי</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43374</a></td>
+                <td>01-קול רנה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43375</a></td>
+                <td>02-צהלי ורוני</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43376</a></td>
+                <td>03-השיבה לי</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43377</a></td>
+                <td>04-אתקינו סעודתא</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43378</a></td>
+                <td>05-אור זרוע</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43379</a></td>
+                <td>06-הנה לא ינום</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43380</a></td>
+                <td>07-ניגון</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43381</a></td>
+                <td>08-ניגון</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43382</a></td>
+                <td>09-ניגון-לפני הדגים</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43383</a></td>
+                <td>10-שמחו בה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43384</a></td>
+                <td>11-יומם השמש</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43385</a></td>
+                <td>12-רני ושמחי בת ציון</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43386</a></td>
+                <td>13-במוצאי מנוחה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43387</a></td>
+                <td>01-אמר ד' ליעקב</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43388</a></td>
+                <td>02-אליהו הנביא</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43389</a></td>
+                <td>03-המאיר לארץ</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43390</a></td>
+                <td>04-אתה ד'-הרבי שליט''א</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43391</a></td>
+                <td>05-תורה מהרבי שליט''א</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43392</a></td>
+                <td>06-יהיו לרצון</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43393</a></td>
+                <td>07-נכספה</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43394</a></td>
+                <td>08-מעשה מהרבי</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43395</a></td>
+                <td>09-זכר דבר לעבדיך</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43396</a></td>
+                <td>01 דביקות</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43397</a></td>
+                <td>02 מה נאוו</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43398</a></td>
+                <td>03 תעיתי כשה</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43399</a></td>
+                <td>04 שמחה</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43400</a></td>
+                <td>05 עקביא</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43401</a></td>
+                <td>06 אלו ואלו</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43402</a></td>
+                <td>07 יהי החודש</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43403</a></td>
+                <td>08 זכור</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43404</a></td>
+                <td>09 צהלי</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43405</a></td>
+                <td>10 טרייסט מיין פאלק</td>
+                <td>נועם 2</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43406</a></td>
+                <td>01-מחרוזת פתיחה</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43407</a></td>
+                <td>02-אתקינו סעודתא-מזמור לדוד</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43408</a></td>
+                <td>03-ניגון סקולען</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43409</a></td>
+                <td>04-שירו לה</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43410</a></td>
+                <td>05-ניגון שמח</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43411</a></td>
+                <td>06-ניגון התעוררות</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43412</a></td>
+                <td>07-דברי ברכה</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43413</a></td>
+                <td>08-הקם מלכות-למקדשך טוב</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43414</a></td>
+                <td>09-אודה ה</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43415</a></td>
+                <td>10-חסדי ה</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43416</a></td>
+                <td>11-ראה ענני</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43417</a></td>
+                <td>12-נחמו עמי</td>
+                <td>סעודת הודאה</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43418</a></td>
+                <td>Track 01</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43419</a></td>
+                <td>Track 02</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43420</a></td>
+                <td>Track 03</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43421</a></td>
+                <td>Track 04</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43422</a></td>
+                <td>Track 05</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43423</a></td>
+                <td>Track 06</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43424</a></td>
+                <td>Track 07</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43425</a></td>
+                <td>Track 08</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43426</a></td>
+                <td>01-קול רנה וישועה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43427</a></td>
+                <td>02-ברוך ד' אשר נתן</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43428</a></td>
+                <td>03-ועינינו תראינה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43429</a></td>
+                <td>04-ד' עוז</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43430</a></td>
+                <td>05-דרשה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43431</a></td>
+                <td>06-ישמח צדיק</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43432</a></td>
+                <td>07-חסדי ד' כי לא תמנו</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43433</a></td>
+                <td>08-כי לך טוב</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43434</a></td>
+                <td>09-דרשה</td>
+                <td>חלק א</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43435</a></td>
+                <td>01-תורה צוה לנו</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43436</a></td>
+                <td>02-עשה עמי אות לטובה</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43437</a></td>
+                <td>03-גראמן</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43438</a></td>
+                <td>04-ניגון</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43439</a></td>
+                <td>05-מארטש</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43440</a></td>
+                <td>06-ניגון-איטי</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43441</a></td>
+                <td>07-כבודו מלא עולם</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43442</a></td>
+                <td>08-ברכת המזון</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43443</a></td>
+                <td>09-שמח תשמח</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43444</a></td>
+                <td>10-מחרוזת שבת</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+              <tr>
+                <td><a>43445</a></td>
+                <td>11-מחרוזת מה תשתוחחי</td>
+                <td>חלק ב</td>
+                <td>סקולען</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

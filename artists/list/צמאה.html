@@ -1,0 +1,728 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>צמאה</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspצמאה</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>27041</a></td>
+                <td>- בני פרידמן - ניגון שמחה - פרוייקט צמאה - חסידי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27042</a></td>
+                <td>-רזאל-אתה-בחרתנו-צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27043</a></td>
+                <td>03 - צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27044</a></td>
+                <td>04 הי צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27045</a></td>
+                <td>04 צמאה לך נפשי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27046</a></td>
+                <td>04 צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27047</a></td>
+                <td>05 צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27048</a></td>
+                <td>05צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27049</a></td>
+                <td>09 צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27050</a></td>
+                <td>11 - צמאה נפשי - פיטסבורג</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27051</a></td>
+                <td>13 הי צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27052</a></td>
+                <td>15 צמאה נפשי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27053</a></td>
+                <td>23-צמאה לך נפשי, עך טי דורין</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27054</a></td>
+                <td>artist - צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27055</a></td>
+                <td>אברהם פריד על הסלע הך מתוך מופע צמאה.136</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27056</a></td>
+                <td>אריאל זילבר עוצו עצה מתוך פרויקט צמאה 5.136</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27057</a></td>
+                <td>ביני לנדאו בשיר 'ניגון לשבת קודש' מתוך צמאה 5 </td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27058</a></td>
+                <td>יונתן רזאל אין עוד מלבדו בניגון חבד</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27059</a></td>
+                <td>מוישי ניילנדר צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27060</a></td>
+                <td>נמואל הרוש - צמאה - לייב</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27061</a></td>
+                <td>עמיר בניון שהשלום שלו מתוך פרויקט צמאה 5</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27062</a></td>
+                <td>צמאה לך נפשי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27063</a></td>
+                <td>צמאה נפשי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27064</a></td>
+                <td>צמאה, צמאה</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27065</a></td>
+                <td>רועי הרוש & איציק אורלב - צמאה לך נפשי</td>
+                <td>סינגלים</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27066</a></td>
+                <td>01 רצועה 1</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27067</a></td>
+                <td>02 רצועה 2</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27068</a></td>
+                <td>03 רצועה 3</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27069</a></td>
+                <td>04 רצועה 4</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27070</a></td>
+                <td>05 רצועה 5</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27071</a></td>
+                <td>06 רצועה 6</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27072</a></td>
+                <td>07 רצועה 7</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27073</a></td>
+                <td>08 רצועה 8</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27074</a></td>
+                <td>09 רצועה 9</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27075</a></td>
+                <td>10 רצועה 10</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27076</a></td>
+                <td>11 רצועה 11</td>
+                <td>צמאה 1</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27077</a></td>
+                <td>01 רצועה 1</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27078</a></td>
+                <td>02 רצועה 2</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27079</a></td>
+                <td>03 רצועה 3</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27080</a></td>
+                <td>04 רצועה 4</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27081</a></td>
+                <td>05 רצועה 5</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27082</a></td>
+                <td>06 רצועה 6</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27083</a></td>
+                <td>07 רצועה 7</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27084</a></td>
+                <td>08 רצועה 8</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27085</a></td>
+                <td>09 רצועה 9</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27086</a></td>
+                <td>10 רצועה 10</td>
+                <td>צמאה 2</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27087</a></td>
+                <td>1. ימין השם - ישי ריבו</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27088</a></td>
+                <td>10. שובה - אברהם פריד</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27089</a></td>
+                <td>11. אבוא בגבורות - עקיבא תורגמן</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27090</a></td>
+                <td>12. אך לא-לוהים - אביתר בנאי</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27091</a></td>
+                <td>2. קרני רשעים אגדע - אריאל זילבר</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27092</a></td>
+                <td>3. וידעו כי אתה - יונתן רזאל</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27093</a></td>
+                <td>4. אנה אלך - חנן בן ארי</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27094</a></td>
+                <td>5. יפרח בימיו צדיק - ארז לב ארי</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27095</a></td>
+                <td>6. תרננה שפתי - אודי דוידי</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27096</a></td>
+                <td>7. בך בטחו - שולי רנד</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27097</a></td>
+                <td>8. בך השם חסיתי - עמיר בניון</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27098</a></td>
+                <td>9. ילכו מחיל אל חיל - אהרן רזאל</td>
+                <td>צמאה 3</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27099</a></td>
+                <td>01 כחומר ביד היוצר</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27100</a></td>
+                <td>02 ופרצת</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27101</a></td>
+                <td>03 האדרת והאמונה</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27102</a></td>
+                <td>04 על הסלע הך</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27103</a></td>
+                <td>05 עזרני א-ל חי</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27104</a></td>
+                <td>06 אתם שלום</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27105</a></td>
+                <td>07 אשרנו</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27106</a></td>
+                <td>08 יעלה תחנוננו</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27107</a></td>
+                <td>09 ניגון שמחה</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27108</a></td>
+                <td>11 שיבנה</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27109</a></td>
+                <td>12 שלמה גרוניך, עקיבה - הגלה נא</td>
+                <td>צמאה 4</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27110</a></td>
+                <td>01 כל עצמותיי</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27111</a></td>
+                <td>02 עוצו עצה ותופר</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27112</a></td>
+                <td>03 הנשמה יורדת לתוך הגוף</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27113</a></td>
+                <td>04 יוונים נקבצו עלי</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27114</a></td>
+                <td>05 ניגון לשבת קודש</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27115</a></td>
+                <td>06 א-ל מסתתר</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27116</a></td>
+                <td>07 הללו את השם</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27117</a></td>
+                <td>08 שהשלום שלו</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27118</a></td>
+                <td>09 הבן יקיר לי</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27119</a></td>
+                <td>10 אין עוד מלבדו</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27120</a></td>
+                <td>11 אנא עבדא</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27121</a></td>
+                <td>12 ניגון פולטובה</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27122</a></td>
+                <td>13 אימתי קאתי מר</td>
+                <td>צמאה 5</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27123</a></td>
+                <td>01 האדרת והאמונה</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27124</a></td>
+                <td>02 אדון הסליחות</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27125</a></td>
+                <td>03 לכה דודי</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27126</a></td>
+                <td>04 ונסלח</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27127</a></td>
+                <td>05 ניגון שמחה</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27128</a></td>
+                <td>06 ממצרים גאלתנו</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27129</a></td>
+                <td>07 הושיעה</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27130</a></td>
+                <td>08 ניגון חסידי - צמח צדק</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+              <tr>
+                <td><a>27131</a></td>
+                <td>09 אני מאמין</td>
+                <td>צמאה 6</td>
+                <td>צמאה</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

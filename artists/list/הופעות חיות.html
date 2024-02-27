@@ -1,0 +1,798 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>הופעות חיות</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspהופעות חיות</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>31886</a></td>
+                <td>01-שובה ה</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31887</a></td>
+                <td>02-אסור להתייאש</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31888</a></td>
+                <td>04-ניגון</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31889</a></td>
+                <td>05-ניגון החצר</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31890</a></td>
+                <td>05-ניגון</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31891</a></td>
+                <td>06-אתה תקום</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31892</a></td>
+                <td>07-אשת חיל</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31893</a></td>
+                <td>08-ניגון</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31894</a></td>
+                <td>09-עוד ישמע</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31895</a></td>
+                <td>10-ניגון</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31896</a></td>
+                <td>11-עושים תשובה</td>
+                <td>הופעה ישראלי</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31897</a></td>
+                <td>01-שומר ישראל</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31898</a></td>
+                <td>02-בר יוחאי</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31899</a></td>
+                <td>03-שלום עליכם</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31900</a></td>
+                <td>04-שארית ישראל</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31901</a></td>
+                <td>05-ניגון</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31902</a></td>
+                <td>06-שומר ישראל</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31903</a></td>
+                <td>07-סוף דבר</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31904</a></td>
+                <td>08-אוי אוי אוי</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31905</a></td>
+                <td>09-לילה טוב</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31906</a></td>
+                <td>10-המלאך הגואל</td>
+                <td>הופעה-שארית ישראל</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31907</a></td>
+                <td>01-פתיחה</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31908</a></td>
+                <td>02-ד' תברך ארה''ב</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31909</a></td>
+                <td>03-באבעניו-קרעניץ</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31910</a></td>
+                <td>04-כל העולם כלו</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31911</a></td>
+                <td>05-מי יעלה</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31912</a></td>
+                <td>06-הנני</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31913</a></td>
+                <td>07-כל נדרי</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31914</a></td>
+                <td>08 - M Generation</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31915</a></td>
+                <td>09-אם הלב שלי פתוח</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31916</a></td>
+                <td>10-צמאה</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31917</a></td>
+                <td>11-אין עוד מלבדו</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31918</a></td>
+                <td>01-אויפן פריפציק</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31919</a></td>
+                <td>02 - Yarmulka Blues</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31920</a></td>
+                <td>03-הרחוב</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31921</a></td>
+                <td>04-שהחיינו</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31922</a></td>
+                <td>05-מכניסי רחמים</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31923</a></td>
+                <td>06-גשם</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31924</a></td>
+                <td>07-חביבי</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31925</a></td>
+                <td>08-עושה שלום</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31926</a></td>
+                <td>09-איה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31927</a></td>
+                <td>10-ובאו האובדים</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31928</a></td>
+                <td>11-סיום</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31929</a></td>
+                <td>01-פתיחה</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31930</a></td>
+                <td>02-כל הנשמה</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31931</a></td>
+                <td>03-כל העולם כלו</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31932</a></td>
+                <td>04-גשר צר</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31933</a></td>
+                <td>05-קלי אתה</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31934</a></td>
+                <td>06-למקדשך טוב</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31935</a></td>
+                <td>07-יאמאמיי</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31936</a></td>
+                <td>08-הלו ילד</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31937</a></td>
+                <td>09-שיר המעלות</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31938</a></td>
+                <td>10-רק אני ואתה</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31939</a></td>
+                <td>11-כל הנחמות</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31940</a></td>
+                <td>12-רחם נא</td>
+                <td>טקס אנשי השנה 2</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31941</a></td>
+                <td>01-פתיחה</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31942</a></td>
+                <td>02-רק שבת אחד</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31943</a></td>
+                <td>03-המלאך</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31944</a></td>
+                <td>04-לולי האמנתי</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31945</a></td>
+                <td>05-טוב להודות</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31946</a></td>
+                <td>06-למען ירושלים</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31947</a></td>
+                <td>07-זה רק נס</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31948</a></td>
+                <td>08-שירו למלך</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31949</a></td>
+                <td>09-אודך ה</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31950</a></td>
+                <td>10-שמחנו</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31951</a></td>
+                <td>11-רחם בחסדך</td>
+                <td>עשרים וחמש שנים ח''א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31952</a></td>
+                <td>01-ניצוצות</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31953</a></td>
+                <td>02-שמע בני</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31954</a></td>
+                <td>03-ישראל לאם</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31955</a></td>
+                <td>04-אין עוד מלבדו</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31956</a></td>
+                <td>05-סבא אמר</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31957</a></td>
+                <td>06-העבר אין</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31958</a></td>
+                <td>07-בשעה</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31959</a></td>
+                <td>08-ירון גרשובסקי</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31960</a></td>
+                <td>09-קול דודי</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31961</a></td>
+                <td>10-יום אחד</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31962</a></td>
+                <td>11-משיח</td>
+                <td>עשרים וחמש שנים ח''ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31963</a></td>
+                <td>רצועה 01</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31964</a></td>
+                <td>רצועה 02</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31965</a></td>
+                <td>רצועה 03</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31966</a></td>
+                <td>רצועה 04</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31967</a></td>
+                <td>רצועה 05</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31968</a></td>
+                <td>רצועה 06</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31969</a></td>
+                <td>רצועה 07</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31970</a></td>
+                <td>רצועה 08</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31971</a></td>
+                <td>רצועה 09</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31972</a></td>
+                <td>רצועה 10</td>
+                <td>חלק א</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31973</a></td>
+                <td>01 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31974</a></td>
+                <td>02 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31975</a></td>
+                <td>03 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31976</a></td>
+                <td>04 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31977</a></td>
+                <td>05 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31978</a></td>
+                <td>06 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31979</a></td>
+                <td>07 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31980</a></td>
+                <td>08 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31981</a></td>
+                <td>09 רצועה</td>
+                <td>חלק ב</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31982</a></td>
+                <td>01 רצועה</td>
+                <td>חלק ג</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31983</a></td>
+                <td>02 רצועה</td>
+                <td>חלק ג</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31984</a></td>
+                <td>03 רצועה</td>
+                <td>חלק ג</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31985</a></td>
+                <td>04 רצועה</td>
+                <td>חלק ג</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+              <tr>
+                <td><a>31986</a></td>
+                <td>01 רצועה</td>
+                <td>חלק ד</td>
+                <td>הופעות חיות</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

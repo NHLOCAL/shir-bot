@@ -1,0 +1,1155 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>לנזבאום</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspלנזבאום</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>47249</a></td>
+                <td>01 - A Good Sign</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47250</a></td>
+                <td>02 - Here's To You</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47251</a></td>
+                <td>03 - Temple of Song</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47252</a></td>
+                <td>04 - The Master</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47253</a></td>
+                <td>05 - Peacemaker</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47254</a></td>
+                <td>06 - Brothers & Sisters</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47255</a></td>
+                <td>07 - The Best Choice</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47256</a></td>
+                <td>08 - Angels Around Me</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47257</a></td>
+                <td>09 - Saturday's Melodie</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47258</a></td>
+                <td>10 - I'm Your Servant</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47259</a></td>
+                <td>11 - Trust</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47260</a></td>
+                <td>12 - David's Song</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47261</a></td>
+                <td>13 - Crown</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47262</a></td>
+                <td>14 - My Sweetest Friend</td>
+                <td>Beyond This World</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47263</a></td>
+                <td>02-אשר ברא</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47264</a></td>
+                <td>03 - Free</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47265</a></td>
+                <td>04-שלום עליכם</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47266</a></td>
+                <td>05 - Turn Around</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47267</a></td>
+                <td>06-תשועתם</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47268</a></td>
+                <td>07-יבנה יבנה</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47269</a></td>
+                <td>08 - Dreams</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47270</a></td>
+                <td>09 - Every Living Thing</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47271</a></td>
+                <td>10-שובו השם</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47272</a></td>
+                <td>11 - Sugar</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47273</a></td>
+                <td>12 - Song Catcher</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47274</a></td>
+                <td>13-הנשמה לך</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47275</a></td>
+                <td>14 - Chak Chak</td>
+                <td>Dreams</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47276</a></td>
+                <td>01 - The Time Has Come</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47277</a></td>
+                <td>02 - Praise And Thanks</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47278</a></td>
+                <td>03 - For These I Cry</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47279</a></td>
+                <td>04 - Let There Be Peace</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47280</a></td>
+                <td>05 - Courage</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47281</a></td>
+                <td>06 - Seperations</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47282</a></td>
+                <td>07 - Raise My Eyes</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47283</a></td>
+                <td>08 - Moshov Song</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47284</a></td>
+                <td>09-תהילה</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47285</a></td>
+                <td>10 - Rebuild</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47286</a></td>
+                <td>11 - From Your Place</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47287</a></td>
+                <td>12 - Dwells Above Forever</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47288</a></td>
+                <td>13-דוי הסר-ריקוד</td>
+                <td>From This Day On</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47289</a></td>
+                <td>01 - Intro</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47290</a></td>
+                <td>02 - The Ride</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47291</a></td>
+                <td>03 - I Don't Mind</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47292</a></td>
+                <td>04 - Listen To You</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47293</a></td>
+                <td>05 - Space</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47294</a></td>
+                <td>06 - Kind Hand</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47295</a></td>
+                <td>07 - Dollar</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47296</a></td>
+                <td>08 - Rider</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47297</a></td>
+                <td>09 - Don't Stop Now</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47298</a></td>
+                <td>10 - Why Must We Wait</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47299</a></td>
+                <td>11 - Oovnay</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47300</a></td>
+                <td>12 - Midnight</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47301</a></td>
+                <td>13 - Let The Wheels Roll</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47302</a></td>
+                <td>14 - Chant</td>
+                <td>Inasense - The Ride</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47303</a></td>
+                <td>01-הרחמן</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47304</a></td>
+                <td>02-שומר ישראל</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47305</a></td>
+                <td>03-הנה ימים</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47306</a></td>
+                <td>04 - We Can Begin</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47307</a></td>
+                <td>05 - A Day Off</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47308</a></td>
+                <td>06-עוד ישמע</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47309</a></td>
+                <td>07-מזמור לדוד</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47310</a></td>
+                <td>08-לכה דודי</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47311</a></td>
+                <td>09-אידילע שריי</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47312</a></td>
+                <td>10-פאלמא</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47313</a></td>
+                <td>11 - Song For Cindy</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47314</a></td>
+                <td>12-יאר</td>
+                <td>Meditations</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47315</a></td>
+                <td>01 - No Words</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47316</a></td>
+                <td>02 - Desert Rain</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47317</a></td>
+                <td>03-שלום עליכם</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47318</a></td>
+                <td>04 - Wishes</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47319</a></td>
+                <td>05 - Open Up</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47320</a></td>
+                <td>06-לולי תורתך</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47321</a></td>
+                <td>07 - Wind</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47322</a></td>
+                <td>08 - Lessons</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47323</a></td>
+                <td>09-רבקה</td>
+                <td>No Words</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47324</a></td>
+                <td>01-בן בג בג</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47325</a></td>
+                <td>02-אשת חיל</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47326</a></td>
+                <td>03-יהא</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47327</a></td>
+                <td>04-אם אשכחך</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47328</a></td>
+                <td>05-ירושלים של זהב</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47329</a></td>
+                <td>06-המלאך</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47330</a></td>
+                <td>07-ערב של שושנים</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47331</a></td>
+                <td>08-גם כי אלך</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47332</a></td>
+                <td>09-חזק</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47333</a></td>
+                <td>10-ניגון נשמה</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47334</a></td>
+                <td>11-אשא עיני</td>
+                <td>Strings Of The Soul</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47335</a></td>
+                <td>01-רחמנא</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47336</a></td>
+                <td>02-קלי אתה</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47337</a></td>
+                <td>03-וכל קרני</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47338</a></td>
+                <td>04-כי אנו עמך</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47339</a></td>
+                <td>05-אתה הקל</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47340</a></td>
+                <td>06-דורין מארקו</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47341</a></td>
+                <td>07-ניגון רב</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47342</a></td>
+                <td>08-כי בשמחה</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47343</a></td>
+                <td>09-דידן נצח</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47344</a></td>
+                <td>10-ימין השם</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47345</a></td>
+                <td>11-נוי צריצי</td>
+                <td>The Chabad Sessions</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47346</a></td>
+                <td>01-הנה קל</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47347</a></td>
+                <td>02-כי בא מועד</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47348</a></td>
+                <td>03 - Who Can Know</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47349</a></td>
+                <td>04-דוד מלך</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47350</a></td>
+                <td>05 - Listen To You</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47351</a></td>
+                <td>06-מהרה</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47352</a></td>
+                <td>07 - I Will Find You</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47353</a></td>
+                <td>08-כי מציון</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47354</a></td>
+                <td>09 - Dig Down Deeper</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47355</a></td>
+                <td>10-לכה דודי</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47356</a></td>
+                <td>11 - Holy Brother</td>
+                <td>A Tribute</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47357</a></td>
+                <td>02 - Maggie In Jerusalem</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47358</a></td>
+                <td>03-שירו לו</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47359</a></td>
+                <td>04-אש קודש</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47360</a></td>
+                <td>05-מחרוזת שומר ישראלית</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47361</a></td>
+                <td>06 - Butterfly</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47362</a></td>
+                <td>07 - Wild & Free</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47363</a></td>
+                <td>08-שמח</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47364</a></td>
+                <td>09-אין כאלוקינו</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47365</a></td>
+                <td>10 - Freize Brithes</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47366</a></td>
+                <td>11-שבעינו</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47367</a></td>
+                <td>12-הבדלה</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47368</a></td>
+                <td>13 - Madhouse</td>
+                <td>Butterfly</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47369</a></td>
+                <td>01-מים רבים</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47370</a></td>
+                <td>02-טל</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47371</a></td>
+                <td>03 - Jerusalem Ridge</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47372</a></td>
+                <td>04 - Breslie</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47373</a></td>
+                <td>05-ושבו בנים</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47374</a></td>
+                <td>06-ניגון באבוב</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47375</a></td>
+                <td>07-לאורו</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47376</a></td>
+                <td>08-ניגון המגיד</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47377</a></td>
+                <td>09-כשושנה</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47378</a></td>
+                <td>10-ריקוד באבוב</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47379</a></td>
+                <td>11-כי בשמחה</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47380</a></td>
+                <td>12-סבא קטן</td>
+                <td>Jerusalem Ridge</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47381</a></td>
+                <td>01-שומר ישראל</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47382</a></td>
+                <td>02 - 3 Sea Captians</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47383</a></td>
+                <td>03-שובו השם</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47384</a></td>
+                <td>04 - Fieze Britches</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47385</a></td>
+                <td>05 - Crazy Things</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47386</a></td>
+                <td>06-שמח</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47387</a></td>
+                <td>07-אני לדודי</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47388</a></td>
+                <td>08-תקע בשופר גדול</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47389</a></td>
+                <td>09-ובנה</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47390</a></td>
+                <td>10-ויתן לך</td>
+                <td>Live @ Club Tzora</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47391</a></td>
+                <td>01 - Lay Me Down</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47392</a></td>
+                <td>02 - Say You'll Be Mind</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47393</a></td>
+                <td>03 - Stay</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47394</a></td>
+                <td>04 - Help Is On The Way</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47395</a></td>
+                <td>05 - Hunger</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47396</a></td>
+                <td>06 - Castles</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47397</a></td>
+                <td>07 - Can't Stop Running</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47398</a></td>
+                <td>08 - Corina Corina</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47399</a></td>
+                <td>09 - Fall</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+              <tr>
+                <td><a>47400</a></td>
+                <td>10 - Can't Put My Finger</td>
+                <td>סקילנד</td>
+                <td>לנזבאום</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

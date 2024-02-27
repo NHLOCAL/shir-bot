@@ -1,0 +1,595 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>שלומי דקס</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspשלומי דקס</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>53974</a></td>
+                <td>01-אין לנו</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53975</a></td>
+                <td>02-אני מאמין</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53976</a></td>
+                <td>03-לעולם</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53977</a></td>
+                <td>04-מה רבו</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53978</a></td>
+                <td>05-אם אשכחך</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53979</a></td>
+                <td>06-אבינו</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53980</a></td>
+                <td>07-אשר ברא</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53981</a></td>
+                <td>08-ביום ההוא</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53982</a></td>
+                <td>09-יהי החודש</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53983</a></td>
+                <td>10-שומר ישראל</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53984</a></td>
+                <td>11-איזו היא</td>
+                <td>אבינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53985</a></td>
+                <td>01-אל תירא</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53986</a></td>
+                <td>02-אחינו</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53987</a></td>
+                <td>03-סוף דבר</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53988</a></td>
+                <td>04-ברוך הבא הביתה</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53989</a></td>
+                <td>05-שבחו</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53990</a></td>
+                <td>06-הטוב</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53991</a></td>
+                <td>07-שמע ישראל</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53992</a></td>
+                <td>08-פתחו לי</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53993</a></td>
+                <td>09-אין לך</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53994</a></td>
+                <td>10-כל המקיים</td>
+                <td>אחינו</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53995</a></td>
+                <td>01-תמיד</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53996</a></td>
+                <td>02-שמע ישראל</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53997</a></td>
+                <td>03-יגדל</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53998</a></td>
+                <td>04-תורה</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>53999</a></td>
+                <td>05-קלי</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54000</a></td>
+                <td>06-מזמור שיר</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54001</a></td>
+                <td>07-יהודא בן תימא</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54002</a></td>
+                <td>08-The Dove</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54003</a></td>
+                <td>09-נא נא נא</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54004</a></td>
+                <td>10-רננו</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54005</a></td>
+                <td>11-מי בן שיח</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54006</a></td>
+                <td>12-יהא</td>
+                <td>השם אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54007</a></td>
+                <td>01-כי יעקב</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54008</a></td>
+                <td>02-ממקומו</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54009</a></td>
+                <td>03-אין כמוך</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54010</a></td>
+                <td>04-ואתם</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54011</a></td>
+                <td>05-צדיק</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54012</a></td>
+                <td>06-הא יגאל</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54013</a></td>
+                <td>07-השם שפתי</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54014</a></td>
+                <td>08-אשרינו</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54015</a></td>
+                <td>09-שמים</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54016</a></td>
+                <td>10-וזוכר</td>
+                <td>וזוכר</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54017</a></td>
+                <td>01-כאיש אחד</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54018</a></td>
+                <td>02-כאייל</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54019</a></td>
+                <td>03-אך טוב</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54020</a></td>
+                <td>04-צמאה</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54021</a></td>
+                <td>05-כי לך</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54022</a></td>
+                <td>06-חביבין ישראל</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54023</a></td>
+                <td>07- קול ברמה</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54024</a></td>
+                <td>08-כי לישראל</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54025</a></td>
+                <td>09-אחת</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54026</a></td>
+                <td>10-ובנה ירושלים</td>
+                <td>כאיש אחד</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54027</a></td>
+                <td>01-כי ה</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54028</a></td>
+                <td>02-One day At A Time</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54029</a></td>
+                <td>03-קומה</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54030</a></td>
+                <td>04-המלאך</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54031</a></td>
+                <td>05-שיבנה</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54032</a></td>
+                <td>06-ויקבץ</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54033</a></td>
+                <td>07-חמול</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54034</a></td>
+                <td>08-יערב</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54035</a></td>
+                <td>09-מהרה</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54036</a></td>
+                <td>10-למען אחי</td>
+                <td>קומה השם</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54037</a></td>
+                <td>01-אינטרו'ס</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54038</a></td>
+                <td>02-ריקוד הראשון</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54039</a></td>
+                <td>03-חופה</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54040</a></td>
+                <td>04-אם אשכחך</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54041</a></td>
+                <td>05-ריקוד השני</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54042</a></td>
+                <td>06-רגעים מיוחדים</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54043</a></td>
+                <td>07-רוק-און</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54044</a></td>
+                <td>08-אוברטיים</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+              <tr>
+                <td><a>54045</a></td>
+                <td>09-האורקסטרה של שלומי</td>
+                <td>רקוד כל הלילה</td>
+                <td>שלומי דקס</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

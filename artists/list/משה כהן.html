@@ -1,0 +1,497 @@
+
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="NHLOCAL">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <title>משה כהן</title>
+      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
+      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+      <script src="https://nhlocal.github.io/general-settings.js"></script>
+      
+    <script>
+      function createRowClickListener(song) {
+        return function() {
+          console.log('Song:', song);
+          // Add your custom logic here to handle the click event
+        };
+      }
+    </script>
+    
+    </head>
+    
+    <body dir="rtl" style="background-color:#FFFEDB;">
+      <div class="topnav">
+      <header class="ripple-header">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
+        
+        <center class="parent-element">
+          <h3 id="nextObject">&nbspמשה כהן</h3>
+        </center>
+      </header>
+    <form id="searchForm" class="search-form">
+      
+      <div class="input-container">
+        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+      </div>
+    
+      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+    </form>
+    
+    <script>
+      // Function to submit the form
+      function submitForm() {
+        var searchTerm = document.getElementById('searchInput').value;
+        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        // Optionally, you can include the searchBy parameter as well
+        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+        window.location.href = url;
+      }
+    
+      // Event listener to submit the form when Enter key is pressed
+      document.getElementById("searchInput").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          submitForm();
+        }
+      });
+    </script>
+    
+      </div>
+    
+        <div id="resultsTable" class="custom-table">
+          <table>
+            <thead>
+              <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>		  
+              </tr>
+            </thead>
+          <tbody>
+    
+              <tr>
+                <td><a>52760</a></td>
+                <td>01-ברוך הבא</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52761</a></td>
+                <td>02-עוד ישמע א-ב</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52762</a></td>
+                <td>03-סימן טוב</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52763</a></td>
+                <td>04-ריקוד</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52764</a></td>
+                <td>05-והשיב לב אבות</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52765</a></td>
+                <td>06-אהבת עולם</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52766</a></td>
+                <td>07-יקום פורקן א-ב</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52767</a></td>
+                <td>08-מהרה השם</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52768</a></td>
+                <td>09-וואלס</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52769</a></td>
+                <td>10-שיר המעלות</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52770</a></td>
+                <td>11-וימלא משאלותינו</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52771</a></td>
+                <td>12-ניגון גור</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52772</a></td>
+                <td>13-ניגון ריקוד</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52773</a></td>
+                <td>14-ניגון חב''ד</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52774</a></td>
+                <td>15-עד הנה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52775</a></td>
+                <td>16-נאר אמונה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52776</a></td>
+                <td>17-ועינינו תראינה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52777</a></td>
+                <td>18-ניגון ריקוד</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52778</a></td>
+                <td>19-ניגון התרוממות</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52779</a></td>
+                <td>20-אך טוב</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52780</a></td>
+                <td>21-לא ימושו</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52781</a></td>
+                <td>22-קול רינה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52782</a></td>
+                <td>23-ניגון הקפה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52783</a></td>
+                <td>24-ניגון שמחה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52784</a></td>
+                <td>25-ניגון בר יוחאי</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52785</a></td>
+                <td>26-ניגון התעלות</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52786</a></td>
+                <td>27-שהחיינו</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52787</a></td>
+                <td>28-יודו לה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52788</a></td>
+                <td>29-כן תזכנו</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52789</a></td>
+                <td>30-יצליח</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52790</a></td>
+                <td>31-אורך ימים</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52791</a></td>
+                <td>32-מחרוזת הורה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52792</a></td>
+                <td>33-מחרוזת הורה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52793</a></td>
+                <td>34-מחרוזת הורה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52794</a></td>
+                <td>35-מחרוזת הורה</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52795</a></td>
+                <td>36-ואמרתם כה לחי</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52796</a></td>
+                <td>37-מחרוזת ניגוני שורות</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52797</a></td>
+                <td>38-שלום עליכם</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52798</a></td>
+                <td>39-ענבי הגפן</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52799</a></td>
+                <td>40-מחרוזת ניגוני מירון</td>
+                <td>חלק א</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52800</a></td>
+                <td>01-ניגון הקפות</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52801</a></td>
+                <td>02-ותגלה ותראה</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52802</a></td>
+                <td>03-נודה לך</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52803</a></td>
+                <td>04-מודה אני</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52804</a></td>
+                <td>05-הזן את העולם</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52805</a></td>
+                <td>06-והריקותי-נחת לרוב</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52806</a></td>
+                <td>07-פון טיפן הארצן-רחם נא-שפכי</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52807</a></td>
+                <td>08-לשנה הבא</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52808</a></td>
+                <td>09-מהרה השם-מצוה טאנץ</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52809</a></td>
+                <td>10-חתן דומה למלך</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52810</a></td>
+                <td>11-יזכרם-בשעה שישראל</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52811</a></td>
+                <td>12-יבנה המקדש</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52812</a></td>
+                <td>13-עקביא בן מהללאל</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52813</a></td>
+                <td>14-אשת חיל</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52814</a></td>
+                <td>15-יבנה המקדש</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52815</a></td>
+                <td>16-למרנן ורבנן</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52816</a></td>
+                <td>17-טייערע ברידער</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+              <tr>
+                <td><a>52817</a></td>
+                <td>18-דורות ישרים</td>
+                <td>חלק ב</td>
+                <td>משה כהן</td>
+              </tr>
+        
+          </tbody>
+          </table>
+          </div>
+        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
+          <div class="fixed-bottom">
+            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
+          </div>
+        </div>
+        </body>
+        </html>
+    

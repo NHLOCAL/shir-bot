@@ -95,29 +95,44 @@ def create_singer_html_file(folder_path, singer_name, songs):
     with open(html_file_path, "w", encoding="utf-8") as file:
         file.write(html_template)
 
+
+
+def contains_hebrew_singles(text):
+    # Check if the text contains the word "סינגלים" in Hebrew
+    return "סינגלים" in text
+
 # Read data from CSV and create HTML files for each singer
 def create_html_files(csv_file_path, folder_path):
+    singers_without_singles = set()
     with open(csv_file_path, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.DictReader(csv_file)
         current_singer = None
         current_songs = []
         for row in csv_reader:
             singer_name = row["Singer"]
-            song = {
-                "number": row["Serial Number"],
-                "name": row["Song Name"],
-                "album": row["Album Name"],
-                "artist": row["Singer"]
-            }
-            if singer_name != current_singer:
-                if current_singer:
-                    # Check if HTML file already exists
-                    html_file_path = os.path.join(folder_path, f"{current_singer}.html")
-                    if os.path.exists(html_file_path):
-                        create_singer_html_file(folder_path, current_singer, current_songs)
-                current_singer = singer_name
-                current_songs = []
-            current_songs.append(song)
+            album_name = row["Album Name"]
+            if contains_hebrew_singles(singer_name) or contains_hebrew_singles(album_name):
+                song = {
+                    "number": row["Serial Number"],
+                    "name": row["Song Name"],
+                    "album": album_name,
+                    "artist": singer_name
+                }
+                if singer_name != current_singer:
+                    if current_singer and not any(contains_hebrew_singles(s["artist"]) or contains_hebrew_singles(s["album"]) for s in current_songs):
+                        singers_without_singles.add(current_singer)
+                    current_singer = singer_name
+                    current_songs = []
+                current_songs.append(song)
+        # Check the last singer
+        if current_singer and not any(contains_hebrew_singles(s["artist"]) or contains_hebrew_singles(s["album"]) for s in current_songs):
+            singers_without_singles.add(current_singer)
+
+    # Print the list of singers without singles
+    print("Singers without singles:")
+    for singer in singers_without_singles:
+        print(singer)
+        
         # Create HTML file for the last singer if it exists
         if current_singer:
             html_file_path = os.path.join(folder_path, f"{current_singer}.html")

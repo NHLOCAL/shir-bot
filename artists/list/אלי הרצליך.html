@@ -1,511 +1,493 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אלי הרצליך</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אלי הרצליך</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאלי הרצליך</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאלי הרצליך</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('3769')">
                 <td><a>3769</a></td>
                 <td>01 ושמרו - (LIVE)</td>
                 <td>Live - אלי הרצליך - 2023</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3770')">
                 <td><a>3770</a></td>
                 <td>02 המנגן - (LIVE)</td>
                 <td>Live - אלי הרצליך - 2023</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3771')">
                 <td><a>3771</a></td>
                 <td>03 אליך אלוקי (כי ידעת) - (LIVE)</td>
                 <td>Live - אלי הרצליך - 2023</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3772')">
                 <td><a>3772</a></td>
                 <td>04 המלאך - (LIVE)</td>
                 <td>Live - אלי הרצליך - 2023</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3773')">
                 <td><a>3773</a></td>
                 <td>05 מלך יחיד - (LOVE)</td>
                 <td>Live - אלי הרצליך - 2023</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3774')">
                 <td><a>3774</a></td>
                 <td>01 קשר של קיימא</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3775')">
                 <td><a>3775</a></td>
                 <td>02 אני מאמין</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3776')">
                 <td><a>3776</a></td>
                 <td>03 כי אתה שומע</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3777')">
                 <td><a>3777</a></td>
                 <td>04 מלך יחיד</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3778')">
                 <td><a>3778</a></td>
                 <td>05 נשמת כל חי</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3779')">
                 <td><a>3779</a></td>
                 <td>06 המלאך</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3780')">
                 <td><a>3780</a></td>
                 <td>07 תענה אמונים</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3781')">
                 <td><a>3781</a></td>
                 <td>08 לב טהור</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3782')">
                 <td><a>3782</a></td>
                 <td>09 שמע בני</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3783')">
                 <td><a>3783</a></td>
                 <td>10 ונזכה</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3784')">
                 <td><a>3784</a></td>
                 <td>11 אברהם אבינו</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3785')">
                 <td><a>3785</a></td>
                 <td>12 המנגן (עם שלמה ברונר)</td>
                 <td>אלי הרצליך 2</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3786')">
                 <td><a>3786</a></td>
                 <td>01  חתן דומה למלך</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3787')">
                 <td><a>3787</a></td>
                 <td>02  ותגמלנו</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3788')">
                 <td><a>3788</a></td>
                 <td>03 רצועה 3</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3789')">
                 <td><a>3789</a></td>
                 <td>04 רצועה 4</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3790')">
                 <td><a>3790</a></td>
                 <td>05 בחכמה יבנה בית</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3791')">
                 <td><a>3791</a></td>
                 <td>06  מקימי</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3792')">
                 <td><a>3792</a></td>
                 <td>07  אשרינו</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3793')">
                 <td><a>3793</a></td>
                 <td>08 רצועה 8</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3794')">
                 <td><a>3794</a></td>
                 <td>09 רצועה 9</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3795')">
                 <td><a>3795</a></td>
                 <td>10 רצועה 10</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3796')">
                 <td><a>3796</a></td>
                 <td>11 נחת רוח</td>
                 <td>חתן דומה למלך</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3797')">
                 <td><a>3797</a></td>
                 <td>- אלי הרצליך - מחדש את חי - מקורי</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3798')">
                 <td><a>3798</a></td>
                 <td>אב הרחמים</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3799')">
                 <td><a>3799</a></td>
                 <td>אלי הרצליך - אב הרחמים</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3800')">
                 <td><a>3800</a></td>
                 <td>אלי הרצליך - המנגן (Live)</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3801')">
                 <td><a>3801</a></td>
                 <td>אלי הרצליך - ובכל מדינה - רמיקס (ניסו סלוב & עמירם בן לולו)</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3802')">
                 <td><a>3802</a></td>
                 <td>אלי הרצליך - ובכל מדינה</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3803')">
                 <td><a>3803</a></td>
                 <td>אלי הרצליך - כל תפילותיי</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3804')">
                 <td><a>3804</a></td>
                 <td>אלי הרצליך - מלך יחיד - מופע השקה</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3805')">
                 <td><a>3805</a></td>
                 <td>אלי הרצליך - רק לתת</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3806')">
                 <td><a>3806</a></td>
                 <td>אלי הרצליך _ ציון גולן - ישמח חתני - רמיקס</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3807')">
                 <td><a>3807</a></td>
                 <td>אלי הרצליך מחדש את הניגון הוותיק של עולם הישיבות ''מארש חברון''</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3808')">
                 <td><a>3808</a></td>
                 <td>אלי הרצליך נשמת הקליפ הרשמי Eli Herzlich Nishmat Official Music Video.135</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3809')">
                 <td><a>3809</a></td>
                 <td>אלי הרצליך, מקהלת מלכות המלאך</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3810')">
                 <td><a>3810</a></td>
                 <td>אלי הרצליך- אבל באמת הוא מלאך</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3811')">
                 <td><a>3811</a></td>
                 <td>אלי הרצליך-כל ישראל</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3812')">
                 <td><a>3812</a></td>
                 <td>ברגע האמת</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3813')">
                 <td><a>3813</a></td>
                 <td>המלאך - לייב</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3814')">
                 <td><a>3814</a></td>
                 <td>המנגן אלי הרצליך בהופעה</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3815')">
                 <td><a>3815</a></td>
                 <td>המנגן</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3816')">
                 <td><a>3816</a></td>
                 <td>המנגנים קומטאנץ מחרוזת אלי הרצליך</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3817')">
                 <td><a>3817</a></td>
                 <td>הנה קל ישועתי</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3818')">
                 <td><a>3818</a></td>
                 <td>ושמרו</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3819')">
                 <td><a>3819</a></td>
                 <td>חתן ישמח בכלה</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3820')">
                 <td><a>3820</a></td>
                 <td>טוב להודות</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3821')">
                 <td><a>3821</a></td>
                 <td>יומם הגרסה הרוסית</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3822')">
                 <td><a>3822</a></td>
                 <td>מאיר מרטין וידרקר ואלי הרצליך - הנה קל ישועתי - Martin Widerker & Eli Herzlich - Martin Widerker, Eli Herzlich</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3823')">
                 <td><a>3823</a></td>
                 <td>מחרוזת 2020</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3824')">
                 <td><a>3824</a></td>
                 <td>מחרוזת מרגשת</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3825')">
                 <td><a>3825</a></td>
                 <td>מחרוזת שירי חנוכה פיני איינהורן ואבישי אשל ואלי הרצליך ומשה דוויק ונמואל הרוש ומקהלת שפתותינו נרננה</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3826')">
                 <td><a>3826</a></td>
                 <td>נגילה ונשמחה נצח</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3827')">
                 <td><a>3827</a></td>
                 <td>רק לתת</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3828')">
                 <td><a>3828</a></td>
                 <td>שערי ציון</td>
                 <td>סינגלים</td>
                 <td>אלי הרצליך</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

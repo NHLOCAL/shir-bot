@@ -1,3759 +1,3741 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>פרחי מיאמי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>פרחי מיאמי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspפרחי מיאמי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspפרחי מיאמי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('26268')">
                 <td><a>26268</a></td>
                 <td>EARLY MIAMI</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26269')">
                 <td><a>26269</a></td>
                 <td>ENGLISH MEDLEY</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26270')">
                 <td><a>26270</a></td>
                 <td>GRAND HIGHLIGHTS</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26271')">
                 <td><a>26271</a></td>
                 <td>GRAND MEDLEY</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26272')">
                 <td><a>26272</a></td>
                 <td>JUDAEA</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26273')">
                 <td><a>26273</a></td>
                 <td>KOL SOLONICA</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26274')">
                 <td><a>26274</a></td>
                 <td>טורונטו</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26275')">
                 <td><a>26275</a></td>
                 <td>מן השמים</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26276')">
                 <td><a>26276</a></td>
                 <td>פתיחה</td>
                 <td>MIAMI EXPERIENCE</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26277')">
                 <td><a>26277</a></td>
                 <td>01 ירושלים - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26278')">
                 <td><a>26278</a></td>
                 <td>02 הטוב - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26279')">
                 <td><a>26279</a></td>
                 <td>03 יבוא - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26280')">
                 <td><a>26280</a></td>
                 <td>04 צור - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26281')">
                 <td><a>26281</a></td>
                 <td>05 הו השם - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26282')">
                 <td><a>26282</a></td>
                 <td>06 בואי - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26283')">
                 <td><a>26283</a></td>
                 <td>07 שלך היא - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26284')">
                 <td><a>26284</a></td>
                 <td>08 אשא עיני - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26285')">
                 <td><a>26285</a></td>
                 <td>09 אדיר איום ונורא - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26286')">
                 <td><a>26286</a></td>
                 <td>10 עזרי - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26287')">
                 <td><a>26287</a></td>
                 <td>11 הנה מה טוב - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26288')">
                 <td><a>26288</a></td>
                 <td>12 לא ברוח השם - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26289')">
                 <td><a>26289</a></td>
                 <td>13 מחרוזת סולו בקונצרט - Live</td>
                 <td>On Social Media פרחי מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26290')">
                 <td><a>26290</a></td>
                 <td>01-והיה</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26291')">
                 <td><a>26291</a></td>
                 <td>02-תתקבל</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26292')">
                 <td><a>26292</a></td>
                 <td>03-אחד</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26293')">
                 <td><a>26293</a></td>
                 <td>04-חסדי ה</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26294')">
                 <td><a>26294</a></td>
                 <td>05-זעקתי</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26295')">
                 <td><a>26295</a></td>
                 <td>06-כל מי</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26296')">
                 <td><a>26296</a></td>
                 <td>07-Sunshine</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26297')">
                 <td><a>26297</a></td>
                 <td>08-אלוקה</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26298')">
                 <td><a>26298</a></td>
                 <td>09-ברכת הבית</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26299')">
                 <td><a>26299</a></td>
                 <td>10-סימן טוב</td>
                 <td>אחד אחד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26300')">
                 <td><a>26300</a></td>
                 <td>01-רק חזק</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26301')">
                 <td><a>26301</a></td>
                 <td>02-כי הם חיינו</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26302')">
                 <td><a>26302</a></td>
                 <td>03-אתה אחד</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26303')">
                 <td><a>26303</a></td>
                 <td>04-בדרך התורה</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26304')">
                 <td><a>26304</a></td>
                 <td>05-אל תעצבו</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26305')">
                 <td><a>26305</a></td>
                 <td>06-והיה מחניך קדוש</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26306')">
                 <td><a>26306</a></td>
                 <td>07-לא ברוח השם</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26307')">
                 <td><a>26307</a></td>
                 <td>08-זכרני</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26308')">
                 <td><a>26308</a></td>
                 <td>09-הורה של מיאמי</td>
                 <td>בדרך התורה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26309')">
                 <td><a>26309</a></td>
                 <td>03 - וביום</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26310')">
                 <td><a>26310</a></td>
                 <td>04 - אמר</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26311')">
                 <td><a>26311</a></td>
                 <td>05 - ויעזור</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26312')">
                 <td><a>26312</a></td>
                 <td>06 - עץ חיים - השיבנו</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26313')">
                 <td><a>26313</a></td>
                 <td>07 - טוב להודות</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26314')">
                 <td><a>26314</a></td>
                 <td>08 - בו אשבות</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26315')">
                 <td><a>26315</a></td>
                 <td>09 -ניגון שבת</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26316')">
                 <td><a>26316</a></td>
                 <td>10 - אילו פינו</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26317')">
                 <td><a>26317</a></td>
                 <td>11 - זה הזמן לומר גוט שבת</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26318')">
                 <td><a>26318</a></td>
                 <td>12 - וזכינו</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26319')">
                 <td><a>26319</a></td>
                 <td>13 - קה ריבון</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26320')">
                 <td><a>26320</a></td>
                 <td>14 - גוט שבת</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26321')">
                 <td><a>26321</a></td>
                 <td>15 - שלום עליכם</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26322')">
                 <td><a>26322</a></td>
                 <td>16 - ניגון שבת</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26323')">
                 <td><a>26323</a></td>
                 <td>17 - אם אתם</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26324')">
                 <td><a>26324</a></td>
                 <td>18 - למרנן</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26325')">
                 <td><a>26325</a></td>
                 <td>19 - מעין</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26326')">
                 <td><a>26326</a></td>
                 <td>20 - זה האמת</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26327')">
                 <td><a>26327</a></td>
                 <td>21 - אלוקה</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26328')">
                 <td><a>26328</a></td>
                 <td>22 - ישמח</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26329')">
                 <td><a>26329</a></td>
                 <td>23 - צאתכם</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26330')">
                 <td><a>26330</a></td>
                 <td>24 - לא אמות</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26331')">
                 <td><a>26331</a></td>
                 <td>25 - יהי</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26332')">
                 <td><a>26332</a></td>
                 <td>26 - מאמינים</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26333')">
                 <td><a>26333</a></td>
                 <td>27 - המתנדבים</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26334')">
                 <td><a>26334</a></td>
                 <td>28 - כי הם</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26335')">
                 <td><a>26335</a></td>
                 <td>29 - חברון</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26336')">
                 <td><a>26336</a></td>
                 <td>30 - הוא יגאל</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26337')">
                 <td><a>26337</a></td>
                 <td>31 - אגיל</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26338')">
                 <td><a>26338</a></td>
                 <td>32 - שיר</td>
                 <td>בוגרי מיאמי שבת התכוננו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26339')">
                 <td><a>26339</a></td>
                 <td>01-קל הכבוד</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26340')">
                 <td><a>26340</a></td>
                 <td>02-למרנן ורבנן</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26341')">
                 <td><a>26341</a></td>
                 <td>03-אנא בכח</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26342')">
                 <td><a>26342</a></td>
                 <td>04-בס''ד</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26343')">
                 <td><a>26343</a></td>
                 <td>05-כי אתה הוא</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26344')">
                 <td><a>26344</a></td>
                 <td>06-כל ישראל</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26345')">
                 <td><a>26345</a></td>
                 <td>07-אחת שאלתי</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26346')">
                 <td><a>26346</a></td>
                 <td>08-את צמח</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26347')">
                 <td><a>26347</a></td>
                 <td>09-שירה חדשה</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26348')">
                 <td><a>26348</a></td>
                 <td>10-ניגון</td>
                 <td>בסיעתא דשמיא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26349')">
                 <td><a>26349</a></td>
                 <td>01-והביאנו</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26350')">
                 <td><a>26350</a></td>
                 <td>02-נכון</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26351')">
                 <td><a>26351</a></td>
                 <td>03-מי אדיר</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26352')">
                 <td><a>26352</a></td>
                 <td>04-אני מאמין</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26353')">
                 <td><a>26353</a></td>
                 <td>05-כל העולם</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26354')">
                 <td><a>26354</a></td>
                 <td>06-צדקתך</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26355')">
                 <td><a>26355</a></td>
                 <td>07-The Promise</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26356')">
                 <td><a>26356</a></td>
                 <td>08-המבדיל</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26357')">
                 <td><a>26357</a></td>
                 <td>09-באו</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26358')">
                 <td><a>26358</a></td>
                 <td>10-אילו</td>
                 <td>האלמני</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26359')">
                 <td><a>26359</a></td>
                 <td>01-Overture</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26360')">
                 <td><a>26360</a></td>
                 <td>02-קרוב ה</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26361')">
                 <td><a>26361</a></td>
                 <td>03-קה קלי</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26362')">
                 <td><a>26362</a></td>
                 <td>04-פתחו לי</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26363')">
                 <td><a>26363</a></td>
                 <td>05-מיאמי משך השנים</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26364')">
                 <td><a>26364</a></td>
                 <td>06-אני רוצה לדעת</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26365')">
                 <td><a>26365</a></td>
                 <td>07-אשר ברא</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26366')">
                 <td><a>26366</a></td>
                 <td>08-בסייעתא דשמיא</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26367')">
                 <td><a>26367</a></td>
                 <td>09-Carnegie Medley</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26368')">
                 <td><a>26368</a></td>
                 <td>10-כרחם אב</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26369')">
                 <td><a>26369</a></td>
                 <td>11-בשרו</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26370')">
                 <td><a>26370</a></td>
                 <td>12-יד השם</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26371')">
                 <td><a>26371</a></td>
                 <td>13-אחת שאלתי</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26372')">
                 <td><a>26372</a></td>
                 <td>14-עוד ישמע-סיום</td>
                 <td>הופעה 1</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26373')">
                 <td><a>26373</a></td>
                 <td>01-סקירה תזמורתית א</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26374')">
                 <td><a>26374</a></td>
                 <td>02-Be A Mentch</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26375')">
                 <td><a>26375</a></td>
                 <td>03-ירושלים</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26376')">
                 <td><a>26376</a></td>
                 <td>04-Father</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26377')">
                 <td><a>26377</a></td>
                 <td>05-שבת</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26378')">
                 <td><a>26378</a></td>
                 <td>06-תורה</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26379')">
                 <td><a>26379</a></td>
                 <td>07-On The Road</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26380')">
                 <td><a>26380</a></td>
                 <td>08-סקירה תזמורתית ב</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26381')">
                 <td><a>26381</a></td>
                 <td>09-ברוך הגבר</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26382')">
                 <td><a>26382</a></td>
                 <td>10-עומדות</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26383')">
                 <td><a>26383</a></td>
                 <td>11-זיידי</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26384')">
                 <td><a>26384</a></td>
                 <td>12-Experience</td>
                 <td>הופעה 2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26385')">
                 <td><a>26385</a></td>
                 <td>01-פתיחה</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26386')">
                 <td><a>26386</a></td>
                 <td>02-מחרוזת טורנטו</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26387')">
                 <td><a>26387</a></td>
                 <td>03-קול סלוניקה</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26388')">
                 <td><a>26388</a></td>
                 <td>04-מיאמי ישן</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26389')">
                 <td><a>26389</a></td>
                 <td>05-כוכבים</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26390')">
                 <td><a>26390</a></td>
                 <td>06-מחרוזת מן השמים</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26391')">
                 <td><a>26391</a></td>
                 <td>07-מחרוזת אנגלית</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26392')">
                 <td><a>26392</a></td>
                 <td>08-קטעים נבחרים</td>
                 <td>הופעה 3</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26393')">
                 <td><a>26393</a></td>
                 <td>01-שירו לו</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26394')">
                 <td><a>26394</a></td>
                 <td>02-נקדש</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26395')">
                 <td><a>26395</a></td>
                 <td>03-עבדים</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26396')">
                 <td><a>26396</a></td>
                 <td>04-והיא שעמדה</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26397')">
                 <td><a>26397</a></td>
                 <td>05-דיינו</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26398')">
                 <td><a>26398</a></td>
                 <td>06-סביב לעולם</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26399')">
                 <td><a>26399</a></td>
                 <td>07-מיאמי</td>
                 <td>הופעה 4</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26400')">
                 <td><a>26400</a></td>
                 <td>01-אחד</td>
                 <td>הופעה 5</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26401')">
                 <td><a>26401</a></td>
                 <td>02-עשרים שנה למיאמי</td>
                 <td>הופעה 5</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26402')">
                 <td><a>26402</a></td>
                 <td>03-ירחמיאל והפרחי</td>
                 <td>הופעה 5</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26403')">
                 <td><a>26403</a></td>
                 <td>04-נאבד ביער</td>
                 <td>הופעה 5</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26404')">
                 <td><a>26404</a></td>
                 <td>05-מחרוזת סיום</td>
                 <td>הופעה 5</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26405')">
                 <td><a>26405</a></td>
                 <td>01 פתיחה</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26406')">
                 <td><a>26406</a></td>
                 <td>02 גלה</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26407')">
                 <td><a>26407</a></td>
                 <td>03 ירושלים</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26408')">
                 <td><a>26408</a></td>
                 <td>04 שבת - נקדש</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26409')">
                 <td><a>26409</a></td>
                 <td>05 בעבור</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26410')">
                 <td><a>26410</a></td>
                 <td>06 אשא</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26411')">
                 <td><a>26411</a></td>
                 <td>07 משיח</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26412')">
                 <td><a>26412</a></td>
                 <td>08 מעם ה'</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26413')">
                 <td><a>26413</a></td>
                 <td>09 עזור נא</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26414')">
                 <td><a>26414</a></td>
                 <td>10 יבוא</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26415')">
                 <td><a>26415</a></td>
                 <td>11 מהרה</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26416')">
                 <td><a>26416</a></td>
                 <td>12 איום ונורא</td>
                 <td>יבוא הופעה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26417')">
                 <td><a>26417</a></td>
                 <td>A FATHER</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26418')">
                 <td><a>26418</a></td>
                 <td>BE A MENTH</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26419')">
                 <td><a>26419</a></td>
                 <td>EXPERIENCE</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26420')">
                 <td><a>26420</a></td>
                 <td>ON THE ROAD</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26421')">
                 <td><a>26421</a></td>
                 <td>ברוך הגבר</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26422')">
                 <td><a>26422</a></td>
                 <td>זיידי</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26423')">
                 <td><a>26423</a></td>
                 <td>ירושלים</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26424')">
                 <td><a>26424</a></td>
                 <td>סקירה תזמורתית א</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26425')">
                 <td><a>26425</a></td>
                 <td>סקירה תזמורתית ב</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26426')">
                 <td><a>26426</a></td>
                 <td>עומדות</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26427')">
                 <td><a>26427</a></td>
                 <td>שבת</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26428')">
                 <td><a>26428</a></td>
                 <td>תורה</td>
                 <td>מופע א</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26429')">
                 <td><a>26429</a></td>
                 <td>אנגלית</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26430')">
                 <td><a>26430</a></td>
                 <td>ברוך הגבר</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26431')">
                 <td><a>26431</a></td>
                 <td>ברוך השם</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26432')">
                 <td><a>26432</a></td>
                 <td>השיבה</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26433')">
                 <td><a>26433</a></td>
                 <td>השמים</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26434')">
                 <td><a>26434</a></td>
                 <td>וכולם</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26435')">
                 <td><a>26435</a></td>
                 <td>מקימי</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26436')">
                 <td><a>26436</a></td>
                 <td>משה אמת</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26437')">
                 <td><a>26437</a></td>
                 <td>סיום</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26438')">
                 <td><a>26438</a></td>
                 <td>שאו שערים</td>
                 <td>מופע ב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26439')">
                 <td><a>26439</a></td>
                 <td>אחת שאלתי - מיאמי</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26440')">
                 <td><a>26440</a></td>
                 <td>כרחם אב - דב לוין</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26441')">
                 <td><a>26441</a></td>
                 <td>מחרוזת מיאמי 1</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26442')">
                 <td><a>26442</a></td>
                 <td>מחרוזת מיאמי 2</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26443')">
                 <td><a>26443</a></td>
                 <td>מחרוזת מיאמי 3</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26444')">
                 <td><a>26444</a></td>
                 <td>מחרוזת מיאמי</td>
                 <td>מופע מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26445')">
                 <td><a>26445</a></td>
                 <td>א-לי א-לי</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26446')">
                 <td><a>26446</a></td>
                 <td>אז ימלא</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26447')">
                 <td><a>26447</a></td>
                 <td>המדרגה הבאה</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26448')">
                 <td><a>26448</a></td>
                 <td>המלאך הגואל</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26449')">
                 <td><a>26449</a></td>
                 <td>חתונה בחלם</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26450')">
                 <td><a>26450</a></td>
                 <td>לא ישא גוי</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26451')">
                 <td><a>26451</a></td>
                 <td>ממקומך</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26452')">
                 <td><a>26452</a></td>
                 <td>סיום</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26453')">
                 <td><a>26453</a></td>
                 <td>רפסודה סינית</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26454')">
                 <td><a>26454</a></td>
                 <td>שבת שלום</td>
                 <td>המדרגה הבאה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26455')">
                 <td><a>26455</a></td>
                 <td>הנה</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26456')">
                 <td><a>26456</a></td>
                 <td>התיצב</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26457')">
                 <td><a>26457</a></td>
                 <td>ויבטחו</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26458')">
                 <td><a>26458</a></td>
                 <td>וידעתם</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26459')">
                 <td><a>26459</a></td>
                 <td>מצוה</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26460')">
                 <td><a>26460</a></td>
                 <td>נער</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26461')">
                 <td><a>26461</a></td>
                 <td>עוד  ישמע</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26462')">
                 <td><a>26462</a></td>
                 <td>שיר  באנגלית  ש</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26463')">
                 <td><a>26463</a></td>
                 <td>שלום  רב  ש</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26464')">
                 <td><a>26464</a></td>
                 <td>שמע  ש</td>
                 <td>התיצב</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26465')">
                 <td><a>26465</a></td>
                 <td>אל תירא</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26466')">
                 <td><a>26466</a></td>
                 <td>אני מאמין</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26467')">
                 <td><a>26467</a></td>
                 <td>בלבבי</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26468')">
                 <td><a>26468</a></td>
                 <td>והיא שעמדה</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26469')">
                 <td><a>26469</a></td>
                 <td>וזכני</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26470')">
                 <td><a>26470</a></td>
                 <td>לא יבוא</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26471')">
                 <td><a>26471</a></td>
                 <td>מאמא רחל</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26472')">
                 <td><a>26472</a></td>
                 <td>מי האיש</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26473')">
                 <td><a>26473</a></td>
                 <td>ענווים ענווים</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26474')">
                 <td><a>26474</a></td>
                 <td>תורה הקדושה</td>
                 <td>התעוררות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26475')">
                 <td><a>26475</a></td>
                 <td>01 פתיחה</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26476')">
                 <td><a>26476</a></td>
                 <td>02 הנה מה טוב</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26477')">
                 <td><a>26477</a></td>
                 <td>03 לא ברוח ה  ועוד</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26478')">
                 <td><a>26478</a></td>
                 <td>04 מחרוזת עבר להווה</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26479')">
                 <td><a>26479</a></td>
                 <td>05 הקהל</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26480')">
                 <td><a>26480</a></td>
                 <td>06 עם לבדד ישכון</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26481')">
                 <td><a>26481</a></td>
                 <td>07 מחרוזת אנגלית</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26482')">
                 <td><a>26482</a></td>
                 <td>08 עיקרים</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26483')">
                 <td><a>26483</a></td>
                 <td>09 חי חי</td>
                 <td>חי חי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26484')">
                 <td><a>26484</a></td>
                 <td>01-האירו את הלילות</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26485')">
                 <td><a>26485</a></td>
                 <td>02-מעוז צור</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26486')">
                 <td><a>26486</a></td>
                 <td>03-על הניסים</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26487')">
                 <td><a>26487</a></td>
                 <td>04-יעלה ויבוא</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26488')">
                 <td><a>26488</a></td>
                 <td>05-ניגון חנוכה</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26489')">
                 <td><a>26489</a></td>
                 <td>06-אוי חנוכה</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26490')">
                 <td><a>26490</a></td>
                 <td>07-יונים</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26491')">
                 <td><a>26491</a></td>
                 <td>08-על הניסים</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26492')">
                 <td><a>26492</a></td>
                 <td>09-סביבון</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26493')">
                 <td><a>26493</a></td>
                 <td>10-מי ימלל</td>
                 <td>חנוכה האירו את הלילות</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26494')">
                 <td><a>26494</a></td>
                 <td>01-ירושלים</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26495')">
                 <td><a>26495</a></td>
                 <td>02-אם אשכחך</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26496')">
                 <td><a>26496</a></td>
                 <td>03-השיבה</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26497')">
                 <td><a>26497</a></td>
                 <td>04-יעלה</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26498')">
                 <td><a>26498</a></td>
                 <td>05-שבת ירושלים</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26499')">
                 <td><a>26499</a></td>
                 <td>06-נקדש</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26500')">
                 <td><a>26500</a></td>
                 <td>07-ולירושלים</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26501')">
                 <td><a>26501</a></td>
                 <td>08-עוד ישמע</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26502')">
                 <td><a>26502</a></td>
                 <td>09-וידעתם</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26503')">
                 <td><a>26503</a></td>
                 <td>10-הוריני</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26504')">
                 <td><a>26504</a></td>
                 <td>11-עומדות</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26505')">
                 <td><a>26505</a></td>
                 <td>12-למען ציון</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26506')">
                 <td><a>26506</a></td>
                 <td>13-י-ה אלי</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26507')">
                 <td><a>26507</a></td>
                 <td>14-לשנה הבאה</td>
                 <td>ירושלים - שמע קולינו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26508')">
                 <td><a>26508</a></td>
                 <td>01-כל ישראל ערבים</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26509')">
                 <td><a>26509</a></td>
                 <td>02-כל ישראל ערבים</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26510')">
                 <td><a>26510</a></td>
                 <td>03-מיאמי ודדי-קומזיץ</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26511')">
                 <td><a>26511</a></td>
                 <td>04-מיאמי ודדי-מחרוזת</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26512')">
                 <td><a>26512</a></td>
                 <td>05-לטב עביד</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26513')">
                 <td><a>26513</a></td>
                 <td>06-הנה ימים באים</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26514')">
                 <td><a>26514</a></td>
                 <td>07-שים שלום</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26515')">
                 <td><a>26515</a></td>
                 <td>08-בסייעתא דשמיא</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26516')">
                 <td><a>26516</a></td>
                 <td>09-ניגון האלמוני</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26517')">
                 <td><a>26517</a></td>
                 <td>10-סיום</td>
                 <td>כל ישראל ערבים זה לזה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26518')">
                 <td><a>26518</a></td>
                 <td>01-אתה</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26519')">
                 <td><a>26519</a></td>
                 <td>02-כלל ישראל</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26520')">
                 <td><a>26520</a></td>
                 <td>03-מהרה</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26521')">
                 <td><a>26521</a></td>
                 <td>04-אשירה</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26522')">
                 <td><a>26522</a></td>
                 <td>05-ואחר כך</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26523')">
                 <td><a>26523</a></td>
                 <td>06-הושיעה</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26524')">
                 <td><a>26524</a></td>
                 <td>07-די גדולי הדור</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26525')">
                 <td><a>26525</a></td>
                 <td>08-שבת קודש</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26526')">
                 <td><a>26526</a></td>
                 <td>09-יושב</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26527')">
                 <td><a>26527</a></td>
                 <td>10-מנוחה</td>
                 <td>כלל ישראל</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26528')">
                 <td><a>26528</a></td>
                 <td>01 אשמח בה'</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26529')">
                 <td><a>26529</a></td>
                 <td>02 לעולם ועד (שלך היא)</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26530')">
                 <td><a>26530</a></td>
                 <td>03 שלום</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26531')">
                 <td><a>26531</a></td>
                 <td>04 יברכך</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26532')">
                 <td><a>26532</a></td>
                 <td>05 מזל טוב</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26533')">
                 <td><a>26533</a></td>
                 <td>06 מגן ומושיע</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26534')">
                 <td><a>26534</a></td>
                 <td>07 תפילת חופה</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26535')">
                 <td><a>26535</a></td>
                 <td>08 דור דור</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26536')">
                 <td><a>26536</a></td>
                 <td>09 אותם</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26537')">
                 <td><a>26537</a></td>
                 <td>10 אחד כנגד כולם</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26538')">
                 <td><a>26538</a></td>
                 <td>11 מרן דבשמיא</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26539')">
                 <td><a>26539</a></td>
                 <td>12 Never Give Up</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26540')">
                 <td><a>26540</a></td>
                 <td>13 תורת חיים</td>
                 <td>לעולם ועד</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26541')">
                 <td><a>26541</a></td>
                 <td>AudioTrack 01</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26542')">
                 <td><a>26542</a></td>
                 <td>AudioTrack 02</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26543')">
                 <td><a>26543</a></td>
                 <td>AudioTrack 03</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26544')">
                 <td><a>26544</a></td>
                 <td>AudioTrack 04</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26545')">
                 <td><a>26545</a></td>
                 <td>AudioTrack 05</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26546')">
                 <td><a>26546</a></td>
                 <td>AudioTrack 06</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26547')">
                 <td><a>26547</a></td>
                 <td>AudioTrack 07</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26548')">
                 <td><a>26548</a></td>
                 <td>AudioTrack 08</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26549')">
                 <td><a>26549</a></td>
                 <td>AudioTrack 09</td>
                 <td>לעולם לא מאוחר</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26550')">
                 <td><a>26550</a></td>
                 <td>אשרי איש</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26551')">
                 <td><a>26551</a></td>
                 <td>אתה תענה ה</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26552')">
                 <td><a>26552</a></td>
                 <td>ד' אחד</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26553')">
                 <td><a>26553</a></td>
                 <td>והיו למשיסה</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26554')">
                 <td><a>26554</a></td>
                 <td>וטהר ליבנו</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26555')">
                 <td><a>26555</a></td>
                 <td>לד' עשא עיני</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26556')">
                 <td><a>26556</a></td>
                 <td>מי לד' אלי</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26557')">
                 <td><a>26557</a></td>
                 <td>מלך גואל ומושיע</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26558')">
                 <td><a>26558</a></td>
                 <td>עד מתי</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26559')">
                 <td><a>26559</a></td>
                 <td>עתיד להיות</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26560')">
                 <td><a>26560</a></td>
                 <td>קיוינו לך</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26561')">
                 <td><a>26561</a></td>
                 <td>תורה תבלין</td>
                 <td>מי לה' אלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26562')">
                 <td><a>26562</a></td>
                 <td>01 איום ונורא</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26563')">
                 <td><a>26563</a></td>
                 <td>02 אנגלית</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26564')">
                 <td><a>26564</a></td>
                 <td>03 יבוא</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26565')">
                 <td><a>26565</a></td>
                 <td>04 במהרה</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26566')">
                 <td><a>26566</a></td>
                 <td>05 ברך עלינו</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26567')">
                 <td><a>26567</a></td>
                 <td>06 גלה</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26568')">
                 <td><a>26568</a></td>
                 <td>07 אשא עיני</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26569')">
                 <td><a>26569</a></td>
                 <td>08 בעבור דוד עבדך</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26570')">
                 <td><a>26570</a></td>
                 <td>09 ותערב</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26571')">
                 <td><a>26571</a></td>
                 <td>10 ושמחת</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26572')">
                 <td><a>26572</a></td>
                 <td>11 עזור נא</td>
                 <td>מיאמי יבא</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26573')">
                 <td><a>26573</a></td>
                 <td>01 לא ינום</td>
                 <td>יש</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26574')">
                 <td><a>26574</a></td>
                 <td>02 מן המיצר</td>
                 <td>יש</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26575')">
                 <td><a>26575</a></td>
                 <td>03 יש</td>
                 <td>יש</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26576')">
                 <td><a>26576</a></td>
                 <td>04 אתה קדוש</td>
                 <td>יש</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26577')">
                 <td><a>26577</a></td>
                 <td>05 יום זה לישראל</td>
                 <td>יש</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26578')">
                 <td><a>26578</a></td>
                 <td>01 מכבי</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26579')">
                 <td><a>26579</a></td>
                 <td>02 ברכות</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26580')">
                 <td><a>26580</a></td>
                 <td>03-מעוז צור</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26581')">
                 <td><a>26581</a></td>
                 <td>04-יוונים</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26582')">
                 <td><a>26582</a></td>
                 <td>05-יש אור</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26583')">
                 <td><a>26583</a></td>
                 <td>06-על הניסים</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26584')">
                 <td><a>26584</a></td>
                 <td>07-דלוק</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26585')">
                 <td><a>26585</a></td>
                 <td>08 ליכטעלאך</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26586')">
                 <td><a>26586</a></td>
                 <td>09-חנוכה או חנוכה</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26587')">
                 <td><a>26587</a></td>
                 <td>10-הנרות</td>
                 <td>מכור על חנוכה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26588')">
                 <td><a>26588</a></td>
                 <td>01-קומט</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26589')">
                 <td><a>26589</a></td>
                 <td>02-מן השמים</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26590')">
                 <td><a>26590</a></td>
                 <td>03-זה היום</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26591')">
                 <td><a>26591</a></td>
                 <td>04-אני מאמין</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26592')">
                 <td><a>26592</a></td>
                 <td>05-קוה</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26593')">
                 <td><a>26593</a></td>
                 <td>06-לא ישא גוי</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26594')">
                 <td><a>26594</a></td>
                 <td>07-מתי</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26595')">
                 <td><a>26595</a></td>
                 <td>08-מי ידמה</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26596')">
                 <td><a>26596</a></td>
                 <td>09-היום</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26597')">
                 <td><a>26597</a></td>
                 <td>10-ישראל</td>
                 <td>מן השמים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26598')">
                 <td><a>26598</a></td>
                 <td>01-משה אמת</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26599')">
                 <td><a>26599</a></td>
                 <td>02-יוצר ליום כיפור</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26600')">
                 <td><a>26600</a></td>
                 <td>03-ברכת המזון</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26601')">
                 <td><a>26601</a></td>
                 <td>04-שמונה עשרה</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26602')">
                 <td><a>26602</a></td>
                 <td>05-קריאת שמע על המיטה</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26603')">
                 <td><a>26603</a></td>
                 <td>06-עלינו</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26604')">
                 <td><a>26604</a></td>
                 <td>07-בשמים</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26605')">
                 <td><a>26605</a></td>
                 <td>08-איכה</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26606')">
                 <td><a>26606</a></td>
                 <td>09-תהילים קי''א</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26607')">
                 <td><a>26607</a></td>
                 <td>10-יוצר לשמחת תורה</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26608')">
                 <td><a>26608</a></td>
                 <td>11-תהילים קכ''א</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26609')">
                 <td><a>26609</a></td>
                 <td>12-מחרוזת</td>
                 <td>מקהלת הילדים מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26610')">
                 <td><a>26610</a></td>
                 <td>01-משיח</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26611')">
                 <td><a>26611</a></td>
                 <td>02-ירושלים</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26612')">
                 <td><a>26612</a></td>
                 <td>03-שבת</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26613')">
                 <td><a>26613</a></td>
                 <td>04-לכה דודי</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26614')">
                 <td><a>26614</a></td>
                 <td>05-אחת-ואני-זעקתי</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26615')">
                 <td><a>26615</a></td>
                 <td>06-וארשתיך</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26616')">
                 <td><a>26616</a></td>
                 <td>07-מי יתן</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26617')">
                 <td><a>26617</a></td>
                 <td>08-לגבי</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26618')">
                 <td><a>26618</a></td>
                 <td>09-שמחה-יצליח-נשמה</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26619')">
                 <td><a>26619</a></td>
                 <td>10-רוח</td>
                 <td>משיח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26620')">
                 <td><a>26620</a></td>
                 <td>01 ואהבת</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26621')">
                 <td><a>26621</a></td>
                 <td>02 שבת</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26622')">
                 <td><a>26622</a></td>
                 <td>03 ברכת הבית</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26623')">
                 <td><a>26623</a></td>
                 <td>04 קל,חסדי והיה</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26624')">
                 <td><a>26624</a></td>
                 <td>05 פתח,אני,כי אתה</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26625')">
                 <td><a>26625</a></td>
                 <td>06 זכריני</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26626')">
                 <td><a>26626</a></td>
                 <td>07 יעלה</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26627')">
                 <td><a>26627</a></td>
                 <td>08 אנא,למרנן,כי אתה</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26628')">
                 <td><a>26628</a></td>
                 <td>09 רצועה 9</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26629')">
                 <td><a>26629</a></td>
                 <td>10 רצועה 10</td>
                 <td>סביב למדורה וואקלי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26630')">
                 <td><a>26630</a></td>
                 <td>05 yom ze l yisrael</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26631')">
                 <td><a>26631</a></td>
                 <td>06 מסביב לעולם עם פרחי מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26632')">
                 <td><a>26632</a></td>
                 <td>19 שמע ישראל - פרחי מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26633')">
                 <td><a>26633</a></td>
                 <td>Miami Boys Choir Nostalgia – Shira Ft. Avrumi Berko & Yingerlach   נוסטלגיה פרחי מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26634')">
                 <td><a>26634</a></td>
                 <td>rלשנה הבאה בירושלים 14</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26635')">
                 <td><a>26635</a></td>
                 <td>Shma Beni</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26636')">
                 <td><a>26636</a></td>
                 <td>The Shabbos Candles</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26637')">
                 <td><a>26637</a></td>
                 <td>The Simcha Song</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26638')">
                 <td><a>26638</a></td>
                 <td>We need you</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26639')">
                 <td><a>26639</a></td>
                 <td>אדון עולם 1</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26640')">
                 <td><a>26640</a></td>
                 <td>אלוקי נצור</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26641')">
                 <td><a>26641</a></td>
                 <td>אם אין אני לי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26642')">
                 <td><a>26642</a></td>
                 <td>אנגלית</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26643')">
                 <td><a>26643</a></td>
                 <td>אנחנו לא נוותר</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26644')">
                 <td><a>26644</a></td>
                 <td>אני לי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26645')">
                 <td><a>26645</a></td>
                 <td>אשר ברא</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26646')">
                 <td><a>26646</a></td>
                 <td>ביום ההוא</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26647')">
                 <td><a>26647</a></td>
                 <td>בכל העולם - משיח - מיאמי 4</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26648')">
                 <td><a>26648</a></td>
                 <td>בן דוד </td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26649')">
                 <td><a>26649</a></td>
                 <td>בני בני</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26650')">
                 <td><a>26650</a></td>
                 <td>דוי הסר</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26651')">
                 <td><a>26651</a></td>
                 <td>ה' עוז לעמו יתן</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26652')">
                 <td><a>26652</a></td>
                 <td>הדריכיני</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26653')">
                 <td><a>26653</a></td>
                 <td>הווי שש</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26654')">
                 <td><a>26654</a></td>
                 <td>הורה (2)</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26655')">
                 <td><a>26655</a></td>
                 <td>הורה</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26656')">
                 <td><a>26656</a></td>
                 <td>הנה מה טוב</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26657')">
                 <td><a>26657</a></td>
                 <td>השיבנו</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26658')">
                 <td><a>26658</a></td>
                 <td>התעוררי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26659')">
                 <td><a>26659</a></td>
                 <td>ואני תפילתי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26660')">
                 <td><a>26660</a></td>
                 <td>והיה ה' למלך - מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26661')">
                 <td><a>26661</a></td>
                 <td>ויבטחו בך</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26662')">
                 <td><a>26662</a></td>
                 <td>וידיעתם</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26663')">
                 <td><a>26663</a></td>
                 <td>ולירושלים</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26664')">
                 <td><a>26664</a></td>
                 <td>ומשפע</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26665')">
                 <td><a>26665</a></td>
                 <td>חסדי ה' - מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26666')">
                 <td><a>26666</a></td>
                 <td>חסדי ה' 4</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26667')">
                 <td><a>26667</a></td>
                 <td>חסידיש</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26668')">
                 <td><a>26668</a></td>
                 <td>טוב להודות</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26669')">
                 <td><a>26669</a></td>
                 <td>יברך</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26670')">
                 <td><a>26670</a></td>
                 <td>ירושלים</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26671')">
                 <td><a>26671</a></td>
                 <td>ישיש</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26672')">
                 <td><a>26672</a></td>
                 <td>לך השם</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26673')">
                 <td><a>26673</a></td>
                 <td>לקדש את שמך</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26674')">
                 <td><a>26674</a></td>
                 <td>מודה אני</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26675')">
                 <td><a>26675</a></td>
                 <td>מופע מיאמי 4</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26676')">
                 <td><a>26676</a></td>
                 <td>מחרוזת חופה</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26677')">
                 <td><a>26677</a></td>
                 <td>מי ידמה לך</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26678')">
                 <td><a>26678</a></td>
                 <td>מיאמי מחרוזת</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26679')">
                 <td><a>26679</a></td>
                 <td>ממקומך-חזנות</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26680')">
                 <td><a>26680</a></td>
                 <td>מסביב לעולם - מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26681')">
                 <td><a>26681</a></td>
                 <td>מקבץ מנגינות</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26682')">
                 <td><a>26682</a></td>
                 <td>משכיל</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26683')">
                 <td><a>26683</a></td>
                 <td>נאום השם</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26684')">
                 <td><a>26684</a></td>
                 <td>עבדו</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26685')">
                 <td><a>26685</a></td>
                 <td>עוד ישמע</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26686')">
                 <td><a>26686</a></td>
                 <td>פרחי מיאמי - כלל ישראל - די גדולי הדור - Miami boys choir - di gdoley ador</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26687')">
                 <td><a>26687</a></td>
                 <td>קול ששון וקול שמחה פרחי מיאמי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26688')">
                 <td><a>26688</a></td>
                 <td>שבת ירושלים</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26689')">
                 <td><a>26689</a></td>
                 <td>שהנשמה שבמוחי</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26690')">
                 <td><a>26690</a></td>
                 <td>שהשלום</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26691')">
                 <td><a>26691</a></td>
                 <td>שיר המעלות</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26692')">
                 <td><a>26692</a></td>
                 <td>שירו לו</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26693')">
                 <td><a>26693</a></td>
                 <td>שלום רב</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26694')">
                 <td><a>26694</a></td>
                 <td>שמעו דבר השם</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26695')">
                 <td><a>26695</a></td>
                 <td>תורה</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26696')">
                 <td><a>26696</a></td>
                 <td>תמיד 6</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26697')">
                 <td><a>26697</a></td>
                 <td>תפילת החודש</td>
                 <td>סינגלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26698')">
                 <td><a>26698</a></td>
                 <td>01-Prelude</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26699')">
                 <td><a>26699</a></td>
                 <td>02-מיאמי משך השנים</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26700')">
                 <td><a>26700</a></td>
                 <td>03-הנה נחלת</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26701')">
                 <td><a>26701</a></td>
                 <td>04-אילו</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26702')">
                 <td><a>26702</a></td>
                 <td>05-רחם, רפאינו</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26703')">
                 <td><a>26703</a></td>
                 <td>06-הנה מה טוב</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26704')">
                 <td><a>26704</a></td>
                 <td>07-מהרה, בס''ד</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26705')">
                 <td><a>26705</a></td>
                 <td>08-עוד ישמע</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26706')">
                 <td><a>26706</a></td>
                 <td>09-בבקשה</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26707')">
                 <td><a>26707</a></td>
                 <td>10-מחרוזת</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26708')">
                 <td><a>26708</a></td>
                 <td>11-אדון עולם</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26709')">
                 <td><a>26709</a></td>
                 <td>12-סיום</td>
                 <td>עשרים וחמש שנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26710')">
                 <td><a>26710</a></td>
                 <td>01-פתחו לי</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26711')">
                 <td><a>26711</a></td>
                 <td>02-כרחם אב</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26712')">
                 <td><a>26712</a></td>
                 <td>03-מחרוזת מיאמי</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26713')">
                 <td><a>26713</a></td>
                 <td>04-יד ה</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26714')">
                 <td><a>26714</a></td>
                 <td>05-אחת שאלתי</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26715')">
                 <td><a>26715</a></td>
                 <td>06-בסייעתא דשמיא</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26716')">
                 <td><a>26716</a></td>
                 <td>07-סיום</td>
                 <td>פיתחו לי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26717')">
                 <td><a>26717</a></td>
                 <td>01-שירו לו</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26718')">
                 <td><a>26718</a></td>
                 <td>02-נקדש</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26719')">
                 <td><a>26719</a></td>
                 <td>03-עבדים</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26720')">
                 <td><a>26720</a></td>
                 <td>04-והיא שעמדה</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26721')">
                 <td><a>26721</a></td>
                 <td>05-דיינו</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26722')">
                 <td><a>26722</a></td>
                 <td>06-סביב לעולם</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26723')">
                 <td><a>26723</a></td>
                 <td>07-מיאמי</td>
                 <td>פסח עם מיאמי</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26724')">
                 <td><a>26724</a></td>
                 <td>01-רוח</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26725')">
                 <td><a>26725</a></td>
                 <td>02-ונהיה</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26726')">
                 <td><a>26726</a></td>
                 <td>03-מי אדיר</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26727')">
                 <td><a>26727</a></td>
                 <td>04-רבונו</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26728')">
                 <td><a>26728</a></td>
                 <td>05-ואהבת לרעך כמוך</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26729')">
                 <td><a>26729</a></td>
                 <td>06-יפה</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26730')">
                 <td><a>26730</a></td>
                 <td>07-יחדשהו</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26731')">
                 <td><a>26731</a></td>
                 <td>08-תגביע את נירותך</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26732')">
                 <td><a>26732</a></td>
                 <td>09-שירה</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26733')">
                 <td><a>26733</a></td>
                 <td>10-ממקומך</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26734')">
                 <td><a>26734</a></td>
                 <td>11-השכיבינו</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26735')">
                 <td><a>26735</a></td>
                 <td>12-כן</td>
                 <td>רווח</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26736')">
                 <td><a>26736</a></td>
                 <td>01-שבת ירושלים</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26737')">
                 <td><a>26737</a></td>
                 <td>02-סקירה תזמורתית</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26738')">
                 <td><a>26738</a></td>
                 <td>03-ולירושלים עירך</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26739')">
                 <td><a>26739</a></td>
                 <td>04-אשר ברא</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26740')">
                 <td><a>26740</a></td>
                 <td>05-דווי הסר</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26741')">
                 <td><a>26741</a></td>
                 <td>06-We Need You</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26742')">
                 <td><a>26742</a></td>
                 <td>07-רפאנו</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26743')">
                 <td><a>26743</a></td>
                 <td>08-נאום ה</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26744')">
                 <td><a>26744</a></td>
                 <td>09-שיר המעלות</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26745')">
                 <td><a>26745</a></td>
                 <td>10-השיבנו ה</td>
                 <td>שבת ירושלים</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26746')">
                 <td><a>26746</a></td>
                 <td>אם אשכחך</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26747')">
                 <td><a>26747</a></td>
                 <td>אני מאמין</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26748')">
                 <td><a>26748</a></td>
                 <td>אשירה</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26749')">
                 <td><a>26749</a></td>
                 <td>יעלה ויבוא</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26750')">
                 <td><a>26750</a></td>
                 <td>כל מאי דעביד</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26751')">
                 <td><a>26751</a></td>
                 <td>כלל ישראל</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26752')">
                 <td><a>26752</a></td>
                 <td>שבת ירושלים</td>
                 <td>שבת ירושלים  2</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26753')">
                 <td><a>26753</a></td>
                 <td>01 אט אט-שיבנה</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26754')">
                 <td><a>26754</a></td>
                 <td>02 לייבעדיק</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26755')">
                 <td><a>26755</a></td>
                 <td>03 בואי</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26756')">
                 <td><a>26756</a></td>
                 <td>04 בשמחה רבה</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26757')">
                 <td><a>26757</a></td>
                 <td>05 צור ישראל</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26758')">
                 <td><a>26758</a></td>
                 <td>06 ושם נעבדך</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26759')">
                 <td><a>26759</a></td>
                 <td>07 ענבי הגפן</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26760')">
                 <td><a>26760</a></td>
                 <td>08 שמח</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26761')">
                 <td><a>26761</a></td>
                 <td>09 He Will Answer Us</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26762')">
                 <td><a>26762</a></td>
                 <td>10 לא בשמים</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26763')">
                 <td><a>26763</a></td>
                 <td>11 פתחו לי</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26764')">
                 <td><a>26764</a></td>
                 <td>12 קול קול</td>
                 <td>שיבנה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26765')">
                 <td><a>26765</a></td>
                 <td>01-אדון עולם</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26766')">
                 <td><a>26766</a></td>
                 <td>02-תהלת השם</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26767')">
                 <td><a>26767</a></td>
                 <td>03-סימן טוב</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26768')">
                 <td><a>26768</a></td>
                 <td>04-שיר השמחה</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26769')">
                 <td><a>26769</a></td>
                 <td>05-אשר ברא</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26770')">
                 <td><a>26770</a></td>
                 <td>06-ישיש</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26771')">
                 <td><a>26771</a></td>
                 <td>07-עוד ישמע</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26772')">
                 <td><a>26772</a></td>
                 <td>08-שמע בני</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26773')">
                 <td><a>26773</a></td>
                 <td>09-בירושלים</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26774')">
                 <td><a>26774</a></td>
                 <td>10-שלום</td>
                 <td>שיר השמחה</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26775')">
                 <td><a>26775</a></td>
                 <td>01 שירו לו</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26776')">
                 <td><a>26776</a></td>
                 <td>02 נקדש</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26777')">
                 <td><a>26777</a></td>
                 <td>03 עבדים</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26778')">
                 <td><a>26778</a></td>
                 <td>04 והיא שעמדה</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26779')">
                 <td><a>26779</a></td>
                 <td>05 דיינו</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26780')">
                 <td><a>26780</a></td>
                 <td>06 סביב לעולם</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26781')">
                 <td><a>26781</a></td>
                 <td>07 מיאמי</td>
                 <td>שירו לו</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26782')">
                 <td><a>26782</a></td>
                 <td>01-עוד ישמע</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26783')">
                 <td><a>26783</a></td>
                 <td>02-אור חדש</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26784')">
                 <td><a>26784</a></td>
                 <td>03-לך ה</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26785')">
                 <td><a>26785</a></td>
                 <td>04-בשרו</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26786')">
                 <td><a>26786</a></td>
                 <td>05-פתח ליבי</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26787')">
                 <td><a>26787</a></td>
                 <td>06-ברוך הבא</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26788')">
                 <td><a>26788</a></td>
                 <td>07-תורה היום</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26789')">
                 <td><a>26789</a></td>
                 <td>08-ואני</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26790')">
                 <td><a>26790</a></td>
                 <td>09-כיצד</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26791')">
                 <td><a>26791</a></td>
                 <td>10-חצות</td>
                 <td>תורה היום</td>
                 <td>פרחי מיאמי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

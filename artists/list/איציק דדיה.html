@@ -1,889 +1,871 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>איציק דדיה</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>איציק דדיה</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאיציק דדיה</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאיציק דדיה</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('3289')">
                 <td><a>3289</a></td>
                 <td>01 לשיר מהנשמה</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3290')">
                 <td><a>3290</a></td>
                 <td>02 ברוך השם</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3291')">
                 <td><a>3291</a></td>
                 <td>03 אותך אני אוהב</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3292')">
                 <td><a>3292</a></td>
                 <td>04 עם ישראל</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3293')">
                 <td><a>3293</a></td>
                 <td>05 מילים טובות</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3294')">
                 <td><a>3294</a></td>
                 <td>06 הללויה</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3295')">
                 <td><a>3295</a></td>
                 <td>07 אתה האחד</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3296')">
                 <td><a>3296</a></td>
                 <td>08 חגיגה משגעת</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3297')">
                 <td><a>3297</a></td>
                 <td>09 אדם</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3298')">
                 <td><a>3298</a></td>
                 <td>10 אני יודע</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3299')">
                 <td><a>3299</a></td>
                 <td>11 מעמקים</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3300')">
                 <td><a>3300</a></td>
                 <td>12 קול ששון</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3301')">
                 <td><a>3301</a></td>
                 <td>13 לשיר מהנשמה - רמיקס</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3302')">
                 <td><a>3302</a></td>
                 <td>14 ברוך השם - רמיקס</td>
                 <td>לשיר מהנשמה</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3303')">
                 <td><a>3303</a></td>
                 <td>01 תן חיוך</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3304')">
                 <td><a>3304</a></td>
                 <td>02 אל חיי</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3305')">
                 <td><a>3305</a></td>
                 <td>04 ירושלים</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3306')">
                 <td><a>3306</a></td>
                 <td>05 סיי הלו</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3307')">
                 <td><a>3307</a></td>
                 <td>06 מכוון אל האור</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3308')">
                 <td><a>3308</a></td>
                 <td>07 בליבי תפילה</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3309')">
                 <td><a>3309</a></td>
                 <td>08 ימים טובים</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3310')">
                 <td><a>3310</a></td>
                 <td>09 מי אדיר</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3311')">
                 <td><a>3311</a></td>
                 <td>10 אין ייאוש בעולם</td>
                 <td>מכוון אל האור</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3312')">
                 <td><a>3312</a></td>
                 <td>- איציק דדיה - כיסא המלך - מזרחי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3313')">
                 <td><a>3313</a></td>
                 <td>- איציק דדיה - מי יודע - מזרחי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3314')">
                 <td><a>3314</a></td>
                 <td>- איציק דדיה - רק אמונתי - מזרחי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3315')">
                 <td><a>3315</a></td>
                 <td>03 אמונה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3316')">
                 <td><a>3316</a></td>
                 <td>D1B10000 ישי לפידות  אוהד מושקוביץ  הקינדרלעך ואיציק דדיה - אב</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3317')">
                 <td><a>3317</a></td>
                 <td>YOU ARE THE ONE</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3318')">
                 <td><a>3318</a></td>
                 <td>אבינו</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3319')">
                 <td><a>3319</a></td>
                 <td>אגו</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3320')">
                 <td><a>3320</a></td>
                 <td>אדם יסודו מעפר איציק דדיה וגד אלבז</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3321')">
                 <td><a>3321</a></td>
                 <td>אדם</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3322')">
                 <td><a>3322</a></td>
                 <td>אותך אני אוהב</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3323')">
                 <td><a>3323</a></td>
                 <td>אחד מי יודע</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3324')">
                 <td><a>3324</a></td>
                 <td>איציק דדיה & יניב בן משיח - אלוקי נשמה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3325')">
                 <td><a>3325</a></td>
                 <td>איציק דדיה -  בדרך לאומן</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3326')">
                 <td><a>3326</a></td>
                 <td>איציק דדיה - אבינו מלכנו (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3327')">
                 <td><a>3327</a></td>
                 <td>איציק דדיה - אלוקים שבשמיים (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3328')">
                 <td><a>3328</a></td>
                 <td>איציק דדיה - אמא (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3329')">
                 <td><a>3329</a></td>
                 <td>איציק דדיה - אני נסחף</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3330')">
                 <td><a>3330</a></td>
                 <td>איציק דדיה - בדרך לאומן</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3331')">
                 <td><a>3331</a></td>
                 <td>איציק דדיה - הכל זה משמיים (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3332')">
                 <td><a>3332</a></td>
                 <td>איציק דדיה - הללויה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3333')">
                 <td><a>3333</a></td>
                 <td>איציק דדיה - כוכבים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3334')">
                 <td><a>3334</a></td>
                 <td>איציק דדיה - לשיר מהנשמה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3335')">
                 <td><a>3335</a></td>
                 <td>איציק דדיה - מה נעשה (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3336')">
                 <td><a>3336</a></td>
                 <td>איציק דדיה - מלאכים (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3337')">
                 <td><a>3337</a></td>
                 <td>איציק דדיה - מלחמות</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3338')">
                 <td><a>3338</a></td>
                 <td>איציק דדיה - עם ישראל חי (איכות אולפן)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3339')">
                 <td><a>3339</a></td>
                 <td>איציק דדיה - רבי נחמן (ג'ייס רמיקס)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3340')">
                 <td><a>3340</a></td>
                 <td>איציק דדיה - שמילי אונגר - שלום למר - שמחה ליינר - מקהלת שירה - שבט אחים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3341')">
                 <td><a>3341</a></td>
                 <td>איציק דדיה - שקיעה (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3342')">
                 <td><a>3342</a></td>
                 <td>איציק דדיה - שר מבפנים (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3343')">
                 <td><a>3343</a></td>
                 <td>איציק דדיה - תפילה (איכות רגילה)</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3344')">
                 <td><a>3344</a></td>
                 <td>איציק דדיה -ביתפילה מסננים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3345')">
                 <td><a>3345</a></td>
                 <td>איציק דדיה I ברוך השם itzik dadya I BARUCH HASHEM - YouTube</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3346')">
                 <td><a>3346</a></td>
                 <td>איציק דדיה ברוך השם 1</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3347')">
                 <td><a>3347</a></td>
                 <td>איציק דדיה והעיקר שנהנה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3348')">
                 <td><a>3348</a></td>
                 <td>איציק דדיה חגיגה משגעת</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3349')">
                 <td><a>3349</a></td>
                 <td>איציק דדיה כוכבים Itzik Dadya Kochavim.134</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3350')">
                 <td><a>3350</a></td>
                 <td>איציק דדיה כול הנשמה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3351')">
                 <td><a>3351</a></td>
                 <td>איציק דדיה לשיר מהנשמה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3352')">
                 <td><a>3352</a></td>
                 <td>איציק דדיה מה נעשה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3353')">
                 <td><a>3353</a></td>
                 <td>איציק דדיה רבי נחמן</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3354')">
                 <td><a>3354</a></td>
                 <td>איציק-דדיה-כוכבים-המחדש</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3355')">
                 <td><a>3355</a></td>
                 <td>איציק_דדיה_-_מלחמות</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3356')">
                 <td><a>3356</a></td>
                 <td>אלוקי נשמה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3357')">
                 <td><a>3357</a></td>
                 <td>אם אשכחך ירושלים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3358')">
                 <td><a>3358</a></td>
                 <td>אנא רמיקס</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3359')">
                 <td><a>3359</a></td>
                 <td>בדרך לאומן איציק דדיה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3360')">
                 <td><a>3360</a></td>
                 <td>בדרך לאומן</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3361')">
                 <td><a>3361</a></td>
                 <td>בר יוחאי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3362')">
                 <td><a>3362</a></td>
                 <td>ברוך השם</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3363')">
                 <td><a>3363</a></td>
                 <td>האזינו  איציק דדיה שר אם אשכחך בגרסת א-קפלה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3364')">
                 <td><a>3364</a></td>
                 <td>האמונה בוערת</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3365')">
                 <td><a>3365</a></td>
                 <td>הכל טוב</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3366')">
                 <td><a>3366</a></td>
                 <td>הללויה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3367')">
                 <td><a>3367</a></td>
                 <td>השבעתי  איציק דדיה </td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3368')">
                 <td><a>3368</a></td>
                 <td>השבעתי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3369')">
                 <td><a>3369</a></td>
                 <td>השם אחד איציק דדיה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3370')">
                 <td><a>3370</a></td>
                 <td>והעיקר שנהנה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3371')">
                 <td><a>3371</a></td>
                 <td>חגיגה משגעת I איציק דדיה chagiga I itzik dadya - YouTube</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3372')">
                 <td><a>3372</a></td>
                 <td>ימים טובים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3373')">
                 <td><a>3373</a></td>
                 <td>יש בי את הכוח</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3374')">
                 <td><a>3374</a></td>
                 <td>לבחור נכון</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3375')">
                 <td><a>3375</a></td>
                 <td>לשון הרע לא מדבר אלי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3376')">
                 <td><a>3376</a></td>
                 <td>מאט דאב & איציק דדיה - אנא</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3377')">
                 <td><a>3377</a></td>
                 <td>מה עוד נבקש</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3378')">
                 <td><a>3378</a></td>
                 <td>מחרוזת שירי חנן בן ארי בני פרידמן ושלום למר ואיציק דדיה ומקהלת ידידים ותזמורת פריילך</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3379')">
                 <td><a>3379</a></td>
                 <td>מי אדיר</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3380')">
                 <td><a>3380</a></td>
                 <td>מילים יש בי את הכוח</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3381')">
                 <td><a>3381</a></td>
                 <td>מלחמות</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3382')">
                 <td><a>3382</a></td>
                 <td>ממעמקים</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3383')">
                 <td><a>3383</a></td>
                 <td>נושא תפילה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3384')">
                 <td><a>3384</a></td>
                 <td>נכספתי</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3385')">
                 <td><a>3385</a></td>
                 <td>סופות איציק דדיה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3386')">
                 <td><a>3386</a></td>
                 <td>ציירתי שמש</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3387')">
                 <td><a>3387</a></td>
                 <td>רבי נחמן איציק דדיה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3388')">
                 <td><a>3388</a></td>
                 <td>רבי נחמן יצחק דדיה</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3389')">
                 <td><a>3389</a></td>
                 <td>רבי נחמן</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3390')">
                 <td><a>3390</a></td>
                 <td>שלום למר, בני פרידמן ואיציק דדיה במחרוזת שירי ''חנן בן ארי''</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3391')">
                 <td><a>3391</a></td>
                 <td>תן חיוך</td>
                 <td>סינגלים</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3392')">
                 <td><a>3392</a></td>
                 <td>01 עם ישראל</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3393')">
                 <td><a>3393</a></td>
                 <td>02 בתפילה</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3394')">
                 <td><a>3394</a></td>
                 <td>03 אני נסחף</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3395')">
                 <td><a>3395</a></td>
                 <td>04 אמא</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3396')">
                 <td><a>3396</a></td>
                 <td>05 מה נעשה</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3397')">
                 <td><a>3397</a></td>
                 <td>06 אלוקים שבשמים</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3398')">
                 <td><a>3398</a></td>
                 <td>07 שקיעה</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3399')">
                 <td><a>3399</a></td>
                 <td>08 שר מבפנים</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3400')">
                 <td><a>3400</a></td>
                 <td>09 מלאכים</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3401')">
                 <td><a>3401</a></td>
                 <td>10 הכל זה משמים</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3402')">
                 <td><a>3402</a></td>
                 <td>11 אבינו מלכנו</td>
                 <td>עם ישראל חי</td>
                 <td>איציק דדיה</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

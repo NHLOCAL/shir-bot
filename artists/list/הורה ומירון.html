@@ -1,1883 +1,1865 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>הורה ומירון</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>הורה ומירון</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspהורה ומירון</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspהורה ומירון</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('60499')">
                 <td><a>60499</a></td>
                 <td>01הורה,חזק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60500')">
                 <td><a>60500</a></td>
                 <td>02-הורה קאדצ'קה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60501')">
                 <td><a>60501</a></td>
                 <td>02-הורה רומנית</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60502')">
                 <td><a>60502</a></td>
                 <td>02דבקה,חזק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60503')">
                 <td><a>60503</a></td>
                 <td>02הורה, יש בורא עולם</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60504')">
                 <td><a>60504</a></td>
                 <td>03-הורה בחצר עבו</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60505')">
                 <td><a>60505</a></td>
                 <td>03שורות, זה קלי, טובים מאורות</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60506')">
                 <td><a>60506</a></td>
                 <td>04 הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60507')">
                 <td><a>60507</a></td>
                 <td>05. מחרוזת הורה - ניגוני מירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60508')">
                 <td><a>60508</a></td>
                 <td>05הורה פצץ</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60509')">
                 <td><a>60509</a></td>
                 <td>06 רצועה 6</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60510')">
                 <td><a>60510</a></td>
                 <td>06-נגוני מירון הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60511')">
                 <td><a>60511</a></td>
                 <td>06הורה ושורות 06</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60512')">
                 <td><a>60512</a></td>
                 <td>07 - מחרוזת הורה מירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60513')">
                 <td><a>60513</a></td>
                 <td>07-מחרוזת הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60514')">
                 <td><a>60514</a></td>
                 <td>08 - הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60515')">
                 <td><a>60515</a></td>
                 <td>08 - מחרוזת הורה ריקודים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60516')">
                 <td><a>60516</a></td>
                 <td>09-AudioTrack 09</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60517')">
                 <td><a>60517</a></td>
                 <td>09-הורה ירושלמי</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60518')">
                 <td><a>60518</a></td>
                 <td>09-הורה קצבי</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60519')">
                 <td><a>60519</a></td>
                 <td>10-הורה סטאקטו</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60520')">
                 <td><a>60520</a></td>
                 <td>10-הורה עתיק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60521')">
                 <td><a>60521</a></td>
                 <td>10-הורה-עממי</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60522')">
                 <td><a>60522</a></td>
                 <td>11 הורה 1</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60523')">
                 <td><a>60523</a></td>
                 <td>12 הורה 2</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60524')">
                 <td><a>60524</a></td>
                 <td>12-הורה שורות</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60525')">
                 <td><a>60525</a></td>
                 <td>12-הורה-מירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60526')">
                 <td><a>60526</a></td>
                 <td>13-הורה מצילתיים במירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60527')">
                 <td><a>60527</a></td>
                 <td>21-הורה ליטאית בחתונה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60528')">
                 <td><a>60528</a></td>
                 <td>21-ניגוני הורה-קרלין</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60529')">
                 <td><a>60529</a></td>
                 <td>27 הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60530')">
                 <td><a>60530</a></td>
                 <td>27</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60531')">
                 <td><a>60531</a></td>
                 <td>30 הורה חב''ד</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60532')">
                 <td><a>60532</a></td>
                 <td>Track 10</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60533')">
                 <td><a>60533</a></td>
                 <td>Track 35</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60534')">
                 <td><a>60534</a></td>
                 <td>אורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60535')">
                 <td><a>60535</a></td>
                 <td>אורי ויינברגר 10</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60536')">
                 <td><a>60536</a></td>
                 <td>בצלאל לוין</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60537')">
                 <td><a>60537</a></td>
                 <td>גליבים גליבום</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60538')">
                 <td><a>60538</a></td>
                 <td>דבקה במירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60539')">
                 <td><a>60539</a></td>
                 <td>הורה - עמירן דביר</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60540')">
                 <td><a>60540</a></td>
                 <td>הורה 1</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60541')">
                 <td><a>60541</a></td>
                 <td>הורה 1</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60542')">
                 <td><a>60542</a></td>
                 <td>הורה 10 עם כל סוגי הכלים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60543')">
                 <td><a>60543</a></td>
                 <td>הורה 2</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60544')">
                 <td><a>60544</a></td>
                 <td>הורה 3</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60545')">
                 <td><a>60545</a></td>
                 <td>הורה 4</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60546')">
                 <td><a>60546</a></td>
                 <td>הורה 5</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60547')">
                 <td><a>60547</a></td>
                 <td>הורה 6</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60548')">
                 <td><a>60548</a></td>
                 <td>הורה אביבית</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60549')">
                 <td><a>60549</a></td>
                 <td>הורה מדהים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60550')">
                 <td><a>60550</a></td>
                 <td>הורה מהיר</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60551')">
                 <td><a>60551</a></td>
                 <td>הורה מצילתיים במירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60552')">
                 <td><a>60552</a></td>
                 <td>הורה עם כל הכלים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60553')">
                 <td><a>60553</a></td>
                 <td>הורה רומנית</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60554')">
                 <td><a>60554</a></td>
                 <td>הורה שורות</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60555')">
                 <td><a>60555</a></td>
                 <td>הורה-יואלי מרקוביץ`</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60556')">
                 <td><a>60556</a></td>
                 <td>הורה-תולדות אהרון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60557')">
                 <td><a>60557</a></td>
                 <td>הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60558')">
                 <td><a>60558</a></td>
                 <td>הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60559')">
                 <td><a>60559</a></td>
                 <td>הורה2</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60560')">
                 <td><a>60560</a></td>
                 <td>הורה4</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60561')">
                 <td><a>60561</a></td>
                 <td>הורה6</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60562')">
                 <td><a>60562</a></td>
                 <td>הכנור היהודי - הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60563')">
                 <td><a>60563</a></td>
                 <td>המשך הורה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60564')">
                 <td><a>60564</a></td>
                 <td>חיליק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60565')">
                 <td><a>60565</a></td>
                 <td>כל סוגי ההורה ש. מינצברג</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60566')">
                 <td><a>60566</a></td>
                 <td>מאיר אדלר</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60567')">
                 <td><a>60567</a></td>
                 <td>מהיר 2</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60568')">
                 <td><a>60568</a></td>
                 <td>מוסטפה</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60569')">
                 <td><a>60569</a></td>
                 <td>ניגון ר יוחנן הסנדלר</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60570')">
                 <td><a>60570</a></td>
                 <td>ניגון שפר</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60571')">
                 <td><a>60571</a></td>
                 <td>פרייליך במירון</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60572')">
                 <td><a>60572</a></td>
                 <td>ריקוד הבקבוק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60573')">
                 <td><a>60573</a></td>
                 <td>ריקוד הפינגווינים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60574')">
                 <td><a>60574</a></td>
                 <td>שורות-מתמידים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60575')">
                 <td><a>60575</a></td>
                 <td>שיר הפינגווין</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60576')">
                 <td><a>60576</a></td>
                 <td>תחיית המתים,חזק</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60577')">
                 <td><a>60577</a></td>
                 <td>תחיית המתים</td>
                 <td>הורה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60578')">
                 <td><a>60578</a></td>
                 <td>01 רצועה 1</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60579')">
                 <td><a>60579</a></td>
                 <td>02 רצועה 2</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60580')">
                 <td><a>60580</a></td>
                 <td>03 רצועה 3</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60581')">
                 <td><a>60581</a></td>
                 <td>05 רצועה 5</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60582')">
                 <td><a>60582</a></td>
                 <td>06 רצועה 6</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60583')">
                 <td><a>60583</a></td>
                 <td>07 רצועה 7</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60584')">
                 <td><a>60584</a></td>
                 <td>08 רצועה 8</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60585')">
                 <td><a>60585</a></td>
                 <td>09 רצועה 9</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60586')">
                 <td><a>60586</a></td>
                 <td>13 רצועה 13</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60587')">
                 <td><a>60587</a></td>
                 <td>14 רצועה 14</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60588')">
                 <td><a>60588</a></td>
                 <td>15 רצועה 15</td>
                 <td>מאיר אדלר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60589')">
                 <td><a>60589</a></td>
                 <td>01 - בולגאר</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60590')">
                 <td><a>60590</a></td>
                 <td>02 - בלבבי משכן אבנה</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60591')">
                 <td><a>60591</a></td>
                 <td>03 - ניגון להושבת הכלה</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60592')">
                 <td><a>60592</a></td>
                 <td>04 - איש חסיד היה</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60593')">
                 <td><a>60593</a></td>
                 <td>05 - מירון - ערבסקא</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60594')">
                 <td><a>60594</a></td>
                 <td>06 - ריקודי פאטש</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60595')">
                 <td><a>60595</a></td>
                 <td>07 - שושלת 1</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60596')">
                 <td><a>60596</a></td>
                 <td>08 - מירון של מעלה</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60597')">
                 <td><a>60597</a></td>
                 <td>09 - ניגון ר' מיכל מזלוטשוב</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60598')">
                 <td><a>60598</a></td>
                 <td>10 - שושלת 2</td>
                 <td>בלבבי משכן אבנה</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60599')">
                 <td><a>60599</a></td>
                 <td>01 פרייליך</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60600')">
                 <td><a>60600</a></td>
                 <td>02 ניגונו של אבא</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60601')">
                 <td><a>60601</a></td>
                 <td>03 מחרוזת ניגונים</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60602')">
                 <td><a>60602</a></td>
                 <td>04 ניגון מירון</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60603')">
                 <td><a>60603</a></td>
                 <td>05 ניגונו של   ר' שמואל</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60604')">
                 <td><a>60604</a></td>
                 <td>06 הבו עז לתיש</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60605')">
                 <td><a>60605</a></td>
                 <td>07 מחרוזת  ניגונים</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60606')">
                 <td><a>60606</a></td>
                 <td>08 ניגון יהודי ליטא</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60607')">
                 <td><a>60607</a></td>
                 <td>09 יענקלה ניגון</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60608')">
                 <td><a>60608</a></td>
                 <td>10 ניגון</td>
                 <td>חנן מנגן צפת</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60609')">
                 <td><a>60609</a></td>
                 <td>01 ניגון הפרייליך</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60610')">
                 <td><a>60610</a></td>
                 <td>02 הניגון הרומני</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60611')">
                 <td><a>60611</a></td>
                 <td>03 במעלות הניגון</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60612')">
                 <td><a>60612</a></td>
                 <td>04 יצירה רומנית</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60613')">
                 <td><a>60613</a></td>
                 <td>05 מחול הצוענים</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60614')">
                 <td><a>60614</a></td>
                 <td>06 הסוס צוהל והצועני רוקד</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60615')">
                 <td><a>60615</a></td>
                 <td>07 חתן וכלה מזל טוב עממי</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60616')">
                 <td><a>60616</a></td>
                 <td>08 חתן וכלה מזל טוב רומני</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60617')">
                 <td><a>60617</a></td>
                 <td>09 הצועני עצוב ושמח</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60618')">
                 <td><a>60618</a></td>
                 <td>10 קדצקה רומנית</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60619')">
                 <td><a>60619</a></td>
                 <td>11 ניגון חצר אבו בצפת</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60620')">
                 <td><a>60620</a></td>
                 <td>12 ניגון שפר</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60621')">
                 <td><a>60621</a></td>
                 <td>13 הורה מיצלתיים במירון</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60622')">
                 <td><a>60622</a></td>
                 <td>14 פרייליך במירון</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60623')">
                 <td><a>60623</a></td>
                 <td>15 ניגון נפתולה במטולה</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60624')">
                 <td><a>60624</a></td>
                 <td>16 דבקה במירון</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60625')">
                 <td><a>60625</a></td>
                 <td>17 מוסטפה</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60626')">
                 <td><a>60626</a></td>
                 <td>18 ניגון ר יוחנן הסנדלר</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60627')">
                 <td><a>60627</a></td>
                 <td>19 הורה רומנית</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60628')">
                 <td><a>60628</a></td>
                 <td>20 ריקוד הבקבוק</td>
                 <td>כליזמר ירושלמי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60629')">
                 <td><a>60629</a></td>
                 <td>01 - ניגון</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60630')">
                 <td><a>60630</a></td>
                 <td>02 - ניגון</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60631')">
                 <td><a>60631</a></td>
                 <td>03 - ניגון</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60632')">
                 <td><a>60632</a></td>
                 <td>04 - ניגון</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60633')">
                 <td><a>60633</a></td>
                 <td>01 לכבוד התנא</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60634')">
                 <td><a>60634</a></td>
                 <td>02 בר יוחאי 1</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60635')">
                 <td><a>60635</a></td>
                 <td>03 בר יוחאי 2</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60636')">
                 <td><a>60636</a></td>
                 <td>05 אמר ר' עקיבא</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60637')">
                 <td><a>60637</a></td>
                 <td>06 המלוכה והממשלה</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60638')">
                 <td><a>60638</a></td>
                 <td>07 מחרוזת לכבוד התנא</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60639')">
                 <td><a>60639</a></td>
                 <td>08 מחרוזת נאר אמונה</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60640')">
                 <td><a>60640</a></td>
                 <td>09 מחרוזת אבינו מלכנו</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60641')">
                 <td><a>60641</a></td>
                 <td>10 מחרוזת מאוד היה</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60642')">
                 <td><a>60642</a></td>
                 <td>11 שיר ידידות</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60643')">
                 <td><a>60643</a></td>
                 <td>12 והריקותי</td>
                 <td>מירון-2018</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60644')">
                 <td><a>60644</a></td>
                 <td>חנן בר סלע - או-טה-זוי - ר' שלוימהל'ה בקרמן</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60645')">
                 <td><a>60645</a></td>
                 <td>חנן בר סלע - מחרוזת כנר על הגג</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60646')">
                 <td><a>60646</a></td>
                 <td>חנן בר סלע - מחרוזת ניגונים</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60647')">
                 <td><a>60647</a></td>
                 <td>חנן בר סלע - ניגון מירון ב</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60648')">
                 <td><a>60648</a></td>
                 <td>חנן בר סלע - ניגון מירון</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60649')">
                 <td><a>60649</a></td>
                 <td>חנן בר סלע - עממי</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60650')">
                 <td><a>60650</a></td>
                 <td>חנן בר סלע - פרוק ית ענך לאדמור ממודז'יץ</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60651')">
                 <td><a>60651</a></td>
                 <td>חנן בר סלע - פריילך - עממי</td>
                 <td>ממודזיץ למירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60652')">
                 <td><a>60652</a></td>
                 <td>01 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60653')">
                 <td><a>60653</a></td>
                 <td>02 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60654')">
                 <td><a>60654</a></td>
                 <td>03 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60655')">
                 <td><a>60655</a></td>
                 <td>04 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60656')">
                 <td><a>60656</a></td>
                 <td>05 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60657')">
                 <td><a>60657</a></td>
                 <td>06 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60658')">
                 <td><a>60658</a></td>
                 <td>07 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60659')">
                 <td><a>60659</a></td>
                 <td>08 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60660')">
                 <td><a>60660</a></td>
                 <td>09 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60661')">
                 <td><a>60661</a></td>
                 <td>10 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60662')">
                 <td><a>60662</a></td>
                 <td>11 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60663')">
                 <td><a>60663</a></td>
                 <td>12 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60664')">
                 <td><a>60664</a></td>
                 <td>13 - ניגון</td>
                 <td>מנגינות נשמה עתיקות</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60665')">
                 <td><a>60665</a></td>
                 <td>07 מחרוזת ניגוני מירון</td>
                 <td>מרדכי בן דוד - לג בעומר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60666')">
                 <td><a>60666</a></td>
                 <td>בר יוחאי</td>
                 <td>מרדכי בן דוד - לג בעומר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60667')">
                 <td><a>60667</a></td>
                 <td>מחרוזת שירי לג בעומר</td>
                 <td>מרדכי בן דוד - לג בעומר</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60668')">
                 <td><a>60668</a></td>
                 <td>01 - Track 1</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60669')">
                 <td><a>60669</a></td>
                 <td>02 - Track 2</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60670')">
                 <td><a>60670</a></td>
                 <td>03 - Track 3</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60671')">
                 <td><a>60671</a></td>
                 <td>04 - Track 4</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60672')">
                 <td><a>60672</a></td>
                 <td>05 - Track 5</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60673')">
                 <td><a>60673</a></td>
                 <td>06 - Track 6</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60674')">
                 <td><a>60674</a></td>
                 <td>07 - Track 7</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60675')">
                 <td><a>60675</a></td>
                 <td>08 - Track 8</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60676')">
                 <td><a>60676</a></td>
                 <td>09 - Track 9</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60677')">
                 <td><a>60677</a></td>
                 <td>10 - Track 10</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60678')">
                 <td><a>60678</a></td>
                 <td>11 - Track 11</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60679')">
                 <td><a>60679</a></td>
                 <td>12 - Track 12</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60680')">
                 <td><a>60680</a></td>
                 <td>13 - Track 13</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60681')">
                 <td><a>60681</a></td>
                 <td>14 - Track 14</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60682')">
                 <td><a>60682</a></td>
                 <td>15 - Track 15</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60683')">
                 <td><a>60683</a></td>
                 <td>16 - Track 16</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60684')">
                 <td><a>60684</a></td>
                 <td>17 - Track 17</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60685')">
                 <td><a>60685</a></td>
                 <td>18 - Track 18</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60686')">
                 <td><a>60686</a></td>
                 <td>19 - Track 19</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60687')">
                 <td><a>60687</a></td>
                 <td>20 - Track 20</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60688')">
                 <td><a>60688</a></td>
                 <td>21 - Track 21</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60689')">
                 <td><a>60689</a></td>
                 <td>22 - Track 22</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60690')">
                 <td><a>60690</a></td>
                 <td>23 - Track 23</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60691')">
                 <td><a>60691</a></td>
                 <td>24 - Track 24</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60692')">
                 <td><a>60692</a></td>
                 <td>25 - Track 25</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60693')">
                 <td><a>60693</a></td>
                 <td>26 - Track 26</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60694')">
                 <td><a>60694</a></td>
                 <td>27 - Track 27</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60695')">
                 <td><a>60695</a></td>
                 <td>28 - Track 28</td>
                 <td>ניגוני מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60696')">
                 <td><a>60696</a></td>
                 <td>01 - ברויגז טאנץ</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60697')">
                 <td><a>60697</a></td>
                 <td>02 - ניגון חופה</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60698')">
                 <td><a>60698</a></td>
                 <td>03 - דו -שיח</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60699')">
                 <td><a>60699</a></td>
                 <td>04 - ניגון מטולה</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60700')">
                 <td><a>60700</a></td>
                 <td>05 - איפה יוסל'ה</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60701')">
                 <td><a>60701</a></td>
                 <td>06 - ניגון בדביקות מודזיץ</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60702')">
                 <td><a>60702</a></td>
                 <td>07 - מארש טורקי</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60703')">
                 <td><a>60703</a></td>
                 <td>08 - בר מצוה טאנץ</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60704')">
                 <td><a>60704</a></td>
                 <td>09 - זכרינו לחיים...מכלכל חיים</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60705')">
                 <td><a>60705</a></td>
                 <td>10 - ניגון עלנשטיין. רבי מאיר אומר</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60706')">
                 <td><a>60706</a></td>
                 <td>11 - דער ברענעדיקער</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60707')">
                 <td><a>60707</a></td>
                 <td>12 - הר מירון</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60708')">
                 <td><a>60708</a></td>
                 <td>13 - דוינה</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60709')">
                 <td><a>60709</a></td>
                 <td>14 - רוחהל'ס בולגאר</td>
                 <td>ניגונים - עם מוסא ברלין</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60710')">
                 <td><a>60710</a></td>
                 <td>01 כדאי</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60711')">
                 <td><a>60711</a></td>
                 <td>02 בר יוחאי</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60712')">
                 <td><a>60712</a></td>
                 <td>03 לא ימוש</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60713')">
                 <td><a>60713</a></td>
                 <td>04 בונה ירושלים</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60714')">
                 <td><a>60714</a></td>
                 <td>05 ר' שמעון בר יוחאי</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60715')">
                 <td><a>60715</a></td>
                 <td>06 בזכות התנא</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60716')">
                 <td><a>60716</a></td>
                 <td>07 נעימות מירון</td>
                 <td>כדאי ר' שמעון בר יוחאי</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60717')">
                 <td><a>60717</a></td>
                 <td>03 - Track  3</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60718')">
                 <td><a>60718</a></td>
                 <td>04 הורה - חיליק פרנק</td>
                 <td>מירון</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60719')">
                 <td><a>60719</a></td>
                 <td>אמר ר' עקיבא</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60720')">
                 <td><a>60720</a></td>
                 <td>בזכות התנא ירושלמי</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60721')">
                 <td><a>60721</a></td>
                 <td>בר יוחאי ירושלמי</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60722')">
                 <td><a>60722</a></td>
                 <td>בר יוחאי</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60723')">
                 <td><a>60723</a></td>
                 <td>ואמרתם כל לחי</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60724')">
                 <td><a>60724</a></td>
                 <td>לכבוד התנא</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60725')">
                 <td><a>60725</a></td>
                 <td>ניגונים שקטים מירון</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60726')">
                 <td><a>60726</a></td>
                 <td>ניגונים</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60727')">
                 <td><a>60727</a></td>
                 <td>תודות</td>
                 <td>מירון תולדות אברהם יצחק</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60728')">
                 <td><a>60728</a></td>
                 <td>01-AudioTrack 01</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60729')">
                 <td><a>60729</a></td>
                 <td>02-AudioTrack 02</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60730')">
                 <td><a>60730</a></td>
                 <td>03-AudioTrack 03</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60731')">
                 <td><a>60731</a></td>
                 <td>04-AudioTrack 04</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60732')">
                 <td><a>60732</a></td>
                 <td>05-AudioTrack 05</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60733')">
                 <td><a>60733</a></td>
                 <td>06-AudioTrack 06</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60734')">
                 <td><a>60734</a></td>
                 <td>07-AudioTrack 07</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60735')">
                 <td><a>60735</a></td>
                 <td>08-AudioTrack 08</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60736')">
                 <td><a>60736</a></td>
                 <td>09-AudioTrack 09</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60737')">
                 <td><a>60737</a></td>
                 <td>10-AudioTrack 10</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60738')">
                 <td><a>60738</a></td>
                 <td>11-AudioTrack 11</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60739')">
                 <td><a>60739</a></td>
                 <td>12-AudioTrack 12</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60740')">
                 <td><a>60740</a></td>
                 <td>13-AudioTrack 13</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60741')">
                 <td><a>60741</a></td>
                 <td>14-AudioTrack 14</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60742')">
                 <td><a>60742</a></td>
                 <td>15-AudioTrack 15</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60743')">
                 <td><a>60743</a></td>
                 <td>16-AudioTrack 16</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60744')">
                 <td><a>60744</a></td>
                 <td>17-AudioTrack 17</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60745')">
                 <td><a>60745</a></td>
                 <td>18-AudioTrack 18</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60746')">
                 <td><a>60746</a></td>
                 <td>19-AudioTrack 19</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60747')">
                 <td><a>60747</a></td>
                 <td>20-AudioTrack 20</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60748')">
                 <td><a>60748</a></td>
                 <td>21-AudioTrack 21</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60749')">
                 <td><a>60749</a></td>
                 <td>22-AudioTrack 22</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60750')">
                 <td><a>60750</a></td>
                 <td>23-AudioTrack 23</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60751')">
                 <td><a>60751</a></td>
                 <td>24-AudioTrack 24</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60752')">
                 <td><a>60752</a></td>
                 <td>25-AudioTrack 25</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60753')">
                 <td><a>60753</a></td>
                 <td>26-AudioTrack 26</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60754')">
                 <td><a>60754</a></td>
                 <td>27-AudioTrack 27</td>
                 <td>שירים</td>
                 <td>הורה ומירון</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

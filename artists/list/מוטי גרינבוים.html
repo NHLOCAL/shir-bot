@@ -1,434 +1,416 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מוטי גרינבוים</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מוטי גרינבוים</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמוטי גרינבוים</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמוטי גרינבוים</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('15173')">
                 <td><a>15173</a></td>
                 <td>01 שעת רחמים</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15174')">
                 <td><a>15174</a></td>
                 <td>02 אבינו מלכינו</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15175')">
                 <td><a>15175</a></td>
                 <td>03 אדון עולם</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15176')">
                 <td><a>15176</a></td>
                 <td>04 שמעתי</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15177')">
                 <td><a>15177</a></td>
                 <td>05 שערי שמים</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15178')">
                 <td><a>15178</a></td>
                 <td>06 אל הנער הזה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15179')">
                 <td><a>15179</a></td>
                 <td>07 בעבור אבותינו</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15180')">
                 <td><a>15180</a></td>
                 <td>08 ברכת הבנים</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15181')">
                 <td><a>15181</a></td>
                 <td>09 והיא שעמדה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15182')">
                 <td><a>15182</a></td>
                 <td>10 והראינו</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15183')">
                 <td><a>15183</a></td>
                 <td>11 ותן חלקנו</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15184')">
                 <td><a>15184</a></td>
                 <td>12 יש אמונה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15185')">
                 <td><a>15185</a></td>
                 <td>13 כד יתבין</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15186')">
                 <td><a>15186</a></td>
                 <td>14 נפשי</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15187')">
                 <td><a>15187</a></td>
                 <td>15 עד הנה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15188')">
                 <td><a>15188</a></td>
                 <td>16 קולנו תשמע</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15189')">
                 <td><a>15189</a></td>
                 <td>17 עוד יבנה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15190')">
                 <td><a>15190</a></td>
                 <td>18 תינוקות</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15191')">
                 <td><a>15191</a></td>
                 <td>19 תניא</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15192')">
                 <td><a>15192</a></td>
                 <td>20 משתגעין</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15193')">
                 <td><a>15193</a></td>
                 <td>21 הלב שלי</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15194')">
                 <td><a>15194</a></td>
                 <td>22 קל נא רפא נא</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15195')">
                 <td><a>15195</a></td>
                 <td>23 כשהלב בוכה</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15196')">
                 <td><a>15196</a></td>
                 <td>24 רחם בחסדיך</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15197')">
                 <td><a>15197</a></td>
                 <td>25 וזכני לגדל</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15198')">
                 <td><a>15198</a></td>
                 <td>26 שמע בני</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15199')">
                 <td><a>15199</a></td>
                 <td>27 שוועת עניים</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15200')">
                 <td><a>15200</a></td>
                 <td>28 ישימך אלוקים</td>
                 <td>אוסף שירים מכל הזמנים</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15201')">
                 <td><a>15201</a></td>
                 <td>01 חלום לגדול</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15202')">
                 <td><a>15202</a></td>
                 <td>02 בעבור אבותנו א</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15203')">
                 <td><a>15203</a></td>
                 <td>03 דע לך בני</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15204')">
                 <td><a>15204</a></td>
                 <td>04 תינוקות </td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15205')">
                 <td><a>15205</a></td>
                 <td>05 אבא</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15206')">
                 <td><a>15206</a></td>
                 <td>06 הוא יבנה</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15207')">
                 <td><a>15207</a></td>
                 <td>07 הנני רופא לך</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15208')">
                 <td><a>15208</a></td>
                 <td>08 והנה השם</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15209')">
                 <td><a>15209</a></td>
                 <td>09 בעבור אבותנו ב</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15210')">
                 <td><a>15210</a></td>
                 <td>10 יש אמונה</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15211')">
                 <td><a>15211</a></td>
                 <td>11 מי שענה - מתוך סליחות</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15212')">
                 <td><a>15212</a></td>
                 <td>12 חשוף</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15213')">
                 <td><a>15213</a></td>
                 <td>13 וזכיני</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15214')">
                 <td><a>15214</a></td>
                 <td>14 הנשמה לך</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15215')">
                 <td><a>15215</a></td>
                 <td>15 ונפשי שפכי כמים</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15216')">
                 <td><a>15216</a></td>
                 <td>16 ויהי נועם</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15217')">
                 <td><a>15217</a></td>
                 <td>17 שערי שמים</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15218')">
                 <td><a>15218</a></td>
                 <td>18 מלאך</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15219')">
                 <td><a>15219</a></td>
                 <td>19 שמיטה</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15220')">
                 <td><a>15220</a></td>
                 <td>20 מחרוזת שמחה</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('15221')">
                 <td><a>15221</a></td>
                 <td>21 הדרן</td>
                 <td>אוסף שירים מכל הזמנים 2</td>
                 <td>מוטי גרינבוים</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

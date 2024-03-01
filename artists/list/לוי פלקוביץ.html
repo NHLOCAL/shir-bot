@@ -1,427 +1,409 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>לוי פלקוביץ</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>לוי פלקוביץ</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspלוי פלקוביץ</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspלוי פלקוביץ</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('14438')">
                 <td><a>14438</a></td>
                 <td>01 וויליאמסבורג (Radio Edit)</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14439')">
                 <td><a>14439</a></td>
                 <td>02 לאמיר זיך אומקערען</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14440')">
                 <td><a>14440</a></td>
                 <td>03 שלא עשני גוי</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14441')">
                 <td><a>14441</a></td>
                 <td>04 גלות</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14442')">
                 <td><a>14442</a></td>
                 <td>05 כל נדרי</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14443')">
                 <td><a>14443</a></td>
                 <td>06 ניסים</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14444')">
                 <td><a>14444</a></td>
                 <td>07 גמילות חסדים</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14445')">
                 <td><a>14445</a></td>
                 <td>08 תורה</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14446')">
                 <td><a>14446</a></td>
                 <td>09 דער גרויסער באשעפער</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14447')">
                 <td><a>14447</a></td>
                 <td>10 Thousand Dollars In One Night</td>
                 <td>א עהרליכע ליד</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14448')">
                 <td><a>14448</a></td>
                 <td>01-ויעזור</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14449')">
                 <td><a>14449</a></td>
                 <td>02-חמדת</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14450')">
                 <td><a>14450</a></td>
                 <td>03-הנה</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14451')">
                 <td><a>14451</a></td>
                 <td>04-קול דודי</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14452')">
                 <td><a>14452</a></td>
                 <td>05-א בגל</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14453')">
                 <td><a>14453</a></td>
                 <td>06-לפיכך</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14454')">
                 <td><a>14454</a></td>
                 <td>07-נפשי</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14455')">
                 <td><a>14455</a></td>
                 <td>08-נגילה</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14456')">
                 <td><a>14456</a></td>
                 <td>09-הנסתרות</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14457')">
                 <td><a>14457</a></td>
                 <td>10-אחכה לו</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14458')">
                 <td><a>14458</a></td>
                 <td>11-דע</td>
                 <td>אחכה לו</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14459')">
                 <td><a>14459</a></td>
                 <td>01 לבי</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14460')">
                 <td><a>14460</a></td>
                 <td>02 סוד של משקה</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14461')">
                 <td><a>14461</a></td>
                 <td>03 וכל מאמינים</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14462')">
                 <td><a>14462</a></td>
                 <td>04 טוב לי</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14463')">
                 <td><a>14463</a></td>
                 <td>05 קנקנן</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14464')">
                 <td><a>14464</a></td>
                 <td>06 אחד המרבה</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14465')">
                 <td><a>14465</a></td>
                 <td>07 ימות המשיח</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14466')">
                 <td><a>14466</a></td>
                 <td>08 המלאך</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14467')">
                 <td><a>14467</a></td>
                 <td>09 על הניסים</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14468')">
                 <td><a>14468</a></td>
                 <td>10 צווי ברודער</td>
                 <td>טוב לי</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14469')">
                 <td><a>14469</a></td>
                 <td>- לוי פאלקוביץ ואפשרים מרקוביץ - היום הרת עולם - חסידי</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14470')">
                 <td><a>14470</a></td>
                 <td>Daddy Dear</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14471')">
                 <td><a>14471</a></td>
                 <td>גוט פאר מיר גוט פאר דיר</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14472')">
                 <td><a>14472</a></td>
                 <td>ואנחנו לא נדע מה נעשה</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14473')">
                 <td><a>14473</a></td>
                 <td>ואתם הדבקים עם לוי פולקוביץ  </td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14474')">
                 <td><a>14474</a></td>
                 <td>ויעזור</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14475')">
                 <td><a>14475</a></td>
                 <td>טוב לי לוי פלאקוביץ'</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14476')">
                 <td><a>14476</a></td>
                 <td>טוב לי</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14477')">
                 <td><a>14477</a></td>
                 <td>יומם</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14478')">
                 <td><a>14478</a></td>
                 <td>לוי פולקוביץ</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14479')">
                 <td><a>14479</a></td>
                 <td>לוי פלקוביץ בחתונה</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14480')">
                 <td><a>14480</a></td>
                 <td>לוי פלקוביץ' מחדש את השיר המרגש של ר' יום טוב עהרליך ''כל נדרי''</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14481')">
                 <td><a>14481</a></td>
                 <td>למרנן</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14482')">
                 <td><a>14482</a></td>
                 <td>מחרוזת קרליבך</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14483')">
                 <td><a>14483</a></td>
                 <td>נפשי</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14484')">
                 <td><a>14484</a></td>
                 <td>פתח לנו שער</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14485')">
                 <td><a>14485</a></td>
                 <td>שלום למר ולוי פולקוביץ א יידישע מאמע  [איכות גבוהה]</td>
                 <td>סינגלים</td>
                 <td>לוי פלקוביץ</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

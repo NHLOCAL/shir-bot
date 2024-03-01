@@ -1,833 +1,815 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>גרשון ורובה</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>גרשון ורובה</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspגרשון ורובה</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspגרשון ורובה</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('46885')">
                 <td><a>46885</a></td>
                 <td>01 - The Worldwide Peace Convention In</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46886')">
                 <td><a>46886</a></td>
                 <td>02 - I'm Sick Of Racheim</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46887')">
                 <td><a>46887</a></td>
                 <td>03 - I Lost My Rubbers</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46888')">
                 <td><a>46888</a></td>
                 <td>04 - The Chazon</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46889')">
                 <td><a>46889</a></td>
                 <td>05 - New Square</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46890')">
                 <td><a>46890</a></td>
                 <td>06 - The Eruv</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46891')">
                 <td><a>46891</a></td>
                 <td>07 - Puff The Kosher Dragon</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46892')">
                 <td><a>46892</a></td>
                 <td>08 - Ki Ato</td>
                 <td>I'm So Sick Of Racheim</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46893')">
                 <td><a>46893</a></td>
                 <td>01 - I Am A Believer</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46894')">
                 <td><a>46894</a></td>
                 <td>02 - I Will Teach You More Than That</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46895')">
                 <td><a>46895</a></td>
                 <td>03 - Shabbos Day In The Park</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46896')">
                 <td><a>46896</a></td>
                 <td>04 - September</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46897')">
                 <td><a>46897</a></td>
                 <td>05 - The Next Flight</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46898')">
                 <td><a>46898</a></td>
                 <td>06 - Blue And White</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46899')">
                 <td><a>46899</a></td>
                 <td>07 - Change The Words</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46900')">
                 <td><a>46900</a></td>
                 <td>08 - Purim Basket Case</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46901')">
                 <td><a>46901</a></td>
                 <td>09 - Thats What Praying Is</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46902')">
                 <td><a>46902</a></td>
                 <td>10 - The Night Before</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46903')">
                 <td><a>46903</a></td>
                 <td>11 - Late In The Evening</td>
                 <td>Impressions</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46904')">
                 <td><a>46904</a></td>
                 <td>01 - Just One Shietle</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46905')">
                 <td><a>46905</a></td>
                 <td>02 - Belt</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46906')">
                 <td><a>46906</a></td>
                 <td>03 - Yevomus</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46907')">
                 <td><a>46907</a></td>
                 <td>04 - Ask The Rabbi</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46908')">
                 <td><a>46908</a></td>
                 <td>05 - I Love Rachaim</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46909')">
                 <td><a>46909</a></td>
                 <td>06 - One Shaitle Chad Gad Yah</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46910')">
                 <td><a>46910</a></td>
                 <td>07 - Chinese Auction</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46911')">
                 <td><a>46911</a></td>
                 <td>08 - Bugs</td>
                 <td>Just One Shietel</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46912')">
                 <td><a>46912</a></td>
                 <td>01 - Bamarom</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46913')">
                 <td><a>46913</a></td>
                 <td>02 - V'ata Kisvu</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46914')">
                 <td><a>46914</a></td>
                 <td>03 - Reach Out</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46915')">
                 <td><a>46915</a></td>
                 <td>04 - Mi She'oso</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46916')">
                 <td><a>46916</a></td>
                 <td>05 - Speechless</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46917')">
                 <td><a>46917</a></td>
                 <td>06 - Ana Avda</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46918')">
                 <td><a>46918</a></td>
                 <td>07 - Haneiros Hallalu</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46919')">
                 <td><a>46919</a></td>
                 <td>08 - Man To Man</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46920')">
                 <td><a>46920</a></td>
                 <td>09 - Va'ani</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46921')">
                 <td><a>46921</a></td>
                 <td>10 - The Gift</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46922')">
                 <td><a>46922</a></td>
                 <td>11 - Harimi</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46923')">
                 <td><a>46923</a></td>
                 <td>12 - Across The River</td>
                 <td>Reach Out</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46924')">
                 <td><a>46924</a></td>
                 <td>01 - Take It Easy</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46925')">
                 <td><a>46925</a></td>
                 <td>02 - G-d Rules The World</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46926')">
                 <td><a>46926</a></td>
                 <td>03 - Incomplete</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46927')">
                 <td><a>46927</a></td>
                 <td>04 - Peace</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46928')">
                 <td><a>46928</a></td>
                 <td>05 - Time To Come Home</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46929')">
                 <td><a>46929</a></td>
                 <td>06 - Don't Stop</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46930')">
                 <td><a>46930</a></td>
                 <td>07 - Gesher Tzar Me'od</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46931')">
                 <td><a>46931</a></td>
                 <td>08 - Run From The Egyptians</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46932')">
                 <td><a>46932</a></td>
                 <td>09 - Trying To Find My Tfillin</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46933')">
                 <td><a>46933</a></td>
                 <td>10 - Baal Habos</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46934')">
                 <td><a>46934</a></td>
                 <td>11 - You're Everything</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46935')">
                 <td><a>46935</a></td>
                 <td>12 - Hoshanna</td>
                 <td>Second Impressions - Don't Stop</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46936')">
                 <td><a>46936</a></td>
                 <td>01 - Shevach</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46937')">
                 <td><a>46937</a></td>
                 <td>02 - Eitz Chaim</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46938')">
                 <td><a>46938</a></td>
                 <td>03 - The Same World</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46939')">
                 <td><a>46939</a></td>
                 <td>04 - S'u</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46940')">
                 <td><a>46940</a></td>
                 <td>05 - Lucky Fingers Max</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46941')">
                 <td><a>46941</a></td>
                 <td>06 - Modeh Ani</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46942')">
                 <td><a>46942</a></td>
                 <td>07 - Sameach</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46943')">
                 <td><a>46943</a></td>
                 <td>08 - V'nahafoch Hu</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46944')">
                 <td><a>46944</a></td>
                 <td>09 - Turn It Around</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46945')">
                 <td><a>46945</a></td>
                 <td>10 - Ki Heim</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46946')">
                 <td><a>46946</a></td>
                 <td>11 - Ashrei</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46947')">
                 <td><a>46947</a></td>
                 <td>12 - Sof Davar</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46948')">
                 <td><a>46948</a></td>
                 <td>13 - V'nahapoch</td>
                 <td>Turn It Around</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46949')">
                 <td><a>46949</a></td>
                 <td>01 - Chazan Man</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46950')">
                 <td><a>46950</a></td>
                 <td>02 - Art Of Silence</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46951')">
                 <td><a>46951</a></td>
                 <td>03 - Minyan</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46952')">
                 <td><a>46952</a></td>
                 <td>04 - Seasons In The Den</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46953')">
                 <td><a>46953</a></td>
                 <td>05 - Shadchan</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46954')">
                 <td><a>46954</a></td>
                 <td>06 - American Lie</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46955')">
                 <td><a>46955</a></td>
                 <td>07 - Winds Of Faith</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46956')">
                 <td><a>46956</a></td>
                 <td>08 - Jacks And The Dreidle</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46957')">
                 <td><a>46957</a></td>
                 <td>09 - Breaker 1 to 9</td>
                 <td>Variations 1</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46958')">
                 <td><a>46958</a></td>
                 <td>01 - Hes Coming</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46959')">
                 <td><a>46959</a></td>
                 <td>02 - Pesach At Hotel California</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46960')">
                 <td><a>46960</a></td>
                 <td>03 - Narrow Bridge</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46961')">
                 <td><a>46961</a></td>
                 <td>04 - 613</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46962')">
                 <td><a>46962</a></td>
                 <td>05 - Daniella</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46963')">
                 <td><a>46963</a></td>
                 <td>06 - He Wrote The Songs</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46964')">
                 <td><a>46964</a></td>
                 <td>07 - We Are Your World</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46965')">
                 <td><a>46965</a></td>
                 <td>08 - Reachin Out</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46966')">
                 <td><a>46966</a></td>
                 <td>09 - Bar Mitzvo</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46967')">
                 <td><a>46967</a></td>
                 <td>10 - Honesty</td>
                 <td>Variations 2</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46968')">
                 <td><a>46968</a></td>
                 <td>01 - Husband And Wife</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46969')">
                 <td><a>46969</a></td>
                 <td>02 - I Wanna Hold My Land</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46970')">
                 <td><a>46970</a></td>
                 <td>03 - Od Yishoma</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46971')">
                 <td><a>46971</a></td>
                 <td>04 - Goodbye Reb Shlomo</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46972')">
                 <td><a>46972</a></td>
                 <td>05 - Mesechta Number 5</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46973')">
                 <td><a>46973</a></td>
                 <td>06 - Everlasting</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46974')">
                 <td><a>46974</a></td>
                 <td>07 - Homeward Bound</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46975')">
                 <td><a>46975</a></td>
                 <td>08 - In The Middle Of The Night</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46976')">
                 <td><a>46976</a></td>
                 <td>09 - The Magic Of Hasc</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46977')">
                 <td><a>46977</a></td>
                 <td>10 - Ain't Gonna Work</td>
                 <td>Variations 3</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46978')">
                 <td><a>46978</a></td>
                 <td>01 - Shul's Not Made For Talking</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46979')">
                 <td><a>46979</a></td>
                 <td>02 - 500 Miles</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46980')">
                 <td><a>46980</a></td>
                 <td>03 - Yerushalayim</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46981')">
                 <td><a>46981</a></td>
                 <td>04 - Let's Daven</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46982')">
                 <td><a>46982</a></td>
                 <td>05 - Leader Of The Band</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46983')">
                 <td><a>46983</a></td>
                 <td>06 - It's All A Mishegas </td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46984')">
                 <td><a>46984</a></td>
                 <td>07 - Shabbos Queen</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46985')">
                 <td><a>46985</a></td>
                 <td>08 - The Coladas</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46986')">
                 <td><a>46986</a></td>
                 <td>09 - I Will Survive</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46987')">
                 <td><a>46987</a></td>
                 <td>10 - Ketchup Song</td>
                 <td>Variations 4</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46988')">
                 <td><a>46988</a></td>
                 <td>גרשון ורובה5</td>
                 <td>סינגלים</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46989')">
                 <td><a>46989</a></td>
                 <td>גרשון ורובה7</td>
                 <td>סינגלים</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46990')">
                 <td><a>46990</a></td>
                 <td>מחרוזת</td>
                 <td>סינגלים</td>
                 <td>גרשון ורובה</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

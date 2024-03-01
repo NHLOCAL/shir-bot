@@ -1,462 +1,444 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ישראל רנד</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ישראל רנד</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspישראל רנד</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspישראל רנד</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('34955')">
                 <td><a>34955</a></td>
                 <td>01-רבונו של עולם</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34956')">
                 <td><a>34956</a></td>
                 <td>02-אבינו שבשמים</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34957')">
                 <td><a>34957</a></td>
                 <td>03-אם אשכחך</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34958')">
                 <td><a>34958</a></td>
                 <td>04-כל נדרי</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34959')">
                 <td><a>34959</a></td>
                 <td>05-אדון עולם</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34960')">
                 <td><a>34960</a></td>
                 <td>06-השם השם</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34961')">
                 <td><a>34961</a></td>
                 <td>07-שהחיינו</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34962')">
                 <td><a>34962</a></td>
                 <td>08-דאס יידיש ליד</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34963')">
                 <td><a>34963</a></td>
                 <td>09-קדיש</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34964')">
                 <td><a>34964</a></td>
                 <td>10-שיר המעלות</td>
                 <td>אבינו שבשמים</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34965')">
                 <td><a>34965</a></td>
                 <td>01-אדון עולם</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34966')">
                 <td><a>34966</a></td>
                 <td>02-שאו שערים</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34967')">
                 <td><a>34967</a></td>
                 <td>03-א ידישע מאמע</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34968')">
                 <td><a>34968</a></td>
                 <td>04-האר פניי</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34969')">
                 <td><a>34969</a></td>
                 <td>05-ממקומך</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34970')">
                 <td><a>34970</a></td>
                 <td>06-ירושלים של זהב</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34971')">
                 <td><a>34971</a></td>
                 <td>07-מה גדלו</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34972')">
                 <td><a>34972</a></td>
                 <td>08-שיר המעלות</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34973')">
                 <td><a>34973</a></td>
                 <td>09-אלקי נשמה</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34974')">
                 <td><a>34974</a></td>
                 <td>10-הושיט לי יד</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34975')">
                 <td><a>34975</a></td>
                 <td>11-רפאינו</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34976')">
                 <td><a>34976</a></td>
                 <td>12-כנפים שבורות</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34977')">
                 <td><a>34977</a></td>
                 <td>13-כי בשמחה</td>
                 <td>אדון עולם</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34978')">
                 <td><a>34978</a></td>
                 <td>01-בריך שמיה</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34979')">
                 <td><a>34979</a></td>
                 <td>02-ד' זכרנו</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34980')">
                 <td><a>34980</a></td>
                 <td>03-מודים</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34981')">
                 <td><a>34981</a></td>
                 <td>04-ובנוחה יאמר</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34982')">
                 <td><a>34982</a></td>
                 <td>05-שמע ישראל</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34983')">
                 <td><a>34983</a></td>
                 <td>06-ממקומך</td>
                 <td>בריך שמיה</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34984')">
                 <td><a>34984</a></td>
                 <td>01-ולירושלים עירך</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34985')">
                 <td><a>34985</a></td>
                 <td>02-עד הנה</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34986')">
                 <td><a>34986</a></td>
                 <td>03-הטה אלוקי אזנך</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34987')">
                 <td><a>34987</a></td>
                 <td>04-לדור ודור</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34988')">
                 <td><a>34988</a></td>
                 <td>05-עקביה</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34989')">
                 <td><a>34989</a></td>
                 <td>06-הבט משמים</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34990')">
                 <td><a>34990</a></td>
                 <td>07-אשא עיני</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34991')">
                 <td><a>34991</a></td>
                 <td>08-קול דודי</td>
                 <td>כדת משה וישראל</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34992')">
                 <td><a>34992</a></td>
                 <td>01-מי שברך</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34993')">
                 <td><a>34993</a></td>
                 <td>02-בראש השנה</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34994')">
                 <td><a>34994</a></td>
                 <td>03-שמע ישראל</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34995')">
                 <td><a>34995</a></td>
                 <td>04-ריבונו של עולם</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34996')">
                 <td><a>34996</a></td>
                 <td>05-אלוקי עד שלא נוצרתי</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34997')">
                 <td><a>34997</a></td>
                 <td>06-פארוואס זינגט א חזן</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34998')">
                 <td><a>34998</a></td>
                 <td>07-מגן אבות</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34999')">
                 <td><a>34999</a></td>
                 <td>08-ועל ידי עבדיך</td>
                 <td>מי שברך</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35000')">
                 <td><a>35000</a></td>
                 <td>01-עננו</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35001')">
                 <td><a>35001</a></td>
                 <td>02-אב הרחמים</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35002')">
                 <td><a>35002</a></td>
                 <td>03-אמת</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35003')">
                 <td><a>35003</a></td>
                 <td>04-טיהר ר' ישמעא-ל</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35004')">
                 <td><a>35004</a></td>
                 <td>05-כי לקח טוב</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35005')">
                 <td><a>35005</a></td>
                 <td>06-יזכור</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35006')">
                 <td><a>35006</a></td>
                 <td>07-ונתנה תוקף</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35007')">
                 <td><a>35007</a></td>
                 <td>08-אמנם כן</td>
                 <td>עם מקהלת רינטון</td>
                 <td>ישראל רנד</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

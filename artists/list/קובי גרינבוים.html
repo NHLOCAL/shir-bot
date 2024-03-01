@@ -1,266 +1,248 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>קובי גרינבוים</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>קובי גרינבוים</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspקובי גרינבוים</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspקובי גרינבוים</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('27190')">
                 <td><a>27190</a></td>
                 <td>01 משך</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27191')">
                 <td><a>27191</a></td>
                 <td>02 שתי דמעות</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27192')">
                 <td><a>27192</a></td>
                 <td>03 ויקבץ</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27193')">
                 <td><a>27193</a></td>
                 <td>04 אם תשיב</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27194')">
                 <td><a>27194</a></td>
                 <td>05 כף זכות</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27195')">
                 <td><a>27195</a></td>
                 <td>06 עד מתי</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27196')">
                 <td><a>27196</a></td>
                 <td>07 שכוייח</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27197')">
                 <td><a>27197</a></td>
                 <td>08 כי תעבור במים</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27198')">
                 <td><a>27198</a></td>
                 <td>09 שהחיינו</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27199')">
                 <td><a>27199</a></td>
                 <td>10 המגיד</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27200')">
                 <td><a>27200</a></td>
                 <td>11 מי שאוהב</td>
                 <td>זכות</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27201')">
                 <td><a>27201</a></td>
                 <td>- קובי גרינבוים - שכוייח - חסידי</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27202')">
                 <td><a>27202</a></td>
                 <td>המגיד</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27203')">
                 <td><a>27203</a></td>
                 <td>ויקבץ</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27204')">
                 <td><a>27204</a></td>
                 <td>צדיק כתמר</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27205')">
                 <td><a>27205</a></td>
                 <td>קובי גרינבוים - המגיד</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27206')">
                 <td><a>27206</a></td>
                 <td>קובי גרינבוים - ויקבץ</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27207')">
                 <td><a>27207</a></td>
                 <td>קובי גרינבוים - כי תעבור במים</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27208')">
                 <td><a>27208</a></td>
                 <td>קובי גרינבוים - עור חדש הגיע </td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27209')">
                 <td><a>27209</a></td>
                 <td>קובי גרינבוים בבלדה מרגשת ''כי תעבור במים''</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27210')">
                 <td><a>27210</a></td>
                 <td>קובי גרינבוים בסינגל בכורה ויקבץ</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27211')">
                 <td><a>27211</a></td>
                 <td>קובי גרינבוים ויקבץ הקליפ הרשמי Kobi Grinboim Vikabetz .134</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27212')">
                 <td><a>27212</a></td>
                 <td>קובי גרינבוים וישראל סוסנה ואז יהיו כל ישראל צדיקים</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27213')">
                 <td><a>27213</a></td>
                 <td>קובי גרינבוים ומקהלת 'נרננה' ריגשו בחופה - 1</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27214')">
                 <td><a>27214</a></td>
                 <td>קובי גרינבוים מאסטרו יהודה גלילי</td>
                 <td>סינגלים</td>
                 <td>קובי גרינבוים</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

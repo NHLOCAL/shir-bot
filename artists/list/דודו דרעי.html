@@ -1,847 +1,829 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>דודו דרעי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>דודו דרעי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspדודו דרעי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspדודו דרעי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('57714')">
                 <td><a>57714</a></td>
                 <td>01-ענני</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57715')">
                 <td><a>57715</a></td>
                 <td>02-אנא עיש</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57716')">
                 <td><a>57716</a></td>
                 <td>03-עיר ציון</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57717')">
                 <td><a>57717</a></td>
                 <td>04-אור התורה</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57718')">
                 <td><a>57718</a></td>
                 <td>05-אליהו הנביא</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57719')">
                 <td><a>57719</a></td>
                 <td>06-שקט ושלוה</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57720')">
                 <td><a>57720</a></td>
                 <td>07-ידענו</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57721')">
                 <td><a>57721</a></td>
                 <td>08-באו נברך</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57722')">
                 <td><a>57722</a></td>
                 <td>09-בלבבי</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57723')">
                 <td><a>57723</a></td>
                 <td>10-מגה מיקס</td>
                 <td>אל האור</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57724')">
                 <td><a>57724</a></td>
                 <td>01-בן אדם</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57725')">
                 <td><a>57725</a></td>
                 <td>02-עננו</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57726')">
                 <td><a>57726</a></td>
                 <td>03-אדון הסליחות</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57727')">
                 <td><a>57727</a></td>
                 <td>04-שואף כמו עבד</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57728')">
                 <td><a>57728</a></td>
                 <td>05-אם אפס</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57729')">
                 <td><a>57729</a></td>
                 <td>06-שמע אביונך</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57730')">
                 <td><a>57730</a></td>
                 <td>07-ד' שמעתי שמעך</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57731')">
                 <td><a>57731</a></td>
                 <td>08-אדיר ונאור</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57732')">
                 <td><a>57732</a></td>
                 <td>09-אל נורא עלילה</td>
                 <td>אל נורא עלילה</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57733')">
                 <td><a>57733</a></td>
                 <td>01-אבינו מלכנו</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57734')">
                 <td><a>57734</a></td>
                 <td>02-אמא שלי</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57735')">
                 <td><a>57735</a></td>
                 <td>03-ההבדלה</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57736')">
                 <td><a>57736</a></td>
                 <td>04-אשת חיל</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57737')">
                 <td><a>57737</a></td>
                 <td>05-הרמב''ם</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57738')">
                 <td><a>57738</a></td>
                 <td>07-והוא רחום</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57739')">
                 <td><a>57739</a></td>
                 <td>08-אם אשכחך</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57740')">
                 <td><a>57740</a></td>
                 <td>09-בואי כלה</td>
                 <td>אמא שלי</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57741')">
                 <td><a>57741</a></td>
                 <td>01-אפתח פי</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57742')">
                 <td><a>57742</a></td>
                 <td>02-בר יוחאי</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57743')">
                 <td><a>57743</a></td>
                 <td>03-היום</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57744')">
                 <td><a>57744</a></td>
                 <td>04-משיח</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57745')">
                 <td><a>57745</a></td>
                 <td>05-הזמן בוגד</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57746')">
                 <td><a>57746</a></td>
                 <td>06-ר' ישראל אבחצירא</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57747')">
                 <td><a>57747</a></td>
                 <td>07-מי שיש לו אמונה</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57748')">
                 <td><a>57748</a></td>
                 <td>08-שבחי</td>
                 <td>בשירים לצדיקים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57749')">
                 <td><a>57749</a></td>
                 <td>01-שמחם-עוד ישמע-ישיש עליך-שומר ישראל-כשם שאני-ירושלים</td>
                 <td>הופעת המילניום</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57750')">
                 <td><a>57750</a></td>
                 <td>02-אין עוד מלבדו-הוא יגאל אותנו-יערב נא-תיפול עליהם</td>
                 <td>הופעת המילניום</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57751')">
                 <td><a>57751</a></td>
                 <td>03-תהא השעה הזאת-מחרוזת-דדא ביה</td>
                 <td>הופעת המילניום</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57752')">
                 <td><a>57752</a></td>
                 <td>04-חזק-מודה אני-לבנימין-הוא יגאל</td>
                 <td>הופעת המילניום</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57753')">
                 <td><a>57753</a></td>
                 <td>05-כאייל תערוג-המלאך הגואל-אני מאמין</td>
                 <td>הופעת המילניום</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57754')">
                 <td><a>57754</a></td>
                 <td>01-יהי רצון-הרינו-מכתם לדוד</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57755')">
                 <td><a>57755</a></td>
                 <td>02-לדוד משכיל</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57756')">
                 <td><a>57756</a></td>
                 <td>03-למנצח מזמור לדוד</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57757')">
                 <td><a>57757</a></td>
                 <td>04-למנצח משכיל לבני קרח</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57758')">
                 <td><a>57758</a></td>
                 <td>05-למנצח אל תשחת לדוד</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57759')">
                 <td><a>57759</a></td>
                 <td>06-למנצח על ידותון</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57760')">
                 <td><a>57760</a></td>
                 <td>07-תפילה למשה</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57761')">
                 <td><a>57761</a></td>
                 <td>08-הודו לה</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57762')">
                 <td><a>57762</a></td>
                 <td>09-על נהרות בבל</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57763')">
                 <td><a>57763</a></td>
                 <td>10-הללויה</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57764')">
                 <td><a>57764</a></td>
                 <td>11-תפילת הדרך</td>
                 <td>התיקון הכללי ותפילות הדרך</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57765')">
                 <td><a>57765</a></td>
                 <td>01-מחפש</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57766')">
                 <td><a>57766</a></td>
                 <td>02-מחרוזת חתונה</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57767')">
                 <td><a>57767</a></td>
                 <td>03-צור משלו</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57768')">
                 <td><a>57768</a></td>
                 <td>04-פתיחה מצאוני</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57769')">
                 <td><a>57769</a></td>
                 <td>05-מחרוזת נגילה</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57770')">
                 <td><a>57770</a></td>
                 <td>06-חביבי</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57771')">
                 <td><a>57771</a></td>
                 <td>07-שמח בני</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57772')">
                 <td><a>57772</a></td>
                 <td>08-פתיחה אם הזמן בוגד</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57773')">
                 <td><a>57773</a></td>
                 <td>09-מול אלי וגודלו</td>
                 <td>זמן הגאולה 1</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57774')">
                 <td><a>57774</a></td>
                 <td>01-בר יוחאי</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57775')">
                 <td><a>57775</a></td>
                 <td>02-הילולת צדיקים</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57776')">
                 <td><a>57776</a></td>
                 <td>03-בתי צאי</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57777')">
                 <td><a>57777</a></td>
                 <td>04-רבי מאיר בעל הנס</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57778')">
                 <td><a>57778</a></td>
                 <td>05-לכבוד חמדת לבבי</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57779')">
                 <td><a>57779</a></td>
                 <td>06-ישמח חתני</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57780')">
                 <td><a>57780</a></td>
                 <td>07-לכבוד הקדוש רבי</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57781')">
                 <td><a>57781</a></td>
                 <td>08-שבחי ירושלים</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57782')">
                 <td><a>57782</a></td>
                 <td>09-כי אשמרה שבת</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57783')">
                 <td><a>57783</a></td>
                 <td>10-רפא צירי</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57784')">
                 <td><a>57784</a></td>
                 <td>11-אגדלך</td>
                 <td>זמן הגאולה 2</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57785')">
                 <td><a>57785</a></td>
                 <td>01-טוב להודות</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57786')">
                 <td><a>57786</a></td>
                 <td>02-יש לפעמים</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57787')">
                 <td><a>57787</a></td>
                 <td>03-יבואו ימים</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57788')">
                 <td><a>57788</a></td>
                 <td>04-נעלה ציונה</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57789')">
                 <td><a>57789</a></td>
                 <td>05-בורא עולם</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57790')">
                 <td><a>57790</a></td>
                 <td>06-אשירה לה</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57791')">
                 <td><a>57791</a></td>
                 <td>07-ואילו פינו</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57792')">
                 <td><a>57792</a></td>
                 <td>08-אני מאמין</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57793')">
                 <td><a>57793</a></td>
                 <td>09-כמו שאתה</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57794')">
                 <td><a>57794</a></td>
                 <td>10-אם אשכחך</td>
                 <td>טוב להודות</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57795')">
                 <td><a>57795</a></td>
                 <td>01-הנחני</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57796')">
                 <td><a>57796</a></td>
                 <td>02-מלך וכתר</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57797')">
                 <td><a>57797</a></td>
                 <td>03-שוכן שמים</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57798')">
                 <td><a>57798</a></td>
                 <td>04-האל איתך</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57799')">
                 <td><a>57799</a></td>
                 <td>05-בבא סאלי</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57800')">
                 <td><a>57800</a></td>
                 <td>06-תן בי כח</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57801')">
                 <td><a>57801</a></td>
                 <td>07-יחד נהלל</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57802')">
                 <td><a>57802</a></td>
                 <td>08-מודה  לך</td>
                 <td>יחד נהלל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57803')">
                 <td><a>57803</a></td>
                 <td>פוסע בדרכים</td>
                 <td>סינגלים</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57804')">
                 <td><a>57804</a></td>
                 <td>01-אדון הסליחות</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57805')">
                 <td><a>57805</a></td>
                 <td>02-קמתי באשמורת</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57806')">
                 <td><a>57806</a></td>
                 <td>03-בן אדם</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57807')">
                 <td><a>57807</a></td>
                 <td>04-עננו</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57808')">
                 <td><a>57808</a></td>
                 <td>05-בזוכרי</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57809')">
                 <td><a>57809</a></td>
                 <td>06-למענך אלוקי</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57810')">
                 <td><a>57810</a></td>
                 <td>07-תמהנו מרעות-אל מלך-ויעבור</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57811')">
                 <td><a>57811</a></td>
                 <td>08-יה שמעך אביונך</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57812')">
                 <td><a>57812</a></td>
                 <td>09-אבינו מלכנו</td>
                 <td>סליחות אהבת ישראל</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57813')">
                 <td><a>57813</a></td>
                 <td>01-קמתי באשמורת-קדיש</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57814')">
                 <td><a>57814</a></td>
                 <td>02-בן אדם</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57815')">
                 <td><a>57815</a></td>
                 <td>03-למענך אלוקי</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57816')">
                 <td><a>57816</a></td>
                 <td>04-תמהנו מרעות-קל מלך-ויעבור</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57817')">
                 <td><a>57817</a></td>
                 <td>05-עננו</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57818')">
                 <td><a>57818</a></td>
                 <td>06-אדון הסליחות</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57819')">
                 <td><a>57819</a></td>
                 <td>07-י-ה שמעך אביונך</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57820')">
                 <td><a>57820</a></td>
                 <td>08-בזכרי על משכבי</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57821')">
                 <td><a>57821</a></td>
                 <td>09-אבינו מלכנו</td>
                 <td>סליחות יהודי העולם</td>
                 <td>דודו דרעי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

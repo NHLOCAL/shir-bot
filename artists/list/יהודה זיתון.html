@@ -1,280 +1,262 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יהודה זיתון</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יהודה זיתון</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיהודה זיתון</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיהודה זיתון</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('58095')">
                 <td><a>58095</a></td>
                 <td>01-יה רם לעמך</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58096')">
                 <td><a>58096</a></td>
                 <td>02-חביבי יבוא גואל</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58097')">
                 <td><a>58097</a></td>
                 <td>03-יה חביבי אנא</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58098')">
                 <td><a>58098</a></td>
                 <td>04-מאוול</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58099')">
                 <td><a>58099</a></td>
                 <td>05-הכתר</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58100')">
                 <td><a>58100</a></td>
                 <td>06-אל בעוני</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58101')">
                 <td><a>58101</a></td>
                 <td>07-מחרוזת אנתא עומרי, סוכרה</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58102')">
                 <td><a>58102</a></td>
                 <td>08-אל גליל</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58103')">
                 <td><a>58103</a></td>
                 <td>09-אין עוד מלבדו</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58104')">
                 <td><a>58104</a></td>
                 <td>10-עד עלות השחר</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58105')">
                 <td><a>58105</a></td>
                 <td>11-את אמי</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58106')">
                 <td><a>58106</a></td>
                 <td>12-הכתר-מיקס מזרחי</td>
                 <td>הכתר</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58107')">
                 <td><a>58107</a></td>
                 <td>01-תודה לבורא עולם</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58108')">
                 <td><a>58108</a></td>
                 <td>02-אשת חייל</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58109')">
                 <td><a>58109</a></td>
                 <td>03-יהללו</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58110')">
                 <td><a>58110</a></td>
                 <td>04-מי כמוך</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58111')">
                 <td><a>58111</a></td>
                 <td>05-אנא שמע קולי</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58112')">
                 <td><a>58112</a></td>
                 <td>06-אתה ניסי</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58113')">
                 <td><a>58113</a></td>
                 <td>07-לכבודך</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58114')">
                 <td><a>58114</a></td>
                 <td>08-בסימן טוב</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58115')">
                 <td><a>58115</a></td>
                 <td>09-חביבי עם אמונה</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58116')">
                 <td><a>58116</a></td>
                 <td>10-פיאנו מי כמוך</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58117')">
                 <td><a>58117</a></td>
                 <td>11-נעימה אשת חייל</td>
                 <td>מי כמוך</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58118')">
                 <td><a>58118</a></td>
                 <td>ישראל מאמינים</td>
                 <td>סינגלים</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58119')">
                 <td><a>58119</a></td>
                 <td>ישתבח שמך</td>
                 <td>סינגלים</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58120')">
                 <td><a>58120</a></td>
                 <td>לעשות מצוות</td>
                 <td>סינגלים</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58121')">
                 <td><a>58121</a></td>
                 <td>שלא שמנו כהם</td>
                 <td>סינגלים</td>
                 <td>יהודה זיתון</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

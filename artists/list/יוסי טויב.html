@@ -1,245 +1,227 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יוסי טויב</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יוסי טויב</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיוסי טויב</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיוסי טויב</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('47166')">
                 <td><a>47166</a></td>
                 <td>I Am A Sheep</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47167')">
                 <td><a>47167</a></td>
                 <td>אור חדש</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47168')">
                 <td><a>47168</a></td>
                 <td>אם אין אני לי</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47169')">
                 <td><a>47169</a></td>
                 <td>אני מאמין</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47170')">
                 <td><a>47170</a></td>
                 <td>אשריך</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47171')">
                 <td><a>47171</a></td>
                 <td>זינדיגער מענטש</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47172')">
                 <td><a>47172</a></td>
                 <td>ירושלים</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47173')">
                 <td><a>47173</a></td>
                 <td>כי בשמחה</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47174')">
                 <td><a>47174</a></td>
                 <td>כי הם חיינו</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47175')">
                 <td><a>47175</a></td>
                 <td>מה טובו</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47176')">
                 <td><a>47176</a></td>
                 <td>שש אנכי</td>
                 <td>אור חדש 1</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47177')">
                 <td><a>47177</a></td>
                 <td>The Novies Word</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47178')">
                 <td><a>47178</a></td>
                 <td>אלה ברכב</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47179')">
                 <td><a>47179</a></td>
                 <td>אלע אידן</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47180')">
                 <td><a>47180</a></td>
                 <td>ארוממך השם</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47181')">
                 <td><a>47181</a></td>
                 <td>בלבבי משכן אבנה</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47182')">
                 <td><a>47182</a></td>
                 <td>דבקה נפשי אחריך</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47183')">
                 <td><a>47183</a></td>
                 <td>יראו את השם</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47184')">
                 <td><a>47184</a></td>
                 <td>ניגון</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47185')">
                 <td><a>47185</a></td>
                 <td>נפשנו</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47186')">
                 <td><a>47186</a></td>
                 <td>עץ חיים היא</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47187')">
                 <td><a>47187</a></td>
                 <td>שיר המעלות</td>
                 <td>אור חדש 2</td>
                 <td>יוסי טויב</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

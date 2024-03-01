@@ -1,315 +1,297 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ישי לפידות</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ישי לפידות</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspישי לפידות</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspישי לפידות</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('13794')">
                 <td><a>13794</a></td>
                 <td>01 - המנגינה שלכם</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13795')">
                 <td><a>13795</a></td>
                 <td>02 - ולפעמים</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13796')">
                 <td><a>13796</a></td>
                 <td>03 - ילד טוב ירושלים</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13797')">
                 <td><a>13797</a></td>
                 <td>04 - ותגער</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13798')">
                 <td><a>13798</a></td>
                 <td>05 - עכשיו זה טוב</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13799')">
                 <td><a>13799</a></td>
                 <td>06 - בלבבי</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13800')">
                 <td><a>13800</a></td>
                 <td>07 - עלה קטן</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13801')">
                 <td><a>13801</a></td>
                 <td>08 - שיר החסידים</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13802')">
                 <td><a>13802</a></td>
                 <td>09 - בואי כלה</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13803')">
                 <td><a>13803</a></td>
                 <td>10 - לא נפלתי</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13804')">
                 <td><a>13804</a></td>
                 <td>11 - ואין בי הכח</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13805')">
                 <td><a>13805</a></td>
                 <td>12 - ועל ידי הניגונים</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13806')">
                 <td><a>13806</a></td>
                 <td>13 - אנא ה</td>
                 <td>ואני המנגינה שלכם</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13807')">
                 <td><a>13807</a></td>
                 <td>- מקהלת ידידים ושרוליק מנדלסון וישי לפידות - מחרוזת שירי חנוכה - חסידי</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13808')">
                 <td><a>13808</a></td>
                 <td>- שרולי בוכנר וישי לפידות - לב שמח - מקורי (2)</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13809')">
                 <td><a>13809</a></td>
                 <td>02 חסידים ישי לפידות</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13810')">
                 <td><a>13810</a></td>
                 <td>אבינו מלכנו</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13811')">
                 <td><a>13811</a></td>
                 <td>אדמה ושמים</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13812')">
                 <td><a>13812</a></td>
                 <td>בקש עבדך</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13813')">
                 <td><a>13813</a></td>
                 <td>הילדים הללו ישי לפידות והחברים של ישי</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13814')">
                 <td><a>13814</a></td>
                 <td>הילדים הללו</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13815')">
                 <td><a>13815</a></td>
                 <td>השידוך שלי</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13816')">
                 <td><a>13816</a></td>
                 <td>חנוכה נרקוד נשמח כולנו</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13817')">
                 <td><a>13817</a></td>
                 <td>ישי לפידות - אבא יקר</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13818')">
                 <td><a>13818</a></td>
                 <td>ישי לפידות - בקש עבדך</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13819')">
                 <td><a>13819</a></td>
                 <td>ישראל</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13820')">
                 <td><a>13820</a></td>
                 <td>להיות בשמחה- שוקי סלמון וישי לפידות</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13821')">
                 <td><a>13821</a></td>
                 <td>משה פלד & ישי לפידות - יש מי שמחכה</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13822')">
                 <td><a>13822</a></td>
                 <td>שוקי סלומון, קובי ברומר, ישי לפידות - שיר האמונה</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13823')">
                 <td><a>13823</a></td>
                 <td>שיר השמחה</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13824')">
                 <td><a>13824</a></td>
                 <td>שיר-השמחה-I-שוקי-סלומון- -ישי-לפידות-Shir-HaSimchaMP3 70K</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13825')">
                 <td><a>13825</a></td>
                 <td>שירת-המונים-להתפלל-ילדי-נתיבות-משה-קדימה-עם-ישי-לפידות</td>
                 <td>סינגלים</td>
                 <td>ישי לפידות</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,581 +1,563 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אלי גרשטנר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אלי גרשטנר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאלי גרשטנר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאלי גרשטנר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('48005')">
                 <td><a>48005</a></td>
                 <td>01-ובא</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48006')">
                 <td><a>48006</a></td>
                 <td>02-ואני תפילתי</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48007')">
                 <td><a>48007</a></td>
                 <td>03-ואתה כתבו</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48008')">
                 <td><a>48008</a></td>
                 <td>04-אם אשכחך</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48009')">
                 <td><a>48009</a></td>
                 <td>05-יענך ה</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48010')">
                 <td><a>48010</a></td>
                 <td>06-ישיש</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48011')">
                 <td><a>48011</a></td>
                 <td>07-קוה</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48012')">
                 <td><a>48012</a></td>
                 <td>08-אבינו מלכנו</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48013')">
                 <td><a>48013</a></td>
                 <td>09-רממו</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48014')">
                 <td><a>48014</a></td>
                 <td>10-מנוחה ושמחה</td>
                 <td>מנוחה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48015')">
                 <td><a>48015</a></td>
                 <td>01-הנה</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48016')">
                 <td><a>48016</a></td>
                 <td>02-כאבן</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48017')">
                 <td><a>48017</a></td>
                 <td>03-אשת חיל</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48018')">
                 <td><a>48018</a></td>
                 <td>04-שמח</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48019')">
                 <td><a>48019</a></td>
                 <td>05-אל תשליכנו</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48020')">
                 <td><a>48020</a></td>
                 <td>06-אשרי</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48021')">
                 <td><a>48021</a></td>
                 <td>07-ונזכה</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48022')">
                 <td><a>48022</a></td>
                 <td>08-שומר</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48023')">
                 <td><a>48023</a></td>
                 <td>09-אשירה</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48024')">
                 <td><a>48024</a></td>
                 <td>10-בני השם</td>
                 <td>הנה</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48025')">
                 <td><a>48025</a></td>
                 <td>01-ואשי ישראל</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48026')">
                 <td><a>48026</a></td>
                 <td>02-כי שם ה</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48027')">
                 <td><a>48027</a></td>
                 <td>03-יהי כבוד ה</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48028')">
                 <td><a>48028</a></td>
                 <td>04-אב הרחמים</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48029')">
                 <td><a>48029</a></td>
                 <td>05-ישמחו</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48030')">
                 <td><a>48030</a></td>
                 <td>06-סימן טוב</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48031')">
                 <td><a>48031</a></td>
                 <td>07-מעין עולם הבא</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48032')">
                 <td><a>48032</a></td>
                 <td>08-כי לך</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48033')">
                 <td><a>48033</a></td>
                 <td>09-אוהב שלום</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48034')">
                 <td><a>48034</a></td>
                 <td>10-ארץ ישראל</td>
                 <td>ואשי ישראל</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48035')">
                 <td><a>48035</a></td>
                 <td>01-שנאמר</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48036')">
                 <td><a>48036</a></td>
                 <td>02-ירעם</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48037')">
                 <td><a>48037</a></td>
                 <td>03-דע לפני</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48038')">
                 <td><a>48038</a></td>
                 <td>04-אני קראתיך</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48039')">
                 <td><a>48039</a></td>
                 <td>05-הריעו</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48040')">
                 <td><a>48040</a></td>
                 <td>06-ספרו</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48041')">
                 <td><a>48041</a></td>
                 <td>07-אז בקול</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48042')">
                 <td><a>48042</a></td>
                 <td>08-הקל אבינו</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48043')">
                 <td><a>48043</a></td>
                 <td>09-הוא יפתח</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48044')">
                 <td><a>48044</a></td>
                 <td>10-לשון רמיה</td>
                 <td>טק נוי</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48045')">
                 <td><a>48045</a></td>
                 <td>01-לכה דודי</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48046')">
                 <td><a>48046</a></td>
                 <td>02-ברוך שנתן תורה</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48047')">
                 <td><a>48047</a></td>
                 <td>03-ישיש</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48048')">
                 <td><a>48048</a></td>
                 <td>04-משה זכה</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48049')">
                 <td><a>48049</a></td>
                 <td>05-אשא עיני</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48050')">
                 <td><a>48050</a></td>
                 <td>06-מה רבו</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48051')">
                 <td><a>48051</a></td>
                 <td>07-שלום רב</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48052')">
                 <td><a>48052</a></td>
                 <td>08-שומע תפילה</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48053')">
                 <td><a>48053</a></td>
                 <td>09-שירו לו</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48054')">
                 <td><a>48054</a></td>
                 <td>10-מי אדיר</td>
                 <td>ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48055')">
                 <td><a>48055</a></td>
                 <td>ואשי ישראל</td>
                 <td>סינגלים</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48056')">
                 <td><a>48056</a></td>
                 <td>נחת</td>
                 <td>סינגלים</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48057')">
                 <td><a>48057</a></td>
                 <td>סימן טוב</td>
                 <td>סינגלים</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48058')">
                 <td><a>48058</a></td>
                 <td>01- ענני ה'</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48059')">
                 <td><a>48059</a></td>
                 <td>02- תפילה לעני</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48060')">
                 <td><a>48060</a></td>
                 <td>04- תורה הקדושה</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48061')">
                 <td><a>48061</a></td>
                 <td>05- אב הרחמים</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48062')">
                 <td><a>48062</a></td>
                 <td>06- ענני</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48063')">
                 <td><a>48063</a></td>
                 <td>07- קולי אל ה'</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48064')">
                 <td><a>48064</a></td>
                 <td>08- טוב להודות</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48065')">
                 <td><a>48065</a></td>
                 <td>09- אבינו מלכינו</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48066')">
                 <td><a>48066</a></td>
                 <td>10- ואני תפילתי</td>
                 <td>ענני ה'</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48067')">
                 <td><a>48067</a></td>
                 <td>01-מחרוזת שמחה</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48068')">
                 <td><a>48068</a></td>
                 <td>02-אם אשכחך</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48069')">
                 <td><a>48069</a></td>
                 <td>03-מחרוזת פריילעך</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48070')">
                 <td><a>48070</a></td>
                 <td>04-מחרוזת גרשטנר</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48071')">
                 <td><a>48071</a></td>
                 <td>05-מחרוזת זכרנו</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48072')">
                 <td><a>48072</a></td>
                 <td>06-מחרוזת חופה</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48073')">
                 <td><a>48073</a></td>
                 <td>07-מחרוזת הורה</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48074')">
                 <td><a>48074</a></td>
                 <td>08-סיום</td>
                 <td>תזמורת ישיש</td>
                 <td>אלי גרשטנר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

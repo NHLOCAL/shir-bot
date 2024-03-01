@@ -1,1827 +1,1809 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>גד אלבז</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>גד אלבז</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspגד אלבז</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspגד אלבז</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('5632')">
                 <td><a>5632</a></td>
                 <td>01-אור בקצה המנהרה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5633')">
                 <td><a>5633</a></td>
                 <td>02-אם נאמין</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5634')">
                 <td><a>5634</a></td>
                 <td>03-ביילה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5635')">
                 <td><a>5635</a></td>
                 <td>04-בעקבות החלום</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5636')">
                 <td><a>5636</a></td>
                 <td>05-ברכת שמיים</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5637')">
                 <td><a>5637</a></td>
                 <td>06-האמונה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5638')">
                 <td><a>5638</a></td>
                 <td>08-זה לערוסה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5639')">
                 <td><a>5639</a></td>
                 <td>09-יהי שם</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5640')">
                 <td><a>5640</a></td>
                 <td>10-כשהנשמה בקרבי</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5641')">
                 <td><a>5641</a></td>
                 <td>11-לב מרגיש-נעימה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5642')">
                 <td><a>5642</a></td>
                 <td>12-לב מרגיש</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5643')">
                 <td><a>5643</a></td>
                 <td>13-מזמור לדוד</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5644')">
                 <td><a>5644</a></td>
                 <td>14-נחמן מאומן</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5645')">
                 <td><a>5645</a></td>
                 <td>15-נקדישך ונעריצך</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5646')">
                 <td><a>5646</a></td>
                 <td>16-עלית על כולנה</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5647')">
                 <td><a>5647</a></td>
                 <td>17-תעתועי</td>
                 <td>אור בקצה המנהרה</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5648')">
                 <td><a>5648</a></td>
                 <td>01 אני ככלי</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5649')">
                 <td><a>5649</a></td>
                 <td>02 בין הטיפות</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5650')">
                 <td><a>5650</a></td>
                 <td>03 עולם של ילדים</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5651')">
                 <td><a>5651</a></td>
                 <td>04 שירים לבית אבי</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5652')">
                 <td><a>5652</a></td>
                 <td>05 כנראה</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5653')">
                 <td><a>5653</a></td>
                 <td>06 יממא</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5654')">
                 <td><a>5654</a></td>
                 <td>07 אני נשבע לך</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5655')">
                 <td><a>5655</a></td>
                 <td>08 אבינו מלכנו</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5656')">
                 <td><a>5656</a></td>
                 <td>09 ניגון קטן</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5657')">
                 <td><a>5657</a></td>
                 <td>10 אור</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5658')">
                 <td><a>5658</a></td>
                 <td>11 התנערי</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5659')">
                 <td><a>5659</a></td>
                 <td>12 תפילה לדרך</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5660')">
                 <td><a>5660</a></td>
                 <td>13 פיאסטה</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5661')">
                 <td><a>5661</a></td>
                 <td>14 אנא בכוח</td>
                 <td>בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5662')">
                 <td><a>5662</a></td>
                 <td>01 תפילה -גד</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5663')">
                 <td><a>5663</a></td>
                 <td>02 הילד שביקשתי גד ובני</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5664')">
                 <td><a>5664</a></td>
                 <td>04 אחות קטנה-גד ואביעד גיל</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5665')">
                 <td><a>5665</a></td>
                 <td>05 העם מחפש מנוח-גד וישי לפידות</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5666')">
                 <td><a>5666</a></td>
                 <td>06 הניצוץ בך- גד ואסף הספל</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5667')">
                 <td><a>5667</a></td>
                 <td>07 תפילת אב - גד וניר קפטן</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5668')">
                 <td><a>5668</a></td>
                 <td>08 אסור- גד אלבז</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5669')">
                 <td><a>5669</a></td>
                 <td>09 B כשהלב בוכה - גד,אבירם ועידן</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5670')">
                 <td><a>5670</a></td>
                 <td>10 פינה שקטה- גד ואבי נקש</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5671')">
                 <td><a>5671</a></td>
                 <td>11 שר מהלב-גד וגביר בן שמואל</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5672')">
                 <td><a>5672</a></td>
                 <td>12 אמא-גד ואלון דלוקו</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5673')">
                 <td><a>5673</a></td>
                 <td>13 אמא 2 -גד ואלון דלוקו</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5674')">
                 <td><a>5674</a></td>
                 <td>14 תוגת הלב- גד ואבי בן ישראל</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5675')">
                 <td><a>5675</a></td>
                 <td>15 זמנים מתוקים- גד אלבז</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5676')">
                 <td><a>5676</a></td>
                 <td>אמן - גד ואיתי עמרן 03</td>
                 <td>גד אלבז חדש</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5677')">
                 <td><a>5677</a></td>
                 <td>01 אני ככליi</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5678')">
                 <td><a>5678</a></td>
                 <td>02 בין הטיפות</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5679')">
                 <td><a>5679</a></td>
                 <td>03 עולם של ילדים</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5680')">
                 <td><a>5680</a></td>
                 <td>04 שירים לבית אביi</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5681')">
                 <td><a>5681</a></td>
                 <td>05 כנראה</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5682')">
                 <td><a>5682</a></td>
                 <td>06 יממא</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5683')">
                 <td><a>5683</a></td>
                 <td>07 אני נשבע לך</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5684')">
                 <td><a>5684</a></td>
                 <td>08 אבינו מלכנו</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5685')">
                 <td><a>5685</a></td>
                 <td>09 ניגון קטן</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5686')">
                 <td><a>5686</a></td>
                 <td>10 אור</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5687')">
                 <td><a>5687</a></td>
                 <td>11 התנערי</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5688')">
                 <td><a>5688</a></td>
                 <td>12 תפילה לדרך</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5689')">
                 <td><a>5689</a></td>
                 <td>13 פיאסטה</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5690')">
                 <td><a>5690</a></td>
                 <td>14 אנא בכח</td>
                 <td>גד אלבז-בין הטיפות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5691')">
                 <td><a>5691</a></td>
                 <td>01 זה היום</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5692')">
                 <td><a>5692</a></td>
                 <td>02 מי שברך לקהל</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5693')">
                 <td><a>5693</a></td>
                 <td>03 בניין עולם</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5694')">
                 <td><a>5694</a></td>
                 <td>04 ישימך</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5695')">
                 <td><a>5695</a></td>
                 <td>05 מהרה</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5696')">
                 <td><a>5696</a></td>
                 <td>06 התנערי</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5697')">
                 <td><a>5697</a></td>
                 <td>07 שיר למעלות</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5698')">
                 <td><a>5698</a></td>
                 <td>08 בואי כלה</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5699')">
                 <td><a>5699</a></td>
                 <td>09 הינך יפה רעייתי</td>
                 <td>זה היום</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5700')">
                 <td><a>5700</a></td>
                 <td>01-תפילה</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5701')">
                 <td><a>5701</a></td>
                 <td>02-הילד שבקשתי</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5702')">
                 <td><a>5702</a></td>
                 <td>03-אמן</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5703')">
                 <td><a>5703</a></td>
                 <td>04-אחות קטנה</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5704')">
                 <td><a>5704</a></td>
                 <td>05-העם מחפש מנוח</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5705')">
                 <td><a>5705</a></td>
                 <td>06-הניצוץ בך</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5706')">
                 <td><a>5706</a></td>
                 <td>07-תפילת אב</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5707')">
                 <td><a>5707</a></td>
                 <td>08-אסור</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5708')">
                 <td><a>5708</a></td>
                 <td>09-כשהלב בוכה</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5709')">
                 <td><a>5709</a></td>
                 <td>10-פינה שקטה</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5710')">
                 <td><a>5710</a></td>
                 <td>11-שר מהלב</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5711')">
                 <td><a>5711</a></td>
                 <td>12-אמא-אינטרוי</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5712')">
                 <td><a>5712</a></td>
                 <td>13-אמא</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5713')">
                 <td><a>5713</a></td>
                 <td>14-תוגת הלב</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5714')">
                 <td><a>5714</a></td>
                 <td>15-זמנים מתוקים</td>
                 <td>כמעט שקט</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5715')">
                 <td><a>5715</a></td>
                 <td>01 - Gad Elbaz - When I Fall</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5716')">
                 <td><a>5716</a></td>
                 <td>02 - Gad Elbaz - My Child</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5717')">
                 <td><a>5717</a></td>
                 <td>03 - Gad Elbaz - Hashem Melech #2.0 (feat. Nissim Black)</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5718')">
                 <td><a>5718</a></td>
                 <td>04 - Gad Elbaz - Como Vivir</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5719')">
                 <td><a>5719</a></td>
                 <td>05 - Gad Elbaz - Give Ya Me Thanks (feat. Roy Edri)</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5720')">
                 <td><a>5720</a></td>
                 <td>06 - Gad Elbaz - Save Me from My Selfie</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5721')">
                 <td><a>5721</a></td>
                 <td>07 - Gad Elbaz - L'chaim (feat. Nissim Black)</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5722')">
                 <td><a>5722</a></td>
                 <td>08 - Gad Elbaz - If Only</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5723')">
                 <td><a>5723</a></td>
                 <td>09 - Gad Elbaz - Till the Day I Die</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5724')">
                 <td><a>5724</a></td>
                 <td>10 - Gad Elbaz - True Love (feat. Alon De Loco)</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5725')">
                 <td><a>5725</a></td>
                 <td>11 - Gad Elbaz - Hava Nagila</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5726')">
                 <td><a>5726</a></td>
                 <td>12 - Gad Elbaz - Olele</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5727')">
                 <td><a>5727</a></td>
                 <td>13 - Gad Elbaz - In the Beginning</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5728')">
                 <td><a>5728</a></td>
                 <td>14 - Gad Elbaz - Open Up</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5729')">
                 <td><a>5729</a></td>
                 <td>15 - Gad Elbaz - Ochi Chorne (feat. Avi Benjamin)</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5730')">
                 <td><a>5730</a></td>
                 <td>16 - Gad Elbaz - On & On</td>
                 <td>לחיים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5731')">
                 <td><a>5731</a></td>
                 <td>01-חייל בגיזרה</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5732')">
                 <td><a>5732</a></td>
                 <td>02-נוער מצויין</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5733')">
                 <td><a>5733</a></td>
                 <td>03-לך בדרכים ישרות</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5734')">
                 <td><a>5734</a></td>
                 <td>04-רמזים</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5735')">
                 <td><a>5735</a></td>
                 <td>05-קדש לי כל בכור</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5736')">
                 <td><a>5736</a></td>
                 <td>06-יד ביד אל האמת נצעד</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5737')">
                 <td><a>5737</a></td>
                 <td>07-פלאי הבריאה</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5738')">
                 <td><a>5738</a></td>
                 <td>08-נשיר כולנו</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5739')">
                 <td><a>5739</a></td>
                 <td>09-נוער מתבולל</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5740')">
                 <td><a>5740</a></td>
                 <td>10-נעימה</td>
                 <td>לך בדרכים ישרות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5741')">
                 <td><a>5741</a></td>
                 <td>01 inrto</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5742')">
                 <td><a>5742</a></td>
                 <td>02 סיפור של הלב</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5743')">
                 <td><a>5743</a></td>
                 <td>03 כבתחילה</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5744')">
                 <td><a>5744</a></td>
                 <td>04 לכל מי</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5745')">
                 <td><a>5745</a></td>
                 <td>05 השער שלי לגן עדן</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5746')">
                 <td><a>5746</a></td>
                 <td>06 מילים של רוח</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5747')">
                 <td><a>5747</a></td>
                 <td>07 לשמור על תקווה</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5748')">
                 <td><a>5748</a></td>
                 <td>08 עד לאן שרואים</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5749')">
                 <td><a>5749</a></td>
                 <td>09 רק כאן</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5750')">
                 <td><a>5750</a></td>
                 <td>10 יהיה לי טוב</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5751')">
                 <td><a>5751</a></td>
                 <td>11 חלק ממני</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5752')">
                 <td><a>5752</a></td>
                 <td>12 בשוב האמונה</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5753')">
                 <td><a>5753</a></td>
                 <td>13 זה הזמן שלנו</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5754')">
                 <td><a>5754</a></td>
                 <td>14 רגע לפני</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5755')">
                 <td><a>5755</a></td>
                 <td>15 רוצה לחזור</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5756')">
                 <td><a>5756</a></td>
                 <td>16 הכל מלמעלה</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5757')">
                 <td><a>5757</a></td>
                 <td>17 סיפור של הלב רמיקס</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5758')">
                 <td><a>5758</a></td>
                 <td>18 זה הזמן שלנו רמיקס</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5759')">
                 <td><a>5759</a></td>
                 <td>19 מילים של רוח רמיקס</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5760')">
                 <td><a>5760</a></td>
                 <td>21 לעולם ועד רמיקס</td>
                 <td>מילים של רוח</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5761')">
                 <td><a>5761</a></td>
                 <td>01-על נהרות בבל</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5762')">
                 <td><a>5762</a></td>
                 <td>02-אל תחיה בסרט</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5763')">
                 <td><a>5763</a></td>
                 <td>03-הלילה זה הזמן</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5764')">
                 <td><a>5764</a></td>
                 <td>04-משמעויות</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5765')">
                 <td><a>5765</a></td>
                 <td>05-אל תבכי</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5766')">
                 <td><a>5766</a></td>
                 <td>06-מעבר לים</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5767')">
                 <td><a>5767</a></td>
                 <td>07-ציפור גן עדן</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5768')">
                 <td><a>5768</a></td>
                 <td>08-תן תן</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5769')">
                 <td><a>5769</a></td>
                 <td>09-אינשאללה</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5770')">
                 <td><a>5770</a></td>
                 <td>10-עקבות בחול</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5771')">
                 <td><a>5771</a></td>
                 <td>11-כשהדמעות זולגות</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5772')">
                 <td><a>5772</a></td>
                 <td>12-האחד</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5773')">
                 <td><a>5773</a></td>
                 <td>13-הלילה זה הזמן</td>
                 <td>משמעויות</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5774')">
                 <td><a>5774</a></td>
                 <td>01 רצועה 1</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5775')">
                 <td><a>5775</a></td>
                 <td>02 רצועה 2</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5776')">
                 <td><a>5776</a></td>
                 <td>03 רצועה 3</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5777')">
                 <td><a>5777</a></td>
                 <td>04 רצועה 4</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5778')">
                 <td><a>5778</a></td>
                 <td>05 רצועה 5</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5779')">
                 <td><a>5779</a></td>
                 <td>06 רצועה 6</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5780')">
                 <td><a>5780</a></td>
                 <td>07 רצועה 7</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5781')">
                 <td><a>5781</a></td>
                 <td>08 רצועה 8</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5782')">
                 <td><a>5782</a></td>
                 <td>09 רצועה 9</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5783')">
                 <td><a>5783</a></td>
                 <td>10 רצועה 10</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5784')">
                 <td><a>5784</a></td>
                 <td>11 רצועה 11</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5785')">
                 <td><a>5785</a></td>
                 <td>12 רצועה 12</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5786')">
                 <td><a>5786</a></td>
                 <td>13 רצועה 13</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5787')">
                 <td><a>5787</a></td>
                 <td>14 רצועה 14</td>
                 <td>ניגון ומזמור</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5788')">
                 <td><a>5788</a></td>
                 <td>- גד אלבז - אתה שלום - מזרחי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5789')">
                 <td><a>5789</a></td>
                 <td>- גד אלבז - הללו - מזרחי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5790')">
                 <td><a>5790</a></td>
                 <td>- גד אלבז - כל יכול - מזרחי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5791')">
                 <td><a>5791</a></td>
                 <td>- גד אלבז וסול דרייר -גינגל חנוכה - מזרחי אנגלית</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5792')">
                 <td><a>5792</a></td>
                 <td>03 Hashem Melech 2.0 (Feat. Gad Elbaz)</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5793')">
                 <td><a>5793</a></td>
                 <td>05-השם מלך-גד, בני אלבז</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5794')">
                 <td><a>5794</a></td>
                 <td>12. בשוב האמונה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5795')">
                 <td><a>5795</a></td>
                 <td>Gad Elbaz Adon Haselichot גד אלבז אדון הסליחות.136</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5796')">
                 <td><a>5796</a></td>
                 <td>He is the one</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5797')">
                 <td><a>5797</a></td>
                 <td>Healers</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5798')">
                 <td><a>5798</a></td>
                 <td>Just Like That</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5799')">
                 <td><a>5799</a></td>
                 <td>Melech Echad</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5800')">
                 <td><a>5800</a></td>
                 <td>Ochi Chernye</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5801')">
                 <td><a>5801</a></td>
                 <td>WeR1</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5802')">
                 <td><a>5802</a></td>
                 <td>When I Fall</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5803')">
                 <td><a>5803</a></td>
                 <td>אבא-גד אלבז</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5804')">
                 <td><a>5804</a></td>
                 <td>אבאלה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5805')">
                 <td><a>5805</a></td>
                 <td>אבינו</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5806')">
                 <td><a>5806</a></td>
                 <td>אבן מאסו הבונים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5807')">
                 <td><a>5807</a></td>
                 <td>אדון הסליחות</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5808')">
                 <td><a>5808</a></td>
                 <td>אור הנר</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5809')">
                 <td><a>5809</a></td>
                 <td>אורצ'ה צ'ורניה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5810')">
                 <td><a>5810</a></td>
                 <td>אם אשכחך</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5811')">
                 <td><a>5811</a></td>
                 <td>אמונה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5812')">
                 <td><a>5812</a></td>
                 <td>אנא בכח</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5813')">
                 <td><a>5813</a></td>
                 <td>אנא</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5814')">
                 <td><a>5814</a></td>
                 <td>אנחנו אחד</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5815')">
                 <td><a>5815</a></td>
                 <td>אני ככלי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5816')">
                 <td><a>5816</a></td>
                 <td>אסור</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5817')">
                 <td><a>5817</a></td>
                 <td>אש של משיח</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5818')">
                 <td><a>5818</a></td>
                 <td>בני וגד אלבז - ה' מלך</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5819')">
                 <td><a>5819</a></td>
                 <td>גד אלבז & אבי בנג'מין - אוצ'י צ'ורני</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5820')">
                 <td><a>5820</a></td>
                 <td>גד אלבז & דודו פישר - שנו את העולם - Gad Elbaz, Dudu Fisher Feat Saul Drier - Change the world</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5821')">
                 <td><a>5821</a></td>
                 <td>גד אלבז & חיים שלמה מייעס - מקודשת</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5822')">
                 <td><a>5822</a></td>
                 <td>גד אלבז - I Know</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5823')">
                 <td><a>5823</a></td>
                 <td>גד אלבז - אבאל'ה (רמיקס - די ג'יי אהרון קופמן)</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5824')">
                 <td><a>5824</a></td>
                 <td>גד אלבז - השם מלך   אילן שלו רמיקס - עותק</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5825')">
                 <td><a>5825</a></td>
                 <td>גד אלבז - חלק ממני (דאנס רמיקס - </td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5826')">
                 <td><a>5826</a></td>
                 <td>גד אלבז - שירת המלאכים Gad Elbaz - Shirat Hamalachim</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5827')">
                 <td><a>5827</a></td>
                 <td>גד אלבז ואיציק שמלי - אנא</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5828')">
                 <td><a>5828</a></td>
                 <td>גד אלבז מארח את ניסים - לחיים - Gad Elbaz feat. Nissim - L'CHAIM</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5829')">
                 <td><a>5829</a></td>
                 <td>גד אלבז ממעמקים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5830')">
                 <td><a>5830</a></td>
                 <td>גד אלבז שלום אדון עולם Gad Elbaz Shalom Adon Olam.134</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5831')">
                 <td><a>5831</a></td>
                 <td>גד אלבז, איתי עמרן - תחזיק אותי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5832')">
                 <td><a>5832</a></td>
                 <td>ה' מלך - עת רקוד - רמיקס</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5833')">
                 <td><a>5833</a></td>
                 <td>ה' מלך - פלייבק מקורי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5834')">
                 <td><a>5834</a></td>
                 <td>ה' מלך</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5835')">
                 <td><a>5835</a></td>
                 <td>הבה נגילה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5836')">
                 <td><a>5836</a></td>
                 <td>הורני</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5837')">
                 <td><a>5837</a></td>
                 <td>הכל מלמעלה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5838')">
                 <td><a>5838</a></td>
                 <td>הלילה זה הזמן-גד אלבז</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5839')">
                 <td><a>5839</a></td>
                 <td>השם מלך - עם בני אלבז</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5840')">
                 <td><a>5840</a></td>
                 <td>השם מלך רמיקס</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5841')">
                 <td><a>5841</a></td>
                 <td>זה היום</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5842')">
                 <td><a>5842</a></td>
                 <td>חלק ממני</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5843')">
                 <td><a>5843</a></td>
                 <td>חסידיסטוק גד אלבז - שידור בכורה ביוטיוב!</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5844')">
                 <td><a>5844</a></td>
                 <td>יוני Z (זיגלבוים) וגד אלבז - טעם וריח</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5845')">
                 <td><a>5845</a></td>
                 <td>יותר חזק</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5846')">
                 <td><a>5846</a></td>
                 <td>ירושלים (2)</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5847')">
                 <td><a>5847</a></td>
                 <td>ירושלים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5848')">
                 <td><a>5848</a></td>
                 <td>כבתחילה - רימיקס</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5849')">
                 <td><a>5849</a></td>
                 <td>כבתחילה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5850')">
                 <td><a>5850</a></td>
                 <td>להמשיך לאהוב</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5851')">
                 <td><a>5851</a></td>
                 <td>לחיים - טעימה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5852')">
                 <td><a>5852</a></td>
                 <td>לחיים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5853')">
                 <td><a>5853</a></td>
                 <td>לך אקרא</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5854')">
                 <td><a>5854</a></td>
                 <td>לכל מי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5855')">
                 <td><a>5855</a></td>
                 <td>לשמור על התקווה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5856')">
                 <td><a>5856</a></td>
                 <td>מאיפה להתחיל</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5857')">
                 <td><a>5857</a></td>
                 <td>מה נשתנה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5858')">
                 <td><a>5858</a></td>
                 <td>מה עוד נשאר לנו</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5859')">
                 <td><a>5859</a></td>
                 <td>מידד טסה וגד אלבז - מלך אחד</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5860')">
                 <td><a>5860</a></td>
                 <td>מיוזיק לייט - רמיקס ה' מלך</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5861')">
                 <td><a>5861</a></td>
                 <td>ממעמקים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5862')">
                 <td><a>5862</a></td>
                 <td>מן המיצר</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5863')">
                 <td><a>5863</a></td>
                 <td>מקודשת</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5864')">
                 <td><a>5864</a></td>
                 <td>ניר קפטן _ גד אלבז - לא לבד</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5865')">
                 <td><a>5865</a></td>
                 <td>סאבלימינל מארח את גד אלבז - הכל מלמעלה</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5866')">
                 <td><a>5866</a></td>
                 <td>סיפור חיי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5867')">
                 <td><a>5867</a></td>
                 <td>סיפור של הלב</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5868')">
                 <td><a>5868</a></td>
                 <td>עד לאן שרואים GAD ELBAZ מילים של רוח</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5869')">
                 <td><a>5869</a></td>
                 <td>עובדיה חממה & גד אלבז - כתוב את השירה הזאת</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5870')">
                 <td><a>5870</a></td>
                 <td>עובדיה חממה וגד אלבז - כרוני</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5871')">
                 <td><a>5871</a></td>
                 <td>על טעם וריח - רימיקס</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5872')">
                 <td><a>5872</a></td>
                 <td>עם מחפש מנוח</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5873')">
                 <td><a>5873</a></td>
                 <td>פותח את ידיך</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5874')">
                 <td><a>5874</a></td>
                 <td>רחלי 2</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5875')">
                 <td><a>5875</a></td>
                 <td>רחלי 3</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5876')">
                 <td><a>5876</a></td>
                 <td>רק כאן</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5877')">
                 <td><a>5877</a></td>
                 <td>שיבנה - וואקלי</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5878')">
                 <td><a>5878</a></td>
                 <td>שירת המלאכים</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5879')">
                 <td><a>5879</a></td>
                 <td>שנו את העולם</td>
                 <td>סינגלים</td>
                 <td>גד אלבז</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

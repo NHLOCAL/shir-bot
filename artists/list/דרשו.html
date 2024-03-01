@@ -1,1197 +1,1179 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>דרשו</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>דרשו</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspדרשו</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspדרשו</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('6667')">
                 <td><a>6667</a></td>
                 <td>מחרוזת ריקודי סיום השס</td>
                 <td>דרשו</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6668')">
                 <td><a>6668</a></td>
                 <td>נחמן סלצר - המסע לראדין - דרשו</td>
                 <td>דרשו</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6669')">
                 <td><a>6669</a></td>
                 <td>01-דרשו ד' ועוזו</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6670')">
                 <td><a>6670</a></td>
                 <td>02-ניגוני התעוררות</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6671')">
                 <td><a>6671</a></td>
                 <td>03-מחרוזת</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6672')">
                 <td><a>6672</a></td>
                 <td>04-יהא רעווא</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6673')">
                 <td><a>6673</a></td>
                 <td>05-מחרוזת</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6674')">
                 <td><a>6674</a></td>
                 <td>06-כד יתבין</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6675')">
                 <td><a>6675</a></td>
                 <td>07-אבינו מלכנו</td>
                 <td>אמת מה נהדר</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6676')">
                 <td><a>6676</a></td>
                 <td>01-אני מאמין</td>
                 <td>אשריכם</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6677')">
                 <td><a>6677</a></td>
                 <td>02-קדשנו</td>
                 <td>אשריכם</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6678')">
                 <td><a>6678</a></td>
                 <td>01 רצועה 1</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6679')">
                 <td><a>6679</a></td>
                 <td>02 רצועה 2</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6680')">
                 <td><a>6680</a></td>
                 <td>03 רצועה 3</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6681')">
                 <td><a>6681</a></td>
                 <td>04 רצועה 4</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6682')">
                 <td><a>6682</a></td>
                 <td>05 רצועה 5</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6683')">
                 <td><a>6683</a></td>
                 <td>06 רצועה 6</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6684')">
                 <td><a>6684</a></td>
                 <td>07 רצועה 7</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6685')">
                 <td><a>6685</a></td>
                 <td>08 רצועה 8</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6686')">
                 <td><a>6686</a></td>
                 <td>09 רצועה 9</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6687')">
                 <td><a>6687</a></td>
                 <td>10 רצועה 10</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6688')">
                 <td><a>6688</a></td>
                 <td>11 רצועה 11</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6689')">
                 <td><a>6689</a></td>
                 <td>12 רצועה 12</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6690')">
                 <td><a>6690</a></td>
                 <td>13 רצועה 13</td>
                 <td>בזכות התורה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6691')">
                 <td><a>6691</a></td>
                 <td>01 מחרוזת דרשו  -המנגנים</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6692')">
                 <td><a>6692</a></td>
                 <td>02 ובמקהלות  -מקהלת מלכות</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6693')">
                 <td><a>6693</a></td>
                 <td>03 כנשר -אייזיק האניג</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6694')">
                 <td><a>6694</a></td>
                 <td>04 ותערב לפניך -ירמיה דמן</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6695')">
                 <td><a>6695</a></td>
                 <td>05 יתגבר כארי -שלמה כהן</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6696')">
                 <td><a>6696</a></td>
                 <td>06 תנא דבי -אייזיק האניג</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6697')">
                 <td><a>6697</a></td>
                 <td>07 שערי ציון -אלי הרצליך</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6698')">
                 <td><a>6698</a></td>
                 <td>08 מה אשיב -אהרלה סמאט</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6699')">
                 <td><a>6699</a></td>
                 <td>09 כל העולם כולו -אהרלה סמאט</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6700')">
                 <td><a>6700</a></td>
                 <td>10 אם היו בני אדם -אהרלה סמאט</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6701')">
                 <td><a>6701</a></td>
                 <td>11 אנא אמצאך -שלמה כהן</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6702')">
                 <td><a>6702</a></td>
                 <td>12 לולא תורתך -שלמה כהן</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6703')">
                 <td><a>6703</a></td>
                 <td>13 רופא חולי -שלמה כהן</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6704')">
                 <td><a>6704</a></td>
                 <td>14 כאייל קומטאנץ -אייזיק האניג</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6705')">
                 <td><a>6705</a></td>
                 <td>15 אתה הראית -אייזיק האניג</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6706')">
                 <td><a>6706</a></td>
                 <td>16 כתר -אייזיק האניג</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6707')">
                 <td><a>6707</a></td>
                 <td>17 ולירושלים -יענקי דסקל</td>
                 <td>במקהלות רבבות</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6708')">
                 <td><a>6708</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 01</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6709')">
                 <td><a>6709</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 02</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6710')">
                 <td><a>6710</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 03</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6711')">
                 <td><a>6711</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 04</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6712')">
                 <td><a>6712</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 05</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6713')">
                 <td><a>6713</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 06</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6714')">
                 <td><a>6714</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 07</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6715')">
                 <td><a>6715</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 08</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6716')">
                 <td><a>6716</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 09</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6717')">
                 <td><a>6717</a></td>
                 <td>דרשו סיום ארנה ט  אדר תשפ ב - חלק 10</td>
                 <td>דרשו סיום משנה ברורה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6718')">
                 <td><a>6718</a></td>
                 <td>סיום השס דרשו תשעב השבעתי - ירמיה דמן משה דמן אפרים מנת</td>
                 <td>הסיום תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6719')">
                 <td><a>6719</a></td>
                 <td>01 רצועה 1</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6720')">
                 <td><a>6720</a></td>
                 <td>02 רצועה 2</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6721')">
                 <td><a>6721</a></td>
                 <td>03 רצועה 3</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6722')">
                 <td><a>6722</a></td>
                 <td>04 רצועה 4</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6723')">
                 <td><a>6723</a></td>
                 <td>05 רצועה 5</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6724')">
                 <td><a>6724</a></td>
                 <td>06 רצועה 6</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6725')">
                 <td><a>6725</a></td>
                 <td>07 רצועה 7</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6726')">
                 <td><a>6726</a></td>
                 <td>08 רצועה 8</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6727')">
                 <td><a>6727</a></td>
                 <td>09 רצועה 9</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6728')">
                 <td><a>6728</a></td>
                 <td>10 רצועה 10</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6729')">
                 <td><a>6729</a></td>
                 <td>11 רצועה 11</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6730')">
                 <td><a>6730</a></td>
                 <td>12 רצועה 12</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6731')">
                 <td><a>6731</a></td>
                 <td>13 רצועה 13</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6732')">
                 <td><a>6732</a></td>
                 <td>14 רצועה 14</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6733')">
                 <td><a>6733</a></td>
                 <td>15 רצועה 15</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6734')">
                 <td><a>6734</a></td>
                 <td>16 רצועה 16</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6735')">
                 <td><a>6735</a></td>
                 <td>17 רצועה 17</td>
                 <td>דרשו - סיום השס תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6736')">
                 <td><a>6736</a></td>
                 <td>01 מבקש</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6737')">
                 <td><a>6737</a></td>
                 <td>02 הדרן</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6738')">
                 <td><a>6738</a></td>
                 <td>03 ולירושלים</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6739')">
                 <td><a>6739</a></td>
                 <td>04 כי יש בתורה</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6740')">
                 <td><a>6740</a></td>
                 <td>05 צמאה</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6741')">
                 <td><a>6741</a></td>
                 <td>06 בדברי תורה בלבד</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6742')">
                 <td><a>6742</a></td>
                 <td>07 אחינו</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6743')">
                 <td><a>6743</a></td>
                 <td>08 והוא קלי</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6744')">
                 <td><a>6744</a></td>
                 <td>09 דרשו</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6745')">
                 <td><a>6745</a></td>
                 <td>09 דרשו</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6746')">
                 <td><a>6746</a></td>
                 <td>10 לדור</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6747')">
                 <td><a>6747</a></td>
                 <td>11 ויהיו בנינו</td>
                 <td>דרשו תשעב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6748')">
                 <td><a>6748</a></td>
                 <td>01 מחרוזת פתיחה</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6749')">
                 <td><a>6749</a></td>
                 <td>02 השבעתי</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6750')">
                 <td><a>6750</a></td>
                 <td>03 מבקש</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6751')">
                 <td><a>6751</a></td>
                 <td>04 יש בתורה</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6752')">
                 <td><a>6752</a></td>
                 <td>05 אב הרחמים</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6753')">
                 <td><a>6753</a></td>
                 <td>06 הדרן</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6754')">
                 <td><a>6754</a></td>
                 <td>07 ולירושלים</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6755')">
                 <td><a>6755</a></td>
                 <td>08 מחרוזת סיום</td>
                 <td>רגעי ההוד</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6756')">
                 <td><a>6756</a></td>
                 <td>01 מחרוזת דרשו</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6757')">
                 <td><a>6757</a></td>
                 <td>02 ובמקהלות</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6758')">
                 <td><a>6758</a></td>
                 <td>03 כנשר</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6759')">
                 <td><a>6759</a></td>
                 <td>04 ותערב לפניך</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6760')">
                 <td><a>6760</a></td>
                 <td>05 יתגבר כארי</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6761')">
                 <td><a>6761</a></td>
                 <td>06 תנא דבי</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6762')">
                 <td><a>6762</a></td>
                 <td>07 שערי ציון</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6763')">
                 <td><a>6763</a></td>
                 <td>08 מה אשיב</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6764')">
                 <td><a>6764</a></td>
                 <td>09 כל העולם כולו</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6765')">
                 <td><a>6765</a></td>
                 <td>10 אם היו בני אדם</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6766')">
                 <td><a>6766</a></td>
                 <td>11 אנא אמצאך</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6767')">
                 <td><a>6767</a></td>
                 <td>12 לולא תורתך</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6768')">
                 <td><a>6768</a></td>
                 <td>13 רופא חולי</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6769')">
                 <td><a>6769</a></td>
                 <td>14 כאייל קומטאנץ</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6770')">
                 <td><a>6770</a></td>
                 <td>15 אתה הראית</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6771')">
                 <td><a>6771</a></td>
                 <td>16 כתר</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6772')">
                 <td><a>6772</a></td>
                 <td>17 ולירושלים</td>
                 <td>סיום דף היומי בהלכה תשעה</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6773')">
                 <td><a>6773</a></td>
                 <td>01 - מחרוזת פתיחה</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6774')">
                 <td><a>6774</a></td>
                 <td>02 - מחרוזת חב''ד</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6775')">
                 <td><a>6775</a></td>
                 <td>03 - מארש גור</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6776')">
                 <td><a>6776</a></td>
                 <td>04 - יחד שבטי ישראל</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6777')">
                 <td><a>6777</a></td>
                 <td>05 - אין סגולה כתורה</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6778')">
                 <td><a>6778</a></td>
                 <td>06 - ומתקדש</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6779')">
                 <td><a>6779</a></td>
                 <td>07 - אחת שאלתי</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6780')">
                 <td><a>6780</a></td>
                 <td>08 - מחרוזת שירי נפתלי קמפה</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6781')">
                 <td><a>6781</a></td>
                 <td>09 - ריקוד הסיום</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6782')">
                 <td><a>6782</a></td>
                 <td>10 - קדוש קדוש</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6783')">
                 <td><a>6783</a></td>
                 <td>11 - ותחזינה עינינו</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6784')">
                 <td><a>6784</a></td>
                 <td>12 - מן השמים</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6785')">
                 <td><a>6785</a></td>
                 <td>13 - בלבבי</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6786')">
                 <td><a>6786</a></td>
                 <td>14 - אזכרה ימים</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6787')">
                 <td><a>6787</a></td>
                 <td>15 - אודה ויזניץ</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6788')">
                 <td><a>6788</a></td>
                 <td>16 כניסת מרן הגר''ח שליט''א</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6789')">
                 <td><a>6789</a></td>
                 <td>17 - כל השונה הלכות</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6790')">
                 <td><a>6790</a></td>
                 <td>18 - רצה הקב''ה</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6791')">
                 <td><a>6791</a></td>
                 <td>19 - קומזיץ עם נפתלי קמפה</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6792')">
                 <td><a>6792</a></td>
                 <td>20 - אם תעירו</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6793')">
                 <td><a>6793</a></td>
                 <td>21 - מחרוזת תורה קצבית</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6794')">
                 <td><a>6794</a></td>
                 <td>22 - מחרוזת מוטי ויזל</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6795')">
                 <td><a>6795</a></td>
                 <td>23 - שומע קול בכיות</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6796')">
                 <td><a>6796</a></td>
                 <td>24 - ריקוד סיום</td>
                 <td>סיום דף היומי בהלכה תשפב</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6797')">
                 <td><a>6797</a></td>
                 <td>אורך ימים בימינה - שיר סיום השס</td>
                 <td>סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6798')">
                 <td><a>6798</a></td>
                 <td>בערי וובר - הדרן</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6799')">
                 <td><a>6799</a></td>
                 <td>וזכות כל התנאים והאמוראים</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6800')">
                 <td><a>6800</a></td>
                 <td>זאנוויל וויינברגר & אהרלה סאמעט - אלו הם הצדיקים</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6801')">
                 <td><a>6801</a></td>
                 <td>זאנוויל ויינברגר & אהרלה סמט - כי בי ירבו ימיך</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6802')">
                 <td><a>6802</a></td>
                 <td>זאנוויל ויינברגר - הכל הבו גודל</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6803')">
                 <td><a>6803</a></td>
                 <td>זאנוויל ויינברגר ואהר'לע סאמט אלו הם הצדיקים</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6804')">
                 <td><a>6804</a></td>
                 <td>יענקי גרין יהי לרצון</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6805')">
                 <td><a>6805</a></td>
                 <td>יענקי דאסקל ואלי הרצליך לולי תורתך</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6806')">
                 <td><a>6806</a></td>
                 <td>יענקי היל</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6807')">
                 <td><a>6807</a></td>
                 <td>יענקל'ה הכונס - מוטי שטיינמץ</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6808')">
                 <td><a>6808</a></td>
                 <td>ישראל אדלר ומקהלת נרננה - גוט יום טוב רבנן</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6809')">
                 <td><a>6809</a></td>
                 <td>לוי פאלקוביץ ומקהלת נרננה  כד יתבין</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6810')">
                 <td><a>6810</a></td>
                 <td>לכבוד סיום השס זאבי קאופמן - לולי תורתך</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6811')">
                 <td><a>6811</a></td>
                 <td>מוטי שטיינמץ - בזכות התורה סיום השס תשפ</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6812')">
                 <td><a>6812</a></td>
                 <td>מוטי שטיינמץ בסיום הש''ס של דרשו לב טהור</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6813')">
                 <td><a>6813</a></td>
                 <td>מנדי וייס אשרינו</td>
                 <td>סינגלים סיום השס תשפ</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6814')">
                 <td><a>6814</a></td>
                 <td>01 רצועה 1</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6815')">
                 <td><a>6815</a></td>
                 <td>02 רצועה 2</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6816')">
                 <td><a>6816</a></td>
                 <td>03 רצועה 3</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6817')">
                 <td><a>6817</a></td>
                 <td>04 רצועה 4</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6818')">
                 <td><a>6818</a></td>
                 <td>05 רצועה 5</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6819')">
                 <td><a>6819</a></td>
                 <td>06 רצועה 6</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6820')">
                 <td><a>6820</a></td>
                 <td>07 רצועה 7</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6821')">
                 <td><a>6821</a></td>
                 <td>08 רצועה 8</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6822')">
                 <td><a>6822</a></td>
                 <td>09 רצועה 9</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6823')">
                 <td><a>6823</a></td>
                 <td>10 רצועה 10</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6824')">
                 <td><a>6824</a></td>
                 <td>11 רצועה 11</td>
                 <td>שערי שמים</td>
                 <td>דרשו</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

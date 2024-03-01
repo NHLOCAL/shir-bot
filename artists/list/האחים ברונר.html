@@ -1,665 +1,647 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>האחים ברונר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>האחים ברונר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspהאחים ברונר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspהאחים ברונר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('49164')">
                 <td><a>49164</a></td>
                 <td>01-הרחמן</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49165')">
                 <td><a>49165</a></td>
                 <td>02-מקולות</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49166')">
                 <td><a>49166</a></td>
                 <td>03-שלום עליכם</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49167')">
                 <td><a>49167</a></td>
                 <td>04-אשת חיל</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49168')">
                 <td><a>49168</a></td>
                 <td>05-וזכנו</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49169')">
                 <td><a>49169</a></td>
                 <td>06-כל מקדש</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49170')">
                 <td><a>49170</a></td>
                 <td>07-מנוחה ושמחה</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49171')">
                 <td><a>49171</a></td>
                 <td>08-מה ידידות</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49172')">
                 <td><a>49172</a></td>
                 <td>09-תנו שבח</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49173')">
                 <td><a>49173</a></td>
                 <td>10-קה ריבון</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49174')">
                 <td><a>49174</a></td>
                 <td>11-יום זה לישראל</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49175')">
                 <td><a>49175</a></td>
                 <td>12-צור משלו</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49176')">
                 <td><a>49176</a></td>
                 <td>13-אם תשיב</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49177')">
                 <td><a>49177</a></td>
                 <td>14-מזמור לדוד</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49178')">
                 <td><a>49178</a></td>
                 <td>15-כי אשמרה</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49179')">
                 <td><a>49179</a></td>
                 <td>16-יום שבתון</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49180')">
                 <td><a>49180</a></td>
                 <td>17-ברוך קל עליון</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49181')">
                 <td><a>49181</a></td>
                 <td>18-דרור יקרא</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49182')">
                 <td><a>49182</a></td>
                 <td>19-יום זה מכובד</td>
                 <td>וקראת לשבת עונג</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49183')">
                 <td><a>49183</a></td>
                 <td>הוא יגאל</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49184')">
                 <td><a>49184</a></td>
                 <td>הנה מה טוב</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49185')">
                 <td><a>49185</a></td>
                 <td>ואתה קדוש</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49186')">
                 <td><a>49186</a></td>
                 <td>כשם</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49187')">
                 <td><a>49187</a></td>
                 <td>ניגון חסידיש</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49188')">
                 <td><a>49188</a></td>
                 <td>קול מצהלות</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49189')">
                 <td><a>49189</a></td>
                 <td>קולי אל השם</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49190')">
                 <td><a>49190</a></td>
                 <td>קומי אורי</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49191')">
                 <td><a>49191</a></td>
                 <td>שומר ישראל בהופעה</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49192')">
                 <td><a>49192</a></td>
                 <td>שומר ישראל</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49193')">
                 <td><a>49193</a></td>
                 <td>שמרה נפשי</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49194')">
                 <td><a>49194</a></td>
                 <td>תורה</td>
                 <td>חסידיש</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49195')">
                 <td><a>49195</a></td>
                 <td>01-שומר ישראל</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49196')">
                 <td><a>49196</a></td>
                 <td>02-קולי אל ה</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49197')">
                 <td><a>49197</a></td>
                 <td>03-ואני בחסדך</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49198')">
                 <td><a>49198</a></td>
                 <td>04-מארש חברון</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49199')">
                 <td><a>49199</a></td>
                 <td>05-קול מצהלות</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49200')">
                 <td><a>49200</a></td>
                 <td>06-ואני ברוב חסדך</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49201')">
                 <td><a>49201</a></td>
                 <td>07-יראו עינינו</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49202')">
                 <td><a>49202</a></td>
                 <td>08-ואתה קדוש</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49203')">
                 <td><a>49203</a></td>
                 <td>09-הוא יגאל אותנו</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49204')">
                 <td><a>49204</a></td>
                 <td>10-שומר ישראל</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49205')">
                 <td><a>49205</a></td>
                 <td>11-חסידיש בהופעה חיה</td>
                 <td>חסידיש 1</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49206')">
                 <td><a>49206</a></td>
                 <td>01-וקווי ה</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49207')">
                 <td><a>49207</a></td>
                 <td>02-קומי אורי</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49208')">
                 <td><a>49208</a></td>
                 <td>03-תורה </td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49209')">
                 <td><a>49209</a></td>
                 <td>04-אין כא-לוקינו</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49210')">
                 <td><a>49210</a></td>
                 <td>05-הנה מה טוב</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49211')">
                 <td><a>49211</a></td>
                 <td>06-שמרה נפשי</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49212')">
                 <td><a>49212</a></td>
                 <td>07-מדרש כלה</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49213')">
                 <td><a>49213</a></td>
                 <td>08-עננו</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49214')">
                 <td><a>49214</a></td>
                 <td>09-חסידיש ניגון</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49215')">
                 <td><a>49215</a></td>
                 <td>10-מהרה</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49216')">
                 <td><a>49216</a></td>
                 <td>11-בונוס - מדרש כלה</td>
                 <td>חסידיש 2</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49217')">
                 <td><a>49217</a></td>
                 <td>01-ונשגב</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49218')">
                 <td><a>49218</a></td>
                 <td>02-אל תירא</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49219')">
                 <td><a>49219</a></td>
                 <td>03-תמים</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49220')">
                 <td><a>49220</a></td>
                 <td>04-מכניסי</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49221')">
                 <td><a>49221</a></td>
                 <td>05-ניגון</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49222')">
                 <td><a>49222</a></td>
                 <td>06-סימן טוב</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49223')">
                 <td><a>49223</a></td>
                 <td>07-אני מאמין</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49224')">
                 <td><a>49224</a></td>
                 <td>08-השם אדונינו</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49225')">
                 <td><a>49225</a></td>
                 <td>09-הודו לה</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49226')">
                 <td><a>49226</a></td>
                 <td>10-באמת</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49227')">
                 <td><a>49227</a></td>
                 <td>11-יונים</td>
                 <td>חסידיש 3</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49228')">
                 <td><a>49228</a></td>
                 <td>01 Track 1</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49229')">
                 <td><a>49229</a></td>
                 <td>02 Track 2</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49230')">
                 <td><a>49230</a></td>
                 <td>03 Track 3</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49231')">
                 <td><a>49231</a></td>
                 <td>05 Track 5</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49232')">
                 <td><a>49232</a></td>
                 <td>06 Track 6</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49233')">
                 <td><a>49233</a></td>
                 <td>07 Track 7</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49234')">
                 <td><a>49234</a></td>
                 <td>08 Track 8</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49235')">
                 <td><a>49235</a></td>
                 <td>09 Track 9</td>
                 <td>מחנה בני תורה</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49236')">
                 <td><a>49236</a></td>
                 <td>במירון</td>
                 <td>סינגלים</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49237')">
                 <td><a>49237</a></td>
                 <td>01-אנא מלך</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49238')">
                 <td><a>49238</a></td>
                 <td>02-רזא דשבת</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49239')">
                 <td><a>49239</a></td>
                 <td>03-שומריה מצוותיה</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49240')">
                 <td><a>49240</a></td>
                 <td>04-קה ריבון</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49241')">
                 <td><a>49241</a></td>
                 <td>05-מה ידידות</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49242')">
                 <td><a>49242</a></td>
                 <td>06-מעין עולם הבא</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49243')">
                 <td><a>49243</a></td>
                 <td>07-רחם-יבנה</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49244')">
                 <td><a>49244</a></td>
                 <td>08-עד הנה</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49245')">
                 <td><a>49245</a></td>
                 <td>09-אדון השלום</td>
                 <td>רזא דשבת-קומזיץ 4</td>
                 <td>האחים ברונר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,2891 +1,2873 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>חיים בנט</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>חיים בנט</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspחיים בנט</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspחיים בנט</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('49390')">
                 <td><a>49390</a></td>
                 <td>19 - חיים בנט  - מנוחה ושמחה</td>
                 <td>חיים בנט</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49391')">
                 <td><a>49391</a></td>
                 <td>30 - חיים בנט  - אשת חיל - [Windos.Co]</td>
                 <td>חיים בנט</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49392')">
                 <td><a>49392</a></td>
                 <td>67 - מכניסי רחמים-ר' חיים בנט</td>
                 <td>חיים בנט</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49393')">
                 <td><a>49393</a></td>
                 <td>היצירה העתיקה של ר' חיים בנט ''מזמור שיר חנכת''</td>
                 <td>חיים בנט</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49394')">
                 <td><a>49394</a></td>
                 <td>01-אוהבי</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49395')">
                 <td><a>49395</a></td>
                 <td>02-אנעים</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49396')">
                 <td><a>49396</a></td>
                 <td>03-אשת</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49397')">
                 <td><a>49397</a></td>
                 <td>04-מזמור</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49398')">
                 <td><a>49398</a></td>
                 <td>05-ושמרו</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49399')">
                 <td><a>49399</a></td>
                 <td>06-הרחמן</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49400')">
                 <td><a>49400</a></td>
                 <td>07-זכר</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49401')">
                 <td><a>49401</a></td>
                 <td>08-אתה</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49402')">
                 <td><a>49402</a></td>
                 <td>09-ישמח</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49403')">
                 <td><a>49403</a></td>
                 <td>10-ישמחו</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49404')">
                 <td><a>49404</a></td>
                 <td>11-הוא</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49405')">
                 <td><a>49405</a></td>
                 <td>12-בואי</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49406')">
                 <td><a>49406</a></td>
                 <td>13-ברוך</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49407')">
                 <td><a>49407</a></td>
                 <td>14-אלקא</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49408')">
                 <td><a>49408</a></td>
                 <td>15-ניגון</td>
                 <td>א שבת טיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49409')">
                 <td><a>49409</a></td>
                 <td>01-אודך ד' אלוקי</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49410')">
                 <td><a>49410</a></td>
                 <td>02-ונתנה תוקף</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49411')">
                 <td><a>49411</a></td>
                 <td>03-אוהבי השם</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49412')">
                 <td><a>49412</a></td>
                 <td>04-אדיר הוא יבנה</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49413')">
                 <td><a>49413</a></td>
                 <td>05-קל בנה</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49414')">
                 <td><a>49414</a></td>
                 <td>06-נחמו עמי</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49415')">
                 <td><a>49415</a></td>
                 <td>07-חסל סידור פסח</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49416')">
                 <td><a>49416</a></td>
                 <td>08-אשר ברא</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49417')">
                 <td><a>49417</a></td>
                 <td>09-והאר עינינו</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49418')">
                 <td><a>49418</a></td>
                 <td>10-ניגון</td>
                 <td>אוהבי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49419')">
                 <td><a>49419</a></td>
                 <td>01-נר לרגלי</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49420')">
                 <td><a>49420</a></td>
                 <td>02-אשר בחר בנו</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49421')">
                 <td><a>49421</a></td>
                 <td>03-אבינו אב הרחמן</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49422')">
                 <td><a>49422</a></td>
                 <td>04-אם אין אני</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49423')">
                 <td><a>49423</a></td>
                 <td>05-והערב נא</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49424')">
                 <td><a>49424</a></td>
                 <td>06-ישמח משה</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49425')">
                 <td><a>49425</a></td>
                 <td>07-ותן בליבנו בינה</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49426')">
                 <td><a>49426</a></td>
                 <td>08-יהא רעוא קדמך</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49427')">
                 <td><a>49427</a></td>
                 <td>09-שש אנוכי</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49428')">
                 <td><a>49428</a></td>
                 <td>10-לולי תורתך</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49429')">
                 <td><a>49429</a></td>
                 <td>11-הא יפתח לבנו</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49430')">
                 <td><a>49430</a></td>
                 <td>12-והאר עינינו</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49431')">
                 <td><a>49431</a></td>
                 <td>13-רצה הקב''ה</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49432')">
                 <td><a>49432</a></td>
                 <td>14-נגיל ונשיש</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49433')">
                 <td><a>49433</a></td>
                 <td>15-ברוך אלוקינו</td>
                 <td>תורה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49434')">
                 <td><a>49434</a></td>
                 <td>01-ויעשו כולם</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49435')">
                 <td><a>49435</a></td>
                 <td>02-נכספה</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49436')">
                 <td><a>49436</a></td>
                 <td>03-אז נדברו</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49437')">
                 <td><a>49437</a></td>
                 <td>04-והביאותים</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49438')">
                 <td><a>49438</a></td>
                 <td>05-בואי בשלום</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49439')">
                 <td><a>49439</a></td>
                 <td>06-אתה אחד</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49440')">
                 <td><a>49440</a></td>
                 <td>07-נר לרגלי</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49441')">
                 <td><a>49441</a></td>
                 <td>08-כי לקח טוב</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49442')">
                 <td><a>49442</a></td>
                 <td>09-קול ברמה</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49443')">
                 <td><a>49443</a></td>
                 <td>10-כי ניחם</td>
                 <td>אז נדברו יראי ה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49444')">
                 <td><a>49444</a></td>
                 <td>01-אודה</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49445')">
                 <td><a>49445</a></td>
                 <td>02-רחם</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49446')">
                 <td><a>49446</a></td>
                 <td>03-ואתה הוא מלך</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49447')">
                 <td><a>49447</a></td>
                 <td>04-שירי שבת</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49448')">
                 <td><a>49448</a></td>
                 <td>05-לכה דודי</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49449')">
                 <td><a>49449</a></td>
                 <td>06-הנה</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49450')">
                 <td><a>49450</a></td>
                 <td>07-ישיביש</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49451')">
                 <td><a>49451</a></td>
                 <td>08-גאולה</td>
                 <td>אנעים זמירות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49452')">
                 <td><a>49452</a></td>
                 <td>01-א-לי חיש גואלי</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49453')">
                 <td><a>49453</a></td>
                 <td>02-ברכי נפשי</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49454')">
                 <td><a>49454</a></td>
                 <td>03-והוא כחתן</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49455')">
                 <td><a>49455</a></td>
                 <td>04-יהי ד' אלקינו</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49456')">
                 <td><a>49456</a></td>
                 <td>05-מארש</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49457')">
                 <td><a>49457</a></td>
                 <td>06-ענבי הגפן</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49458')">
                 <td><a>49458</a></td>
                 <td>07-וזוכר חסדי אבות</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49459')">
                 <td><a>49459</a></td>
                 <td>08-ברוך הוא</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49460')">
                 <td><a>49460</a></td>
                 <td>09-ושמרו בני ישראל</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49461')">
                 <td><a>49461</a></td>
                 <td>10-בואי בשלום</td>
                 <td>ברכי נפשי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49462')">
                 <td><a>49462</a></td>
                 <td>01-שש אנכי</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49463')">
                 <td><a>49463</a></td>
                 <td>02-עד הנה</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49464')">
                 <td><a>49464</a></td>
                 <td>03-גם אני אודך</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49465')">
                 <td><a>49465</a></td>
                 <td>04-ציון</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49466')">
                 <td><a>49466</a></td>
                 <td>05-אור חדש</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49467')">
                 <td><a>49467</a></td>
                 <td>06-עוד ישמע</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49468')">
                 <td><a>49468</a></td>
                 <td>07-אתה השם</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49469')">
                 <td><a>49469</a></td>
                 <td>08-ותיק</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49470')">
                 <td><a>49470</a></td>
                 <td>09-מלוך</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49471')">
                 <td><a>49471</a></td>
                 <td>10-אשר ברא</td>
                 <td>גם אני אודך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49472')">
                 <td><a>49472</a></td>
                 <td>01-מחרוזת ליהודים</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49473')">
                 <td><a>49473</a></td>
                 <td>02-מחרוזת ולושתי אמר</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49474')">
                 <td><a>49474</a></td>
                 <td>03-מחרוזת אץ קוצץ</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49475')">
                 <td><a>49475</a></td>
                 <td>04-חייב איניש</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49476')">
                 <td><a>49476</a></td>
                 <td>05-מחרוזת משנכנס</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49477')">
                 <td><a>49477</a></td>
                 <td>06-מחרוזת שושנת יעקב</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49478')">
                 <td><a>49478</a></td>
                 <td>07-מחרוזת שמחה</td>
                 <td>דאנס עוף פורים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49479')">
                 <td><a>49479</a></td>
                 <td>01-הודו לו</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49480')">
                 <td><a>49480</a></td>
                 <td>02-מה אשיב</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49481')">
                 <td><a>49481</a></td>
                 <td>03-קול רינה</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49482')">
                 <td><a>49482</a></td>
                 <td>04-ממזרח</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49483')">
                 <td><a>49483</a></td>
                 <td>05-והשב</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49484')">
                 <td><a>49484</a></td>
                 <td>06-שמחה</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49485')">
                 <td><a>49485</a></td>
                 <td>07-אני מאמין</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49486')">
                 <td><a>49486</a></td>
                 <td>08-וספרתם לכם</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49487')">
                 <td><a>49487</a></td>
                 <td>09-בצאת ישראל</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49488')">
                 <td><a>49488</a></td>
                 <td>10-קלי אתה</td>
                 <td>הודו לד' כי טוב</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49489')">
                 <td><a>49489</a></td>
                 <td>01-הנה אנוכי</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49490')">
                 <td><a>49490</a></td>
                 <td>02-אבינו</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49491')">
                 <td><a>49491</a></td>
                 <td>03-עוד ישמע</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49492')">
                 <td><a>49492</a></td>
                 <td>04-אילן אילן</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49493')">
                 <td><a>49493</a></td>
                 <td>05-ריקוד</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49494')">
                 <td><a>49494</a></td>
                 <td>06-אם אין אני לי</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49495')">
                 <td><a>49495</a></td>
                 <td>07-הרנינו גוים</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49496')">
                 <td><a>49496</a></td>
                 <td>08-ברוך אלוקינו</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49497')">
                 <td><a>49497</a></td>
                 <td>09-כה אמר</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49498')">
                 <td><a>49498</a></td>
                 <td>10-מי יתן</td>
                 <td>הנה אנוכי שולח לכם</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49499')">
                 <td><a>49499</a></td>
                 <td>01-על הניסים</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49500')">
                 <td><a>49500</a></td>
                 <td>02-מעוז צור</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49501')">
                 <td><a>49501</a></td>
                 <td>03-מחרוזת יונים</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49502')">
                 <td><a>49502</a></td>
                 <td>04-נר לרגלי</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49503')">
                 <td><a>49503</a></td>
                 <td>05-הנרות הללו</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49504')">
                 <td><a>49504</a></td>
                 <td>06-מחרוזת מזמור שיר-אור חדש</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49505')">
                 <td><a>49505</a></td>
                 <td>07-מחרוזת אלה ברכב</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49506')">
                 <td><a>49506</a></td>
                 <td>08-אחת שאלתי</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49507')">
                 <td><a>49507</a></td>
                 <td>09-מחרוזת מי יתן-זמרו לה</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49508')">
                 <td><a>49508</a></td>
                 <td>10-יונים</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49509')">
                 <td><a>49509</a></td>
                 <td>11-מחרוזת לא בחיל-לשנה הבאה</td>
                 <td>הנרות הללו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49510')">
                 <td><a>49510</a></td>
                 <td>צד א</td>
                 <td>ואני תפלתי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49511')">
                 <td><a>49511</a></td>
                 <td>צד ב</td>
                 <td>ואני תפלתי</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49512')">
                 <td><a>49512</a></td>
                 <td>01-ותן בלבנו</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49513')">
                 <td><a>49513</a></td>
                 <td>02-מכלכל חיים</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49514')">
                 <td><a>49514</a></td>
                 <td>03-והשיב לב אבות</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49515')">
                 <td><a>49515</a></td>
                 <td>04-ניגון דביקות</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49516')">
                 <td><a>49516</a></td>
                 <td>05-אשת חיל</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49517')">
                 <td><a>49517</a></td>
                 <td>06-ניגון ריקוד-ר' מיילעכ'ס טאנץ</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49518')">
                 <td><a>49518</a></td>
                 <td>07-צור משלו</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49519')">
                 <td><a>49519</a></td>
                 <td>08-ידיד נפש</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49520')">
                 <td><a>49520</a></td>
                 <td>09-היה עם פיפיות</td>
                 <td>והשיב לב אבות</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49521')">
                 <td><a>49521</a></td>
                 <td>ותערב</td>
                 <td>סינגלים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49522')">
                 <td><a>49522</a></td>
                 <td>כרחם אב על בנים</td>
                 <td>סינגלים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49523')">
                 <td><a>49523</a></td>
                 <td>01-מחרוזת פתיחה</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49524')">
                 <td><a>49524</a></td>
                 <td>02-מרש לכה דודי</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49525')">
                 <td><a>49525</a></td>
                 <td>03-מחרוזת בחצוצרות</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49526')">
                 <td><a>49526</a></td>
                 <td>04-ניגון קל מלך</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49527')">
                 <td><a>49527</a></td>
                 <td>05-מרש יהא שלמא רבא</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49528')">
                 <td><a>49528</a></td>
                 <td>06-מחרוזת הורה</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49529')">
                 <td><a>49529</a></td>
                 <td>07-מחרוזת פרוק ית ענך</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49530')">
                 <td><a>49530</a></td>
                 <td>08-מחרוזת ענבי הגפן</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49531')">
                 <td><a>49531</a></td>
                 <td>09-מרש רוסי עממי</td>
                 <td>חיים בנעט ותזמורתו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49532')">
                 <td><a>49532</a></td>
                 <td>01-להדליק נר חנוכה</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49533')">
                 <td><a>49533</a></td>
                 <td>02-ויהי נועם ד' עלינו</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49534')">
                 <td><a>49534</a></td>
                 <td>03-מעוז צור ישועתי</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49535')">
                 <td><a>49535</a></td>
                 <td>04-מזמור שיר חנוכת הבית</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49536')">
                 <td><a>49536</a></td>
                 <td>05-הנרות הללו קודש הם</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49537')">
                 <td><a>49537</a></td>
                 <td>06-על הניסים ועל הנפלאות</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49538')">
                 <td><a>49538</a></td>
                 <td>07-מעוז צור ישועתי</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49539')">
                 <td><a>49539</a></td>
                 <td>08-יוונים נקבצו עלי</td>
                 <td>חנוכה ביים רבי'ן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49540')">
                 <td><a>49540</a></td>
                 <td>01-מהרה ה</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49541')">
                 <td><a>49541</a></td>
                 <td>02-אני אמרתי</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49542')">
                 <td><a>49542</a></td>
                 <td>03-יהא רעוא</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49543')">
                 <td><a>49543</a></td>
                 <td>04-הוא אשר דבר</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49544')">
                 <td><a>49544</a></td>
                 <td>05-לך אזבח</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49545')">
                 <td><a>49545</a></td>
                 <td>06-ואני אשיר</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49546')">
                 <td><a>49546</a></td>
                 <td>07-זכרנו לחיים</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49547')">
                 <td><a>49547</a></td>
                 <td>08-הבן יקיר לי</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49548')">
                 <td><a>49548</a></td>
                 <td>09-והאר עינינו</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49549')">
                 <td><a>49549</a></td>
                 <td>10-הללו</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49550')">
                 <td><a>49550</a></td>
                 <td>11-מרש</td>
                 <td>יהא רעוא קדמך</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49551')">
                 <td><a>49551</a></td>
                 <td>01-ויזכו</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49552')">
                 <td><a>49552</a></td>
                 <td>02-אמנם</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49553')">
                 <td><a>49553</a></td>
                 <td>03-מידת הרחמים</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49554')">
                 <td><a>49554</a></td>
                 <td>04-ימים</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49555')">
                 <td><a>49555</a></td>
                 <td>05-ישמוחו</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49556')">
                 <td><a>49556</a></td>
                 <td>06-אבינו מלכנו</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49557')">
                 <td><a>49557</a></td>
                 <td>07-תיבו אושפיזין</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49558')">
                 <td><a>49558</a></td>
                 <td>08-זה היום</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49559')">
                 <td><a>49559</a></td>
                 <td>09-מחרוזת סימן טוב</td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49560')">
                 <td><a>49560</a></td>
                 <td>10-ובנה אותה </td>
                 <td>ישמחו</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49561')">
                 <td><a>49561</a></td>
                 <td>01-והיה בעת ההיא</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49562')">
                 <td><a>49562</a></td>
                 <td>02-לב טהור</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49563')">
                 <td><a>49563</a></td>
                 <td>03-הוא יפתח</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49564')">
                 <td><a>49564</a></td>
                 <td>04-פאר וכבוד</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49565')">
                 <td><a>49565</a></td>
                 <td>05-ישמח משה</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49566')">
                 <td><a>49566</a></td>
                 <td>06-טוב להודות</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49567')">
                 <td><a>49567</a></td>
                 <td>07-הוריני ה</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49568')">
                 <td><a>49568</a></td>
                 <td>08-שמח תשמח</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49569')">
                 <td><a>49569</a></td>
                 <td>09-אליך ה</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49570')">
                 <td><a>49570</a></td>
                 <td>10-זמרו לה</td>
                 <td>לב טהור</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49571')">
                 <td><a>49571</a></td>
                 <td>01-ליהודים היתה אורה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49572')">
                 <td><a>49572</a></td>
                 <td>02-גראמן באידיש</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49573')">
                 <td><a>49573</a></td>
                 <td>03-המשך</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49574')">
                 <td><a>49574</a></td>
                 <td>04-קריאת המגילה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49575')">
                 <td><a>49575</a></td>
                 <td>05-ונהפוך</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49576')">
                 <td><a>49576</a></td>
                 <td>06-המשך קריאה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49577')">
                 <td><a>49577</a></td>
                 <td>07-משנכנס אדר</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49578')">
                 <td><a>49578</a></td>
                 <td>08-ונהפוך הוא</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49579')">
                 <td><a>49579</a></td>
                 <td>09-המשך קריאה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49580')">
                 <td><a>49580</a></td>
                 <td>10-חייב איניש</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49581')">
                 <td><a>49581</a></td>
                 <td>11-המשך קריאה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49582')">
                 <td><a>49582</a></td>
                 <td>12-תשועתם</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49583')">
                 <td><a>49583</a></td>
                 <td>13-המשך קריאה</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49584')">
                 <td><a>49584</a></td>
                 <td>14-ליהודים</td>
                 <td>מגילת בודפסט באידיש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49585')">
                 <td><a>49585</a></td>
                 <td>01-ונהפוך הוא</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49586')">
                 <td><a>49586</a></td>
                 <td>02-הוק-אפ מבודפסט</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49587')">
                 <td><a>49587</a></td>
                 <td>03-המשך הוק-אפ</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49588')">
                 <td><a>49588</a></td>
                 <td>04-ליהודים</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49589')">
                 <td><a>49589</a></td>
                 <td>05-סיפור המגילה</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49590')">
                 <td><a>49590</a></td>
                 <td>06-ונהפוך הוא</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49591')">
                 <td><a>49591</a></td>
                 <td>07-משנכנס</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49592')">
                 <td><a>49592</a></td>
                 <td>08-המשך סיפור</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49593')">
                 <td><a>49593</a></td>
                 <td>09-חייב איניש</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49594')">
                 <td><a>49594</a></td>
                 <td>10-המשך סיפור</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49595')">
                 <td><a>49595</a></td>
                 <td>11-להודיע</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49596')">
                 <td><a>49596</a></td>
                 <td>12-ליהודים</td>
                 <td>מגילת בודפסט בעברית</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49597')">
                 <td><a>49597</a></td>
                 <td>01-וביום השבת</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49598')">
                 <td><a>49598</a></td>
                 <td>02-לכה דודי</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49599')">
                 <td><a>49599</a></td>
                 <td>03-והיו למשיסה</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49600')">
                 <td><a>49600</a></td>
                 <td>04-מזמור שיר</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49601')">
                 <td><a>49601</a></td>
                 <td>05-והנחילנו</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49602')">
                 <td><a>49602</a></td>
                 <td>06-רחם בחסדך</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49603')">
                 <td><a>49603</a></td>
                 <td>07-ישמחו במלכותך</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49604')">
                 <td><a>49604</a></td>
                 <td>08-שבח</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49605')">
                 <td><a>49605</a></td>
                 <td>09-גוט שבת</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49606')">
                 <td><a>49606</a></td>
                 <td>10-נגון תתברך</td>
                 <td>מזמור שיר ליום השבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49607')">
                 <td><a>49607</a></td>
                 <td>01-סמפוניה של שמחה</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49608')">
                 <td><a>49608</a></td>
                 <td>02-הרנינו</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49609')">
                 <td><a>49609</a></td>
                 <td>03-אתה אחד</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49610')">
                 <td><a>49610</a></td>
                 <td>04-סמבה</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49611')">
                 <td><a>49611</a></td>
                 <td>05-נר לרגלי</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49612')">
                 <td><a>49612</a></td>
                 <td>06-אשר ברא</td>
                 <td>מחרוזת שמחה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49613')">
                 <td><a>49613</a></td>
                 <td>01-הבן יקיר לי,מכניסי רחמים</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49614')">
                 <td><a>49614</a></td>
                 <td>02-מי כמוך,תתקבל</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49615')">
                 <td><a>49615</a></td>
                 <td>03-מידת הרחמים</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49616')">
                 <td><a>49616</a></td>
                 <td>04-שמע קולנו</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49617')">
                 <td><a>49617</a></td>
                 <td>05-כה אמר</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49618')">
                 <td><a>49618</a></td>
                 <td>06-והי' עליכם יראה</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49619')">
                 <td><a>49619</a></td>
                 <td>07-זכרנו לחיים</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49620')">
                 <td><a>49620</a></td>
                 <td>08-ונתנה תוקף</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49621')">
                 <td><a>49621</a></td>
                 <td>09-לב טהור</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49622')">
                 <td><a>49622</a></td>
                 <td>10-אמנם זו</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49623')">
                 <td><a>49623</a></td>
                 <td>11-אני אמרתי ה</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49624')">
                 <td><a>49624</a></td>
                 <td>12-מלוך</td>
                 <td>מידת הרחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49625')">
                 <td><a>49625</a></td>
                 <td>01-מהרה</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49626')">
                 <td><a>49626</a></td>
                 <td>02-עד הנה</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49627')">
                 <td><a>49627</a></td>
                 <td>03-יהא רעוא</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49628')">
                 <td><a>49628</a></td>
                 <td>04-הנה אנוכי</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49629')">
                 <td><a>49629</a></td>
                 <td>05-שמע קולינו</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49630')">
                 <td><a>49630</a></td>
                 <td>06-אם אין אני לי</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49631')">
                 <td><a>49631</a></td>
                 <td>07-כה אמר ה</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49632')">
                 <td><a>49632</a></td>
                 <td>08-קול רינה</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49633')">
                 <td><a>49633</a></td>
                 <td>09-גם אני אודך</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49634')">
                 <td><a>49634</a></td>
                 <td>10-אבינו אב הרחמן</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49635')">
                 <td><a>49635</a></td>
                 <td>11-והיה בעת ההיא</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49636')">
                 <td><a>49636</a></td>
                 <td>12-מכניסי רחמים</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49637')">
                 <td><a>49637</a></td>
                 <td>13-ותיק</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49638')">
                 <td><a>49638</a></td>
                 <td>14-נר לרגלי</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49639')">
                 <td><a>49639</a></td>
                 <td>15-כי נחם</td>
                 <td>מיטב שירי חיים בנעט 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49640')">
                 <td><a>49640</a></td>
                 <td>01-שש אנכי</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49641')">
                 <td><a>49641</a></td>
                 <td>02-אוהבי השם</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49642')">
                 <td><a>49642</a></td>
                 <td>03-ציון הלא תשאלי</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49643')">
                 <td><a>49643</a></td>
                 <td>04-שיתחדש</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49644')">
                 <td><a>49644</a></td>
                 <td>05-אתה השם</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49645')">
                 <td><a>49645</a></td>
                 <td>06-מחרוזת שירי חתונה</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49646')">
                 <td><a>49646</a></td>
                 <td>07-ביום ההוא</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49647')">
                 <td><a>49647</a></td>
                 <td>08-הרנינו</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49648')">
                 <td><a>49648</a></td>
                 <td>09-נחמו עמי</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49649')">
                 <td><a>49649</a></td>
                 <td>10-שמחו בהשם</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49650')">
                 <td><a>49650</a></td>
                 <td>11-מלוך</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49651')">
                 <td><a>49651</a></td>
                 <td>12-וזוכר</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49652')">
                 <td><a>49652</a></td>
                 <td>13-אשר ברא</td>
                 <td>מיטב שירי חיים בנעט 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49653')">
                 <td><a>49653</a></td>
                 <td>01-אם תחנה</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49654')">
                 <td><a>49654</a></td>
                 <td>02-ונאמר</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49655')">
                 <td><a>49655</a></td>
                 <td>03-מכניסי רחמים</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49656')">
                 <td><a>49656</a></td>
                 <td>05-בורא עולם</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49657')">
                 <td><a>49657</a></td>
                 <td>06-רצה השם</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49658')">
                 <td><a>49658</a></td>
                 <td>07-כבקרת</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49659')">
                 <td><a>49659</a></td>
                 <td>08-מרן דבשמיא</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49660')">
                 <td><a>49660</a></td>
                 <td>09-אשר ברא</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49661')">
                 <td><a>49661</a></td>
                 <td>10-עוד ישמע</td>
                 <td>מכניסי רחמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49662')">
                 <td><a>49662</a></td>
                 <td>01-ותן בנו</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49663')">
                 <td><a>49663</a></td>
                 <td>02-לפיכך</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49664')">
                 <td><a>49664</a></td>
                 <td>03-עיני עמך</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49665')">
                 <td><a>49665</a></td>
                 <td>04-מארש</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49666')">
                 <td><a>49666</a></td>
                 <td>05-ממעמקים</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49667')">
                 <td><a>49667</a></td>
                 <td>06-ועל הכול</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49668')">
                 <td><a>49668</a></td>
                 <td>07-השם אדונינו</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49669')">
                 <td><a>49669</a></td>
                 <td>08-יהי שלום</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49670')">
                 <td><a>49670</a></td>
                 <td>09-ותמלוך</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49671')">
                 <td><a>49671</a></td>
                 <td>10-אודך</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49672')">
                 <td><a>49672</a></td>
                 <td>11-נגיל ונשיש</td>
                 <td>ממעמקים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49673')">
                 <td><a>49673</a></td>
                 <td>01-מארש לכה דודי</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49674')">
                 <td><a>49674</a></td>
                 <td>02-מארש לר''ה תשנ''ד סערט ויז'ניץ</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49675')">
                 <td><a>49675</a></td>
                 <td>03-וולס אמר ד' ליעקב גור</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49676')">
                 <td><a>49676</a></td>
                 <td>04-מארש בעלזא</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49677')">
                 <td><a>49677</a></td>
                 <td>05-מארש אין קצבה</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49678')">
                 <td><a>49678</a></td>
                 <td>06-מארש פרייליך</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49679')">
                 <td><a>49679</a></td>
                 <td>07-מארש נפוליון חב''ד</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49680')">
                 <td><a>49680</a></td>
                 <td>08-וולס מזמור לדוד מודז'יץ</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49681')">
                 <td><a>49681</a></td>
                 <td>09-מארש ברוך קל עליון באבוב</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49682')">
                 <td><a>49682</a></td>
                 <td>10-מארש לכה דודי סערט ויז'ניץ</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49683')">
                 <td><a>49683</a></td>
                 <td>11-וולס ויז'ניצאי עתיק</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49684')">
                 <td><a>49684</a></td>
                 <td>12-מארש פרייליך חסידי עממי</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49685')">
                 <td><a>49685</a></td>
                 <td>13-מארש לכה דודי</td>
                 <td>מצעד החצרות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49686')">
                 <td><a>49686</a></td>
                 <td>01-מארש באבוב</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49687')">
                 <td><a>49687</a></td>
                 <td>02-מארש סרט ויזניץ ר''ה</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49688')">
                 <td><a>49688</a></td>
                 <td>03-וולס גור, קול רינה</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49689')">
                 <td><a>49689</a></td>
                 <td>04-מארש ויזניץ עתיק </td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49690')">
                 <td><a>49690</a></td>
                 <td>05-מארש בעלזא</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49691')">
                 <td><a>49691</a></td>
                 <td>06-וולס סרט ויזניץ ר''ה</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49692')">
                 <td><a>49692</a></td>
                 <td>07-מארש חב''ד</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49693')">
                 <td><a>49693</a></td>
                 <td>08-מארש החתונה נדבורנה</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49694')">
                 <td><a>49694</a></td>
                 <td>09-מארש אין קצבה מודזיץ</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49695')">
                 <td><a>49695</a></td>
                 <td>10-וולס - נדבורנה</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49696')">
                 <td><a>49696</a></td>
                 <td>11-מארש קל אדון - דזיקוב</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49697')">
                 <td><a>49697</a></td>
                 <td>12-מארש דזיקוב</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49698')">
                 <td><a>49698</a></td>
                 <td>13-קל מלך - גור</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49699')">
                 <td><a>49699</a></td>
                 <td>14-מארש יהא שלמא רבה גור</td>
                 <td>מצעד החצרות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49700')">
                 <td><a>49700</a></td>
                 <td>01-ותגלה</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49701')">
                 <td><a>49701</a></td>
                 <td>02-בך בטחו</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49702')">
                 <td><a>49702</a></td>
                 <td>03-אשרי אדם</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49703')">
                 <td><a>49703</a></td>
                 <td>04-זרעא חיא</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49704')">
                 <td><a>49704</a></td>
                 <td>05-עוצו עצה</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49705')">
                 <td><a>49705</a></td>
                 <td>06-אבינו מלכנו</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49706')">
                 <td><a>49706</a></td>
                 <td>07-להתודע</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49707')">
                 <td><a>49707</a></td>
                 <td>08-אם אמרתי</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49708')">
                 <td><a>49708</a></td>
                 <td>09-צמאה נפשי</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49709')">
                 <td><a>49709</a></td>
                 <td>10-יבנה המקדש</td>
                 <td>ניגוני ר' מאיר שפירא זצ''ל</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49710')">
                 <td><a>49710</a></td>
                 <td>מני דיסקינד שר חיים בנט ''והיא שעמדה''</td>
                 <td>סינגלים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49711')">
                 <td><a>49711</a></td>
                 <td>ר' חיים בנט בלחן חדש ''מי יתן מציון'' לכבוד החתונה בסערט ויז'ניץ</td>
                 <td>סינגלים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49712')">
                 <td><a>49712</a></td>
                 <td>ר' חיים בנט בסינגל חדש ''מי שברך'' לקראת הילולת בעל התוספות יו''ט זי''ע</td>
                 <td>סינגלים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49713')">
                 <td><a>49713</a></td>
                 <td>01-אשר ברא</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49714')">
                 <td><a>49714</a></td>
                 <td>02-ענבי הגפן</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49715')">
                 <td><a>49715</a></td>
                 <td>03-מארש</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49716')">
                 <td><a>49716</a></td>
                 <td>04-עוד ישמע</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49717')">
                 <td><a>49717</a></td>
                 <td>05-לולי תורתך</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49718')">
                 <td><a>49718</a></td>
                 <td>06-אשר בחר בנו</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49719')">
                 <td><a>49719</a></td>
                 <td>07-אשת חיל</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49720')">
                 <td><a>49720</a></td>
                 <td>08-מחרוזת ניגוני חתונה עתיקים - לעשות נחת</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49721')">
                 <td><a>49721</a></td>
                 <td>09-בגלל אבות</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49722')">
                 <td><a>49722</a></td>
                 <td>10-והשם עליהם</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49723')">
                 <td><a>49723</a></td>
                 <td>11-וולץ</td>
                 <td>ענבי הגפן</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49724')">
                 <td><a>49724</a></td>
                 <td>רננו חסידים צד א</td>
                 <td>רננו חסידים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49725')">
                 <td><a>49725</a></td>
                 <td>רננו חסידים צד ב</td>
                 <td>רננו חסידים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49726')">
                 <td><a>49726</a></td>
                 <td>01-מחרוזת שלום עליכם</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49727')">
                 <td><a>49727</a></td>
                 <td>02-מחרוזת שירי שבת</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49728')">
                 <td><a>49728</a></td>
                 <td>03-שלום עליכם</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49729')">
                 <td><a>49729</a></td>
                 <td>04-הוא אשר דיבר</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49730')">
                 <td><a>49730</a></td>
                 <td>05-אשת חיל</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49731')">
                 <td><a>49731</a></td>
                 <td>06-מנוחה ושמחה</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49732')">
                 <td><a>49732</a></td>
                 <td>07-קה ריבון</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49733')">
                 <td><a>49733</a></td>
                 <td>08-יום זה מכובד</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49734')">
                 <td><a>49734</a></td>
                 <td>09-וזכנו</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49735')">
                 <td><a>49735</a></td>
                 <td>10-הרחמן הוא ינחילנו</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49736')">
                 <td><a>49736</a></td>
                 <td>11-מזמור לדוד</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49737')">
                 <td><a>49737</a></td>
                 <td>12-ברוך קל עליון</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49738')">
                 <td><a>49738</a></td>
                 <td>13-יום שבתון</td>
                 <td>שולחן שבת</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49739')">
                 <td><a>49739</a></td>
                 <td>01 שופכים לב כמים</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49740')">
                 <td><a>49740</a></td>
                 <td>02 שבת קודש</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49741')">
                 <td><a>49741</a></td>
                 <td>03 תמכתי יסודותי</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49742')">
                 <td><a>49742</a></td>
                 <td>04 - Hamelamed</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49743')">
                 <td><a>49743</a></td>
                 <td>04 המלמד</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49744')">
                 <td><a>49744</a></td>
                 <td>05 ולכך</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49745')">
                 <td><a>49745</a></td>
                 <td>06 כרחם</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49746')">
                 <td><a>49746</a></td>
                 <td>07 עזור</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49747')">
                 <td><a>49747</a></td>
                 <td>08 ושיויתי</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49748')">
                 <td><a>49748</a></td>
                 <td>09 יקום פורקן</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49749')">
                 <td><a>49749</a></td>
                 <td>10 כי הנה</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49750')">
                 <td><a>49750</a></td>
                 <td>11 זכור</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49751')">
                 <td><a>49751</a></td>
                 <td>12 כי אורך ימים</td>
                 <td>שופכים לב כמים</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49752')">
                 <td><a>49752</a></td>
                 <td>01-ואני אשיר עוזך</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49753')">
                 <td><a>49753</a></td>
                 <td>02-אדיר במלוכה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49754')">
                 <td><a>49754</a></td>
                 <td>03-אתה בחרתנו</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49755')">
                 <td><a>49755</a></td>
                 <td>04-אדיר הוא יבנה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49756')">
                 <td><a>49756</a></td>
                 <td>05-בחור הוא</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49757')">
                 <td><a>49757</a></td>
                 <td>06-בצאת ישראל</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49758')">
                 <td><a>49758</a></td>
                 <td>07-ועל ידי זה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49759')">
                 <td><a>49759</a></td>
                 <td>08-חסל סידור פסח</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49760')">
                 <td><a>49760</a></td>
                 <td>09-לך אזבח זבח תודה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49761')">
                 <td><a>49761</a></td>
                 <td>10-והיא שעמדה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49762')">
                 <td><a>49762</a></td>
                 <td>11-מה אשיב לה</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49763')">
                 <td><a>49763</a></td>
                 <td>12-ידידם רוממוך-על שפת הים-וספרתם לכם</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49764')">
                 <td><a>49764</a></td>
                 <td>13-חד גדיא</td>
                 <td>שירה חדשה</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49765')">
                 <td><a>49765</a></td>
                 <td>01-שיתחדש</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49766')">
                 <td><a>49766</a></td>
                 <td>02-מחרוזת לחנים</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49767')">
                 <td><a>49767</a></td>
                 <td>03-וולס עתיק</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49768')">
                 <td><a>49768</a></td>
                 <td>04-שמחו בה</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49769')">
                 <td><a>49769</a></td>
                 <td>05-וולס ברודער טאנץ</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49770')">
                 <td><a>49770</a></td>
                 <td>06-מחרוזת ניגונים ישנים</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49771')">
                 <td><a>49771</a></td>
                 <td>07-אשת חיל</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49772')">
                 <td><a>49772</a></td>
                 <td>08-מחרוזת מצוה טאנץ</td>
                 <td>שיתחדש</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49773')">
                 <td><a>49773</a></td>
                 <td>01-מזל טוב</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49774')">
                 <td><a>49774</a></td>
                 <td>02-וימלא</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49775')">
                 <td><a>49775</a></td>
                 <td>03-לעשות נחת רוח</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49776')">
                 <td><a>49776</a></td>
                 <td>04-קול רינה</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49777')">
                 <td><a>49777</a></td>
                 <td>05-אחת נשבעתי</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49778')">
                 <td><a>49778</a></td>
                 <td>06-הנה מה טוב</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49779')">
                 <td><a>49779</a></td>
                 <td>07-ניגונים עתיקים</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49780')">
                 <td><a>49780</a></td>
                 <td>08-שיתחדש</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49781')">
                 <td><a>49781</a></td>
                 <td>09-ניגון</td>
                 <td>שמחת המלכות 1</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49782')">
                 <td><a>49782</a></td>
                 <td>01-מחרוזת שמחת המלכות</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49783')">
                 <td><a>49783</a></td>
                 <td>02-מחרוזת שאו שערים</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49784')">
                 <td><a>49784</a></td>
                 <td>03-מחרוזת פרייליך</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49785')">
                 <td><a>49785</a></td>
                 <td>04-מחרוזת ניגוני לכה דודי</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49786')">
                 <td><a>49786</a></td>
                 <td>05-זכר חסדו</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49787')">
                 <td><a>49787</a></td>
                 <td>06-מחרוזת סימן טוב</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49788')">
                 <td><a>49788</a></td>
                 <td>07-מחרוזת בנט</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49789')">
                 <td><a>49789</a></td>
                 <td>08-מחרוזת ניגונים עתיקים</td>
                 <td>שמחת המלכות 2</td>
                 <td>חיים בנט</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

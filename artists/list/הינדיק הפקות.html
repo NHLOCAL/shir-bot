@@ -1,175 +1,157 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>הינדיק הפקות</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>הינדיק הפקות</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspהינדיק הפקות</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspהינדיק הפקות</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('57975')">
                 <td><a>57975</a></td>
                 <td>01-מדברי</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57976')">
                 <td><a>57976</a></td>
                 <td>02-שירת המאורות</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57977')">
                 <td><a>57977</a></td>
                 <td>03-אין אנחנו מספיקים להודות</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57978')">
                 <td><a>57978</a></td>
                 <td>04-נעלה לבית המקדש</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57979')">
                 <td><a>57979</a></td>
                 <td>05-אור הקדוש</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57980')">
                 <td><a>57980</a></td>
                 <td>06-קה ריבון</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57981')">
                 <td><a>57981</a></td>
                 <td>07-למנצח על הגיתית</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57982')">
                 <td><a>57982</a></td>
                 <td>08-הללויה</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57983')">
                 <td><a>57983</a></td>
                 <td>09-לישועתך קויתי</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57984')">
                 <td><a>57984</a></td>
                 <td>10-אין יאוש בעולם כלל</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57985')">
                 <td><a>57985</a></td>
                 <td>11-נקודה טובה</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('57986')">
                 <td><a>57986</a></td>
                 <td>12-מחרוזת עתיקא קדישא</td>
                 <td>אמא עילאה</td>
                 <td>הינדיק הפקות</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

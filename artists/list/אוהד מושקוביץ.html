@@ -1,1470 +1,1452 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אוהד מושקוביץ</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אוהד מושקוביץ</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאוהד מושקוביץ</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאוהד מושקוביץ</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2330')">
                 <td><a>2330</a></td>
                 <td>01-וארשתיך</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2331')">
                 <td><a>2331</a></td>
                 <td>02-מי יתן</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2332')">
                 <td><a>2332</a></td>
                 <td>03-לפני מי</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2333')">
                 <td><a>2333</a></td>
                 <td>04-שתרחמני</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2334')">
                 <td><a>2334</a></td>
                 <td>05-לכה דודי</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2335')">
                 <td><a>2335</a></td>
                 <td>06-אנא השם</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2336')">
                 <td><a>2336</a></td>
                 <td>07-מה שהיה</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2337')">
                 <td><a>2337</a></td>
                 <td>08-יצו השם</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2338')">
                 <td><a>2338</a></td>
                 <td>09-רבי מאיר</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2339')">
                 <td><a>2339</a></td>
                 <td>10-מתפללים</td>
                 <td>אוהד 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2340')">
                 <td><a>2340</a></td>
                 <td>01-כל זמן</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2341')">
                 <td><a>2341</a></td>
                 <td>02-גדולה שירה</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2342')">
                 <td><a>2342</a></td>
                 <td>03-חביבין ישראל</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2343')">
                 <td><a>2343</a></td>
                 <td>04-עץ חיים</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2344')">
                 <td><a>2344</a></td>
                 <td>05-שלום עליכם</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2345')">
                 <td><a>2345</a></td>
                 <td>06-אודך</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2346')">
                 <td><a>2346</a></td>
                 <td>07-ויחון עם</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2347')">
                 <td><a>2347</a></td>
                 <td>08-אקרא קה</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2348')">
                 <td><a>2348</a></td>
                 <td>09-עצור</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2349')">
                 <td><a>2349</a></td>
                 <td>10-נשמה'לה</td>
                 <td>אוהד 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2350')">
                 <td><a>2350</a></td>
                 <td>01-אנו בניך</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2351')">
                 <td><a>2351</a></td>
                 <td>02-ברכת הבנים</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2352')">
                 <td><a>2352</a></td>
                 <td>03-מלכותך</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2353')">
                 <td><a>2353</a></td>
                 <td>04-מי בן שיח</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2354')">
                 <td><a>2354</a></td>
                 <td>05-אחד יחיד ומיוחד</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2355')">
                 <td><a>2355</a></td>
                 <td>06-מנעי קולך</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2356')">
                 <td><a>2356</a></td>
                 <td>07-צדיקים</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2357')">
                 <td><a>2357</a></td>
                 <td>08-שיר הפרנסה</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2358')">
                 <td><a>2358</a></td>
                 <td>09-בוא בוא בוא</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2359')">
                 <td><a>2359</a></td>
                 <td>10-תפילת האב</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2360')">
                 <td><a>2360</a></td>
                 <td>11-משכימים</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2361')">
                 <td><a>2361</a></td>
                 <td>12-שיר השלוחים</td>
                 <td>אחד יחיד ומיוחד</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2362')">
                 <td><a>2362</a></td>
                 <td>01 ואזכה לנגן</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2363')">
                 <td><a>2363</a></td>
                 <td>02 בשעה טובה</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2364')">
                 <td><a>2364</a></td>
                 <td>03 כשאתם מתפללים</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2365')">
                 <td><a>2365</a></td>
                 <td>04 לבדו</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2366')">
                 <td><a>2366</a></td>
                 <td>05 שלח מלאכיך</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2367')">
                 <td><a>2367</a></td>
                 <td>06 רק הקב''ה</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2368')">
                 <td><a>2368</a></td>
                 <td>07 ברכת האורח</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2369')">
                 <td><a>2369</a></td>
                 <td>08 ארץ ישראל</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2370')">
                 <td><a>2370</a></td>
                 <td>09 אבינו ואמנו</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2371')">
                 <td><a>2371</a></td>
                 <td>10 צמח צדיק</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2372')">
                 <td><a>2372</a></td>
                 <td>11 אם אשכחך</td>
                 <td>בשעה טובה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2373')">
                 <td><a>2373</a></td>
                 <td>01-בואי כלה</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2374')">
                 <td><a>2374</a></td>
                 <td>02-והיא שעמדה</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2375')">
                 <td><a>2375</a></td>
                 <td>03-אודך</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2376')">
                 <td><a>2376</a></td>
                 <td>04-אם אשכחך</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2377')">
                 <td><a>2377</a></td>
                 <td>05-וזכני</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2378')">
                 <td><a>2378</a></td>
                 <td>06-לך קלי</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2379')">
                 <td><a>2379</a></td>
                 <td>07-שתרחמני</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2380')">
                 <td><a>2380</a></td>
                 <td>08 - No Jew</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2381')">
                 <td><a>2381</a></td>
                 <td>09-ענווים</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2382')">
                 <td><a>2382</a></td>
                 <td>10-בניין עדי עד</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2383')">
                 <td><a>2383</a></td>
                 <td>11-שבחי ירושלים</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2384')">
                 <td><a>2384</a></td>
                 <td>12-מה מה מה</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2385')">
                 <td><a>2385</a></td>
                 <td>13-חביבין</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2386')">
                 <td><a>2386</a></td>
                 <td>14-הענטלך</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2387')">
                 <td><a>2387</a></td>
                 <td>15-קל ההודאות</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2388')">
                 <td><a>2388</a></td>
                 <td>16-סטופ</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2389')">
                 <td><a>2389</a></td>
                 <td>17-יפרח בימיו</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2390')">
                 <td><a>2390</a></td>
                 <td>18-בית נאמן</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2391')">
                 <td><a>2391</a></td>
                 <td>19-מצליח</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2392')">
                 <td><a>2392</a></td>
                 <td>20-ניגון אמעריקע</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2393')">
                 <td><a>2393</a></td>
                 <td>21-קול רינה</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2394')">
                 <td><a>2394</a></td>
                 <td>22-מראה כהן</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2395')">
                 <td><a>2395</a></td>
                 <td>23-אשריכם</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2396')">
                 <td><a>2396</a></td>
                 <td>24-עת דודים</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2397')">
                 <td><a>2397</a></td>
                 <td>26-ויחון עם</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2398')">
                 <td><a>2398</a></td>
                 <td>27-אלוקים שלי</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2399')">
                 <td><a>2399</a></td>
                 <td>28-ניגון ישי</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2400')">
                 <td><a>2400</a></td>
                 <td>29-כינור דוד</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2401')">
                 <td><a>2401</a></td>
                 <td>30-מברוק עלק</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2402')">
                 <td><a>2402</a></td>
                 <td>31-יבבאי</td>
                 <td>המוזיקה שלי</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2403')">
                 <td><a>2403</a></td>
                 <td>01 כל הצדיקים</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2404')">
                 <td><a>2404</a></td>
                 <td>02 והראינו</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2405')">
                 <td><a>2405</a></td>
                 <td>03 שמח</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2406')">
                 <td><a>2406</a></td>
                 <td>04 מדוע</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2407')">
                 <td><a>2407</a></td>
                 <td>05 למלך</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2408')">
                 <td><a>2408</a></td>
                 <td>06 סגולה</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2409')">
                 <td><a>2409</a></td>
                 <td>07 שובה</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2410')">
                 <td><a>2410</a></td>
                 <td>08 בשורות טובות</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2411')">
                 <td><a>2411</a></td>
                 <td>09 אבינו אב הרחמן</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2412')">
                 <td><a>2412</a></td>
                 <td>10 מצוה</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2413')">
                 <td><a>2413</a></td>
                 <td>11 ברכת חופה</td>
                 <td>סגולה</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2414')">
                 <td><a>2414</a></td>
                 <td>02 אוהד מושקוביץ, יונתן שינפלד - תפילת הבנים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2415')">
                 <td><a>2415</a></td>
                 <td>04 אוהד מושקוביץ קדוש</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2416')">
                 <td><a>2416</a></td>
                 <td>05 אוהד מושקוביץ ושמילי אונגר בדואט מקפיץ -  בר אלעאי </td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2417')">
                 <td><a>2417</a></td>
                 <td>05 אוהד מושקוביץ, יהודה גרין - השיבנו</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2418')">
                 <td><a>2418</a></td>
                 <td>05 ברצלונה מחווה לג'ו עמר - אוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2419')">
                 <td><a>2419</a></td>
                 <td>11 ברכת חופה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2420')">
                 <td><a>2420</a></td>
                 <td>30מברוק עלק</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2421')">
                 <td><a>2421</a></td>
                 <td>ohad ma shaia אוהד מושקוביץ מה שהיה הקליפ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2422')">
                 <td><a>2422</a></td>
                 <td>אב הרחמים, קול ברמה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2423')">
                 <td><a>2423</a></td>
                 <td>אודך</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2424')">
                 <td><a>2424</a></td>
                 <td>אוהד ויונתן שיינפלד בשיר תפילת הבנים בהופעה - Ohad & yonatan shaynfeld</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2425')">
                 <td><a>2425</a></td>
                 <td>אוהד מושקוביץ & מוטי גרינבוים - תינוקות של בית רבן</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2426')">
                 <td><a>2426</a></td>
                 <td>אוהד מושקוביץ & שמואלי אונגר - בר אלעאי</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2427')">
                 <td><a>2427</a></td>
                 <td>אוהד מושקוביץ & שמילי אונגר - בר אלעאי</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2428')">
                 <td><a>2428</a></td>
                 <td>אוהד מושקוביץ - אם אין אני לי מי לי</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2429')">
                 <td><a>2429</a></td>
                 <td>אוהד מושקוביץ - דרוש נא</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2430')">
                 <td><a>2430</a></td>
                 <td>אוהד מושקוביץ - כשאתם מתפללים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2431')">
                 <td><a>2431</a></td>
                 <td>אוהד מושקוביץ - למלך</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2432')">
                 <td><a>2432</a></td>
                 <td>אוהד מושקוביץ - מלך מלכי המלכים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2433')">
                 <td><a>2433</a></td>
                 <td>אוהד מושקוביץ - מנעי קולך</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2434')">
                 <td><a>2434</a></td>
                 <td>אוהד מושקוביץ - נזכה ונחיה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2435')">
                 <td><a>2435</a></td>
                 <td>אוהד מושקוביץ - ניגון נשמה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2436')">
                 <td><a>2436</a></td>
                 <td>אוהד מושקוביץ - קל ההודאות Ohad - Kel Haodaot</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2437')">
                 <td><a>2437</a></td>
                 <td>אוהד מושקוביץ - שאו מרום</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2438')">
                 <td><a>2438</a></td>
                 <td>אוהד מושקוביץ ומיכה גמרמן גילה דיצה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2439')">
                 <td><a>2439</a></td>
                 <td>אוהד מושקוביץ ומקהלת 'ידידים' מרגשים במחרוזת נוסטלגית</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2440')">
                 <td><a>2440</a></td>
                 <td>אוהד מושקוביץ ומקהלת ידידים - מחרוזת שקטים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2441')">
                 <td><a>2441</a></td>
                 <td>אוהד מושקוביץ ומקהלת ידידים - ממקומך & נפשי</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2442')">
                 <td><a>2442</a></td>
                 <td>אוהד מושקוביץ ושי360 - בוא יבוא</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2443')">
                 <td><a>2443</a></td>
                 <td>אוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2444')">
                 <td><a>2444</a></td>
                 <td>אוהד_מושקוביץ_-_דרוש_נא</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2445')">
                 <td><a>2445</a></td>
                 <td>אוי תדי דוידום</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2446')">
                 <td><a>2446</a></td>
                 <td>אוי תידידודום</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2447')">
                 <td><a>2447</a></td>
                 <td>אנא בכח </td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2448')">
                 <td><a>2448</a></td>
                 <td>אנרגיות בשמים אוהד מושקוביץ וידידים </td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2449')">
                 <td><a>2449</a></td>
                 <td>בר אלעאי - שמילי אונגר ואוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2450')">
                 <td><a>2450</a></td>
                 <td>בר אלעאי</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2451')">
                 <td><a>2451</a></td>
                 <td>ברכת חופה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2452')">
                 <td><a>2452</a></td>
                 <td>ברכת כלה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2453')">
                 <td><a>2453</a></td>
                 <td>גילה רינה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2454')">
                 <td><a>2454</a></td>
                 <td>הבית היהודי </td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2455')">
                 <td><a>2455</a></td>
                 <td>הדואט אוהד מושקוביץ ומיכה גמרמן</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2456')">
                 <td><a>2456</a></td>
                 <td>הרקדה בחתונה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2457')">
                 <td><a>2457</a></td>
                 <td>ואין עוד מלבדו אוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2458')">
                 <td><a>2458</a></td>
                 <td>ובחנוני</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2459')">
                 <td><a>2459</a></td>
                 <td>והביאותים.אוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2460')">
                 <td><a>2460</a></td>
                 <td>ונזכה ונחיה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2461')">
                 <td><a>2461</a></td>
                 <td>יהי רצון</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2462')">
                 <td><a>2462</a></td>
                 <td>יעלה ויבוא אוהד מושקוביץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2463')">
                 <td><a>2463</a></td>
                 <td>יעלה ויבוא</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2464')">
                 <td><a>2464</a></td>
                 <td>ישראל בלבבות</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2465')">
                 <td><a>2465</a></td>
                 <td>מזל טוב</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2466')">
                 <td><a>2466</a></td>
                 <td>מחרוזת אנרגיה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2467')">
                 <td><a>2467</a></td>
                 <td>מחרוזת חופה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2468')">
                 <td><a>2468</a></td>
                 <td>מחרוזת חתונה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2469')">
                 <td><a>2469</a></td>
                 <td>מחרוזת כניסה לחופה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2470')">
                 <td><a>2470</a></td>
                 <td>מחרוזת נוסטלגית</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2471')">
                 <td><a>2471</a></td>
                 <td>מחרוזת פורים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2472')">
                 <td><a>2472</a></td>
                 <td>מחרוזת ריקודים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2473')">
                 <td><a>2473</a></td>
                 <td>מחרוזת שירי רכניץ</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2474')">
                 <td><a>2474</a></td>
                 <td>מחרוזת</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2475')">
                 <td><a>2475</a></td>
                 <td>מי לי </td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2476')">
                 <td><a>2476</a></td>
                 <td>מנעי קולך</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2477')">
                 <td><a>2477</a></td>
                 <td>מתפללים</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2478')">
                 <td><a>2478</a></td>
                 <td>נזכה ונחיה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2479')">
                 <td><a>2479</a></td>
                 <td>ניגון נשמה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2480')">
                 <td><a>2480</a></td>
                 <td>נשמח עם החתן Live - אוהד מושקוביץ Nismach Im hachatan LIVE I Ohad Moskowitz I</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2481')">
                 <td><a>2481</a></td>
                 <td>נשמח עם החתן</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2482')">
                 <td><a>2482</a></td>
                 <td>סגולה I אוהד מושקוביץ I תקציר Sgula I Ohad Moskowitz I Summary</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2483')">
                 <td><a>2483</a></td>
                 <td>עם  סגולה</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2484')">
                 <td><a>2484</a></td>
                 <td>קונצרט</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2485')">
                 <td><a>2485</a></td>
                 <td>שאו מרום</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2486')">
                 <td><a>2486</a></td>
                 <td>שיר המעלות</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2487')">
                 <td><a>2487</a></td>
                 <td>שמח I אוהד מושקוביץ Sameach I Ohad Moskowitz</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2488')">
                 <td><a>2488</a></td>
                 <td>שמחה לארצנו</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2489')">
                 <td><a>2489</a></td>
                 <td>שתרחמני</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2490')">
                 <td><a>2490</a></td>
                 <td>תניא I אוהד מושקוביץ I קונצרט משירי יוסי גרין I היכל התרבות ת״א Tanya I Ohad Moshkovit</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2491')">
                 <td><a>2491</a></td>
                 <td>תניא ואדרבה צ'ולנט</td>
                 <td>סינגלים</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2492')">
                 <td><a>2492</a></td>
                 <td>01-ניגון חסידיש</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2493')">
                 <td><a>2493</a></td>
                 <td>02-חזק</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2494')">
                 <td><a>2494</a></td>
                 <td>03-יערב</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2495')">
                 <td><a>2495</a></td>
                 <td>04-קול דודי</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2496')">
                 <td><a>2496</a></td>
                 <td>05-סימן טוב</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2497')">
                 <td><a>2497</a></td>
                 <td>06-שבת אחים</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2498')">
                 <td><a>2498</a></td>
                 <td>07-שמח</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2499')">
                 <td><a>2499</a></td>
                 <td>08-לבנימין</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2500')">
                 <td><a>2500</a></td>
                 <td>09-ואמר</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2501')">
                 <td><a>2501</a></td>
                 <td>10-עד עלות השחר</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2502')">
                 <td><a>2502</a></td>
                 <td>11-מזמור לדוד</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2503')">
                 <td><a>2503</a></td>
                 <td>12-ליהודים</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2504')">
                 <td><a>2504</a></td>
                 <td>13-אדון עולם - שחרית</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2505')">
                 <td><a>2505</a></td>
                 <td>14-וקווי ה</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2506')">
                 <td><a>2506</a></td>
                 <td>15-שומר ישראל</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2507')">
                 <td><a>2507</a></td>
                 <td>16-על הניסים</td>
                 <td>עד עלות השחר 1</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2508')">
                 <td><a>2508</a></td>
                 <td>01-מלך</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2509')">
                 <td><a>2509</a></td>
                 <td>02-מועד</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2510')">
                 <td><a>2510</a></td>
                 <td>03-הבט</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2511')">
                 <td><a>2511</a></td>
                 <td>04-חודש</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2512')">
                 <td><a>2512</a></td>
                 <td>05-פינו</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2513')">
                 <td><a>2513</a></td>
                 <td>06-מעלות</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2514')">
                 <td><a>2514</a></td>
                 <td>07-מלבדו</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2515')">
                 <td><a>2515</a></td>
                 <td>08-יגאל</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2516')">
                 <td><a>2516</a></td>
                 <td>09-דדא</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2517')">
                 <td><a>2517</a></td>
                 <td>10-אמת</td>
                 <td>עד עלות השחר 2</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2518')">
                 <td><a>2518</a></td>
                 <td>01-שיר למעלות</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2519')">
                 <td><a>2519</a></td>
                 <td>02-שהחיינו</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2520')">
                 <td><a>2520</a></td>
                 <td>03-דרור יקרא</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2521')">
                 <td><a>2521</a></td>
                 <td>04-אנחנו מאמינים</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2522')">
                 <td><a>2522</a></td>
                 <td>05-פרוק</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2523')">
                 <td><a>2523</a></td>
                 <td>06-יממאמי</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2524')">
                 <td><a>2524</a></td>
                 <td>07-ברוך השם</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2525')">
                 <td><a>2525</a></td>
                 <td>08-יחד</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2526')">
                 <td><a>2526</a></td>
                 <td>09-השם</td>
                 <td>עד עלות השחר 3</td>
                 <td>אוהד מושקוביץ</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

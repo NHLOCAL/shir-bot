@@ -1,742 +1,724 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ירמיה דמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ירמיה דמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspירמיה דמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspירמיה דמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('51337')">
                 <td><a>51337</a></td>
                 <td>איך האב געווארט-01</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51338')">
                 <td><a>51338</a></td>
                 <td>איך פאר אהיים-02</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51339')">
                 <td><a>51339</a></td>
                 <td>די בלעטעלע-03</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51340')">
                 <td><a>51340</a></td>
                 <td>די געשיכטע פין יאקאב-04</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51341')">
                 <td><a>51341</a></td>
                 <td>הכנה לשבת קודש-05</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51342')">
                 <td><a>51342</a></td>
                 <td>התנא הלל-06</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51343')">
                 <td><a>51343</a></td>
                 <td>וואו איז דער צדיק-07</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51344')">
                 <td><a>51344</a></td>
                 <td>יוסף מוקיר שבת-08</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51345')">
                 <td><a>51345</a></td>
                 <td>רבי עקיבא-09</td>
                 <td>ארליכע ניגונים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51346')">
                 <td><a>51346</a></td>
                 <td>01-אלוקי נשמה</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51347')">
                 <td><a>51347</a></td>
                 <td>02-נישט ווייט צו גיין</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51348')">
                 <td><a>51348</a></td>
                 <td>03-ר' ישמעא-ל אומר</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51349')">
                 <td><a>51349</a></td>
                 <td>04-רזא דשבת</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51350')">
                 <td><a>51350</a></td>
                 <td>05-המבדיל</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51351')">
                 <td><a>51351</a></td>
                 <td>06-רצה עתירתם</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51352')">
                 <td><a>51352</a></td>
                 <td>07-הנני העני</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51353')">
                 <td><a>51353</a></td>
                 <td>08-הללו את השם</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51354')">
                 <td><a>51354</a></td>
                 <td>09-ועל ידי עבדיך</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51355')">
                 <td><a>51355</a></td>
                 <td>10-סעודניו</td>
                 <td>חזנות טיש</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51356')">
                 <td><a>51356</a></td>
                 <td>איך האב געווארט</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51357')">
                 <td><a>51357</a></td>
                 <td>איך פאר אהיים</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51358')">
                 <td><a>51358</a></td>
                 <td>די בלעטעלע</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51359')">
                 <td><a>51359</a></td>
                 <td>די געשיכטע פין יאקאב</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51360')">
                 <td><a>51360</a></td>
                 <td>הכנה לשבת קודש</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51361')">
                 <td><a>51361</a></td>
                 <td>התנא הלל</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51362')">
                 <td><a>51362</a></td>
                 <td>וואו איז דער צדיק</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51363')">
                 <td><a>51363</a></td>
                 <td>יוסף מוקיר שבת</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51364')">
                 <td><a>51364</a></td>
                 <td>רבי עקיבא</td>
                 <td>ניגוני יום טוב ערליך</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51365')">
                 <td><a>51365</a></td>
                 <td>בדברי תורה בלבד</td>
                 <td>סינגלים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51366')">
                 <td><a>51366</a></td>
                 <td>יצליח</td>
                 <td>סינגלים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51367')">
                 <td><a>51367</a></td>
                 <td>ניגוני התעוררות</td>
                 <td>סינגלים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51368')">
                 <td><a>51368</a></td>
                 <td>סימן טוב</td>
                 <td>סינגלים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51369')">
                 <td><a>51369</a></td>
                 <td>שטייט אויף צו סליחות</td>
                 <td>סינגלים</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51370')">
                 <td><a>51370</a></td>
                 <td>01-שבת איז טייער</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51371')">
                 <td><a>51371</a></td>
                 <td>02-שלום עליכם-רבון-אשת חיל</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51372')">
                 <td><a>51372</a></td>
                 <td>03-אתקינו סעודתא</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51373')">
                 <td><a>51373</a></td>
                 <td>04-ניגוני שמחה</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51374')">
                 <td><a>51374</a></td>
                 <td>05-משוך חסדך</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51375')">
                 <td><a>51375</a></td>
                 <td>06-מה ידידות</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51376')">
                 <td><a>51376</a></td>
                 <td>07-מעין עולם הבא</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51377')">
                 <td><a>51377</a></td>
                 <td>08-יום שבת קודש</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51378')">
                 <td><a>51378</a></td>
                 <td>09-לקל אשר שבת</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51379')">
                 <td><a>51379</a></td>
                 <td>10-כל מקדש</td>
                 <td>עתיקא קדישא 1</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51380')">
                 <td><a>51380</a></td>
                 <td>01-קל אדון</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51381')">
                 <td><a>51381</a></td>
                 <td>02-ישמח משה</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51382')">
                 <td><a>51382</a></td>
                 <td>03-ביומא דשבתא</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51383')">
                 <td><a>51383</a></td>
                 <td>04-אסדר לסעודתי</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51384')">
                 <td><a>51384</a></td>
                 <td>05-ברוך קל עליון</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51385')">
                 <td><a>51385</a></td>
                 <td>06-וואלס</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51386')">
                 <td><a>51386</a></td>
                 <td>07-שבת היום</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51387')">
                 <td><a>51387</a></td>
                 <td>08-ממקומך</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51388')">
                 <td><a>51388</a></td>
                 <td>09-ברוך קל עליון</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51389')">
                 <td><a>51389</a></td>
                 <td>10-מחרוזת ניגוני שמחה</td>
                 <td>עתיקא קדישא 2</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51390')">
                 <td><a>51390</a></td>
                 <td>01-זמרו לד'-ברכות ההדלקה-הנרות הללו</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51391')">
                 <td><a>51391</a></td>
                 <td>02-מעוז ציר</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51392')">
                 <td><a>51392</a></td>
                 <td>03-יוונים</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51393')">
                 <td><a>51393</a></td>
                 <td>04-מזמור שיר</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51394')">
                 <td><a>51394</a></td>
                 <td>05-מחרוזת יוונים-עממי</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51395')">
                 <td><a>51395</a></td>
                 <td>06-למנצח בנגינות</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51396')">
                 <td><a>51396</a></td>
                 <td>07-ניגון שמחה</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51397')">
                 <td><a>51397</a></td>
                 <td>08-רננו צדיקים</td>
                 <td>א-להדליק נר חנוכה</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51398')">
                 <td><a>51398</a></td>
                 <td>01-זמרו לד' חסידיו</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51399')">
                 <td><a>51399</a></td>
                 <td>02-אשרי תמימי דרך אות א-ד</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51400')">
                 <td><a>51400</a></td>
                 <td>03-הורני אות ה-ח</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51401')">
                 <td><a>51401</a></td>
                 <td>04-טוב עשיתי אות ט-ל</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51402')">
                 <td><a>51402</a></td>
                 <td>05-מה אהבתי אות מ-ע</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51403')">
                 <td><a>51403</a></td>
                 <td>06-פלאות עדותיך אות פ-ק</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51404')">
                 <td><a>51404</a></td>
                 <td>07-ראה עניי אות ר-ת</td>
                 <td>ב-תמניא אפי</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51405')">
                 <td><a>51405</a></td>
                 <td>01 הללו את השם</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51406')">
                 <td><a>51406</a></td>
                 <td>02 קדש ורחץ</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51407')">
                 <td><a>51407</a></td>
                 <td>03 הא לחמא עניא (וקטעי נוסח מההגדה)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51408')">
                 <td><a>51408</a></td>
                 <td>04 קטע מאמירת הלל (מאבי מורי ע_ה)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51409')">
                 <td><a>51409</a></td>
                 <td>05 הללו 2 (ניגון שמחה)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51410')">
                 <td><a>51410</a></td>
                 <td>06 זכר למקדש כהלל (נוסח)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51411')">
                 <td><a>51411</a></td>
                 <td>07 שיר השירים</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51412')">
                 <td><a>51412</a></td>
                 <td>08 ויהי בחצי הלילה (נוסח)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51413')">
                 <td><a>51413</a></td>
                 <td>09 כי לו נאה</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51414')">
                 <td><a>51414</a></td>
                 <td>10 אחד מי יודע (בשילוב ניגון בר יוחאי)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51415')">
                 <td><a>51415</a></td>
                 <td>11 חד גדיא</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51416')">
                 <td><a>51416</a></td>
                 <td>12 אבוא בחיל</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51417')">
                 <td><a>51417</a></td>
                 <td>13  תפילת טל (נוסח)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51418')">
                 <td><a>51418</a></td>
                 <td>14 פסח מצרים פסח לעתיד (מערבית מליל שביעי של פסח)</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51419')">
                 <td><a>51419</a></td>
                 <td>15 חסל סידור פסח</td>
                 <td>עתיקא קדישא 6</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51420')">
                 <td><a>51420</a></td>
                 <td>אודה</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51421')">
                 <td><a>51421</a></td>
                 <td>ברוך קל עליון</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51422')">
                 <td><a>51422</a></td>
                 <td>דרור יקרא</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51423')">
                 <td><a>51423</a></td>
                 <td>יום זה מכובד</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51424')">
                 <td><a>51424</a></td>
                 <td>יצוה</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51425')">
                 <td><a>51425</a></td>
                 <td>ניגוני התעוררות</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51426')">
                 <td><a>51426</a></td>
                 <td>קל מסתתר</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51427')">
                 <td><a>51427</a></td>
                 <td>שבת היום</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51428')">
                 <td><a>51428</a></td>
                 <td>שיר המעלות</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51429')">
                 <td><a>51429</a></td>
                 <td>שמחה - אין כאלוקינו</td>
                 <td>רעווא דרעווין</td>
                 <td>ירמיה דמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

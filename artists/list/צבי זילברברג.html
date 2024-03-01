@@ -1,329 +1,311 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>צבי זילברברג</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>צבי זילברברג</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspצבי זילברברג</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspצבי זילברברג</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('53663')">
                 <td><a>53663</a></td>
                 <td>דער צווייטע טאנץ פורים 1</td>
                 <td>סינגלים</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53664')">
                 <td><a>53664</a></td>
                 <td>דער צווייטע טאנץ פורים 2</td>
                 <td>סינגלים</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53665')">
                 <td><a>53665</a></td>
                 <td>ובשירי דוד</td>
                 <td>סינגלים</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53666')">
                 <td><a>53666</a></td>
                 <td>ויצמח</td>
                 <td>סינגלים</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53667')">
                 <td><a>53667</a></td>
                 <td>מגן אבות</td>
                 <td>סינגלים</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53668')">
                 <td><a>53668</a></td>
                 <td>02 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53669')">
                 <td><a>53669</a></td>
                 <td>03 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53670')">
                 <td><a>53670</a></td>
                 <td>04 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53671')">
                 <td><a>53671</a></td>
                 <td>05 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53672')">
                 <td><a>53672</a></td>
                 <td>06 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53673')">
                 <td><a>53673</a></td>
                 <td>07 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53674')">
                 <td><a>53674</a></td>
                 <td>08 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53675')">
                 <td><a>53675</a></td>
                 <td>09 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53676')">
                 <td><a>53676</a></td>
                 <td>10 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53677')">
                 <td><a>53677</a></td>
                 <td>11 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53678')">
                 <td><a>53678</a></td>
                 <td>12 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53679')">
                 <td><a>53679</a></td>
                 <td>13 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53680')">
                 <td><a>53680</a></td>
                 <td>14 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53681')">
                 <td><a>53681</a></td>
                 <td>15 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53682')">
                 <td><a>53682</a></td>
                 <td>16 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53683')">
                 <td><a>53683</a></td>
                 <td>17 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53684')">
                 <td><a>53684</a></td>
                 <td>18 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53685')">
                 <td><a>53685</a></td>
                 <td>19 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53686')">
                 <td><a>53686</a></td>
                 <td>20 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53687')">
                 <td><a>53687</a></td>
                 <td>21 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53688')">
                 <td><a>53688</a></td>
                 <td>22 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53689')">
                 <td><a>53689</a></td>
                 <td>23 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53690')">
                 <td><a>53690</a></td>
                 <td>24 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53691')">
                 <td><a>53691</a></td>
                 <td>25 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53692')">
                 <td><a>53692</a></td>
                 <td>26 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53693')">
                 <td><a>53693</a></td>
                 <td>27 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53694')">
                 <td><a>53694</a></td>
                 <td>28 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53695')">
                 <td><a>53695</a></td>
                 <td>29 רצועה</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53696')">
                 <td><a>53696</a></td>
                 <td>רצועה 01</td>
                 <td>שמח תשמח</td>
                 <td>צבי זילברברג</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

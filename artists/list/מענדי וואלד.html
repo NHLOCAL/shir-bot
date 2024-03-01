@@ -1,441 +1,423 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מענדי וואלד</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מענדי וואלד</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמענדי וואלד</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמענדי וואלד</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('52574')">
                 <td><a>52574</a></td>
                 <td>01-אחד</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52575')">
                 <td><a>52575</a></td>
                 <td>02-צדיק</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52576')">
                 <td><a>52576</a></td>
                 <td>03-ותערב</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52577')">
                 <td><a>52577</a></td>
                 <td>04-מרבה</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52578')">
                 <td><a>52578</a></td>
                 <td>05-זכור</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52579')">
                 <td><a>52579</a></td>
                 <td>06-השם אחד</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52580')">
                 <td><a>52580</a></td>
                 <td>07-גלי</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52581')">
                 <td><a>52581</a></td>
                 <td>08-אנא השם</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52582')">
                 <td><a>52582</a></td>
                 <td>09-מי יעלה</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52583')">
                 <td><a>52583</a></td>
                 <td>10-ישמחו</td>
                 <td>אחד</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52584')">
                 <td><a>52584</a></td>
                 <td>01 - אנחנו עמך</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52585')">
                 <td><a>52585</a></td>
                 <td>02 - קול מבשר</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52586')">
                 <td><a>52586</a></td>
                 <td>03 - Prayers of peace  </td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52587')">
                 <td><a>52587</a></td>
                 <td>04 - אז נעלה</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52588')">
                 <td><a>52588</a></td>
                 <td>05 - יושב בסתר</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52589')">
                 <td><a>52589</a></td>
                 <td>06 - כשם שאני</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52590')">
                 <td><a>52590</a></td>
                 <td>07 - פתח ליבי</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52591')">
                 <td><a>52591</a></td>
                 <td>08 - אם למדת </td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52592')">
                 <td><a>52592</a></td>
                 <td>09 - על זה היה</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52593')">
                 <td><a>52593</a></td>
                 <td>10 - דרשו ה</td>
                 <td>אנחנו עמך</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52594')">
                 <td><a>52594</a></td>
                 <td>26 - כח</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52595')">
                 <td><a>52595</a></td>
                 <td>27 - אני מאמין</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52596')">
                 <td><a>52596</a></td>
                 <td>28 - מיין קינד</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52597')">
                 <td><a>52597</a></td>
                 <td>29 - כל המשמח</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52598')">
                 <td><a>52598</a></td>
                 <td>30 - אחת שאלתי</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52599')">
                 <td><a>52599</a></td>
                 <td>31 - היום יודע</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52600')">
                 <td><a>52600</a></td>
                 <td>32 - שיר למעלות</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52601')">
                 <td><a>52601</a></td>
                 <td>33 - אל תאמר</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52602')">
                 <td><a>52602</a></td>
                 <td>34 - אבינו</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52603')">
                 <td><a>52603</a></td>
                 <td>35 - כי בשמחה</td>
                 <td>כח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52604')">
                 <td><a>52604</a></td>
                 <td>42 - אמר ר' עקיבא</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52605')">
                 <td><a>52605</a></td>
                 <td>43 - Smile Again</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52606')">
                 <td><a>52606</a></td>
                 <td>44 - הים</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52607')">
                 <td><a>52607</a></td>
                 <td>45 - זכרנו לחיים</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52608')">
                 <td><a>52608</a></td>
                 <td>46 - כשם</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52609')">
                 <td><a>52609</a></td>
                 <td>47 - ירושלים</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52610')">
                 <td><a>52610</a></td>
                 <td>48 - ממקומך</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52611')">
                 <td><a>52611</a></td>
                 <td>49 - הנה מה טוב</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52612')">
                 <td><a>52612</a></td>
                 <td>50 - קלי</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52613')">
                 <td><a>52613</a></td>
                 <td>51 - חזק</td>
                 <td>לחיים</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52614')">
                 <td><a>52614</a></td>
                 <td>39 - שמח</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52615')">
                 <td><a>52615</a></td>
                 <td>40 - משיח</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52616')">
                 <td><a>52616</a></td>
                 <td>41 - איך נשיר</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52617')">
                 <td><a>52617</a></td>
                 <td>42 - Time For Change</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52618')">
                 <td><a>52618</a></td>
                 <td>43 - שפכי</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52619')">
                 <td><a>52619</a></td>
                 <td>44 - טוב להודות</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52620')">
                 <td><a>52620</a></td>
                 <td>45 - דער קדושה לעבט</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52621')">
                 <td><a>52621</a></td>
                 <td>46 - אם עוונות</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52622')">
                 <td><a>52622</a></td>
                 <td>47 - פיה פתחה</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52623')">
                 <td><a>52623</a></td>
                 <td>48 - אין אנחנו</td>
                 <td>שמח</td>
                 <td>מענדי וואלד</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

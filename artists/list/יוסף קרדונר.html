@@ -1,1169 +1,1151 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יוסף קרדונר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יוסף קרדונר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיוסף קרדונר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיוסף קרדונר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('13121')">
                 <td><a>13121</a></td>
                 <td>01-אחת שאלתי</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13122')">
                 <td><a>13122</a></td>
                 <td>02-נקודה טובה</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13123')">
                 <td><a>13123</a></td>
                 <td>03-קומי רני</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13124')">
                 <td><a>13124</a></td>
                 <td>04-מזמור לתודה</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13125')">
                 <td><a>13125</a></td>
                 <td>05-הייתי הולך אליו</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13126')">
                 <td><a>13126</a></td>
                 <td>06-קול רנה</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13127')">
                 <td><a>13127</a></td>
                 <td>07-ניגון</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13128')">
                 <td><a>13128</a></td>
                 <td>08-מחרוזת ניגוני אמונה ושמחה</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13129')">
                 <td><a>13129</a></td>
                 <td>09-אשרי תמימי דרך</td>
                 <td>אחת שאלתי</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13130')">
                 <td><a>13130</a></td>
                 <td>01 אל תדאג</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13131')">
                 <td><a>13131</a></td>
                 <td>02 רואה ואינו נראה</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13132')">
                 <td><a>13132</a></td>
                 <td>03 ניגון כשר</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13133')">
                 <td><a>13133</a></td>
                 <td>04 ניגון הגיטרה</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13134')">
                 <td><a>13134</a></td>
                 <td>05 אהוב מהר המור</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13135')">
                 <td><a>13135</a></td>
                 <td>06 קדוש יאמר לו</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13136')">
                 <td><a>13136</a></td>
                 <td>07 קיותה נפשי</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13137')">
                 <td><a>13137</a></td>
                 <td>08 כי לעולם חסדו</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13138')">
                 <td><a>13138</a></td>
                 <td>09 זכרינו לחיים</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13139')">
                 <td><a>13139</a></td>
                 <td>10 ואמרתם כה לחי</td>
                 <td>אל תדאג</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13140')">
                 <td><a>13140</a></td>
                 <td>01-בחירה</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13141')">
                 <td><a>13141</a></td>
                 <td>02-שמות הצדיקים</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13142')">
                 <td><a>13142</a></td>
                 <td>03-מי שרוצה לשוב</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13143')">
                 <td><a>13143</a></td>
                 <td>04-מודה אני</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13144')">
                 <td><a>13144</a></td>
                 <td>05-הללוי-ה</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13145')">
                 <td><a>13145</a></td>
                 <td>06-ישמח משה</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13146')">
                 <td><a>13146</a></td>
                 <td>07-ניגון</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13147')">
                 <td><a>13147</a></td>
                 <td>08-אוי</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13148')">
                 <td><a>13148</a></td>
                 <td>09-זה יושיענו</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13149')">
                 <td><a>13149</a></td>
                 <td>10-ניגון חלומי</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13150')">
                 <td><a>13150</a></td>
                 <td>11-המבדיל</td>
                 <td>בחירה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13151')">
                 <td><a>13151</a></td>
                 <td>01-בן פורת יוסף</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13152')">
                 <td><a>13152</a></td>
                 <td>02-בקש עבדך</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13153')">
                 <td><a>13153</a></td>
                 <td>03-בלי יריה אחת</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13154')">
                 <td><a>13154</a></td>
                 <td>04-מעשה ממטר</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13155')">
                 <td><a>13155</a></td>
                 <td>05-ניגון</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13156')">
                 <td><a>13156</a></td>
                 <td>06-מילי דשטותא</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13157')">
                 <td><a>13157</a></td>
                 <td>07-לב נשבר</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13158')">
                 <td><a>13158</a></td>
                 <td>08-כאיל תערוג</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13159')">
                 <td><a>13159</a></td>
                 <td>09-מה לכם לדאוג</td>
                 <td>בקש עבדך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13160')">
                 <td><a>13160</a></td>
                 <td>01-כל העולם</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13161')">
                 <td><a>13161</a></td>
                 <td>02-איש הישראלי</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13162')">
                 <td><a>13162</a></td>
                 <td>03-למעט בכבוד</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13163')">
                 <td><a>13163</a></td>
                 <td>04-לענין התחזקות</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13164')">
                 <td><a>13164</a></td>
                 <td>05-גשם צר</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13165')">
                 <td><a>13165</a></td>
                 <td>06-הו אבא</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13166')">
                 <td><a>13166</a></td>
                 <td>07-בך רבינו</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13167')">
                 <td><a>13167</a></td>
                 <td>08-צדיק כתמר</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13168')">
                 <td><a>13168</a></td>
                 <td>09-מצוה גדולה</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13169')">
                 <td><a>13169</a></td>
                 <td>10-אני מאמין</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13170')">
                 <td><a>13170</a></td>
                 <td>11-ניגון</td>
                 <td>כל העולם</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13171')">
                 <td><a>13171</a></td>
                 <td>01-במוצאי</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13172')">
                 <td><a>13172</a></td>
                 <td>02-חדש ששוני</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13173')">
                 <td><a>13173</a></td>
                 <td>03-אגיל ואשמח</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13174')">
                 <td><a>13174</a></td>
                 <td>04-אלוקים יסעדנו</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13175')">
                 <td><a>13175</a></td>
                 <td>05-קלי חיש גואלי</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13176')">
                 <td><a>13176</a></td>
                 <td>06-אדיר איום</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13177')">
                 <td><a>13177</a></td>
                 <td>07-איש חסיד</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13178')">
                 <td><a>13178</a></td>
                 <td>08-אל תירא</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13179')">
                 <td><a>13179</a></td>
                 <td>09-המבדיל</td>
                 <td>מלוה מלכה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13180')">
                 <td><a>13180</a></td>
                 <td>01-שלח</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13181')">
                 <td><a>13181</a></td>
                 <td>02-משיח יביא</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13182')">
                 <td><a>13182</a></td>
                 <td>03-נוסעים לרבי</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13183')">
                 <td><a>13183</a></td>
                 <td>04-כבד ד' מגרונך</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13184')">
                 <td><a>13184</a></td>
                 <td>05-אין שום יאוש</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13185')">
                 <td><a>13185</a></td>
                 <td>06-ברכות והודאות</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13186')">
                 <td><a>13186</a></td>
                 <td>07-העלנו</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13187')">
                 <td><a>13187</a></td>
                 <td>08-לארצנו</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13188')">
                 <td><a>13188</a></td>
                 <td>09-מקדש מלך</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13189')">
                 <td><a>13189</a></td>
                 <td>10-ד' שפתי תפתח</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13190')">
                 <td><a>13190</a></td>
                 <td>11-ניגון נוסעים</td>
                 <td>מקדש מלך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13191')">
                 <td><a>13191</a></td>
                 <td>01-מקור חכמה</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13192')">
                 <td><a>13192</a></td>
                 <td>02-הודו לה</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13193')">
                 <td><a>13193</a></td>
                 <td>03-מזמור לדוד</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13194')">
                 <td><a>13194</a></td>
                 <td>04-כי לא כלו רחמיו</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13195')">
                 <td><a>13195</a></td>
                 <td>05-עלינו לשבח</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13196')">
                 <td><a>13196</a></td>
                 <td>06-ישראל בטח בה</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13197')">
                 <td><a>13197</a></td>
                 <td>07-בצר להם</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13198')">
                 <td><a>13198</a></td>
                 <td>08-ידיד נפש</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13199')">
                 <td><a>13199</a></td>
                 <td>09-ניגון</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13200')">
                 <td><a>13200</a></td>
                 <td>10-מן המצר</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13201')">
                 <td><a>13201</a></td>
                 <td>11-ניגון עלינו</td>
                 <td>מקור חכמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13202')">
                 <td><a>13202</a></td>
                 <td>01-שיר למעלות</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13203')">
                 <td><a>13203</a></td>
                 <td>02-דע</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13204')">
                 <td><a>13204</a></td>
                 <td>03-השם מלך</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13205')">
                 <td><a>13205</a></td>
                 <td>04-השיבנו</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13206')">
                 <td><a>13206</a></td>
                 <td>05-מקימי</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13207')">
                 <td><a>13207</a></td>
                 <td>06-תשמח</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13208')">
                 <td><a>13208</a></td>
                 <td>07-תחנון</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13209')">
                 <td><a>13209</a></td>
                 <td>08-כשאדם יודע</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13210')">
                 <td><a>13210</a></td>
                 <td>09-וטהר ליבנו</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13211')">
                 <td><a>13211</a></td>
                 <td>10-ניגון שיר למעלות</td>
                 <td>סימנים בדרך</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13212')">
                 <td><a>13212</a></td>
                 <td>26 - יוסף קרדונר - מה ידידות</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13213')">
                 <td><a>13213</a></td>
                 <td>45 - יוסף קרדונר - אשת חיל - [Windos.Co]</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13214')">
                 <td><a>13214</a></td>
                 <td>ואפילו בהסתרה</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13215')">
                 <td><a>13215</a></td>
                 <td>חושב מחשבות</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13216')">
                 <td><a>13216</a></td>
                 <td>יוסף קרדונר & מיכאל שטרית - לב טהור</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13217')">
                 <td><a>13217</a></td>
                 <td>יוסף קרדונר - רחל מבכה</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13218')">
                 <td><a>13218</a></td>
                 <td>כי תעבור במים</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13219')">
                 <td><a>13219</a></td>
                 <td>פדה בשלום  צמאה יוסף קרדונר</td>
                 <td>סינגלים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13220')">
                 <td><a>13220</a></td>
                 <td>01 אסדר לסעודתא</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13221')">
                 <td><a>13221</a></td>
                 <td>02 חי ד -מזמור לדוד</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13222')">
                 <td><a>13222</a></td>
                 <td>03 ברוך ד  יום יום</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13223')">
                 <td><a>13223</a></td>
                 <td>04 ברוך קל עליון</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13224')">
                 <td><a>13224</a></td>
                 <td>05 יום זה מכובד</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13225')">
                 <td><a>13225</a></td>
                 <td>06 יום שבתון</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13226')">
                 <td><a>13226</a></td>
                 <td>07 כי אשמרה שבת</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13227')">
                 <td><a>13227</a></td>
                 <td>08 שמרו שבתותי</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13228')">
                 <td><a>13228</a></td>
                 <td>09 דרור יקרא</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13229')">
                 <td><a>13229</a></td>
                 <td>10 שבת היום</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13230')">
                 <td><a>13230</a></td>
                 <td>11 וביום השבת</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13231')">
                 <td><a>13231</a></td>
                 <td>12 ניגון ברכת החודש</td>
                 <td>צפרא דשבתא</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13232')">
                 <td><a>13232</a></td>
                 <td>01 Track 1</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13233')">
                 <td><a>13233</a></td>
                 <td>02 Track 2</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13234')">
                 <td><a>13234</a></td>
                 <td>03 Track 3</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13235')">
                 <td><a>13235</a></td>
                 <td>04 Track 4</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13236')">
                 <td><a>13236</a></td>
                 <td>05 Track 5</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13237')">
                 <td><a>13237</a></td>
                 <td>06 Track 6</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13238')">
                 <td><a>13238</a></td>
                 <td>07 Track 7</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13239')">
                 <td><a>13239</a></td>
                 <td>08 Track 8</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13240')">
                 <td><a>13240</a></td>
                 <td>09 Track 9</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13241')">
                 <td><a>13241</a></td>
                 <td>10 Track 10</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13242')">
                 <td><a>13242</a></td>
                 <td>11 Track 11</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13243')">
                 <td><a>13243</a></td>
                 <td>12 Track 12</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13244')">
                 <td><a>13244</a></td>
                 <td>13 Track 13</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13245')">
                 <td><a>13245</a></td>
                 <td>14 Track 14</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13246')">
                 <td><a>13246</a></td>
                 <td>15 Track 15</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13247')">
                 <td><a>13247</a></td>
                 <td>16 Track 16</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13248')">
                 <td><a>13248</a></td>
                 <td>17 Track 17</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13249')">
                 <td><a>13249</a></td>
                 <td>18 Track 18</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13250')">
                 <td><a>13250</a></td>
                 <td>19 Track 19</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13251')">
                 <td><a>13251</a></td>
                 <td>20 Track 20</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13252')">
                 <td><a>13252</a></td>
                 <td>21 Track 21</td>
                 <td>שיר למעלות</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13253')">
                 <td><a>13253</a></td>
                 <td>01 הודו לה כי טוב א</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13254')">
                 <td><a>13254</a></td>
                 <td>02 אדיר הוא א</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13255')">
                 <td><a>13255</a></td>
                 <td>03 חסל סידור פסח</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13256')">
                 <td><a>13256</a></td>
                 <td>04 ויהי בחצי הלילה</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13257')">
                 <td><a>13257</a></td>
                 <td>05 קרב יום</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13258')">
                 <td><a>13258</a></td>
                 <td>06 כי לו נאה א</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13259')">
                 <td><a>13259</a></td>
                 <td>07 יום ליבשה א - בגלל אבות</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13260')">
                 <td><a>13260</a></td>
                 <td>08 הודו לה כי טוב ב</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13261')">
                 <td><a>13261</a></td>
                 <td>09 כי לו נאה ב</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13262')">
                 <td><a>13262</a></td>
                 <td>10 אדיר הוא ב</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13263')">
                 <td><a>13263</a></td>
                 <td>11 יום ליבשה ב (מארש)(1)</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13264')">
                 <td><a>13264</a></td>
                 <td>11 יום ליבשה ב (מארש)</td>
                 <td>שירת גאולים</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13265')">
                 <td><a>13265</a></td>
                 <td>01 - Yosef Karduner - The Souls Desire</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13266')">
                 <td><a>13266</a></td>
                 <td>02 - Yosef Karduner - Ve'hu KeChosson</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13267')">
                 <td><a>13267</a></td>
                 <td>03 - Yosef Karduner - Nigun Sameach</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13268')">
                 <td><a>13268</a></td>
                 <td>04 - Yosef Karduner - What Happens in Uman </td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13269')">
                 <td><a>13269</a></td>
                 <td>05 - Yosef Karduner - Morning Stars</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13270')">
                 <td><a>13270</a></td>
                 <td>06 - Yosef Karduner - KeAyal</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13271')">
                 <td><a>13271</a></td>
                 <td>07 - Yosef Karduner - Rabbah Emunatecha</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13272')">
                 <td><a>13272</a></td>
                 <td>08 - Yosef Karduner - Tavati</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13273')">
                 <td><a>13273</a></td>
                 <td>09 - Yosef Karduner - Ki Ata Imadi</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13274')">
                 <td><a>13274</a></td>
                 <td>10 - Yosef Karduner - Tachziku Atzmechem B'yachad</td>
                 <td>תשוקת הנשמה</td>
                 <td>יוסף קרדונר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

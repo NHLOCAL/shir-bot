@@ -1,560 +1,542 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>קוורטין</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>קוורטין</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspקוורטין</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspקוורטין</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('36298')">
                 <td><a>36298</a></td>
                 <td>01-שכן חובת כל היצורים</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36299')">
                 <td><a>36299</a></td>
                 <td>02-וביום שמחתכם</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36300')">
                 <td><a>36300</a></td>
                 <td>03-אב הרחמים</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36301')">
                 <td><a>36301</a></td>
                 <td>04-קדיש לתפילת נעילה</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36302')">
                 <td><a>36302</a></td>
                 <td>05-ברכת ר''ח יחדשהו</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36303')">
                 <td><a>36303</a></td>
                 <td>06-אל תקשו לבבכם</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36304')">
                 <td><a>36304</a></td>
                 <td>07-רפאינו</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36305')">
                 <td><a>36305</a></td>
                 <td>08-אל תשליכנו</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36306')">
                 <td><a>36306</a></td>
                 <td>09-חמול על מעשיך</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36307')">
                 <td><a>36307</a></td>
                 <td>10-וכולם מקבלים</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36308')">
                 <td><a>36308</a></td>
                 <td>11-והאופנים</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36309')">
                 <td><a>36309</a></td>
                 <td>12-ישראל בטח בשם</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36310')">
                 <td><a>36310</a></td>
                 <td>13-ראה נא בעניינו</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36311')">
                 <td><a>36311</a></td>
                 <td>14-קול השם</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36312')">
                 <td><a>36312</a></td>
                 <td>15-הנשמה לך</td>
                 <td>זמירות זבולון</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36313')">
                 <td><a>36313</a></td>
                 <td>01-סליחות</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36314')">
                 <td><a>36314</a></td>
                 <td>02-לדוד מזמור</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36315')">
                 <td><a>36315</a></td>
                 <td>03-אבינו מלכנו</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36316')">
                 <td><a>36316</a></td>
                 <td>04-ועל ידי עבדיך</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36317')">
                 <td><a>36317</a></td>
                 <td>05-תקע בשופר</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36318')">
                 <td><a>36318</a></td>
                 <td>06-וביום שמחתכם</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36319')">
                 <td><a>36319</a></td>
                 <td>07-כל נדרי</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36320')">
                 <td><a>36320</a></td>
                 <td>08-הנשמה לך</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36321')">
                 <td><a>36321</a></td>
                 <td>09-הלבן חטאנו</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36322')">
                 <td><a>36322</a></td>
                 <td>10-טיהר רבי ישמעאל</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36323')">
                 <td><a>36323</a></td>
                 <td>11-שומע קול בכיות</td>
                 <td>פניני חזנות</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36324')">
                 <td><a>36324</a></td>
                 <td>01-כל נדרי</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36325')">
                 <td><a>36325</a></td>
                 <td>02-הנני העני ממעש</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36326')">
                 <td><a>36326</a></td>
                 <td>03-וכל באי עולם</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36327')">
                 <td><a>36327</a></td>
                 <td>04-אדם יסודו מעפר</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36328')">
                 <td><a>36328</a></td>
                 <td>05-וטיהר ר' ישמעא-ל</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36329')">
                 <td><a>36329</a></td>
                 <td>06-ועל ידי עבדיך</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36330')">
                 <td><a>36330</a></td>
                 <td>07-על חטא</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36331')">
                 <td><a>36331</a></td>
                 <td>08-אבינו מלכינו</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36332')">
                 <td><a>36332</a></td>
                 <td>09-שמעה ותשמח ציון</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36333')">
                 <td><a>36333</a></td>
                 <td>10-אהבת עולם</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36334')">
                 <td><a>36334</a></td>
                 <td>11-השכבינו</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36335')">
                 <td><a>36335</a></td>
                 <td>12-צור ישראל</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36336')">
                 <td><a>36336</a></td>
                 <td>13-הנשמה לך</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36337')">
                 <td><a>36337</a></td>
                 <td>14-שומע קול בכיות</td>
                 <td>פניני חזנות 1</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36338')">
                 <td><a>36338</a></td>
                 <td>01-ריבונו של עולם</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36339')">
                 <td><a>36339</a></td>
                 <td>02-וכל מאמינים</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36340')">
                 <td><a>36340</a></td>
                 <td>03-אלה אזכרה</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36341')">
                 <td><a>36341</a></td>
                 <td>04-והכהנים</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36342')">
                 <td><a>36342</a></td>
                 <td>05-יעלה תחנוננו</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36343')">
                 <td><a>36343</a></td>
                 <td>06-קדוש אתה</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36344')">
                 <td><a>36344</a></td>
                 <td>07-ליל שימורים</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36345')">
                 <td><a>36345</a></td>
                 <td>08-ברח דודי</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36346')">
                 <td><a>36346</a></td>
                 <td>09-תפילת טל</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36347')">
                 <td><a>36347</a></td>
                 <td>10-מה טובו</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36348')">
                 <td><a>36348</a></td>
                 <td>11-ולא נתתו</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36349')">
                 <td><a>36349</a></td>
                 <td>12-ושמרו</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36350')">
                 <td><a>36350</a></td>
                 <td>13-יהללו</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36351')">
                 <td><a>36351</a></td>
                 <td>14-ברכת החודש-יהי רצון</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36352')">
                 <td><a>36352</a></td>
                 <td>15-טקס הלוויה-הצור תמים</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36353')">
                 <td><a>36353</a></td>
                 <td>16-שמעו זאת כל העמים</td>
                 <td>פניני חזנות 2</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36354')">
                 <td><a>36354</a></td>
                 <td>01-אמרו לאלוקים</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36355')">
                 <td><a>36355</a></td>
                 <td>02-וביום שמחתכם</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36356')">
                 <td><a>36356</a></td>
                 <td>03-וכולם מקבלים</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36357')">
                 <td><a>36357</a></td>
                 <td>04-כל נדרי</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36358')">
                 <td><a>36358</a></td>
                 <td>05-הושענא</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36359')">
                 <td><a>36359</a></td>
                 <td>06-השם השם</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36360')">
                 <td><a>36360</a></td>
                 <td>07-על כן נקוה</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36361')">
                 <td><a>36361</a></td>
                 <td>08-אבינו מלכנו</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36362')">
                 <td><a>36362</a></td>
                 <td>09-אבות</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36363')">
                 <td><a>36363</a></td>
                 <td>10-מה לך הים</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36364')">
                 <td><a>36364</a></td>
                 <td>11-ביני ובין בני ישראל</td>
                 <td>תפילות ישראל</td>
                 <td>קוורטין</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

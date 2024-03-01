@@ -1,889 +1,871 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>הלל פלאי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>הלל פלאי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspהלל פלאי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspהלל פלאי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('7365')">
                 <td><a>7365</a></td>
                 <td>אמרו ישראל</td>
                 <td>הלל פלאי</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7366')">
                 <td><a>7366</a></td>
                 <td>מפני שהנשמות כלולות יחד הלל פלאי</td>
                 <td>הלל פלאי</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7367')">
                 <td><a>7367</a></td>
                 <td>01-תורה הקדושה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7368')">
                 <td><a>7368</a></td>
                 <td>02-ופנית</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7369')">
                 <td><a>7369</a></td>
                 <td>03-ונהורא</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7370')">
                 <td><a>7370</a></td>
                 <td>04-שאי סביב, שירו למלך</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7371')">
                 <td><a>7371</a></td>
                 <td>05-חנני ה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7372')">
                 <td><a>7372</a></td>
                 <td>06-עד הנה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7373')">
                 <td><a>7373</a></td>
                 <td>07-לכבוד החתן</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7374')">
                 <td><a>7374</a></td>
                 <td>08-דרשו ה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7375')">
                 <td><a>7375</a></td>
                 <td>09-אדון השלום</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7376')">
                 <td><a>7376</a></td>
                 <td>10-והתענג על ה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7377')">
                 <td><a>7377</a></td>
                 <td>11-הבט משמים</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7378')">
                 <td><a>7378</a></td>
                 <td>12-חנני ה</td>
                 <td>השירה הזאת</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7379')">
                 <td><a>7379</a></td>
                 <td>01 חנני השם </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7380')">
                 <td><a>7380</a></td>
                 <td>02 והתענג </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7381')">
                 <td><a>7381</a></td>
                 <td>03 שירו של אבא </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7382')">
                 <td><a>7382</a></td>
                 <td>04 לכבוד החתן </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7383')">
                 <td><a>7383</a></td>
                 <td>05 בואי בשלום </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7384')">
                 <td><a>7384</a></td>
                 <td>06 שאי סביב </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7385')">
                 <td><a>7385</a></td>
                 <td>07 אדון השלום </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7386')">
                 <td><a>7386</a></td>
                 <td>08 הטו אוזניכם </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7387')">
                 <td><a>7387</a></td>
                 <td>09 שירו למלך </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7388')">
                 <td><a>7388</a></td>
                 <td>10 תורה הקדושה </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7389')">
                 <td><a>7389</a></td>
                 <td>11 חנני ה' (בונוס) </td>
                 <td>חנני השם</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7390')">
                 <td><a>7390</a></td>
                 <td>'פרחי ירושלים' ליצירה של הלל פלאי ''אוחילה לאל''</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7391')">
                 <td><a>7391</a></td>
                 <td>00 - 11. נברך שמו</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7392')">
                 <td><a>7392</a></td>
                 <td>אבא שר בביצועו של הלל פלאי</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7393')">
                 <td><a>7393</a></td>
                 <td>אז יבקע 2</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7394')">
                 <td><a>7394</a></td>
                 <td>אם היו בני אדם</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7395')">
                 <td><a>7395</a></td>
                 <td>ביצוע משיריו האחרונים של ר  בן ציון שנקר זל</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7396')">
                 <td><a>7396</a></td>
                 <td>האזינו לשירו החדש של הרב פלאי</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7397')">
                 <td><a>7397</a></td>
                 <td>הלל פלאי - חדש</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7398')">
                 <td><a>7398</a></td>
                 <td>הרב הלל פלאי ויצחק מאיר - נוסח הימים הנוראים תשרי תשעה</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7399')">
                 <td><a>7399</a></td>
                 <td>התורה כוללת כל הטובות שבעולם</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7400')">
                 <td><a>7400</a></td>
                 <td>והשורות שרות.hd (2)</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7401')">
                 <td><a>7401</a></td>
                 <td>ויהיו בנינו</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7402')">
                 <td><a>7402</a></td>
                 <td>כחוט השני - של הלל פלאי</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7403')">
                 <td><a>7403</a></td>
                 <td>כחוט השני</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7404')">
                 <td><a>7404</a></td>
                 <td>ליבי - הרב הלל פלאי</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7405')">
                 <td><a>7405</a></td>
                 <td>מתיקת זכרו לשוהק</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7406')">
                 <td><a>7406</a></td>
                 <td>קדושה אני מבקש</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7407')">
                 <td><a>7407</a></td>
                 <td>ר' הלל פלאי בביצוע מיוחד ''והראנו''</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7408')">
                 <td><a>7408</a></td>
                 <td>שירו של אבא</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7409')">
                 <td><a>7409</a></td>
                 <td>שלמה כהן והלל פלאי - על הגרי''ש</td>
                 <td>סינגלים</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7410')">
                 <td><a>7410</a></td>
                 <td>01 ושלמו</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7411')">
                 <td><a>7411</a></td>
                 <td>02 אז יבקע</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7412')">
                 <td><a>7412</a></td>
                 <td>03 ושלמו</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7413')">
                 <td><a>7413</a></td>
                 <td>04 אוחילה לק-ל</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7414')">
                 <td><a>7414</a></td>
                 <td>05 תהא השעה הזאת</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7415')">
                 <td><a>7415</a></td>
                 <td>06 להתענג</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7416')">
                 <td><a>7416</a></td>
                 <td>07 ושיר אערוך לך</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7417')">
                 <td><a>7417</a></td>
                 <td>08 ותמיד בפינו</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7418')">
                 <td><a>7418</a></td>
                 <td>09 אלוקי נשמה</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7419')">
                 <td><a>7419</a></td>
                 <td>10 שאי סביב</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7420')">
                 <td><a>7420</a></td>
                 <td>11 שירו למלך</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7421')">
                 <td><a>7421</a></td>
                 <td>12 י'ג מדות</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7422')">
                 <td><a>7422</a></td>
                 <td>13 תורה הקדושה</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7423')">
                 <td><a>7423</a></td>
                 <td>14 תחי נפשי</td>
                 <td>אז יבקע</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7424')">
                 <td><a>7424</a></td>
                 <td>אוחילה לאל</td>
                 <td>סוכות תשעח</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7425')">
                 <td><a>7425</a></td>
                 <td>אם היו בני אדם</td>
                 <td>סוכות תשעח</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7426')">
                 <td><a>7426</a></td>
                 <td>לב טהור</td>
                 <td>סוכות תשעח</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7427')">
                 <td><a>7427</a></td>
                 <td>מה אעשה 2</td>
                 <td>סוכות תשעח</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7428')">
                 <td><a>7428</a></td>
                 <td>מה אעשה לישראל</td>
                 <td>סוכות תשעח</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7429')">
                 <td><a>7429</a></td>
                 <td>אוחילה לאל</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7430')">
                 <td><a>7430</a></td>
                 <td>אז יבקע</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7431')">
                 <td><a>7431</a></td>
                 <td>התורה הקדושה</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7432')">
                 <td><a>7432</a></td>
                 <td>והיתענג על ה'</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7433')">
                 <td><a>7433</a></td>
                 <td>ועתה בנים שירו למלך</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7434')">
                 <td><a>7434</a></td>
                 <td>ופרוס עלינו</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7435')">
                 <td><a>7435</a></td>
                 <td>כי לעולם חסדו</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7436')">
                 <td><a>7436</a></td>
                 <td>לא יהיה לך עוד השמש לאור יװם</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7437')">
                 <td><a>7437</a></td>
                 <td>נשמה שנתתה בי</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7438')">
                 <td><a>7438</a></td>
                 <td>שאי סביב עניך</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7439')">
                 <td><a>7439</a></td>
                 <td>שערי דמעות</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7440')">
                 <td><a>7440</a></td>
                 <td>תהא השעה הזאות</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7441')">
                 <td><a>7441</a></td>
                 <td>תעיתי כשה אובד</td>
                 <td>קומזיץ - סוכות עג</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7442')">
                 <td><a>7442</a></td>
                 <td>01 ופרוש עלינו</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7443')">
                 <td><a>7443</a></td>
                 <td>02 שאי סביב</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7444')">
                 <td><a>7444</a></td>
                 <td>03 ושיר אערוך לך</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7445')">
                 <td><a>7445</a></td>
                 <td>04 והתענג</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7446')">
                 <td><a>7446</a></td>
                 <td>05 תמכתי יסודותי</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7447')">
                 <td><a>7447</a></td>
                 <td>06 מחרוזת - תהא השעה הזאת, וידעו, פתח שערי שמים, כי אתה הוא מלך.</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7448')">
                 <td><a>7448</a></td>
                 <td>07 תורה הקדושה</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7449')">
                 <td><a>7449</a></td>
                 <td>08 לא יהיה לך</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7450')">
                 <td><a>7450</a></td>
                 <td>09 אלוקי נשמה</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7451')">
                 <td><a>7451</a></td>
                 <td>10 תעיתי כשה אובד</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7452')">
                 <td><a>7452</a></td>
                 <td>11 ותמיד בפינו תהילתך</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7453')">
                 <td><a>7453</a></td>
                 <td>12 אז יבקע כשחר אורך</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7454')">
                 <td><a>7454</a></td>
                 <td>13 אוחילה לקל</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7455')">
                 <td><a>7455</a></td>
                 <td>14 ועתה בנים</td>
                 <td>תשס''ד</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7456')">
                 <td><a>7456</a></td>
                 <td>01 - והתענג</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7457')">
                 <td><a>7457</a></td>
                 <td>02-Track 2</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7458')">
                 <td><a>7458</a></td>
                 <td>03 - האבות2</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7459')">
                 <td><a>7459</a></td>
                 <td>04 - קלי אתה</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7460')">
                 <td><a>7460</a></td>
                 <td>05 - אהבת עולם</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7461')">
                 <td><a>7461</a></td>
                 <td>06 - לא יהיה לך</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7462')">
                 <td><a>7462</a></td>
                 <td>07 - אוחילה</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7463')">
                 <td><a>7463</a></td>
                 <td>08 - האבות1</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7464')">
                 <td><a>7464</a></td>
                 <td>09 - המלוכה והממשלה א</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7465')">
                 <td><a>7465</a></td>
                 <td>10 - המלוכה והממשלה ב</td>
                 <td>תשסו 1</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7466')">
                 <td><a>7466</a></td>
                 <td>01 - תעיתי כשה אובד</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7467')">
                 <td><a>7467</a></td>
                 <td>02 - לך קלי תשוקתי</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7468')">
                 <td><a>7468</a></td>
                 <td>04 - הרחיבי מקום אהלך</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7469')">
                 <td><a>7469</a></td>
                 <td>05 - אם אשכחך</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7470')">
                 <td><a>7470</a></td>
                 <td>07 - מה אשיב</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7471')">
                 <td><a>7471</a></td>
                 <td>10 - תיקר שירת רש</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7472')">
                 <td><a>7472</a></td>
                 <td>ועתה כתבו לכם את השירה הזאת</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7473')">
                 <td><a>7473</a></td>
                 <td>לא ידוע הלל פאלי</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7474')">
                 <td><a>7474</a></td>
                 <td>מה ה' דורש מעימך ,</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7475')">
                 <td><a>7475</a></td>
                 <td>על תסתר פניך ממני ביום צער לי</td>
                 <td>תשסו 2</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7476')">
                 <td><a>7476</a></td>
                 <td>01 רצועה 1</td>
                 <td>שירי נשמהה</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7477')">
                 <td><a>7477</a></td>
                 <td>02 רצועה 2</td>
                 <td>שירי נשמהה</td>
                 <td>הלל פלאי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7478')">
                 <td><a>7478</a></td>
                 <td>03 רצועה 3</td>
                 <td>שירי נשמהה</td>
                 <td>הלל פלאי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

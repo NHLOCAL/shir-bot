@@ -1,728 +1,710 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>משה קוסביצקי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>משה קוסביצקי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמשה קוסביצקי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמשה קוסביצקי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('35789')">
                 <td><a>35789</a></td>
                 <td>01-אשא עיני אל ההרים</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35790')">
                 <td><a>35790</a></td>
                 <td>02-קרוץ מחומר</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35791')">
                 <td><a>35791</a></td>
                 <td>03-עד הנה עזרוני</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35792')">
                 <td><a>35792</a></td>
                 <td>04-רחמנא דעני לעניי ענינא</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35793')">
                 <td><a>35793</a></td>
                 <td>05-מה גדלו מעשיך ה</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35794')">
                 <td><a>35794</a></td>
                 <td>06-לדור ודור</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35795')">
                 <td><a>35795</a></td>
                 <td>08-שיבנה בית המקדש</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35796')">
                 <td><a>35796</a></td>
                 <td>09-עקביא בן מהללאל</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35797')">
                 <td><a>35797</a></td>
                 <td>10-קול דודי</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35798')">
                 <td><a>35798</a></td>
                 <td>11-הבט משמים וראה</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35799')">
                 <td><a>35799</a></td>
                 <td>ומפני חטאינו-07</td>
                 <td>המיטב של משה קוסביצקי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35800')">
                 <td><a>35800</a></td>
                 <td>01-כל נדרי</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35801')">
                 <td><a>35801</a></td>
                 <td>02-ובשופר גדול</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35802')">
                 <td><a>35802</a></td>
                 <td>03-בראש השנה</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35803')">
                 <td><a>35803</a></td>
                 <td>04-והכהנים</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35804')">
                 <td><a>35804</a></td>
                 <td>05-קל מלך יושב</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35805')">
                 <td><a>35805</a></td>
                 <td>06-אבינו מלכנו זכור</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35806')">
                 <td><a>35806</a></td>
                 <td>07-נעילה</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35807')">
                 <td><a>35807</a></td>
                 <td>08-שמע ישראל</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35808')">
                 <td><a>35808</a></td>
                 <td>09-כל נדרי</td>
                 <td>ימים נוראים</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35809')">
                 <td><a>35809</a></td>
                 <td>01-רחמנא דעניי</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35810')">
                 <td><a>35810</a></td>
                 <td>02-ומפני חטאנו</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35811')">
                 <td><a>35811</a></td>
                 <td>03-אשא עיני אל ההרים</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35812')">
                 <td><a>35812</a></td>
                 <td>04-עקביא</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35813')">
                 <td><a>35813</a></td>
                 <td>05-מה גדלו מעשיך</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35814')">
                 <td><a>35814</a></td>
                 <td>06-שיבנה בית המקדש</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35815')">
                 <td><a>35815</a></td>
                 <td>07-עד הנה</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35816')">
                 <td><a>35816</a></td>
                 <td>08-ובדברי קדשך</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35817')">
                 <td><a>35817</a></td>
                 <td>09-קרוץ מחומר</td>
                 <td>מיטב השירים 3</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35818')">
                 <td><a>35818</a></td>
                 <td>01-קידוש</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35819')">
                 <td><a>35819</a></td>
                 <td>02-שהחיינו</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35820')">
                 <td><a>35820</a></td>
                 <td>03-הא לחמא</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35821')">
                 <td><a>35821</a></td>
                 <td>04-מה נשתנה</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35822')">
                 <td><a>35822</a></td>
                 <td>05-עבדים היינו</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35823')">
                 <td><a>35823</a></td>
                 <td>06-והיא שעמדה</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35824')">
                 <td><a>35824</a></td>
                 <td>07-דיינו</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35825')">
                 <td><a>35825</a></td>
                 <td>08-בצאת ישראל</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35826')">
                 <td><a>35826</a></td>
                 <td>09-שיר המעלות</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35827')">
                 <td><a>35827</a></td>
                 <td>10-רחם נא-יעלה ויבוא</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35828')">
                 <td><a>35828</a></td>
                 <td>11-אליהו</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35829')">
                 <td><a>35829</a></td>
                 <td>01-הללו את ה</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35830')">
                 <td><a>35830</a></td>
                 <td>02-הודו לה</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35831')">
                 <td><a>35831</a></td>
                 <td>03-כי לו נאה</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35832')">
                 <td><a>35832</a></td>
                 <td>04-חסל סידור פסח</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35833')">
                 <td><a>35833</a></td>
                 <td>05-אדיר הוא</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35834')">
                 <td><a>35834</a></td>
                 <td>06-ריבונו של עולם</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35835')">
                 <td><a>35835</a></td>
                 <td>07-אחד מי יודע</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35836')">
                 <td><a>35836</a></td>
                 <td>08-חד גדיא</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35837')">
                 <td><a>35837</a></td>
                 <td>09-שיר חד גדיא</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35838')">
                 <td><a>35838</a></td>
                 <td>10-לשנה הבאה בירושלים</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35839')">
                 <td><a>35839</a></td>
                 <td>11-קול דודי</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35840')">
                 <td><a>35840</a></td>
                 <td>12-ומפי חטאנו</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35841')">
                 <td><a>35841</a></td>
                 <td>13-ברכת הבנים</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35842')">
                 <td><a>35842</a></td>
                 <td>01-אשמנו מכל עם</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35843')">
                 <td><a>35843</a></td>
                 <td>02-אזכרה לקדושי השואה</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35844')">
                 <td><a>35844</a></td>
                 <td>03-פסוקי תהילים ליום השואה והגבורה</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35845')">
                 <td><a>35845</a></td>
                 <td>04-ועל ידי עבדיך הנביאים</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35846')">
                 <td><a>35846</a></td>
                 <td>05-שיר הפרטזנים</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35847')">
                 <td><a>35847</a></td>
                 <td>06-הורה עם ישראל חי</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35848')">
                 <td><a>35848</a></td>
                 <td>07-התקווה נוסח ישן</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35849')">
                 <td><a>35849</a></td>
                 <td>08-מעל פסגת הר הצופים</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35850')">
                 <td><a>35850</a></td>
                 <td>09-קטעים מתפילות הסליחות</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35851')">
                 <td><a>35851</a></td>
                 <td>10-שמעה ותשמח ציון</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35852')">
                 <td><a>35852</a></td>
                 <td>11-דברים מפי החזן מ. קוסביצקי</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35853')">
                 <td><a>35853</a></td>
                 <td>12-ולירושלים עירך</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35854')">
                 <td><a>35854</a></td>
                 <td>13-שבע ברכות</td>
                 <td>עם ישראל חי</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35855')">
                 <td><a>35855</a></td>
                 <td>01-שיבנה בית המקדש-כולם</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35856')">
                 <td><a>35856</a></td>
                 <td>02-אשא עיני-א. היינוביץ</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35857')">
                 <td><a>35857</a></td>
                 <td>03-מגן אבות-ח. אדלר</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35858')">
                 <td><a>35858</a></td>
                 <td>04-מתרצה ברחמים-ח. אדלר</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35859')">
                 <td><a>35859</a></td>
                 <td>05-הטה אלוקי אזנך-ב.צ. מילר</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35860')">
                 <td><a>35860</a></td>
                 <td>06-לעולם יהא אדם-ב.צ. מילר</td>
                 <td>חלק א</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35861')">
                 <td><a>35861</a></td>
                 <td>01-דודל'ה-א. בן-שושן</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35862')">
                 <td><a>35862</a></td>
                 <td>02-ענינו-א. בן-שושן</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35863')">
                 <td><a>35863</a></td>
                 <td>03-רבש''ע-אחים הורביץ</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35864')">
                 <td><a>35864</a></td>
                 <td>04-ד' מלך-ח. אדלר</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35865')">
                 <td><a>35865</a></td>
                 <td>05-חזן גבאי-ב.צ. מילר-א. היינוביץ</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35866')">
                 <td><a>35866</a></td>
                 <td>06-אשור אשירה-א. בן-שושן</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35867')">
                 <td><a>35867</a></td>
                 <td>07-עקביא בן מהללאל-ב.צ. מילר</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35868')">
                 <td><a>35868</a></td>
                 <td>08-קול דודי-כולם</td>
                 <td>חלק ב</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35869')">
                 <td><a>35869</a></td>
                 <td>01-אבינו מלכנו</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35870')">
                 <td><a>35870</a></td>
                 <td>02-אבינו אב הרחמן</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35871')">
                 <td><a>35871</a></td>
                 <td>03-יוצר משרתים</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35872')">
                 <td><a>35872</a></td>
                 <td>04-ריבונו של עולם</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35873')">
                 <td><a>35873</a></td>
                 <td>05-ונתנה תוקף</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35874')">
                 <td><a>35874</a></td>
                 <td>06-הטה אלוקי אזנך</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35875')">
                 <td><a>35875</a></td>
                 <td>07-רחם נא</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35876')">
                 <td><a>35876</a></td>
                 <td>08-יעלה ויבוא</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35877')">
                 <td><a>35877</a></td>
                 <td>09-ברכת כהנים</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35878')">
                 <td><a>35878</a></td>
                 <td>10-אבל אנחנו</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35879')">
                 <td><a>35879</a></td>
                 <td>11-קטעים מתפילת מעריב לחו''ל,</td>
                 <td>תפילה למשה</td>
                 <td>משה קוסביצקי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

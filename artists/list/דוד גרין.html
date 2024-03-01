@@ -1,231 +1,213 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>דוד גרין</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>דוד גרין</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspדוד גרין</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspדוד גרין</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('46992')">
                 <td><a>46992</a></td>
                 <td>01 Like a Brother</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46993')">
                 <td><a>46993</a></td>
                 <td>02 Back to Your Soul</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46994')">
                 <td><a>46994</a></td>
                 <td>03 Long Journey</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46995')">
                 <td><a>46995</a></td>
                 <td>04 Empty Spaces</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46996')">
                 <td><a>46996</a></td>
                 <td>05 Diamond by My Side</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46997')">
                 <td><a>46997</a></td>
                 <td>06 Watching the Time Go By</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46998')">
                 <td><a>46998</a></td>
                 <td>07 Thank You</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46999')">
                 <td><a>46999</a></td>
                 <td>08 Revival of the Living</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47000')">
                 <td><a>47000</a></td>
                 <td>09 Say Hello to the World</td>
                 <td>Empty Space</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47001')">
                 <td><a>47001</a></td>
                 <td>01 Real You</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47002')">
                 <td><a>47002</a></td>
                 <td>02 Day of Eternity</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47003')">
                 <td><a>47003</a></td>
                 <td>03 Journey to the Real You</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47004')">
                 <td><a>47004</a></td>
                 <td>04 Jerusalem - Eye of the Universe</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47005')">
                 <td><a>47005</a></td>
                 <td>05 Let It All Go</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47006')">
                 <td><a>47006</a></td>
                 <td>06 Peace of Mind</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47007')">
                 <td><a>47007</a></td>
                 <td>07 Meditation One</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47008')">
                 <td><a>47008</a></td>
                 <td>08 Windows of Your Mind</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47009')">
                 <td><a>47009</a></td>
                 <td>09 Rich Man</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47010')">
                 <td><a>47010</a></td>
                 <td>10 Candle in the Night</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47011')">
                 <td><a>47011</a></td>
                 <td>11 Meditation Two</td>
                 <td>Journey to the Real You</td>
                 <td>דוד גרין</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

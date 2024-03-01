@@ -1,252 +1,234 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ישי מעודה</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ישי מעודה</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspישי מעודה</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspישי מעודה</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('58752')">
                 <td><a>58752</a></td>
                 <td>01-בלב תפילה</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58753')">
                 <td><a>58753</a></td>
                 <td>02-בילדותי</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58754')">
                 <td><a>58754</a></td>
                 <td>03-בודד ברוח</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58755')">
                 <td><a>58755</a></td>
                 <td>04-הו אלי</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58756')">
                 <td><a>58756</a></td>
                 <td>05-קו האושר</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58757')">
                 <td><a>58757</a></td>
                 <td>06-מלה טבה</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58758')">
                 <td><a>58758</a></td>
                 <td>07-נכון להיום</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58759')">
                 <td><a>58759</a></td>
                 <td>08-תימנית</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58760')">
                 <td><a>58760</a></td>
                 <td>09-עוד יזרח</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58761')">
                 <td><a>58761</a></td>
                 <td>10-נעימות הו אלי</td>
                 <td>מלה טובה</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58762')">
                 <td><a>58762</a></td>
                 <td>01-בורא עולם</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58763')">
                 <td><a>58763</a></td>
                 <td>02-מלאכי שמים</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58764')">
                 <td><a>58764</a></td>
                 <td>03-טיפה לשמוח</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58765')">
                 <td><a>58765</a></td>
                 <td>04-מחרוזת צא מזה</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58766')">
                 <td><a>58766</a></td>
                 <td>05-לעצמך היה חבר</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58767')">
                 <td><a>58767</a></td>
                 <td>06-ארץ אבות</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58768')">
                 <td><a>58768</a></td>
                 <td>07-מנגינות הלב</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58769')">
                 <td><a>58769</a></td>
                 <td>08-שים שלום</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58770')">
                 <td><a>58770</a></td>
                 <td>09-אסאלק יאללה</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58771')">
                 <td><a>58771</a></td>
                 <td>10-תמיד אודה לו</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58772')">
                 <td><a>58772</a></td>
                 <td>11-חייך בתקווה</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58773')">
                 <td><a>58773</a></td>
                 <td>12-מחרוזת דוד ויהונתן</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('58774')">
                 <td><a>58774</a></td>
                 <td>13-מחרוזת תימנית ארץ ושמים</td>
                 <td>מנגינת הלב</td>
                 <td>ישי מעודה</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,833 +1,815 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יואלי דיקמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יואלי דיקמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיואלי דיקמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיואלי דיקמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('11170')">
                 <td><a>11170</a></td>
                 <td>01 פתיחה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11171')">
                 <td><a>11171</a></td>
                 <td>02 ניגוני בורקס</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11172')">
                 <td><a>11172</a></td>
                 <td>03 אתה הורית</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11173')">
                 <td><a>11173</a></td>
                 <td>05 והנה ה' ניצב עליו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11174')">
                 <td><a>11174</a></td>
                 <td>06 נשמה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11175')">
                 <td><a>11175</a></td>
                 <td>07 ניגון</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11176')">
                 <td><a>11176</a></td>
                 <td>08 והכן פרנסתנו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11177')">
                 <td><a>11177</a></td>
                 <td>09 ניגון</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11178')">
                 <td><a>11178</a></td>
                 <td>10 תניא</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11179')">
                 <td><a>11179</a></td>
                 <td>11 מלך שוכן עדי עד</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11180')">
                 <td><a>11180</a></td>
                 <td>12 עוד ישמע</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11181')">
                 <td><a>11181</a></td>
                 <td>13 ניגון חתונה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11182')">
                 <td><a>11182</a></td>
                 <td>14 כי אורך ימים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11183')">
                 <td><a>11183</a></td>
                 <td>15 אחד יחיד ומיוחד</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11184')">
                 <td><a>11184</a></td>
                 <td>16 השיבנו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11185')">
                 <td><a>11185</a></td>
                 <td>18 ניגון פתיחה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11186')">
                 <td><a>11186</a></td>
                 <td>19 זרע חייא וקיימא</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11187')">
                 <td><a>11187</a></td>
                 <td>20 אל הנער הזה התפללתי</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11188')">
                 <td><a>11188</a></td>
                 <td>21 אתה הוא</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11189')">
                 <td><a>11189</a></td>
                 <td>22 הבן יקיר</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11190')">
                 <td><a>11190</a></td>
                 <td>24 אתה הורית</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11191')">
                 <td><a>11191</a></td>
                 <td>25 מנחה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11192')">
                 <td><a>11192</a></td>
                 <td>26 ובכן צדיקים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11193')">
                 <td><a>11193</a></td>
                 <td>27 שהחיינו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11194')">
                 <td><a>11194</a></td>
                 <td>28 יהא רעוא</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11195')">
                 <td><a>11195</a></td>
                 <td>29 אהללה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11196')">
                 <td><a>11196</a></td>
                 <td>31 כרחם אב</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11197')">
                 <td><a>11197</a></td>
                 <td>34 ואהבת</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11198')">
                 <td><a>11198</a></td>
                 <td>35 זכור אהבת קדומים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11199')">
                 <td><a>11199</a></td>
                 <td>36 ויעזור</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11200')">
                 <td><a>11200</a></td>
                 <td>37 ובכן צדיקים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11201')">
                 <td><a>11201</a></td>
                 <td>38 עוד ישמע</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11202')">
                 <td><a>11202</a></td>
                 <td>39 התקבצו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11203')">
                 <td><a>11203</a></td>
                 <td>40 שורות</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11204')">
                 <td><a>11204</a></td>
                 <td>41 קצב תופים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11205')">
                 <td><a>11205</a></td>
                 <td>42 ניגון מירון</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11206')">
                 <td><a>11206</a></td>
                 <td>43 קצב אנגלי</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11207')">
                 <td><a>11207</a></td>
                 <td>44 הוא יגאל אותנו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11208')">
                 <td><a>11208</a></td>
                 <td>45 ניגון בואבוב</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11209')">
                 <td><a>11209</a></td>
                 <td>46 שבת אחים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11210')">
                 <td><a>11210</a></td>
                 <td>47 בנין עדי עד</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11211')">
                 <td><a>11211</a></td>
                 <td>48 עתיד הקב''ה</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11212')">
                 <td><a>11212</a></td>
                 <td>49 ירושלים</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11213')">
                 <td><a>11213</a></td>
                 <td>50 ואמר כל העם אמן</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11214')">
                 <td><a>11214</a></td>
                 <td>51 אידשע מאמא</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11215')">
                 <td><a>11215</a></td>
                 <td>52 שהחיינו</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11216')">
                 <td><a>11216</a></td>
                 <td>53 כתר</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11217')">
                 <td><a>11217</a></td>
                 <td>54 רבש''ע</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11218')">
                 <td><a>11218</a></td>
                 <td>55 תודות</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11219')">
                 <td><a>11219</a></td>
                 <td>הישיבישיר 2</td>
                 <td>ביצועים אדירים של יואלי דיקמן שווה האזנה</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11220')">
                 <td><a>11220</a></td>
                 <td>03 שובו אלי</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11221')">
                 <td><a>11221</a></td>
                 <td>06 ואני תפילתי</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11222')">
                 <td><a>11222</a></td>
                 <td>07 שוע פריד באולפן</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11223')">
                 <td><a>11223</a></td>
                 <td>08 מהר</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11224')">
                 <td><a>11224</a></td>
                 <td>10 קרוץ מחומר</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11225')">
                 <td><a>11225</a></td>
                 <td>11 דיקמן עם הסימפונית הישראלית</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11226')">
                 <td><a>11226</a></td>
                 <td>12 דמעות</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11227')">
                 <td><a>11227</a></td>
                 <td>13 דיקמן עם הסימפונית הישראלית</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11228')">
                 <td><a>11228</a></td>
                 <td>14 רחל</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11229')">
                 <td><a>11229</a></td>
                 <td>ani</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11230')">
                 <td><a>11230</a></td>
                 <td>dedi</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11231')">
                 <td><a>11231</a></td>
                 <td>eshel-avishem</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11232')">
                 <td><a>11232</a></td>
                 <td>Gil-Nagar</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11233')">
                 <td><a>11233</a></td>
                 <td>kadosh</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11234')">
                 <td><a>11234</a></td>
                 <td>patal</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11235')">
                 <td><a>11235</a></td>
                 <td>yosi</td>
                 <td>יואלי עיבודים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11236')">
                 <td><a>11236</a></td>
                 <td>-דיקמן-נופל-וקם</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11237')">
                 <td><a>11237</a></td>
                 <td>01 יואלי דיקמן בעיבוד</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11238')">
                 <td><a>11238</a></td>
                 <td>02 יואלי דיקמן בעיבוד</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11239')">
                 <td><a>11239</a></td>
                 <td>04 יואלי דיקמן בעיבוד</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11240')">
                 <td><a>11240</a></td>
                 <td>05 יואלי דיקמן בעיבוד</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11241')">
                 <td><a>11241</a></td>
                 <td>הישיבישיר 3 - אין  ערוך לך</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11242')">
                 <td><a>11242</a></td>
                 <td>הלב שואל</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11243')">
                 <td><a>11243</a></td>
                 <td>ואפיל תחינתי 1</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11244')">
                 <td><a>11244</a></td>
                 <td>ואפיל תחינתי 2</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11245')">
                 <td><a>11245</a></td>
                 <td>ואפיל תחינתי</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11246')">
                 <td><a>11246</a></td>
                 <td>ותשפיע רוח קדשך-יואלי דיקמן-מקהלת מלכות</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11247')">
                 <td><a>11247</a></td>
                 <td>חיבור חזק</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11248')">
                 <td><a>11248</a></td>
                 <td>יואלי דיקמן - ואפיל תחינתי  </td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11249')">
                 <td><a>11249</a></td>
                 <td>יואלי דיקמן - חיבור חזק</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11250')">
                 <td><a>11250</a></td>
                 <td>יואלי דיקמן - ישתבח שמך </td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11251')">
                 <td><a>11251</a></td>
                 <td>יואלי דיקמן - למצוא חן</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11252')">
                 <td><a>11252</a></td>
                 <td>יואלי דיקמן - נושם שלמות</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11253')">
                 <td><a>11253</a></td>
                 <td>יואלי דיקמן - פתחי לי</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11254')">
                 <td><a>11254</a></td>
                 <td>יואלי דיקמן - שעת רחמים </td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11255')">
                 <td><a>11255</a></td>
                 <td>יואלי דיקמן - תפילה לחופה</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11256')">
                 <td><a>11256</a></td>
                 <td>יואלי דיקמן בסינגל קליפ חדש חיבור חזק -</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11257')">
                 <td><a>11257</a></td>
                 <td>יואלי דיקמן בסינגל שני – ישתבח שמך</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11258')">
                 <td><a>11258</a></td>
                 <td>יואלי דיקמן ו-3,000 איש, בביצוע המוני לשיר 'אבא' </td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11259')">
                 <td><a>11259</a></td>
                 <td>יואלי דיקמן ו-3,000 איש, בביצוע המוני לשיר 'אבא' ~1</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11260')">
                 <td><a>11260</a></td>
                 <td>יואלי דיקמן ואפיל תחינתי ווקאלי Yoeli Dikman Veapil Techinati Vocal.136</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11261')">
                 <td><a>11261</a></td>
                 <td>יואלי דיקמן ומוטי גרינבוים שעת רחמים</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11262')">
                 <td><a>11262</a></td>
                 <td>יואלי דיקמן חיבור חזק.135</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11263')">
                 <td><a>11263</a></td>
                 <td>יואלי דיקמן למצוא חן Yoeli Dikman Limtzoh Chen.136</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11264')">
                 <td><a>11264</a></td>
                 <td>יואלי דיקמן מגיש כולנו אחים בביצוע ענקי הזמר</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11265')">
                 <td><a>11265</a></td>
                 <td>יואלי דיקמן נושם שלמות Yoeli Dikman Noshem Shlemut.133</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11266')">
                 <td><a>11266</a></td>
                 <td>יואלי דיקמן פתחי לי Yoeli Dikman Pitchi Li.135</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11267')">
                 <td><a>11267</a></td>
                 <td>יואלי דיקמן פתחי-לי-מאסטר-1</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11268')">
                 <td><a>11268</a></td>
                 <td>יואלי-דיקמן-ואפיל-תחינתי</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11269')">
                 <td><a>11269</a></td>
                 <td>ילד הפלא דודי לינקר, מקהלת מלכות, יואלי דיקמן - ותשפיע רוח קדשך. Dudi Linker</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11270')">
                 <td><a>11270</a></td>
                 <td>יניב בלאס תופים-רולי דיקמן ותזמורתו של יואלי דיקמן</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11271')">
                 <td><a>11271</a></td>
                 <td>יש אמונה יואלי דיקמן עם עזר מציון</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11272')">
                 <td><a>11272</a></td>
                 <td>ישיבשיר -יואלי דיקמן בבנייני האומה</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11273')">
                 <td><a>11273</a></td>
                 <td>למצוא חן</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11274')">
                 <td><a>11274</a></td>
                 <td>מקהלת מלכות, יואלי דיקמן &amp; אברימי רוט - מחרוזת סערט ויזניץ   Seret Vizhnitz Medley (64  kbps)</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11275')">
                 <td><a>11275</a></td>
                 <td>נושם שלמות</td>
                 <td>סינגלים</td>
                 <td>יואלי דיקמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

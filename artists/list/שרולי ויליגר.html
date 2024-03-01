@@ -1,1204 +1,1186 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>שרולי ויליגר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>שרולי ויליגר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspשרולי ויליגר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspשרולי ויליגר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('30655')">
                 <td><a>30655</a></td>
                 <td>01 הוא כלל</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30656')">
                 <td><a>30656</a></td>
                 <td>02 דהו</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30657')">
                 <td><a>30657</a></td>
                 <td>03 The Voice</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30658')">
                 <td><a>30658</a></td>
                 <td>04 קל עליון</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30659')">
                 <td><a>30659</a></td>
                 <td>05 שלום עליכם</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30660')">
                 <td><a>30660</a></td>
                 <td>06 זאל שוין</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30661')">
                 <td><a>30661</a></td>
                 <td>07 אידישע קינדער</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30662')">
                 <td><a>30662</a></td>
                 <td>08 קל אדון</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30663')">
                 <td><a>30663</a></td>
                 <td>09 אבינו</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30664')">
                 <td><a>30664</a></td>
                 <td>10 כיצד</td>
                 <td>The Voice Of A New Generation</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30665')">
                 <td><a>30665</a></td>
                 <td>01 שבשפלנו</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30666')">
                 <td><a>30666</a></td>
                 <td>02 הריני</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30667')">
                 <td><a>30667</a></td>
                 <td>03 אני מאמין</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30668')">
                 <td><a>30668</a></td>
                 <td>04 We Can Make It Right</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30669')">
                 <td><a>30669</a></td>
                 <td>05 יעמוד לי</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30670')">
                 <td><a>30670</a></td>
                 <td>06 דער גאולה</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30671')">
                 <td><a>30671</a></td>
                 <td>07 צור חיינו</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30672')">
                 <td><a>30672</a></td>
                 <td>08 שועת</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30673')">
                 <td><a>30673</a></td>
                 <td>09 ישמחו</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30674')">
                 <td><a>30674</a></td>
                 <td>10 מזל טוב</td>
                 <td>We Can Make It Right</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30675')">
                 <td><a>30675</a></td>
                 <td>01 אמר ה  ליעקב</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30676')">
                 <td><a>30676</a></td>
                 <td>02 קוה אל ה </td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30677')">
                 <td><a>30677</a></td>
                 <td>03 בלבב שלם</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30678')">
                 <td><a>30678</a></td>
                 <td>04 עוזר דלים</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30679')">
                 <td><a>30679</a></td>
                 <td>05 יהי רצון</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30680')">
                 <td><a>30680</a></td>
                 <td>06 רזי תורה</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30681')">
                 <td><a>30681</a></td>
                 <td>07 פותח את ידך</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30682')">
                 <td><a>30682</a></td>
                 <td>08 אמן אמן אמן</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30683')">
                 <td><a>30683</a></td>
                 <td>09 אזכרה</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30684')">
                 <td><a>30684</a></td>
                 <td>10 הטוב</td>
                 <td>בלבב שלם</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30685')">
                 <td><a>30685</a></td>
                 <td>01 ויזכו לראות</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30686')">
                 <td><a>30686</a></td>
                 <td>02 אין כאלוקינו</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30687')">
                 <td><a>30687</a></td>
                 <td>03 יהא רעוא</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30688')">
                 <td><a>30688</a></td>
                 <td>04 קוה</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30689')">
                 <td><a>30689</a></td>
                 <td>05 כבקרת</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30690')">
                 <td><a>30690</a></td>
                 <td>06 דער רבי ס ניגון</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30691')">
                 <td><a>30691</a></td>
                 <td>07 יום זה מכובד</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30692')">
                 <td><a>30692</a></td>
                 <td>08 שמח</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30693')">
                 <td><a>30693</a></td>
                 <td>09 זכרינו</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30694')">
                 <td><a>30694</a></td>
                 <td>10 אם אמרתי</td>
                 <td>דער רבי'ס ניגון</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30695')">
                 <td><a>30695</a></td>
                 <td>01 אל תסתכל</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30696')">
                 <td><a>30696</a></td>
                 <td>02 ישב</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30697')">
                 <td><a>30697</a></td>
                 <td>03 ניגון</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30698')">
                 <td><a>30698</a></td>
                 <td>04 חסד</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30699')">
                 <td><a>30699</a></td>
                 <td>05 עוד עוד</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30700')">
                 <td><a>30700</a></td>
                 <td>06 אם אמרתי</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30701')">
                 <td><a>30701</a></td>
                 <td>07 נרות שבת</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30702')">
                 <td><a>30702</a></td>
                 <td>08 אבינו</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30703')">
                 <td><a>30703</a></td>
                 <td>09 הרחמן</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30704')">
                 <td><a>30704</a></td>
                 <td>10 מי אדיר</td>
                 <td>הקדוש ברוך הוא - מי אדיר</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30705')">
                 <td><a>30705</a></td>
                 <td>01-כל נדרי</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30706')">
                 <td><a>30706</a></td>
                 <td>02-ונסלח-שהחיינו</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30707')">
                 <td><a>30707</a></td>
                 <td>03-מעריב-ברכו</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30708')">
                 <td><a>30708</a></td>
                 <td>04-קדיש</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30709')">
                 <td><a>30709</a></td>
                 <td>05-יעלה</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30710')">
                 <td><a>30710</a></td>
                 <td>06-הנשמה לך</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30711')">
                 <td><a>30711</a></td>
                 <td>07-סלח נא</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30712')">
                 <td><a>30712</a></td>
                 <td>08-אמנם כן</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30713')">
                 <td><a>30713</a></td>
                 <td>09-כי הנה כחמר</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30714')">
                 <td><a>30714</a></td>
                 <td>10-שמע קולנו</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30715')">
                 <td><a>30715</a></td>
                 <td>11-סלח לנו</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30716')">
                 <td><a>30716</a></td>
                 <td>12-ועל כולם</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30717')">
                 <td><a>30717</a></td>
                 <td>13-אבינו מלכינו</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30718')">
                 <td><a>30718</a></td>
                 <td>14-לדוד מזמור</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30719')">
                 <td><a>30719</a></td>
                 <td>15-טהר רבי ישמעאל</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30720')">
                 <td><a>30720</a></td>
                 <td>16-נעילה</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30721')">
                 <td><a>30721</a></td>
                 <td>17-י''ג מידות</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30722')">
                 <td><a>30722</a></td>
                 <td>18-לשנה הבאה</td>
                 <td>יום כיפור</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30723')">
                 <td><a>30723</a></td>
                 <td>01-אשרי העם</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30724')">
                 <td><a>30724</a></td>
                 <td>02-הנני</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30725')">
                 <td><a>30725</a></td>
                 <td>03-קדיש</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30726')">
                 <td><a>30726</a></td>
                 <td>04-אבות</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30727')">
                 <td><a>30727</a></td>
                 <td>05-זכרנו</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30728')">
                 <td><a>30728</a></td>
                 <td>06-מלך עוזר</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30729')">
                 <td><a>30729</a></td>
                 <td>07-מכלכל חיים</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30730')">
                 <td><a>30730</a></td>
                 <td>08-מי כמוך</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30731')">
                 <td><a>30731</a></td>
                 <td>09-ימלוך-קל אמונה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30732')">
                 <td><a>30732</a></td>
                 <td>10-מלך עליון</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30733')">
                 <td><a>30733</a></td>
                 <td>11-ונתנה תוקף</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30734')">
                 <td><a>30734</a></td>
                 <td>12-כבקרת</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30735')">
                 <td><a>30735</a></td>
                 <td>13-בראש השנה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30736')">
                 <td><a>30736</a></td>
                 <td>14-ותשובה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30737')">
                 <td><a>30737</a></td>
                 <td>15-קדושה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30738')">
                 <td><a>30738</a></td>
                 <td>16-לדור ודור</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30739')">
                 <td><a>30739</a></td>
                 <td>17-וכל מאמינים</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30740')">
                 <td><a>30740</a></td>
                 <td>18-עלינו</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30741')">
                 <td><a>30741</a></td>
                 <td>19-אוחילה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30742')">
                 <td><a>30742</a></td>
                 <td>20-ועל ידי א</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30743')">
                 <td><a>30743</a></td>
                 <td>21-מלוך על כל הארץ</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30744')">
                 <td><a>30744</a></td>
                 <td>22-היום הרת עולם</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30745')">
                 <td><a>30745</a></td>
                 <td>23-ארשת שפתינו</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30746')">
                 <td><a>30746</a></td>
                 <td>24-ועל ידי ב</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30747')">
                 <td><a>30747</a></td>
                 <td>25-וביום שמחתכם</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30748')">
                 <td><a>30748</a></td>
                 <td>26-ותערב-ותחזינה</td>
                 <td>ראש השנה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30749')">
                 <td><a>30749</a></td>
                 <td>01-שירו</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30750')">
                 <td><a>30750</a></td>
                 <td>02-מחרוזת</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30751')">
                 <td><a>30751</a></td>
                 <td>03-מזל טוב</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30752')">
                 <td><a>30752</a></td>
                 <td>04-סעודה 1</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30753')">
                 <td><a>30753</a></td>
                 <td>05-בלב אחד</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30754')">
                 <td><a>30754</a></td>
                 <td>06-סעודה 2</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30755')">
                 <td><a>30755</a></td>
                 <td>07-למען ירושלים</td>
                 <td>אלבום החתונה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30756')">
                 <td><a>30756</a></td>
                 <td>01-שהחיינו</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30757')">
                 <td><a>30757</a></td>
                 <td>02-סלח</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30758')">
                 <td><a>30758</a></td>
                 <td>03-אמת</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30759')">
                 <td><a>30759</a></td>
                 <td>04-ושמחת</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30760')">
                 <td><a>30760</a></td>
                 <td>05-רחמים</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30761')">
                 <td><a>30761</a></td>
                 <td>06-הלל</td>
                 <td>אלבום יום טוב</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30762')">
                 <td><a>30762</a></td>
                 <td>01 על חומתייך</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30763')">
                 <td><a>30763</a></td>
                 <td>02 ה  מלא רחמים</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30764')">
                 <td><a>30764</a></td>
                 <td>03 קדשנו</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30765')">
                 <td><a>30765</a></td>
                 <td>04 אלקא</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30766')">
                 <td><a>30766</a></td>
                 <td>05 על זה</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30767')">
                 <td><a>30767</a></td>
                 <td>06 רחמנא</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30768')">
                 <td><a>30768</a></td>
                 <td>07 רברבין</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30769')">
                 <td><a>30769</a></td>
                 <td>08 אשרינו</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30770')">
                 <td><a>30770</a></td>
                 <td>09 כלם אהובים</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30771')">
                 <td><a>30771</a></td>
                 <td>10 זה היום</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30772')">
                 <td><a>30772</a></td>
                 <td>11 והערב</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30773')">
                 <td><a>30773</a></td>
                 <td>12 יהי</td>
                 <td>מה טוב ומה נעים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30774')">
                 <td><a>30774</a></td>
                 <td>01 מחרוזת שלום עליכם</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30775')">
                 <td><a>30775</a></td>
                 <td>02 מה ידידות</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30776')">
                 <td><a>30776</a></td>
                 <td>03 מחרוזת קה ריבון</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30777')">
                 <td><a>30777</a></td>
                 <td>04 שחרית #1</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30778')">
                 <td><a>30778</a></td>
                 <td>05 ברכת החודש</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30779')">
                 <td><a>30779</a></td>
                 <td>06 לכה דודי</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30780')">
                 <td><a>30780</a></td>
                 <td>07 לא תבשי</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30781')">
                 <td><a>30781</a></td>
                 <td>08 הבדלה</td>
                 <td>מנוחת שבת (קרליבך)</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30782')">
                 <td><a>30782</a></td>
                 <td>01 גוט שבת(1)</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30783')">
                 <td><a>30783</a></td>
                 <td>01 גוט שבת</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30784')">
                 <td><a>30784</a></td>
                 <td>02 לכו נרננה</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30785')">
                 <td><a>30785</a></td>
                 <td>03 שמעה</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30786')">
                 <td><a>30786</a></td>
                 <td>04 משה ואהרן</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30787')">
                 <td><a>30787</a></td>
                 <td>05 לכה דודי</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30788')">
                 <td><a>30788</a></td>
                 <td>06 לקראת שבת</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30789')">
                 <td><a>30789</a></td>
                 <td>07 מקדש מלך</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30790')">
                 <td><a>30790</a></td>
                 <td>08 התנערי</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30791')">
                 <td><a>30791</a></td>
                 <td>09 התעוררי</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30792')">
                 <td><a>30792</a></td>
                 <td>10 לא תבשי</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30793')">
                 <td><a>30793</a></td>
                 <td>11 ימין ושמאל</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30794')">
                 <td><a>30794</a></td>
                 <td>12 צדיק כתמר</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30795')">
                 <td><a>30795</a></td>
                 <td>13 מקולות</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30796')">
                 <td><a>30796</a></td>
                 <td>14 וכלהון</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30797')">
                 <td><a>30797</a></td>
                 <td>15 המעביר</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30798')">
                 <td><a>30798</a></td>
                 <td>16 ופרוש עלינו</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30799')">
                 <td><a>30799</a></td>
                 <td>17 לעלא</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30800')">
                 <td><a>30800</a></td>
                 <td>18 והנחילנו</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30801')">
                 <td><a>30801</a></td>
                 <td>19 תתקבל</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30802')">
                 <td><a>30802</a></td>
                 <td>20 ממקומך</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30803')">
                 <td><a>30803</a></td>
                 <td>21 גוט שבת</td>
                 <td>קבלת שבת של ר'  שלמה</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30804')">
                 <td><a>30804</a></td>
                 <td>01 שאו שערים</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30805')">
                 <td><a>30805</a></td>
                 <td>02 הפך בה</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30806')">
                 <td><a>30806</a></td>
                 <td>03 שאלו שלום ירושלים</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30807')">
                 <td><a>30807</a></td>
                 <td>04 ניגון קארלין</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30808')">
                 <td><a>30808</a></td>
                 <td>05 חזק</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30809')">
                 <td><a>30809</a></td>
                 <td>06 כן</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30810')">
                 <td><a>30810</a></td>
                 <td>07 ירושלים</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30811')">
                 <td><a>30811</a></td>
                 <td>08 עוד ישמע</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30812')">
                 <td><a>30812</a></td>
                 <td>09 יהודה בן תימא</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30813')">
                 <td><a>30813</a></td>
                 <td>10 קול רינה</td>
                 <td>שאלו שלום ירושלים</td>
                 <td>שרולי ויליגר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

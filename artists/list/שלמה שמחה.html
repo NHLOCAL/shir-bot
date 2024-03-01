@@ -1,595 +1,577 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>שלמה שמחה</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>שלמה שמחה</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspשלמה שמחה</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspשלמה שמחה</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('29475')">
                 <td><a>29475</a></td>
                 <td>01 - אני כאן</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29476')">
                 <td><a>29476</a></td>
                 <td>02 - מודה אני</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29477')">
                 <td><a>29477</a></td>
                 <td>03 - אני מאמין</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29478')">
                 <td><a>29478</a></td>
                 <td>04 - 'אשירה לה</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29479')">
                 <td><a>29479</a></td>
                 <td>05 - בני עליה בדואט עם צבי זילברשטיין</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29480')">
                 <td><a>29480</a></td>
                 <td>06 - פיה פתחה</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29481')">
                 <td><a>29481</a></td>
                 <td>07 - נר דולק</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29482')">
                 <td><a>29482</a></td>
                 <td>08 - על התורה</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29483')">
                 <td><a>29483</a></td>
                 <td>09 - ובנה</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29484')">
                 <td><a>29484</a></td>
                 <td>10 - Sunny Day</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29485')">
                 <td><a>29485</a></td>
                 <td>11 - א גוט וואך פתיחה</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29486')">
                 <td><a>29486</a></td>
                 <td>12 - א גוט וואך</td>
                 <td>אני כאן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29487')">
                 <td><a>29487</a></td>
                 <td>01-אנא ה</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29488')">
                 <td><a>29488</a></td>
                 <td>02-וזכנו</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29489')">
                 <td><a>29489</a></td>
                 <td>03-כנגן המנגן</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29490')">
                 <td><a>29490</a></td>
                 <td>04-רבות בנות</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29491')">
                 <td><a>29491</a></td>
                 <td>05-מה רבו</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29492')">
                 <td><a>29492</a></td>
                 <td>06-ולא נתתו</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29493')">
                 <td><a>29493</a></td>
                 <td>07-תפילה לעני</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29494')">
                 <td><a>29494</a></td>
                 <td>08-עד הנה</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29495')">
                 <td><a>29495</a></td>
                 <td>09-לכו בנים</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29496')">
                 <td><a>29496</a></td>
                 <td>10-רזא דשבת</td>
                 <td>המנגן</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29497')">
                 <td><a>29497</a></td>
                 <td>01 סדר ראשון - אהבת השם</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29498')">
                 <td><a>29498</a></td>
                 <td>02 סדר שני - שבח והודאה</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29499')">
                 <td><a>29499</a></td>
                 <td>03 סדר שלישי - חופה וקידושין</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29500')">
                 <td><a>29500</a></td>
                 <td>04 סדר רביעי - בקשות</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29501')">
                 <td><a>29501</a></td>
                 <td>05 סדר חמישי - מגולה לגאולה</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29502')">
                 <td><a>29502</a></td>
                 <td>06 תן לי ברכה</td>
                 <td>ליל שישי</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29503')">
                 <td><a>29503</a></td>
                 <td>08 שלמה שמחה ותמלוך</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29504')">
                 <td><a>29504</a></td>
                 <td>אתגרי הזמן</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29505')">
                 <td><a>29505</a></td>
                 <td>טאטע אוי טאטעניו (אבינו מלכנו)</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29506')">
                 <td><a>29506</a></td>
                 <td>יוני שלמה - מחרוזת שמחה</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29507')">
                 <td><a>29507</a></td>
                 <td>יוני שלמה - ניגון שמחה</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29508')">
                 <td><a>29508</a></td>
                 <td>כשהנר דולק</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29509')">
                 <td><a>29509</a></td>
                 <td>משה ואהרון</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29510')">
                 <td><a>29510</a></td>
                 <td>משה ואהרן</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29511')">
                 <td><a>29511</a></td>
                 <td>שלמה שמחה - A Movement in Time</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29512')">
                 <td><a>29512</a></td>
                 <td>תן לי ברכה</td>
                 <td>סינגלים</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29513')">
                 <td><a>29513</a></td>
                 <td>- שלמה שמחה והמכביסט - משה ואהרן - קאוור-חסידי-ווקאלי</td>
                 <td>שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29514')">
                 <td><a>29514</a></td>
                 <td>01-ענני-קצב</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29515')">
                 <td><a>29515</a></td>
                 <td>02-נשבע-שקט</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29516')">
                 <td><a>29516</a></td>
                 <td>03-שלום עליכם-בינוני</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29517')">
                 <td><a>29517</a></td>
                 <td>04-כי לך-קצב</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29518')">
                 <td><a>29518</a></td>
                 <td>05-על כן ציון-שקט</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29519')">
                 <td><a>29519</a></td>
                 <td>06-ויתי-קצב</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29520')">
                 <td><a>29520</a></td>
                 <td>07-אור חדש-קצב</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29521')">
                 <td><a>29521</a></td>
                 <td>08-עד הנה-שקט</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29522')">
                 <td><a>29522</a></td>
                 <td>09-שירה-קצב</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29523')">
                 <td><a>29523</a></td>
                 <td>10-צור משלו-בינוני</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29524')">
                 <td><a>29524</a></td>
                 <td>11-בשם השם-שקט</td>
                 <td>ענני</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29525')">
                 <td><a>29525</a></td>
                 <td>הלל 1</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29526')">
                 <td><a>29526</a></td>
                 <td>הלל 2</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29527')">
                 <td><a>29527</a></td>
                 <td>יחד</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29528')">
                 <td><a>29528</a></td>
                 <td>ממקומך</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29529')">
                 <td><a>29529</a></td>
                 <td>מעריב 1</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29530')">
                 <td><a>29530</a></td>
                 <td>מעריב 2</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29531')">
                 <td><a>29531</a></td>
                 <td>ניגון</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29532')">
                 <td><a>29532</a></td>
                 <td>קבלת שבת 1</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29533')">
                 <td><a>29533</a></td>
                 <td>קבלת שבת 2</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29534')">
                 <td><a>29534</a></td>
                 <td>קל אדון</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29535')">
                 <td><a>29535</a></td>
                 <td>שחרית 1</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29536')">
                 <td><a>29536</a></td>
                 <td>שחרית 2</td>
                 <td>שבת עם שלמה שמחה</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29537')">
                 <td><a>29537</a></td>
                 <td>01 כי מלאכיו -קצב</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29538')">
                 <td><a>29538</a></td>
                 <td>02 אודך -שקט</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29539')">
                 <td><a>29539</a></td>
                 <td>03 י-ה ק-לי ניגון-בינוני</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29540')">
                 <td><a>29540</a></td>
                 <td>04 ובשופר גדול-שקט</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29541')">
                 <td><a>29541</a></td>
                 <td>05 הקפות-קצב</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29542')">
                 <td><a>29542</a></td>
                 <td>06 ושמחת-קצב</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29543')">
                 <td><a>29543</a></td>
                 <td>07 ממקומך-שקט</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29544')">
                 <td><a>29544</a></td>
                 <td>08 שאו שערים-בינוני</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29545')">
                 <td><a>29545</a></td>
                 <td>10 בצאת ישראל-בינוני</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29546')">
                 <td><a>29546</a></td>
                 <td>חמול-שקט</td>
                 <td>שמחת יום טוב</td>
                 <td>שלמה שמחה</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

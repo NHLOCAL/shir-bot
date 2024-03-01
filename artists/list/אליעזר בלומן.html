@@ -1,350 +1,332 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אליעזר בלומן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אליעזר בלומן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאליעזר בלומן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאליעזר בלומן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('45095')">
                 <td><a>45095</a></td>
                 <td>ניגון הבעל שם טוב</td>
                 <td>הבעל שם טוב</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45096')">
                 <td><a>45096</a></td>
                 <td>01-הודו לה</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45097')">
                 <td><a>45097</a></td>
                 <td>02-נשמה</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45098')">
                 <td><a>45098</a></td>
                 <td>03-צמא</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45099')">
                 <td><a>45099</a></td>
                 <td>04-לכה דודי</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45100')">
                 <td><a>45100</a></td>
                 <td>05-ד' מלך</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45101')">
                 <td><a>45101</a></td>
                 <td>06-ישר אליך</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45102')">
                 <td><a>45102</a></td>
                 <td>07-שמע ישראל</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45103')">
                 <td><a>45103</a></td>
                 <td>08-סימן טוב</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45104')">
                 <td><a>45104</a></td>
                 <td>09-ידיד נפש</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45105')">
                 <td><a>45105</a></td>
                 <td>10-ניגון לשלמה</td>
                 <td>ישר אליך</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45106')">
                 <td><a>45106</a></td>
                 <td>01-מעיינות זורמים</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45107')">
                 <td><a>45107</a></td>
                 <td>02-אני מאמין</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45108')">
                 <td><a>45108</a></td>
                 <td>03-צמאה</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45109')">
                 <td><a>45109</a></td>
                 <td>04-שבת שלום</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45110')">
                 <td><a>45110</a></td>
                 <td>05-מחרוזת חב''ד</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45111')">
                 <td><a>45111</a></td>
                 <td>06-שטיבלין</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45112')">
                 <td><a>45112</a></td>
                 <td>07-ארץ של חלומות</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45113')">
                 <td><a>45113</a></td>
                 <td>08-זרימת הבוקר</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45114')">
                 <td><a>45114</a></td>
                 <td>09-ימים עמוקות</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45115')">
                 <td><a>45115</a></td>
                 <td>10-שעת רחמים</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45116')">
                 <td><a>45116</a></td>
                 <td>11-יום כיפור</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45117')">
                 <td><a>45117</a></td>
                 <td>12-מספיק ישן</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45118')">
                 <td><a>45118</a></td>
                 <td>13-מקדש מלך</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45119')">
                 <td><a>45119</a></td>
                 <td>14-מחרוזת שמחה</td>
                 <td>מעיינות זורמים</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45120')">
                 <td><a>45120</a></td>
                 <td>01-שירו לה</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45121')">
                 <td><a>45121</a></td>
                 <td>02-שיבנה בהר ציון</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45122')">
                 <td><a>45122</a></td>
                 <td>03-אבא תעזור לנו עוד פעם</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45123')">
                 <td><a>45123</a></td>
                 <td>04-חסידים רוקדים</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45124')">
                 <td><a>45124</a></td>
                 <td>05-הודו לה כי טוב</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45125')">
                 <td><a>45125</a></td>
                 <td>06-קלי אתה ואודך</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45126')">
                 <td><a>45126</a></td>
                 <td>07-אדון אשר מלך</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45127')">
                 <td><a>45127</a></td>
                 <td>08-אלו חיים טובים לנגן בארץ הקודש</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45128')">
                 <td><a>45128</a></td>
                 <td>09-כל הנשמה תהלל</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45129')">
                 <td><a>45129</a></td>
                 <td>10-ביום ההוא יהיה ד' אחד</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45130')">
                 <td><a>45130</a></td>
                 <td>11-אשרינו מה טוב חלקנו</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45131')">
                 <td><a>45131</a></td>
                 <td>12-תודה ד' שנתת לי יום חדש</td>
                 <td>שיר חדש</td>
                 <td>אליעזר בלומן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

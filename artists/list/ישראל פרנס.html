@@ -1,413 +1,395 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ישראל פרנס</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ישראל פרנס</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspישראל פרנס</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspישראל פרנס</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('51493')">
                 <td><a>51493</a></td>
                 <td>01-בואי בשלום</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51494')">
                 <td><a>51494</a></td>
                 <td>02-אל הנער הזה התפללתי</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51495')">
                 <td><a>51495</a></td>
                 <td>03-הוא אשר דבר</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51496')">
                 <td><a>51496</a></td>
                 <td>04-כי מלאכיו</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51497')">
                 <td><a>51497</a></td>
                 <td>05-אות לטובה</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51498')">
                 <td><a>51498</a></td>
                 <td>06-תפילת הילד</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51499')">
                 <td><a>51499</a></td>
                 <td>07-לכו נרננה</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51500')">
                 <td><a>51500</a></td>
                 <td>08-הנשמה לך</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51501')">
                 <td><a>51501</a></td>
                 <td>09-כיצד מרקדין</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51502')">
                 <td><a>51502</a></td>
                 <td>10-מי אדיר</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51503')">
                 <td><a>51503</a></td>
                 <td>11-אני אומר לכם</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51504')">
                 <td><a>51504</a></td>
                 <td>12-ניגונו של הרשלה</td>
                 <td>אל הנער הזה התפללתי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51505')">
                 <td><a>51505</a></td>
                 <td>01-שלום עליכם</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51506')">
                 <td><a>51506</a></td>
                 <td>02-ומפרנס</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51507')">
                 <td><a>51507</a></td>
                 <td>03-יבוא ידיד</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51508')">
                 <td><a>51508</a></td>
                 <td>04-ובטובו</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51509')">
                 <td><a>51509</a></td>
                 <td>05-תפילת הילדה</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51510')">
                 <td><a>51510</a></td>
                 <td>06-אנא ה</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51511')">
                 <td><a>51511</a></td>
                 <td>07-יעלה ויבוא</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51512')">
                 <td><a>51512</a></td>
                 <td>08-רבונו של עולם</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51513')">
                 <td><a>51513</a></td>
                 <td>09-יחדשהו</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51514')">
                 <td><a>51514</a></td>
                 <td>10-ושמרו</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51515')">
                 <td><a>51515</a></td>
                 <td>11-והיה כנגן</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51516')">
                 <td><a>51516</a></td>
                 <td>12-דרכיה</td>
                 <td>ומפרנס</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51517')">
                 <td><a>51517</a></td>
                 <td>06 - אנא ה</td>
                 <td>סינגלים</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51518')">
                 <td><a>51518</a></td>
                 <td>Track 11</td>
                 <td>סינגלים</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51519')">
                 <td><a>51519</a></td>
                 <td>01-כן יברך</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51520')">
                 <td><a>51520</a></td>
                 <td>02-ותזכו</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51521')">
                 <td><a>51521</a></td>
                 <td>03-כאיל תערוג</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51522')">
                 <td><a>51522</a></td>
                 <td>04-ועל כן נקוה</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51523')">
                 <td><a>51523</a></td>
                 <td>05-מרחוק</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51524')">
                 <td><a>51524</a></td>
                 <td>06-כל המשמח</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51525')">
                 <td><a>51525</a></td>
                 <td>07-לא ישא</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51526')">
                 <td><a>51526</a></td>
                 <td>08-והוא ישמיענו</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51527')">
                 <td><a>51527</a></td>
                 <td>09-מח' קרליבך בהופעה חיה</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51528')">
                 <td><a>51528</a></td>
                 <td>10-עוד ישמע</td>
                 <td>קול המשמח</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51529')">
                 <td><a>51529</a></td>
                 <td>01-עושה שלום</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51530')">
                 <td><a>51530</a></td>
                 <td>02-כי הם חיינו</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51531')">
                 <td><a>51531</a></td>
                 <td>03-יהא רעוא</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51532')">
                 <td><a>51532</a></td>
                 <td>04-הבן יקיר</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51533')">
                 <td><a>51533</a></td>
                 <td>05-וכל בניך</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51534')">
                 <td><a>51534</a></td>
                 <td>06-רבות בנות</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51535')">
                 <td><a>51535</a></td>
                 <td>07-קול ד</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51536')">
                 <td><a>51536</a></td>
                 <td>08-אברכה</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51537')">
                 <td><a>51537</a></td>
                 <td>09-לאמיר זיך</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51538')">
                 <td><a>51538</a></td>
                 <td>10-יתן לך</td>
                 <td>תמיד תהלתו בפי</td>
                 <td>ישראל פרנס</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

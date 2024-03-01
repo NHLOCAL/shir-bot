@@ -1,840 +1,822 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מרדכי אשכנזי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מרדכי אשכנזי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמרדכי אשכנזי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמרדכי אשכנזי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('35405')">
                 <td><a>35405</a></td>
                 <td>01-קמתי באשמורת</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35406')">
                 <td><a>35406</a></td>
                 <td>02-בן אדם</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35407')">
                 <td><a>35407</a></td>
                 <td>03-קל מלך יושב</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35408')">
                 <td><a>35408</a></td>
                 <td>04-רחמנא</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35409')">
                 <td><a>35409</a></td>
                 <td>05-אנשי אמונה אבדו</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35410')">
                 <td><a>35410</a></td>
                 <td>06-לד' אלקנו הרחמים והסליחות</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35411')">
                 <td><a>35411</a></td>
                 <td>07-עננו</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35412')">
                 <td><a>35412</a></td>
                 <td>08-אדון הסליחות</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35413')">
                 <td><a>35413</a></td>
                 <td>09-קל מלך רחמים</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35414')">
                 <td><a>35414</a></td>
                 <td>10-אם אפס</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35415')">
                 <td><a>35415</a></td>
                 <td>11-בזכרי על משכבי</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35416')">
                 <td><a>35416</a></td>
                 <td>12-מחי ומסי</td>
                 <td>תפילת הימים הנוראים 1</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35417')">
                 <td><a>35417</a></td>
                 <td>01-הדרכה לחזן</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35418')">
                 <td><a>35418</a></td>
                 <td>02-קדיש-בן אדם</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35419')">
                 <td><a>35419</a></td>
                 <td>03-קדיש-קל רחום שמך</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35420')">
                 <td><a>35420</a></td>
                 <td>04-קדיש-לך קלי</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35421')">
                 <td><a>35421</a></td>
                 <td>05-קדיש-עת שערי רצון</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35422')">
                 <td><a>35422</a></td>
                 <td>06-נקדישך-שואף כמו עבד</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35423')">
                 <td><a>35423</a></td>
                 <td>07-נקדישך-קל נורא עלילה</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35424')">
                 <td><a>35424</a></td>
                 <td>08-נקדישך-אדון הסליחות</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35425')">
                 <td><a>35425</a></td>
                 <td>09-נקדיש-שואף כמו עבד</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35426')">
                 <td><a>35426</a></td>
                 <td>10-אחות קטנה</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35427')">
                 <td><a>35427</a></td>
                 <td>11-חון תחון</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35428')">
                 <td><a>35428</a></td>
                 <td>12-ברכו את ד' המבורך</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35429')">
                 <td><a>35429</a></td>
                 <td>13-תפילת הפרנסה</td>
                 <td>תפילת הימים הנוראים 2</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35430')">
                 <td><a>35430</a></td>
                 <td>01-האדרת והאמונה</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35431')">
                 <td><a>35431</a></td>
                 <td>02-כי לד' המלוכה, נשמת</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35432')">
                 <td><a>35432</a></td>
                 <td>03-שועת עניים-למענך</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35433')">
                 <td><a>35433</a></td>
                 <td>04-שועת עניים-שואף כמו עבד</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35434')">
                 <td><a>35434</a></td>
                 <td>05-קל ההודאות-בן אדם</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35435')">
                 <td><a>35435</a></td>
                 <td>06-קל ההודאות-אדון הסליחות</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35436')">
                 <td><a>35436</a></td>
                 <td>07-קדיש</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35437')">
                 <td><a>35437</a></td>
                 <td>08-שמחים בצאתם-קל רחום שמך</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35438')">
                 <td><a>35438</a></td>
                 <td>09-שמחים בצאתם-עת שערי רצון-חלבי</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35439')">
                 <td><a>35439</a></td>
                 <td>10-קל אדון-סלוניקי</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35440')">
                 <td><a>35440</a></td>
                 <td>11-שמחים בצאתם-אדיר ונאור</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35441')">
                 <td><a>35441</a></td>
                 <td>12-ממצרים גאלתנו-שנאנים</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35442')">
                 <td><a>35442</a></td>
                 <td>13-ונתנו ידידים</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35443')">
                 <td><a>35443</a></td>
                 <td>14-חזרת הש''ץ</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35444')">
                 <td><a>35444</a></td>
                 <td>15-זכרנו לחיים</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35445')">
                 <td><a>35445</a></td>
                 <td>16-נקדישך</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35446')">
                 <td><a>35446</a></td>
                 <td>17-ברכת כהנים-מקורי</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35447')">
                 <td><a>35447</a></td>
                 <td>18-ברכת כהנים-מקוצר</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35448')">
                 <td><a>35448</a></td>
                 <td>19-אבינו מלכנו</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35449')">
                 <td><a>35449</a></td>
                 <td>20-אבינו מלכנו-סלוניקי</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35450')">
                 <td><a>35450</a></td>
                 <td>21-תענו ותעתרו</td>
                 <td>תפילת הימים הנוראים 3</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35451')">
                 <td><a>35451</a></td>
                 <td>01-אלוקי אל תדינני</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35452')">
                 <td><a>35452</a></td>
                 <td>02-שואף כמו עבד</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35453')">
                 <td><a>35453</a></td>
                 <td>03-שופט כל הארץ</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35454')">
                 <td><a>35454</a></td>
                 <td>04-ידי רשים</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35455')">
                 <td><a>35455</a></td>
                 <td>05-המבורך</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35456')">
                 <td><a>35456</a></td>
                 <td>06-ד' יום לך אערוך תחינה</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35457')">
                 <td><a>35457</a></td>
                 <td>07-י-ה שמך ארוממך</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35458')">
                 <td><a>35458</a></td>
                 <td>08-דבר גבורות-סלוניקי</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35459')">
                 <td><a>35459</a></td>
                 <td>09-השתונן</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35460')">
                 <td><a>35460</a></td>
                 <td>10-סדר פתיחת ההיכל-לעולם ד' דברך</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35461')">
                 <td><a>35461</a></td>
                 <td>11-י''ג מידות</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35462')">
                 <td><a>35462</a></td>
                 <td>12-פיוטים לתקיעת שופר-עת שערי רצון</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35463')">
                 <td><a>35463</a></td>
                 <td>13-שיחו לעמי</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35464')">
                 <td><a>35464</a></td>
                 <td>14-לבריתך</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35465')">
                 <td><a>35465</a></td>
                 <td>15-למנצח לבני קורח</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35466')">
                 <td><a>35466</a></td>
                 <td>16-ד' בקול שופר</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35467')">
                 <td><a>35467</a></td>
                 <td>17-תפילת מוסף-שובה למעונך</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35468')">
                 <td><a>35468</a></td>
                 <td>18-ד' שמעתי שמעך יראתי</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35469')">
                 <td><a>35469</a></td>
                 <td>19-אוחילה לקל, ד' שפתי תפתח</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35470')">
                 <td><a>35470</a></td>
                 <td>20-כתר</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35471')">
                 <td><a>35471</a></td>
                 <td>21-היום הרת עולם א</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35472')">
                 <td><a>35472</a></td>
                 <td>22-היום הרת עולם ב</td>
                 <td>תפילת הימים הנוראים 4</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35473')">
                 <td><a>35473</a></td>
                 <td>01-לך אלי</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35474')">
                 <td><a>35474</a></td>
                 <td>02-שמע קולי</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35475')">
                 <td><a>35475</a></td>
                 <td>03-תפילת כל נדרי</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35476')">
                 <td><a>35476</a></td>
                 <td>04-קדיש, ברכו</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35477')">
                 <td><a>35477</a></td>
                 <td>05-תפילה לדוד שמעה ד' צדק</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35478')">
                 <td><a>35478</a></td>
                 <td>06-אנא ד' רחמך יראו</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35479')">
                 <td><a>35479</a></td>
                 <td>07-משתחווים להדרת קודש</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35480')">
                 <td><a>35480</a></td>
                 <td>08-אנא בקראנו לקול שוענו</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35481')">
                 <td><a>35481</a></td>
                 <td>09-קל מלך יושב, רחמנא</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35482')">
                 <td><a>35482</a></td>
                 <td>10-לד' אלוקינו הרחמים והסליחות</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35483')">
                 <td><a>35483</a></td>
                 <td>11-עננו, אדון הסליחות</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35484')">
                 <td><a>35484</a></td>
                 <td>12-קל מלך יושב</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35485')">
                 <td><a>35485</a></td>
                 <td>13-וידוי</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35486')">
                 <td><a>35486</a></td>
                 <td>14-על חטא שחטאנו לפניך</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35487')">
                 <td><a>35487</a></td>
                 <td>15-על חטאים שאנחנו חייבים עליהם</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35488')">
                 <td><a>35488</a></td>
                 <td>16-אדיר ונאור מי קל כמוך</td>
                 <td>תפילת הימים הנוראים 5</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35489')">
                 <td><a>35489</a></td>
                 <td>01-ובכן נקדישך מלך-שחרית</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35490')">
                 <td><a>35490</a></td>
                 <td>02-יראה לובשים-שחרית</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35491')">
                 <td><a>35491</a></td>
                 <td>03-ובכן נקדישך מלך-מוסף</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35492')">
                 <td><a>35492</a></td>
                 <td>04-יראה לובשים-מוסף</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35493')">
                 <td><a>35493</a></td>
                 <td>05-כתר</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35494')">
                 <td><a>35494</a></td>
                 <td>06-ובכן נקדישך מלך-מנחה</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35495')">
                 <td><a>35495</a></td>
                 <td>07-נקדישך</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35496')">
                 <td><a>35496</a></td>
                 <td>08-ובכן נקדישך מלך-נעילה</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35497')">
                 <td><a>35497</a></td>
                 <td>09-שנאנים שאננים</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35498')">
                 <td><a>35498</a></td>
                 <td>10-נצוצים נקבצים</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35499')">
                 <td><a>35499</a></td>
                 <td>11-רבש''ע קודם כל נדרי</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35500')">
                 <td><a>35500</a></td>
                 <td>12-זכרון יום המיתה-לא שמנו על לבנו</td>
                 <td>תפילת הימים הנוראים 6</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35501')">
                 <td><a>35501</a></td>
                 <td>01-שובה למענך</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35502')">
                 <td><a>35502</a></td>
                 <td>02-אוחילה</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35503')">
                 <td><a>35503</a></td>
                 <td>03-ארוממך חזקי וחלקי</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35504')">
                 <td><a>35504</a></td>
                 <td>04-אערוך מדברי דתי</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35505')">
                 <td><a>35505</a></td>
                 <td>05-אתה כוננת</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35506')">
                 <td><a>35506</a></td>
                 <td>06-ראה לפני מי אתה נכנס</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35507')">
                 <td><a>35507</a></td>
                 <td>07-וסמך שתי ידיו עליו והתוודה</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35508')">
                 <td><a>35508</a></td>
                 <td>08-והכהנים והעם-עאג'ם</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35509')">
                 <td><a>35509</a></td>
                 <td>09-והכהנים והעם-חיג'אז</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35510')">
                 <td><a>35510</a></td>
                 <td>10-תפילת כהן גדול בהיכל-יהי רצון</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35511')">
                 <td><a>35511</a></td>
                 <td>11-וכך היה מונה אחת, אחת ואחת</td>
                 <td>תפילת הימים הנוראים 7</td>
                 <td>מרדכי אשכנזי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

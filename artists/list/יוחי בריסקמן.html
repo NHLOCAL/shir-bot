@@ -1,476 +1,458 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יוחי בריסקמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יוחי בריסקמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיוחי בריסקמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיוחי בריסקמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('50261')">
                 <td><a>50261</a></td>
                 <td>01-ושאבתם</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50262')">
                 <td><a>50262</a></td>
                 <td>02-רוסישר</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50263')">
                 <td><a>50263</a></td>
                 <td>03-הנה מה טוב</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50264')">
                 <td><a>50264</a></td>
                 <td>04-קה ריבון</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50265')">
                 <td><a>50265</a></td>
                 <td>05-ניגון ערבי</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50266')">
                 <td><a>50266</a></td>
                 <td>06-על אלה אני בוכיה</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50267')">
                 <td><a>50267</a></td>
                 <td>07-ניגון שמחה חב''ד</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50268')">
                 <td><a>50268</a></td>
                 <td>08-אזמר בשבחין</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50269')">
                 <td><a>50269</a></td>
                 <td>09-ניגון אלשטיין</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50270')">
                 <td><a>50270</a></td>
                 <td>10-מי יתנני עוף</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50271')">
                 <td><a>50271</a></td>
                 <td>11-פריילעך'ס</td>
                 <td>Jewish Music Ensemble</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50272')">
                 <td><a>50272</a></td>
                 <td>01-אשריך</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50273')">
                 <td><a>50273</a></td>
                 <td>02</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50274')">
                 <td><a>50274</a></td>
                 <td>03</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50275')">
                 <td><a>50275</a></td>
                 <td>04</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50276')">
                 <td><a>50276</a></td>
                 <td>05</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50277')">
                 <td><a>50277</a></td>
                 <td>06</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50278')">
                 <td><a>50278</a></td>
                 <td>07</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50279')">
                 <td><a>50279</a></td>
                 <td>08</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50280')">
                 <td><a>50280</a></td>
                 <td>09</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50281')">
                 <td><a>50281</a></td>
                 <td>10</td>
                 <td>אשריך</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50282')">
                 <td><a>50282</a></td>
                 <td>01-אין כאלוקינו</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50283')">
                 <td><a>50283</a></td>
                 <td>02-מחרוזת דדה ביה</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50284')">
                 <td><a>50284</a></td>
                 <td>03-וזוכר חסדי אבות</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50285')">
                 <td><a>50285</a></td>
                 <td>04-חזק</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50286')">
                 <td><a>50286</a></td>
                 <td>05-הורה מיקס</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50287')">
                 <td><a>50287</a></td>
                 <td>06-אוי אוי</td>
                 <td>דאנס מיקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50288')">
                 <td><a>50288</a></td>
                 <td>01-מחרוזת פתיחה</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50289')">
                 <td><a>50289</a></td>
                 <td>02-מחרוזת כלל</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50290')">
                 <td><a>50290</a></td>
                 <td>03-דאנס קלאסי</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50291')">
                 <td><a>50291</a></td>
                 <td>04-גאולה</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50292')">
                 <td><a>50292</a></td>
                 <td>05-הורה-נקסט</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50293')">
                 <td><a>50293</a></td>
                 <td>06-מחרוזת שווינג</td>
                 <td>נקסט</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50294')">
                 <td><a>50294</a></td>
                 <td>01-מציגים פרוג'קט</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50295')">
                 <td><a>50295</a></td>
                 <td>02-חסידיש ישיביש</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50296')">
                 <td><a>50296</a></td>
                 <td>03-הדאנס הקלאסי</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50297')">
                 <td><a>50297</a></td>
                 <td>04-העתיד</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50298')">
                 <td><a>50298</a></td>
                 <td>05-הורה עקס</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50299')">
                 <td><a>50299</a></td>
                 <td>06-אט אט</td>
                 <td>עקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50300')">
                 <td><a>50300</a></td>
                 <td>01-יברכך</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50301')">
                 <td><a>50301</a></td>
                 <td>02-אני מאמין</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50302')">
                 <td><a>50302</a></td>
                 <td>03-ביחד</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50303')">
                 <td><a>50303</a></td>
                 <td>04-שלום עליכם</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50304')">
                 <td><a>50304</a></td>
                 <td>05-טאטע</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50305')">
                 <td><a>50305</a></td>
                 <td>06-תפילה</td>
                 <td>רילקס</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50306')">
                 <td><a>50306</a></td>
                 <td>01-שלום עליכם</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50307')">
                 <td><a>50307</a></td>
                 <td>02-שבענו</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50308')">
                 <td><a>50308</a></td>
                 <td>03-צמאה-ליבי ובשרי</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50309')">
                 <td><a>50309</a></td>
                 <td>04-מארש קל עליון</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50310')">
                 <td><a>50310</a></td>
                 <td>05-רחם בחסדך</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50311')">
                 <td><a>50311</a></td>
                 <td>06-חי ד</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50312')">
                 <td><a>50312</a></td>
                 <td>07-אזמר בשבחין</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50313')">
                 <td><a>50313</a></td>
                 <td>08-ושמרו</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50314')">
                 <td><a>50314</a></td>
                 <td>09-מנוחה ושמחה</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50315')">
                 <td><a>50315</a></td>
                 <td>10-אידינע</td>
                 <td>שבת חזק</td>
                 <td>יוחי בריסקמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

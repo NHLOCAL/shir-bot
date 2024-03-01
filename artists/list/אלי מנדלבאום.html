@@ -1,1589 +1,1571 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אלי מנדלבאום</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אלי מנדלבאום</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאלי מנדלבאום</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאלי מנדלבאום</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('44878')">
                 <td><a>44878</a></td>
                 <td>01-סוף דבר</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44879')">
                 <td><a>44879</a></td>
                 <td>02-מאמין בקל אחד</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44880')">
                 <td><a>44880</a></td>
                 <td>03-התקדם ידידי</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44881')">
                 <td><a>44881</a></td>
                 <td>04-קל גדול</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44882')">
                 <td><a>44882</a></td>
                 <td>05-הדרך רצה</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44883')">
                 <td><a>44883</a></td>
                 <td>06-אתה חייב לחזור</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44884')">
                 <td><a>44884</a></td>
                 <td>07-עליות וירידות</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44885')">
                 <td><a>44885</a></td>
                 <td>08-בן יעקב</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44886')">
                 <td><a>44886</a></td>
                 <td>09-בא אליך בוראי</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44887')">
                 <td><a>44887</a></td>
                 <td>10-שמע ישראל</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44888')">
                 <td><a>44888</a></td>
                 <td>11-לך עכשיו בדרך</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44889')">
                 <td><a>44889</a></td>
                 <td>12-עד מתי</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44890')">
                 <td><a>44890</a></td>
                 <td>13-זמנים היו</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44891')">
                 <td><a>44891</a></td>
                 <td>14-אשא עיני</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44892')">
                 <td><a>44892</a></td>
                 <td>15-מה רבו מעשיך</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44893')">
                 <td><a>44893</a></td>
                 <td>16-אז מהר אחי</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44894')">
                 <td><a>44894</a></td>
                 <td>17-והיה באחרית הימים</td>
                 <td>אחרית הימים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44895')">
                 <td><a>44895</a></td>
                 <td>01-המחרוזת</td>
                 <td>אירוביקס</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44896')">
                 <td><a>44896</a></td>
                 <td>02-הקצבי</td>
                 <td>אירוביקס</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44897')">
                 <td><a>44897</a></td>
                 <td>03-מיוצר בארץ</td>
                 <td>אירוביקס</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44898')">
                 <td><a>44898</a></td>
                 <td>04-מחרוזת לועזי</td>
                 <td>אירוביקס</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44899')">
                 <td><a>44899</a></td>
                 <td>01-וכל החיים</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44900')">
                 <td><a>44900</a></td>
                 <td>02-שומרון</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44901')">
                 <td><a>44901</a></td>
                 <td>03-כי לא יטוש</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44902')">
                 <td><a>44902</a></td>
                 <td>04-נעלה</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44903')">
                 <td><a>44903</a></td>
                 <td>05-ובחורים וזקנים</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44904')">
                 <td><a>44904</a></td>
                 <td>06-חתונה </td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44905')">
                 <td><a>44905</a></td>
                 <td>07-ויותר יעקב</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44906')">
                 <td><a>44906</a></td>
                 <td>08-מצוה גדולה</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44907')">
                 <td><a>44907</a></td>
                 <td>09-עוד ישמע</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44908')">
                 <td><a>44908</a></td>
                 <td>10-ברכנו אבינו</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44909')">
                 <td><a>44909</a></td>
                 <td>11-צמאה לך נפשי</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44910')">
                 <td><a>44910</a></td>
                 <td>12-מודה אני</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44911')">
                 <td><a>44911</a></td>
                 <td>13-אני מאמין</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44912')">
                 <td><a>44912</a></td>
                 <td>14-סאלאם</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44913')">
                 <td><a>44913</a></td>
                 <td>15-שים שלום</td>
                 <td>העתיד</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44914')">
                 <td><a>44914</a></td>
                 <td>01-כי גדול</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44915')">
                 <td><a>44915</a></td>
                 <td>02-ולירושלים</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44916')">
                 <td><a>44916</a></td>
                 <td>03-שמע ישראל</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44917')">
                 <td><a>44917</a></td>
                 <td>04-רבונו של עולם</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44918')">
                 <td><a>44918</a></td>
                 <td>05-אין עוד מלבדו</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44919')">
                 <td><a>44919</a></td>
                 <td>06-שנות גלות</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44920')">
                 <td><a>44920</a></td>
                 <td>07-לא תירא</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44921')">
                 <td><a>44921</a></td>
                 <td>08-מי האיש</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44922')">
                 <td><a>44922</a></td>
                 <td>09-כיצד מרקדין</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44923')">
                 <td><a>44923</a></td>
                 <td>10-בטחו בה</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44924')">
                 <td><a>44924</a></td>
                 <td>11-ענוים</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44925')">
                 <td><a>44925</a></td>
                 <td>12-רצונך</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44926')">
                 <td><a>44926</a></td>
                 <td>13-ויעזור</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44927')">
                 <td><a>44927</a></td>
                 <td>14-כשם שאני</td>
                 <td>העתיד 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44928')">
                 <td><a>44928</a></td>
                 <td>01-שיר למעלות</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44929')">
                 <td><a>44929</a></td>
                 <td>02-שיר למעלות </td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44930')">
                 <td><a>44930</a></td>
                 <td>03-וכל החיים</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44931')">
                 <td><a>44931</a></td>
                 <td>04-סאלאם</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44932')">
                 <td><a>44932</a></td>
                 <td>05-וללבנה אמר</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44933')">
                 <td><a>44933</a></td>
                 <td>06-מה נאוו</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44934')">
                 <td><a>44934</a></td>
                 <td>07-פעם אחת בחודש</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44935')">
                 <td><a>44935</a></td>
                 <td>08-קול דודי</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44936')">
                 <td><a>44936</a></td>
                 <td>09-שירו למלך</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44937')">
                 <td><a>44937</a></td>
                 <td>10-הבט</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44938')">
                 <td><a>44938</a></td>
                 <td>11-מדבר שקר תרחק</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44939')">
                 <td><a>44939</a></td>
                 <td>12-כח</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44940')">
                 <td><a>44940</a></td>
                 <td>13-ויזכו</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44941')">
                 <td><a>44941</a></td>
                 <td>14-שובי השולמית</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44942')">
                 <td><a>44942</a></td>
                 <td>15-עוד אבינו חי</td>
                 <td>מיקס 1</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44943')">
                 <td><a>44943</a></td>
                 <td>01-לחיים בירושלים </td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44944')">
                 <td><a>44944</a></td>
                 <td>02-קווה אל השם</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44945')">
                 <td><a>44945</a></td>
                 <td>03-ויחן שם ישראל</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44946')">
                 <td><a>44946</a></td>
                 <td>04-מצווה גדולה</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44947')">
                 <td><a>44947</a></td>
                 <td>05-הכל יודוך</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44948')">
                 <td><a>44948</a></td>
                 <td>06-הכל יודוך</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44949')">
                 <td><a>44949</a></td>
                 <td>07-מי האיש</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44950')">
                 <td><a>44950</a></td>
                 <td>08-אחינו </td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44951')">
                 <td><a>44951</a></td>
                 <td>09-חברון</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44952')">
                 <td><a>44952</a></td>
                 <td>10-כשם שאני</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44953')">
                 <td><a>44953</a></td>
                 <td>11-מה שהיה</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44954')">
                 <td><a>44954</a></td>
                 <td>12-משיח</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44955')">
                 <td><a>44955</a></td>
                 <td>13-הוא זכאי</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44956')">
                 <td><a>44956</a></td>
                 <td>14-הוא יברך</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44957')">
                 <td><a>44957</a></td>
                 <td>15-שמח תשמח</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44958')">
                 <td><a>44958</a></td>
                 <td>16-כי אתה הוא מלך</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44959')">
                 <td><a>44959</a></td>
                 <td>17-לחיי עולם הבא</td>
                 <td>מיקס 2</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44960')">
                 <td><a>44960</a></td>
                 <td>01-מאמינים בני מאמינים</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44961')">
                 <td><a>44961</a></td>
                 <td>02-אני מאמין </td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44962')">
                 <td><a>44962</a></td>
                 <td>03-ולמען תורתך</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44963')">
                 <td><a>44963</a></td>
                 <td>04-שמעתי שהיו אומרים</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44964')">
                 <td><a>44964</a></td>
                 <td>05-הקב''ה אחנו אוהבים אותך</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44965')">
                 <td><a>44965</a></td>
                 <td>06-אני פוסע</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44966')">
                 <td><a>44966</a></td>
                 <td>07-לפניו נעבוד</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44967')">
                 <td><a>44967</a></td>
                 <td>08-אבינו מלכינו</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44968')">
                 <td><a>44968</a></td>
                 <td>09-חזק ונתחזק</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44969')">
                 <td><a>44969</a></td>
                 <td>10-שיר מספר</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44970')">
                 <td><a>44970</a></td>
                 <td>11-שמע ישראל</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44971')">
                 <td><a>44971</a></td>
                 <td>12-ארץ אשר תמיד</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44972')">
                 <td><a>44972</a></td>
                 <td>13-יאממיי יאממיי</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44973')">
                 <td><a>44973</a></td>
                 <td>14-שיר מספר</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44974')">
                 <td><a>44974</a></td>
                 <td>15-הוי דן </td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44975')">
                 <td><a>44975</a></td>
                 <td>16-כי הם חיינו</td>
                 <td>מיקס 3</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44976')">
                 <td><a>44976</a></td>
                 <td>01-יהא שלמא</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44977')">
                 <td><a>44977</a></td>
                 <td>02-ישמח ישראל</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44978')">
                 <td><a>44978</a></td>
                 <td>03-רחם</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44979')">
                 <td><a>44979</a></td>
                 <td>04-הוא היושב</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44980')">
                 <td><a>44980</a></td>
                 <td>05-בואי בשלום</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44981')">
                 <td><a>44981</a></td>
                 <td>06-פתיחה למחרוזת</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44982')">
                 <td><a>44982</a></td>
                 <td>07-בזאת אני בוטח</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44983')">
                 <td><a>44983</a></td>
                 <td>08-עמך</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44984')">
                 <td><a>44984</a></td>
                 <td>09-כל ההבטחות</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44985')">
                 <td><a>44985</a></td>
                 <td>10-עמך</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44986')">
                 <td><a>44986</a></td>
                 <td>11-פתיח מחרוזת</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44987')">
                 <td><a>44987</a></td>
                 <td>12-תהילה לאלוקינו</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44988')">
                 <td><a>44988</a></td>
                 <td>13-שהחינו</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44989')">
                 <td><a>44989</a></td>
                 <td>14-אין ישראל נגאלין</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44990')">
                 <td><a>44990</a></td>
                 <td>15-כשם שאני</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44991')">
                 <td><a>44991</a></td>
                 <td>16-ממעקים</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44992')">
                 <td><a>44992</a></td>
                 <td>17-סופה</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44993')">
                 <td><a>44993</a></td>
                 <td>18-בגן של חיים</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44994')">
                 <td><a>44994</a></td>
                 <td>19-אם אין אני</td>
                 <td>מיקס 4</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44995')">
                 <td><a>44995</a></td>
                 <td>01-עלה קטן</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44996')">
                 <td><a>44996</a></td>
                 <td>02-תן חיוך</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44997')">
                 <td><a>44997</a></td>
                 <td>03-ישיש</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44998')">
                 <td><a>44998</a></td>
                 <td>04-ואשי ישראל</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44999')">
                 <td><a>44999</a></td>
                 <td>05-שמע ישראל</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45000')">
                 <td><a>45000</a></td>
                 <td>06-ואנחנו עמך</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45001')">
                 <td><a>45001</a></td>
                 <td>07-חיים ושלום</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45002')">
                 <td><a>45002</a></td>
                 <td>08-זכרני נא</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45003')">
                 <td><a>45003</a></td>
                 <td>09-מי שאמר</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45004')">
                 <td><a>45004</a></td>
                 <td>10-ישמח ישראל</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45005')">
                 <td><a>45005</a></td>
                 <td>11-גילה רינה</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45006')">
                 <td><a>45006</a></td>
                 <td>12-בוטחים בקב''ה</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45007')">
                 <td><a>45007</a></td>
                 <td>13-למעלה</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45008')">
                 <td><a>45008</a></td>
                 <td>14-חזק ישראל</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45009')">
                 <td><a>45009</a></td>
                 <td>15-והוא כחתן</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45010')">
                 <td><a>45010</a></td>
                 <td>16-בואי בשלום</td>
                 <td>מיקס 5</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45011')">
                 <td><a>45011</a></td>
                 <td>01-על הכבישים</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45012')">
                 <td><a>45012</a></td>
                 <td>02-רואים עולם</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45013')">
                 <td><a>45013</a></td>
                 <td>03-מה שהיה</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45014')">
                 <td><a>45014</a></td>
                 <td>04-סימן טוב</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45015')">
                 <td><a>45015</a></td>
                 <td>05-אנא אלי</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45016')">
                 <td><a>45016</a></td>
                 <td>06-אשר ברא</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45017')">
                 <td><a>45017</a></td>
                 <td>07-ברוך ה</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45018')">
                 <td><a>45018</a></td>
                 <td>08-כיצד מרקדין</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45019')">
                 <td><a>45019</a></td>
                 <td>09-מרן די בשמיא</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45020')">
                 <td><a>45020</a></td>
                 <td>10-מציץ</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45021')">
                 <td><a>45021</a></td>
                 <td>11-מתי יבוא הגואל</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45022')">
                 <td><a>45022</a></td>
                 <td>12-מי האיש</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45023')">
                 <td><a>45023</a></td>
                 <td>13-מה רבו</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45024')">
                 <td><a>45024</a></td>
                 <td>14-שמע קולנו</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45025')">
                 <td><a>45025</a></td>
                 <td>15-כי באמת</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45026')">
                 <td><a>45026</a></td>
                 <td>16-כי הטוב</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45027')">
                 <td><a>45027</a></td>
                 <td>17-ובא לציון</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45028')">
                 <td><a>45028</a></td>
                 <td>18-סיום</td>
                 <td>מיקס 6</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45029')">
                 <td><a>45029</a></td>
                 <td>01-עתיד הקב''ה</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45030')">
                 <td><a>45030</a></td>
                 <td>02-מנגינת הצפרדע החסידית</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45031')">
                 <td><a>45031</a></td>
                 <td>03-ארבע מידות באדם</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45032')">
                 <td><a>45032</a></td>
                 <td>04-ידיד</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45033')">
                 <td><a>45033</a></td>
                 <td>05-יהי רצון</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45034')">
                 <td><a>45034</a></td>
                 <td>06-בוא יבוא</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45035')">
                 <td><a>45035</a></td>
                 <td>07-רכבת לילה</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45036')">
                 <td><a>45036</a></td>
                 <td>08-שערי שמים</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45037')">
                 <td><a>45037</a></td>
                 <td>09-רווח</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45038')">
                 <td><a>45038</a></td>
                 <td>10-את הגשם</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45039')">
                 <td><a>45039</a></td>
                 <td>11-וואנט משיח</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45040')">
                 <td><a>45040</a></td>
                 <td>12-בן בג בג</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45041')">
                 <td><a>45041</a></td>
                 <td>13-בראש השנה</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45042')">
                 <td><a>45042</a></td>
                 <td>14-רבותי נברך</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45043')">
                 <td><a>45043</a></td>
                 <td>15-בזאת השעה</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45044')">
                 <td><a>45044</a></td>
                 <td>16-מנגינת ברוק</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45045')">
                 <td><a>45045</a></td>
                 <td>17-מנגינה</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45046')">
                 <td><a>45046</a></td>
                 <td>18-עצבני</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45047')">
                 <td><a>45047</a></td>
                 <td>19-נעימות המנדלבאום</td>
                 <td>מיקס 7</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45048')">
                 <td><a>45048</a></td>
                 <td>01-אנחנו אוהבים אותך</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45049')">
                 <td><a>45049</a></td>
                 <td>02-וטהר</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45050')">
                 <td><a>45050</a></td>
                 <td>03-יצירת קלאסיק</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45051')">
                 <td><a>45051</a></td>
                 <td>04-אנא בכוח</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45052')">
                 <td><a>45052</a></td>
                 <td>05-ברשות</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45053')">
                 <td><a>45053</a></td>
                 <td>06-נברך</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45054')">
                 <td><a>45054</a></td>
                 <td>07-מה מה מה</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45055')">
                 <td><a>45055</a></td>
                 <td>08-אינטרו</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45056')">
                 <td><a>45056</a></td>
                 <td>09-לגבי</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45057')">
                 <td><a>45057</a></td>
                 <td>10-ניסים</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45058')">
                 <td><a>45058</a></td>
                 <td>11-אגיל ואשמח</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45059')">
                 <td><a>45059</a></td>
                 <td>12-ניגון הרבה</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45060')">
                 <td><a>45060</a></td>
                 <td>13-החסידים</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45061')">
                 <td><a>45061</a></td>
                 <td>14-הבה נגילה</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45062')">
                 <td><a>45062</a></td>
                 <td>15-החצר</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45063')">
                 <td><a>45063</a></td>
                 <td>16-את לי ארץ</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45064')">
                 <td><a>45064</a></td>
                 <td>17-מיקס ישראלי</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45065')">
                 <td><a>45065</a></td>
                 <td>18-רוסיה</td>
                 <td>מיקס 8</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45066')">
                 <td><a>45066</a></td>
                 <td>01-חנינא</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45067')">
                 <td><a>45067</a></td>
                 <td>02-אם אשכחך</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45068')">
                 <td><a>45068</a></td>
                 <td>03-ר' נחמן</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45069')">
                 <td><a>45069</a></td>
                 <td>04-רק תפילה</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45070')">
                 <td><a>45070</a></td>
                 <td>05-מנגינת הנשמה</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45071')">
                 <td><a>45071</a></td>
                 <td>06-בניין עדי עד</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45072')">
                 <td><a>45072</a></td>
                 <td>07-והיא שעמדה</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45073')">
                 <td><a>45073</a></td>
                 <td>08-מראה כהן</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45074')">
                 <td><a>45074</a></td>
                 <td>09-תחשוב טוב</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45075')">
                 <td><a>45075</a></td>
                 <td>10-האנטלעך</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45076')">
                 <td><a>45076</a></td>
                 <td>11-ענווים</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45077')">
                 <td><a>45077</a></td>
                 <td>12-אני חוזר</td>
                 <td>מיקס 9</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45078')">
                 <td><a>45078</a></td>
                 <td>01-יהי החודש-יעקב זינגבוים</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45079')">
                 <td><a>45079</a></td>
                 <td>02-רצונך-נפתלי דוד</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45080')">
                 <td><a>45080</a></td>
                 <td>03-טעמו-מנחם הרמן ותזמורתו</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45081')">
                 <td><a>45081</a></td>
                 <td>04-אחינו-אבי נקש</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45082')">
                 <td><a>45082</a></td>
                 <td>05-גאולת ישראל-מוטי פוקס</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45083')">
                 <td><a>45083</a></td>
                 <td>06-כיצד מרקדין-אחיה רובין</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45084')">
                 <td><a>45084</a></td>
                 <td>07-משמאל ומימין-פרחי השומרון</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45085')">
                 <td><a>45085</a></td>
                 <td>08-מה יתרון-אבי נקש</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45086')">
                 <td><a>45086</a></td>
                 <td>09-סלח לנו-אלי גרוס</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45087')">
                 <td><a>45087</a></td>
                 <td>10-מודה אני-יוסף בן יעקב</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45088')">
                 <td><a>45088</a></td>
                 <td>11-בם בם-אודי גפן</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45089')">
                 <td><a>45089</a></td>
                 <td>12-ברוך אתה בעיר-אלי מנדלבאום</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45090')">
                 <td><a>45090</a></td>
                 <td>13-המלאך-אלי פרידמן</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45091')">
                 <td><a>45091</a></td>
                 <td>14-השם העלית-דדי גראוכר</td>
                 <td>סינגלים</td>
                 <td>אלי מנדלבאום</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,1806 +1,1788 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>דודו פישר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>דודו פישר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspדודו פישר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspדודו פישר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('6138')">
                 <td><a>6138</a></td>
                 <td>01-בשם ה</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6139')">
                 <td><a>6139</a></td>
                 <td>02-לא ירדה שירה</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6140')">
                 <td><a>6140</a></td>
                 <td>03-אודך</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6141')">
                 <td><a>6141</a></td>
                 <td>04-מי אדיר</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6142')">
                 <td><a>6142</a></td>
                 <td>05-כהנים</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6143')">
                 <td><a>6143</a></td>
                 <td>06-והוא כחתן</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6144')">
                 <td><a>6144</a></td>
                 <td>07-אזמרה</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6145')">
                 <td><a>6145</a></td>
                 <td>08-אם אשכחך</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6146')">
                 <td><a>6146</a></td>
                 <td>09-לולי תורתך</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6147')">
                 <td><a>6147</a></td>
                 <td>10-מי האיש</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6148')">
                 <td><a>6148</a></td>
                 <td>11-תפילה</td>
                 <td>אודך</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6149')">
                 <td><a>6149</a></td>
                 <td>01-משיח</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6150')">
                 <td><a>6150</a></td>
                 <td>02-ארוממך</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6151')">
                 <td><a>6151</a></td>
                 <td>03-שתחדש עלינו</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6152')">
                 <td><a>6152</a></td>
                 <td>04-כי ניחם</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6153')">
                 <td><a>6153</a></td>
                 <td>05-מחרוזת כנר על הגג</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6154')">
                 <td><a>6154</a></td>
                 <td>06-מחרוזת שירי ירושלים</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6155')">
                 <td><a>6155</a></td>
                 <td>07-אלוקי נשמה</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6156')">
                 <td><a>6156</a></td>
                 <td>08-שז ישיר משה</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6157')">
                 <td><a>6157</a></td>
                 <td>09-על כפיו יביא</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6158')">
                 <td><a>6158</a></td>
                 <td>10-ריבונו של עולם</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6159')">
                 <td><a>6159</a></td>
                 <td>11-אליהו הנביא</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6160')">
                 <td><a>6160</a></td>
                 <td>12-מחרוזת שירי קרליבך</td>
                 <td>אז ישיר</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6161')">
                 <td><a>6161</a></td>
                 <td>01-אלוקי נשמה</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6162')">
                 <td><a>6162</a></td>
                 <td>02-ממקומך</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6163')">
                 <td><a>6163</a></td>
                 <td>03-לב טהור</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6164')">
                 <td><a>6164</a></td>
                 <td>04-נכספה נפשי</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6165')">
                 <td><a>6165</a></td>
                 <td>05-ניגוני של משל'ה</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6166')">
                 <td><a>6166</a></td>
                 <td>06-ברכי נפשי</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6167')">
                 <td><a>6167</a></td>
                 <td>07-מודים</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6168')">
                 <td><a>6168</a></td>
                 <td>08-מכונית במוסקבה</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6169')">
                 <td><a>6169</a></td>
                 <td>09-אדון עולם</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6170')">
                 <td><a>6170</a></td>
                 <td>10-שתחדש עלינו</td>
                 <td>אלוקי נשמה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6171')">
                 <td><a>6171</a></td>
                 <td>01-שמע ישראל</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6172')">
                 <td><a>6172</a></td>
                 <td>02-טיהר ר' ישמעאל</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6173')">
                 <td><a>6173</a></td>
                 <td>03-אלו דברים</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6174')">
                 <td><a>6174</a></td>
                 <td>04-אב הרחמים</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6175')">
                 <td><a>6175</a></td>
                 <td>05-ומפני חטאנו</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6176')">
                 <td><a>6176</a></td>
                 <td>06-כי לקח טוב</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6177')">
                 <td><a>6177</a></td>
                 <td>07-עד הנה</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6178')">
                 <td><a>6178</a></td>
                 <td>08-כל נדרי</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6179')">
                 <td><a>6179</a></td>
                 <td>09-הבן יקיר לי</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6180')">
                 <td><a>6180</a></td>
                 <td>10-ועל ידי עבדיך</td>
                 <td>בשם ה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6181')">
                 <td><a>6181</a></td>
                 <td>01-רוז'נקעס מיט מאנדלען</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6182')">
                 <td><a>6182</a></td>
                 <td>02-ווי אהין זאל איך גיין</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6183')">
                 <td><a>6183</a></td>
                 <td>03-רומניה</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6184')">
                 <td><a>6184</a></td>
                 <td>04-פאפיראסן</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6185')">
                 <td><a>6185</a></td>
                 <td>05-בעלז</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6186')">
                 <td><a>6186</a></td>
                 <td>06-אויפן פריפעטשיק</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6187')">
                 <td><a>6187</a></td>
                 <td>07-א בריועלע דער מאמע</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6188')">
                 <td><a>6188</a></td>
                 <td>08-צ'יריבוים</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6189')">
                 <td><a>6189</a></td>
                 <td>09-שין ווי די לבנה</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6190')">
                 <td><a>6190</a></td>
                 <td>10-ביי מיר ביסטן שיין</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6191')">
                 <td><a>6191</a></td>
                 <td>11-דער זינגער</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6192')">
                 <td><a>6192</a></td>
                 <td>12-מזל</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6193')">
                 <td><a>6193</a></td>
                 <td>13-קינדער יארן</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6194')">
                 <td><a>6194</a></td>
                 <td>14-יאס</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6195')">
                 <td><a>6195</a></td>
                 <td>15-יאנקעלע</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6196')">
                 <td><a>6196</a></td>
                 <td>16-טוב באלאלייקא</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6197')">
                 <td><a>6197</a></td>
                 <td>17-א יידשע מאמע</td>
                 <td>גאלדענע לידער</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6198')">
                 <td><a>6198</a></td>
                 <td>01-אויפן וועג שטייט א בוים</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6199')">
                 <td><a>6199</a></td>
                 <td>02-יא מיין טייערע טאכטער</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6200')">
                 <td><a>6200</a></td>
                 <td>03-מזל</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6201')">
                 <td><a>6201</a></td>
                 <td>04-יאמע יאמע</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6202')">
                 <td><a>6202</a></td>
                 <td>05-ביי מיר ביסטו שיין</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6203')">
                 <td><a>6203</a></td>
                 <td>06-כלה כלה</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6204')">
                 <td><a>6204</a></td>
                 <td>07-קינדער יארן</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6205')">
                 <td><a>6205</a></td>
                 <td>08-א ידישע מאמע</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6206')">
                 <td><a>6206</a></td>
                 <td>09-זיידע</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6207')">
                 <td><a>6207</a></td>
                 <td>10-גאט פון אברהם</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6208')">
                 <td><a>6208</a></td>
                 <td>11-יאנקעלע</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6209')">
                 <td><a>6209</a></td>
                 <td>12-דאס איז יידיש</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6210')">
                 <td><a>6210</a></td>
                 <td>13-שיין ווי די לבנה</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6211')">
                 <td><a>6211</a></td>
                 <td>14-שוויגערא פיגארא</td>
                 <td>חלק א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6212')">
                 <td><a>6212</a></td>
                 <td>01-ווי אהין זאל איך גיין</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6213')">
                 <td><a>6213</a></td>
                 <td>02-ראזשינקעס מיט מאנדלען</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6214')">
                 <td><a>6214</a></td>
                 <td>03-ווי נעמט מען א ביסעלע מזל</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6215')">
                 <td><a>6215</a></td>
                 <td>04-מאמעניו</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6216')">
                 <td><a>6216</a></td>
                 <td>05-בעלז</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6217')">
                 <td><a>6217</a></td>
                 <td>06-אויפן פריפעטשיק</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6218')">
                 <td><a>6218</a></td>
                 <td>07-צ'יריבים צ'יריבים</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6219')">
                 <td><a>6219</a></td>
                 <td>08-א בריוועלע דער מאמען</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6220')">
                 <td><a>6220</a></td>
                 <td>09-פאפיראסן</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6221')">
                 <td><a>6221</a></td>
                 <td>10-מויש'לה</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6222')">
                 <td><a>6222</a></td>
                 <td>11-טום באלאלייקא</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6223')">
                 <td><a>6223</a></td>
                 <td>12-דער גאסן פויקער</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6224')">
                 <td><a>6224</a></td>
                 <td>13-ברויגעז</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6225')">
                 <td><a>6225</a></td>
                 <td>14-רבונו של עולם</td>
                 <td>חלק ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6226')">
                 <td><a>6226</a></td>
                 <td>01-רומעניע</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6227')">
                 <td><a>6227</a></td>
                 <td>02-דאס געזאנג פון מיין הארץ</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6228')">
                 <td><a>6228</a></td>
                 <td>03-דער קאלאמייער בדחן</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6229')">
                 <td><a>6229</a></td>
                 <td>04-היי ציגעלעך</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6230')">
                 <td><a>6230</a></td>
                 <td>05-דער שדכן</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6231')">
                 <td><a>6231</a></td>
                 <td>06-דער זיידענס חלום</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6232')">
                 <td><a>6232</a></td>
                 <td>07-ווייסע שטערן</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6233')">
                 <td><a>6233</a></td>
                 <td>08-א ייד א שכור</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6234')">
                 <td><a>6234</a></td>
                 <td>09-וואס איז געווארן פון מיין שטעטעלע</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6235')">
                 <td><a>6235</a></td>
                 <td>10-חזנים אויף פראבע</td>
                 <td>חלק ג</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6236')">
                 <td><a>6236</a></td>
                 <td>01-דאס געזאנג פון מיין הארץ</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6237')">
                 <td><a>6237</a></td>
                 <td>02-דער קאלאמייער בדחן</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6238')">
                 <td><a>6238</a></td>
                 <td>03-דעם זיידענס חלום</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6239')">
                 <td><a>6239</a></td>
                 <td>04-פאפיראסון</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6240')">
                 <td><a>6240</a></td>
                 <td>05-בעלז-רוז'ינקעס</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6241')">
                 <td><a>6241</a></td>
                 <td>05-היי ציגעלעך</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6242')">
                 <td><a>6242</a></td>
                 <td>07-אונטער דיינע וויסע שטערן</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6243')">
                 <td><a>6243</a></td>
                 <td>08-וואס איז מגעווארן פון מיין שטעטעלע</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6244')">
                 <td><a>6244</a></td>
                 <td>09-אויפן וועג שטייט א בוים</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6245')">
                 <td><a>6245</a></td>
                 <td>10-מאמעלע</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6246')">
                 <td><a>6246</a></td>
                 <td>11-חזנים אויף פרובע</td>
                 <td>דאס געזאנג פון מיין הארץ</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6247')">
                 <td><a>6247</a></td>
                 <td>01-הלוואי</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6248')">
                 <td><a>6248</a></td>
                 <td>02-ירושלים של זהב</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6249')">
                 <td><a>6249</a></td>
                 <td>03-הללויה</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6250')">
                 <td><a>6250</a></td>
                 <td>04-לו יהי</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6251')">
                 <td><a>6251</a></td>
                 <td>05-אך ירב</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6252')">
                 <td><a>6252</a></td>
                 <td>06-על כל אלה</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6253')">
                 <td><a>6253</a></td>
                 <td>07-ואולי</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6254')">
                 <td><a>6254</a></td>
                 <td>08-בשנה הבאה</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6255')">
                 <td><a>6255</a></td>
                 <td>09-מול פסגת הר הצופים</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6256')">
                 <td><a>6256</a></td>
                 <td>10-מחר</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6257')">
                 <td><a>6257</a></td>
                 <td>11-בשלום</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6258')">
                 <td><a>6258</a></td>
                 <td>12-מחרוזת הורה</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6259')">
                 <td><a>6259</a></td>
                 <td>13-התקווה</td>
                 <td>התקווה</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6260')">
                 <td><a>6260</a></td>
                 <td>01-הכרזות העצמות 1948</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6261')">
                 <td><a>6261</a></td>
                 <td>02-מחרוזת הורה</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6262')">
                 <td><a>6262</a></td>
                 <td>03-הן אפשר</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6263')">
                 <td><a>6263</a></td>
                 <td>04-מעל פסגת הר הצופים</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6264')">
                 <td><a>6264</a></td>
                 <td>05-על כל אלא</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6265')">
                 <td><a>6265</a></td>
                 <td>06-עוף גוזל</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6266')">
                 <td><a>6266</a></td>
                 <td>07-עוד לא אהבתי די</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6267')">
                 <td><a>6267</a></td>
                 <td>08-כאן</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6268')">
                 <td><a>6268</a></td>
                 <td>09-אין לי ארץ אחרת</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6269')">
                 <td><a>6269</a></td>
                 <td>10-שלום לך ארץ נהדרת</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6270')">
                 <td><a>6270</a></td>
                 <td>11-לו יהי</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6271')">
                 <td><a>6271</a></td>
                 <td>12-מחרוזת ירושלים</td>
                 <td>חגיגה ישראלית ח''א</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6272')">
                 <td><a>6272</a></td>
                 <td>01-ירושלים של זהב</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6273')">
                 <td><a>6273</a></td>
                 <td>02-קום והתהלך בארץ</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6274')">
                 <td><a>6274</a></td>
                 <td>03-הכול פתוח</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6275')">
                 <td><a>6275</a></td>
                 <td>04-יש לי חג</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6276')">
                 <td><a>6276</a></td>
                 <td>05-שיבנה בית המקדש</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6277')">
                 <td><a>6277</a></td>
                 <td>06-מחרוזת קרליבך</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6278')">
                 <td><a>6278</a></td>
                 <td>07-תודה</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6279')">
                 <td><a>6279</a></td>
                 <td>08-אני ואתה</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6280')">
                 <td><a>6280</a></td>
                 <td>09-שירי לי כנרת</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6281')">
                 <td><a>6281</a></td>
                 <td>10-הרעות</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6282')">
                 <td><a>6282</a></td>
                 <td>11-מחרוזת ניצחון</td>
                 <td>חגיגה ישראלית ח''ב</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6283')">
                 <td><a>6283</a></td>
                 <td>01-יום יבוא</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6284')">
                 <td><a>6284</a></td>
                 <td>02-הנני כאן</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6285')">
                 <td><a>6285</a></td>
                 <td>03-דברים שרציתי לומר</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6286')">
                 <td><a>6286</a></td>
                 <td>04-שוב לא נלך</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6287')">
                 <td><a>6287</a></td>
                 <td>05-יד ענוגה</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6288')">
                 <td><a>6288</a></td>
                 <td>06-אדון עולם</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6289')">
                 <td><a>6289</a></td>
                 <td>07-הרעות</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6290')">
                 <td><a>6290</a></td>
                 <td>08-כשהלב בוכה</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6291')">
                 <td><a>6291</a></td>
                 <td>09-החגיגה נגמרת</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6292')">
                 <td><a>6292</a></td>
                 <td>10-שירת הנודד</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6293')">
                 <td><a>6293</a></td>
                 <td>11-הליכה לקיסריה</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6294')">
                 <td><a>6294</a></td>
                 <td>12-שיר שמח</td>
                 <td>יום יבוא</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6295')">
                 <td><a>6295</a></td>
                 <td>02-בייגלאך</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6296')">
                 <td><a>6296</a></td>
                 <td>04-אונטער די פוילישע גריניקע ביימלעך</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6297')">
                 <td><a>6297</a></td>
                 <td>05-זיידע</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6298')">
                 <td><a>6298</a></td>
                 <td>06-מחותנת'טע מיינע</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6299')">
                 <td><a>6299</a></td>
                 <td>07-מיין ליבע</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6300')">
                 <td><a>6300</a></td>
                 <td>08-הארבסט 1941</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6301')">
                 <td><a>6301</a></td>
                 <td>09-דער ציגיינער</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6302')">
                 <td><a>6302</a></td>
                 <td>10-אונטער בוימער</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6303')">
                 <td><a>6303</a></td>
                 <td>דודו פישר - 01. מאמעלע</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6304')">
                 <td><a>6304</a></td>
                 <td>דודו פישר - 03. פאר נאכט אין ירושלים</td>
                 <td>יידישקייט</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6305')">
                 <td><a>6305</a></td>
                 <td>01-כל העולם גשר</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6306')">
                 <td><a>6306</a></td>
                 <td>02-יברכך</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6307')">
                 <td><a>6307</a></td>
                 <td>03-ידיד נפש</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6308')">
                 <td><a>6308</a></td>
                 <td>04-אדון עולם</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6309')">
                 <td><a>6309</a></td>
                 <td>05-וטהר ליבנו-וקרב פזורנו</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6310')">
                 <td><a>6310</a></td>
                 <td>06-מי האיש</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6311')">
                 <td><a>6311</a></td>
                 <td>07-מחרוזת קרליבך</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6312')">
                 <td><a>6312</a></td>
                 <td>08-עושה שלום</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6313')">
                 <td><a>6313</a></td>
                 <td>09-כה אמר</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6314')">
                 <td><a>6314</a></td>
                 <td>10-שים שלום</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6315')">
                 <td><a>6315</a></td>
                 <td>11-שישו את ירושלים</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6316')">
                 <td><a>6316</a></td>
                 <td>12-אשת חיל</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6317')">
                 <td><a>6317</a></td>
                 <td>13-שישו ושימחו</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6318')">
                 <td><a>6318</a></td>
                 <td>14-מחרוזת-יה בה בי</td>
                 <td>להיטי זהב חסידיים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6319')">
                 <td><a>6319</a></td>
                 <td>01-ובאו האובדים</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6320')">
                 <td><a>6320</a></td>
                 <td>02-לטב לחיים ולשלם</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6321')">
                 <td><a>6321</a></td>
                 <td>03-שומר ישראל</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6322')">
                 <td><a>6322</a></td>
                 <td>04-פתחו לי</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6323')">
                 <td><a>6323</a></td>
                 <td>05-רבונו של עולם</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6324')">
                 <td><a>6324</a></td>
                 <td>06-ולא אמר</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6325')">
                 <td><a>6325</a></td>
                 <td>07-ובשופר גדול</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6326')">
                 <td><a>6326</a></td>
                 <td>08-מנוחה ושמחה</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6327')">
                 <td><a>6327</a></td>
                 <td>09-האזינה ה</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6328')">
                 <td><a>6328</a></td>
                 <td>10-על זאת</td>
                 <td>לטב ולחיין ולשלם</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6329')">
                 <td><a>6329</a></td>
                 <td>01-רקפת</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6330')">
                 <td><a>6330</a></td>
                 <td>02-יאמע יאמע</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6331')">
                 <td><a>6331</a></td>
                 <td>03-אויפן וועג שטייט א בוים</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6332')">
                 <td><a>6332</a></td>
                 <td>04-קינדער יארן</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6333')">
                 <td><a>6333</a></td>
                 <td>05-ווי אהין זאל איך גיין</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6334')">
                 <td><a>6334</a></td>
                 <td>06-רומעניע</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6335')">
                 <td><a>6335</a></td>
                 <td>07-גאט פון אברהם</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6336')">
                 <td><a>6336</a></td>
                 <td>08-פאפיראסן</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6337')">
                 <td><a>6337</a></td>
                 <td>09-יאנקעלע</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6338')">
                 <td><a>6338</a></td>
                 <td>10-א ביסעלע מזל</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6339')">
                 <td><a>6339</a></td>
                 <td>11-טום באלאלייקע</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6340')">
                 <td><a>6340</a></td>
                 <td>12-טשיריבום טשיריבום</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6341')">
                 <td><a>6341</a></td>
                 <td>13-שיין ווי די לבנה</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6342')">
                 <td><a>6342</a></td>
                 <td>14-ביי מיר ביסטו שיין</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6343')">
                 <td><a>6343</a></td>
                 <td>15-א ידישע מאמע</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6344')">
                 <td><a>6344</a></td>
                 <td>16-כלה כלה</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6345')">
                 <td><a>6345</a></td>
                 <td>17-אויפן פריפעטשיק</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6346')">
                 <td><a>6346</a></td>
                 <td>18-מוישלה</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6347')">
                 <td><a>6347</a></td>
                 <td>19-יאס</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6348')">
                 <td><a>6348</a></td>
                 <td>20-מזל</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6349')">
                 <td><a>6349</a></td>
                 <td>21-עס ברענט</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6350')">
                 <td><a>6350</a></td>
                 <td>22-רוזשיקענס מיט מאנדלען</td>
                 <td>מאמע לשון</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6351')">
                 <td><a>6351</a></td>
                 <td>דודו פישר - 01. רחם נא</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6352')">
                 <td><a>6352</a></td>
                 <td>דודו פישר - 02. מעמעניו</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6353')">
                 <td><a>6353</a></td>
                 <td>דודו פישר - 03. דער גאסנפויקר</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6354')">
                 <td><a>6354</a></td>
                 <td>דודו פישר - 04. ברויגעז</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6355')">
                 <td><a>6355</a></td>
                 <td>דודו פישר - 05. מודים אנו לך</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6356')">
                 <td><a>6356</a></td>
                 <td>דודו פישר - 06. דאס איז יידיש</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6357')">
                 <td><a>6357</a></td>
                 <td>דודו פישר - 07. שוויגערא-פיגארא</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6358')">
                 <td><a>6358</a></td>
                 <td>דודו פישר - 08. זיידע</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6359')">
                 <td><a>6359</a></td>
                 <td>דודו פישר - 09. שובי נפשי</td>
                 <td>מאמע'ניו</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6360')">
                 <td><a>6360</a></td>
                 <td>28 - דודו פישר - אשת חיל - [Windos.Co]</td>
                 <td>סינגלים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6361')">
                 <td><a>6361</a></td>
                 <td>י.מ. הלפגוט ודודו פישר הנני כאן   [איכות גבוהה]</td>
                 <td>סינגלים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6362')">
                 <td><a>6362</a></td>
                 <td>מעוז צור ישועתי</td>
                 <td>סינגלים</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6363')">
                 <td><a>6363</a></td>
                 <td>01-ידיד נפש</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6364')">
                 <td><a>6364</a></td>
                 <td>02-אנא בכוח</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6365')">
                 <td><a>6365</a></td>
                 <td>03-לכה דודי</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6366')">
                 <td><a>6366</a></td>
                 <td>04-ערב שבת</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6367')">
                 <td><a>6367</a></td>
                 <td>05-שלום עליכם</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6368')">
                 <td><a>6368</a></td>
                 <td>06-שבת המלכה</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6369')">
                 <td><a>6369</a></td>
                 <td>07-מזמור שיר ליום השבת</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6370')">
                 <td><a>6370</a></td>
                 <td>08-אשת חייל</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6371')">
                 <td><a>6371</a></td>
                 <td>09-מעין עולם הבא</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6372')">
                 <td><a>6372</a></td>
                 <td>10-יה ריבון עלם</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6373')">
                 <td><a>6373</a></td>
                 <td>11-בואי כלה</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6374')">
                 <td><a>6374</a></td>
                 <td>12-צור משלו אכלנו</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6375')">
                 <td><a>6375</a></td>
                 <td>13-שיר המעלות</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6376')">
                 <td><a>6376</a></td>
                 <td>14-ישמח משה</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6377')">
                 <td><a>6377</a></td>
                 <td>15-וביום השבת</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6378')">
                 <td><a>6378</a></td>
                 <td>16-ישמחו במלכותך</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6379')">
                 <td><a>6379</a></td>
                 <td>17-דרור יקרא</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6380')">
                 <td><a>6380</a></td>
                 <td>18-ניגונים</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6381')">
                 <td><a>6381</a></td>
                 <td>19-לנר ולבשמים</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('6382')">
                 <td><a>6382</a></td>
                 <td>20-המבדיל</td>
                 <td>שבת שלום</td>
                 <td>דודו פישר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

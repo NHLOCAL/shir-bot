@@ -1,343 +1,325 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>רולי דיקמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>רולי דיקמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspרולי דיקמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspרולי דיקמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('27310')">
                 <td><a>27310</a></td>
                 <td>-רולי דיקמן-יש-לי-טאטע</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27311')">
                 <td><a>27311</a></td>
                 <td>06-רבות בנות-רולי דיקמן</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27312')">
                 <td><a>27312</a></td>
                 <td>61 - גל עיני - רולי דיקמן</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27313')">
                 <td><a>27313</a></td>
                 <td>בלב אחד - רולי דיקמן</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27314')">
                 <td><a>27314</a></td>
                 <td>בלב אחד</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27315')">
                 <td><a>27315</a></td>
                 <td>בני חורין</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27316')">
                 <td><a>27316</a></td>
                 <td>גדול השלום</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27317')">
                 <td><a>27317</a></td>
                 <td>הימים היפים רולי דיקמן</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27318')">
                 <td><a>27318</a></td>
                 <td>חיים חיים - רולי דיקמן, שמחה פרידמן ויהודה פליישמן</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27319')">
                 <td><a>27319</a></td>
                 <td>ימים יפים</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27320')">
                 <td><a>27320</a></td>
                 <td>מחרוזת שמחה</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27321')">
                 <td><a>27321</a></td>
                 <td>מיד נגאלים</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27322')">
                 <td><a>27322</a></td>
                 <td>סימן טוב</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27323')">
                 <td><a>27323</a></td>
                 <td>קולנו תשמע</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27324')">
                 <td><a>27324</a></td>
                 <td>רבות בנות</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27325')">
                 <td><a>27325</a></td>
                 <td>רולי דיקמן & דוד ד'אור - תן לי יד Ruli Dikman & David D'Or - Ten Li Yad</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27326')">
                 <td><a>27326</a></td>
                 <td>רולי דיקמן - גדול השלום</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27327')">
                 <td><a>27327</a></td>
                 <td>רולי דיקמן - דעת תורה</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27328')">
                 <td><a>27328</a></td>
                 <td>רולי דיקמן - ימים יפים</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27329')">
                 <td><a>27329</a></td>
                 <td>רולי דיקמן - מרים אותי תמיד</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27330')">
                 <td><a>27330</a></td>
                 <td>רולי דיקמן, מקהלת מלכות, מקהלת חסידימלעך - קיימו וקיבלו</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27331')">
                 <td><a>27331</a></td>
                 <td>רולי ויואלי דיקמן - בני חורין</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27332')">
                 <td><a>27332</a></td>
                 <td>רולי ויואלי דיקמן בטירוף</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27333')">
                 <td><a>27333</a></td>
                 <td>תן לי יד</td>
                 <td>סינגלים</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27334')">
                 <td><a>27334</a></td>
                 <td>01מיד הם נגאלים</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27335')">
                 <td><a>27335</a></td>
                 <td>02תן לי יד</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27336')">
                 <td><a>27336</a></td>
                 <td>03גל עיני</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27337')">
                 <td><a>27337</a></td>
                 <td>04שמחה במעונכם</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27338')">
                 <td><a>27338</a></td>
                 <td>05במקום זה</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27339')">
                 <td><a>27339</a></td>
                 <td>06כח הרצון</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27340')">
                 <td><a>27340</a></td>
                 <td>07עננו</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27341')">
                 <td><a>27341</a></td>
                 <td>08 Tfila Al Haparnasa</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27342')">
                 <td><a>27342</a></td>
                 <td>09ממך הכל</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27343')">
                 <td><a>27343</a></td>
                 <td>10קולנו תשמע</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27344')">
                 <td><a>27344</a></td>
                 <td>11רבות בנות</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27345')">
                 <td><a>27345</a></td>
                 <td>12הלילה בשמחה</td>
                 <td>רולי דיקמן כח הרצון</td>
                 <td>רולי דיקמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

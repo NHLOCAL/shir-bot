@@ -1,392 +1,374 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>סנדי שמואלי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>סנדי שמואלי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspסנדי שמואלי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspסנדי שמואלי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('55739')">
                 <td><a>55739</a></td>
                 <td>01-בשמחה</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55740')">
                 <td><a>55740</a></td>
                 <td>02-לכה דודי</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55741')">
                 <td><a>55741</a></td>
                 <td>03-תישן ילד</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55742')">
                 <td><a>55742</a></td>
                 <td>04-אל תירא ישראל</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55743')">
                 <td><a>55743</a></td>
                 <td>05-עוד ישמע</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55744')">
                 <td><a>55744</a></td>
                 <td>06-לשיר לך</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55745')">
                 <td><a>55745</a></td>
                 <td>07-עבדו</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55746')">
                 <td><a>55746</a></td>
                 <td>08-ירושלים נשבענו לעולם</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55747')">
                 <td><a>55747</a></td>
                 <td>09-הנה מה טוב</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55748')">
                 <td><a>55748</a></td>
                 <td>10-כולנו צריכים להיות יחד</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55749')">
                 <td><a>55749</a></td>
                 <td>11-שמע ישראל</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55750')">
                 <td><a>55750</a></td>
                 <td>12-ניגון המשיח</td>
                 <td>אל תירא ישראל</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55751')">
                 <td><a>55751</a></td>
                 <td>01-סימן טוב</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55752')">
                 <td><a>55752</a></td>
                 <td>02-בעזרת השם</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55753')">
                 <td><a>55753</a></td>
                 <td>03-עבדו</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55754')">
                 <td><a>55754</a></td>
                 <td>04-כל יום שבת</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55755')">
                 <td><a>55755</a></td>
                 <td>05-יזכרם</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55756')">
                 <td><a>55756</a></td>
                 <td>06-הנה</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55757')">
                 <td><a>55757</a></td>
                 <td>07-שבת שלום</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55758')">
                 <td><a>55758</a></td>
                 <td>08-תורה</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55759')">
                 <td><a>55759</a></td>
                 <td>09-אני שר</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55760')">
                 <td><a>55760</a></td>
                 <td>10-עוד ישמע</td>
                 <td>בעזרת השם</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55761')">
                 <td><a>55761</a></td>
                 <td>01-עיני כל</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55762')">
                 <td><a>55762</a></td>
                 <td>02-כי שמחתני</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55763')">
                 <td><a>55763</a></td>
                 <td>03-מי בן שיח</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55764')">
                 <td><a>55764</a></td>
                 <td>04-עלינו</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55765')">
                 <td><a>55765</a></td>
                 <td>05-מחכים</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55766')">
                 <td><a>55766</a></td>
                 <td>06-מצוה גדולה</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55767')">
                 <td><a>55767</a></td>
                 <td>07-אשר ברא</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55768')">
                 <td><a>55768</a></td>
                 <td>08-נודה לך</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55769')">
                 <td><a>55769</a></td>
                 <td>09-ניגון</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55770')">
                 <td><a>55770</a></td>
                 <td>10-אני רוצה הביתה</td>
                 <td>מחכים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55771')">
                 <td><a>55771</a></td>
                 <td>אני שר</td>
                 <td>סינגלים</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55772')">
                 <td><a>55772</a></td>
                 <td>01-מקימי</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55773')">
                 <td><a>55773</a></td>
                 <td>02-ובנה ירושלים</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55774')">
                 <td><a>55774</a></td>
                 <td>03-בנין עולם</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55775')">
                 <td><a>55775</a></td>
                 <td>04-עוד אבינו חי</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55776')">
                 <td><a>55776</a></td>
                 <td>05-לשיר ולשמוח</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55777')">
                 <td><a>55777</a></td>
                 <td>06-אשת חיל</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55778')">
                 <td><a>55778</a></td>
                 <td>07- עד מתי</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55779')">
                 <td><a>55779</a></td>
                 <td>08-צור משלו</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55780')">
                 <td><a>55780</a></td>
                 <td>09-מי האיש</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55781')">
                 <td><a>55781</a></td>
                 <td>10-אליהו הנביא</td>
                 <td>עד מתי</td>
                 <td>סנדי שמואלי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

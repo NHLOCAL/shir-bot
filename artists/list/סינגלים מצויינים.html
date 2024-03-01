@@ -1,476 +1,458 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>סינגלים מצויינים</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>סינגלים מצויינים</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspסינגלים מצויינים</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspסינגלים מצויינים</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('24798')">
                 <td><a>24798</a></td>
                 <td>01-AudioTrack 01</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24799')">
                 <td><a>24799</a></td>
                 <td>03 Yigdal</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24800')">
                 <td><a>24800</a></td>
                 <td>05 - המתנה</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24801')">
                 <td><a>24801</a></td>
                 <td>artist - זמנים מתוקים</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24802')">
                 <td><a>24802</a></td>
                 <td>אברהם משה ברדוגו ועמי כהן - אדמה ושמים - א,ב,ג 1</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24803')">
                 <td><a>24803</a></td>
                 <td>אייל גולן וציון גולן - קול ששון וקול שמחה</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24804')">
                 <td><a>24804</a></td>
                 <td>אייל טויטו בבלדה מרגשת ילדיי היקרים </td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24805')">
                 <td><a>24805</a></td>
                 <td>איילון דרום - קליפ רשמי</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24806')">
                 <td><a>24806</a></td>
                 <td>אנא בכוח</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24807')">
                 <td><a>24807</a></td>
                 <td>בכי בסלסולים</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24808')">
                 <td><a>24808</a></td>
                 <td>ברכת כהנים עם ישיבת רש''י</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24809')">
                 <td><a>24809</a></td>
                 <td>דספסיטו בספרדית</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24810')">
                 <td><a>24810</a></td>
                 <td>ה-הלהיט-הוויראלי-6-3-צלצול</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24811')">
                 <td><a>24811</a></td>
                 <td>חיים בלומנפלד, משה גליק ומקהלת זמירות  </td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24812')">
                 <td><a>24812</a></td>
                 <td>יענקי יענקי </td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24813')">
                 <td><a>24813</a></td>
                 <td>לא נלך</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24814')">
                 <td><a>24814</a></td>
                 <td>לכה דודי</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24815')">
                 <td><a>24815</a></td>
                 <td>מוטי k והזמר מענדי שפירא – ניגון ראש חודש</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24816')">
                 <td><a>24816</a></td>
                 <td>מוצש מחרוזת</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24817')">
                 <td><a>24817</a></td>
                 <td>מנחם מושקוביץ מקפיץ עם מחרוזת אנרגטית בחתונה</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24818')">
                 <td><a>24818</a></td>
                 <td>מקהלת הילדים 'שיר הלל' מגישה אם השם לא יבנה בית</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24819')">
                 <td><a>24819</a></td>
                 <td>מתי שריקי בסינגל חדש שער המזרח</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24820')">
                 <td><a>24820</a></td>
                 <td>סינגל חתונה  נתן קוט וחזקי גליק ושימשי לעברון</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24821')">
                 <td><a>24821</a></td>
                 <td>עורו קומו</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24822')">
                 <td><a>24822</a></td>
                 <td>פיה פתחה - 3</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24823')">
                 <td><a>24823</a></td>
                 <td>פרץ חן - ברוך השם</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24824')">
                 <td><a>24824</a></td>
                 <td>קול ברמה נשמע- בביצוע מדהים.</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24825')">
                 <td><a>24825</a></td>
                 <td>שגיב פרידמן בקטע קורע!!!!!!</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24826')">
                 <td><a>24826</a></td>
                 <td>שוש אשיש</td>
                 <td>סינגלים תשעט תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24827')">
                 <td><a>24827</a></td>
                 <td>03 כלים שבורים</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24828')">
                 <td><a>24828</a></td>
                 <td>אלי סלמון- הטוב ישאר</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24829')">
                 <td><a>24829</a></td>
                 <td>ברגר ודביר- מימיני מיכאל</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24830')">
                 <td><a>24830</a></td>
                 <td>בשובי</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24831')">
                 <td><a>24831</a></td>
                 <td>דובי שפירא- לך על זה</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24832')">
                 <td><a>24832</a></td>
                 <td>השבעתי אתכם</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24833')">
                 <td><a>24833</a></td>
                 <td>והריקותי</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24834')">
                 <td><a>24834</a></td>
                 <td>יהונתן שיינפלד- באתי לגני</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24835')">
                 <td><a>24835</a></td>
                 <td>יואלי קלין- ישתבח שמך</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24836')">
                 <td><a>24836</a></td>
                 <td>יוסל לייפר ומלכות - מסלסלים</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24837')">
                 <td><a>24837</a></td>
                 <td>ישתבח</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24838')">
                 <td><a>24838</a></td>
                 <td>מאיר גרין- אני יהודי</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24839')">
                 <td><a>24839</a></td>
                 <td>מב''ד- כדאי ר' שמעון</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24840')">
                 <td><a>24840</a></td>
                 <td>שדרני קול חי וקול חי מיוזיק - כשהלב נפתח</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24841')">
                 <td><a>24841</a></td>
                 <td>שנה טובה</td>
                 <td>סינגלים תשפ</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24842')">
                 <td><a>24842</a></td>
                 <td>The Place Where They Belong - Abie Rotenberg & Baruch Levine</td>
                 <td>שירי קורונה</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24843')">
                 <td><a>24843</a></td>
                 <td>אליקים_&_נתנאל_ביננשטוק_-_רפאנו</td>
                 <td>שירי קורונה</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24844')">
                 <td><a>24844</a></td>
                 <td>ה-שירי-פורים-בגירסת-הקורונה</td>
                 <td>שירי קורונה</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24845')">
                 <td><a>24845</a></td>
                 <td>יעקב-מרקמן-סליחה-מסיכה-השיר-הרשמי-jacob-markman</td>
                 <td>שירי קורונה</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24846')">
                 <td><a>24846</a></td>
                 <td>סליחה-מסיכה</td>
                 <td>שירי קורונה</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24847')">
                 <td><a>24847</a></td>
                 <td>בערי וובר אדמה ושמים</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24848')">
                 <td><a>24848</a></td>
                 <td>מתחננים</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24849')">
                 <td><a>24849</a></td>
                 <td>עומר אדם - יום השישי</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24850')">
                 <td><a>24850</a></td>
                 <td>עומר אדם מודה אני</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24851')">
                 <td><a>24851</a></td>
                 <td>קול ברמה</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24852')">
                 <td><a>24852</a></td>
                 <td>שדרני קול חי וקול חי מיוזיק - כשהלב נפתח</td>
                 <td>תשעט</td>
                 <td>סינגלים מצויינים</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

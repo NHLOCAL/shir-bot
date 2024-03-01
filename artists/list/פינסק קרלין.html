@@ -1,525 +1,507 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>פינסק קרלין</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>פינסק קרלין</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspפינסק קרלין</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspפינסק קרלין</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('43446')">
                 <td><a>43446</a></td>
                 <td>מחרוזת א</td>
                 <td>שמחת בית השואבה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43447')">
                 <td><a>43447</a></td>
                 <td>מחרוזת ב</td>
                 <td>שמחת בית השואבה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43448')">
                 <td><a>43448</a></td>
                 <td>Track 01</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43449')">
                 <td><a>43449</a></td>
                 <td>Track 02</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43450')">
                 <td><a>43450</a></td>
                 <td>Track 03</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43451')">
                 <td><a>43451</a></td>
                 <td>Track 04</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43452')">
                 <td><a>43452</a></td>
                 <td>Track 05</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43453')">
                 <td><a>43453</a></td>
                 <td>Track 06</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43454')">
                 <td><a>43454</a></td>
                 <td>Track 07</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43455')">
                 <td><a>43455</a></td>
                 <td>Track 08</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43456')">
                 <td><a>43456</a></td>
                 <td>Track 09</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43457')">
                 <td><a>43457</a></td>
                 <td>Track 10</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43458')">
                 <td><a>43458</a></td>
                 <td>Track 11</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43459')">
                 <td><a>43459</a></td>
                 <td>Track 12</td>
                 <td>1-קבלת פנים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43460')">
                 <td><a>43460</a></td>
                 <td>Track 01</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43461')">
                 <td><a>43461</a></td>
                 <td>Track 02</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43462')">
                 <td><a>43462</a></td>
                 <td>Track 03</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43463')">
                 <td><a>43463</a></td>
                 <td>Track 04</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43464')">
                 <td><a>43464</a></td>
                 <td>Track 05</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43465')">
                 <td><a>43465</a></td>
                 <td>Track 06</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43466')">
                 <td><a>43466</a></td>
                 <td>Track 07</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43467')">
                 <td><a>43467</a></td>
                 <td>Track 08</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43468')">
                 <td><a>43468</a></td>
                 <td>Track 09</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43469')">
                 <td><a>43469</a></td>
                 <td>Track 10</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43470')">
                 <td><a>43470</a></td>
                 <td>Track 11</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43471')">
                 <td><a>43471</a></td>
                 <td>Track 12</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43472')">
                 <td><a>43472</a></td>
                 <td>Track 13</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43473')">
                 <td><a>43473</a></td>
                 <td>Track 14</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43474')">
                 <td><a>43474</a></td>
                 <td>Track 15</td>
                 <td>2-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43475')">
                 <td><a>43475</a></td>
                 <td>Track 01</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43476')">
                 <td><a>43476</a></td>
                 <td>Track 02</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43477')">
                 <td><a>43477</a></td>
                 <td>Track 03</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43478')">
                 <td><a>43478</a></td>
                 <td>Track 04</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43479')">
                 <td><a>43479</a></td>
                 <td>Track 05</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43480')">
                 <td><a>43480</a></td>
                 <td>Track 06</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43481')">
                 <td><a>43481</a></td>
                 <td>Track 07</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43482')">
                 <td><a>43482</a></td>
                 <td>Track 08</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43483')">
                 <td><a>43483</a></td>
                 <td>Track 09</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43484')">
                 <td><a>43484</a></td>
                 <td>Track 10</td>
                 <td>3-מצוה טאנץ</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43485')">
                 <td><a>43485</a></td>
                 <td>Track 01</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43486')">
                 <td><a>43486</a></td>
                 <td>Track 02</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43487')">
                 <td><a>43487</a></td>
                 <td>Track 03</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43488')">
                 <td><a>43488</a></td>
                 <td>Track 04</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43489')">
                 <td><a>43489</a></td>
                 <td>Track 05</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43490')">
                 <td><a>43490</a></td>
                 <td>Track 06</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43491')">
                 <td><a>43491</a></td>
                 <td>Track 07</td>
                 <td>4-ש''ב-סעודה</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43492')">
                 <td><a>43492</a></td>
                 <td>Track 01</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43493')">
                 <td><a>43493</a></td>
                 <td>Track 02</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43494')">
                 <td><a>43494</a></td>
                 <td>Track 03</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43495')">
                 <td><a>43495</a></td>
                 <td>Track 04</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43496')">
                 <td><a>43496</a></td>
                 <td>Track 05</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43497')">
                 <td><a>43497</a></td>
                 <td>Track 06</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43498')">
                 <td><a>43498</a></td>
                 <td>Track 07</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43499')">
                 <td><a>43499</a></td>
                 <td>Track 08</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43500')">
                 <td><a>43500</a></td>
                 <td>Track 09</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43501')">
                 <td><a>43501</a></td>
                 <td>Track 10</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43502')">
                 <td><a>43502</a></td>
                 <td>Track 11</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43503')">
                 <td><a>43503</a></td>
                 <td>Track 12</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43504')">
                 <td><a>43504</a></td>
                 <td>Track 13</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43505')">
                 <td><a>43505</a></td>
                 <td>Track 14</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43506')">
                 <td><a>43506</a></td>
                 <td>Track 15</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43507')">
                 <td><a>43507</a></td>
                 <td>Track 16</td>
                 <td>5-ש''ב-ריקודים</td>
                 <td>פינסק קרלין</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

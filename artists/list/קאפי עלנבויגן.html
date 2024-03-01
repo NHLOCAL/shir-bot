@@ -1,301 +1,283 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>קאפי עלנבויגן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>קאפי עלנבויגן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspקאפי עלנבויגן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspקאפי עלנבויגן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('53711')">
                 <td><a>53711</a></td>
                 <td>01-מצוה</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53712')">
                 <td><a>53712</a></td>
                 <td>02-השם שפתי תפתח</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53713')">
                 <td><a>53713</a></td>
                 <td>03-שמחם</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53714')">
                 <td><a>53714</a></td>
                 <td>04-די שבת חלום</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53715')">
                 <td><a>53715</a></td>
                 <td>05-הבן</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53716')">
                 <td><a>53716</a></td>
                 <td>06-גילה</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53717')">
                 <td><a>53717</a></td>
                 <td>07-ישיש</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53718')">
                 <td><a>53718</a></td>
                 <td>08-זכר</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53719')">
                 <td><a>53719</a></td>
                 <td>09-ברוך הגבר</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53720')">
                 <td><a>53720</a></td>
                 <td>10-הרחמן</td>
                 <td>השם שפתי תפתח</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53721')">
                 <td><a>53721</a></td>
                 <td>01-אין לנו</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53722')">
                 <td><a>53722</a></td>
                 <td>02-צור</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53723')">
                 <td><a>53723</a></td>
                 <td>03-כי המלכות</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53724')">
                 <td><a>53724</a></td>
                 <td>04-יושעו</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53725')">
                 <td><a>53725</a></td>
                 <td>05-כי עמך מקור חיים</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53726')">
                 <td><a>53726</a></td>
                 <td>06-והוא יושיענו</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53727')">
                 <td><a>53727</a></td>
                 <td>07-הנה עין ה</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53728')">
                 <td><a>53728</a></td>
                 <td>08-כי בו ישמח לבנו</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53729')">
                 <td><a>53729</a></td>
                 <td>09-אמרי</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53730')">
                 <td><a>53730</a></td>
                 <td>10-מארש</td>
                 <td>כי המלכות</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53731')">
                 <td><a>53731</a></td>
                 <td>01-נגיל</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53732')">
                 <td><a>53732</a></td>
                 <td>02-פליאה</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53733')">
                 <td><a>53733</a></td>
                 <td>03-ומשפע</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53734')">
                 <td><a>53734</a></td>
                 <td>04-הבן</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53735')">
                 <td><a>53735</a></td>
                 <td>05-קב ריבון</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53736')">
                 <td><a>53736</a></td>
                 <td>06-אור זרוע</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53737')">
                 <td><a>53737</a></td>
                 <td>07-אני מאמין</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53738')">
                 <td><a>53738</a></td>
                 <td>08-ושמחת</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53739')">
                 <td><a>53739</a></td>
                 <td>09-ממקומך</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53740')">
                 <td><a>53740</a></td>
                 <td>10-ותשלום</td>
                 <td>פליאה</td>
                 <td>קאפי עלנבויגן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

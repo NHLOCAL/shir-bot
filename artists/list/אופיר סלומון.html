@@ -1,322 +1,304 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אופיר סלומון</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אופיר סלומון</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאופיר סלומון</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאופיר סלומון</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('56607')">
                 <td><a>56607</a></td>
                 <td>שומר עלי</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56608')">
                 <td><a>56608</a></td>
                 <td>אופיר סלומון - הכל יהיה בסדר</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56609')">
                 <td><a>56609</a></td>
                 <td>אלוקים</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56610')">
                 <td><a>56610</a></td>
                 <td>ברכת הכהנים</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56611')">
                 <td><a>56611</a></td>
                 <td>גל עיני (ווקאלי)</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56612')">
                 <td><a>56612</a></td>
                 <td>גל עיני</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56613')">
                 <td><a>56613</a></td>
                 <td>היידה</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56614')">
                 <td><a>56614</a></td>
                 <td>הכל ממך</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56615')">
                 <td><a>56615</a></td>
                 <td>חבר שלי</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56616')">
                 <td><a>56616</a></td>
                 <td>חובק עולם</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56617')">
                 <td><a>56617</a></td>
                 <td>מלך העולם</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56618')">
                 <td><a>56618</a></td>
                 <td>עשיר באמונה</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56619')">
                 <td><a>56619</a></td>
                 <td>רגעים של אושר</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56620')">
                 <td><a>56620</a></td>
                 <td>שמח בני</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56621')">
                 <td><a>56621</a></td>
                 <td>תודה לאל</td>
                 <td>סינגלים</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56622')">
                 <td><a>56622</a></td>
                 <td>01 רגעים של אושר</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56623')">
                 <td><a>56623</a></td>
                 <td>02 היידה</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56624')">
                 <td><a>56624</a></td>
                 <td>03 גל עיני</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56625')">
                 <td><a>56625</a></td>
                 <td>04 אבא אבא</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56626')">
                 <td><a>56626</a></td>
                 <td>05 הבית הישן</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56627')">
                 <td><a>56627</a></td>
                 <td>06 מחרוזת ערבית</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56628')">
                 <td><a>56628</a></td>
                 <td>07 שומר עלי</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56629')">
                 <td><a>56629</a></td>
                 <td>08 חבר שלי</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56630')">
                 <td><a>56630</a></td>
                 <td>09 שמח בני</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56631')">
                 <td><a>56631</a></td>
                 <td>10 מחרוזת רק שתדע את האמת</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56632')">
                 <td><a>56632</a></td>
                 <td>11 תודה לאל</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56633')">
                 <td><a>56633</a></td>
                 <td>12 מלך העולם</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56634')">
                 <td><a>56634</a></td>
                 <td>13 עשיר באמונה</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56635')">
                 <td><a>56635</a></td>
                 <td>14 חובק עולם</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56636')">
                 <td><a>56636</a></td>
                 <td>15 שמח פה הלילה</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56637')">
                 <td><a>56637</a></td>
                 <td>16 אלוקים</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56638')">
                 <td><a>56638</a></td>
                 <td>17 עם ישראל</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56639')">
                 <td><a>56639</a></td>
                 <td>18 ישמע האל</td>
                 <td>רגעים של אושר</td>
                 <td>אופיר סלומון</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

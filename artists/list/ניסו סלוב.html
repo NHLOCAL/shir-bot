@@ -1,245 +1,227 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ניסו סלוב</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ניסו סלוב</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspניסו סלוב</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspניסו סלוב</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('31236')">
                 <td><a>31236</a></td>
                 <td>אליקם בוטה - אם ננעלו (דיג'יי ניסו סלוב)</td>
                 <td>ניסו סלוב</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31237')">
                 <td><a>31237</a></td>
                 <td>מיקס ניסו סלוב DJ FM</td>
                 <td>ניסו סלוב</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31238')">
                 <td><a>31238</a></td>
                 <td>01.  ק ש ש ¥  ש   ¿ נ £ -  ¢ ש  נ   ץ      ת -  פ ¿   ש      פ ¿     ש (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31239')">
                 <td><a>31239</a></td>
                 <td>02.    ר   ƒ  £ ע ¿ -    ץ     ש    ץ     פ (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31240')">
                 <td><a>31240</a></td>
                 <td>03.  נ ש ¬ ש  £ ץ ש  ץ   ר   ƒ  £ ע ¿ -    נ   ץ (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31241')">
                 <td><a>31241</a></td>
                 <td>04.  ¿ ץ   ש  פ ¿ ץ    ץ נ ש   ש    נ ץ ¿ £ ס -      נ פ  £ ת        ש (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31242')">
                 <td><a>31242</a></td>
                 <td>05.  ק ש ש ¥  ש   ¿ נ £ -  ¬ ץ ¿ ¬ ץ</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31243')">
                 <td><a>31243</a></td>
                 <td>06.    ש ף ף  ר   פ -  ¿ ס ש    ק   ƒ</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31244')">
                 <td><a>31244</a></td>
                 <td>07.  ק ש ש ¥  ש   ¿ נ £ -    פ    פ ש פ -  פ ¿   ש      פ ¿     ש (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31245')">
                 <td><a>31245</a></td>
                 <td>08.  נ ש ש £  ע ץ £ ƒ  ץ     פ    ¿   -  פ ץ £ ¢ ש ¥  £ פ   ¬ ע   (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31246')">
                 <td><a>31246</a></td>
                 <td>09.  נ £   ף      ¿ -  נ ץ   ¿    ף -  פ ¿   ש      פ ¿     ש (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31247')">
                 <td><a>31247</a></td>
                 <td>10.    נ ¿  ר   ש  ץ ר נ £ ש     ƒ -    נ ץ   ¿ ש ¥ (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31248')">
                 <td><a>31248</a></td>
                 <td>11.  £ ש נ ץ ¿    ¿   ש    ץ ף ץ ף ץ  נ פ ¿ ץ ƒ -  ק ע ש ע פ  ס ש   ¿ נ £ (Niso Slob Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31249')">
                 <td><a>31249</a></td>
                 <td>12.  ש     ס    ץ ץ נ   ש -  ¬ ף £ ש    נ ¬  פ נ  </td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31250')">
                 <td><a>31250</a></td>
                 <td>13.  ש ע ש £ -  צ ¿ ץ    ¬    ¢ £</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31251')">
                 <td><a>31251</a></td>
                 <td>14.  £ ש נ ץ ¿    ש נ ¿ פ -  ¿ ס ש    ק   ƒ  ש   £ פ</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31252')">
                 <td><a>31252</a></td>
                 <td>15.  ש נ ש ¿  ף ץ ף -    ש  ש ¢ ץ £    ע ף ש (Niso Slob   Amiram Ben Lulu Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31253')">
                 <td><a>31253</a></td>
                 <td>16.  נ ס ש  נ ש £   ץ ƒ -  ק ¬ ƒ  ¢ £ פ (Niso Slob   Amiram Ben Lulu Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31254')">
                 <td><a>31254</a></td>
                 <td>17.  נ £ ש   ¥  ס ץ ר פ -  נ ¥        £ ץ</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31255')">
                 <td><a>31255</a></td>
                 <td>18.  נ ס ש   ש  נ   £ -  נ £ ץ   ש ¥  ע ף ץ £</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31256')">
                 <td><a>31256</a></td>
                 <td>19.  נ £   ף      ¿ -  פ £ ש £ פ    ¿   ץ ף (Niso Slob   Amiram Ben Lulu Remix)</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31257')">
                 <td><a>31257</a></td>
                 <td>20.  נ £ ש ¿ ƒ  ף ¿   ש -  £   ץ ƒ  פ ¿    £ נ    ף ס ¿  נ £ ש</td>
                 <td>אוסף הרמיקסים 2018</td>
                 <td>ניסו סלוב</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

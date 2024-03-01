@@ -1,483 +1,465 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>דושינסקיא</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>דושינסקיא</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspדושינסקיא</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspדושינסקיא</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('40699')">
                 <td><a>40699</a></td>
                 <td>01</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40700')">
                 <td><a>40700</a></td>
                 <td>04</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40701')">
                 <td><a>40701</a></td>
                 <td>05</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40702')">
                 <td><a>40702</a></td>
                 <td>06</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40703')">
                 <td><a>40703</a></td>
                 <td>07</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40704')">
                 <td><a>40704</a></td>
                 <td>08</td>
                 <td>002-יום ב</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40705')">
                 <td><a>40705</a></td>
                 <td>01</td>
                 <td>003-ביהמ''ד</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40706')">
                 <td><a>40706</a></td>
                 <td>02</td>
                 <td>003-ביהמ''ד</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40707')">
                 <td><a>40707</a></td>
                 <td>03</td>
                 <td>003-ביהמ''ד</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40708')">
                 <td><a>40708</a></td>
                 <td>01</td>
                 <td>03-מוציו''ט</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40709')">
                 <td><a>40709</a></td>
                 <td>03</td>
                 <td>03-מוציו''ט</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40710')">
                 <td><a>40710</a></td>
                 <td>04</td>
                 <td>03-מוציו''ט</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40711')">
                 <td><a>40711</a></td>
                 <td>05</td>
                 <td>03-מוציו''ט</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40712')">
                 <td><a>40712</a></td>
                 <td>07</td>
                 <td>03-מוציו''ט</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40713')">
                 <td><a>40713</a></td>
                 <td>01 01 קבלת פנים 00</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40714')">
                 <td><a>40714</a></td>
                 <td>02 02 קבלת פנים</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40715')">
                 <td><a>40715</a></td>
                 <td>03 03 חופה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40716')">
                 <td><a>40716</a></td>
                 <td>04 04 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40717')">
                 <td><a>40717</a></td>
                 <td>05 05 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40718')">
                 <td><a>40718</a></td>
                 <td>06 06 מקהלה 00</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40719')">
                 <td><a>40719</a></td>
                 <td>07 07 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40720')">
                 <td><a>40720</a></td>
                 <td>08 08 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40721')">
                 <td><a>40721</a></td>
                 <td>09 09 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40722')">
                 <td><a>40722</a></td>
                 <td>10 10 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40723')">
                 <td><a>40723</a></td>
                 <td>11 11 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40724')">
                 <td><a>40724</a></td>
                 <td>12 12 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40725')">
                 <td><a>40725</a></td>
                 <td>13 13 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40726')">
                 <td><a>40726</a></td>
                 <td>14 14 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40727')">
                 <td><a>40727</a></td>
                 <td>15 15 מקהלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40728')">
                 <td><a>40728</a></td>
                 <td>16 16 ריקודים</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40729')">
                 <td><a>40729</a></td>
                 <td>17 17 ריקודים 01</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40730')">
                 <td><a>40730</a></td>
                 <td>18 18 ריקודים 00</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40731')">
                 <td><a>40731</a></td>
                 <td>19 19 ריקודים</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40732')">
                 <td><a>40732</a></td>
                 <td>20 20 ריקודים</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40733')">
                 <td><a>40733</a></td>
                 <td>21 21 ברכת המזון</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40734')">
                 <td><a>40734</a></td>
                 <td>22 22 מצוה טאנץ דודים שטרן</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40735')">
                 <td><a>40735</a></td>
                 <td>23 23 מצוה טאנץ האדמו''ר מסטריקוב</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40736')">
                 <td><a>40736</a></td>
                 <td>24 24 מצוה טאנץ משפ' לפקוביץ</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40737')">
                 <td><a>40737</a></td>
                 <td>25 25 מצוה טאנץ פיני' ענגלנדר</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40738')">
                 <td><a>40738</a></td>
                 <td>26 26 מצוה טאנץ אבי החתן</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40739')">
                 <td><a>40739</a></td>
                 <td>27 27 מצוה טאנץ רב דבי''ש</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40740')">
                 <td><a>40740</a></td>
                 <td>28 28 מצוה טאנץ רב טורונטו</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40741')">
                 <td><a>40741</a></td>
                 <td>29 29 מצוה טאנץ כ''ק אדמו''ר שליט''א</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40742')">
                 <td><a>40742</a></td>
                 <td>30 30 מצוה טאנץ חתן כלה</td>
                 <td>חתונת רב דבי'ש</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40743')">
                 <td><a>40743</a></td>
                 <td>01. פורים דושניסקי 01</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40744')">
                 <td><a>40744</a></td>
                 <td>02. פורים דושניסקי 02</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40745')">
                 <td><a>40745</a></td>
                 <td>03. פורים דושניסקי 03</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40746')">
                 <td><a>40746</a></td>
                 <td>04. פורים דושניסקי 04</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40747')">
                 <td><a>40747</a></td>
                 <td>05. פורים דושינסקי 05</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40748')">
                 <td><a>40748</a></td>
                 <td>06. פורים דושינסקי 06</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40749')">
                 <td><a>40749</a></td>
                 <td>07. פורים דושינסקי 07</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40750')">
                 <td><a>40750</a></td>
                 <td>08. פורים דושינסקי 08</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40751')">
                 <td><a>40751</a></td>
                 <td>09. פורים דושינסקי 09</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40752')">
                 <td><a>40752</a></td>
                 <td>10. פורים דושינסקי 10</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40753')">
                 <td><a>40753</a></td>
                 <td>11. פורים דושינסקי 11</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40754')">
                 <td><a>40754</a></td>
                 <td>12. פורים דושינסקי 12</td>
                 <td>פורים משתה היין - ס''ח</td>
                 <td>דושינסקיא</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,812 +1,794 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מוסא ברלין</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מוסא ברלין</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמוסא ברלין</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמוסא ברלין</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('62303')">
                 <td><a>62303</a></td>
                 <td>Track 01</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62304')">
                 <td><a>62304</a></td>
                 <td>Track 02</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62305')">
                 <td><a>62305</a></td>
                 <td>Track 03</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62306')">
                 <td><a>62306</a></td>
                 <td>Track 04</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62307')">
                 <td><a>62307</a></td>
                 <td>Track 05</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62308')">
                 <td><a>62308</a></td>
                 <td>Track 06</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62309')">
                 <td><a>62309</a></td>
                 <td>Track 07</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62310')">
                 <td><a>62310</a></td>
                 <td>Track 08</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62311')">
                 <td><a>62311</a></td>
                 <td>Track 09</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62312')">
                 <td><a>62312</a></td>
                 <td>Track 10</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62313')">
                 <td><a>62313</a></td>
                 <td>Track 11</td>
                 <td>בהופעה חיה עם להקת סולם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62314')">
                 <td><a>62314</a></td>
                 <td>01-אנא עבדא</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62315')">
                 <td><a>62315</a></td>
                 <td>02-יהא רעוא</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62316')">
                 <td><a>62316</a></td>
                 <td>03-ניגון קרלין</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62317')">
                 <td><a>62317</a></td>
                 <td>04-פרוק ית ענך</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62318')">
                 <td><a>62318</a></td>
                 <td>05-האדרת והאמונה</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62319')">
                 <td><a>62319</a></td>
                 <td>06-אל אדון</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62320')">
                 <td><a>62320</a></td>
                 <td>07-אשת חיל</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62321')">
                 <td><a>62321</a></td>
                 <td>08-כי לא יטוש</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62322')">
                 <td><a>62322</a></td>
                 <td>09-כי לד' המלוכה</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62323')">
                 <td><a>62323</a></td>
                 <td>10-וטהר לבנו</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62324')">
                 <td><a>62324</a></td>
                 <td>11-מן המיצר</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62325')">
                 <td><a>62325</a></td>
                 <td>12-אמת</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62326')">
                 <td><a>62326</a></td>
                 <td>13-בגלל אבות</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62327')">
                 <td><a>62327</a></td>
                 <td>14-זכרנו לחיים</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62328')">
                 <td><a>62328</a></td>
                 <td>15-יהא שלמא רבה</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62329')">
                 <td><a>62329</a></td>
                 <td>16-כה אמר</td>
                 <td>חלק א</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62330')">
                 <td><a>62330</a></td>
                 <td>01-פרוק ית ענך</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62331')">
                 <td><a>62331</a></td>
                 <td>02-כה אמר</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62332')">
                 <td><a>62332</a></td>
                 <td>03-קוה אל ה</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62333')">
                 <td><a>62333</a></td>
                 <td>04-מודה אני</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62334')">
                 <td><a>62334</a></td>
                 <td>05-אור חדש</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62335')">
                 <td><a>62335</a></td>
                 <td>06-כי המצווה</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62336')">
                 <td><a>62336</a></td>
                 <td>07-תניא</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62337')">
                 <td><a>62337</a></td>
                 <td>08-ריקודי ירושלמי</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62338')">
                 <td><a>62338</a></td>
                 <td>09-ריקודי ירושלמי</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62339')">
                 <td><a>62339</a></td>
                 <td>10-הורה ירושלמי</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62340')">
                 <td><a>62340</a></td>
                 <td>11-מפי קל</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62341')">
                 <td><a>62341</a></td>
                 <td>12-יבנה המקדש</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62342')">
                 <td><a>62342</a></td>
                 <td>13-ואני בעודי</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62343')">
                 <td><a>62343</a></td>
                 <td>14-אשרי העם</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62344')">
                 <td><a>62344</a></td>
                 <td>15-שמחם</td>
                 <td>חלק ב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62345')">
                 <td><a>62345</a></td>
                 <td>01-יחד</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62346')">
                 <td><a>62346</a></td>
                 <td>02-פתחו לי</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62347')">
                 <td><a>62347</a></td>
                 <td>03-עושה שלום</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62348')">
                 <td><a>62348</a></td>
                 <td>04-רחם בחסדך</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62349')">
                 <td><a>62349</a></td>
                 <td>05-אני מאמין</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62350')">
                 <td><a>62350</a></td>
                 <td>06-ירושלים</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62351')">
                 <td><a>62351</a></td>
                 <td>07-אנא בכח</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62352')">
                 <td><a>62352</a></td>
                 <td>08-אודה ד בכל לבב</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62353')">
                 <td><a>62353</a></td>
                 <td>09-ומחה</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62354')">
                 <td><a>62354</a></td>
                 <td>10-בגלל אבות</td>
                 <td>יחד</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62355')">
                 <td><a>62355</a></td>
                 <td>01-ברויגז טאנץ</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62356')">
                 <td><a>62356</a></td>
                 <td>02-ניגון חופה</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62357')">
                 <td><a>62357</a></td>
                 <td>03-דו - שיח</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62358')">
                 <td><a>62358</a></td>
                 <td>04-ניגון מטולה</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62359')">
                 <td><a>62359</a></td>
                 <td>05-איפה יוסלה</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62360')">
                 <td><a>62360</a></td>
                 <td>06-ניגון בדביקות מודזיץ</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62361')">
                 <td><a>62361</a></td>
                 <td>07-מארש טורקי</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62362')">
                 <td><a>62362</a></td>
                 <td>08-בר מצווה טאנץ</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62363')">
                 <td><a>62363</a></td>
                 <td>09-זכרנו לחיים</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62364')">
                 <td><a>62364</a></td>
                 <td>10-ר' מאיר אומר</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62365')">
                 <td><a>62365</a></td>
                 <td>11-דער ברענעדיקער</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62366')">
                 <td><a>62366</a></td>
                 <td>12-הר מירון</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62367')">
                 <td><a>62367</a></td>
                 <td>13-דוינה</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62368')">
                 <td><a>62368</a></td>
                 <td>14-רוחלהל'ס בולגאר</td>
                 <td>כלי זמר</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62369')">
                 <td><a>62369</a></td>
                 <td>01-אשא עיני</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62370')">
                 <td><a>62370</a></td>
                 <td>02-כבקרת</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62371')">
                 <td><a>62371</a></td>
                 <td>03-משה ואהרן</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62372')">
                 <td><a>62372</a></td>
                 <td>04-מזמור שיר</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62373')">
                 <td><a>62373</a></td>
                 <td>05-ופרוש עלינו</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62374')">
                 <td><a>62374</a></td>
                 <td>06-עוד ישמע</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62375')">
                 <td><a>62375</a></td>
                 <td>07-מלוך</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62376')">
                 <td><a>62376</a></td>
                 <td>08-וזוכר</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62377')">
                 <td><a>62377</a></td>
                 <td>09-אחינו מקראקוב</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62378')">
                 <td><a>62378</a></td>
                 <td>10-בשם השם</td>
                 <td>לעולם לא אשכחך</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62379')">
                 <td><a>62379</a></td>
                 <td>01-חתן כלה מזל טוב</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62380')">
                 <td><a>62380</a></td>
                 <td>02-וראו בניו</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62381')">
                 <td><a>62381</a></td>
                 <td>03-ד' בבות</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62382')">
                 <td><a>62382</a></td>
                 <td>04-קה ריבון</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62383')">
                 <td><a>62383</a></td>
                 <td>05-ניגון לסיבובים</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62384')">
                 <td><a>62384</a></td>
                 <td>06-ניגון חופה</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62385')">
                 <td><a>62385</a></td>
                 <td>07-ניגון חופא וורקא אמשינוב</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62386')">
                 <td><a>62386</a></td>
                 <td>08-הרי את מקודשת</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62387')">
                 <td><a>62387</a></td>
                 <td>09-מזל טוב</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62388')">
                 <td><a>62388</a></td>
                 <td>10-עוז והדר</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62389')">
                 <td><a>62389</a></td>
                 <td>11-מחרוזת שמחה</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62390')">
                 <td><a>62390</a></td>
                 <td>12-ניגון לכיסוי הכלה</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62391')">
                 <td><a>62391</a></td>
                 <td>13-יציאה מחדר ייחוד</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62392')">
                 <td><a>62392</a></td>
                 <td>14-קלי אתה</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62393')">
                 <td><a>62393</a></td>
                 <td>15-ניגוני מרון</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62394')">
                 <td><a>62394</a></td>
                 <td>16-באזעצ'ן די כלה</td>
                 <td>מזל טוב</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62395')">
                 <td><a>62395</a></td>
                 <td>01-בולגאר</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62396')">
                 <td><a>62396</a></td>
                 <td>02-בלבבי</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62397')">
                 <td><a>62397</a></td>
                 <td>03-ניגון להושבת הכלה</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62398')">
                 <td><a>62398</a></td>
                 <td>04-איש חסיד היה</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62399')">
                 <td><a>62399</a></td>
                 <td>05-מירון-ערבסקא</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62400')">
                 <td><a>62400</a></td>
                 <td>06-ריקודי פאטש</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62401')">
                 <td><a>62401</a></td>
                 <td>07-שושלת-לקט 1</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62402')">
                 <td><a>62402</a></td>
                 <td>08-מירון של למעלה</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62403')">
                 <td><a>62403</a></td>
                 <td>09-ניגון הרב מיכל מזלוטשוב</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62404')">
                 <td><a>62404</a></td>
                 <td>10-שושלת-לקט 2</td>
                 <td>ניגונים מפורסמים י-ם</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62405')">
                 <td><a>62405</a></td>
                 <td>02 - בלבבי משכן אבנה</td>
                 <td>סינגלים</td>
                 <td>מוסא ברלין</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

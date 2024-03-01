@@ -1,392 +1,374 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אודי דמארי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אודי דמארי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאודי דמארי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאודי דמארי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2287')">
                 <td><a>2287</a></td>
                 <td>- אבי ואודי דמארי - עתיד טוב יותר - מזרחי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2288')">
                 <td><a>2288</a></td>
                 <td>- אודי דמארי - שמש רוח וקפה - מזרחי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2289')">
                 <td><a>2289</a></td>
                 <td>- אודי דמארי ואריאל זילבר - ניגון - אלטרנטיבי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2290')">
                 <td><a>2290</a></td>
                 <td>- אודי דמארי ועמי מימון - אנחנו לא מפחדים - מזרחי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2291')">
                 <td><a>2291</a></td>
                 <td>אבא</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2292')">
                 <td><a>2292</a></td>
                 <td>אודי דמארי - תבוא</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2293')">
                 <td><a>2293</a></td>
                 <td>אודי דמארי בביצוע לפיוט המרטיט ''אחות קטנה''</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2294')">
                 <td><a>2294</a></td>
                 <td>אודי דמארי בסינגל חדש עדיין ילד</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2295')">
                 <td><a>2295</a></td>
                 <td>אודי דמארי מגיש שיר נוסף של הינוקא ''תאמין ותנצח''</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2296')">
                 <td><a>2296</a></td>
                 <td>אודי דמארי עדיין ילד Udi Damari Still A Child.135</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2297')">
                 <td><a>2297</a></td>
                 <td>אודי דמארי שישי בצהריים</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2298')">
                 <td><a>2298</a></td>
                 <td>אודי דמארי, אורי דמארי - מתנה</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2299')">
                 <td><a>2299</a></td>
                 <td>אל תדאג</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2300')">
                 <td><a>2300</a></td>
                 <td>אתה לי אור</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2301')">
                 <td><a>2301</a></td>
                 <td>אתה לי האור</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2302')">
                 <td><a>2302</a></td>
                 <td>דייג על החוף</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2303')">
                 <td><a>2303</a></td>
                 <td>הינוקא, אודי דמארי - ניגון יש תקווה</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2304')">
                 <td><a>2304</a></td>
                 <td>הספד - אודי דמארי - (ישןןן אבל אשששש)</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2305')">
                 <td><a>2305</a></td>
                 <td>יום גדול</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2306')">
                 <td><a>2306</a></td>
                 <td>כינורו של ילד</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2307')">
                 <td><a>2307</a></td>
                 <td>כנפי רוח</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2308')">
                 <td><a>2308</a></td>
                 <td>לא יכול לסבול</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2309')">
                 <td><a>2309</a></td>
                 <td>לצפון</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2310')">
                 <td><a>2310</a></td>
                 <td>מאושרים - רמיקס</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2311')">
                 <td><a>2311</a></td>
                 <td>מאושרים</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2312')">
                 <td><a>2312</a></td>
                 <td>מי שמאמין אוכל חמין</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2313')">
                 <td><a>2313</a></td>
                 <td>מי שמאמין-מצחיק</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2314')">
                 <td><a>2314</a></td>
                 <td>ניגון קווה אל השם אודי דמארי והינוקא</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2315')">
                 <td><a>2315</a></td>
                 <td>נפשי - ווקאלי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2316')">
                 <td><a>2316</a></td>
                 <td>נפשי היחידה</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2317')">
                 <td><a>2317</a></td>
                 <td>עדיין ילד</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2318')">
                 <td><a>2318</a></td>
                 <td>עוד יבוא יום</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2319')">
                 <td><a>2319</a></td>
                 <td>עם אחד</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2320')">
                 <td><a>2320</a></td>
                 <td>עשה למענך</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2321')">
                 <td><a>2321</a></td>
                 <td>עתיד טוב יותר</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2322')">
                 <td><a>2322</a></td>
                 <td>פיוט התפילה התימני</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2323')">
                 <td><a>2323</a></td>
                 <td>פשוט תחיה</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2324')">
                 <td><a>2324</a></td>
                 <td>צוק איתן</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2325')">
                 <td><a>2325</a></td>
                 <td>רק אחד קובע</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2326')">
                 <td><a>2326</a></td>
                 <td>שדי</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2327')">
                 <td><a>2327</a></td>
                 <td>שישי בצהריים</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2328')">
                 <td><a>2328</a></td>
                 <td>שנה טובה</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2329')">
                 <td><a>2329</a></td>
                 <td>תבוא</td>
                 <td>סינגלים</td>
                 <td>אודי דמארי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

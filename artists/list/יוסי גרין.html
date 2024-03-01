@@ -1,1274 +1,1256 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יוסי גרין</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יוסי גרין</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיוסי גרין</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיוסי גרין</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('11787')">
                 <td><a>11787</a></td>
                 <td>01-שמעתי, מי מה</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11788')">
                 <td><a>11788</a></td>
                 <td>02-דאגה, רצה</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11789')">
                 <td><a>11789</a></td>
                 <td>04-יעל כל רגע, אדון</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11790')">
                 <td><a>11790</a></td>
                 <td>05-כאיל, קול ברמה</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11791')">
                 <td><a>11791</a></td>
                 <td>06-אלוקי, ושוב</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11792')">
                 <td><a>11792</a></td>
                 <td>06-עוד ישמע, הנה</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11793')">
                 <td><a>11793</a></td>
                 <td>07-דדא ביה, לכל</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11794')">
                 <td><a>11794</a></td>
                 <td>08-ניגון רש''י, שבת</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11795')">
                 <td><a>11795</a></td>
                 <td>09-עוד ישבו, מודה</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11796')">
                 <td><a>11796</a></td>
                 <td>10-אל תאמר, מי</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11797')">
                 <td><a>11797</a></td>
                 <td>11-וזכינו, כן השם</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11798')">
                 <td><a>11798</a></td>
                 <td>12-אדם דואג, אימג'ן</td>
                 <td>גוונים של גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11799')">
                 <td><a>11799</a></td>
                 <td>01 Shades Of Latin</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11800')">
                 <td><a>11800</a></td>
                 <td>02 Shades Of Motown</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11801')">
                 <td><a>11801</a></td>
                 <td>03 Shades Of Dance</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11802')">
                 <td><a>11802</a></td>
                 <td>04 Shades Of Hipsh</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11803')">
                 <td><a>11803</a></td>
                 <td>05 Shades Of Rock</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11804')">
                 <td><a>11804</a></td>
                 <td>06 Shades Of Baroque</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11805')">
                 <td><a>11805</a></td>
                 <td>07 Shades Of Debka</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11806')">
                 <td><a>11806</a></td>
                 <td>08 Shades Of Blues</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11807')">
                 <td><a>11807</a></td>
                 <td>09 Shades Of Soul</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11808')">
                 <td><a>11808</a></td>
                 <td>10 Shades Of Chant</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11809')">
                 <td><a>11809</a></td>
                 <td>11 Shades Of Yiddish</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11810')">
                 <td><a>11810</a></td>
                 <td>12 Shades Of Acapella</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11811')">
                 <td><a>11811</a></td>
                 <td>13 Shades Of March</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11812')">
                 <td><a>11812</a></td>
                 <td>14 Always On Call</td>
                 <td>היפוש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11813')">
                 <td><a>11813</a></td>
                 <td>01-ליהודים</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11814')">
                 <td><a>11814</a></td>
                 <td>02-ענוים ענוים</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11815')">
                 <td><a>11815</a></td>
                 <td>03-ספור הכוכבים</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11816')">
                 <td><a>11816</a></td>
                 <td>04-בשבתך בביתך</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11817')">
                 <td><a>11817</a></td>
                 <td>05-ואז יהיו</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11818')">
                 <td><a>11818</a></td>
                 <td>06-אל תדין</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11819')">
                 <td><a>11819</a></td>
                 <td>07-למה</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11820')">
                 <td><a>11820</a></td>
                 <td>08-קנא לשמך</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11821')">
                 <td><a>11821</a></td>
                 <td>09-יוס'ל</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11822')">
                 <td><a>11822</a></td>
                 <td>10-היסח הדעת</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11823')">
                 <td><a>11823</a></td>
                 <td>11-נעשה ונשמע</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11824')">
                 <td><a>11824</a></td>
                 <td>12-התו השמיני בעברית</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11825')">
                 <td><a>11825</a></td>
                 <td>13-מי אדיר</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11826')">
                 <td><a>11826</a></td>
                 <td>14-התו השמיני באנגלית</td>
                 <td>התו השמיני</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11827')">
                 <td><a>11827</a></td>
                 <td>01 כאיל תערוג</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11828')">
                 <td><a>11828</a></td>
                 <td>02 ידיד נפש</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11829')">
                 <td><a>11829</a></td>
                 <td>03 מים רבים</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11830')">
                 <td><a>11830</a></td>
                 <td>04 אודך השם אלוקי</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11831')">
                 <td><a>11831</a></td>
                 <td>05 נשמת כל חי</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11832')">
                 <td><a>11832</a></td>
                 <td>06 ישתבח שמך</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11833')">
                 <td><a>11833</a></td>
                 <td>07 נודה לך</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11834')">
                 <td><a>11834</a></td>
                 <td>08 אדון עולם</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11835')">
                 <td><a>11835</a></td>
                 <td>09  מי אדיר על הכל (2)</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11836')">
                 <td><a>11836</a></td>
                 <td>10 מי בן שיח</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11837')">
                 <td><a>11837</a></td>
                 <td>11 אם אשכחך</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11838')">
                 <td><a>11838</a></td>
                 <td>12 מהרה השם אלוקינו</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11839')">
                 <td><a>11839</a></td>
                 <td>13 תן לי ברכה והצלחה</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11840')">
                 <td><a>11840</a></td>
                 <td>14 ונא אל תצריכנו</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11841')">
                 <td><a>11841</a></td>
                 <td>15 וזכני לגדל</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11842')">
                 <td><a>11842</a></td>
                 <td>16 בעל הבית</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11843')">
                 <td><a>11843</a></td>
                 <td>17 לא אבוא עד שאבוא</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11844')">
                 <td><a>11844</a></td>
                 <td>18 על אלה אני בוכיה (א)</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11845')">
                 <td><a>11845</a></td>
                 <td>19 על אלה אני בוכיה (ב)</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11846')">
                 <td><a>11846</a></td>
                 <td>20 אני מאמין - משיח</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11847')">
                 <td><a>11847</a></td>
                 <td>21 - בונוס - תן לי ברכה</td>
                 <td>יוסי גרין ושלמה שמחה - ליל שישי</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11848')">
                 <td><a>11848</a></td>
                 <td>01 אין אנחנו מספיקים</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11849')">
                 <td><a>11849</a></td>
                 <td>02 מנין</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11850')">
                 <td><a>11850</a></td>
                 <td>03 הדרן</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11851')">
                 <td><a>11851</a></td>
                 <td>04 לך לבדך</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11852')">
                 <td><a>11852</a></td>
                 <td>05 ניסים ונפלאות</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11853')">
                 <td><a>11853</a></td>
                 <td>06 ובעת ההיא</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11854')">
                 <td><a>11854</a></td>
                 <td>07 חסד שבחסד</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11855')">
                 <td><a>11855</a></td>
                 <td>08 מצוא חן בניגונם</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11856')">
                 <td><a>11856</a></td>
                 <td>09 שמחה און נחת</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11857')">
                 <td><a>11857</a></td>
                 <td>10 וזכרנו לחיים</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11858')">
                 <td><a>11858</a></td>
                 <td>11 על כל רגע</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11859')">
                 <td><a>11859</a></td>
                 <td>12 אב הרחמים</td>
                 <td>יוסי גרין ניסים ונפלאות</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11860')">
                 <td><a>11860</a></td>
                 <td>01 ברוך ה_ יום יום</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11861')">
                 <td><a>11861</a></td>
                 <td>02 לא תבושי</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11862')">
                 <td><a>11862</a></td>
                 <td>03 שלום עליכם</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11863')">
                 <td><a>11863</a></td>
                 <td>04 אסדר</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11864')">
                 <td><a>11864</a></td>
                 <td>05 מה ידידות</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11865')">
                 <td><a>11865</a></td>
                 <td>06 קל אדון</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11866')">
                 <td><a>11866</a></td>
                 <td>07 קה אכסוף</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11867')">
                 <td><a>11867</a></td>
                 <td>08 צווה צווה</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11868')">
                 <td><a>11868</a></td>
                 <td>09 כל מקדש</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11869')">
                 <td><a>11869</a></td>
                 <td>10 ניגון ר_ בעריש</td>
                 <td>ניגוני ר' בעריש ווישאווער - יוסי גרין</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11870')">
                 <td><a>11870</a></td>
                 <td>- שרגי גשטטנר ויוסי גרין - מחרוזת אב הרחמן - חסידי</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11871')">
                 <td><a>11871</a></td>
                 <td>-ברודנר-יוסי-גרין-נשמה-של-שבת</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11872')">
                 <td><a>11872</a></td>
                 <td>02 02ליהודים-יוסי גרין- מרדכי בן דוד</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11873')">
                 <td><a>11873</a></td>
                 <td>02 י''ג מידות - יוסי גרין & ישראל אדלר</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11874')">
                 <td><a>11874</a></td>
                 <td>14 מחרוזת יוסי גרין (ידיד נפש, שוועת עניים, ונקתי, המקום, יברכך, שערי דמעות)</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11875')">
                 <td><a>11875</a></td>
                 <td>21 - יוסי גרין - מה ידידות</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11876')">
                 <td><a>11876</a></td>
                 <td>22 - יוסי גרין וחברים - מעין עולם הבא</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11877')">
                 <td><a>11877</a></td>
                 <td>40 ליהודים (יוסי גרין)</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11878')">
                 <td><a>11878</a></td>
                 <td>42 - יוסי גרין - אשת חיל - [Windos.Co]</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11879')">
                 <td><a>11879</a></td>
                 <td>אברימי רוט & יוסי גרין - וזכרנו לחיים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11880')">
                 <td><a>11880</a></td>
                 <td>אברימי-רוט-ונזכה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11881')">
                 <td><a>11881</a></td>
                 <td>אז תתחזק</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11882')">
                 <td><a>11882</a></td>
                 <td>אזמר בשבחין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11883')">
                 <td><a>11883</a></td>
                 <td>אילן אילן</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11884')">
                 <td><a>11884</a></td>
                 <td>את צמח דוד</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11885')">
                 <td><a>11885</a></td>
                 <td>ברכת הבנים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11886')">
                 <td><a>11886</a></td>
                 <td>והביאנו</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11887')">
                 <td><a>11887</a></td>
                 <td>ועל הניסים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11888')">
                 <td><a>11888</a></td>
                 <td>ידיד נפש</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11889')">
                 <td><a>11889</a></td>
                 <td>יוסי גרין   נסים ונפלאות   Yossi Green[720P]</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11890')">
                 <td><a>11890</a></td>
                 <td>יוסי גרין - הבן יקיר לי שרגי</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11891')">
                 <td><a>11891</a></td>
                 <td>יוסי גרין אדרבה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11892')">
                 <td><a>11892</a></td>
                 <td>יוסי גרין בדואט מרגש שהקליט עם שרגי גשטטנר ז''ל ''מה אשיב להשם''</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11893')">
                 <td><a>11893</a></td>
                 <td>יוסי גרין הלחין ושר יחד עם אברימי רוט 'מצוא חן בניגונם' 1</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11894')">
                 <td><a>11894</a></td>
                 <td>יוסי גרין וילדי הפלא בלחן חדש ל''חד גדיא''</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11895')">
                 <td><a>11895</a></td>
                 <td>יוסי גרין ושלמה שמחה - תן לי ברכה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11896')">
                 <td><a>11896</a></td>
                 <td>יוסי גרין ושרגי גשטטנר - כרחם אב - חמול</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11897')">
                 <td><a>11897</a></td>
                 <td>יוסי גרין מפרסם את שירו מלפני 14 שנים 'בעל הישועות ובעל הנחמות'</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11898')">
                 <td><a>11898</a></td>
                 <td>יוסי גרין, מוטי ויזל, בני לאופר, מקהלת מלכות - מתנה טובה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11899')">
                 <td><a>11899</a></td>
                 <td>יופי של ירושלים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11900')">
                 <td><a>11900</a></td>
                 <td>יחיאל-ליכטיגר-מקהלת-הילדים-שפתותינו-נרננה-כרחם-אב</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11901')">
                 <td><a>11901</a></td>
                 <td>ישימך ...כאפרים וכמנשה </td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11902')">
                 <td><a>11902</a></td>
                 <td>ישראל נחמן, יוסי גרין - מי במים ומי באש</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11903')">
                 <td><a>11903</a></td>
                 <td>כי הדלקתי נרותי</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11904')">
                 <td><a>11904</a></td>
                 <td>לב אבות ובנים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11905')">
                 <td><a>11905</a></td>
                 <td>להיט השמחה החסידי החדש של יוסי גרין אין אנחנו מספיקים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11906')">
                 <td><a>11906</a></td>
                 <td>ליל שישי - דוגמה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11907')">
                 <td><a>11907</a></td>
                 <td>מאימתי - לחן וביצוע יוסי גרין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11908')">
                 <td><a>11908</a></td>
                 <td>מוציא אסירים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11909')">
                 <td><a>11909</a></td>
                 <td>מחרוזת יוסי גרין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11910')">
                 <td><a>11910</a></td>
                 <td>מחרוזת פורים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11911')">
                 <td><a>11911</a></td>
                 <td>מעלת ריבוי הלימוד יוסי גרין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11912')">
                 <td><a>11912</a></td>
                 <td>משנכנס אדר</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11913')">
                 <td><a>11913</a></td>
                 <td>נפתלי קמפה, יוסי גרין - יבואו טהורים</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11914')">
                 <td><a>11914</a></td>
                 <td>שיר התלמוד</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11915')">
                 <td><a>11915</a></td>
                 <td>שלומי גרטנר - מחרוזת יוסי גרין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11916')">
                 <td><a>11916</a></td>
                 <td>שמחת תורה</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11917')">
                 <td><a>11917</a></td>
                 <td>שמילי אונגר, יעקב שוואקי, יוסי גרין, הערשי וויינברגר, מושי קרויס, וועלווי פלדמן, מקהלת נחת - לחיים אין נחת</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11918')">
                 <td><a>11918</a></td>
                 <td>שפכי כמים ליבך</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11919')">
                 <td><a>11919</a></td>
                 <td>תפילין בראשיהן יוסי גרין</td>
                 <td>סינגלים</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11920')">
                 <td><a>11920</a></td>
                 <td>AUD-20150903-WA0018</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11921')">
                 <td><a>11921</a></td>
                 <td>AUD-20150903-WA0020</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11922')">
                 <td><a>11922</a></td>
                 <td>AUD-20150903-WA0021</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11923')">
                 <td><a>11923</a></td>
                 <td>AUD-20150903-WA0022</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11924')">
                 <td><a>11924</a></td>
                 <td>AUD-20150903-WA0023</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11925')">
                 <td><a>11925</a></td>
                 <td>AUD-20150903-WA0024</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11926')">
                 <td><a>11926</a></td>
                 <td>AUD-20150903-WA0026</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11927')">
                 <td><a>11927</a></td>
                 <td>AUD-20150903-WA0027</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11928')">
                 <td><a>11928</a></td>
                 <td>AUD-20150903-WA0028</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11929')">
                 <td><a>11929</a></td>
                 <td>AUD-20150903-WA0030</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11930')">
                 <td><a>11930</a></td>
                 <td>AUD-20150903-WA0031</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11931')">
                 <td><a>11931</a></td>
                 <td>AUD-20150903-WA0033</td>
                 <td>פיאנעסק</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11932')">
                 <td><a>11932</a></td>
                 <td>01 קנא לשמך</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11933')">
                 <td><a>11933</a></td>
                 <td>02 בשבתך</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11934')">
                 <td><a>11934</a></td>
                 <td>03 ונא אל תצריכנו</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11935')">
                 <td><a>11935</a></td>
                 <td>04 השיבנו אבינו</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11936')">
                 <td><a>11936</a></td>
                 <td>05 דאגה מניין</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11937')">
                 <td><a>11937</a></td>
                 <td>06 והערב נא</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11938')">
                 <td><a>11938</a></td>
                 <td>07 אני מאמין</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11939')">
                 <td><a>11939</a></td>
                 <td>08 שוועת עניים</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11940')">
                 <td><a>11940</a></td>
                 <td>09 אחינו כל בית ישראל</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11941')">
                 <td><a>11941</a></td>
                 <td>10 אלוקי נשמה</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11942')">
                 <td><a>11942</a></td>
                 <td>11 ושמרו בני ישראל</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11943')">
                 <td><a>11943</a></td>
                 <td>12 אני שבת</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11944')">
                 <td><a>11944</a></td>
                 <td>13 שבת המלכה</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11945')">
                 <td><a>11945</a></td>
                 <td>14 חוקותיה</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11946')">
                 <td><a>11946</a></td>
                 <td>15 וזכנו לקבל</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11947')">
                 <td><a>11947</a></td>
                 <td>16 נישט געדייגאט</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11948')">
                 <td><a>11948</a></td>
                 <td>17 כי אלקים</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11949')">
                 <td><a>11949</a></td>
                 <td>18 סיום-ענוים</td>
                 <td>קומזיץ</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11950')">
                 <td><a>11950</a></td>
                 <td>01 ברוך ה  יום יום</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11951')">
                 <td><a>11951</a></td>
                 <td>02 מה ידידות מנוחתך</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11952')">
                 <td><a>11952</a></td>
                 <td>03 לא תבושי ולא תכלמי</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11953')">
                 <td><a>11953</a></td>
                 <td>04 שלום עליכם</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11954')">
                 <td><a>11954</a></td>
                 <td>05 אזמר בשבחין - אסדר לסעודתא</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11955')">
                 <td><a>11955</a></td>
                 <td>06 קל אדון על כל המעשים</td>
                 <td>שבת עם סבא בעריש</td>
                 <td>יוסי גרין</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

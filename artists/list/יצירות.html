@@ -1,1442 +1,1424 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יצירות</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יצירות</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיצירות</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיצירות</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('61205')">
                 <td><a>61205</a></td>
                 <td>Yanni - A Word In Private</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61206')">
                 <td><a>61206</a></td>
                 <td>Yanni - Chasing Shadows</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61207')">
                 <td><a>61207</a></td>
                 <td>Yanni - Days Of Summer</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61208')">
                 <td><a>61208</a></td>
                 <td>Yanni - Everglade Run</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61209')">
                 <td><a>61209</a></td>
                 <td>Yanni - Marching Season</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61210')">
                 <td><a>61210</a></td>
                 <td>Yanni - Reflections Of Passion</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61211')">
                 <td><a>61211</a></td>
                 <td>Yanni - Swept Away</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61212')">
                 <td><a>61212</a></td>
                 <td>Yanni - The Rain Must Fall</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61213')">
                 <td><a>61213</a></td>
                 <td>Yanni - Walkabout</td>
                 <td>Chameleon Days 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61214')">
                 <td><a>61214</a></td>
                 <td>01 Reflections Of Passion</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61215')">
                 <td><a>61215</a></td>
                 <td>02 Until The Last Moment</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61216')">
                 <td><a>61216</a></td>
                 <td>03 Before I Go</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61217')">
                 <td><a>61217</a></td>
                 <td>04 After The Sunrise</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61218')">
                 <td><a>61218</a></td>
                 <td>05 To The One Who Knows</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61219')">
                 <td><a>61219</a></td>
                 <td>06 Once Upon A Time</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61220')">
                 <td><a>61220</a></td>
                 <td>07 A Word In Private</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61221')">
                 <td><a>61221</a></td>
                 <td>08 Flight Of Fantasy</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61222')">
                 <td><a>61222</a></td>
                 <td>09 Almost A Whisper</td>
                 <td>Collections 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61223')">
                 <td><a>61223</a></td>
                 <td>Yanni - A Love For Life</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61224')">
                 <td><a>61224</a></td>
                 <td>Yanni - A Night to Remember</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61225')">
                 <td><a>61225</a></td>
                 <td>Yanni - Desire</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61226')">
                 <td><a>61226</a></td>
                 <td>Yanni - Face In The Photograph</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61227')">
                 <td><a>61227</a></td>
                 <td>Yanni - Felitsa</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61228')">
                 <td><a>61228</a></td>
                 <td>Yanni - In the Mirror</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61229')">
                 <td><a>61229</a></td>
                 <td>Yanni - Nice To Meet You</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61230')">
                 <td><a>61230</a></td>
                 <td>Yanni - Once Upon A Time</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61231')">
                 <td><a>61231</a></td>
                 <td>Yanni - So Long My Friend</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61232')">
                 <td><a>61232</a></td>
                 <td>Yanni - To The One Who Knows</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61233')">
                 <td><a>61233</a></td>
                 <td>Yanni - You Only Live Once</td>
                 <td>Dare To Dream 3</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61234')">
                 <td><a>61234</a></td>
                 <td>Yanni - A Walk In The Rain</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61235')">
                 <td><a>61235</a></td>
                 <td>Yanni - Highland</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61236')">
                 <td><a>61236</a></td>
                 <td>Yanni - If I Could Tell You</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61237')">
                 <td><a>61237</a></td>
                 <td>Yanni - In Your Eyes</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61238')">
                 <td><a>61238</a></td>
                 <td>Yanni - November Sky</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61239')">
                 <td><a>61239</a></td>
                 <td>Yanni - On Sacred Ground</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61240')">
                 <td><a>61240</a></td>
                 <td>Yanni - Reason For Rainbows</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61241')">
                 <td><a>61241</a></td>
                 <td>Yanni - The Flame Within</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61242')">
                 <td><a>61242</a></td>
                 <td>Yanni - With An Orchid</td>
                 <td>If I Could Tell Yod 4</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61243')">
                 <td><a>61243</a></td>
                 <td>01 רצועה 1</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61244')">
                 <td><a>61244</a></td>
                 <td>03 רצועה 3</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61245')">
                 <td><a>61245</a></td>
                 <td>04 רצועה 4</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61246')">
                 <td><a>61246</a></td>
                 <td>05 רצועה 5</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61247')">
                 <td><a>61247</a></td>
                 <td>06 רצועה 6</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61248')">
                 <td><a>61248</a></td>
                 <td>07 רצועה 7</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61249')">
                 <td><a>61249</a></td>
                 <td>08 רצועה 8</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61250')">
                 <td><a>61250</a></td>
                 <td>09 רצועה 9</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61251')">
                 <td><a>61251</a></td>
                 <td>10 רצועה 10</td>
                 <td>In celebration Of Life 5</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61252')">
                 <td><a>61252</a></td>
                 <td>01 רצועה 1</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61253')">
                 <td><a>61253</a></td>
                 <td>02 רצועה 2</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61254')">
                 <td><a>61254</a></td>
                 <td>03 רצועה 3</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61255')">
                 <td><a>61255</a></td>
                 <td>04 רצועה 4</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61256')">
                 <td><a>61256</a></td>
                 <td>05 רצועה 5</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61257')">
                 <td><a>61257</a></td>
                 <td>06 רצועה 6</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61258')">
                 <td><a>61258</a></td>
                 <td>07 רצועה 7</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61259')">
                 <td><a>61259</a></td>
                 <td>08 רצועה 8</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61260')">
                 <td><a>61260</a></td>
                 <td>09 רצועה 9</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61261')">
                 <td><a>61261</a></td>
                 <td>10 רצועה 10</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61262')">
                 <td><a>61262</a></td>
                 <td>11 רצועה 11</td>
                 <td>In My Time 6</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61263')">
                 <td><a>61263</a></td>
                 <td>01 רצועה 1</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61264')">
                 <td><a>61264</a></td>
                 <td>02 רצועה 2</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61265')">
                 <td><a>61265</a></td>
                 <td>03 רצועה 3</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61266')">
                 <td><a>61266</a></td>
                 <td>04 רצועה 4</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61267')">
                 <td><a>61267</a></td>
                 <td>05 רצועה 5</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61268')">
                 <td><a>61268</a></td>
                 <td>06 רצועה 6</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61269')">
                 <td><a>61269</a></td>
                 <td>07 רצועה 7</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61270')">
                 <td><a>61270</a></td>
                 <td>08 רצועה 8</td>
                 <td>Keys To Imagination 7</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61271')">
                 <td><a>61271</a></td>
                 <td>01 רצועה 1</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61272')">
                 <td><a>61272</a></td>
                 <td>02 רצועה 2</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61273')">
                 <td><a>61273</a></td>
                 <td>03 רצועה 3</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61274')">
                 <td><a>61274</a></td>
                 <td>04 רצועה 4</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61275')">
                 <td><a>61275</a></td>
                 <td>05 רצועה 5</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61276')">
                 <td><a>61276</a></td>
                 <td>06 רצועה 6</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61277')">
                 <td><a>61277</a></td>
                 <td>07 רצועה 7</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61278')">
                 <td><a>61278</a></td>
                 <td>08 רצועה 8</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61279')">
                 <td><a>61279</a></td>
                 <td>09 רצועה 9</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61280')">
                 <td><a>61280</a></td>
                 <td>10 רצועה 10</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61281')">
                 <td><a>61281</a></td>
                 <td>11 רצועה 11</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61282')">
                 <td><a>61282</a></td>
                 <td>12 רצועה 12</td>
                 <td>Love Songs 9</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61283')">
                 <td><a>61283</a></td>
                 <td>02 רצועה 2</td>
                 <td>Niki Nana 10</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61284')">
                 <td><a>61284</a></td>
                 <td>04 רצועה 4</td>
                 <td>Niki Nana 10</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61285')">
                 <td><a>61285</a></td>
                 <td>06 רצועה 6</td>
                 <td>Niki Nana 10</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61286')">
                 <td><a>61286</a></td>
                 <td>07 רצועה 7</td>
                 <td>Niki Nana 10</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61287')">
                 <td><a>61287</a></td>
                 <td>08 רצועה 8</td>
                 <td>Niki Nana 10</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61288')">
                 <td><a>61288</a></td>
                 <td>01 רצועה 1</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61289')">
                 <td><a>61289</a></td>
                 <td>02 רצועה 2</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61290')">
                 <td><a>61290</a></td>
                 <td>03 רצועה 3</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61291')">
                 <td><a>61291</a></td>
                 <td>04 רצועה 4</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61292')">
                 <td><a>61292</a></td>
                 <td>05 רצועה 5</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61293')">
                 <td><a>61293</a></td>
                 <td>06 רצועה 6</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61294')">
                 <td><a>61294</a></td>
                 <td>07 רצועה 7</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61295')">
                 <td><a>61295</a></td>
                 <td>08 רצועה 8</td>
                 <td>Optimystique 11</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61296')">
                 <td><a>61296</a></td>
                 <td>01 רצועה 1</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61297')">
                 <td><a>61297</a></td>
                 <td>02 רצועה 2</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61298')">
                 <td><a>61298</a></td>
                 <td>03 רצועה 3</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61299')">
                 <td><a>61299</a></td>
                 <td>04 רצועה 4</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61300')">
                 <td><a>61300</a></td>
                 <td>05 רצועה 5</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61301')">
                 <td><a>61301</a></td>
                 <td>06 רצועה 6</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61302')">
                 <td><a>61302</a></td>
                 <td>07 רצועה 7</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61303')">
                 <td><a>61303</a></td>
                 <td>08 רצועה 8</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61304')">
                 <td><a>61304</a></td>
                 <td>09 רצועה 9</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61305')">
                 <td><a>61305</a></td>
                 <td>10 רצועה 10</td>
                 <td>Out Of Silence 12</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61306')">
                 <td><a>61306</a></td>
                 <td>01 רצועה 1</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61307')">
                 <td><a>61307</a></td>
                 <td>02 רצועה 2</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61308')">
                 <td><a>61308</a></td>
                 <td>03 רצועה 3</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61309')">
                 <td><a>61309</a></td>
                 <td>04 רצועה 4</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61310')">
                 <td><a>61310</a></td>
                 <td>05 רצועה 5</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61311')">
                 <td><a>61311</a></td>
                 <td>06 רצועה 6</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61312')">
                 <td><a>61312</a></td>
                 <td>07 רצועה 7</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61313')">
                 <td><a>61313</a></td>
                 <td>08 רצועה 8</td>
                 <td>Port Of Mystery 13</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61314')">
                 <td><a>61314</a></td>
                 <td>01 After the Sunrise</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61315')">
                 <td><a>61315</a></td>
                 <td>02 In the Morning Light</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61316')">
                 <td><a>61316</a></td>
                 <td>03 Enchantment</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61317')">
                 <td><a>61317</a></td>
                 <td>04 True Nature</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61318')">
                 <td><a>61318</a></td>
                 <td>05 Turn of the Tide</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61319')">
                 <td><a>61319</a></td>
                 <td>06 Only a Memory</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61320')">
                 <td><a>61320</a></td>
                 <td>07 Nostalgia</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61321')">
                 <td><a>61321</a></td>
                 <td>08 A Word in Private</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61322')">
                 <td><a>61322</a></td>
                 <td>09 One Man's Dream</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61323')">
                 <td><a>61323</a></td>
                 <td>10 Farewell</td>
                 <td>Snowfall 14</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61324')">
                 <td><a>61324</a></td>
                 <td>02 רצועה 2</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61325')">
                 <td><a>61325</a></td>
                 <td>03 רצועה 3</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61326')">
                 <td><a>61326</a></td>
                 <td>04 רצועה 4</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61327')">
                 <td><a>61327</a></td>
                 <td>07 רצועה 7</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61328')">
                 <td><a>61328</a></td>
                 <td>08 רצועה 8</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61329')">
                 <td><a>61329</a></td>
                 <td>10 רצועה 10</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61330')">
                 <td><a>61330</a></td>
                 <td>11 רצועה 11</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61331')">
                 <td><a>61331</a></td>
                 <td>12 רצועה 12</td>
                 <td>The Concert Event 15</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61332')">
                 <td><a>61332</a></td>
                 <td>01 - Deliverance</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61333')">
                 <td><a>61333</a></td>
                 <td>02 - Adagio In C Minor</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61334')">
                 <td><a>61334</a></td>
                 <td>03 - Renegade</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61335')">
                 <td><a>61335</a></td>
                 <td>04 - Dance With A Stranger</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61336')">
                 <td><a>61336</a></td>
                 <td>05 - Tribute</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61337')">
                 <td><a>61337</a></td>
                 <td>06 - Prelude</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61338')">
                 <td><a>61338</a></td>
                 <td>07 - Love Is All</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61339')">
                 <td><a>61339</a></td>
                 <td>09 - Waltz In 7-8</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61340')">
                 <td><a>61340</a></td>
                 <td>10 - Nightingale</td>
                 <td>Tribute 16</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61341')">
                 <td><a>61341</a></td>
                 <td>01 רצועה 1</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61342')">
                 <td><a>61342</a></td>
                 <td>02 רצועה 2</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61343')">
                 <td><a>61343</a></td>
                 <td>03 רצועה 3</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61344')">
                 <td><a>61344</a></td>
                 <td>04 רצועה 4</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61345')">
                 <td><a>61345</a></td>
                 <td>05 רצועה 5</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61346')">
                 <td><a>61346</a></td>
                 <td>06 רצועה 6</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61347')">
                 <td><a>61347</a></td>
                 <td>07 רצועה 7</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61348')">
                 <td><a>61348</a></td>
                 <td>08 רצועה 8</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61349')">
                 <td><a>61349</a></td>
                 <td>10 רצועה 10</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61350')">
                 <td><a>61350</a></td>
                 <td>11 רצועה 11</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61351')">
                 <td><a>61351</a></td>
                 <td>12 רצועה 12</td>
                 <td>Ultimate 1</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61352')">
                 <td><a>61352</a></td>
                 <td>01 רצועה 1</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61353')">
                 <td><a>61353</a></td>
                 <td>02 רצועה 2</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61354')">
                 <td><a>61354</a></td>
                 <td>03 רצועה 3</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61355')">
                 <td><a>61355</a></td>
                 <td>04 רצועה 4</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61356')">
                 <td><a>61356</a></td>
                 <td>05 רצועה 5</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61357')">
                 <td><a>61357</a></td>
                 <td>06 רצועה 6</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61358')">
                 <td><a>61358</a></td>
                 <td>07 רצועה 7</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61359')">
                 <td><a>61359</a></td>
                 <td>08 רצועה 8</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61360')">
                 <td><a>61360</a></td>
                 <td>09 רצועה 9</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61361')">
                 <td><a>61361</a></td>
                 <td>10 רצועה 10</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61362')">
                 <td><a>61362</a></td>
                 <td>12 רצועה 12</td>
                 <td>Ultimate 2</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61363')">
                 <td><a>61363</a></td>
                 <td>01 רצועה 1</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61364')">
                 <td><a>61364</a></td>
                 <td>02 רצועה 2</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61365')">
                 <td><a>61365</a></td>
                 <td>03 רצועה 3</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61366')">
                 <td><a>61366</a></td>
                 <td>04 רצועה 4</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61367')">
                 <td><a>61367</a></td>
                 <td>05 רצועה 5</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61368')">
                 <td><a>61368</a></td>
                 <td>06 רצועה 6</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61369')">
                 <td><a>61369</a></td>
                 <td>07 רצועה 7</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61370')">
                 <td><a>61370</a></td>
                 <td>08 רצועה 8</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61371')">
                 <td><a>61371</a></td>
                 <td>09 רצועה 9</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61372')">
                 <td><a>61372</a></td>
                 <td>10 רצועה 10</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61373')">
                 <td><a>61373</a></td>
                 <td>11 רצועה 11</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61374')">
                 <td><a>61374</a></td>
                 <td>12 רצועה 12</td>
                 <td>Winter Light 18</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61375')">
                 <td><a>61375</a></td>
                 <td>01 רצועה 1</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61376')">
                 <td><a>61376</a></td>
                 <td>02 רצועה 2</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61377')">
                 <td><a>61377</a></td>
                 <td>03 רצועה 3</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61378')">
                 <td><a>61378</a></td>
                 <td>04 רצועה 4</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61379')">
                 <td><a>61379</a></td>
                 <td>05 רצועה 5</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61380')">
                 <td><a>61380</a></td>
                 <td>06 רצועה 6</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61381')">
                 <td><a>61381</a></td>
                 <td>07 רצועה 7</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61382')">
                 <td><a>61382</a></td>
                 <td>08 רצועה 8</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61383')">
                 <td><a>61383</a></td>
                 <td>09 רצועה 9</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61384')">
                 <td><a>61384</a></td>
                 <td>10 רצועה 10</td>
                 <td>יאני הופעה</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61385')">
                 <td><a>61385</a></td>
                 <td>01</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61386')">
                 <td><a>61386</a></td>
                 <td>02</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61387')">
                 <td><a>61387</a></td>
                 <td>03</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61388')">
                 <td><a>61388</a></td>
                 <td>04</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61389')">
                 <td><a>61389</a></td>
                 <td>05</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61390')">
                 <td><a>61390</a></td>
                 <td>06</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61391')">
                 <td><a>61391</a></td>
                 <td>07</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61392')">
                 <td><a>61392</a></td>
                 <td>08</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61393')">
                 <td><a>61393</a></td>
                 <td>09</td>
                 <td>Sympho</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61394')">
                 <td><a>61394</a></td>
                 <td>01</td>
                 <td>אגם הברבורים</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61395')">
                 <td><a>61395</a></td>
                 <td>02</td>
                 <td>אגם הברבורים</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61396')">
                 <td><a>61396</a></td>
                 <td>03</td>
                 <td>אגם הברבורים</td>
                 <td>יצירות</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('61397')">
                 <td><a>61397</a></td>
                 <td>04</td>
                 <td>אגם הברבורים</td>
                 <td>יצירות</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

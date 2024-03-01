@@ -1,1316 +1,1298 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ישיבה בויס</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ישיבה בויס</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspישיבה בויס</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspישיבה בויס</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('14001')">
                 <td><a>14001</a></td>
                 <td>01-כל המתפלל</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14002')">
                 <td><a>14002</a></td>
                 <td>02-שיר המעלות</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14003')">
                 <td><a>14003</a></td>
                 <td>03-יראו</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14004')">
                 <td><a>14004</a></td>
                 <td>04-גם כי אלך</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14005')">
                 <td><a>14005</a></td>
                 <td>05-מלאכים</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14006')">
                 <td><a>14006</a></td>
                 <td>06-אדון עולם</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14007')">
                 <td><a>14007</a></td>
                 <td>07-והוא כחתן</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14008')">
                 <td><a>14008</a></td>
                 <td>08-ועל כן</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14009')">
                 <td><a>14009</a></td>
                 <td>09-אלקי</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14010')">
                 <td><a>14010</a></td>
                 <td>10-תהלת ה</td>
                 <td>1-כל המתפלל</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14011')">
                 <td><a>14011</a></td>
                 <td>01 נודה</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14012')">
                 <td><a>14012</a></td>
                 <td>02 יראו</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14013')">
                 <td><a>14013</a></td>
                 <td>03 ואהבת</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14014')">
                 <td><a>14014</a></td>
                 <td>04 מחרוזת שמחה</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14015')">
                 <td><a>14015</a></td>
                 <td>05 שיר המעלות</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14016')">
                 <td><a>14016</a></td>
                 <td>07 ואני תפילתי</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14017')">
                 <td><a>14017</a></td>
                 <td>08 רוממו ה'</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14018')">
                 <td><a>14018</a></td>
                 <td>09 מנוחה ושמחה</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14019')">
                 <td><a>14019</a></td>
                 <td>10 אשרי העם - לכה דודי</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14020')">
                 <td><a>14020</a></td>
                 <td>11 מעין עולם הבא</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14021')">
                 <td><a>14021</a></td>
                 <td>12 ואישי ישראל</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14022')">
                 <td><a>14022</a></td>
                 <td>13 אדון עולם</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14023')">
                 <td><a>14023</a></td>
                 <td>14 קומו</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14024')">
                 <td><a>14024</a></td>
                 <td>15 מחרוזת קרליבך</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14025')">
                 <td><a>14025</a></td>
                 <td>16 קול ה'</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14026')">
                 <td><a>14026</a></td>
                 <td>17 זכרני נא</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14027')">
                 <td><a>14027</a></td>
                 <td>18 אב הרחמים</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14028')">
                 <td><a>14028</a></td>
                 <td>19 יהא שלמא</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14029')">
                 <td><a>14029</a></td>
                 <td>20 קוה אל ה'</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14030')">
                 <td><a>14030</a></td>
                 <td>21 ובא לציון</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14031')">
                 <td><a>14031</a></td>
                 <td>22 כל המתפלל</td>
                 <td>YBC Live #1 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14032')">
                 <td><a>14032</a></td>
                 <td>01 לייזרס ניגון</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14033')">
                 <td><a>14033</a></td>
                 <td>02 מלאים</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14034')">
                 <td><a>14034</a></td>
                 <td>03 על ישראל שלום</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14035')">
                 <td><a>14035</a></td>
                 <td>04  In A Song</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14036')">
                 <td><a>14036</a></td>
                 <td>05 נודה</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14037')">
                 <td><a>14037</a></td>
                 <td>06 הקל אבינו</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14038')">
                 <td><a>14038</a></td>
                 <td>07 לך ה'</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14039')">
                 <td><a>14039</a></td>
                 <td>08 קל מסתתר</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14040')">
                 <td><a>14040</a></td>
                 <td>09 שמע קולינו</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14041')">
                 <td><a>14041</a></td>
                 <td>10 שנאמר</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14042')">
                 <td><a>14042</a></td>
                 <td>11 אני קראתיך</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14043')">
                 <td><a>14043</a></td>
                 <td>12 אשר לו</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14044')">
                 <td><a>14044</a></td>
                 <td>13 נשמהל'ה</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14045')">
                 <td><a>14045</a></td>
                 <td>14 יהא שלמא</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14046')">
                 <td><a>14046</a></td>
                 <td>15 שבחי</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14047')">
                 <td><a>14047</a></td>
                 <td>16 הדריכני</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14048')">
                 <td><a>14048</a></td>
                 <td>19 מחרוזת סיום</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14049')">
                 <td><a>14049</a></td>
                 <td>20 ואהבת</td>
                 <td>YBC Live #2 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14050')">
                 <td><a>14050</a></td>
                 <td>01 למען</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14051')">
                 <td><a>14051</a></td>
                 <td>02 הלל</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14052')">
                 <td><a>14052</a></td>
                 <td>03 שבחי</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14053')">
                 <td><a>14053</a></td>
                 <td>04 המלאך</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14054')">
                 <td><a>14054</a></td>
                 <td>05 שמו של מלך</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14055')">
                 <td><a>14055</a></td>
                 <td>06 כי בחר</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14056')">
                 <td><a>14056</a></td>
                 <td>07 מובטח</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14057')">
                 <td><a>14057</a></td>
                 <td>08 מלך</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14058')">
                 <td><a>14058</a></td>
                 <td>10 ה' ימלוך</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14059')">
                 <td><a>14059</a></td>
                 <td>11 ישיש</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14060')">
                 <td><a>14060</a></td>
                 <td>12 שירו</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14061')">
                 <td><a>14061</a></td>
                 <td>13 ובא</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14062')">
                 <td><a>14062</a></td>
                 <td>14 אתה קדשת</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14063')">
                 <td><a>14063</a></td>
                 <td>15 קולי שמע</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14064')">
                 <td><a>14064</a></td>
                 <td>16 ניגונים</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14065')">
                 <td><a>14065</a></td>
                 <td>17 על הכל</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14066')">
                 <td><a>14066</a></td>
                 <td>18 ואהבת</td>
                 <td>YBC Live #3 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14067')">
                 <td><a>14067</a></td>
                 <td>03 שמו של מלך Remix</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14068')">
                 <td><a>14068</a></td>
                 <td>04 Daddy Come Home</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14069')">
                 <td><a>14069</a></td>
                 <td>05 אה אה אה Live</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14070')">
                 <td><a>14070</a></td>
                 <td>06 יוונים</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14071')">
                 <td><a>14071</a></td>
                 <td>07 קה ריבון</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14072')">
                 <td><a>14072</a></td>
                 <td>08 שהחיינו</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14073')">
                 <td><a>14073</a></td>
                 <td>09 מזמור שיר remix</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14074')">
                 <td><a>14074</a></td>
                 <td>10 דרך</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14075')">
                 <td><a>14075</a></td>
                 <td>11 YBC Finale</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14076')">
                 <td><a>14076</a></td>
                 <td>12 אה אה אה</td>
                 <td>YBC Live #4 - פרחי בנ''י</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14077')">
                 <td><a>14077</a></td>
                 <td>01 ואהבת</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14078')">
                 <td><a>14078</a></td>
                 <td>02 אמר ליה בר הא הא</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14079')">
                 <td><a>14079</a></td>
                 <td>03 קול ה' על המים</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14080')">
                 <td><a>14080</a></td>
                 <td>04 קומו קומו</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14081')">
                 <td><a>14081</a></td>
                 <td>05 מי אדיר על הכל</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14082')">
                 <td><a>14082</a></td>
                 <td>06 מלאים זיו</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14083')">
                 <td><a>14083</a></td>
                 <td>07 מקולות מים רבים</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14084')">
                 <td><a>14084</a></td>
                 <td>08 הדריכנו באמתך</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14085')">
                 <td><a>14085</a></td>
                 <td>09 שומר ישראל</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14086')">
                 <td><a>14086</a></td>
                 <td>10 על ישראל שלום</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14087')">
                 <td><a>14087</a></td>
                 <td>13 קולי שמע</td>
                 <td>ואהבת לרעך כמוך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14088')">
                 <td><a>14088</a></td>
                 <td>01 רצועה 1</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14089')">
                 <td><a>14089</a></td>
                 <td>02 רצועה 2</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14090')">
                 <td><a>14090</a></td>
                 <td>03 רצועה 3</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14091')">
                 <td><a>14091</a></td>
                 <td>04 רצועה 4</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14092')">
                 <td><a>14092</a></td>
                 <td>05 רצועה 5</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14093')">
                 <td><a>14093</a></td>
                 <td>06 רצועה 6</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14094')">
                 <td><a>14094</a></td>
                 <td>07 רצועה 7</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14095')">
                 <td><a>14095</a></td>
                 <td>08 רצועה 8</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14096')">
                 <td><a>14096</a></td>
                 <td>09 רצועה 9</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14097')">
                 <td><a>14097</a></td>
                 <td>10 רצועה 10</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14098')">
                 <td><a>14098</a></td>
                 <td>11 רצועה 11</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14099')">
                 <td><a>14099</a></td>
                 <td>12 רצועה 12</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14100')">
                 <td><a>14100</a></td>
                 <td>13 רצועה 13</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14101')">
                 <td><a>14101</a></td>
                 <td>14 רצועה 14</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14102')">
                 <td><a>14102</a></td>
                 <td>15 רצועה 15</td>
                 <td>זמירות שבת</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14103')">
                 <td><a>14103</a></td>
                 <td>01 מזמור שיר</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14104')">
                 <td><a>14104</a></td>
                 <td>02 Daddy come home</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14105')">
                 <td><a>14105</a></td>
                 <td>03 יונים</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14106')">
                 <td><a>14106</a></td>
                 <td>04 חשוף</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14107')">
                 <td><a>14107</a></td>
                 <td>05 על הניסים</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14108')">
                 <td><a>14108</a></td>
                 <td>06 Those were the nights</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14109')">
                 <td><a>14109</a></td>
                 <td>07 שהחיינו</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14110')">
                 <td><a>14110</a></td>
                 <td>08 מעוז צור</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14111')">
                 <td><a>14111</a></td>
                 <td>09 הנרות</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14112')">
                 <td><a>14112</a></td>
                 <td>10 מחרוזת יונים</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14113')">
                 <td><a>14113</a></td>
                 <td>11 מחרוזת חנוכה</td>
                 <td>חנוכה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14114')">
                 <td><a>14114</a></td>
                 <td>אודך</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14115')">
                 <td><a>14115</a></td>
                 <td>אמן</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14116')">
                 <td><a>14116</a></td>
                 <td>אשרי</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14117')">
                 <td><a>14117</a></td>
                 <td>אשת חיל</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14118')">
                 <td><a>14118</a></td>
                 <td>את פניך</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14119')">
                 <td><a>14119</a></td>
                 <td>הים</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14120')">
                 <td><a>14120</a></td>
                 <td>ויעזור</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14121')">
                 <td><a>14121</a></td>
                 <td>ירעם</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14122')">
                 <td><a>14122</a></td>
                 <td>ישמחו</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14123')">
                 <td><a>14123</a></td>
                 <td>מה אשיב</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14124')">
                 <td><a>14124</a></td>
                 <td>על נהרות</td>
                 <td>ישיבה בויס 2015</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14125')">
                 <td><a>14125</a></td>
                 <td>01 אדיר</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14126')">
                 <td><a>14126</a></td>
                 <td>02 אילן דואט עם אלי גרסטנר</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14127')">
                 <td><a>14127</a></td>
                 <td>03 יהללו</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14128')">
                 <td><a>14128</a></td>
                 <td>04 מודה אני</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14129')">
                 <td><a>14129</a></td>
                 <td>05 והביאותים דואט עם אוהד</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14130')">
                 <td><a>14130</a></td>
                 <td>06 ממלכות דואט עם יעקב מרדכי גרסטנר</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14131')">
                 <td><a>14131</a></td>
                 <td>07 כי אבי</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14132')">
                 <td><a>14132</a></td>
                 <td>08 כי שם</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14133')">
                 <td><a>14133</a></td>
                 <td>09 חיים</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14134')">
                 <td><a>14134</a></td>
                 <td>10 דע מה</td>
                 <td>ישיבה בויס מודה אני</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14135')">
                 <td><a>14135</a></td>
                 <td>The Yeshiva Boys Choir - Mi X6</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14136')">
                 <td><a>14136</a></td>
                 <td>אמר ר' עקיבא</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14137')">
                 <td><a>14137</a></td>
                 <td>הישיבה בויס  - אשרי יושבי ביתך</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14138')">
                 <td><a>14138</a></td>
                 <td>חזק  ישיבה בויס</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14139')">
                 <td><a>14139</a></td>
                 <td>יהללו ישיבה  בויס</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14140')">
                 <td><a>14140</a></td>
                 <td>ישיבה בויס - מזמור שיר</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14141')">
                 <td><a>14141</a></td>
                 <td>ישיבה בויס -חנוכה</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14142')">
                 <td><a>14142</a></td>
                 <td>ישיבה בויס אדיר</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14143')">
                 <td><a>14143</a></td>
                 <td>ישיבה בויס ואהבת</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14144')">
                 <td><a>14144</a></td>
                 <td>ישיבה בויס יהללו</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14145')">
                 <td><a>14145</a></td>
                 <td>ישיבה בויס על החייל</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14146')">
                 <td><a>14146</a></td>
                 <td>מלאים זיו-ישיבה בויס</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14147')">
                 <td><a>14147</a></td>
                 <td>עד עולם - ישיבה בויס עם בני פרידמן והחברה</td>
                 <td>סינגלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14148')">
                 <td><a>14148</a></td>
                 <td>01-שבחי</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14149')">
                 <td><a>14149</a></td>
                 <td>02-למען דעת</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14150')">
                 <td><a>14150</a></td>
                 <td>03-קולי שמע</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14151')">
                 <td><a>14151</a></td>
                 <td>05-In A Song</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14152')">
                 <td><a>14152</a></td>
                 <td>06-על הכל</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14153')">
                 <td><a>14153</a></td>
                 <td>07-אדון עולמים</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14154')">
                 <td><a>14154</a></td>
                 <td>08-הלל</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14155')">
                 <td><a>14155</a></td>
                 <td>09-קרוב ה</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14156')">
                 <td><a>14156</a></td>
                 <td>10-קל ההודאות</td>
                 <td>שבחי ירושלים</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14157')">
                 <td><a>14157</a></td>
                 <td>אתה קידשת 03</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14158')">
                 <td><a>14158</a></td>
                 <td>ברוך השם 05</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14159')">
                 <td><a>14159</a></td>
                 <td>דרך שקר 06</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14160')">
                 <td><a>14160</a></td>
                 <td>המלאך 02</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14161')">
                 <td><a>14161</a></td>
                 <td>י-ה ריבון 10</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14162')">
                 <td><a>14162</a></td>
                 <td>מן המיצר 08</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14163')">
                 <td><a>14163</a></td>
                 <td>עוז והדר 04</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14164')">
                 <td><a>14164</a></td>
                 <td>שמו של מלך 01</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14165')">
                 <td><a>14165</a></td>
                 <td>שמחה 09</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14166')">
                 <td><a>14166</a></td>
                 <td>תורה ציוה 07</td>
                 <td>שמו של מלך</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14167')">
                 <td><a>14167</a></td>
                 <td>01 - משה אמת</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14168')">
                 <td><a>14168</a></td>
                 <td>03 - אחת שאלתי</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14169')">
                 <td><a>14169</a></td>
                 <td>04 - עץ חיים</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14170')">
                 <td><a>14170</a></td>
                 <td>05 - נגיל ונשיש</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14171')">
                 <td><a>14171</a></td>
                 <td>06 - אשר בחר</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14172')">
                 <td><a>14172</a></td>
                 <td>07 - תורת ד</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14173')">
                 <td><a>14173</a></td>
                 <td>08 - נר לרגלי</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14174')">
                 <td><a>14174</a></td>
                 <td>09 - מה אהבתי</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('14175')">
                 <td><a>14175</a></td>
                 <td>10 - מחרוזת</td>
                 <td>תורה</td>
                 <td>ישיבה בויס</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,728 +1,710 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יונתן רזאל</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יונתן רזאל</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיונתן רזאל</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיונתן רזאל</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('11591')">
                 <td><a>11591</a></td>
                 <td>01 צייר</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11592')">
                 <td><a>11592</a></td>
                 <td>02 זוהר הרקיע</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11593')">
                 <td><a>11593</a></td>
                 <td>03 מהגר</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11594')">
                 <td><a>11594</a></td>
                 <td>04 Free As A Bird</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11595')">
                 <td><a>11595</a></td>
                 <td>05 50</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11596')">
                 <td><a>11596</a></td>
                 <td>06 לב אל הנשמה</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11597')">
                 <td><a>11597</a></td>
                 <td>07 חלקת אלוהים</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11598')">
                 <td><a>11598</a></td>
                 <td>08 אל תחשוב על המחר</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11599')">
                 <td><a>11599</a></td>
                 <td>09 If You Want to Travel</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11600')">
                 <td><a>11600</a></td>
                 <td>10 תשירי</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11601')">
                 <td><a>11601</a></td>
                 <td>11 הנה ימים באים</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11602')">
                 <td><a>11602</a></td>
                 <td>12 דוד (געגועים) [בהופעה]</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11603')">
                 <td><a>11603</a></td>
                 <td>13 לב על הנשמה פסנתר</td>
                 <td>50</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11604')">
                 <td><a>11604</a></td>
                 <td>01 תיקון הגשם</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11605')">
                 <td><a>11605</a></td>
                 <td>02 בין הצלילים</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11606')">
                 <td><a>11606</a></td>
                 <td>03 שומר אמונים</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11607')">
                 <td><a>11607</a></td>
                 <td>04 אשירה</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11608')">
                 <td><a>11608</a></td>
                 <td>05 קטנתי</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11609')">
                 <td><a>11609</a></td>
                 <td>06 ניגון פוגש תזמרות</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11610')">
                 <td><a>11610</a></td>
                 <td>07 הגעגוע</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11611')">
                 <td><a>11611</a></td>
                 <td>08 רצועה 8</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11612')">
                 <td><a>11612</a></td>
                 <td>09 עוד ישמע</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11613')">
                 <td><a>11613</a></td>
                 <td>10 ברוכים</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11614')">
                 <td><a>11614</a></td>
                 <td>11 נחפשה</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11615')">
                 <td><a>11615</a></td>
                 <td>12 זכרנו</td>
                 <td>בין הצלילים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11616')">
                 <td><a>11616</a></td>
                 <td>- יונתן רזאל - אקרא ליופי - מקורי (1)</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11617')">
                 <td><a>11617</a></td>
                 <td>- יונתן רזאל - דוד - ביצוע לייב</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11618')">
                 <td><a>11618</a></td>
                 <td>- יונתן רזאל - חלקת אלוקים - מקורי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11619')">
                 <td><a>11619</a></td>
                 <td>02-בן הצלילים</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11620')">
                 <td><a>11620</a></td>
                 <td>7-07 מי אדיר - יונתן רזאל</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11621')">
                 <td><a>11621</a></td>
                 <td>דרור יקרא</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11622')">
                 <td><a>11622</a></td>
                 <td>הטוב</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11623')">
                 <td><a>11623</a></td>
                 <td>הללויה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11624')">
                 <td><a>11624</a></td>
                 <td>ואני תפילתי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11625')">
                 <td><a>11625</a></td>
                 <td>והיא שעמדה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11626')">
                 <td><a>11626</a></td>
                 <td>זכרנו</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11627')">
                 <td><a>11627</a></td>
                 <td>יהונתן רזאל - לגעת בסוד</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11628')">
                 <td><a>11628</a></td>
                 <td>יונתן רזאל - Free as a Bird</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11629')">
                 <td><a>11629</a></td>
                 <td>יונתן רזאל - אקרא ליופי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11630')">
                 <td><a>11630</a></td>
                 <td>יונתן רזאל - את פניך אבקש</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11631')">
                 <td><a>11631</a></td>
                 <td>יונתן רזאל - בין הצלילים</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11632')">
                 <td><a>11632</a></td>
                 <td>יונתן רזאל - הנני</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11633')">
                 <td><a>11633</a></td>
                 <td>יונתן רזאל - לב אל הנשמה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11634')">
                 <td><a>11634</a></td>
                 <td>יונתן רזאל - קטנתי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11635')">
                 <td><a>11635</a></td>
                 <td>יונתן רזאל </td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11636')">
                 <td><a>11636</a></td>
                 <td>יונתן רזאל מחדש את הניגון החבדי הותיק אין עוד מלבדו, מתוך צמאה 5</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11637')">
                 <td><a>11637</a></td>
                 <td>יונתן רזאל עוד יום</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11638')">
                 <td><a>11638</a></td>
                 <td>יונתן רזאל צייר Yonatan Razel Painter.136</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11639')">
                 <td><a>11639</a></td>
                 <td>יונתן-רזאל-דוד</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11640')">
                 <td><a>11640</a></td>
                 <td>יוסף ויונתן רזאל - באמת</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11641')">
                 <td><a>11641</a></td>
                 <td>יעלה תחנונינו</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11642')">
                 <td><a>11642</a></td>
                 <td>כאייל תערוג</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11643')">
                 <td><a>11643</a></td>
                 <td>לא צימוקים ולא שקדים</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11644')">
                 <td><a>11644</a></td>
                 <td>למען אחי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11645')">
                 <td><a>11645</a></td>
                 <td>מעוז צור</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11646')">
                 <td><a>11646</a></td>
                 <td>נווה תלאות</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11647')">
                 <td><a>11647</a></td>
                 <td>נחפשה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11648')">
                 <td><a>11648</a></td>
                 <td>ניגון פוגש תזמרות</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11649')">
                 <td><a>11649</a></td>
                 <td>סך הכל</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11650')">
                 <td><a>11650</a></td>
                 <td>עוד ישמע</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11651')">
                 <td><a>11651</a></td>
                 <td>עכשיו אני עף</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11652')">
                 <td><a>11652</a></td>
                 <td>עם אהרון רזאל אשירה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11653')">
                 <td><a>11653</a></td>
                 <td>עקיבא נתן גושן ויונתן רזאל - והיא שעמדה</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11654')">
                 <td><a>11654</a></td>
                 <td>עשה למען</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11655')">
                 <td><a>11655</a></td>
                 <td>צייר</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11656')">
                 <td><a>11656</a></td>
                 <td>קטנתי</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11657')">
                 <td><a>11657</a></td>
                 <td>שומר אמונים </td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11658')">
                 <td><a>11658</a></td>
                 <td>תשירי יונתן רזאל</td>
                 <td>סינגלים</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11659')">
                 <td><a>11659</a></td>
                 <td>01-ואני תפילתי</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11660')">
                 <td><a>11660</a></td>
                 <td>02-דרור יקרא</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11661')">
                 <td><a>11661</a></td>
                 <td>03-את פניך</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11662')">
                 <td><a>11662</a></td>
                 <td>04-סך הכול</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11663')">
                 <td><a>11663</a></td>
                 <td>05-אדון הסליחות</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11664')">
                 <td><a>11664</a></td>
                 <td>06-ציון</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11665')">
                 <td><a>11665</a></td>
                 <td>07-כל העולם כולו</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11666')">
                 <td><a>11666</a></td>
                 <td>08-עבדו את ד' בשמחה</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11667')">
                 <td><a>11667</a></td>
                 <td>09-אילו פינו</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11668')">
                 <td><a>11668</a></td>
                 <td>10-וארשתיך</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11669')">
                 <td><a>11669</a></td>
                 <td>11-ואתם</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11670')">
                 <td><a>11670</a></td>
                 <td>12-אם אין אני לי</td>
                 <td>סך הכל</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11671')">
                 <td><a>11671</a></td>
                 <td>01 פותח לב</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11672')">
                 <td><a>11672</a></td>
                 <td>02 נווה תלאות</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11673')">
                 <td><a>11673</a></td>
                 <td>03 כתר</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11674')">
                 <td><a>11674</a></td>
                 <td>04 עכשיו אני עף</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11675')">
                 <td><a>11675</a></td>
                 <td>05 הטוב</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11676')">
                 <td><a>11676</a></td>
                 <td>06 הללויה</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11677')">
                 <td><a>11677</a></td>
                 <td>07 שובה אלינו</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11678')">
                 <td><a>11678</a></td>
                 <td>08 הרמוניה</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11679')">
                 <td><a>11679</a></td>
                 <td>09 נפשנו חכתה</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11680')">
                 <td><a>11680</a></td>
                 <td>10 עולם הפוך</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('11681')">
                 <td><a>11681</a></td>
                 <td>11 עשה למען</td>
                 <td>פותח לב</td>
                 <td>יונתן רזאל</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

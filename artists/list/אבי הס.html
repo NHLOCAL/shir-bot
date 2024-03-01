@@ -1,329 +1,311 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אבי הס</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אבי הס</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאבי הס</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאבי הס</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('23')">
                 <td><a>23</a></td>
                 <td>01 - אנעים זמירות</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24')">
                 <td><a>24</a></td>
                 <td>02 - לעלות בהר</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25')">
                 <td><a>25</a></td>
                 <td>03 - השבת</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26')">
                 <td><a>26</a></td>
                 <td>04 - אתה הוא</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('27')">
                 <td><a>27</a></td>
                 <td>05 - יונתי - עם אהרן רזאל</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('28')">
                 <td><a>28</a></td>
                 <td>06 - משיבת נפש</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('29')">
                 <td><a>29</a></td>
                 <td>07 - אגודה אחת</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30')">
                 <td><a>30</a></td>
                 <td>08 - תרחם</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('31')">
                 <td><a>31</a></td>
                 <td>09 - והביאנו</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('32')">
                 <td><a>32</a></td>
                 <td>10 - וטהר</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33')">
                 <td><a>33</a></td>
                 <td>11 - מלך</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('34')">
                 <td><a>34</a></td>
                 <td>12 - ניגון לדרך</td>
                 <td>אבי הס - לעלות בהר</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('35')">
                 <td><a>35</a></td>
                 <td>אבי הס & ישיבת תהילת שלמה - מקיים העולם</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('36')">
                 <td><a>36</a></td>
                 <td>אבי הס השבת</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('37')">
                 <td><a>37</a></td>
                 <td>אבי הס לכה דודי</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('38')">
                 <td><a>38</a></td>
                 <td>אהללה</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('39')">
                 <td><a>39</a></td>
                 <td>אם תעירו</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('40')">
                 <td><a>40</a></td>
                 <td>אנעים זמירות</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('41')">
                 <td><a>41</a></td>
                 <td>דרכו של עולם</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42')">
                 <td><a>42</a></td>
                 <td>היגיד אמתך</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('43')">
                 <td><a>43</a></td>
                 <td>השבת 1</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44')">
                 <td><a>44</a></td>
                 <td>השבת 2</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45')">
                 <td><a>45</a></td>
                 <td>השבת</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46')">
                 <td><a>46</a></td>
                 <td>והביאנו</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('47')">
                 <td><a>47</a></td>
                 <td>וטהר 1</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48')">
                 <td><a>48</a></td>
                 <td>וטהר 2</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('49')">
                 <td><a>49</a></td>
                 <td>וטהר</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('50')">
                 <td><a>50</a></td>
                 <td>חזו</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('51')">
                 <td><a>51</a></td>
                 <td>יונתי</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52')">
                 <td><a>52</a></td>
                 <td>למקדשך</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53')">
                 <td><a>53</a></td>
                 <td>לעלות בהר</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('54')">
                 <td><a>54</a></td>
                 <td>נפשי להשם</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('55')">
                 <td><a>55</a></td>
                 <td>קה רבון</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('56')">
                 <td><a>56</a></td>
                 <td>שירת הבריאה</td>
                 <td>סינגלים</td>
                 <td>אבי הס</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

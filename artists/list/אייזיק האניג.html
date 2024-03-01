@@ -1,805 +1,787 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אייזיק האניג</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אייזיק האניג</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאייזיק האניג</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאייזיק האניג</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2999')">
                 <td><a>2999</a></td>
                 <td>01-ימלא משאלתינו</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3000')">
                 <td><a>3000</a></td>
                 <td>02-תפילה לעני</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3001')">
                 <td><a>3001</a></td>
                 <td>03-כי לה המלוכה</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3002')">
                 <td><a>3002</a></td>
                 <td>04-אדון הכול</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3003')">
                 <td><a>3003</a></td>
                 <td>05-הרחמן</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3004')">
                 <td><a>3004</a></td>
                 <td>06-והביאנו לציון</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3005')">
                 <td><a>3005</a></td>
                 <td>07-ניין מאמע ניין</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3006')">
                 <td><a>3006</a></td>
                 <td>08-ברכות והודאות</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3007')">
                 <td><a>3007</a></td>
                 <td>09-שויתי ה</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3008')">
                 <td><a>3008</a></td>
                 <td>10-ותבנהו מהרה</td>
                 <td>אדון הכל</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3009')">
                 <td><a>3009</a></td>
                 <td>01 - שמח תשמח</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3010')">
                 <td><a>3010</a></td>
                 <td>03 - אשר ברא</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3011')">
                 <td><a>3011</a></td>
                 <td>04 - את צמח</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3012')">
                 <td><a>3012</a></td>
                 <td>05 - ושאבתם</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3013')">
                 <td><a>3013</a></td>
                 <td>06 - שמח</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3014')">
                 <td><a>3014</a></td>
                 <td>07 - ובשירי</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3015')">
                 <td><a>3015</a></td>
                 <td>08 - לכל זמן</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3016')">
                 <td><a>3016</a></td>
                 <td>09 - בנה ביתך</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3017')">
                 <td><a>3017</a></td>
                 <td>10 - מן המיצר</td>
                 <td>אייזיק האניג והמנגנים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3018')">
                 <td><a>3018</a></td>
                 <td>01-דודי</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3019')">
                 <td><a>3019</a></td>
                 <td>02-בהר המוריה</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3020')">
                 <td><a>3020</a></td>
                 <td>03-עשה</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3021')">
                 <td><a>3021</a></td>
                 <td>04-רחם</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3022')">
                 <td><a>3022</a></td>
                 <td>05-כן תזכנו</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3023')">
                 <td><a>3023</a></td>
                 <td>06-מלך שוכן עד</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3024')">
                 <td><a>3024</a></td>
                 <td>07-שהחיינו</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3025')">
                 <td><a>3025</a></td>
                 <td>08-קדש</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3026')">
                 <td><a>3026</a></td>
                 <td>09-ובדבר</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3027')">
                 <td><a>3027</a></td>
                 <td>10-אנא מלך</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3028')">
                 <td><a>3028</a></td>
                 <td>11-א אידעלע</td>
                 <td>בהר המוריה</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3029')">
                 <td><a>3029</a></td>
                 <td>01-באטע</td>
                 <td>ביים רבינ'ס טיש</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3030')">
                 <td><a>3030</a></td>
                 <td>02-טיש</td>
                 <td>ביים רבינ'ס טיש</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3031')">
                 <td><a>3031</a></td>
                 <td>03-פארברענגען</td>
                 <td>ביים רבינ'ס טיש</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3032')">
                 <td><a>3032</a></td>
                 <td>04-שבת</td>
                 <td>ביים רבינ'ס טיש</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3033')">
                 <td><a>3033</a></td>
                 <td>FDJA</td>
                 <td>גראמען</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3034')">
                 <td><a>3034</a></td>
                 <td>FQEP</td>
                 <td>גראמען</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3035')">
                 <td><a>3035</a></td>
                 <td>GBMM</td>
                 <td>גראמען</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3036')">
                 <td><a>3036</a></td>
                 <td>QGGO</td>
                 <td>גראמען</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3037')">
                 <td><a>3037</a></td>
                 <td>SRKY</td>
                 <td>גראמען</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3038')">
                 <td><a>3038</a></td>
                 <td>01 Chizki V'imtzi 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3039')">
                 <td><a>3039</a></td>
                 <td>02 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3040')">
                 <td><a>3040</a></td>
                 <td>03 Bitchu 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3041')">
                 <td><a>3041</a></td>
                 <td>04 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3042')">
                 <td><a>3042</a></td>
                 <td>05 Tzavu'a 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3043')">
                 <td><a>3043</a></td>
                 <td>06 Ani Maamin 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3044')">
                 <td><a>3044</a></td>
                 <td>07 Mein Rebbe 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3045')">
                 <td><a>3045</a></td>
                 <td>08 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3046')">
                 <td><a>3046</a></td>
                 <td>09 Ein Kalokeini 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3047')">
                 <td><a>3047</a></td>
                 <td>10 Nishtu Aza Got 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3048')">
                 <td><a>3048</a></td>
                 <td>11 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3049')">
                 <td><a>3049</a></td>
                 <td>12 Hakuras Hatov 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3050')">
                 <td><a>3050</a></td>
                 <td>13 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3051')">
                 <td><a>3051</a></td>
                 <td>14 Ko'ach Hatfila 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3052')">
                 <td><a>3052</a></td>
                 <td>15 Introduction 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3053')">
                 <td><a>3053</a></td>
                 <td>16 Uvini 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3054')">
                 <td><a>3054</a></td>
                 <td>17 End 1</td>
                 <td>חזקו ואמצו</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3055')">
                 <td><a>3055</a></td>
                 <td>01 שבת קודש</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3056')">
                 <td><a>3056</a></td>
                 <td>02 ידיד נפש</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3057')">
                 <td><a>3057</a></td>
                 <td>03 משה ואהרון</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3058')">
                 <td><a>3058</a></td>
                 <td>04 לכה דודי</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3059')">
                 <td><a>3059</a></td>
                 <td>05 רזא דשבת</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3060')">
                 <td><a>3060</a></td>
                 <td>06 שלום עליכם</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3061')">
                 <td><a>3061</a></td>
                 <td>07 משוך חסדך</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3062')">
                 <td><a>3062</a></td>
                 <td>08 שומרי מצוותיה</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3063')">
                 <td><a>3063</a></td>
                 <td>09 קה ריבון</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3064')">
                 <td><a>3064</a></td>
                 <td>10 ושויתי ה'</td>
                 <td>לקראת שבת</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3065')">
                 <td><a>3065</a></td>
                 <td>אבות ובנים אהר לה סאמעט ואייזיק האניג ומנדי הרשקוביץ ובנצי קלצקין ומקהלת מלכות</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3066')">
                 <td><a>3066</a></td>
                 <td>אהבתי אתכם עם אייזיק האניג ויואלי גליק</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3067')">
                 <td><a>3067</a></td>
                 <td>אייזיק האניג - ומשפע מצות תפילין מייל מיוזיק</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3068')">
                 <td><a>3068</a></td>
                 <td>אייזיק האניג, אהרלה סאמט, ובנצי קלצקין ומקהלת מלכות במחרוזת ''אבות ובנים''</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3069')">
                 <td><a>3069</a></td>
                 <td>אייזיק האניג</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3070')">
                 <td><a>3070</a></td>
                 <td>אם אשכחך</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3071')">
                 <td><a>3071</a></td>
                 <td>אשיחה</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3072')">
                 <td><a>3072</a></td>
                 <td>הדרן</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3073')">
                 <td><a>3073</a></td>
                 <td>חבילת שבת׳דיג יוצא לאור - אלבום חדש שמגיע עם נגן חסום - דוגמה</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3074')">
                 <td><a>3074</a></td>
                 <td>מוטי שטיינמץ ואייזיק האניג נפשי</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3075')">
                 <td><a>3075</a></td>
                 <td>מחרוזת שירי עקדת יצחק</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3076')">
                 <td><a>3076</a></td>
                 <td>מי כעמך ישראל</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3077')">
                 <td><a>3077</a></td>
                 <td>קדש את שמך אייזיק האניג ומקהלת שירה</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3078')">
                 <td><a>3078</a></td>
                 <td>תנא דבי אליהו</td>
                 <td>סינגלים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3079')">
                 <td><a>3079</a></td>
                 <td>01-בשפע ברכה</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3080')">
                 <td><a>3080</a></td>
                 <td>02-אתה הראת</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3081')">
                 <td><a>3081</a></td>
                 <td>03-כתר</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3082')">
                 <td><a>3082</a></td>
                 <td>04-וברצונך</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3083')">
                 <td><a>3083</a></td>
                 <td>05-ויאתיו</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3084')">
                 <td><a>3084</a></td>
                 <td>06-הפורש</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3085')">
                 <td><a>3085</a></td>
                 <td>07-הריני מזמן</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3086')">
                 <td><a>3086</a></td>
                 <td>08-אל דמי לך</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3087')">
                 <td><a>3087</a></td>
                 <td>09-לבדך</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3088')">
                 <td><a>3088</a></td>
                 <td>10-קינדרלך</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3089')">
                 <td><a>3089</a></td>
                 <td>11-מה נאוו על ההרים</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3090')">
                 <td><a>3090</a></td>
                 <td>12-היה עם פיפיות</td>
                 <td>על ההרים</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3091')">
                 <td><a>3091</a></td>
                 <td>01-שמח תשמח</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3092')">
                 <td><a>3092</a></td>
                 <td>02-וגם</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3093')">
                 <td><a>3093</a></td>
                 <td>03-אשר ברא</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3094')">
                 <td><a>3094</a></td>
                 <td>04-את צמח</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3095')">
                 <td><a>3095</a></td>
                 <td>05-ושאבתם</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3096')">
                 <td><a>3096</a></td>
                 <td>06-שמח נפש</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3097')">
                 <td><a>3097</a></td>
                 <td>07-ובשירי</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3098')">
                 <td><a>3098</a></td>
                 <td>08-לכל זמן</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3099')">
                 <td><a>3099</a></td>
                 <td>09-בנה ביתך</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('3100')">
                 <td><a>3100</a></td>
                 <td>10-מן המיצר</td>
                 <td>שמח</td>
                 <td>אייזיק האניג</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

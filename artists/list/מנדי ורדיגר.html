@@ -1,889 +1,871 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מנדי ורדיגר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מנדי ורדיגר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמנדי ורדיגר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמנדי ורדיגר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('52339')">
                 <td><a>52339</a></td>
                 <td>Track 1</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52340')">
                 <td><a>52340</a></td>
                 <td>Track 10</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52341')">
                 <td><a>52341</a></td>
                 <td>Track 11</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52342')">
                 <td><a>52342</a></td>
                 <td>Track 12</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52343')">
                 <td><a>52343</a></td>
                 <td>Track 13</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52344')">
                 <td><a>52344</a></td>
                 <td>Track 14</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52345')">
                 <td><a>52345</a></td>
                 <td>Track 15</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52346')">
                 <td><a>52346</a></td>
                 <td>Track 16</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52347')">
                 <td><a>52347</a></td>
                 <td>Track 17</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52348')">
                 <td><a>52348</a></td>
                 <td>Track 18</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52349')">
                 <td><a>52349</a></td>
                 <td>Track 2</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52350')">
                 <td><a>52350</a></td>
                 <td>Track 3</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52351')">
                 <td><a>52351</a></td>
                 <td>Track 4</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52352')">
                 <td><a>52352</a></td>
                 <td>Track 5</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52353')">
                 <td><a>52353</a></td>
                 <td>Track 6</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52354')">
                 <td><a>52354</a></td>
                 <td>Track 7</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52355')">
                 <td><a>52355</a></td>
                 <td>Track 8</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52356')">
                 <td><a>52356</a></td>
                 <td>Track 9</td>
                 <td>א שבת מיט וורדיגר</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52357')">
                 <td><a>52357</a></td>
                 <td>01 שלום עליכם</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52358')">
                 <td><a>52358</a></td>
                 <td>02 אני הולך בשימחה</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52359')">
                 <td><a>52359</a></td>
                 <td>03 מרגלא</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52360')">
                 <td><a>52360</a></td>
                 <td>04 איש את רעהו</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52361')">
                 <td><a>52361</a></td>
                 <td>05 מרחוק ה' נראה</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52362')">
                 <td><a>52362</a></td>
                 <td>06 כיצד מרקדין</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52363')">
                 <td><a>52363</a></td>
                 <td>07 אבינו מלכנו</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52364')">
                 <td><a>52364</a></td>
                 <td>08 תזכנו לנצח</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52365')">
                 <td><a>52365</a></td>
                 <td>09 את שם</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52366')">
                 <td><a>52366</a></td>
                 <td>10 משמח</td>
                 <td>אני הולך בשמחה</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52367')">
                 <td><a>52367</a></td>
                 <td>01-בהדרת קודש</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52368')">
                 <td><a>52368</a></td>
                 <td>02-לב טהור</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52369')">
                 <td><a>52369</a></td>
                 <td>03-עשה עמי</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52370')">
                 <td><a>52370</a></td>
                 <td>04-יהא לנא</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52371')">
                 <td><a>52371</a></td>
                 <td>05-שיהא</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52372')">
                 <td><a>52372</a></td>
                 <td>06-חתן באגלייטן</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52373')">
                 <td><a>52373</a></td>
                 <td>07-מחרוזת יודו</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52374')">
                 <td><a>52374</a></td>
                 <td>08-על זאת</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52375')">
                 <td><a>52375</a></td>
                 <td>09-סימן טוב</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52376')">
                 <td><a>52376</a></td>
                 <td>10-שש אנכי</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52377')">
                 <td><a>52377</a></td>
                 <td>11-והאר עינינו-מחרוזת הקפות</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52378')">
                 <td><a>52378</a></td>
                 <td>12-הקפה א</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52379')">
                 <td><a>52379</a></td>
                 <td>13-הקפה ב</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52380')">
                 <td><a>52380</a></td>
                 <td>14-הקפה ג</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52381')">
                 <td><a>52381</a></td>
                 <td>15-הקפה ד</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52382')">
                 <td><a>52382</a></td>
                 <td>16-הקפה ה-מחרוזת פתחו שערים</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52383')">
                 <td><a>52383</a></td>
                 <td>17-פתחו</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52384')">
                 <td><a>52384</a></td>
                 <td>18-וזכנו</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52385')">
                 <td><a>52385</a></td>
                 <td>19-ועל ידי</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52386')">
                 <td><a>52386</a></td>
                 <td>20-כל העוסק</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52387')">
                 <td><a>52387</a></td>
                 <td>21-והביאנו</td>
                 <td>בהדרת קודש</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52388')">
                 <td><a>52388</a></td>
                 <td>01-חברים</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52389')">
                 <td><a>52389</a></td>
                 <td>02-הייליגער שבת</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52390')">
                 <td><a>52390</a></td>
                 <td>03-אנא מלך</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52391')">
                 <td><a>52391</a></td>
                 <td>04-על הר</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52392')">
                 <td><a>52392</a></td>
                 <td>06-ותשועת צדיקים</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52393')">
                 <td><a>52393</a></td>
                 <td>07-גלות</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52394')">
                 <td><a>52394</a></td>
                 <td>08-אני מאמין</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52395')">
                 <td><a>52395</a></td>
                 <td>09-יודע</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52396')">
                 <td><a>52396</a></td>
                 <td>10-זרעא</td>
                 <td>חברים כל ישראל ח''א</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52397')">
                 <td><a>52397</a></td>
                 <td>01-שבת ומנוחה</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52398')">
                 <td><a>52398</a></td>
                 <td>02-י-ה רבון</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52399')">
                 <td><a>52399</a></td>
                 <td>03-אין ירושלים</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52400')">
                 <td><a>52400</a></td>
                 <td>04-שבח</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52401')">
                 <td><a>52401</a></td>
                 <td>05-לכו בנים</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52402')">
                 <td><a>52402</a></td>
                 <td>06-חברים 2</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52403')">
                 <td><a>52403</a></td>
                 <td>07-שיבנה</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52404')">
                 <td><a>52404</a></td>
                 <td>08-הטוב</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52405')">
                 <td><a>52405</a></td>
                 <td>09-מנוחה</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52406')">
                 <td><a>52406</a></td>
                 <td>10-ברכה מרובה</td>
                 <td>חברים כל ישראל ח''ב</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52407')">
                 <td><a>52407</a></td>
                 <td>01-חברים</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52408')">
                 <td><a>52408</a></td>
                 <td>02-הייליגער שבת</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52409')">
                 <td><a>52409</a></td>
                 <td>03-אנא מלך</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52410')">
                 <td><a>52410</a></td>
                 <td>04-על הר</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52411')">
                 <td><a>52411</a></td>
                 <td>05-לא תבושי</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52412')">
                 <td><a>52412</a></td>
                 <td>06-ותשועת צדיקים</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52413')">
                 <td><a>52413</a></td>
                 <td>07-גלות</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52414')">
                 <td><a>52414</a></td>
                 <td>08-אני מאמין</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52415')">
                 <td><a>52415</a></td>
                 <td>09-יודע</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52416')">
                 <td><a>52416</a></td>
                 <td>10-זרעא</td>
                 <td>מנדי ורדיגר וחברים 1</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52417')">
                 <td><a>52417</a></td>
                 <td>01 שבת ומנוחה</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52418')">
                 <td><a>52418</a></td>
                 <td>02 קה רבון</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52419')">
                 <td><a>52419</a></td>
                 <td>03 אין ירושלים</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52420')">
                 <td><a>52420</a></td>
                 <td>04 שבח</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52421')">
                 <td><a>52421</a></td>
                 <td>05 לכו בנים</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52422')">
                 <td><a>52422</a></td>
                 <td>06 חברים 2</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52423')">
                 <td><a>52423</a></td>
                 <td>07 שיבנה</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52424')">
                 <td><a>52424</a></td>
                 <td>08 הטוב</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52425')">
                 <td><a>52425</a></td>
                 <td>09 מנוחה ושמחה</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52426')">
                 <td><a>52426</a></td>
                 <td>10 ברכה מרובה</td>
                 <td>מנדי ורדיגר וחברים 2</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52427')">
                 <td><a>52427</a></td>
                 <td>02 תנא דבי אליהו</td>
                 <td>סינגלים</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52428')">
                 <td><a>52428</a></td>
                 <td>04. מלך - מנדי ורדיגר</td>
                 <td>סינגלים</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52429')">
                 <td><a>52429</a></td>
                 <td>ונהפוך-מנדי ורדיגר</td>
                 <td>סינגלים</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52430')">
                 <td><a>52430</a></td>
                 <td>שושנת-מנדי ורדיגר</td>
                 <td>סינגלים</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52431')">
                 <td><a>52431</a></td>
                 <td>01-כל העוסק</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52432')">
                 <td><a>52432</a></td>
                 <td>02-רבש''ע זכנו</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52433')">
                 <td><a>52433</a></td>
                 <td>03-וידעו</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52434')">
                 <td><a>52434</a></td>
                 <td>04-וקרב פזורינו</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52435')">
                 <td><a>52435</a></td>
                 <td>05-אהללה</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52436')">
                 <td><a>52436</a></td>
                 <td>06-ה' אלוקי</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52437')">
                 <td><a>52437</a></td>
                 <td>07-בכל ליבי</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52438')">
                 <td><a>52438</a></td>
                 <td>08-די מאמע'ס געבעט</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52439')">
                 <td><a>52439</a></td>
                 <td>09-ורחמים</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52440')">
                 <td><a>52440</a></td>
                 <td>10-חופה ניגון</td>
                 <td>רבש''ע זכנו</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52441')">
                 <td><a>52441</a></td>
                 <td>01 ודבריו חיים</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52442')">
                 <td><a>52442</a></td>
                 <td>02 Tumid Bechoyl Yoim</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52443')">
                 <td><a>52443</a></td>
                 <td>03 אבות עטרה לבנים</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52444')">
                 <td><a>52444</a></td>
                 <td>04 שפכי כמים</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52445')">
                 <td><a>52445</a></td>
                 <td>05 Pischi Li Peysach</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52446')">
                 <td><a>52446</a></td>
                 <td>06 Di Voch</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52447')">
                 <td><a>52447</a></td>
                 <td>07 אור חדש</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52448')">
                 <td><a>52448</a></td>
                 <td>08 Imisheyifa</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52449')">
                 <td><a>52449</a></td>
                 <td>09 בואי בשלום</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52450')">
                 <td><a>52450</a></td>
                 <td>10 לב טוב</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52451')">
                 <td><a>52451</a></td>
                 <td>11 Hoyishanu</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52452')">
                 <td><a>52452</a></td>
                 <td>12 שיהיה הכל נחת רוח</td>
                 <td>תמיד בכל יום</td>
                 <td>מנדי ורדיגר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,357 +1,339 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מנדי וייס</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מנדי וייס</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמנדי וייס</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמנדי וייס</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('22049')">
                 <td><a>22049</a></td>
                 <td>01 אלע אלע</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22050')">
                 <td><a>22050</a></td>
                 <td>02 מוציא אסירים</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22051')">
                 <td><a>22051</a></td>
                 <td>03 יום זה מכובד</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22052')">
                 <td><a>22052</a></td>
                 <td>04 הבן יקיר</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22053')">
                 <td><a>22053</a></td>
                 <td>05 נעשה ונשמע</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22054')">
                 <td><a>22054</a></td>
                 <td>06 שמע בני</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22055')">
                 <td><a>22055</a></td>
                 <td>07 מנאן</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22056')">
                 <td><a>22056</a></td>
                 <td>08 טובות ונחמות</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22057')">
                 <td><a>22057</a></td>
                 <td>09 קה זכות אבות</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22058')">
                 <td><a>22058</a></td>
                 <td>10 וארשתיך</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22059')">
                 <td><a>22059</a></td>
                 <td>11 אנא עבדא</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22060')">
                 <td><a>22060</a></td>
                 <td>12 כי לא ידח</td>
                 <td>אלע אלע</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22061')">
                 <td><a>22061</a></td>
                 <td>- מנדי וייס - הוי רץ למשנה - חסידי</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22062')">
                 <td><a>22062</a></td>
                 <td>-סינגל-מנדי-וייס-ורולי-דיקמן---ג-אל-הנשמה</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22063')">
                 <td><a>22063</a></td>
                 <td>11 קול דודי - מנדי וייס</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22064')">
                 <td><a>22064</a></td>
                 <td>בן פייגא</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22065')">
                 <td><a>22065</a></td>
                 <td>הניגון האבוד</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22066')">
                 <td><a>22066</a></td>
                 <td>והנה ה' נצב עליו</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22067')">
                 <td><a>22067</a></td>
                 <td>ויעזור ויגן</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22068')">
                 <td><a>22068</a></td>
                 <td>ושב השם</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22069')">
                 <td><a>22069</a></td>
                 <td>זאנוויל מבצע את טובות ונחמות של מנדי וייס</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22070')">
                 <td><a>22070</a></td>
                 <td>יעלה של מבד</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22071')">
                 <td><a>22071</a></td>
                 <td>כרחם אב</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22072')">
                 <td><a>22072</a></td>
                 <td>כתר, בר מצוה קליגר</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22073')">
                 <td><a>22073</a></td>
                 <td>לזכר בעל אהבת ישראל</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22074')">
                 <td><a>22074</a></td>
                 <td>מהחתונות לאולפנים מנדי וייס מפתיע עם הלהיט החדש “ויעזור''</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22075')">
                 <td><a>22075</a></td>
                 <td>מחרוזת שירי שבת - 'מלכות', לוי פאלקוויטש, מנדי וייס ומוישי ניילנדר 1</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22076')">
                 <td><a>22076</a></td>
                 <td>מנדי וייס - שמוליק לוטרמן - שמחה</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22077')">
                 <td><a>22077</a></td>
                 <td>מנדי וייס - שמחה</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22078')">
                 <td><a>22078</a></td>
                 <td>מנדי וייס ויודי ביאלוסטוצקי בדואט חדש ''יבנה ביתו''</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22079')">
                 <td><a>22079</a></td>
                 <td>מנדי וייס-הכול</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22080')">
                 <td><a>22080</a></td>
                 <td>מקהלת 'מלכות', לוי פאלקוויטש, יענקי דסקל, מנדי וייס ובנצי קלצקין עם מחרוזת עליה לרגל ''נעלה ונראה''</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22081')">
                 <td><a>22081</a></td>
                 <td>ניגון גראסווארדיין</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22082')">
                 <td><a>22082</a></td>
                 <td>קה ריבון מנדי ווייס דובי מייזלעס</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22083')">
                 <td><a>22083</a></td>
                 <td>שים שלום</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22084')">
                 <td><a>22084</a></td>
                 <td>שיר חתונה</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22085')">
                 <td><a>22085</a></td>
                 <td>שמחה</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('22086')">
                 <td><a>22086</a></td>
                 <td>שערי שמים פתח</td>
                 <td>סינגלים</td>
                 <td>מנדי וייס</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

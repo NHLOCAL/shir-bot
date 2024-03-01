@@ -1,469 +1,451 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אורי דוידי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אורי דוידי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאורי דוידי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאורי דוידי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2527')">
                 <td><a>2527</a></td>
                 <td>01 לחי עולמים</td>
                 <td>Top 5 Dance - אורי דוידי - 2023</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2528')">
                 <td><a>2528</a></td>
                 <td>02 ימה</td>
                 <td>Top 5 Dance - אורי דוידי - 2023</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2529')">
                 <td><a>2529</a></td>
                 <td>03 תמיד מספרים</td>
                 <td>Top 5 Dance - אורי דוידי - 2023</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2530')">
                 <td><a>2530</a></td>
                 <td>04 אידן אין אמריקה</td>
                 <td>Top 5 Dance - אורי דוידי - 2023</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2531')">
                 <td><a>2531</a></td>
                 <td>05 בקרוב ממש</td>
                 <td>Top 5 Dance - אורי דוידי - 2023</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2532')">
                 <td><a>2532</a></td>
                 <td>01 תבנה עולם</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2533')">
                 <td><a>2533</a></td>
                 <td>02 להדות</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2534')">
                 <td><a>2534</a></td>
                 <td>03 Bye Bye Galus</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2535')">
                 <td><a>2535</a></td>
                 <td>04 מי יודע</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2536')">
                 <td><a>2536</a></td>
                 <td>05 תמיד מספרים</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2537')">
                 <td><a>2537</a></td>
                 <td>06 הנה הגאולה</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2538')">
                 <td><a>2538</a></td>
                 <td>07 אני חי</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2539')">
                 <td><a>2539</a></td>
                 <td>08 אני מאמין</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2540')">
                 <td><a>2540</a></td>
                 <td>09 אחד אני יודע</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2541')">
                 <td><a>2541</a></td>
                 <td>10 אתה עמדי</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2542')">
                 <td><a>2542</a></td>
                 <td>11 Jump 2.0</td>
                 <td>אני חי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2543')">
                 <td><a>2543</a></td>
                 <td>01 הלואי</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2544')">
                 <td><a>2544</a></td>
                 <td>02 ברכת האב</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2545')">
                 <td><a>2545</a></td>
                 <td>03 מה שיש לו</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2546')">
                 <td><a>2546</a></td>
                 <td>04 מה נורא</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2547')">
                 <td><a>2547</a></td>
                 <td>05 אנא שמע</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2548')">
                 <td><a>2548</a></td>
                 <td>06 מלא ידינו</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2549')">
                 <td><a>2549</a></td>
                 <td>07 אב הרחמן</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2550')">
                 <td><a>2550</a></td>
                 <td>08 רבון המעשים</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2551')">
                 <td><a>2551</a></td>
                 <td>09 שיר לעתיד לבוא</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2552')">
                 <td><a>2552</a></td>
                 <td>10 בלבי</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2553')">
                 <td><a>2553</a></td>
                 <td>11 יחד</td>
                 <td>הלוואי</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2554')">
                 <td><a>2554</a></td>
                 <td>01 מוכנים</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2555')">
                 <td><a>2555</a></td>
                 <td>02 תפילה שלי</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2556')">
                 <td><a>2556</a></td>
                 <td>03 הללו</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2557')">
                 <td><a>2557</a></td>
                 <td>04 שלא נדע</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2558')">
                 <td><a>2558</a></td>
                 <td>05 עונג שבת</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2559')">
                 <td><a>2559</a></td>
                 <td>06 שהחיינו</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2560')">
                 <td><a>2560</a></td>
                 <td>07 נו נו</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2561')">
                 <td><a>2561</a></td>
                 <td>08 חד הוא</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2562')">
                 <td><a>2562</a></td>
                 <td>09 ויוציאנו</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2563')">
                 <td><a>2563</a></td>
                 <td>10 מודה אני</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2564')">
                 <td><a>2564</a></td>
                 <td>11 We Will Sing Again</td>
                 <td>מוכנים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2565')">
                 <td><a>2565</a></td>
                 <td>01 - הלב שלי</td>
                 <td>מחרוזת ישי ריבו</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2566')">
                 <td><a>2566</a></td>
                 <td>02 - נחכה לך</td>
                 <td>מחרוזת ישי ריבו</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2567')">
                 <td><a>2567</a></td>
                 <td>03 - לשוב הביתה</td>
                 <td>מחרוזת ישי ריבו</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2568')">
                 <td><a>2568</a></td>
                 <td>04 - תכף יפתח  Comme Les Oiseaux</td>
                 <td>מחרוזת ישי ריבו</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2569')">
                 <td><a>2569</a></td>
                 <td>05 - סיבת הסיבות</td>
                 <td>מחרוזת ישי ריבו</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2570')">
                 <td><a>2570</a></td>
                 <td>- אורי דוידי - Jump - אנגלית</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2571')">
                 <td><a>2571</a></td>
                 <td>Jump</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2572')">
                 <td><a>2572</a></td>
                 <td>אורי דוידי - TOP 5 Dance</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2573')">
                 <td><a>2573</a></td>
                 <td>אורי דוידי - אני חי</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2574')">
                 <td><a>2574</a></td>
                 <td>אורי דוידי - אתה עמדי</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2575')">
                 <td><a>2575</a></td>
                 <td>אורי דוידי - בליבי</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2576')">
                 <td><a>2576</a></td>
                 <td>אורי דוידי במחרוזת מקפיצה של מיטב הלהיטים האחרונים</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2577')">
                 <td><a>2577</a></td>
                 <td>במחרוזת שירים</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2578')">
                 <td><a>2578</a></td>
                 <td>חיים של שלום</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2579')">
                 <td><a>2579</a></td>
                 <td>מוכנים רמיקס</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2580')">
                 <td><a>2580</a></td>
                 <td>מחרוזת ריקודים</td>
                 <td>סינגלים</td>
                 <td>אורי דוידי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

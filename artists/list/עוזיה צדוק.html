@@ -1,567 +1,549 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>עוזיה צדוק</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>עוזיה צדוק</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspעוזיה צדוק</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspעוזיה צדוק</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('24961')">
                 <td><a>24961</a></td>
                 <td>אם יש גן עדן</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24962')">
                 <td><a>24962</a></td>
                 <td>אנא בכח ווקאלי</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24963')">
                 <td><a>24963</a></td>
                 <td>אתה לא לבד</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24964')">
                 <td><a>24964</a></td>
                 <td>גיבור של אמא</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24965')">
                 <td><a>24965</a></td>
                 <td>הבט משמים</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24966')">
                 <td><a>24966</a></td>
                 <td>הבט-עוזיה צדוק</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24967')">
                 <td><a>24967</a></td>
                 <td>הכל זה לטובה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24968')">
                 <td><a>24968</a></td>
                 <td>הלילה כאן לשמוח</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24969')">
                 <td><a>24969</a></td>
                 <td>וזכני לגדל-אקפלה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24970')">
                 <td><a>24970</a></td>
                 <td>יא מאמא רמיקס</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24971')">
                 <td><a>24971</a></td>
                 <td>יא מאמא</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24972')">
                 <td><a>24972</a></td>
                 <td>ילדות נשכחת</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24973')">
                 <td><a>24973</a></td>
                 <td>ים של דמעות</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24974')">
                 <td><a>24974</a></td>
                 <td>כוכב מאיר - עוזיה צדוק</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24975')">
                 <td><a>24975</a></td>
                 <td>כוכב מאיר I עוזיה צדוק Kochav Meir I Uziya Tzadok</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24976')">
                 <td><a>24976</a></td>
                 <td>כוכב מאיר</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24977')">
                 <td><a>24977</a></td>
                 <td>כי בשמחה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24978')">
                 <td><a>24978</a></td>
                 <td>כשאת עצובה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24979')">
                 <td><a>24979</a></td>
                 <td>כשהלב בוכה 1</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24980')">
                 <td><a>24980</a></td>
                 <td>כשהלב בוכה 2</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24981')">
                 <td><a>24981</a></td>
                 <td>כשהלב בוכה 3</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24982')">
                 <td><a>24982</a></td>
                 <td>מחכה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24983')">
                 <td><a>24983</a></td>
                 <td>מיקס משירי האלבום</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24984')">
                 <td><a>24984</a></td>
                 <td>סוד המזלות</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24985')">
                 <td><a>24985</a></td>
                 <td>עוזיה ויורם גאון שירים ביחד מצטיין של הערב</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24986')">
                 <td><a>24986</a></td>
                 <td>עוזיה צדוק - הבט משמים</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24987')">
                 <td><a>24987</a></td>
                 <td>עוזיה צדוק - תודה 2016</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24988')">
                 <td><a>24988</a></td>
                 <td>עוזיה צדוק I כשאת עצובה I ביהס למוסיקהUziya Tzadok I Csheat Atzuva</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24989')">
                 <td><a>24989</a></td>
                 <td>עוזיה צדוק I פסגות חייך Uziya Tzadok I Pisgot Chayecha</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24990')">
                 <td><a>24990</a></td>
                 <td>עוזיה צדוק בסינגל חדש - פסגות חייך</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24991')">
                 <td><a>24991</a></td>
                 <td>עוזיה צדוק ועידן רייכל I מחכה I ביהס למוסיקהUziya Tzadok & Idan Raichel I Mechake</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24992')">
                 <td><a>24992</a></td>
                 <td>עוזיה צדוק כשהלב בוכה בית ספר למוסיקה עונה 3</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24993')">
                 <td><a>24993</a></td>
                 <td>עוזיה צדוק- פיסגות חייך</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24994')">
                 <td><a>24994</a></td>
                 <td>עוזיה צדוק</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24995')">
                 <td><a>24995</a></td>
                 <td>עומדות היו רגלינו - צלצול</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24996')">
                 <td><a>24996</a></td>
                 <td>פורים לוס אנגל</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24997')">
                 <td><a>24997</a></td>
                 <td>פסגות חייך</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24998')">
                 <td><a>24998</a></td>
                 <td>צל עץ תמר</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24999')">
                 <td><a>24999</a></td>
                 <td>שיר ימיך I עוזיה צדוק Shir Yamec</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25000')">
                 <td><a>25000</a></td>
                 <td>שיר ימיך</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25001')">
                 <td><a>25001</a></td>
                 <td>שיר מרגש לזכר הנרצחים בצרפת</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25002')">
                 <td><a>25002</a></td>
                 <td>שיר על מרן לרגל ה -30</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25003')">
                 <td><a>25003</a></td>
                 <td>שמע בני</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25004')">
                 <td><a>25004</a></td>
                 <td>שמע ישראל</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25005')">
                 <td><a>25005</a></td>
                 <td>תודה</td>
                 <td>סינגלים</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25006')">
                 <td><a>25006</a></td>
                 <td>01 ירושלים</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25007')">
                 <td><a>25007</a></td>
                 <td>02 מברוק</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25008')">
                 <td><a>25008</a></td>
                 <td>03 שומר ישראל</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25009')">
                 <td><a>25009</a></td>
                 <td>04 הלילה כאן לשמוח</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25010')">
                 <td><a>25010</a></td>
                 <td>05 אתה לא לבד</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25011')">
                 <td><a>25011</a></td>
                 <td>06 הכל זה לטובה</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25012')">
                 <td><a>25012</a></td>
                 <td>07 אמא</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25013')">
                 <td><a>25013</a></td>
                 <td>08 נקודה של אור</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25014')">
                 <td><a>25014</a></td>
                 <td>09 כוכב מאיר</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25015')">
                 <td><a>25015</a></td>
                 <td>10</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25016')">
                 <td><a>25016</a></td>
                 <td>11 נר לרגלי</td>
                 <td>עוזיה צדוק שומר ישראל</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25017')">
                 <td><a>25017</a></td>
                 <td>01 פתיחה</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25018')">
                 <td><a>25018</a></td>
                 <td>02 פסגות חייך</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25019')">
                 <td><a>25019</a></td>
                 <td>03 צל עץ תמר</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25020')">
                 <td><a>25020</a></td>
                 <td>04 אל תשטה באהבה</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25021')">
                 <td><a>25021</a></td>
                 <td>05 יא מאמא</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25022')">
                 <td><a>25022</a></td>
                 <td>06 סולו דניאל אהביאל</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25023')">
                 <td><a>25023</a></td>
                 <td>07 שמע ישראל</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25024')">
                 <td><a>25024</a></td>
                 <td>08 שומר ישראל</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25025')">
                 <td><a>25025</a></td>
                 <td>09 סוד המזלות</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25026')">
                 <td><a>25026</a></td>
                 <td>10 כשאת עצובה</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25027')">
                 <td><a>25027</a></td>
                 <td>11 הבט</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('25028')">
                 <td><a>25028</a></td>
                 <td>12 תודה</td>
                 <td>פסגות חייך - הופעה 2016</td>
                 <td>עוזיה צדוק</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

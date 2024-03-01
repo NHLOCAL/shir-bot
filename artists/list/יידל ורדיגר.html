@@ -1,665 +1,647 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יידל ורדיגר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יידל ורדיגר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיידל ורדיגר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיידל ורדיגר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('13275')">
                 <td><a>13275</a></td>
                 <td>01-בזאת אני בוטח</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13276')">
                 <td><a>13276</a></td>
                 <td>02-שמעו ותחי נפשכם</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13277')">
                 <td><a>13277</a></td>
                 <td>03-ישמח ישראל</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13278')">
                 <td><a>13278</a></td>
                 <td>04-הנשמה</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13279')">
                 <td><a>13279</a></td>
                 <td>05-אמור מעט</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13280')">
                 <td><a>13280</a></td>
                 <td>06-חדש ימינו</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13281')">
                 <td><a>13281</a></td>
                 <td>07-בני</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13282')">
                 <td><a>13282</a></td>
                 <td>08-I Need You</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13283')">
                 <td><a>13283</a></td>
                 <td>09-ברוך הבא</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13284')">
                 <td><a>13284</a></td>
                 <td>10-לאופר ניגון</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13285')">
                 <td><a>13285</a></td>
                 <td>11-א געהויבען זמן</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13286')">
                 <td><a>13286</a></td>
                 <td>12-לכו נרננה</td>
                 <td>IV</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13287')">
                 <td><a>13287</a></td>
                 <td>01 מלאים זיו</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13288')">
                 <td><a>13288</a></td>
                 <td>02 עננו</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13289')">
                 <td><a>13289</a></td>
                 <td>03 בר יוחאי</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13290')">
                 <td><a>13290</a></td>
                 <td>04 שיר המעלות</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13291')">
                 <td><a>13291</a></td>
                 <td>05 א ווערדיגער איד</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13292')">
                 <td><a>13292</a></td>
                 <td>06 הנשמה לך</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13293')">
                 <td><a>13293</a></td>
                 <td>07 ובאותן הזמן</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13294')">
                 <td><a>13294</a></td>
                 <td>08 שערי דמאות</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13295')">
                 <td><a>13295</a></td>
                 <td>09 שוש אשיש</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13296')">
                 <td><a>13296</a></td>
                 <td>10 Soon</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13297')">
                 <td><a>13297</a></td>
                 <td>11 על אחת כמה וכמה</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13298')">
                 <td><a>13298</a></td>
                 <td>12 שקול - פתיחה</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13299')">
                 <td><a>13299</a></td>
                 <td>13 שקול</td>
                 <td>א ורדיגר איד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13300')">
                 <td><a>13300</a></td>
                 <td>01-וזכינו</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13301')">
                 <td><a>13301</a></td>
                 <td>02-ביחד</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13302')">
                 <td><a>13302</a></td>
                 <td>03-כל ישראל</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13303')">
                 <td><a>13303</a></td>
                 <td>04-וישם בלבינו</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13304')">
                 <td><a>13304</a></td>
                 <td>05-הרחמן</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13305')">
                 <td><a>13305</a></td>
                 <td>06-קדשינו</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13306')">
                 <td><a>13306</a></td>
                 <td>07-אליהו הנביא</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13307')">
                 <td><a>13307</a></td>
                 <td>08-לעולם</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13308')">
                 <td><a>13308</a></td>
                 <td>09-אז ימלא</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13309')">
                 <td><a>13309</a></td>
                 <td>10-הוא אשר</td>
                 <td>ביחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13310')">
                 <td><a>13310</a></td>
                 <td>01-לב אחד</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13311')">
                 <td><a>13311</a></td>
                 <td>02-אילן</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13312')">
                 <td><a>13312</a></td>
                 <td>03-אהלל אמלל</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13313')">
                 <td><a>13313</a></td>
                 <td>04-מקימי</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13314')">
                 <td><a>13314</a></td>
                 <td>05-אשריך</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13315')">
                 <td><a>13315</a></td>
                 <td>06-כשושנה בין החוחים</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13316')">
                 <td><a>13316</a></td>
                 <td>07-רקוד רקוד</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13317')">
                 <td><a>13317</a></td>
                 <td>08-אנא בכוח</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13318')">
                 <td><a>13318</a></td>
                 <td>09-יהי שלום</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13319')">
                 <td><a>13319</a></td>
                 <td>10-מן המיצר</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13320')">
                 <td><a>13320</a></td>
                 <td>11-הריעו</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13321')">
                 <td><a>13321</a></td>
                 <td>12-Return</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13322')">
                 <td><a>13322</a></td>
                 <td>13-ואני אשיר</td>
                 <td>לב אחד</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13323')">
                 <td><a>13323</a></td>
                 <td>01-יהודה בן תימא</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13324')">
                 <td><a>13324</a></td>
                 <td>02-ונתנה תוקף</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13325')">
                 <td><a>13325</a></td>
                 <td>03-הן גאלתי</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13326')">
                 <td><a>13326</a></td>
                 <td>04-תודה</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13327')">
                 <td><a>13327</a></td>
                 <td>05-קויתי</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13328')">
                 <td><a>13328</a></td>
                 <td>06-חברים</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13329')">
                 <td><a>13329</a></td>
                 <td>07-מתרצה ברחמים</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13330')">
                 <td><a>13330</a></td>
                 <td>08-יהי החודש</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13331')">
                 <td><a>13331</a></td>
                 <td>09-מזמור שיר</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13332')">
                 <td><a>13332</a></td>
                 <td>10-והוא אשר דיבר</td>
                 <td>לעשות  רצון אביך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13333')">
                 <td><a>13333</a></td>
                 <td>03-05 מודז'יץ - וואלס פורימדיג'ס להרהח ר' קויפמאן אידלסון יידל זל, מושר עי רבצ שנקר אדר א' תשעו</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13334')">
                 <td><a>13334</a></td>
                 <td>11 שמילי אונגר - די דריידל ניגון</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13335')">
                 <td><a>13335</a></td>
                 <td>12 שיר המעלות - יידל</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13336')">
                 <td><a>13336</a></td>
                 <td>26 יידל'ה</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13337')">
                 <td><a>13337</a></td>
                 <td>אגדלך</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13338')">
                 <td><a>13338</a></td>
                 <td>יהודה ביר בקאבר ליידל ורדיגר ''לכו למים''</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13339')">
                 <td><a>13339</a></td>
                 <td>יידל ורדיגר והרב ברוך צייט - עננו</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13340')">
                 <td><a>13340</a></td>
                 <td>יידלה</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13341')">
                 <td><a>13341</a></td>
                 <td>מתכונן לסליחות</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13342')">
                 <td><a>13342</a></td>
                 <td>על אחת כמה וכמה</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13343')">
                 <td><a>13343</a></td>
                 <td>עננו</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13344')">
                 <td><a>13344</a></td>
                 <td>שיר ישיבת מיר</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13345')">
                 <td><a>13345</a></td>
                 <td>שירו למלך</td>
                 <td>סינגלים</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13346')">
                 <td><a>13346</a></td>
                 <td>01-שירו למלך</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13347')">
                 <td><a>13347</a></td>
                 <td>02-אלא אלא</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13348')">
                 <td><a>13348</a></td>
                 <td>03-Home</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13349')">
                 <td><a>13349</a></td>
                 <td>04-לכל זמן</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13350')">
                 <td><a>13350</a></td>
                 <td>05-ברך ה</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13351')">
                 <td><a>13351</a></td>
                 <td>06-כולנו אחד</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13352')">
                 <td><a>13352</a></td>
                 <td>07-צמאה לך נפשי</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13353')">
                 <td><a>13353</a></td>
                 <td>08-עבדו</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13354')">
                 <td><a>13354</a></td>
                 <td>09-אודה לקל</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13355')">
                 <td><a>13355</a></td>
                 <td>10-ולירושלים</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('13356')">
                 <td><a>13356</a></td>
                 <td>11-ממקומך</td>
                 <td>שירו למלך</td>
                 <td>יידל ורדיגר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

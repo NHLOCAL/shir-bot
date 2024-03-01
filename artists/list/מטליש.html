@@ -1,462 +1,444 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מטליש</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מטליש</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמטליש</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמטליש</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('46055')">
                 <td><a>46055</a></td>
                 <td>01-לא לפחד</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46056')">
                 <td><a>46056</a></td>
                 <td>02-למנצח</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46057')">
                 <td><a>46057</a></td>
                 <td>03-יהודים</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46058')">
                 <td><a>46058</a></td>
                 <td>04-כי להשם</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46059')">
                 <td><a>46059</a></td>
                 <td>05-אשרי</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46060')">
                 <td><a>46060</a></td>
                 <td>06-עם ישראל</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46061')">
                 <td><a>46061</a></td>
                 <td>07-רחם</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46062')">
                 <td><a>46062</a></td>
                 <td>08-אזכרה</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46063')">
                 <td><a>46063</a></td>
                 <td>09-נקודת</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46064')">
                 <td><a>46064</a></td>
                 <td>10-על הנסים</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46065')">
                 <td><a>46065</a></td>
                 <td>11-תופים</td>
                 <td>לא לפחד</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46066')">
                 <td><a>46066</a></td>
                 <td>01-וזכנו</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46067')">
                 <td><a>46067</a></td>
                 <td>02-דניס ניגון</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46068')">
                 <td><a>46068</a></td>
                 <td>03-ניגון חופה</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46069')">
                 <td><a>46069</a></td>
                 <td>04-פריילך</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46070')">
                 <td><a>46070</a></td>
                 <td>05-עוד ישמע</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46071')">
                 <td><a>46071</a></td>
                 <td>06-אשרינו</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46072')">
                 <td><a>46072</a></td>
                 <td>07-ניגון</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46073')">
                 <td><a>46073</a></td>
                 <td>08-הורה</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46074')">
                 <td><a>46074</a></td>
                 <td>09-וראה בנים</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46075')">
                 <td><a>46075</a></td>
                 <td>10-אני מאמין</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46076')">
                 <td><a>46076</a></td>
                 <td>אני מאמין</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46077')">
                 <td><a>46077</a></td>
                 <td>אשרינו</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46078')">
                 <td><a>46078</a></td>
                 <td>דניס ניגון</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46079')">
                 <td><a>46079</a></td>
                 <td>הורה</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46080')">
                 <td><a>46080</a></td>
                 <td>וזכנו</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46081')">
                 <td><a>46081</a></td>
                 <td>וראה בנים</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46082')">
                 <td><a>46082</a></td>
                 <td>ניגון חופה</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46083')">
                 <td><a>46083</a></td>
                 <td>ניגון</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46084')">
                 <td><a>46084</a></td>
                 <td>עוד ישמע</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46085')">
                 <td><a>46085</a></td>
                 <td>פריילך</td>
                 <td>מטליש 1</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46086')">
                 <td><a>46086</a></td>
                 <td>01-שובה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46087')">
                 <td><a>46087</a></td>
                 <td>02-אזמרה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46088')">
                 <td><a>46088</a></td>
                 <td>03-ממקומו</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46089')">
                 <td><a>46089</a></td>
                 <td>04-מזמור לדוד</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46090')">
                 <td><a>46090</a></td>
                 <td>05-בגלל</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46091')">
                 <td><a>46091</a></td>
                 <td>06-אתה תקום</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46092')">
                 <td><a>46092</a></td>
                 <td>07-אשת חיל</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46093')">
                 <td><a>46093</a></td>
                 <td>08-שבחין</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46094')">
                 <td><a>46094</a></td>
                 <td>09-מהרה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46095')">
                 <td><a>46095</a></td>
                 <td>10-קרקוב</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46096')">
                 <td><a>46096</a></td>
                 <td>11-עושים תשובה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46097')">
                 <td><a>46097</a></td>
                 <td>אזמרה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46098')">
                 <td><a>46098</a></td>
                 <td>אשת חיל</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46099')">
                 <td><a>46099</a></td>
                 <td>אתה תקום</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46100')">
                 <td><a>46100</a></td>
                 <td>בגלל</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46101')">
                 <td><a>46101</a></td>
                 <td>מהרה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46102')">
                 <td><a>46102</a></td>
                 <td>מזמור לדוד</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46103')">
                 <td><a>46103</a></td>
                 <td>ממקומו</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46104')">
                 <td><a>46104</a></td>
                 <td>עושים תשובה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46105')">
                 <td><a>46105</a></td>
                 <td>קרקוב</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46106')">
                 <td><a>46106</a></td>
                 <td>שבחין</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('46107')">
                 <td><a>46107</a></td>
                 <td>שובה</td>
                 <td>מטליש 2</td>
                 <td>מטליש</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,343 +1,325 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אהרלה וינטרוב</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אהרלה וינטרוב</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאהרלה וינטרוב</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאהרלה וינטרוב</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('1715')">
                 <td><a>1715</a></td>
                 <td>שירים בעברית, אבא נשאר אבא, יב' תמוז, תשעט-75</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1716')">
                 <td><a>1716</a></td>
                 <td>שירים בעברית, אבא שומע אותי, יב' תמוז, תשעט-76</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1717')">
                 <td><a>1717</a></td>
                 <td>שירים בעברית, אהבת ישראל, יב' תמוז, תשעט-70</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1718')">
                 <td><a>1718</a></td>
                 <td>שירים בעברית, ברכה יהודית, יב' תמוז, תשעט-65</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1719')">
                 <td><a>1719</a></td>
                 <td>שירים בעברית, ברכת כהנים, יב' תמוז, תשעט-69</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1720')">
                 <td><a>1720</a></td>
                 <td>שירים בעברית, דמעות משתלבות, כא' אייר, תשפא-765</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1721')">
                 <td><a>1721</a></td>
                 <td>שירים בעברית, דמעות מתשלבות, יב' תמוז, תשעט-66</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1722')">
                 <td><a>1722</a></td>
                 <td>שירים בעברית, דף היומי, דף צא, כא' כסלו, תשפ-85</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1723')">
                 <td><a>1723</a></td>
                 <td>שירים בעברית, הגאון מוילנא, יב' תמוז, תשעט-67</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1724')">
                 <td><a>1724</a></td>
                 <td>שירים בעברית, ההקפות של ר חיים זייציק, יב' תמוז, תשעט-81</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1725')">
                 <td><a>1725</a></td>
                 <td>שירים בעברית, הכנת הלב לחנוכה, יב' תמוז, תשעט-74</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1726')">
                 <td><a>1726</a></td>
                 <td>שירים בעברית, הנר בוער, יב' תמוז, תשעט-79</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1727')">
                 <td><a>1727</a></td>
                 <td>שירים בעברית, הנר האחרון, יב' תמוז, תשעט-72</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1728')">
                 <td><a>1728</a></td>
                 <td>שירים בעברית, הסיפור האחרון, יב' תמוז, תשעט-78</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1729')">
                 <td><a>1729</a></td>
                 <td>שירים בעברית, חלומו של רבי מאיר שפירא, כד' כסלו, תשפ-86</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1730')">
                 <td><a>1730</a></td>
                 <td>שירים בעברית, יצחק אלחנן שמאלה, יב' תמוז, תשעט-68</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1731')">
                 <td><a>1731</a></td>
                 <td>שירים בעברית, יש קונה עולמו, יב' תמוז, תשעט-84</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1732')">
                 <td><a>1732</a></td>
                 <td>שירים בעברית, מגילת אנטיוכוס, יב' תמוז, תשעט-80</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1733')">
                 <td><a>1733</a></td>
                 <td>שירים בעברית, מה אגיד לאבא, יב' תמוז, תשעט-71</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1734')">
                 <td><a>1734</a></td>
                 <td>שירים בעברית, נר שבת, יב' תמוז, תשעט-77</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1735')">
                 <td><a>1735</a></td>
                 <td>שירים בעברית, סיפור יציאת מצרים בעברית, יב' תמוז, תשעט-82</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1736')">
                 <td><a>1736</a></td>
                 <td>שירים בעברית, קריאת ים סוף בעברית, יב' תמוז, תשעט-83</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1737')">
                 <td><a>1737</a></td>
                 <td>שירים בעברית, תשובות, יב' תמוז, תשעט-73</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1738')">
                 <td><a>1738</a></td>
                 <td>שירים שונים, לקבל שבים, יב' תמוז, תשעט-91</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1739')">
                 <td><a>1739</a></td>
                 <td>שירים שונים, מה נשתנה, הגדה של פסח, יב' תמוז, תשעט-92</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1740')">
                 <td><a>1740</a></td>
                 <td>שירים שונים, רפואה שלימה, יב' תמוז, תשעט-90</td>
                 <td>וינטרוב,  אהרן (אהר'לה)</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1741')">
                 <td><a>1741</a></td>
                 <td>אבא נשאר אבא</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1742')">
                 <td><a>1742</a></td>
                 <td>אהר'לה וינטרוב - חזק</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1743')">
                 <td><a>1743</a></td>
                 <td>דמעות משתלבות</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1744')">
                 <td><a>1744</a></td>
                 <td>יצחק אלחנן שמאלה</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1745')">
                 <td><a>1745</a></td>
                 <td>יש קונה עולמו</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1746')">
                 <td><a>1746</a></td>
                 <td>משאלתו של רבינו</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1747')">
                 <td><a>1747</a></td>
                 <td>צוואת הר' שטיינמן</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1748')">
                 <td><a>1748</a></td>
                 <td>רבה רבה - שיר על הרב שטיינמן</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1749')">
                 <td><a>1749</a></td>
                 <td>רבי שמעון</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('1750')">
                 <td><a>1750</a></td>
                 <td>תאור עשרת המכות בשירה וחרוזים</td>
                 <td>סינגלים</td>
                 <td>אהרלה וינטרוב</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

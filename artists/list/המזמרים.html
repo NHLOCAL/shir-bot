@@ -1,1533 +1,1515 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>המזמרים</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>המזמרים</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspהמזמרים</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspהמזמרים</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('7479')">
                 <td><a>7479</a></td>
                 <td>01 אבינו מלכנו</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7480')">
                 <td><a>7480</a></td>
                 <td>02 תורה תהא</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7481')">
                 <td><a>7481</a></td>
                 <td>03 פריילאך</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7482')">
                 <td><a>7482</a></td>
                 <td>04 וייתי לנא</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7483')">
                 <td><a>7483</a></td>
                 <td>05 לא אירא רע</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7484')">
                 <td><a>7484</a></td>
                 <td>06 לב טהור</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7485')">
                 <td><a>7485</a></td>
                 <td>07 במידת הרחמים</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7486')">
                 <td><a>7486</a></td>
                 <td>08 ושאבתם מים</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7487')">
                 <td><a>7487</a></td>
                 <td>09 מי כמוך</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7488')">
                 <td><a>7488</a></td>
                 <td>10 פריילאך</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7489')">
                 <td><a>7489</a></td>
                 <td>11 על זה</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7490')">
                 <td><a>7490</a></td>
                 <td>12 ניגון הרבע'ס</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7491')">
                 <td><a>7491</a></td>
                 <td>13 מאי דהוה</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7492')">
                 <td><a>7492</a></td>
                 <td>14 אנא עבדא</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7493')">
                 <td><a>7493</a></td>
                 <td>15 חסידים</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7494')">
                 <td><a>7494</a></td>
                 <td>16 ועמך כולם צדיקים</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7495')">
                 <td><a>7495</a></td>
                 <td>17 ויעזור</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7496')">
                 <td><a>7496</a></td>
                 <td>18 ושמרו</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7497')">
                 <td><a>7497</a></td>
                 <td>19 רבינו נחמן</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7498')">
                 <td><a>7498</a></td>
                 <td>20 רבינו שאג</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7499')">
                 <td><a>7499</a></td>
                 <td>21 אין שום יאוש</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7500')">
                 <td><a>7500</a></td>
                 <td>22 האדרת</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7501')">
                 <td><a>7501</a></td>
                 <td>23 אני ישנה</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7502')">
                 <td><a>7502</a></td>
                 <td>24 ניגון פינקי</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7503')">
                 <td><a>7503</a></td>
                 <td>25 צמאה לך נפשי</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7504')">
                 <td><a>7504</a></td>
                 <td>26 צמאה נפשי</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7505')">
                 <td><a>7505</a></td>
                 <td>27 מי כמוך</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7506')">
                 <td><a>7506</a></td>
                 <td>28 ועל הכל</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7507')">
                 <td><a>7507</a></td>
                 <td>29 מי שעשה ניסים</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7508')">
                 <td><a>7508</a></td>
                 <td>30 דע לך בני</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7509')">
                 <td><a>7509</a></td>
                 <td>31 א טאטע בלייבט א טאטע</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7510')">
                 <td><a>7510</a></td>
                 <td>32 שהחיינו</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7511')">
                 <td><a>7511</a></td>
                 <td>33 מודה אני</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7512')">
                 <td><a>7512</a></td>
                 <td>34 כל זמן</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7513')">
                 <td><a>7513</a></td>
                 <td>35 עשה עמי</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7514')">
                 <td><a>7514</a></td>
                 <td>36 רבונו של עולם</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7515')">
                 <td><a>7515</a></td>
                 <td>37 רב'ה רב'ה</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7516')">
                 <td><a>7516</a></td>
                 <td>38 הסתרה</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7517')">
                 <td><a>7517</a></td>
                 <td>39 אין כמוך</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7518')">
                 <td><a>7518</a></td>
                 <td>40 והסר ממני</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7519')">
                 <td><a>7519</a></td>
                 <td>41 ואף על פי</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7520')">
                 <td><a>7520</a></td>
                 <td>42 המקום ירחם</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7521')">
                 <td><a>7521</a></td>
                 <td>43 שמע ה'</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7522')">
                 <td><a>7522</a></td>
                 <td>44 אין עוד מלבדו</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7523')">
                 <td><a>7523</a></td>
                 <td>45 בכל צער וצער</td>
                 <td>2 טאנץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7524')">
                 <td><a>7524</a></td>
                 <td>01-בא תרקוד-א. אורלב</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7525')">
                 <td><a>7525</a></td>
                 <td>02-מהשמים-א. אליהו</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7526')">
                 <td><a>7526</a></td>
                 <td>03-אלוקים שבשמים-א. דדיה</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7527')">
                 <td><a>7527</a></td>
                 <td>04-מה שהיה-מ. טסה</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7528')">
                 <td><a>7528</a></td>
                 <td>05-באו נביטה-א. כהן</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7529')">
                 <td><a>7529</a></td>
                 <td>06-למה-ח. בר</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7530')">
                 <td><a>7530</a></td>
                 <td>07-והלב שלך איתך-נ. ישראל</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7531')">
                 <td><a>7531</a></td>
                 <td>08-למען שמך-א. שער</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7532')">
                 <td><a>7532</a></td>
                 <td>09-אל תדאג-י. אדרי</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7533')">
                 <td><a>7533</a></td>
                 <td>10-שנינו-י. בן משיח</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7534')">
                 <td><a>7534</a></td>
                 <td>11-אמן אמן-ש. חיון</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7535')">
                 <td><a>7535</a></td>
                 <td>12-אני מאמין-ד. ברדא</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7536')">
                 <td><a>7536</a></td>
                 <td>13-ד' רק תודה-א. אשל</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7537')">
                 <td><a>7537</a></td>
                 <td>14-צעד בחיי-א. חג'ג</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7538')">
                 <td><a>7538</a></td>
                 <td>15-כולם כאן שרים-א. בן ישראל</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7539')">
                 <td><a>7539</a></td>
                 <td>16-מביט אליך-ש יפרח</td>
                 <td>אוסף דתי ים תיכוני 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7540')">
                 <td><a>7540</a></td>
                 <td>01 פתיחה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7541')">
                 <td><a>7541</a></td>
                 <td>02 ניגון חופה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7542')">
                 <td><a>7542</a></td>
                 <td>03 מי אדיר</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7543')">
                 <td><a>7543</a></td>
                 <td>04 ניגון</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7544')">
                 <td><a>7544</a></td>
                 <td>05 מי בן שיח</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7545')">
                 <td><a>7545</a></td>
                 <td>06 אם אשכחך</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7546')">
                 <td><a>7546</a></td>
                 <td>07 עוד ישמע</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7547')">
                 <td><a>7547</a></td>
                 <td>08 פתיחה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7548')">
                 <td><a>7548</a></td>
                 <td>09 רצוננו</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7549')">
                 <td><a>7549</a></td>
                 <td>10 אהללה אלוקי</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7550')">
                 <td><a>7550</a></td>
                 <td>11 'אהללה ה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7551')">
                 <td><a>7551</a></td>
                 <td>12 אמר להם</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7552')">
                 <td><a>7552</a></td>
                 <td>13 ניגון עתיק</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7553')">
                 <td><a>7553</a></td>
                 <td>14 המה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7554')">
                 <td><a>7554</a></td>
                 <td>15 מודה אני</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7555')">
                 <td><a>7555</a></td>
                 <td>16 מראה כהן</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7556')">
                 <td><a>7556</a></td>
                 <td>17 ימים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7557')">
                 <td><a>7557</a></td>
                 <td>18 האדרת והאמונה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7558')">
                 <td><a>7558</a></td>
                 <td>19 ידידים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7559')">
                 <td><a>7559</a></td>
                 <td>20 נודה לשמך</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7560')">
                 <td><a>7560</a></td>
                 <td>21 גדולה תורה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7561')">
                 <td><a>7561</a></td>
                 <td>22 תרננה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7562')">
                 <td><a>7562</a></td>
                 <td>23 הטוב</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7563')">
                 <td><a>7563</a></td>
                 <td>24 ערבים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7564')">
                 <td><a>7564</a></td>
                 <td>25 ופרצת</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7565')">
                 <td><a>7565</a></td>
                 <td>26 אנא עבדא</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7566')">
                 <td><a>7566</a></td>
                 <td>27 'טוב ה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7567')">
                 <td><a>7567</a></td>
                 <td>28 קדשם</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7568')">
                 <td><a>7568</a></td>
                 <td>29 ובדבר</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7569')">
                 <td><a>7569</a></td>
                 <td>30 ניגון חב''ד</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7570')">
                 <td><a>7570</a></td>
                 <td>31 ותתן לנו</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7571')">
                 <td><a>7571</a></td>
                 <td>32 כיצד מרקדים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7572')">
                 <td><a>7572</a></td>
                 <td>33 אבינו</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7573')">
                 <td><a>7573</a></td>
                 <td>34 מפי קל</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7574')">
                 <td><a>7574</a></td>
                 <td>35 למען דעת</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7575')">
                 <td><a>7575</a></td>
                 <td>36 אורך ימים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7576')">
                 <td><a>7576</a></td>
                 <td>37 ופרוס עלינו</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7577')">
                 <td><a>7577</a></td>
                 <td>38 והרווח לנו</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7578')">
                 <td><a>7578</a></td>
                 <td>39 אל תירא</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7579')">
                 <td><a>7579</a></td>
                 <td>40 רחל מבכה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7580')">
                 <td><a>7580</a></td>
                 <td>41 ויתן לך בנים</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7581')">
                 <td><a>7581</a></td>
                 <td>42 מה שהיה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7582')">
                 <td><a>7582</a></td>
                 <td>43 מי יעלה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7583')">
                 <td><a>7583</a></td>
                 <td>44 אם לא אעלה</td>
                 <td>טאנץ 1</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7584')">
                 <td><a>7584</a></td>
                 <td>11 האדרת והאמונה</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7585')">
                 <td><a>7585</a></td>
                 <td>המזמרים רבון העולמים</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7586')">
                 <td><a>7586</a></td>
                 <td>פורים מיט המזמרים01</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7587')">
                 <td><a>7587</a></td>
                 <td>פורים מיט המזמרים02</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7588')">
                 <td><a>7588</a></td>
                 <td>פורים מיט המזמרים03</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7589')">
                 <td><a>7589</a></td>
                 <td>פורים מיט המזמרים04</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7590')">
                 <td><a>7590</a></td>
                 <td>פורים מיט המזמרים05</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7591')">
                 <td><a>7591</a></td>
                 <td>פורים מיט המזמרים06</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7592')">
                 <td><a>7592</a></td>
                 <td>פורים מיט המזמרים07</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7593')">
                 <td><a>7593</a></td>
                 <td>פורים מיט המזמרים08</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7594')">
                 <td><a>7594</a></td>
                 <td>פורים מיט המזמרים09</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7595')">
                 <td><a>7595</a></td>
                 <td>פורים מיט המזמרים10</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7596')">
                 <td><a>7596</a></td>
                 <td>פורים מיט המזמרים11</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7597')">
                 <td><a>7597</a></td>
                 <td>פורים מיט המזמרים12</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7598')">
                 <td><a>7598</a></td>
                 <td>פורים מיט המזמרים13</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7599')">
                 <td><a>7599</a></td>
                 <td>פורים מיט המזמרים14</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7600')">
                 <td><a>7600</a></td>
                 <td>פורים מיט המזמרים15</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7601')">
                 <td><a>7601</a></td>
                 <td>פורים מיט המזמרים16</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7602')">
                 <td><a>7602</a></td>
                 <td>פורים מיט המזמרים17</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7603')">
                 <td><a>7603</a></td>
                 <td>פורים מיט המזמרים18</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7604')">
                 <td><a>7604</a></td>
                 <td>פורים מיט המזמרים19</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7605')">
                 <td><a>7605</a></td>
                 <td>פורים מיט המזמרים20</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7606')">
                 <td><a>7606</a></td>
                 <td>פורים מיט המזמרים21</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7607')">
                 <td><a>7607</a></td>
                 <td>פורים מיט המזמרים22</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7608')">
                 <td><a>7608</a></td>
                 <td>פורים מיט המזמרים23</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7609')">
                 <td><a>7609</a></td>
                 <td>פורים מיט המזמרים24</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7610')">
                 <td><a>7610</a></td>
                 <td>פורים מיט המזמרים25</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7611')">
                 <td><a>7611</a></td>
                 <td>פורים מיט המזמרים26</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7612')">
                 <td><a>7612</a></td>
                 <td>פורים מיט המזמרים27</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7613')">
                 <td><a>7613</a></td>
                 <td>פורים מיט המזמרים28</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7614')">
                 <td><a>7614</a></td>
                 <td>פורים מיט המזמרים29</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7615')">
                 <td><a>7615</a></td>
                 <td>פורים מיט המזמרים30</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7616')">
                 <td><a>7616</a></td>
                 <td>פורים מיט המזמרים31</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7617')">
                 <td><a>7617</a></td>
                 <td>פורים מיט המזמרים32</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7618')">
                 <td><a>7618</a></td>
                 <td>פורים מיט המזמרים33</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7619')">
                 <td><a>7619</a></td>
                 <td>פורים מיט המזמרים34</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7620')">
                 <td><a>7620</a></td>
                 <td>פורים מיט המזמרים35</td>
                 <td>סינגלים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7621')">
                 <td><a>7621</a></td>
                 <td>01-תשועתם-משנכנס</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7622')">
                 <td><a>7622</a></td>
                 <td>02-ויהי בימי אחשוורוש</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7623')">
                 <td><a>7623</a></td>
                 <td>03-ונהפוך הוא</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7624')">
                 <td><a>7624</a></td>
                 <td>04-ליהודים</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7625')">
                 <td><a>7625</a></td>
                 <td>05-מצוה גדולה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7626')">
                 <td><a>7626</a></td>
                 <td>06-עבדו את ד' בשמחה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7627')">
                 <td><a>7627</a></td>
                 <td>07-עוצו עצה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7628')">
                 <td><a>7628</a></td>
                 <td>08-חייב איניש</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7629')">
                 <td><a>7629</a></td>
                 <td>09-ליהודים</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7630')">
                 <td><a>7630</a></td>
                 <td>10-אז ימלא</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7631')">
                 <td><a>7631</a></td>
                 <td>11-ותוסף אסתר</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7632')">
                 <td><a>7632</a></td>
                 <td>12-יקום פורקן</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7633')">
                 <td><a>7633</a></td>
                 <td>13-א גאנץ יאר פריילעך</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7634')">
                 <td><a>7634</a></td>
                 <td>14-מיר אידן אינאיינם</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7635')">
                 <td><a>7635</a></td>
                 <td>15-ניגון</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7636')">
                 <td><a>7636</a></td>
                 <td>16-ליהודים</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7637')">
                 <td><a>7637</a></td>
                 <td>17-ונהפוך הוא</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7638')">
                 <td><a>7638</a></td>
                 <td>18-ונהפוך הוא</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7639')">
                 <td><a>7639</a></td>
                 <td>19-גיט'ס אריין א נחמל'ה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7640')">
                 <td><a>7640</a></td>
                 <td>20-מלך</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7641')">
                 <td><a>7641</a></td>
                 <td>21-געלט</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7642')">
                 <td><a>7642</a></td>
                 <td>22-ניגון</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7643')">
                 <td><a>7643</a></td>
                 <td>23-משנכנס אדר</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7644')">
                 <td><a>7644</a></td>
                 <td>24-ולשבחך-אנא</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7645')">
                 <td><a>7645</a></td>
                 <td>25-ליהודים</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7646')">
                 <td><a>7646</a></td>
                 <td>26-ניגון</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7647')">
                 <td><a>7647</a></td>
                 <td>27-והריקותי לכם</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7648')">
                 <td><a>7648</a></td>
                 <td>28-ליהודים</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7649')">
                 <td><a>7649</a></td>
                 <td>29-רוח והצלה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7650')">
                 <td><a>7650</a></td>
                 <td>30-גיט'ס אריין א נחמל'ה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7651')">
                 <td><a>7651</a></td>
                 <td>31-שושנת יעקב</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7652')">
                 <td><a>7652</a></td>
                 <td>32-העלף אונז טאטע</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7653')">
                 <td><a>7653</a></td>
                 <td>33-זאל שיין זיין די גאולה</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7654')">
                 <td><a>7654</a></td>
                 <td>34-פורים לנו</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7655')">
                 <td><a>7655</a></td>
                 <td>35-תשועתם</td>
                 <td>פורים מיט המזמרים</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7656')">
                 <td><a>7656</a></td>
                 <td>01 מיום שנחרב</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7657')">
                 <td><a>7657</a></td>
                 <td>02 אל דמי לך</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7658')">
                 <td><a>7658</a></td>
                 <td>03 לדוד מזמור</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7659')">
                 <td><a>7659</a></td>
                 <td>04 ותערב</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7660')">
                 <td><a>7660</a></td>
                 <td>05 הקשיבה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7661')">
                 <td><a>7661</a></td>
                 <td>06 שיר המעלות</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7662')">
                 <td><a>7662</a></td>
                 <td>07 וזכני לנצח</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7663')">
                 <td><a>7663</a></td>
                 <td>08 משכיל לדוד</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7664')">
                 <td><a>7664</a></td>
                 <td>09 אל תסתיר</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7665')">
                 <td><a>7665</a></td>
                 <td>10 קול ברמה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7666')">
                 <td><a>7666</a></td>
                 <td>11 קול ברמה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7667')">
                 <td><a>7667</a></td>
                 <td>12 רחל</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7668')">
                 <td><a>7668</a></td>
                 <td>13 מי שברך</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7669')">
                 <td><a>7669</a></td>
                 <td>14 וכל מי</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7670')">
                 <td><a>7670</a></td>
                 <td>15 כתר</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7671')">
                 <td><a>7671</a></td>
                 <td>16 בשם ד</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7672')">
                 <td><a>7672</a></td>
                 <td>17 עננו</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7673')">
                 <td><a>7673</a></td>
                 <td>18 על זה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7674')">
                 <td><a>7674</a></td>
                 <td>19 אל תשליכני</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7675')">
                 <td><a>7675</a></td>
                 <td>20 השבעתי</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7676')">
                 <td><a>7676</a></td>
                 <td>21 ואפילו בהסתרה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7677')">
                 <td><a>7677</a></td>
                 <td>22 רבה רבה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7678')">
                 <td><a>7678</a></td>
                 <td>23 את אחי</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7679')">
                 <td><a>7679</a></td>
                 <td>24 צמאה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7680')">
                 <td><a>7680</a></td>
                 <td>25 אם היו</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7681')">
                 <td><a>7681</a></td>
                 <td>26 והיתם לי סגולה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7682')">
                 <td><a>7682</a></td>
                 <td>27 עץ חיים</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7683')">
                 <td><a>7683</a></td>
                 <td>28 ותבנה</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('7684')">
                 <td><a>7684</a></td>
                 <td>29 השיבנו</td>
                 <td>קומזיץ</td>
                 <td>המזמרים</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

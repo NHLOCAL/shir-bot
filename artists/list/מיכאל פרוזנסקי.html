@@ -1,518 +1,500 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>מיכאל פרוזנסקי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>מיכאל פרוזנסקי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמיכאל פרוזנסקי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמיכאל פרוזנסקי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('21293')">
                 <td><a>21293</a></td>
                 <td>01-לטב עביד</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21294')">
                 <td><a>21294</a></td>
                 <td>02-על שלושה</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21295')">
                 <td><a>21295</a></td>
                 <td>03-פיה פתחה</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21296')">
                 <td><a>21296</a></td>
                 <td>04-על ישראל שלום</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21297')">
                 <td><a>21297</a></td>
                 <td>05-שומר שיראל</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21298')">
                 <td><a>21298</a></td>
                 <td>06-שיבוא</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21299')">
                 <td><a>21299</a></td>
                 <td>07 - Show Me The way</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21300')">
                 <td><a>21300</a></td>
                 <td>08-זה לזה</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21301')">
                 <td><a>21301</a></td>
                 <td>09-מי בן שיח</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21302')">
                 <td><a>21302</a></td>
                 <td>10-תורה</td>
                 <td>mp3</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21303')">
                 <td><a>21303</a></td>
                 <td>01 - Am Echad</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21304')">
                 <td><a>21304</a></td>
                 <td>02 - Simchat Chatanim</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21305')">
                 <td><a>21305</a></td>
                 <td>03 - Aleinu</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21306')">
                 <td><a>21306</a></td>
                 <td>04 - Ain Od Milvado</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21307')">
                 <td><a>21307</a></td>
                 <td>05 - Koli</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21308')">
                 <td><a>21308</a></td>
                 <td>06 - Ashrei Mi</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21309')">
                 <td><a>21309</a></td>
                 <td>07 - Pray</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21310')">
                 <td><a>21310</a></td>
                 <td>08 - Shuva</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21311')">
                 <td><a>21311</a></td>
                 <td>09 - Chaverim</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21312')">
                 <td><a>21312</a></td>
                 <td>10 - Orech Yomim</td>
                 <td>Pruz Control</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21313')">
                 <td><a>21313</a></td>
                 <td>01 מצוה הבא</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21314')">
                 <td><a>21314</a></td>
                 <td>02 התעוררי</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21315')">
                 <td><a>21315</a></td>
                 <td>03 מי האיש</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21316')">
                 <td><a>21316</a></td>
                 <td>04 Shootin' For The Moon</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21317')">
                 <td><a>21317</a></td>
                 <td>05 כל המבקש</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21318')">
                 <td><a>21318</a></td>
                 <td>06 בואו נרקוד</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21319')">
                 <td><a>21319</a></td>
                 <td>07 שובי</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21320')">
                 <td><a>21320</a></td>
                 <td>08 Chitty Bum</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21321')">
                 <td><a>21321</a></td>
                 <td>09 הריני</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21322')">
                 <td><a>21322</a></td>
                 <td>10 וברצונך</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21323')">
                 <td><a>21323</a></td>
                 <td>11 ביה אנא</td>
                 <td>Shootin For The Moon</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21324')">
                 <td><a>21324</a></td>
                 <td>01-אשריך</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21325')">
                 <td><a>21325</a></td>
                 <td>02-ובנה</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21326')">
                 <td><a>21326</a></td>
                 <td>03-שמחו</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21327')">
                 <td><a>21327</a></td>
                 <td>04-הרינו</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21328')">
                 <td><a>21328</a></td>
                 <td>05-ישיש</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21329')">
                 <td><a>21329</a></td>
                 <td>06-לפני מלך</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21330')">
                 <td><a>21330</a></td>
                 <td>07-כה אמר</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21331')">
                 <td><a>21331</a></td>
                 <td>08-עם אתם</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21332')">
                 <td><a>21332</a></td>
                 <td>09-ירושלים</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21333')">
                 <td><a>21333</a></td>
                 <td>10-והביאנו</td>
                 <td>אשריך</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21334')">
                 <td><a>21334</a></td>
                 <td>10.וברצונך</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21335')">
                 <td><a>21335</a></td>
                 <td>Shootin' For The Moon Preview</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21336')">
                 <td><a>21336</a></td>
                 <td>Show me the way</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21337')">
                 <td><a>21337</a></td>
                 <td>אין עוד מלבדו</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21338')">
                 <td><a>21338</a></td>
                 <td>באו נרקוד</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21339')">
                 <td><a>21339</a></td>
                 <td>מחרוזת חתונה</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21340')">
                 <td><a>21340</a></td>
                 <td>מיכאל פרוזנסקי  שמחת חתנים</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21341')">
                 <td><a>21341</a></td>
                 <td>מיכאל פרוזנסקי בחידוש ווקאלי מרהיב ''להתפלל''</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21342')">
                 <td><a>21342</a></td>
                 <td>מיכאל פרוזנסקי</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21343')">
                 <td><a>21343</a></td>
                 <td>שמחת חתנים</td>
                 <td>סינגלים</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21344')">
                 <td><a>21344</a></td>
                 <td>01-תעשה</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21345')">
                 <td><a>21345</a></td>
                 <td>02-שטייג</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21346')">
                 <td><a>21346</a></td>
                 <td>03-אתה שומר עלי</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21347')">
                 <td><a>21347</a></td>
                 <td>04-פרוזבול</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21348')">
                 <td><a>21348</a></td>
                 <td>05-חביבין</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21349')">
                 <td><a>21349</a></td>
                 <td>06-ברכה</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21350')">
                 <td><a>21350</a></td>
                 <td>07-אשירה</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21351')">
                 <td><a>21351</a></td>
                 <td>08-הא</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21352')">
                 <td><a>21352</a></td>
                 <td>09-יזכרם</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('21353')">
                 <td><a>21353</a></td>
                 <td>10-ולא</td>
                 <td>פרוזבול</td>
                 <td>מיכאל פרוזנסקי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

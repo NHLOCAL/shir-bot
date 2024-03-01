@@ -1,343 +1,325 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אבישי רוזן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אבישי רוזן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאבישי רוזן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאבישי רוזן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('44077')">
                 <td><a>44077</a></td>
                 <td>אבישי רוזן - תן לי סימן</td>
                 <td>אבישי רוזן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44078')">
                 <td><a>44078</a></td>
                 <td>אבישי רוזן טיפות של רוח</td>
                 <td>אבישי רוזן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44079')">
                 <td><a>44079</a></td>
                 <td>אבישי רוזן שר -הייתי בורח-</td>
                 <td>אבישי רוזן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44080')">
                 <td><a>44080</a></td>
                 <td>02. תקופה חדשה</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44081')">
                 <td><a>44081</a></td>
                 <td>03. לאן לפנות</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44082')">
                 <td><a>44082</a></td>
                 <td>06. לאן</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44083')">
                 <td><a>44083</a></td>
                 <td>07. אלף מילים</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44084')">
                 <td><a>44084</a></td>
                 <td>08. הכל מתפורר</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44085')">
                 <td><a>44085</a></td>
                 <td>10. טיפות של רוח</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44086')">
                 <td><a>44086</a></td>
                 <td>11. סערה</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44087')">
                 <td><a>44087</a></td>
                 <td>12. הייתי בורח</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44088')">
                 <td><a>44088</a></td>
                 <td>13. מי שאני עכשיו</td>
                 <td>מי שאני עכשיו</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44089')">
                 <td><a>44089</a></td>
                 <td>GPS</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44090')">
                 <td><a>44090</a></td>
                 <td>אביהם של ילדי ישראל</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44091')">
                 <td><a>44091</a></td>
                 <td>אבישי רוזן מחדש</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44092')">
                 <td><a>44092</a></td>
                 <td>אלפי ילדים</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44093')">
                 <td><a>44093</a></td>
                 <td>אני רוצה לעוף</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44094')">
                 <td><a>44094</a></td>
                 <td>הייתי בורח</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44095')">
                 <td><a>44095</a></td>
                 <td>טיפות של רוח - ווקאלי</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44096')">
                 <td><a>44096</a></td>
                 <td>טיפות של רוח</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44097')">
                 <td><a>44097</a></td>
                 <td>יותר הקשבה</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44098')">
                 <td><a>44098</a></td>
                 <td>מחדש</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44099')">
                 <td><a>44099</a></td>
                 <td>מילים של רוח</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44100')">
                 <td><a>44100</a></td>
                 <td>רוצה לעוף</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44101')">
                 <td><a>44101</a></td>
                 <td>תן לי סימן</td>
                 <td>סינגלים</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44102')">
                 <td><a>44102</a></td>
                 <td>01-תן לי סימן</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44103')">
                 <td><a>44103</a></td>
                 <td>02-אלפי ילדים</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44104')">
                 <td><a>44104</a></td>
                 <td>03-כמה מלאכים</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44105')">
                 <td><a>44105</a></td>
                 <td>04-ג'י פי אס</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44106')">
                 <td><a>44106</a></td>
                 <td>05-מבט אחרון</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44107')">
                 <td><a>44107</a></td>
                 <td>06-כשם שאני</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44108')">
                 <td><a>44108</a></td>
                 <td>07-עף מתוך חלום</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44109')">
                 <td><a>44109</a></td>
                 <td>08-דרך חדשה</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44110')">
                 <td><a>44110</a></td>
                 <td>09-אהבת ישראל</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44111')">
                 <td><a>44111</a></td>
                 <td>10-שירת המלאכים</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44112')">
                 <td><a>44112</a></td>
                 <td>11-המקום הכי טוב בעולם</td>
                 <td>תן לי סימן</td>
                 <td>אבישי רוזן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

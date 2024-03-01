@@ -1,777 +1,759 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>צלצולים לפלאפון</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>צלצולים לפלאפון</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspצלצולים לפלאפון</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspצלצולים לפלאפון</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('62880')">
                 <td><a>62880</a></td>
                 <td>אשיבה_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62881')">
                 <td><a>62881</a></td>
                 <td>חי חי חי_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62882')">
                 <td><a>62882</a></td>
                 <td>יבנה המקדש_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62883')">
                 <td><a>62883</a></td>
                 <td>לכבוד שבת קודש_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62884')">
                 <td><a>62884</a></td>
                 <td>מחשבות טובות_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62885')">
                 <td><a>62885</a></td>
                 <td>מעין עולם הבא_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62886')">
                 <td><a>62886</a></td>
                 <td>עין טובה_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62887')">
                 <td><a>62887</a></td>
                 <td>פם פם פם_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62888')">
                 <td><a>62888</a></td>
                 <td>קטנות שבקטנות_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62889')">
                 <td><a>62889</a></td>
                 <td>שירו לו_01</td>
                 <td>מוטי וייס צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62890')">
                 <td><a>62890</a></td>
                 <td>01 ויעזור- ואתם הדבקים</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62891')">
                 <td><a>62891</a></td>
                 <td>01 עברי אנוכי 00_00_38-00_01_17</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62892')">
                 <td><a>62892</a></td>
                 <td>06 רבי ישעיה_1</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62893')">
                 <td><a>62893</a></td>
                 <td>אבא אבא אבא מלך העולם</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62894')">
                 <td><a>62894</a></td>
                 <td>אבאצלצול2</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62895')">
                 <td><a>62895</a></td>
                 <td>אבל אבא היקר</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62896')">
                 <td><a>62896</a></td>
                 <td>אילן</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62897')">
                 <td><a>62897</a></td>
                 <td>אין אנחנו מספיקים - קינדערלך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62898')">
                 <td><a>62898</a></td>
                 <td>אין אנחנו מספיקים</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62899')">
                 <td><a>62899</a></td>
                 <td>אין כמוך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62900')">
                 <td><a>62900</a></td>
                 <td>אין עוד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62901')">
                 <td><a>62901</a></td>
                 <td>אל אשר תלכי אלך קמפה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62902')">
                 <td><a>62902</a></td>
                 <td>אם תעירו</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62903')">
                 <td><a>62903</a></td>
                 <td>אמא אם הייתי רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62904')">
                 <td><a>62904</a></td>
                 <td>אשר נשמת האדם מתרוממת</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62905')">
                 <td><a>62905</a></td>
                 <td>אשריכם הצדיקים יונגרליך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62906')">
                 <td><a>62906</a></td>
                 <td>באתי לגני צלצול</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62907')">
                 <td><a>62907</a></td>
                 <td>בטחו_1</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62908')">
                 <td><a>62908</a></td>
                 <td>בנאדם רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62909')">
                 <td><a>62909</a></td>
                 <td>בסוף יהיה טוב רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62910')">
                 <td><a>62910</a></td>
                 <td>גם מאחורי הדברים הקשים - יואלי קליין</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62911')">
                 <td><a>62911</a></td>
                 <td>דודי קאליש חדש</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62912')">
                 <td><a>62912</a></td>
                 <td>היום יהיה שמח רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62913')">
                 <td><a>62913</a></td>
                 <td>הייליגער באשאפר יונגרליך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62914')">
                 <td><a>62914</a></td>
                 <td>הקל הפותח פריד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62915')">
                 <td><a>62915</a></td>
                 <td>ווצאפ</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62916')">
                 <td><a>62916</a></td>
                 <td>ויעזור מנדי וייס</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62917')">
                 <td><a>62917</a></td>
                 <td>וכולם אברם פריד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62918')">
                 <td><a>62918</a></td>
                 <td>זאל שוין זיין - יונגרליך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62919')">
                 <td><a>62919</a></td>
                 <td>חושב על ירושלים חתוך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62920')">
                 <td><a>62920</a></td>
                 <td>טאטע טאטע</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62921')">
                 <td><a>62921</a></td>
                 <td>יחד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62922')">
                 <td><a>62922</a></td>
                 <td>ישתבח שמו</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62923')">
                 <td><a>62923</a></td>
                 <td>לגלות אוצר של יראת שמים</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62924')">
                 <td><a>62924</a></td>
                 <td>לט גו רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62925')">
                 <td><a>62925</a></td>
                 <td>מוטי שטיינמץ – זכור ברית – Jmusic.me – jewish music – אתר המ 00_01_46-00_02_13</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62926')">
                 <td><a>62926</a></td>
                 <td>מחשב מסלול</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62927')">
                 <td><a>62927</a></td>
                 <td>מיזוג ר' שמעון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62928')">
                 <td><a>62928</a></td>
                 <td>מיילך קאהן - ואהבת לרעך כמוך - Jmusicme - jewish music - אתר המוזי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62929')">
                 <td><a>62929</a></td>
                 <td>מנוחה ושמחה שוועקי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62930')">
                 <td><a>62930</a></td>
                 <td>משטרה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62931')">
                 <td><a>62931</a></td>
                 <td>משמיעי צעקה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62932')">
                 <td><a>62932</a></td>
                 <td>משתוקק</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62933')">
                 <td><a>62933</a></td>
                 <td>מתחילים מחדש - צלצול</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62934')">
                 <td><a>62934</a></td>
                 <td>נפשי חמדה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62935')">
                 <td><a>62935</a></td>
                 <td>נפתלי קמפה - לב נשבר</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62936')">
                 <td><a>62936</a></td>
                 <td>נשמה 2</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62937')">
                 <td><a>62937</a></td>
                 <td>סיבת הסיבות רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62938')">
                 <td><a>62938</a></td>
                 <td>עומר אדם וישי ריבו - הלב שלי (2)</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62939')">
                 <td><a>62939</a></td>
                 <td>צילצול טלפון דספסיטו</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62940')">
                 <td><a>62940</a></td>
                 <td>צלצול אהבת חנם</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62941')">
                 <td><a>62941</a></td>
                 <td>צלצול אורייתא פתיח</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62942')">
                 <td><a>62942</a></td>
                 <td>צלצול אורך ימים בימינה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62943')">
                 <td><a>62943</a></td>
                 <td>צלצול אחת ולתמיד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62944')">
                 <td><a>62944</a></td>
                 <td>צלצול אלו ואלו מסלסלים</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62945')">
                 <td><a>62945</a></td>
                 <td>צלצול בטחו בה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62946')">
                 <td><a>62946</a></td>
                 <td>צלצול גלוי וידוע</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62947')">
                 <td><a>62947</a></td>
                 <td>צלצול היילגער סוכהלע</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62948')">
                 <td><a>62948</a></td>
                 <td>צלצול הכל משמים מודי שפירא</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62949')">
                 <td><a>62949</a></td>
                 <td>צלצול הלב שלי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62950')">
                 <td><a>62950</a></td>
                 <td>צלצול ואשפוך את נפשי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62951')">
                 <td><a>62951</a></td>
                 <td>צלצול ויאמר הנני</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62952')">
                 <td><a>62952</a></td>
                 <td>צלצול ושם  נעבדך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62953')">
                 <td><a>62953</a></td>
                 <td>צלצול ותן בליבנו</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62954')">
                 <td><a>62954</a></td>
                 <td>צלצול יהא רעווא קדמך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62955')">
                 <td><a>62955</a></td>
                 <td>צלצול יפה</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62956')">
                 <td><a>62956</a></td>
                 <td>צלצול כי אני ה רופאך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62957')">
                 <td><a>62957</a></td>
                 <td>צלצול כי הם</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62958')">
                 <td><a>62958</a></td>
                 <td>צלצול לא רעב ללחם</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62959')">
                 <td><a>62959</a></td>
                 <td>צלצול לב נשבר מחודש</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62960')">
                 <td><a>62960</a></td>
                 <td>צלצול לב נשבר</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62961')">
                 <td><a>62961</a></td>
                 <td>צלצול ליבי שפכתי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62962')">
                 <td><a>62962</a></td>
                 <td>צלצול לפאלפון בין קודש לחול</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62963')">
                 <td><a>62963</a></td>
                 <td>צלצול משכני מיילך קהן</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62964')">
                 <td><a>62964</a></td>
                 <td>צלצול נחכה לך</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62965')">
                 <td><a>62965</a></td>
                 <td>צלצול נשמתי</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62966')">
                 <td><a>62966</a></td>
                 <td>צלצול על כולנו עובר</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62967')">
                 <td><a>62967</a></td>
                 <td>צלצול פאר דיר</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62968')">
                 <td><a>62968</a></td>
                 <td>צלצול-אבא-אידיש</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62969')">
                 <td><a>62969</a></td>
                 <td>צלצול-אבא-אנגלית</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62970')">
                 <td><a>62970</a></td>
                 <td>צלצול-אבא</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62971')">
                 <td><a>62971</a></td>
                 <td>צלצול-כח הרצון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62972')">
                 <td><a>62972</a></td>
                 <td>צלצול-נפשי ישי ריבו</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62973')">
                 <td><a>62973</a></td>
                 <td>רק עוד רגע רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62974')">
                 <td><a>62974</a></td>
                 <td>שבתי בבית ה'</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62975')">
                 <td><a>62975</a></td>
                 <td>שובו אלי רינגטון</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62976')">
                 <td><a>62976</a></td>
                 <td>שערי דמעות-אברהם פריד</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('62977')">
                 <td><a>62977</a></td>
                 <td>שריקה של הווצאפ</td>
                 <td>מקבץ צלצולים</td>
                 <td>צלצולים לפלאפון</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

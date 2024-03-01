@@ -1,623 +1,605 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>יצחק פוקס</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>יצחק פוקס</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspיצחק פוקס</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspיצחק פוקס</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('45909')">
                 <td><a>45909</a></td>
                 <td>יצחק פוקס עשה למען</td>
                 <td>יצחק פוקס</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45910')">
                 <td><a>45910</a></td>
                 <td>יצחק פוקס רחל אמנו</td>
                 <td>יצחק פוקס</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45911')">
                 <td><a>45911</a></td>
                 <td>01-באנו ביחד</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45912')">
                 <td><a>45912</a></td>
                 <td>02-שמעו ידידי</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45913')">
                 <td><a>45913</a></td>
                 <td>03-הנה ימים באים</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45914')">
                 <td><a>45914</a></td>
                 <td>04-כאם האוספת גוזליה</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45915')">
                 <td><a>45915</a></td>
                 <td>05-חוט השני</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45916')">
                 <td><a>45916</a></td>
                 <td>06-בינו בוערים בעם</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45917')">
                 <td><a>45917</a></td>
                 <td>07-אמונה יש</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45918')">
                 <td><a>45918</a></td>
                 <td>08-יהא רעווא קדמך</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45919')">
                 <td><a>45919</a></td>
                 <td>09-ר' ישמעאל</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45920')">
                 <td><a>45920</a></td>
                 <td>10-אתה סתר לי</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45921')">
                 <td><a>45921</a></td>
                 <td>11-מתי תמלוך בציון</td>
                 <td>באנו ביחד</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45922')">
                 <td><a>45922</a></td>
                 <td>01-הללו</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45923')">
                 <td><a>45923</a></td>
                 <td>02-באנו ביחד</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45924')">
                 <td><a>45924</a></td>
                 <td>03-עת ללדת</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45925')">
                 <td><a>45925</a></td>
                 <td>04-שבתי וראה</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45926')">
                 <td><a>45926</a></td>
                 <td>05-אם אין אני</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45927')">
                 <td><a>45927</a></td>
                 <td>06-א-ל אדון</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45928')">
                 <td><a>45928</a></td>
                 <td>07-המביט</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45929')">
                 <td><a>45929</a></td>
                 <td>08-נדודים</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45930')">
                 <td><a>45930</a></td>
                 <td>09-מעין עולם הבא</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45931')">
                 <td><a>45931</a></td>
                 <td>10-יהי שלום</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45932')">
                 <td><a>45932</a></td>
                 <td>11-בעת ההיא</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45933')">
                 <td><a>45933</a></td>
                 <td>12-כיסופים</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45934')">
                 <td><a>45934</a></td>
                 <td>13-יתמו חטאים</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45935')">
                 <td><a>45935</a></td>
                 <td>14-נכון ליבי</td>
                 <td>בעת ההיא</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45936')">
                 <td><a>45936</a></td>
                 <td>01 עד מתי</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45937')">
                 <td><a>45937</a></td>
                 <td>02 בורו פארק</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45938')">
                 <td><a>45938</a></td>
                 <td>03 חסדי השם</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45939')">
                 <td><a>45939</a></td>
                 <td>04 חוצות</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45940')">
                 <td><a>45940</a></td>
                 <td>05 הפכת</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45941')">
                 <td><a>45941</a></td>
                 <td>06 כיסופים</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45942')">
                 <td><a>45942</a></td>
                 <td>07 כהניך</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45943')">
                 <td><a>45943</a></td>
                 <td>08 קולות</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45944')">
                 <td><a>45944</a></td>
                 <td>09 רבי ישמעל</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45945')">
                 <td><a>45945</a></td>
                 <td>10 שבתות</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45946')">
                 <td><a>45946</a></td>
                 <td>11 סוכות</td>
                 <td>מיד נגאלין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45947')">
                 <td><a>45947</a></td>
                 <td>01-מלך</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45948')">
                 <td><a>45948</a></td>
                 <td>02-אהה...ה</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45949')">
                 <td><a>45949</a></td>
                 <td>03-השקיפה</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45950')">
                 <td><a>45950</a></td>
                 <td>04-הנשא</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45951')">
                 <td><a>45951</a></td>
                 <td>05-מה נתאונן</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45952')">
                 <td><a>45952</a></td>
                 <td>06-בן בג בג</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45953')">
                 <td><a>45953</a></td>
                 <td>07-משלי ז</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45954')">
                 <td><a>45954</a></td>
                 <td>08-אחת שאלתי</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45955')">
                 <td><a>45955</a></td>
                 <td>09-עמי עמי</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45956')">
                 <td><a>45956</a></td>
                 <td>10-אהיה בטל</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45957')">
                 <td><a>45957</a></td>
                 <td>11-יתמו חטאים</td>
                 <td>מלך</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45958')">
                 <td><a>45958</a></td>
                 <td>01 מזמור לדוד</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45959')">
                 <td><a>45959</a></td>
                 <td>02 אנא בכח</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45960')">
                 <td><a>45960</a></td>
                 <td>03 בן חמש</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45961')">
                 <td><a>45961</a></td>
                 <td>04 ממעמקים</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45962')">
                 <td><a>45962</a></td>
                 <td>05 עלינו לשבח</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45963')">
                 <td><a>45963</a></td>
                 <td>06 אם פגע בך</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45964')">
                 <td><a>45964</a></td>
                 <td>07 שיר ושבחה</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45965')">
                 <td><a>45965</a></td>
                 <td>08 המבדיל</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45966')">
                 <td><a>45966</a></td>
                 <td>09 מנוחה ושמחה</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45967')">
                 <td><a>45967</a></td>
                 <td>10 בינו בוערים</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45968')">
                 <td><a>45968</a></td>
                 <td>11 ניגון שמשון</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45969')">
                 <td><a>45969</a></td>
                 <td>12 שפטו דל</td>
                 <td>ממעמקים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45970')">
                 <td><a>45970</a></td>
                 <td>אם פגע בך</td>
                 <td>סינגלים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45971')">
                 <td><a>45971</a></td>
                 <td>בורו פארק</td>
                 <td>סינגלים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45972')">
                 <td><a>45972</a></td>
                 <td>מי יעלה</td>
                 <td>סינגלים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45973')">
                 <td><a>45973</a></td>
                 <td>רחל אמנו</td>
                 <td>סינגלים</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45974')">
                 <td><a>45974</a></td>
                 <td>01 קה ריבון</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45975')">
                 <td><a>45975</a></td>
                 <td>02 דמעה קטנה</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45976')">
                 <td><a>45976</a></td>
                 <td>03 הר קשה</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45977')">
                 <td><a>45977</a></td>
                 <td>04 ירננו</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45978')">
                 <td><a>45978</a></td>
                 <td>05 חוכא</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45979')">
                 <td><a>45979</a></td>
                 <td>06 לכבוד</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45980')">
                 <td><a>45980</a></td>
                 <td>07 רם ונישא</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45981')">
                 <td><a>45981</a></td>
                 <td>08 להרים</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45982')">
                 <td><a>45982</a></td>
                 <td>09 רבון כל העולמים</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45983')">
                 <td><a>45983</a></td>
                 <td>10 עד מתי</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('45984')">
                 <td><a>45984</a></td>
                 <td>11 כציפור נודדת</td>
                 <td>שירין ורחשין</td>
                 <td>יצחק פוקס</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,1743 +1,1725 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אידיש נחת</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אידיש נחת</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאידיש נחת</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאידיש נחת</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2581')">
                 <td><a>2581</a></td>
                 <td>01 התקבצו</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2582')">
                 <td><a>2582</a></td>
                 <td>02 אתה קדוש</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2583')">
                 <td><a>2583</a></td>
                 <td>03 אין כאלוקינו</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2584')">
                 <td><a>2584</a></td>
                 <td>04 רבונו של עולם</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2585')">
                 <td><a>2585</a></td>
                 <td>05 מתנה טובה</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2586')">
                 <td><a>2586</a></td>
                 <td>06 מגן אבות</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2587')">
                 <td><a>2587</a></td>
                 <td>07 הטוב</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2588')">
                 <td><a>2588</a></td>
                 <td>08 זכור אהבת</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2589')">
                 <td><a>2589</a></td>
                 <td>09 כי לך טוב</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2590')">
                 <td><a>2590</a></td>
                 <td>10 אדרבה</td>
                 <td>אידיש נחת 1 - מתנה טובה</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2591')">
                 <td><a>2591</a></td>
                 <td>01 סיבבן</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2592')">
                 <td><a>2592</a></td>
                 <td>02 מים רבים</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2593')">
                 <td><a>2593</a></td>
                 <td>03 אתה חונן</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2594')">
                 <td><a>2594</a></td>
                 <td>04 שירה למעלה</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2595')">
                 <td><a>2595</a></td>
                 <td>05 בני בראתי</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2596')">
                 <td><a>2596</a></td>
                 <td>06 הזכירו</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2597')">
                 <td><a>2597</a></td>
                 <td>07 כי אין לנו מלך</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2598')">
                 <td><a>2598</a></td>
                 <td>08 קרוב השם</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2599')">
                 <td><a>2599</a></td>
                 <td>09 כי בו</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2600')">
                 <td><a>2600</a></td>
                 <td>10 והיה הנשאר בציון</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2601')">
                 <td><a>2601</a></td>
                 <td>11 א שיינעם חלום</td>
                 <td>אידיש נחת 2 - סיבבן במצוות</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2602')">
                 <td><a>2602</a></td>
                 <td>01.הני תפילין</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2603')">
                 <td><a>2603</a></td>
                 <td>02.אז תתחזק</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2604')">
                 <td><a>2604</a></td>
                 <td>03.אורות</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2605')">
                 <td><a>2605</a></td>
                 <td>04.זמירות שבת</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2606')">
                 <td><a>2606</a></td>
                 <td>05.סלח לנו</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2607')">
                 <td><a>2607</a></td>
                 <td>06.אין אנחנו</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2608')">
                 <td><a>2608</a></td>
                 <td>07.ותשפיע</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2609')">
                 <td><a>2609</a></td>
                 <td>08.יגון וכלי שיר</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2610')">
                 <td><a>2610</a></td>
                 <td>09.שלום</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2611')">
                 <td><a>2611</a></td>
                 <td>10.תהא השעה הזאת</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2612')">
                 <td><a>2612</a></td>
                 <td>11.קול ברמה</td>
                 <td>אידיש נחת 3 - מזמור שיר לעתיד לבוא</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2613')">
                 <td><a>2613</a></td>
                 <td>01 ולמדתם אותם</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2614')">
                 <td><a>2614</a></td>
                 <td>02 ראה נא בענינו</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2615')">
                 <td><a>2615</a></td>
                 <td>03 קדוש קדוש קדוש</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2616')">
                 <td><a>2616</a></td>
                 <td>04 ילדי ברך השם</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2617')">
                 <td><a>2617</a></td>
                 <td>05 וזכנו לקבל שבתות</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2618')">
                 <td><a>2618</a></td>
                 <td>06 מי שיש לו</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2619')">
                 <td><a>2619</a></td>
                 <td>07 עשה עושה ויעשה</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2620')">
                 <td><a>2620</a></td>
                 <td>08 והגית בו - טאג און נאכט</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2621')">
                 <td><a>2621</a></td>
                 <td>09 דאס איז מיין רבי</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2622')">
                 <td><a>2622</a></td>
                 <td>10 מה נאוו על ההרים</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2623')">
                 <td><a>2623</a></td>
                 <td>11 אידיש נחת - זרעא חיא</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2624')">
                 <td><a>2624</a></td>
                 <td>12 כי המצוה הזאת</td>
                 <td>אידיש נחת 4 - אמונה ובטחון</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2625')">
                 <td><a>2625</a></td>
                 <td>01 מה אהבתי </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2626')">
                 <td><a>2626</a></td>
                 <td>02 מה נמלצו </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2627')">
                 <td><a>2627</a></td>
                 <td>03 ביכורים </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2628')">
                 <td><a>2628</a></td>
                 <td>04 הושיעה </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2629')">
                 <td><a>2629</a></td>
                 <td>05 נכספה </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2630')">
                 <td><a>2630</a></td>
                 <td>06 שלח אורך </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2631')">
                 <td><a>2631</a></td>
                 <td>07 באלקים בטחתי </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2632')">
                 <td><a>2632</a></td>
                 <td>08 ונפשי שפכי</td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2633')">
                 <td><a>2633</a></td>
                 <td>09 אל יבשו </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2634')">
                 <td><a>2634</a></td>
                 <td>10 אבינו מלכנו </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2635')">
                 <td><a>2635</a></td>
                 <td>11 אלו דברים </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2636')">
                 <td><a>2636</a></td>
                 <td>12 ואמר </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2637')">
                 <td><a>2637</a></td>
                 <td>13 המאיר לארץ </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2638')">
                 <td><a>2638</a></td>
                 <td>14 אנא </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2639')">
                 <td><a>2639</a></td>
                 <td>15 וישמחו </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2640')">
                 <td><a>2640</a></td>
                 <td>16 ונשגב </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2641')">
                 <td><a>2641</a></td>
                 <td>17 עשה </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2642')">
                 <td><a>2642</a></td>
                 <td>18 אליך </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2643')">
                 <td><a>2643</a></td>
                 <td>19 טוב להודות </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2644')">
                 <td><a>2644</a></td>
                 <td>20 ניגון שלש סעודות</td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2645')">
                 <td><a>2645</a></td>
                 <td>21 עץ חיים </td>
                 <td>אידיש נחת סקולען</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2646')">
                 <td><a>2646</a></td>
                 <td>01 ברוכים הבאים</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2647')">
                 <td><a>2647</a></td>
                 <td>02 ברוכים הבאים - בית לפליטות</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2648')">
                 <td><a>2648</a></td>
                 <td>03 תזמורת פרייליך כניסה</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2649')">
                 <td><a>2649</a></td>
                 <td>04 מחרוזת פסח</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2650')">
                 <td><a>2650</a></td>
                 <td>05 שמעי ענגעל מציג את שמואלי אונגר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2651')">
                 <td><a>2651</a></td>
                 <td>06 שמולי אונגר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2652')">
                 <td><a>2652</a></td>
                 <td>07 ישמע, ונאמר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2653')">
                 <td><a>2653</a></td>
                 <td>08 פתיחה דיינו</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2654')">
                 <td><a>2654</a></td>
                 <td>09 דיינו, רחמנא</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2655')">
                 <td><a>2655</a></td>
                 <td>10 פתיחה שול</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2656')">
                 <td><a>2656</a></td>
                 <td>11 שול</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2657')">
                 <td><a>2657</a></td>
                 <td>12 פתיחה קל מסתתר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2658')">
                 <td><a>2658</a></td>
                 <td>13 קל מסתתר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2659')">
                 <td><a>2659</a></td>
                 <td>14 שמואלי אונגר מציג את משה קרויס ואידיש נחת</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2660')">
                 <td><a>2660</a></td>
                 <td>15 תורה</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2661')">
                 <td><a>2661</a></td>
                 <td>16 פתיחה סיבבן</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2662')">
                 <td><a>2662</a></td>
                 <td>17 סיבבן</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2663')">
                 <td><a>2663</a></td>
                 <td>18 משה קרויס מכריז על אידיש נחת 3</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2664')">
                 <td><a>2664</a></td>
                 <td>19 שלום</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2665')">
                 <td><a>2665</a></td>
                 <td>20 משה קרויס מציג את יענקי גרין</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2666')">
                 <td><a>2666</a></td>
                 <td>21 בני</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2667')">
                 <td><a>2667</a></td>
                 <td>22 זה זה זה, כי אין</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2668')">
                 <td><a>2668</a></td>
                 <td>23 ג'ינגל אידיש נחת</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2669')">
                 <td><a>2669</a></td>
                 <td>24 יואל הירש פוקס מציג את דובי מייזלס</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2670')">
                 <td><a>2670</a></td>
                 <td>25 קומזיץ עם דובי מייזלס</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2671')">
                 <td><a>2671</a></td>
                 <td>26 משה קרויס מציג את יוסי גרין</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2672')">
                 <td><a>2672</a></td>
                 <td>27 קול ברמה</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2673')">
                 <td><a>2673</a></td>
                 <td>28 יוסי גרין, משה קרויס ונפתלי שניצלר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2674')">
                 <td><a>2674</a></td>
                 <td>29 אין אנחנו</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2675')">
                 <td><a>2675</a></td>
                 <td>30 שמואלי אונגר ויוסי גרין מדברים</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2676')">
                 <td><a>2676</a></td>
                 <td>31 ריבון</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2677')">
                 <td><a>2677</a></td>
                 <td>32 שמואלי אונגר מציג את נפתלי שניצלר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2678')">
                 <td><a>2678</a></td>
                 <td>33 מי כעמך, לכבוד שבת, אמת</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2679')">
                 <td><a>2679</a></td>
                 <td>34 שמואלי אונגר מדבר</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2680')">
                 <td><a>2680</a></td>
                 <td>35 אדון עולם</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2681')">
                 <td><a>2681</a></td>
                 <td>36 מאך א ברכה</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2682')">
                 <td><a>2682</a></td>
                 <td>37 התקבצו</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2683')">
                 <td><a>2683</a></td>
                 <td>38 סוף</td>
                 <td>ברכה און נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2684')">
                 <td><a>2684</a></td>
                 <td>01 כרחם</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2685')">
                 <td><a>2685</a></td>
                 <td>02 פתיחה - לחיים און נחת</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2686')">
                 <td><a>2686</a></td>
                 <td>03 כי לו, אדיר במלוכה, בטחו</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2687')">
                 <td><a>2687</a></td>
                 <td>04 מדרגות, בני היכלא</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2688')">
                 <td><a>2688</a></td>
                 <td>05 אין קדוש</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2689')">
                 <td><a>2689</a></td>
                 <td>06 כניסת אידיש נחת</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2690')">
                 <td><a>2690</a></td>
                 <td>07 ולימדתם</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2691')">
                 <td><a>2691</a></td>
                 <td>08 רבה</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2692')">
                 <td><a>2692</a></td>
                 <td>09 קדוש</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2693')">
                 <td><a>2693</a></td>
                 <td>10 שמעתי, מה מה מה, בן בג בג</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2694')">
                 <td><a>2694</a></td>
                 <td>11 ברשות, והערב, רחם</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2695')">
                 <td><a>2695</a></td>
                 <td>12 שמחת יום טוב</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2696')">
                 <td><a>2696</a></td>
                 <td>13 א ייד</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2697')">
                 <td><a>2697</a></td>
                 <td>14 ונא</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2698')">
                 <td><a>2698</a></td>
                 <td>15 הילדים על הבמה</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2699')">
                 <td><a>2699</a></td>
                 <td>16 זרעא</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2700')">
                 <td><a>2700</a></td>
                 <td>17 יוסף מוקיר שבת</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2701')">
                 <td><a>2701</a></td>
                 <td>18 ירא שמיים</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2702')">
                 <td><a>2702</a></td>
                 <td>19 Prague Teniya</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2703')">
                 <td><a>2703</a></td>
                 <td>20 לערנען</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2704')">
                 <td><a>2704</a></td>
                 <td>21 מסע בשבילי הזיכרון</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2705')">
                 <td><a>2705</a></td>
                 <td>22 בר עילאי, אלף בית גימל (Feat. Shmueli Ungar   Yaakov Shwekey)</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2706')">
                 <td><a>2706</a></td>
                 <td>23 לך עצמי, מה יתרון</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2707')">
                 <td><a>2707</a></td>
                 <td>24 שבת טיש</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2708')">
                 <td><a>2708</a></td>
                 <td>25 שיר לחיים נחת</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2709')">
                 <td><a>2709</a></td>
                 <td>26 סיום</td>
                 <td>לחיים און נחת - מיטב האמנים 2021</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2710')">
                 <td><a>2710</a></td>
                 <td>02 יוסי גרין ולהקת הילדים אידיש נחת בביצוע ווקאלי 'אתה קדוש'</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2711')">
                 <td><a>2711</a></td>
                 <td>06 הנה ימים, פיטסבורג - מנדי וייס & אידיש נחת</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2712')">
                 <td><a>2712</a></td>
                 <td>08 יוסי גרין ומקהלת הילדים אידיש נחת מים רבים בביצוע וואקלי</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2713')">
                 <td><a>2713</a></td>
                 <td>אהרלה סמט ואידיש נחת 'לא לנו - דאווענען'</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2714')">
                 <td><a>2714</a></td>
                 <td>אידיש נחת - שמחת תורה</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2715')">
                 <td><a>2715</a></td>
                 <td>אידיש נחת, מקהלת שירה ותזמורת סבבה סקולען נחת מעדלי</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2716')">
                 <td><a>2716</a></td>
                 <td>יוסי גרין ו אידישע נחת הדרן</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2717')">
                 <td><a>2717</a></td>
                 <td>יוסי גרין, יעקב שוואקי ושמילי אונגר אידיש נחת ועוד במחרוזת שירי שבת</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2718')">
                 <td><a>2718</a></td>
                 <td>לך לבדך</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2719')">
                 <td><a>2719</a></td>
                 <td>מקהלת אידיש נחת ומקהלת מלכות - על מה להתפלל</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2720')">
                 <td><a>2720</a></td>
                 <td>מקהלת ידידים & אידיש נחת - קה ריבון</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2721')">
                 <td><a>2721</a></td>
                 <td>משה קרויס, אידיש נחת - מה אעשה</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2722')">
                 <td><a>2722</a></td>
                 <td>קה ריבון</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2723')">
                 <td><a>2723</a></td>
                 <td>שלום</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2724')">
                 <td><a>2724</a></td>
                 <td>שמילי אונגר וילדי 'אידיש נחת' בביצוע מרגש לביצוע 'טאטי' </td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2725')">
                 <td><a>2725</a></td>
                 <td>תשרי נחת אידיש נחת ויוסי גרין ודובי מייזעלס</td>
                 <td>סינגלים</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2726')">
                 <td><a>2726</a></td>
                 <td>01 אין כאלוקינו</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2727')">
                 <td><a>2727</a></td>
                 <td>02 ולימדתם</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2728')">
                 <td><a>2728</a></td>
                 <td>03 סיבבן</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2729')">
                 <td><a>2729</a></td>
                 <td>04 אין אנחנו</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2730')">
                 <td><a>2730</a></td>
                 <td>05 ראה</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2731')">
                 <td><a>2731</a></td>
                 <td>06 ילדי</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2732')">
                 <td><a>2732</a></td>
                 <td>07 אתה קדוש</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2733')">
                 <td><a>2733</a></td>
                 <td>08 מים רבים</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2734')">
                 <td><a>2734</a></td>
                 <td>09 קרוב</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2735')">
                 <td><a>2735</a></td>
                 <td>10 אורות</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2736')">
                 <td><a>2736</a></td>
                 <td>11 זכור</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2737')">
                 <td><a>2737</a></td>
                 <td>12 קול ברמה</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2738')">
                 <td><a>2738</a></td>
                 <td>13 שירה</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2739')">
                 <td><a>2739</a></td>
                 <td>14 רבונו של עולם</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2740')">
                 <td><a>2740</a></td>
                 <td>15 והיה</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2741')">
                 <td><a>2741</a></td>
                 <td>16 שלום</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2742')">
                 <td><a>2742</a></td>
                 <td>17 כי אין</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2743')">
                 <td><a>2743</a></td>
                 <td>18 בני</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2744')">
                 <td><a>2744</a></td>
                 <td>19 זמירות שבת</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2745')">
                 <td><a>2745</a></td>
                 <td>20 מי שיש לו</td>
                 <td>ספירה מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2746')">
                 <td><a>2746</a></td>
                 <td>01 שבת ביינאכט</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2747')">
                 <td><a>2747</a></td>
                 <td>02 שלום עליכם - סאטמאר</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2748')">
                 <td><a>2748</a></td>
                 <td>03 שריי'דושע אידעלע</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2749')">
                 <td><a>2749</a></td>
                 <td>04 ושמרו - יוסי גרין</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2750')">
                 <td><a>2750</a></td>
                 <td>05 לאמיר מאכן קידוש</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2751')">
                 <td><a>2751</a></td>
                 <td>06 וואן איך וואלט געהאט כח</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2752')">
                 <td><a>2752</a></td>
                 <td>07 ליבי</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2753')">
                 <td><a>2753</a></td>
                 <td>08 חזק</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2754')">
                 <td><a>2754</a></td>
                 <td>09 ניגון - טאהש</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2755')">
                 <td><a>2755</a></td>
                 <td>10 לכה דודי - ישראל ורדיגר</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2756')">
                 <td><a>2756</a></td>
                 <td>11 שבת שלום - קרעטשניף</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2757')">
                 <td><a>2757</a></td>
                 <td>12 ושמרו - וויזניץ</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2758')">
                 <td><a>2758</a></td>
                 <td>13 אנא מלך</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2759')">
                 <td><a>2759</a></td>
                 <td>14 שלום עליכם</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2760')">
                 <td><a>2760</a></td>
                 <td>15 אידעלע שרייט שבת</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2761')">
                 <td><a>2761</a></td>
                 <td>16 אנא מלך - אייזיק האניג</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2762')">
                 <td><a>2762</a></td>
                 <td>17 והראנו ה' - יוסי גרין</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2763')">
                 <td><a>2763</a></td>
                 <td>18 הרחמן - אייזיק האניג</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2764')">
                 <td><a>2764</a></td>
                 <td>19 והיו למשיסה - קרליבך</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2765')">
                 <td><a>2765</a></td>
                 <td>20 ישמחו - מב''ד</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2766')">
                 <td><a>2766</a></td>
                 <td>21 לכבוד שבת - פינקי וובער</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2767')">
                 <td><a>2767</a></td>
                 <td>22 ושמרו - בערי וובער</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2768')">
                 <td><a>2768</a></td>
                 <td>23 זמירות שבת - יוסי גרין</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2769')">
                 <td><a>2769</a></td>
                 <td>24 דרור יקרא - יוסי גרין</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2770')">
                 <td><a>2770</a></td>
                 <td>25 אלהא די ליה - פיטסבורג</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2771')">
                 <td><a>2771</a></td>
                 <td>26 רחם רחם</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2772')">
                 <td><a>2772</a></td>
                 <td>27 למקדשך</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2773')">
                 <td><a>2773</a></td>
                 <td>28 ויהיו רחמיך</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2774')">
                 <td><a>2774</a></td>
                 <td>29 יה אכסוף - קרלין</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2775')">
                 <td><a>2775</a></td>
                 <td>30 שבת נחת</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2776')">
                 <td><a>2776</a></td>
                 <td>31 רחם</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2777')">
                 <td><a>2777</a></td>
                 <td>32 גאולה - קרליבך</td>
                 <td>שבת מיט אידיש נחת</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2778')">
                 <td><a>2778</a></td>
                 <td>01 שבת ביינאכט</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2779')">
                 <td><a>2779</a></td>
                 <td>02 שלום עליכם</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2780')">
                 <td><a>2780</a></td>
                 <td>03 שרייט אידעלע</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2781')">
                 <td><a>2781</a></td>
                 <td>04 ושמרו</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2782')">
                 <td><a>2782</a></td>
                 <td>05 קידוש</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2783')">
                 <td><a>2783</a></td>
                 <td>06 ווען איך וואלט געהאט כוח</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2784')">
                 <td><a>2784</a></td>
                 <td>07 ליבי</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2785')">
                 <td><a>2785</a></td>
                 <td>08 חזק</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2786')">
                 <td><a>2786</a></td>
                 <td>09 ניגון</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2787')">
                 <td><a>2787</a></td>
                 <td>10 לכה דודי</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2788')">
                 <td><a>2788</a></td>
                 <td>11 שבת שלום</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2789')">
                 <td><a>2789</a></td>
                 <td>12 ושמרו</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2790')">
                 <td><a>2790</a></td>
                 <td>13 אנא מלך</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2791')">
                 <td><a>2791</a></td>
                 <td>14 שלום עליכם</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2792')">
                 <td><a>2792</a></td>
                 <td>15 אידעלע שרייט שבת</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2793')">
                 <td><a>2793</a></td>
                 <td>16 אנא מלך</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2794')">
                 <td><a>2794</a></td>
                 <td>17 והראנו ה'</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2795')">
                 <td><a>2795</a></td>
                 <td>18 הרחמן</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2796')">
                 <td><a>2796</a></td>
                 <td>19 והיו למשיסה</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2797')">
                 <td><a>2797</a></td>
                 <td>20 ישמחו</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2798')">
                 <td><a>2798</a></td>
                 <td>21 לכבוד שבת</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2799')">
                 <td><a>2799</a></td>
                 <td>22 ושמרו</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2800')">
                 <td><a>2800</a></td>
                 <td>23 זמירות שבת</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2801')">
                 <td><a>2801</a></td>
                 <td>24 דרור יקרא</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2802')">
                 <td><a>2802</a></td>
                 <td>25 אלקא די ליה</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2803')">
                 <td><a>2803</a></td>
                 <td>26 רחם רחם</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2804')">
                 <td><a>2804</a></td>
                 <td>27 למקדשך</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2805')">
                 <td><a>2805</a></td>
                 <td>28 ויהיו רחמיך</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2806')">
                 <td><a>2806</a></td>
                 <td>29 ריבונו של עולם</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2807')">
                 <td><a>2807</a></td>
                 <td>30 יה אכסוף</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2808')">
                 <td><a>2808</a></td>
                 <td>31 רחם</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2809')">
                 <td><a>2809</a></td>
                 <td>32 גאולה</td>
                 <td>שבת מיט אידיש נחת ווקאלי</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2810')">
                 <td><a>2810</a></td>
                 <td>01 פתיח</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2811')">
                 <td><a>2811</a></td>
                 <td>02 אוחילה</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2812')">
                 <td><a>2812</a></td>
                 <td>03 מלאכי רחמים</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2813')">
                 <td><a>2813</a></td>
                 <td>04 ועל כולם</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2814')">
                 <td><a>2814</a></td>
                 <td>05 זוכרינו</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2815')">
                 <td><a>2815</a></td>
                 <td>06 אמת</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2816')">
                 <td><a>2816</a></td>
                 <td>07 וכל מאמינים</td>
                 <td>תשרי נחת - אידיש נחת - 2022</td>
                 <td>אידיש נחת</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,784 +1,766 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>פיטסבורג</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>פיטסבורג</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspפיטסבורג</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspפיטסבורג</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('53506')">
                 <td><a>53506</a></td>
                 <td>01-הוא כחתן</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53507')">
                 <td><a>53507</a></td>
                 <td>02-זכרנו לחיים</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53508')">
                 <td><a>53508</a></td>
                 <td>03-וביום השבת</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53509')">
                 <td><a>53509</a></td>
                 <td>04-הנה מה טוב</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53510')">
                 <td><a>53510</a></td>
                 <td>05-ותמיד נספר</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53511')">
                 <td><a>53511</a></td>
                 <td>06-ובנה ירושלים</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53512')">
                 <td><a>53512</a></td>
                 <td>07-הרחמן הוא יזכנו</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53513')">
                 <td><a>53513</a></td>
                 <td>08-יפרח בימיו</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53514')">
                 <td><a>53514</a></td>
                 <td>09-נודה לך</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53515')">
                 <td><a>53515</a></td>
                 <td>10-פתחו לי</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53516')">
                 <td><a>53516</a></td>
                 <td>11-מתי תמלוך</td>
                 <td>3-הוא יזכנו</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53517')">
                 <td><a>53517</a></td>
                 <td>01-סימן טוב</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53518')">
                 <td><a>53518</a></td>
                 <td>02-פתחו לי</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53519')">
                 <td><a>53519</a></td>
                 <td>03-אם תחנה</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53520')">
                 <td><a>53520</a></td>
                 <td>04-אלקא די ליה</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53521')">
                 <td><a>53521</a></td>
                 <td>05-בורא עולם</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53522')">
                 <td><a>53522</a></td>
                 <td>06-לפליטה לטובה</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53523')">
                 <td><a>53523</a></td>
                 <td>07-זכרנו לחיים</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53524')">
                 <td><a>53524</a></td>
                 <td>08-אספרה אל חוק</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53525')">
                 <td><a>53525</a></td>
                 <td>09-ותן בלבנו</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53526')">
                 <td><a>53526</a></td>
                 <td>10-אדיר איום</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53527')">
                 <td><a>53527</a></td>
                 <td>11-זמרו להשם</td>
                 <td>4-בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53528')">
                 <td><a>53528</a></td>
                 <td>01-קול רינה</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53529')">
                 <td><a>53529</a></td>
                 <td>02-וידע</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53530')">
                 <td><a>53530</a></td>
                 <td>03-הנרות הללו</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53531')">
                 <td><a>53531</a></td>
                 <td>04-ישמח צדיק</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53532')">
                 <td><a>53532</a></td>
                 <td>05-אברכה</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53533')">
                 <td><a>53533</a></td>
                 <td>06-כן יברך</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53534')">
                 <td><a>53534</a></td>
                 <td>07-כבודו</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53535')">
                 <td><a>53535</a></td>
                 <td>08-ואני בחסדך</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53536')">
                 <td><a>53536</a></td>
                 <td>09-קה ריבון</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53537')">
                 <td><a>53537</a></td>
                 <td>10-ניגון</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53538')">
                 <td><a>53538</a></td>
                 <td>11-מהרה השם</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53539')">
                 <td><a>53539</a></td>
                 <td>12-למוקדשך טוב</td>
                 <td>5-להודות ולהלל</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53540')">
                 <td><a>53540</a></td>
                 <td>01-ויזכו</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53541')">
                 <td><a>53541</a></td>
                 <td>02-השבת</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53542')">
                 <td><a>53542</a></td>
                 <td>03-שמחם</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53543')">
                 <td><a>53543</a></td>
                 <td>04-והשב</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53544')">
                 <td><a>53544</a></td>
                 <td>05-ניגון</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53545')">
                 <td><a>53545</a></td>
                 <td>06-שמחו</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53546')">
                 <td><a>53546</a></td>
                 <td>07-היום הרת עולם</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53547')">
                 <td><a>53547</a></td>
                 <td>08-קול דודי</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53548')">
                 <td><a>53548</a></td>
                 <td>09-ברוך קל עליון</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53549')">
                 <td><a>53549</a></td>
                 <td>10-כי בשמחה</td>
                 <td>6-והוא ידרוש לציון</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53550')">
                 <td><a>53550</a></td>
                 <td>01-יבנה</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53551')">
                 <td><a>53551</a></td>
                 <td>02-ממקומך</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53552')">
                 <td><a>53552</a></td>
                 <td>03-המעביר בניו</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53553')">
                 <td><a>53553</a></td>
                 <td>04-מוציא אסירים</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53554')">
                 <td><a>53554</a></td>
                 <td>05-ימלא ה</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53555')">
                 <td><a>53555</a></td>
                 <td>06-ונפשי</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53556')">
                 <td><a>53556</a></td>
                 <td>07-לכה דודי</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53557')">
                 <td><a>53557</a></td>
                 <td>08-הוא יפתח לבנו</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53558')">
                 <td><a>53558</a></td>
                 <td>09-אבן מאסו הבונים</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53559')">
                 <td><a>53559</a></td>
                 <td>10-ניגון</td>
                 <td>7-ונפשי</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53560')">
                 <td><a>53560</a></td>
                 <td>01 - סימן טוב</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53561')">
                 <td><a>53561</a></td>
                 <td>02 - פתחו לי</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53562')">
                 <td><a>53562</a></td>
                 <td>03 - אם תחנה</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53563')">
                 <td><a>53563</a></td>
                 <td>04 - אלקא די ליה</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53564')">
                 <td><a>53564</a></td>
                 <td>05 - בורא עולם</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53565')">
                 <td><a>53565</a></td>
                 <td>06 - לפליטה לטובה</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53566')">
                 <td><a>53566</a></td>
                 <td>07 - זכרנו לחיים</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53567')">
                 <td><a>53567</a></td>
                 <td>08 - אספרה</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53568')">
                 <td><a>53568</a></td>
                 <td>09 - ותן בליבנו</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53569')">
                 <td><a>53569</a></td>
                 <td>10 - אדיר איום</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53570')">
                 <td><a>53570</a></td>
                 <td>11 - זמרו לשם</td>
                 <td>בזאת אני בוטח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53571')">
                 <td><a>53571</a></td>
                 <td>01-הנה מה טוב</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53572')">
                 <td><a>53572</a></td>
                 <td>02-זכרנו</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53573')">
                 <td><a>53573</a></td>
                 <td>03-וביום השבת</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53574')">
                 <td><a>53574</a></td>
                 <td>04-והוא כחתן</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53575')">
                 <td><a>53575</a></td>
                 <td>05-ותמיד</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53576')">
                 <td><a>53576</a></td>
                 <td>06-ובנה ירושלים</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53577')">
                 <td><a>53577</a></td>
                 <td>07-הרחמן</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53578')">
                 <td><a>53578</a></td>
                 <td>08-יפרח</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53579')">
                 <td><a>53579</a></td>
                 <td>09-נודה לך</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53580')">
                 <td><a>53580</a></td>
                 <td>10-פתחו לי</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53581')">
                 <td><a>53581</a></td>
                 <td>11-מתי תמלוך</td>
                 <td>חיימקה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53582')">
                 <td><a>53582</a></td>
                 <td>מקהלת פיסטבורג - Track  4</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53583')">
                 <td><a>53583</a></td>
                 <td>מקהלת פיסטבורג - Track  5</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53584')">
                 <td><a>53584</a></td>
                 <td>מקהלת פיסטבורג - Track  6</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53585')">
                 <td><a>53585</a></td>
                 <td>מקהלת פיסטבורג - Track  7</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53586')">
                 <td><a>53586</a></td>
                 <td>מקהלת פיסטבורג - Track  8</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53587')">
                 <td><a>53587</a></td>
                 <td>מקהלת פיסטבורג - Track  9</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53588')">
                 <td><a>53588</a></td>
                 <td>מקהלת פיסטבורג - Track 10</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53589')">
                 <td><a>53589</a></td>
                 <td>מקהלת פיסטבורג - Track 11</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53590')">
                 <td><a>53590</a></td>
                 <td>מקהלת פיסטבורג - Track 12</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53591')">
                 <td><a>53591</a></td>
                 <td>מקהלת פיסטבורג - הנרות הללו</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53592')">
                 <td><a>53592</a></td>
                 <td>מקהלת פיסטבורג - וידע כל פעיל</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53593')">
                 <td><a>53593</a></td>
                 <td>מקהלת פיסטבורג - קול רנה וישועה</td>
                 <td>לא ידוע</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53594')">
                 <td><a>53594</a></td>
                 <td>01-לעולם לא אשכח</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53595')">
                 <td><a>53595</a></td>
                 <td>02-מחרוזת סימן טוב</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53596')">
                 <td><a>53596</a></td>
                 <td>03-ושיויתי ד' לקראתנו</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53597')">
                 <td><a>53597</a></td>
                 <td>04-ניגון פורים</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53598')">
                 <td><a>53598</a></td>
                 <td>05-פתח לבי בתורתך</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53599')">
                 <td><a>53599</a></td>
                 <td>06-ניגון הללו</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53600')">
                 <td><a>53600</a></td>
                 <td>07-והאר עינינו</td>
                 <td>לעולם לא אשכח</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53601')">
                 <td><a>53601</a></td>
                 <td>01-מחרוזת שמחה</td>
                 <td>שמחת בית השואבה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53602')">
                 <td><a>53602</a></td>
                 <td>02-מחרוזת קצבי</td>
                 <td>שמחת בית השואבה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53603')">
                 <td><a>53603</a></td>
                 <td>03-מחרוזת הורה</td>
                 <td>שמחת בית השואבה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('53604')">
                 <td><a>53604</a></td>
                 <td>04-מחרוזת ניגונים</td>
                 <td>שמחת בית השואבה</td>
                 <td>פיטסבורג</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

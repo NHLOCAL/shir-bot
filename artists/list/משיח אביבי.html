@@ -1,350 +1,332 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>משיח אביבי</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>משיח אביבי</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspמשיח אביבי</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspמשיח אביבי</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('52886')">
                 <td><a>52886</a></td>
                 <td>אבא</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52887')">
                 <td><a>52887</a></td>
                 <td>אמא טהורה</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52888')">
                 <td><a>52888</a></td>
                 <td>בצל אמונתי</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52889')">
                 <td><a>52889</a></td>
                 <td>דבר אליו</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52890')">
                 <td><a>52890</a></td>
                 <td>דמעות של ילד</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52891')">
                 <td><a>52891</a></td>
                 <td>הנצח קרוב</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52892')">
                 <td><a>52892</a></td>
                 <td>התמונות שבאלבום</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52893')">
                 <td><a>52893</a></td>
                 <td>זו דרכי</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52894')">
                 <td><a>52894</a></td>
                 <td>לא לנו עולם</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52895')">
                 <td><a>52895</a></td>
                 <td>לאך אלך</td>
                 <td>לא לנו עולם</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52896')">
                 <td><a>52896</a></td>
                 <td>01-עלה קטן שלי-דאנס</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52897')">
                 <td><a>52897</a></td>
                 <td>02-אשת חיל</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52898')">
                 <td><a>52898</a></td>
                 <td>03-מחרוזת חתונה-וישמע</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52899')">
                 <td><a>52899</a></td>
                 <td>04-מאמינים</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52900')">
                 <td><a>52900</a></td>
                 <td>05-שהחיינו</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52901')">
                 <td><a>52901</a></td>
                 <td>06-עמך</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52902')">
                 <td><a>52902</a></td>
                 <td>07-למעלה</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52903')">
                 <td><a>52903</a></td>
                 <td>08-מחרוזת הורה-לפניו נעבוד</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52904')">
                 <td><a>52904</a></td>
                 <td>09-לכבוד החתן</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52905')">
                 <td><a>52905</a></td>
                 <td>10-פתיחה לשיר מקורי-מן המיצר</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52906')">
                 <td><a>52906</a></td>
                 <td>11-מן המיצר</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52907')">
                 <td><a>52907</a></td>
                 <td>12-מחרוזת חתונה-עוצו עצה</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52908')">
                 <td><a>52908</a></td>
                 <td>13-אין בהם טבע</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52909')">
                 <td><a>52909</a></td>
                 <td>14-לחיים</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52910')">
                 <td><a>52910</a></td>
                 <td>15-גילה רינה-יידיש</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52911')">
                 <td><a>52911</a></td>
                 <td>16-כשם שאני</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52912')">
                 <td><a>52912</a></td>
                 <td>17-מוסר ה</td>
                 <td>מן המיצר</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52913')">
                 <td><a>52913</a></td>
                 <td>01-תפילה</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52914')">
                 <td><a>52914</a></td>
                 <td>02-שיר לדרך</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52915')">
                 <td><a>52915</a></td>
                 <td>03-לאן הולכים כולם</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52916')">
                 <td><a>52916</a></td>
                 <td>04-אילת</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52917')">
                 <td><a>52917</a></td>
                 <td>05-כמה טוב</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52918')">
                 <td><a>52918</a></td>
                 <td>06-עד כלות הנשימה</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52919')">
                 <td><a>52919</a></td>
                 <td>07-איומה בהר המור</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52920')">
                 <td><a>52920</a></td>
                 <td>08-מה להם לבני אדום</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52921')">
                 <td><a>52921</a></td>
                 <td>09-נגנו לי שיר</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('52922')">
                 <td><a>52922</a></td>
                 <td>10-מחרוזת מזרחית</td>
                 <td>תפילה</td>
                 <td>משיח אביבי</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

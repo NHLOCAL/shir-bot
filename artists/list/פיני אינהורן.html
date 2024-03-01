@@ -1,476 +1,458 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>פיני אינהורן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>פיני אינהורן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspפיני אינהורן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspפיני אינהורן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('26015')">
                 <td><a>26015</a></td>
                 <td>01 פרוק</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26016')">
                 <td><a>26016</a></td>
                 <td>02 התעוררי</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26017')">
                 <td><a>26017</a></td>
                 <td>03 אנא ה</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26018')">
                 <td><a>26018</a></td>
                 <td>04 נפש רוח ונשמה</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26019')">
                 <td><a>26019</a></td>
                 <td>05 יצר טוב</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26020')">
                 <td><a>26020</a></td>
                 <td>06 תאמין</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26021')">
                 <td><a>26021</a></td>
                 <td>07 ממזרח שמש</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26022')">
                 <td><a>26022</a></td>
                 <td>08 כשהשמחה באה</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26023')">
                 <td><a>26023</a></td>
                 <td>09 והרוח לנו</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26024')">
                 <td><a>26024</a></td>
                 <td>10 טוב הבעל שם טוב</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26025')">
                 <td><a>26025</a></td>
                 <td>11 במסתרים</td>
                 <td>במסתרים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26026')">
                 <td><a>26026</a></td>
                 <td>-פורים-2023-פיני-איינהורן-ושמחה-אברמציק</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26027')">
                 <td><a>26027</a></td>
                 <td>01 ימינא ושמאלא</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26028')">
                 <td><a>26028</a></td>
                 <td>02 לא רעב ללחם</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26029')">
                 <td><a>26029</a></td>
                 <td>03 אהיים</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26030')">
                 <td><a>26030</a></td>
                 <td>04 והנחילנו</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26031')">
                 <td><a>26031</a></td>
                 <td>05 משתוקק</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26032')">
                 <td><a>26032</a></td>
                 <td>06 הזמן לתקן</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26033')">
                 <td><a>26033</a></td>
                 <td>07 שומר עלינו</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26034')">
                 <td><a>26034</a></td>
                 <td>08 ומפני חטאינו</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26035')">
                 <td><a>26035</a></td>
                 <td>09 גאולת עולם</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26036')">
                 <td><a>26036</a></td>
                 <td>10 הוא יברך</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26037')">
                 <td><a>26037</a></td>
                 <td>11 גבורת הסוס</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26038')">
                 <td><a>26038</a></td>
                 <td>אירוע השקת אלבומו החדש של פיני איינהורן</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26039')">
                 <td><a>26039</a></td>
                 <td>בבית הכנסת לא מדברים</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26040')">
                 <td><a>26040</a></td>
                 <td>ומשתוקק</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26041')">
                 <td><a>26041</a></td>
                 <td>ותיק</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26042')">
                 <td><a>26042</a></td>
                 <td>טוב להודות לה ואמונתך בלילות</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26043')">
                 <td><a>26043</a></td>
                 <td>מלך הקומזיצים פיני אינהורן - קומזיץ</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26044')">
                 <td><a>26044</a></td>
                 <td>מתחננים</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26045')">
                 <td><a>26045</a></td>
                 <td>נותן לבהמה לחמה פיני איינהורן</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26046')">
                 <td><a>26046</a></td>
                 <td>פיני איינהורן   אהרל ה סמט - והרוח לנו   Ahrele Samet   Pini Einhorn - Veharvach Lanu(MP3 128K)</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26047')">
                 <td><a>26047</a></td>
                 <td>פיני איינהורן - טוב הבעל שם טוב</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26048')">
                 <td><a>26048</a></td>
                 <td>פיני איינהורן וארי היל בדואט אווירה מיוחד לחג ''7''</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26049')">
                 <td><a>26049</a></td>
                 <td>פיני איינהורן מוציא אלבום שניה ''במסתרים'' - דוגמה</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26050')">
                 <td><a>26050</a></td>
                 <td>פיני איינהורן מקפץ ומבצע את  אהיים </td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26051')">
                 <td><a>26051</a></td>
                 <td>פיני איינהורן משיק סינגל חדש - ''טוב הבעל שם טוב''</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26052')">
                 <td><a>26052</a></td>
                 <td>פיני איינהורן מתחננים</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26053')">
                 <td><a>26053</a></td>
                 <td>פיני איינהורן פיני תקציר האלבום Pini Einhorn Pini Music Album Preview.135</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26054')">
                 <td><a>26054</a></td>
                 <td>פיני איינהורן שמחה אברמצ'יק - מחרוזת שמחה</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26055')">
                 <td><a>26055</a></td>
                 <td>פיני אינהורן</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26056')">
                 <td><a>26056</a></td>
                 <td>פיני-איינהורן אברהם ויאמר הנני</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26057')">
                 <td><a>26057</a></td>
                 <td>פיני-איינהורן- ותיק</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26058')">
                 <td><a>26058</a></td>
                 <td>שמחה אברמצ_יק _ פיני איינהורן - מחרוזת פורים 2023</td>
                 <td>סינגלים</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26059')">
                 <td><a>26059</a></td>
                 <td>01 ימינא ושמאלא</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26060')">
                 <td><a>26060</a></td>
                 <td>02 לא רעב ללחם</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26061')">
                 <td><a>26061</a></td>
                 <td>03 אהיים</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26062')">
                 <td><a>26062</a></td>
                 <td>04 והנחילנו</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26063')">
                 <td><a>26063</a></td>
                 <td>05 משתוקק</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26064')">
                 <td><a>26064</a></td>
                 <td>06 הזמן לתקן</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26065')">
                 <td><a>26065</a></td>
                 <td>07 שומר עלינו</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26066')">
                 <td><a>26066</a></td>
                 <td>08 ומפני חטאינו</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26067')">
                 <td><a>26067</a></td>
                 <td>09 גאולת עולם</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26068')">
                 <td><a>26068</a></td>
                 <td>10 הוא יברך</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('26069')">
                 <td><a>26069</a></td>
                 <td>11 גבורת הסוס</td>
                 <td>פיני</td>
                 <td>פיני אינהורן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

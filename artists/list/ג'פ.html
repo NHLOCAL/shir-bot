@@ -1,483 +1,465 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ג'פ</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ג'פ</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspג'פ</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspג'פ</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('48602')">
                 <td><a>48602</a></td>
                 <td>01-יהי כבוד</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48603')">
                 <td><a>48603</a></td>
                 <td>02 - Reach Out</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48604')">
                 <td><a>48604</a></td>
                 <td>03 - Like An Ocean</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48605')">
                 <td><a>48605</a></td>
                 <td>04 - Father & Son</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48606')">
                 <td><a>48606</a></td>
                 <td>05-ואהבת</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48607')">
                 <td><a>48607</a></td>
                 <td>06 - Six Million Tears</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48608')">
                 <td><a>48608</a></td>
                 <td>07-ד' הוא מלכנו</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48609')">
                 <td><a>48609</a></td>
                 <td>08 - Engulfed In Darkness</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48610')">
                 <td><a>48610</a></td>
                 <td>09 - Jubilation</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48611')">
                 <td><a>48611</a></td>
                 <td>10 - Deark Nikolai</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48612')">
                 <td><a>48612</a></td>
                 <td>11 - At The Foot Of The Kossel</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48613')">
                 <td><a>48613</a></td>
                 <td>12 - Big Lamm's March</td>
                 <td>JEP I - Reach Out</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48614')">
                 <td><a>48614</a></td>
                 <td>01 - Times Of Joy</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48615')">
                 <td><a>48615</a></td>
                 <td>02 - I Search</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48616')">
                 <td><a>48616</a></td>
                 <td>03-סימן טוב</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48617')">
                 <td><a>48617</a></td>
                 <td>04-איש חסיד</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48618')">
                 <td><a>48618</a></td>
                 <td>05 - Town To Town</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48619')">
                 <td><a>48619</a></td>
                 <td>06 - A Nation Apart</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48620')">
                 <td><a>48620</a></td>
                 <td>07-מזמור שיר</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48621')">
                 <td><a>48621</a></td>
                 <td>08 - One Peaceful Friday Night</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48622')">
                 <td><a>48622</a></td>
                 <td>09 - Return, My Children</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48623')">
                 <td><a>48623</a></td>
                 <td>10-שאו שערים</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48624')">
                 <td><a>48624</a></td>
                 <td>11 - In the Mountains</td>
                 <td>JEP II - Return, My Children</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48625')">
                 <td><a>48625</a></td>
                 <td>01-ושים</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48626')">
                 <td><a>48626</a></td>
                 <td>02-ניגון מודז'יץ</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48627')">
                 <td><a>48627</a></td>
                 <td>03-והיו</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48628')">
                 <td><a>48628</a></td>
                 <td>04-אשא עיני</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48629')">
                 <td><a>48629</a></td>
                 <td>05-אני מאמין</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48630')">
                 <td><a>48630</a></td>
                 <td>06-יום זה</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48631')">
                 <td><a>48631</a></td>
                 <td>07 - Oh Dovid</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48632')">
                 <td><a>48632</a></td>
                 <td>08-ויתן</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48633')">
                 <td><a>48633</a></td>
                 <td>09-כי אם</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48634')">
                 <td><a>48634</a></td>
                 <td>10 - Endless Years</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48635')">
                 <td><a>48635</a></td>
                 <td>11-כי בשמחה</td>
                 <td>JEP III - Kol Yisroel Areivim</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48636')">
                 <td><a>48636</a></td>
                 <td>01-וראה</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48637')">
                 <td><a>48637</a></td>
                 <td>02 - Someday</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48638')">
                 <td><a>48638</a></td>
                 <td>03-אך טוב וחסד</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48639')">
                 <td><a>48639</a></td>
                 <td>04-שמע קולנו</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48640')">
                 <td><a>48640</a></td>
                 <td>05 - Benjy</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48641')">
                 <td><a>48641</a></td>
                 <td>06-ונאמר</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48642')">
                 <td><a>48642</a></td>
                 <td>07 - I Remember Yom Kippur</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48643')">
                 <td><a>48643</a></td>
                 <td>08-ברוך הגבר</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48644')">
                 <td><a>48644</a></td>
                 <td>09 - Rose Amoung Thorns</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48645')">
                 <td><a>48645</a></td>
                 <td>10-שירה חדשה</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48646')">
                 <td><a>48646</a></td>
                 <td>11-והראנו</td>
                 <td>JEP IV - Someday We Will All Be Together</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48647')">
                 <td><a>48647</a></td>
                 <td>01-אם אין אני</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48648')">
                 <td><a>48648</a></td>
                 <td>02-כאייל</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48649')">
                 <td><a>48649</a></td>
                 <td>03 - Imagine</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48650')">
                 <td><a>48650</a></td>
                 <td>04 - We Will Rise</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48651')">
                 <td><a>48651</a></td>
                 <td>05-צור</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48652')">
                 <td><a>48652</a></td>
                 <td>06 - Never Too Late</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48653')">
                 <td><a>48653</a></td>
                 <td>07-זקנים</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48654')">
                 <td><a>48654</a></td>
                 <td>08 - The Master Artist</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48655')">
                 <td><a>48655</a></td>
                 <td>09 - Benjy 2</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48656')">
                 <td><a>48656</a></td>
                 <td>10 - Sol A</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('48657')">
                 <td><a>48657</a></td>
                 <td>11-ויזכו</td>
                 <td>JEP V - It's Never Too Late</td>
                 <td>ג'פ</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

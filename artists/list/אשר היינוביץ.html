@@ -1,742 +1,724 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אשר היינוביץ</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אשר היינוביץ</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאשר היינוביץ</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאשר היינוביץ</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('33155')">
                 <td><a>33155</a></td>
                 <td>01-מעריב</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33156')">
                 <td><a>33156</a></td>
                 <td>02-קדיש</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33157')">
                 <td><a>33157</a></td>
                 <td>03-לדוד מזמור</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33158')">
                 <td><a>33158</a></td>
                 <td>04-קדיש תתקבל</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33159')">
                 <td><a>33159</a></td>
                 <td>05-יגדל</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33160')">
                 <td><a>33160</a></td>
                 <td>06-שחרית המלך</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33161')">
                 <td><a>33161</a></td>
                 <td>07-שיר למעלות</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33162')">
                 <td><a>33162</a></td>
                 <td>08-קדיש</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33163')">
                 <td><a>33163</a></td>
                 <td>09-יוצר אור</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33164')">
                 <td><a>33164</a></td>
                 <td>10-עמידה-אבות</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33165')">
                 <td><a>33165</a></td>
                 <td>11-יראתי בפצותי</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33166')">
                 <td><a>33166</a></td>
                 <td>12-זכרנו לחיים</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33167')">
                 <td><a>33167</a></td>
                 <td>13-אדירי</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33168')">
                 <td><a>33168</a></td>
                 <td>14-לקל עורך דין</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33169')">
                 <td><a>33169</a></td>
                 <td>15-לדור ודור</td>
                 <td>פתח לנו שער 1</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33170')">
                 <td><a>33170</a></td>
                 <td>01-ובכן תן פחדך</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33171')">
                 <td><a>33171</a></td>
                 <td>02-ברכת כהנים</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33172')">
                 <td><a>33172</a></td>
                 <td>03-שים שלום</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33173')">
                 <td><a>33173</a></td>
                 <td>04-אבינו מלכנו</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33174')">
                 <td><a>33174</a></td>
                 <td>05-אין כמוך</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33175')">
                 <td><a>33175</a></td>
                 <td>06-י''ג מידות</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33176')">
                 <td><a>33176</a></td>
                 <td>07-ואני תפילתי</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33177')">
                 <td><a>33177</a></td>
                 <td>08-שמע ישראל</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33178')">
                 <td><a>33178</a></td>
                 <td>09-אשרי העם יודעי תרועה</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33179')">
                 <td><a>33179</a></td>
                 <td>10-אשרי יושבי ביתך</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33180')">
                 <td><a>33180</a></td>
                 <td>11-הנני העני ממעש</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33181')">
                 <td><a>33181</a></td>
                 <td>12-קדיש-מוסף</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33182')">
                 <td><a>33182</a></td>
                 <td>13-חזרת מוסף</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33183')">
                 <td><a>33183</a></td>
                 <td>14-מלך עליון</td>
                 <td>פתח לנו שער 2</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33184')">
                 <td><a>33184</a></td>
                 <td>01-ונתנה תוקף</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33185')">
                 <td><a>33185</a></td>
                 <td>02-קדושה</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33186')">
                 <td><a>33186</a></td>
                 <td>03-לדור ודור</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33187')">
                 <td><a>33187</a></td>
                 <td>04-וכל מאמינים</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33188')">
                 <td><a>33188</a></td>
                 <td>05-ובכן תן פחדך</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33189')">
                 <td><a>33189</a></td>
                 <td>06-ויאתיו</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33190')">
                 <td><a>33190</a></td>
                 <td>07-ותמלוך</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33191')">
                 <td><a>33191</a></td>
                 <td>08-ומפני חטאנו</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33192')">
                 <td><a>33192</a></td>
                 <td>09-ובחודש השביעי</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33193')">
                 <td><a>33193</a></td>
                 <td>10-עלינו לשבח</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33194')">
                 <td><a>33194</a></td>
                 <td>11-היה עם פיפיות</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33195')">
                 <td><a>33195</a></td>
                 <td>12-אוחילה לקל</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33196')">
                 <td><a>33196</a></td>
                 <td>13-על כן נקוה לך</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33197')">
                 <td><a>33197</a></td>
                 <td>14-מלוך על כל העולם</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33198')">
                 <td><a>33198</a></td>
                 <td>15-היום הרת עולם</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33199')">
                 <td><a>33199</a></td>
                 <td>16-ארשת שפתינו</td>
                 <td>פתח לנו שער 3</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33200')">
                 <td><a>33200</a></td>
                 <td>01-אתה זוכר</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33201')">
                 <td><a>33201</a></td>
                 <td>02-זכרנו בזכרון</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33202')">
                 <td><a>33202</a></td>
                 <td>03-אתה נגלית</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33203')">
                 <td><a>33203</a></td>
                 <td>04-ותערב לפניך</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33204')">
                 <td><a>33204</a></td>
                 <td>05-ברכת כהנים-מוסף</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33205')">
                 <td><a>33205</a></td>
                 <td>06-שים שלום</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33206')">
                 <td><a>33206</a></td>
                 <td>07-בספר חיים</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33207')">
                 <td><a>33207</a></td>
                 <td>08-היום תאמצנו</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33208')">
                 <td><a>33208</a></td>
                 <td>09-קדיש מוסף</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33209')">
                 <td><a>33209</a></td>
                 <td>10-כל נדרי</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33210')">
                 <td><a>33210</a></td>
                 <td>11-כי ביום הזה</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33211')">
                 <td><a>33211</a></td>
                 <td>12-יעלה תחנונינו 1</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33212')">
                 <td><a>33212</a></td>
                 <td>13-יעלה תחנונינו 2</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33213')">
                 <td><a>33213</a></td>
                 <td>14-אשר בידו</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33214')">
                 <td><a>33214</a></td>
                 <td>15-סלח נא</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33215')">
                 <td><a>33215</a></td>
                 <td>16-אמנם כן</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33216')">
                 <td><a>33216</a></td>
                 <td>17-כי הנה כחומר</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33217')">
                 <td><a>33217</a></td>
                 <td>18-זכור רחמיך</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33218')">
                 <td><a>33218</a></td>
                 <td>19-שמע קולינו</td>
                 <td>פתח לנו שער 4</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33219')">
                 <td><a>33219</a></td>
                 <td>003-סלח ומחל</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33220')">
                 <td><a>33220</a></td>
                 <td>01-סלח לנו</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33221')">
                 <td><a>33221</a></td>
                 <td>02-וידוי</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33222')">
                 <td><a>33222</a></td>
                 <td>04-אבינו מלכנו</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33223')">
                 <td><a>33223</a></td>
                 <td>05-ניב שפתינו</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33224')">
                 <td><a>33224</a></td>
                 <td>06-אמרו לאלוקים</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33225')">
                 <td><a>33225</a></td>
                 <td>07-לנורא עולם</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33226')">
                 <td><a>33226</a></td>
                 <td>08-ליושב תהילות</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33227')">
                 <td><a>33227</a></td>
                 <td>09-סדר העבודה</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33228')">
                 <td><a>33228</a></td>
                 <td>10-והכהנים</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33229')">
                 <td><a>33229</a></td>
                 <td>11-ואף הא היה מתכוון</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33230')">
                 <td><a>33230</a></td>
                 <td>12-וכך היה מונה</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33231')">
                 <td><a>33231</a></td>
                 <td>13-תפילתו של כהן גדול</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33232')">
                 <td><a>33232</a></td>
                 <td>14-אשרי עין</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33233')">
                 <td><a>33233</a></td>
                 <td>15-אלא אזכרה</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33234')">
                 <td><a>33234</a></td>
                 <td>16-מחול לעוונותינו</td>
                 <td>פתח לנו שער 5</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33235')">
                 <td><a>33235</a></td>
                 <td>01-נעילה</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33236')">
                 <td><a>33236</a></td>
                 <td>02-קדיש נעילה</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33237')">
                 <td><a>33237</a></td>
                 <td>03-חזרת הש''ץ</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33238')">
                 <td><a>33238</a></td>
                 <td>04-פתח לנו שער</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33239')">
                 <td><a>33239</a></td>
                 <td>05-ישראל נושע</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33240')">
                 <td><a>33240</a></td>
                 <td>06-י''ג מידות</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33241')">
                 <td><a>33241</a></td>
                 <td>07-אזכרה אלוקים</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33242')">
                 <td><a>33242</a></td>
                 <td>08-אתה נותן יד</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33243')">
                 <td><a>33243</a></td>
                 <td>09-אתה הבדלת אנוש</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33244')">
                 <td><a>33244</a></td>
                 <td>10-מחול לעוונותינו</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33245')">
                 <td><a>33245</a></td>
                 <td>11-אבינו מלכנו</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33246')">
                 <td><a>33246</a></td>
                 <td>12-שמע ישראל</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('33247')">
                 <td><a>33247</a></td>
                 <td>13-לשנה הבאה</td>
                 <td>פתח לנו שער 6</td>
                 <td>אשר היינוביץ</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

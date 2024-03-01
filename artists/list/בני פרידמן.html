@@ -1,2275 +1,2257 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>בני פרידמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>בני פרידמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspבני פרידמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspבני פרידמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('4782')">
                 <td><a>4782</a></td>
                 <td>01 Tantz the Night Away</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4783')">
                 <td><a>4783</a></td>
                 <td>02 The Dreidel Karahod</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4784')">
                 <td><a>4784</a></td>
                 <td>03 It_s Chanukah Again</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4785')">
                 <td><a>4785</a></td>
                 <td>04 As the Candles Glow</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4786')">
                 <td><a>4786</a></td>
                 <td>05 The Lyrical Miracle Medley</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4787')">
                 <td><a>4787</a></td>
                 <td>06 Lehodos U_lehallel</td>
                 <td>מחרוזת</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4788')">
                 <td><a>4788</a></td>
                 <td>01 מעוז צור (מסורתי)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4789')">
                 <td><a>4789</a></td>
                 <td>02 שהחיינו, Pt. 1</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4790')">
                 <td><a>4790</a></td>
                 <td>03 שהחיינו, Pt. 2</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4791')">
                 <td><a>4791</a></td>
                 <td>04 יוונים (ברזיל)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4792')">
                 <td><a>4792</a></td>
                 <td>05 הוי יוונים (לונדון)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4793')">
                 <td><a>4793</a></td>
                 <td>06 יוונים (שיקגו)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4794')">
                 <td><a>4794</a></td>
                 <td>07 יוונים (מסורתי)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4795')">
                 <td><a>4795</a></td>
                 <td>08 יוונים (ויז_ניץ)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4796')">
                 <td><a>4796</a></td>
                 <td>09 על הניסים (לאופר)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4797')">
                 <td><a>4797</a></td>
                 <td>10 על הניסים (פרימר)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4798')">
                 <td><a>4798</a></td>
                 <td>11 על הניסים (MBD)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4799')">
                 <td><a>4799</a></td>
                 <td>12 האפי חנוכה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4800')">
                 <td><a>4800</a></td>
                 <td>13 סביבון</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4801')">
                 <td><a>4801</a></td>
                 <td>14 I Have a Little Dreidel</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4802')">
                 <td><a>4802</a></td>
                 <td>15 חנוכה חג יפה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4803')">
                 <td><a>4803</a></td>
                 <td>16 נר לי</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4804')">
                 <td><a>4804</a></td>
                 <td>17 הו חנוכה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4805')">
                 <td><a>4805</a></td>
                 <td>18 לאטקל_ה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4806')">
                 <td><a>4806</a></td>
                 <td>19 חנוכה, the Best! (Simcha Machine)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4807')">
                 <td><a>4807</a></td>
                 <td>20 חנוכה (Feitel Von Zeidel)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4808')">
                 <td><a>4808</a></td>
                 <td>21 Drei Little Dreidel</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4809')">
                 <td><a>4809</a></td>
                 <td>22 Lots of Latkes</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4810')">
                 <td><a>4810</a></td>
                 <td>23 מתיתיהו Bold</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4811')">
                 <td><a>4811</a></td>
                 <td>24 The Zois Chanukah Geulah Niggun</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4812')">
                 <td><a>4812</a></td>
                 <td>25 מכבי (מסורתי)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4813')">
                 <td><a>4813</a></td>
                 <td>26 מעוז צור (לונדון)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4814')">
                 <td><a>4814</a></td>
                 <td>27 מעוז צור (Miraculous Menorah)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4815')">
                 <td><a>4815</a></td>
                 <td>28 הנרות הללו (דווידוביץ)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4816')">
                 <td><a>4816</a></td>
                 <td>29 הנרות הללו</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4817')">
                 <td><a>4817</a></td>
                 <td>30 יעקב_ס הנרות הללו</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4818')">
                 <td><a>4818</a></td>
                 <td>31 ליכטלעך</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4819')">
                 <td><a>4819</a></td>
                 <td>32 לכבוד החנוכה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4820')">
                 <td><a>4820</a></td>
                 <td>33 ועל הניסים</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4821')">
                 <td><a>4821</a></td>
                 <td>34 חשוף</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4822')">
                 <td><a>4822</a></td>
                 <td>35 יוונים (רכניץ)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4823')">
                 <td><a>4823</a></td>
                 <td>36 Light One Candle</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4824')">
                 <td><a>4824</a></td>
                 <td>37 Those Were the Nights</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4825')">
                 <td><a>4825</a></td>
                 <td>38 Never Give Up</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4826')">
                 <td><a>4826</a></td>
                 <td>39 Miracle of Light</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4827')">
                 <td><a>4827</a></td>
                 <td>40 Chanukah Light</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4828')">
                 <td><a>4828</a></td>
                 <td>41 Miracle</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4829')">
                 <td><a>4829</a></td>
                 <td>42 Candlelight</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4830')">
                 <td><a>4830</a></td>
                 <td>43 תודה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4831')">
                 <td><a>4831</a></td>
                 <td>44 הטוב (שנקר)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4832')">
                 <td><a>4832</a></td>
                 <td>45 מזמור שיר חנוכת (ג_וליוס)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4833')">
                 <td><a>4833</a></td>
                 <td>46 הטוב (בוסטון)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4834')">
                 <td><a>4834</a></td>
                 <td>47 כי לך (כלי זמר)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4835')">
                 <td><a>4835</a></td>
                 <td>48 כי לך</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4836')">
                 <td><a>4836</a></td>
                 <td>49 אין אנחנו (If We Lived A Thousand Years)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4837')">
                 <td><a>4837</a></td>
                 <td>50 We Can_t Thank You Enough</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4838')">
                 <td><a>4838</a></td>
                 <td>51 טנק יו השם</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4839')">
                 <td><a>4839</a></td>
                 <td>52 מזמור שיר חנוכת (פולצ_ק)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4840')">
                 <td><a>4840</a></td>
                 <td>53 מזמור לתודה, כי טוב השם</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4841')">
                 <td><a>4841</a></td>
                 <td>54 מזמור לתודה</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4842')">
                 <td><a>4842</a></td>
                 <td>55 אהיים (מזמור שיר)</td>
                 <td>רצועות</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4843')">
                 <td><a>4843</a></td>
                 <td>01 משנכנס אדר (ונהפוך)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4844')">
                 <td><a>4844</a></td>
                 <td>02 משנכנס אדר</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4845')">
                 <td><a>4845</a></td>
                 <td>03 שושנת יעקב (באבוב)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4846')">
                 <td><a>4846</a></td>
                 <td>04 וגם חרבונה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4847')">
                 <td><a>4847</a></td>
                 <td>05 ליהודים (שנקר)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4848')">
                 <td><a>4848</a></td>
                 <td>06 ליהודים (סקולען)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4849')">
                 <td><a>4849</a></td>
                 <td>07 ליהודים (מרדכי בן דוד)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4850')">
                 <td><a>4850</a></td>
                 <td>08 ליהודים (ספינקא)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4851')">
                 <td><a>4851</a></td>
                 <td>09 על הניסים</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4852')">
                 <td><a>4852</a></td>
                 <td>10 כל האומר</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4853')">
                 <td><a>4853</a></td>
                 <td>11 ויהי בימי</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4854')">
                 <td><a>4854</a></td>
                 <td>12 רווח והצלה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4855')">
                 <td><a>4855</a></td>
                 <td>13 חייב איניש</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4856')">
                 <td><a>4856</a></td>
                 <td>14 ניגון פורים (ויז'ניץ)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4857')">
                 <td><a>4857</a></td>
                 <td>15 ותוסף אסתר</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4858')">
                 <td><a>4858</a></td>
                 <td>16 קלי</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4859')">
                 <td><a>4859</a></td>
                 <td>17 ומרדכי יצא</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4860')">
                 <td><a>4860</a></td>
                 <td>18 תשועתם</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4861')">
                 <td><a>4861</a></td>
                 <td>19 א גאנץ יאר פריילאך</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4862')">
                 <td><a>4862</a></td>
                 <td>20 שושנת יעקב (עממי)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4863')">
                 <td><a>4863</a></td>
                 <td>21 אוהו איאיאי</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4864')">
                 <td><a>4864</a></td>
                 <td>22 חג פורים</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4865')">
                 <td><a>4865</a></td>
                 <td>23 שושנת יעקב (גור)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4866')">
                 <td><a>4866</a></td>
                 <td>24 אם על המלך טוב</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4867')">
                 <td><a>4867</a></td>
                 <td>25 עוצו עצה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4868')">
                 <td><a>4868</a></td>
                 <td>26 המה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4869')">
                 <td><a>4869</a></td>
                 <td>27 שושנת יעקב (מונה)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4870')">
                 <td><a>4870</a></td>
                 <td>28 שמח ורוקד</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4871')">
                 <td><a>4871</a></td>
                 <td>29 פורים פורים (באבוב)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4872')">
                 <td><a>4872</a></td>
                 <td>30 שהחיינו</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4873')">
                 <td><a>4873</a></td>
                 <td>31 כוס ישועות</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4874')">
                 <td><a>4874</a></td>
                 <td>32 ונהפוך הוא</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4875')">
                 <td><a>4875</a></td>
                 <td>33 מי זה מלך</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4876')">
                 <td><a>4876</a></td>
                 <td>34 ככה יעשה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4877')">
                 <td><a>4877</a></td>
                 <td>35 עדלא ידע</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4878')">
                 <td><a>4878</a></td>
                 <td>36 ונהפוך הוא</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4879')">
                 <td><a>4879</a></td>
                 <td>37 בעניין השמחה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4880')">
                 <td><a>4880</a></td>
                 <td>38 אבוא אל המלך</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4881')">
                 <td><a>4881</a></td>
                 <td>39 תשועתם</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4882')">
                 <td><a>4882</a></td>
                 <td>40 ליהודים (יוסי גרין)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4883')">
                 <td><a>4883</a></td>
                 <td>41 איש יהודי, ניגון משה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4884')">
                 <td><a>4884</a></td>
                 <td>42 על הניסים (פאלקוויץ)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4885')">
                 <td><a>4885</a></td>
                 <td>43 Every Yid's a Big Tzadik</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4886')">
                 <td><a>4886</a></td>
                 <td>44 ועמך כולם צדיקים</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4887')">
                 <td><a>4887</a></td>
                 <td>45 עבדו (התפוצות)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4888')">
                 <td><a>4888</a></td>
                 <td>46 תמיד בשמחה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4889')">
                 <td><a>4889</a></td>
                 <td>47 מצווה גדולה (ברסלב)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4890')">
                 <td><a>4890</a></td>
                 <td>48 מצווה (גבאי)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4891')">
                 <td><a>4891</a></td>
                 <td>49 מצווה גדולה (פריד)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4892')">
                 <td><a>4892</a></td>
                 <td>50 נייט נייט ניקאוו</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4893')">
                 <td><a>4893</a></td>
                 <td>51 שהחיינו (שוואקי)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4894')">
                 <td><a>4894</a></td>
                 <td>52 זאל שויין קומען די גאולה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4895')">
                 <td><a>4895</a></td>
                 <td>53 ככה יעשה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4896')">
                 <td><a>4896</a></td>
                 <td>54 עבדו (פופא)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4897')">
                 <td><a>4897</a></td>
                 <td>55 Hashem Is Here</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4898')">
                 <td><a>4898</a></td>
                 <td>56 We Want Moshiach Now</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4899')">
                 <td><a>4899</a></td>
                 <td>57 אני מאמין (We Want Moshiach Now)</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4900')">
                 <td><a>4900</a></td>
                 <td>58 יין אחרונים</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4901')">
                 <td><a>4901</a></td>
                 <td>59 שיבנה</td>
                 <td>It Sounds Like Purim</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4902')">
                 <td><a>4902</a></td>
                 <td>בני היכלא</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4903')">
                 <td><a>4903</a></td>
                 <td>גוט שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4904')">
                 <td><a>4904</a></td>
                 <td>זמירות יום שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4905')">
                 <td><a>4905</a></td>
                 <td>זמירות ליל שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4906')">
                 <td><a>4906</a></td>
                 <td>מוצאי שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4907')">
                 <td><a>4907</a></td>
                 <td>סעודת ליל שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4908')">
                 <td><a>4908</a></td>
                 <td>ערב שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4909')">
                 <td><a>4909</a></td>
                 <td>תפילת יום שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4910')">
                 <td><a>4910</a></td>
                 <td>תפילת ליל שבת</td>
                 <td>בני היכלא</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4911')">
                 <td><a>4911</a></td>
                 <td>01 מסוד</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4912')">
                 <td><a>4912</a></td>
                 <td>02 - No Lyrics</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4913')">
                 <td><a>4913</a></td>
                 <td>03 שירה</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4914')">
                 <td><a>4914</a></td>
                 <td>04 טעמו</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4915')">
                 <td><a>4915</a></td>
                 <td>05 אבינו</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4916')">
                 <td><a>4916</a></td>
                 <td>06 בוא יבוא</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4917')">
                 <td><a>4917</a></td>
                 <td>07 כד יתבין</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4918')">
                 <td><a>4918</a></td>
                 <td>08 מרבים שלום</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4919')">
                 <td><a>4919</a></td>
                 <td>09 הוי גביר</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4920')">
                 <td><a>4920</a></td>
                 <td>10 הכל לטובה</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4921')">
                 <td><a>4921</a></td>
                 <td>11 תמכתי יתדותי</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4922')">
                 <td><a>4922</a></td>
                 <td>12 אמת</td>
                 <td>טעמו</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4923')">
                 <td><a>4923</a></td>
                 <td>01 - יש תקוה</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4924')">
                 <td><a>4924</a></td>
                 <td>02 - הבוחר</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4925')">
                 <td><a>4925</a></td>
                 <td>03 - בשם ה'</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4926')">
                 <td><a>4926</a></td>
                 <td>04 - מעלה אני</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4927')">
                 <td><a>4927</a></td>
                 <td>05 - שלום עליכם</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4928')">
                 <td><a>4928</a></td>
                 <td>06 - ממלכת כהנים</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4929')">
                 <td><a>4929</a></td>
                 <td>07 - עבדו</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4930')">
                 <td><a>4930</a></td>
                 <td>08 - דור אחרון</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4931')">
                 <td><a>4931</a></td>
                 <td>09 - והביאותים</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4932')">
                 <td><a>4932</a></td>
                 <td>10 - dawn of moshiach</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4933')">
                 <td><a>4933</a></td>
                 <td>11 - ברחמים</td>
                 <td>יש תקווה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4934')">
                 <td><a>4934</a></td>
                 <td>01 תשירו</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4935')">
                 <td><a>4935</a></td>
                 <td>02 כולנו נלך</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4936')">
                 <td><a>4936</a></td>
                 <td>03 בידיים טובות</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4937')">
                 <td><a>4937</a></td>
                 <td>04 חארשו</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4938')">
                 <td><a>4938</a></td>
                 <td>05 יהודי זה הכי</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4939')">
                 <td><a>4939</a></td>
                 <td>06 תן לי</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4940')">
                 <td><a>4940</a></td>
                 <td>07 אהוב</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4941')">
                 <td><a>4941</a></td>
                 <td>08 עם בציון</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4942')">
                 <td><a>4942</a></td>
                 <td>09 הריני מקבל</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4943')">
                 <td><a>4943</a></td>
                 <td>10 יום אחד</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4944')">
                 <td><a>4944</a></td>
                 <td>11 הכל מלמעלה</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4945')">
                 <td><a>4945</a></td>
                 <td>12 מעשים טובים</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4946')">
                 <td><a>4946</a></td>
                 <td>13 בשבילי</td>
                 <td>כולנו נלך</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4947')">
                 <td><a>4947</a></td>
                 <td>01-תודה</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4948')">
                 <td><a>4948</a></td>
                 <td>02-אם אין אני לי</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4949')">
                 <td><a>4949</a></td>
                 <td>03-רבונו של עולם</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4950')">
                 <td><a>4950</a></td>
                 <td>04 - Fulfill Your Tefilah</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4951')">
                 <td><a>4951</a></td>
                 <td>05-אל תירא</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4952')">
                 <td><a>4952</a></td>
                 <td>06-כל הנשמה</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4953')">
                 <td><a>4953</a></td>
                 <td>07-להתענג</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4954')">
                 <td><a>4954</a></td>
                 <td>08-בום בום</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4955')">
                 <td><a>4955</a></td>
                 <td>09-המלאך</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4956')">
                 <td><a>4956</a></td>
                 <td>10-יסוד ושורש</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4957')">
                 <td><a>4957</a></td>
                 <td>11-אשא עיני</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4958')">
                 <td><a>4958</a></td>
                 <td>12-רק ביחד</td>
                 <td>כל הנשמה שלי</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4959')">
                 <td><a>4959</a></td>
                 <td>01 עוד ישבו</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4960')">
                 <td><a>4960</a></td>
                 <td>02 כי לה'</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4961')">
                 <td><a>4961</a></td>
                 <td>03 וזכני</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4962')">
                 <td><a>4962</a></td>
                 <td>04 בשם השם</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4963')">
                 <td><a>4963</a></td>
                 <td>05 Wall Of Stone</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4964')">
                 <td><a>4964</a></td>
                 <td>06 רחמנא </td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4965')">
                 <td><a>4965</a></td>
                 <td>07 בידיים טובות</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4966')">
                 <td><a>4966</a></td>
                 <td>08 מהרה</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4967')">
                 <td><a>4967</a></td>
                 <td>09 My Dear Rebbi</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4968')">
                 <td><a>4968</a></td>
                 <td>10 אני מאמין</td>
                 <td>לחישות הלב</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4969')">
                 <td><a>4969</a></td>
                 <td>01 כאייל</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4970')">
                 <td><a>4970</a></td>
                 <td>02 ונקיתי</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4971')">
                 <td><a>4971</a></td>
                 <td>03 ונחה</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4972')">
                 <td><a>4972</a></td>
                 <td>04 Hold On Tight</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4973')">
                 <td><a>4973</a></td>
                 <td>05 והאר</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4974')">
                 <td><a>4974</a></td>
                 <td>06 ריבון</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4975')">
                 <td><a>4975</a></td>
                 <td>07 ואהבת עולם</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4976')">
                 <td><a>4976</a></td>
                 <td>08 מה נאוו</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4977')">
                 <td><a>4977</a></td>
                 <td>09 המלאך</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4978')">
                 <td><a>4978</a></td>
                 <td>10 Daddy Dear</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4979')">
                 <td><a>4979</a></td>
                 <td>11 כן השם</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4980')">
                 <td><a>4980</a></td>
                 <td>12 לכל זמן</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4981')">
                 <td><a>4981</a></td>
                 <td>13 והראינו</td>
                 <td>לחישות הלב 3</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4982')">
                 <td><a>4982</a></td>
                 <td>01 עברי אנוכי</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4983')">
                 <td><a>4983</a></td>
                 <td>02 אל תשלח ידך</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4984')">
                 <td><a>4984</a></td>
                 <td>03 אשירה לה'</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4985')">
                 <td><a>4985</a></td>
                 <td>04 ר' יהושע אומר</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4986')">
                 <td><a>4986</a></td>
                 <td>05 אור</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4987')">
                 <td><a>4987</a></td>
                 <td>06 כולם שרים</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4988')">
                 <td><a>4988</a></td>
                 <td>07 מלוך</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4989')">
                 <td><a>4989</a></td>
                 <td>08 לעסוק</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4990')">
                 <td><a>4990</a></td>
                 <td>09 את צמח דוד</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4991')">
                 <td><a>4991</a></td>
                 <td>10 בספר חיים</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4992')">
                 <td><a>4992</a></td>
                 <td>11 אל יתהלל</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4993')">
                 <td><a>4993</a></td>
                 <td>12 מהרה</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4994')">
                 <td><a>4994</a></td>
                 <td>13 כל ימי חיי</td>
                 <td>למלא את העולם באור</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4995')">
                 <td><a>4995</a></td>
                 <td>01 שמח</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4996')">
                 <td><a>4996</a></td>
                 <td>02 רק לרגע</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4997')">
                 <td><a>4997</a></td>
                 <td>03 ניגון טעמו וראו</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4998')">
                 <td><a>4998</a></td>
                 <td>04 געוואלד</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('4999')">
                 <td><a>4999</a></td>
                 <td>05 שיר ציון</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5000')">
                 <td><a>5000</a></td>
                 <td>06 אשריכם</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5001')">
                 <td><a>5001</a></td>
                 <td>07 והוא כחתן</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5002')">
                 <td><a>5002</a></td>
                 <td>08 ר' איד</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5003')">
                 <td><a>5003</a></td>
                 <td>09 די זיידעס</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5004')">
                 <td><a>5004</a></td>
                 <td>10 מהרה</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5005')">
                 <td><a>5005</a></td>
                 <td>11 אין שום יאוש</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5006')">
                 <td><a>5006</a></td>
                 <td>12 ליבי במזרח</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5007')">
                 <td><a>5007</a></td>
                 <td>13 אשרי מי</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5008')">
                 <td><a>5008</a></td>
                 <td>14 אגדלך</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5009')">
                 <td><a>5009</a></td>
                 <td>15 משיח</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5010')">
                 <td><a>5010</a></td>
                 <td>16 טעמו</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5011')">
                 <td><a>5011</a></td>
                 <td>17 כי הרבית</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5012')">
                 <td><a>5012</a></td>
                 <td>18 יום אחד</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5013')">
                 <td><a>5013</a></td>
                 <td>19 איש את רעהו</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5014')">
                 <td><a>5014</a></td>
                 <td>20 על כל אלה</td>
                 <td>נגילה ונשמחה</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5015')">
                 <td><a>5015</a></td>
                 <td>- בני פרידמן - 25000 נרות - אנגלית</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5016')">
                 <td><a>5016</a></td>
                 <td>- בני פרידמן - Its a Rebbes Life - אנגלית</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5017')">
                 <td><a>5017</a></td>
                 <td>- בני פרידמן - א איד - אנגלית</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5018')">
                 <td><a>5018</a></td>
                 <td>- בני פרידמן - קול דודי - חסידי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5019')">
                 <td><a>5019</a></td>
                 <td>- בני פרידמן ואריה הורביץ - החיינו אל - חסידי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5020')">
                 <td><a>5020</a></td>
                 <td>- בני פרידמן ויוסף ניוקומב - מי כעמך ישראל - חסידי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5021')">
                 <td><a>5021</a></td>
                 <td>- בני פרידמן צבי זילברשטיין - פותח - אנגלית חסידי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5022')">
                 <td><a>5022</a></td>
                 <td>- נפתלי כלפה בני פרידמן - יהודי יקר - מקורי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5023')">
                 <td><a>5023</a></td>
                 <td>-Light One Candle</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5024')">
                 <td><a>5024</a></td>
                 <td>03 בני פרידמן בסינגל ראשון מתוך אלבום באידיש</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5025')">
                 <td><a>5025</a></td>
                 <td>05-ותחזינה - בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5026')">
                 <td><a>5026</a></td>
                 <td>08 ניגון ללא מילים - בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5027')">
                 <td><a>5027</a></td>
                 <td>09 לטובה - בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5028')">
                 <td><a>5028</a></td>
                 <td>15 כד יתבון - בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5029')">
                 <td><a>5029</a></td>
                 <td>Benny - Ivri Anochi - I'm a Jew and I'm Proud - The Music Video - בני פרידמן - עברי אנכי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5030')">
                 <td><a>5030</a></td>
                 <td>Benny - Kulam Sharim (Single) בני פרידמן - כולם שרים</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5031')">
                 <td><a>5031</a></td>
                 <td>Benny Friedman &amp; Yedidim Choir - Nigun Hastureh - בני פרידמן וידידים - ואפילו בהסתרה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5032')">
                 <td><a>5032</a></td>
                 <td>Benny Friedman - Toda! The Music Video - בני פרידמן  תודה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5033')">
                 <td><a>5033</a></td>
                 <td>Different</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5034')">
                 <td><a>5034</a></td>
                 <td>It's a Rebbe's Life</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5035')">
                 <td><a>5035</a></td>
                 <td>No Lyrics - Remix</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5036')">
                 <td><a>5036</a></td>
                 <td>y2mate.com-שיר-הצדקה-ווקאלי-שוקי-סלומון-בני-פרידמן-דוידי-נחשון-אבי-ריימי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5037')">
                 <td><a>5037</a></td>
                 <td>אבינו מלכנו</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5038')">
                 <td><a>5038</a></td>
                 <td>איך בין דיינס</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5039')">
                 <td><a>5039</a></td>
                 <td>בני פרידמן & נדב ביטון - חארשו - רמיקס</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5040')">
                 <td><a>5040</a></td>
                 <td>בני פרידמן & עמי כהן ומקהלת מלכות - מחרוזת לג בעומר</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5041')">
                 <td><a>5041</a></td>
                 <td>בני פרידמן & שרולי גרין - בשיר</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5042')">
                 <td><a>5042</a></td>
                 <td>בני פרידמן - א ייד</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5043')">
                 <td><a>5043</a></td>
                 <td>בני פרידמן - אורייתא</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5044')">
                 <td><a>5044</a></td>
                 <td>בני פרידמן - בלבבי - ווקאלי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5045')">
                 <td><a>5045</a></td>
                 <td>בני פרידמן - בספר חיים</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5046')">
                 <td><a>5046</a></td>
                 <td>בני פרידמן - ותחזינה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5047')">
                 <td><a>5047</a></td>
                 <td>בני פרידמן - ליכטיג און וואַרעם</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5048')">
                 <td><a>5048</a></td>
                 <td>בני פרידמן - ניגון שמחה (מתוך פרויקט צמאה)</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5049')">
                 <td><a>5049</a></td>
                 <td>בני פרידמן אבינו מלכנו</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5050')">
                 <td><a>5050</a></td>
                 <td>בני פרידמן בביצוע לבידוד 'חארשו'</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5051')">
                 <td><a>5051</a></td>
                 <td>בני פרידמן בלהיט חדש הריני מקבל</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5052')">
                 <td><a>5052</a></td>
                 <td>בני פרידמן בסינגל מרגש חדש ''תן יד''</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5053')">
                 <td><a>5053</a></td>
                 <td>בני פרידמן ויצי ספינר - חשוף</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5054')">
                 <td><a>5054</a></td>
                 <td>בני פרידמן ומקהלת ידידים - ואפילו בהסתרה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5055')">
                 <td><a>5055</a></td>
                 <td>בני פרידמן ומקהלת שירה ואפילו בהסתרה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5056')">
                 <td><a>5056</a></td>
                 <td>בני פרידמן ותחזינה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5057')">
                 <td><a>5057</a></td>
                 <td>בני פרידמן יש תקוה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5058')">
                 <td><a>5058</a></td>
                 <td>בני פרידמן מי משאמין</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5059')">
                 <td><a>5059</a></td>
                 <td>בני פרידמן עם כל הזמרים</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5060')">
                 <td><a>5060</a></td>
                 <td>בני פרידמן – לחישות הלב - דוגמה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5061')">
                 <td><a>5061</a></td>
                 <td>בני פרידמן, בערי וועבר ולהקת פומפדיתא במחרוזת שכולה 'תודה'</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5062')">
                 <td><a>5062</a></td>
                 <td>בני פרידמן, ברוך לוין, פרחי ניו יורק & פרחי שיר ושבח - וזכני - ווקאלי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5063')">
                 <td><a>5063</a></td>
                 <td>בני פרידמן- ותחזנה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5064')">
                 <td><a>5064</a></td>
                 <td>בני_פרידמן_-_ימה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5065')">
                 <td><a>5065</a></td>
                 <td>בערי וובר, ברוך לוין, מרדכי שפירא, בני פרידמן - Many Voices One Song</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5066')">
                 <td><a>5066</a></td>
                 <td>ברוך לוין & בני פרידמן - והערב נא</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5067')">
                 <td><a>5067</a></td>
                 <td>בשיר</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5068')">
                 <td><a>5068</a></td>
                 <td>ואפילו בהסתרה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5069')">
                 <td><a>5069</a></td>
                 <td>והערב נא - ברוך לוין - בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5070')">
                 <td><a>5070</a></td>
                 <td>והערב נא</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5071')">
                 <td><a>5071</a></td>
                 <td>ותחזינה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5072')">
                 <td><a>5072</a></td>
                 <td>חראשו רמיקס</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5073')">
                 <td><a>5073</a></td>
                 <td>יש תקוה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5074')">
                 <td><a>5074</a></td>
                 <td>כי יעקב-בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5075')">
                 <td><a>5075</a></td>
                 <td>ליכטיג און ווארעם</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5076')">
                 <td><a>5076</a></td>
                 <td>לך אמר לבי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5077')">
                 <td><a>5077</a></td>
                 <td>מחרוזת tehnk you hashem בערי וובער  בני פרידמן  פומבדיתא  מקהלת שירה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5078')">
                 <td><a>5078</a></td>
                 <td>מחרוזת חופה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5079')">
                 <td><a>5079</a></td>
                 <td>מחרוזת מקפיצה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5080')">
                 <td><a>5080</a></td>
                 <td>מחרוזת צמאה בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5081')">
                 <td><a>5081</a></td>
                 <td>מחרוזת שירי חופה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5082')">
                 <td><a>5082</a></td>
                 <td>מחרוזת שמע ישראל</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5083')">
                 <td><a>5083</a></td>
                 <td>מחרוזת</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5084')">
                 <td><a>5084</a></td>
                 <td>מי אדיר</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5085')">
                 <td><a>5085</a></td>
                 <td>מי שמאמין</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5086')">
                 <td><a>5086</a></td>
                 <td>מיין טייער רבי</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5087')">
                 <td><a>5087</a></td>
                 <td>ממלכת כהנים</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5088')">
                 <td><a>5088</a></td>
                 <td>פלייבק - יש תקוה</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5089')">
                 <td><a>5089</a></td>
                 <td>קומזיץ 2</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5090')">
                 <td><a>5090</a></td>
                 <td>קומזיץ</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5091')">
                 <td><a>5091</a></td>
                 <td>שנות ה-90</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5092')">
                 <td><a>5092</a></td>
                 <td>שר שוב בפני רובשקין</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('5093')">
                 <td><a>5093</a></td>
                 <td>תודה    בני פרידמן</td>
                 <td>סינגלים</td>
                 <td>בני פרידמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

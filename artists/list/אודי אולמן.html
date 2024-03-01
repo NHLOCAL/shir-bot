@@ -1,462 +1,444 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>אודי אולמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>אודי אולמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאודי אולמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאודי אולמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('2107')">
                 <td><a>2107</a></td>
                 <td>01-וללבנה אמר</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2108')">
                 <td><a>2108</a></td>
                 <td>02-למען אחי</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2109')">
                 <td><a>2109</a></td>
                 <td>03-אין כאלוקנו</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2110')">
                 <td><a>2110</a></td>
                 <td>04-אגודה אחת</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2111')">
                 <td><a>2111</a></td>
                 <td>05-כל העולם כלו</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2112')">
                 <td><a>2112</a></td>
                 <td>06-בשם ה</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2113')">
                 <td><a>2113</a></td>
                 <td>07-מה נאוו</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2114')">
                 <td><a>2114</a></td>
                 <td>08-תפילה</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2115')">
                 <td><a>2115</a></td>
                 <td>09-ארץ זבת חלב </td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2116')">
                 <td><a>2116</a></td>
                 <td>10-צמאה</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2117')">
                 <td><a>2117</a></td>
                 <td>11-אתה אחי</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2118')">
                 <td><a>2118</a></td>
                 <td>12-וללבנה אמר חיה</td>
                 <td>אגודה אחת</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2119')">
                 <td><a>2119</a></td>
                 <td>01-הבוטחים</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2120')">
                 <td><a>2120</a></td>
                 <td>02-אשר ברא</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2121')">
                 <td><a>2121</a></td>
                 <td>03-נפלתי קמתי</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2122')">
                 <td><a>2122</a></td>
                 <td>04-אשת חיל</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2123')">
                 <td><a>2123</a></td>
                 <td>05-קול מבשר</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2124')">
                 <td><a>2124</a></td>
                 <td>06-כאיל תערוג</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2125')">
                 <td><a>2125</a></td>
                 <td>07-עושה שלום</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2126')">
                 <td><a>2126</a></td>
                 <td>08-ציון</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2127')">
                 <td><a>2127</a></td>
                 <td>09-עוד ישמע</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2128')">
                 <td><a>2128</a></td>
                 <td>10-יענך</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2129')">
                 <td><a>2129</a></td>
                 <td>11-חברים</td>
                 <td>אודי אולמן 3</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2130')">
                 <td><a>2130</a></td>
                 <td>01-אין ערוך</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2131')">
                 <td><a>2131</a></td>
                 <td>02-דברי שיר</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2132')">
                 <td><a>2132</a></td>
                 <td>03-אם אין אני לי</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2133')">
                 <td><a>2133</a></td>
                 <td>04-השמיעיני</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2134')">
                 <td><a>2134</a></td>
                 <td>05-אחד</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2135')">
                 <td><a>2135</a></td>
                 <td>06-ויש תקוה</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2136')">
                 <td><a>2136</a></td>
                 <td>07-עץ חיים</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2137')">
                 <td><a>2137</a></td>
                 <td>08-ניגון סלוניקי</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2138')">
                 <td><a>2138</a></td>
                 <td>09-המלמד</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2139')">
                 <td><a>2139</a></td>
                 <td>10-אשת חיל</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2140')">
                 <td><a>2140</a></td>
                 <td>11-ונתנה תוקף</td>
                 <td>דברי שיר</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2141')">
                 <td><a>2141</a></td>
                 <td>08 - אודי אולמן - אשת חיל - [Windos.Co]</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2142')">
                 <td><a>2142</a></td>
                 <td>אברמי רוט ואודי אולמן מחדשים את השיר הנוסטלגי 'ישימך אלוקים' 1</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2143')">
                 <td><a>2143</a></td>
                 <td>אודי אולמן - תודה</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2144')">
                 <td><a>2144</a></td>
                 <td>אודי אולמן-מה טוב</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2145')">
                 <td><a>2145</a></td>
                 <td>ברכת החתן</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2146')">
                 <td><a>2146</a></td>
                 <td>כבודו</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2147')">
                 <td><a>2147</a></td>
                 <td>מה טוב</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2148')">
                 <td><a>2148</a></td>
                 <td>נפלתי קמתי</td>
                 <td>סינגלים</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2149')">
                 <td><a>2149</a></td>
                 <td>01</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2150')">
                 <td><a>2150</a></td>
                 <td>02</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2151')">
                 <td><a>2151</a></td>
                 <td>03</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2152')">
                 <td><a>2152</a></td>
                 <td>04</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2153')">
                 <td><a>2153</a></td>
                 <td>05</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2154')">
                 <td><a>2154</a></td>
                 <td>06</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2155')">
                 <td><a>2155</a></td>
                 <td>07</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2156')">
                 <td><a>2156</a></td>
                 <td>08</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2157')">
                 <td><a>2157</a></td>
                 <td>09</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2158')">
                 <td><a>2158</a></td>
                 <td>10</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('2159')">
                 <td><a>2159</a></td>
                 <td>11</td>
                 <td>תיקיה חדשה</td>
                 <td>אודי אולמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

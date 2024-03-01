@@ -1,847 +1,829 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>עדי רן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>עדי רן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspעדי רן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspעדי רן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('24853')">
                 <td><a>24853</a></td>
                 <td>01-מילי ד'שטותא</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24854')">
                 <td><a>24854</a></td>
                 <td>02-אין יאוש</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24855')">
                 <td><a>24855</a></td>
                 <td>03-בית המקדש</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24856')">
                 <td><a>24856</a></td>
                 <td>04-שפכי כמים ליבך</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24857')">
                 <td><a>24857</a></td>
                 <td>05-רוצה הכי טוב</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24858')">
                 <td><a>24858</a></td>
                 <td>06-הרי את מקודשת לי</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24859')">
                 <td><a>24859</a></td>
                 <td>07-פאות</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24860')">
                 <td><a>24860</a></td>
                 <td>08-אין לנו על מי לסמוך</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24861')">
                 <td><a>24861</a></td>
                 <td>09-אל תכה בסלע</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24862')">
                 <td><a>24862</a></td>
                 <td>10-הודו לשם</td>
                 <td>אל תכה בסלע</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24863')">
                 <td><a>24863</a></td>
                 <td>01-שיר חדש</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24864')">
                 <td><a>24864</a></td>
                 <td>02-פאות</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24865')">
                 <td><a>24865</a></td>
                 <td>03-מילי דשטותא</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24866')">
                 <td><a>24866</a></td>
                 <td>04-הוא אלוקינו</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24867')">
                 <td><a>24867</a></td>
                 <td>05-אני אוהב את הקב''ה</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24868')">
                 <td><a>24868</a></td>
                 <td>06-יש הקב''ה</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24869')">
                 <td><a>24869</a></td>
                 <td>07-אל תכה בסלע</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24870')">
                 <td><a>24870</a></td>
                 <td>08-שפכי כמים ליבך</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24871')">
                 <td><a>24871</a></td>
                 <td>09-גם כי אלך</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24872')">
                 <td><a>24872</a></td>
                 <td>10-מצוה גדולה</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24873')">
                 <td><a>24873</a></td>
                 <td>11-אבא נהייתי דוס</td>
                 <td>אנ-פלגד ח''א</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24874')">
                 <td><a>24874</a></td>
                 <td>01-איזה כיף להיות יהודי</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24875')">
                 <td><a>24875</a></td>
                 <td>02-שבת</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24876')">
                 <td><a>24876</a></td>
                 <td>03-למנצח</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24877')">
                 <td><a>24877</a></td>
                 <td>04-אין לי שום דבר בעולם</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24878')">
                 <td><a>24878</a></td>
                 <td>05-מה רבו צרי</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24879')">
                 <td><a>24879</a></td>
                 <td>06-הסכמה</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24880')">
                 <td><a>24880</a></td>
                 <td>07-אז ישיר משה</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24881')">
                 <td><a>24881</a></td>
                 <td>08-אין לנו על מי לסמוך</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24882')">
                 <td><a>24882</a></td>
                 <td>09-אין יאוש</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24883')">
                 <td><a>24883</a></td>
                 <td>10-נ נח נחמ נחמן מאומן</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24884')">
                 <td><a>24884</a></td>
                 <td>11-כי לא יטוש</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24885')">
                 <td><a>24885</a></td>
                 <td>12-כי אתה קדוש</td>
                 <td>אנ-פלגד ח''ב</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24886')">
                 <td><a>24886</a></td>
                 <td>01 Al Hithallel</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24887')">
                 <td><a>24887</a></td>
                 <td>02 Al Hatzadikim</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24888')">
                 <td><a>24888</a></td>
                 <td>03 Shmoneh Baboker</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24889')">
                 <td><a>24889</a></td>
                 <td>04 Yedid Nefesh</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24890')">
                 <td><a>24890</a></td>
                 <td>05 Kum</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24891')">
                 <td><a>24891</a></td>
                 <td>06 Petach Libi</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24892')">
                 <td><a>24892</a></td>
                 <td>07 Am Shel Neviim</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24893')">
                 <td><a>24893</a></td>
                 <td>08 Galmudah</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24894')">
                 <td><a>24894</a></td>
                 <td>09 Mumchah Lenechemot</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24895')">
                 <td><a>24895</a></td>
                 <td>10 Hakol Mushgach</td>
                 <td>בזאת</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24896')">
                 <td><a>24896</a></td>
                 <td>02-בקרוב</td>
                 <td>גלגל של הצלה</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24897')">
                 <td><a>24897</a></td>
                 <td>לא להתרגש-01</td>
                 <td>גלגל של הצלה</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24898')">
                 <td><a>24898</a></td>
                 <td>01-אתה קדוש</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24899')">
                 <td><a>24899</a></td>
                 <td>02-מצוה גדולה</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24900')">
                 <td><a>24900</a></td>
                 <td>03-הכי חשוב זה להיות שמח</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24901')">
                 <td><a>24901</a></td>
                 <td>04-שבת</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24902')">
                 <td><a>24902</a></td>
                 <td>05-אין לי שום דבר בעולם הזה</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24903')">
                 <td><a>24903</a></td>
                 <td>06-אור אין סוף</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24904')">
                 <td><a>24904</a></td>
                 <td>07-אבא נהייתי דוס</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24905')">
                 <td><a>24905</a></td>
                 <td>08-יש הקדוש בורך הוא</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24906')">
                 <td><a>24906</a></td>
                 <td>09-התבודדות</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24907')">
                 <td><a>24907</a></td>
                 <td>10-כמו רכבת טסה</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24908')">
                 <td><a>24908</a></td>
                 <td>11-איזה כיף להיות יהודי</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24909')">
                 <td><a>24909</a></td>
                 <td>12-אל תסתכלי אחורה</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24910')">
                 <td><a>24910</a></td>
                 <td>13-הפתקה</td>
                 <td>האחרון שבעם</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24911')">
                 <td><a>24911</a></td>
                 <td>בלוז מבסוט-05</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24912')">
                 <td><a>24912</a></td>
                 <td>התבוננות-04</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24913')">
                 <td><a>24913</a></td>
                 <td>ישועה-03</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24914')">
                 <td><a>24914</a></td>
                 <td>כחרב חדה-09</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24915')">
                 <td><a>24915</a></td>
                 <td>למדוני-02</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24916')">
                 <td><a>24916</a></td>
                 <td>נפשי-07</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24917')">
                 <td><a>24917</a></td>
                 <td>נקודות של כיסופים-01</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24918')">
                 <td><a>24918</a></td>
                 <td>עשה למען שמך-10</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24919')">
                 <td><a>24919</a></td>
                 <td>פתקא מרבינו-06</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24920')">
                 <td><a>24920</a></td>
                 <td>צב-08</td>
                 <td>התבוננות</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24921')">
                 <td><a>24921</a></td>
                 <td>אודך</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24922')">
                 <td><a>24922</a></td>
                 <td>אשרינו שזכינו</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24923')">
                 <td><a>24923</a></td>
                 <td>בסוף נגיע</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24924')">
                 <td><a>24924</a></td>
                 <td>המלאך מאומן</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24925')">
                 <td><a>24925</a></td>
                 <td>ושמרו</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24926')">
                 <td><a>24926</a></td>
                 <td>יקרב רינתי</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24927')">
                 <td><a>24927</a></td>
                 <td>למדני חוקיך</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24928')">
                 <td><a>24928</a></td>
                 <td>שמח נפש עבדך</td>
                 <td>ושמרו</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24929')">
                 <td><a>24929</a></td>
                 <td>01-תקרב רינתי</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24930')">
                 <td><a>24930</a></td>
                 <td>02-אני אוהב הקב''ה</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24931')">
                 <td><a>24931</a></td>
                 <td>03-מתהונן לי בעולם</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24932')">
                 <td><a>24932</a></td>
                 <td>04-טרילילי</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24933')">
                 <td><a>24933</a></td>
                 <td>05-למנצח מזמור</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24934')">
                 <td><a>24934</a></td>
                 <td>06-אודך</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24935')">
                 <td><a>24935</a></td>
                 <td>07-הניגון המושלם</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24936')">
                 <td><a>24936</a></td>
                 <td>08-אשרינו</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24937')">
                 <td><a>24937</a></td>
                 <td>09-יקח כמה שיקח</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24938')">
                 <td><a>24938</a></td>
                 <td>10-מצווה</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24939')">
                 <td><a>24939</a></td>
                 <td>11-ושמרו</td>
                 <td>מה יש לכם לדאוג</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24940')">
                 <td><a>24940</a></td>
                 <td>- עדי רן - הגואל המשיח - מקורי</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24941')">
                 <td><a>24941</a></td>
                 <td>אבא נהייתי דוס</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24942')">
                 <td><a>24942</a></td>
                 <td>אל יתהלל</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24943')">
                 <td><a>24943</a></td>
                 <td>אני צב</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24944')">
                 <td><a>24944</a></td>
                 <td>ושמרו- אלי הרצליך ועדי רן</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24945')">
                 <td><a>24945</a></td>
                 <td>ושמרו-אלי הרצליך ועדי רן</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24946')">
                 <td><a>24946</a></td>
                 <td>ושמרו</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24947')">
                 <td><a>24947</a></td>
                 <td>מילי ד'שטותא</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24948')">
                 <td><a>24948</a></td>
                 <td>משה</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24949')">
                 <td><a>24949</a></td>
                 <td>עדי רן - אבא נהייתי דוס-Lxz0ZmoKVXs</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24950')">
                 <td><a>24950</a></td>
                 <td>עדי רן - בקתת הרוחות</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24951')">
                 <td><a>24951</a></td>
                 <td>עדי רן - צב</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24952')">
                 <td><a>24952</a></td>
                 <td>על הצדיקים</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24953')">
                 <td><a>24953</a></td>
                 <td>פאות</td>
                 <td>סינגלים</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24954')">
                 <td><a>24954</a></td>
                 <td>01-שים שלום</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24955')">
                 <td><a>24955</a></td>
                 <td>02-יראו עינינו</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24956')">
                 <td><a>24956</a></td>
                 <td>03-שמע קולנו</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24957')">
                 <td><a>24957</a></td>
                 <td>04-יום זה לישראל</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24958')">
                 <td><a>24958</a></td>
                 <td>05-מחרוזת חסידית</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24959')">
                 <td><a>24959</a></td>
                 <td>06-מחרוזת הורה</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24960')">
                 <td><a>24960</a></td>
                 <td>07-עוד ישמע</td>
                 <td>שים שלום</td>
                 <td>עדי רן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

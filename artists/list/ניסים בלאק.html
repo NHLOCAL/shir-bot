@@ -1,497 +1,479 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>ניסים בלאק</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>ניסים בלאק</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspניסים בלאק</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspניסים בלאק</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('24366')">
                 <td><a>24366</a></td>
                 <td>01 You Are There</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24367')">
                 <td><a>24367</a></td>
                 <td>02 Eight Flames</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24368')">
                 <td><a>24368</a></td>
                 <td>03 Wings</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24369')">
                 <td><a>24369</a></td>
                 <td>04 King of the World</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24370')">
                 <td><a>24370</a></td>
                 <td>05 Mercy</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24371')">
                 <td><a>24371</a></td>
                 <td>06 Hold On</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24372')">
                 <td><a>24372</a></td>
                 <td>07 Running to You</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24373')">
                 <td><a>24373</a></td>
                 <td>08 I Can't Breathe</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24374')">
                 <td><a>24374</a></td>
                 <td>09 On My Way</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24375')">
                 <td><a>24375</a></td>
                 <td>10 Gibor</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24376')">
                 <td><a>24376</a></td>
                 <td>11 Distant</td>
                 <td>גיבור</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24377')">
                 <td><a>24377</a></td>
                 <td>01 Fly Away</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24378')">
                 <td><a>24378</a></td>
                 <td>02 Shomer (Feat. Otsar)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24379')">
                 <td><a>24379</a></td>
                 <td>03 Hashem Melech 2.0 (Feat. Gad Elbaz)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24380')">
                 <td><a>24380</a></td>
                 <td>04 Zman Cheruteinu</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24381')">
                 <td><a>24381</a></td>
                 <td>05 Believe in Me (Feat. Yisroel Laub)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24382')">
                 <td><a>24382</a></td>
                 <td>06 The Repair Song</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24383')">
                 <td><a>24383</a></td>
                 <td>07 Vetaher Lebeinu (Feat. Gad Elbaz)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24384')">
                 <td><a>24384</a></td>
                 <td>08 Od Yishama</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24385')">
                 <td><a>24385</a></td>
                 <td>09 Yachad (Feat. DeScribe)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24386')">
                 <td><a>24386</a></td>
                 <td>10 A Million Years (Feat. Yisroel Laub)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24387')">
                 <td><a>24387</a></td>
                 <td>11 My Fire</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24388')">
                 <td><a>24388</a></td>
                 <td>12 Ohavei Hashem (Feat. Yisroel Laub)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24389')">
                 <td><a>24389</a></td>
                 <td>13 Real You</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24390')">
                 <td><a>24390</a></td>
                 <td>14 Tagid Toda (Feat, Natanel Israel)</td>
                 <td>למעלה</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24391')">
                 <td><a>24391</a></td>
                 <td>- ניסים בלאק ויוסף דניאל - Milagros - מקורי אנגלית</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24392')">
                 <td><a>24392</a></td>
                 <td>Home ניסים בלאק & יוני זי</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24393')">
                 <td><a>24393</a></td>
                 <td>Home</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24394')">
                 <td><a>24394</a></td>
                 <td>Milagros</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24395')">
                 <td><a>24395</a></td>
                 <td>VICTORY ניסים בלאק</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24396')">
                 <td><a>24396</a></td>
                 <td>Win</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24397')">
                 <td><a>24397</a></td>
                 <td>Wings</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24398')">
                 <td><a>24398</a></td>
                 <td>אנחנו כיף</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24399')">
                 <td><a>24399</a></td>
                 <td>ה' שומר</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24400')">
                 <td><a>24400</a></td>
                 <td>זמן חירותינו</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24401')">
                 <td><a>24401</a></td>
                 <td>חסידיסטוק הראפר ניסים בלאק - שידור בכורה ביוטיוב!</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24402')">
                 <td><a>24402</a></td>
                 <td>לעוף</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24403')">
                 <td><a>24403</a></td>
                 <td>מיליון שנה</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24404')">
                 <td><a>24404</a></td>
                 <td>מיליון שנים</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24405')">
                 <td><a>24405</a></td>
                 <td>מלך העולם</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24406')">
                 <td><a>24406</a></td>
                 <td>ניסים בלאק - All Black</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24407')">
                 <td><a>24407</a></td>
                 <td>ניסים בלאק - Be True</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24408')">
                 <td><a>24408</a></td>
                 <td>ניסים בלאק - God's Baby</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24409')">
                 <td><a>24409</a></td>
                 <td>ניסים בלאק - Higher</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24410')">
                 <td><a>24410</a></td>
                 <td>ניסים בלאק - Honest</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24411')">
                 <td><a>24411</a></td>
                 <td>ניסים בלאק - Lean on You</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24412')">
                 <td><a>24412</a></td>
                 <td>ניסים בלאק - Let it Go</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24413')">
                 <td><a>24413</a></td>
                 <td>ניסים בלאק - Love Letter</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24414')">
                 <td><a>24414</a></td>
                 <td>ניסים בלאק - Never Forget</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24415')">
                 <td><a>24415</a></td>
                 <td>ניסים בלאק - Only One</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24416')">
                 <td><a>24416</a></td>
                 <td>ניסים בלאק - Tears</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24417')">
                 <td><a>24417</a></td>
                 <td>ניסים בלאק - The Hava Song</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24418')">
                 <td><a>24418</a></td>
                 <td>ניסים בלאק - Willing to Lose</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24419')">
                 <td><a>24419</a></td>
                 <td>ניסים בלאק - מלך העולם - Nissim Black - King of the World</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24420')">
                 <td><a>24420</a></td>
                 <td>ניסים בלאק ונתנאל ישראל - תגיד תודה</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24421')">
                 <td><a>24421</a></td>
                 <td>ניסים בלאק, יוסף דניאל - Milagros</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24422')">
                 <td><a>24422</a></td>
                 <td>ניסים בלאק</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('24423')">
                 <td><a>24423</a></td>
                 <td>תגיד תודה</td>
                 <td>סינגלים</td>
                 <td>ניסים בלאק</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,672 +1,654 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>גיורא פיידמן</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>גיורא פיידמן</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspגיורא פיידמן</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspגיורא פיידמן</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('60242')">
                 <td><a>60242</a></td>
                 <td>01-הניגון השמח</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60243')">
                 <td><a>60243</a></td>
                 <td>02-יום שבת קודש הוא</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60244')">
                 <td><a>60244</a></td>
                 <td>03-אפס שבע ארבעים</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60245')">
                 <td><a>60245</a></td>
                 <td>04-ניגון מהר-מירון</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60246')">
                 <td><a>60246</a></td>
                 <td>05-תפילה מבית אבא</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60247')">
                 <td><a>60247</a></td>
                 <td>06-הפריילעך של טראס</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60248')">
                 <td><a>60248</a></td>
                 <td>07-ערגה</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60249')">
                 <td><a>60249</a></td>
                 <td>08-ריקודו של ר' חיים</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60250')">
                 <td><a>60250</a></td>
                 <td>09-ניגון הטראנס</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60251')">
                 <td><a>60251</a></td>
                 <td>10-ניגון השופר</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60252')">
                 <td><a>60252</a></td>
                 <td>11-הפריילעך של נפתלי</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60253')">
                 <td><a>60253</a></td>
                 <td>12-ניגון</td>
                 <td>הניגון שבלב</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60254')">
                 <td><a>60254</a></td>
                 <td>Track 01</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60255')">
                 <td><a>60255</a></td>
                 <td>Track 02</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60256')">
                 <td><a>60256</a></td>
                 <td>Track 03</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60257')">
                 <td><a>60257</a></td>
                 <td>Track 04</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60258')">
                 <td><a>60258</a></td>
                 <td>Track 05</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60259')">
                 <td><a>60259</a></td>
                 <td>Track 06</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60260')">
                 <td><a>60260</a></td>
                 <td>Track 07</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60261')">
                 <td><a>60261</a></td>
                 <td>Track 08</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60262')">
                 <td><a>60262</a></td>
                 <td>Track 09</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60263')">
                 <td><a>60263</a></td>
                 <td>Track 10</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60264')">
                 <td><a>60264</a></td>
                 <td>Track 11</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60265')">
                 <td><a>60265</a></td>
                 <td>Track 12</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60266')">
                 <td><a>60266</a></td>
                 <td>Track 13</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60267')">
                 <td><a>60267</a></td>
                 <td>Track 14</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60268')">
                 <td><a>60268</a></td>
                 <td>Track 15</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60269')">
                 <td><a>60269</a></td>
                 <td>Track 16</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60270')">
                 <td><a>60270</a></td>
                 <td>Track 17</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60271')">
                 <td><a>60271</a></td>
                 <td>Track 18</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60272')">
                 <td><a>60272</a></td>
                 <td>Track 19</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60273')">
                 <td><a>60273</a></td>
                 <td>Track 20</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60274')">
                 <td><a>60274</a></td>
                 <td>Track 21</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60275')">
                 <td><a>60275</a></td>
                 <td>Track 22</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60276')">
                 <td><a>60276</a></td>
                 <td>Track 23</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60277')">
                 <td><a>60277</a></td>
                 <td>Track 24</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60278')">
                 <td><a>60278</a></td>
                 <td>Track 25</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60279')">
                 <td><a>60279</a></td>
                 <td>Track 26</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60280')">
                 <td><a>60280</a></td>
                 <td>Track 27</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60281')">
                 <td><a>60281</a></td>
                 <td>Track 28</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60282')">
                 <td><a>60282</a></td>
                 <td>Track 29</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60283')">
                 <td><a>60283</a></td>
                 <td>Track 33</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60284')">
                 <td><a>60284</a></td>
                 <td>Track 34</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60285')">
                 <td><a>60285</a></td>
                 <td>Track 35</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60286')">
                 <td><a>60286</a></td>
                 <td>Track 36</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60287')">
                 <td><a>60287</a></td>
                 <td>Track 37</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60288')">
                 <td><a>60288</a></td>
                 <td>Track 38</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60289')">
                 <td><a>60289</a></td>
                 <td>Track 39</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60290')">
                 <td><a>60290</a></td>
                 <td>Track 40</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60291')">
                 <td><a>60291</a></td>
                 <td>Track 41</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60292')">
                 <td><a>60292</a></td>
                 <td>Track 42</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60293')">
                 <td><a>60293</a></td>
                 <td>Track 43</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60294')">
                 <td><a>60294</a></td>
                 <td>Track 44</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60295')">
                 <td><a>60295</a></td>
                 <td>Track 45</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60296')">
                 <td><a>60296</a></td>
                 <td>Track 46</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60297')">
                 <td><a>60297</a></td>
                 <td>Track 47</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60298')">
                 <td><a>60298</a></td>
                 <td>Track 48</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60299')">
                 <td><a>60299</a></td>
                 <td>Track 49</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60300')">
                 <td><a>60300</a></td>
                 <td>Track 50</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60301')">
                 <td><a>60301</a></td>
                 <td>Track 51</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60302')">
                 <td><a>60302</a></td>
                 <td>Track 52</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60303')">
                 <td><a>60303</a></td>
                 <td>Track 53</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60304')">
                 <td><a>60304</a></td>
                 <td>Track 54</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60305')">
                 <td><a>60305</a></td>
                 <td>Track 55</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60306')">
                 <td><a>60306</a></td>
                 <td>Track 56</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60307')">
                 <td><a>60307</a></td>
                 <td>Track 57</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60308')">
                 <td><a>60308</a></td>
                 <td>Track 58</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60309')">
                 <td><a>60309</a></td>
                 <td>Track 59</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60310')">
                 <td><a>60310</a></td>
                 <td>Track 60</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60311')">
                 <td><a>60311</a></td>
                 <td>Track 61</td>
                 <td>פיידמן</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60312')">
                 <td><a>60312</a></td>
                 <td>01-ניגון מתוך הדיבוק</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60313')">
                 <td><a>60313</a></td>
                 <td>02-שיר עממי יהודי</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60314')">
                 <td><a>60314</a></td>
                 <td>03-יה רבון</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60315')">
                 <td><a>60315</a></td>
                 <td>04-ניגון חסידי</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60316')">
                 <td><a>60316</a></td>
                 <td>05-שים שלום</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60317')">
                 <td><a>60317</a></td>
                 <td>06-ידיד נפש</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60318')">
                 <td><a>60318</a></td>
                 <td>07-פרייליכס</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60319')">
                 <td><a>60319</a></td>
                 <td>08-אימפרוביזציה ברוח תפילה</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60320')">
                 <td><a>60320</a></td>
                 <td>09-שלום עליכם</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60321')">
                 <td><a>60321</a></td>
                 <td>10-הבו עז לתיש</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60322')">
                 <td><a>60322</a></td>
                 <td>11-ריקוד חתונה</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60323')">
                 <td><a>60323</a></td>
                 <td>12-כד מרקדים באודיסה</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('60324')">
                 <td><a>60324</a></td>
                 <td>13-לו הייתי רוטשילד</td>
                 <td>שירי נשמה</td>
                 <td>גיורא פיידמן</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

@@ -1,434 +1,416 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>טשערנוביל</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>טשערנוביל</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspטשערנוביל</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspטשערנוביל</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('42577')">
                 <td><a>42577</a></td>
                 <td>Track 01</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42578')">
                 <td><a>42578</a></td>
                 <td>Track 02</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42579')">
                 <td><a>42579</a></td>
                 <td>Track 03</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42580')">
                 <td><a>42580</a></td>
                 <td>Track 04</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42581')">
                 <td><a>42581</a></td>
                 <td>Track 05</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42582')">
                 <td><a>42582</a></td>
                 <td>Track 06</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42583')">
                 <td><a>42583</a></td>
                 <td>Track 07</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42584')">
                 <td><a>42584</a></td>
                 <td>Track 08</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42585')">
                 <td><a>42585</a></td>
                 <td>Track 09</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42586')">
                 <td><a>42586</a></td>
                 <td>Track 10</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42587')">
                 <td><a>42587</a></td>
                 <td>Track 11</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42588')">
                 <td><a>42588</a></td>
                 <td>Track 12</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42589')">
                 <td><a>42589</a></td>
                 <td>Track 13</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42590')">
                 <td><a>42590</a></td>
                 <td>Track 14</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42591')">
                 <td><a>42591</a></td>
                 <td>Track 15</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42592')">
                 <td><a>42592</a></td>
                 <td>Track 16</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42593')">
                 <td><a>42593</a></td>
                 <td>Track 17</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42594')">
                 <td><a>42594</a></td>
                 <td>Track 18</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42595')">
                 <td><a>42595</a></td>
                 <td>Track 19</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42596')">
                 <td><a>42596</a></td>
                 <td>Track 20</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42597')">
                 <td><a>42597</a></td>
                 <td>Track 21</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42598')">
                 <td><a>42598</a></td>
                 <td>Track 22</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42599')">
                 <td><a>42599</a></td>
                 <td>Track 23</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42600')">
                 <td><a>42600</a></td>
                 <td>Track 24</td>
                 <td>חלק א</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42601')">
                 <td><a>42601</a></td>
                 <td>Track 01</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42602')">
                 <td><a>42602</a></td>
                 <td>Track 02</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42603')">
                 <td><a>42603</a></td>
                 <td>Track 03</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42604')">
                 <td><a>42604</a></td>
                 <td>Track 04</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42605')">
                 <td><a>42605</a></td>
                 <td>Track 05</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42606')">
                 <td><a>42606</a></td>
                 <td>Track 06</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42607')">
                 <td><a>42607</a></td>
                 <td>Track 07</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42608')">
                 <td><a>42608</a></td>
                 <td>Track 08</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42609')">
                 <td><a>42609</a></td>
                 <td>Track 09</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42610')">
                 <td><a>42610</a></td>
                 <td>Track 10</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42611')">
                 <td><a>42611</a></td>
                 <td>Track 11</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42612')">
                 <td><a>42612</a></td>
                 <td>Track 12</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42613')">
                 <td><a>42613</a></td>
                 <td>Track 13</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42614')">
                 <td><a>42614</a></td>
                 <td>Track 14</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42615')">
                 <td><a>42615</a></td>
                 <td>Track 15</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42616')">
                 <td><a>42616</a></td>
                 <td>Track 16</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42617')">
                 <td><a>42617</a></td>
                 <td>Track 17</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42618')">
                 <td><a>42618</a></td>
                 <td>Track 18</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42619')">
                 <td><a>42619</a></td>
                 <td>Track 19</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42620')">
                 <td><a>42620</a></td>
                 <td>Track 20</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42621')">
                 <td><a>42621</a></td>
                 <td>Track 21</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42622')">
                 <td><a>42622</a></td>
                 <td>Track 22</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42623')">
                 <td><a>42623</a></td>
                 <td>Track 23</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42624')">
                 <td><a>42624</a></td>
                 <td>Track 24</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('42625')">
                 <td><a>42625</a></td>
                 <td>Track 25</td>
                 <td>חלק ב</td>
                 <td>טשערנוביל</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

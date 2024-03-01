@@ -1,1302 +1,1284 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>שמילי אונגר</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>שמילי אונגר</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspשמילי אונגר</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspשמילי אונגר</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('30421')">
                 <td><a>30421</a></td>
                 <td>01 מחרוזת א</td>
                 <td>2022 - שמילי אונגר - חוזר לבמה - מחרוזת מחולק ל 3</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30422')">
                 <td><a>30422</a></td>
                 <td>02 מחרוזת ב</td>
                 <td>2022 - שמילי אונגר - חוזר לבמה - מחרוזת מחולק ל 3</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30423')">
                 <td><a>30423</a></td>
                 <td>03 מחרוזת ג</td>
                 <td>2022 - שמילי אונגר - חוזר לבמה - מחרוזת מחולק ל 3</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30424')">
                 <td><a>30424</a></td>
                 <td>01 האט ביטחון</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30425')">
                 <td><a>30425</a></td>
                 <td>02 בר עילאי</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30426')">
                 <td><a>30426</a></td>
                 <td>03 ונזכה</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30427')">
                 <td><a>30427</a></td>
                 <td>04 אמור</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30428')">
                 <td><a>30428</a></td>
                 <td>05 שמעתי</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30429')">
                 <td><a>30429</a></td>
                 <td>06 קול דודי</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30430')">
                 <td><a>30430</a></td>
                 <td>07 לך</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30431')">
                 <td><a>30431</a></td>
                 <td>08 בין קודש</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30432')">
                 <td><a>30432</a></td>
                 <td>09 הנני</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30433')">
                 <td><a>30433</a></td>
                 <td>10 זכנו</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30434')">
                 <td><a>30434</a></td>
                 <td>11 דער רבה</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30435')">
                 <td><a>30435</a></td>
                 <td>12 טאנץ</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30436')">
                 <td><a>30436</a></td>
                 <td>13 ניגון בעלז</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30437')">
                 <td><a>30437</a></td>
                 <td>14 ניגון מודז יץ</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30438')">
                 <td><a>30438</a></td>
                 <td>15 בזה השעה</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30439')">
                 <td><a>30439</a></td>
                 <td>16 ניגון וואשן</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30440')">
                 <td><a>30440</a></td>
                 <td>17 חתן כלה</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30441')">
                 <td><a>30441</a></td>
                 <td>18 קומזיץ 1</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30442')">
                 <td><a>30442</a></td>
                 <td>19 שיר השבת</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30443')">
                 <td><a>30443</a></td>
                 <td>20 חי השם</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30444')">
                 <td><a>30444</a></td>
                 <td>21 שבח</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30445')">
                 <td><a>30445</a></td>
                 <td>22 שבשפלנו</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30446')">
                 <td><a>30446</a></td>
                 <td>23 טאט לע</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30447')">
                 <td><a>30447</a></td>
                 <td>24 כניסה קולות</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30448')">
                 <td><a>30448</a></td>
                 <td>25 זוכרי זמירות</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30449')">
                 <td><a>30449</a></td>
                 <td>26 חי חי</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30450')">
                 <td><a>30450</a></td>
                 <td>27 הנה מה טוב</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30451')">
                 <td><a>30451</a></td>
                 <td>28 מי כעמך</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30452')">
                 <td><a>30452</a></td>
                 <td>29 אלע אידן</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30453')">
                 <td><a>30453</a></td>
                 <td>30 אוהב שלום</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30454')">
                 <td><a>30454</a></td>
                 <td>31 Happy Days</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30455')">
                 <td><a>30455</a></td>
                 <td>32 יבנה המקדש</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30456')">
                 <td><a>30456</a></td>
                 <td>33 עוד ישמע</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30457')">
                 <td><a>30457</a></td>
                 <td>34 טעיתי</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30458')">
                 <td><a>30458</a></td>
                 <td>35 משכני</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30459')">
                 <td><a>30459</a></td>
                 <td>36 השם הוא האלוקים</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30460')">
                 <td><a>30460</a></td>
                 <td>37 ניגון קרליבך</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30461')">
                 <td><a>30461</a></td>
                 <td>38 ירושלים</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30462')">
                 <td><a>30462</a></td>
                 <td>39 הנה יבוא</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30463')">
                 <td><a>30463</a></td>
                 <td>40 בוא יבוא</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30464')">
                 <td><a>30464</a></td>
                 <td>41 אמן אמן</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30465')">
                 <td><a>30465</a></td>
                 <td>42 קומזיץ 2</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30466')">
                 <td><a>30466</a></td>
                 <td>43 מחשבות טובות</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30467')">
                 <td><a>30467</a></td>
                 <td>44 צווה</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30468')">
                 <td><a>30468</a></td>
                 <td>45 אל תתיאש</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30469')">
                 <td><a>30469</a></td>
                 <td>46 כל הנחלים</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30470')">
                 <td><a>30470</a></td>
                 <td>47 Thank You Hashem</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30471')">
                 <td><a>30471</a></td>
                 <td>48 וקווי השם</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30472')">
                 <td><a>30472</a></td>
                 <td>49 נברך</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30473')">
                 <td><a>30473</a></td>
                 <td>50 סיום</td>
                 <td>רצועות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30474')">
                 <td><a>30474</a></td>
                 <td>01 קל אדון - ספינקא</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30475')">
                 <td><a>30475</a></td>
                 <td>02 אין קדוש - ישראל באדאנסקי</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30476')">
                 <td><a>30476</a></td>
                 <td>03 כולם אהובים - אליעזר קאליש</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30477')">
                 <td><a>30477</a></td>
                 <td>04 בני היכלא - הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30478')">
                 <td><a>30478</a></td>
                 <td>05 כתר מלוכה - רימינוב</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30479')">
                 <td><a>30479</a></td>
                 <td>06 לך - הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30480')">
                 <td><a>30480</a></td>
                 <td>07 בנים - נפתלי משה שניצלער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30481')">
                 <td><a>30481</a></td>
                 <td>08 יוסף מוקיר שבת - יונה ליפשיץ  הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30482')">
                 <td><a>30482</a></td>
                 <td>09 תפילתי - פינקי וועבער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30483')">
                 <td><a>30483</a></td>
                 <td>10 שאו - הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30484')">
                 <td><a>30484</a></td>
                 <td>11 ה' הוא האלוקים - נוסח</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30485')">
                 <td><a>30485</a></td>
                 <td>12 מדריגות - הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30486')">
                 <td><a>30486</a></td>
                 <td>13 אמן - נפתלי משה שניצלער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30487')">
                 <td><a>30487</a></td>
                 <td>14 יראי שמים - הערשי וויינבערגער</td>
                 <td>מדרגות</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30488')">
                 <td><a>30488</a></td>
                 <td>'- בטחו בה</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30489')">
                 <td><a>30489</a></td>
                 <td>, בערי וובער שייע ברקו-מחרוזת ריקודים</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30490')">
                 <td><a>30490</a></td>
                 <td>-  יעקב שוואקי יוסי גרין הערשי וויינברגר מושי קרויס וועלווי פלדמן מקהלת נחת - לחיים אין נחת - חסידי</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30491')">
                 <td><a>30491</a></td>
                 <td>- כולנו</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30492')">
                 <td><a>30492</a></td>
                 <td>- ניגון חיזוק</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30493')">
                 <td><a>30493</a></td>
                 <td>-הלב שלי</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30494')">
                 <td><a>30494</a></td>
                 <td>17  והרשי ויינברגר שואלים  הלילה הזה </td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30495')">
                 <td><a>30495</a></td>
                 <td>א-ל מסתתר  ומקהלת מלכות - ווקאלי</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30496')">
                 <td><a>30496</a></td>
                 <td>אין לו תשועה </td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30497')">
                 <td><a>30497</a></td>
                 <td>אליהו</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30498')">
                 <td><a>30498</a></td>
                 <td>אני הולך</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30499')">
                 <td><a>30499</a></td>
                 <td>בביצוע ל-הלב שלי</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30500')">
                 <td><a>30500</a></td>
                 <td>בטחו-סבבה-מציגה-שמילי-אונגר</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30501')">
                 <td><a>30501</a></td>
                 <td>בטחו</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30502')">
                 <td><a>30502</a></td>
                 <td>בנסיגל חדש ומקפיץ כולנו- מציאון במייל להצטרפות metzion123@gmail.com</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30503')">
                 <td><a>30503</a></td>
                 <td>בערי וועבער _ שמילי אונגר - ואני אבטח בך</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30504')">
                 <td><a>30504</a></td>
                 <td>בר אלעאי</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30505')">
                 <td><a>30505</a></td>
                 <td>הלילה הזה</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30506')">
                 <td><a>30506</a></td>
                 <td>וברי וובר</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30507')">
                 <td><a>30507</a></td>
                 <td>וידידים - מציאון במייל להצטרפות metzion123@gmail.com</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30508')">
                 <td><a>30508</a></td>
                 <td>ומקהלת שירה - ר' שמחה</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30509')">
                 <td><a>30509</a></td>
                 <td>ונתנה תוקף</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30510')">
                 <td><a>30510</a></td>
                 <td>חבל על הזמן</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30511')">
                 <td><a>30511</a></td>
                 <td>חשוף</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30512')">
                 <td><a>30512</a></td>
                 <td>ישמע</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30513')">
                 <td><a>30513</a></td>
                 <td>כולנו</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30514')">
                 <td><a>30514</a></td>
                 <td>כל המלמד</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30515')">
                 <td><a>30515</a></td>
                 <td>מחרוזת חופה</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30516')">
                 <td><a>30516</a></td>
                 <td>מחרוזת ריקודים 2</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30517')">
                 <td><a>30517</a></td>
                 <td>עם ידידים</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30518')">
                 <td><a>30518</a></td>
                 <td>שים שלום-</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30519')">
                 <td><a>30519</a></td>
                 <td>שמילי אונגר - בקרוב ממש</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30520')">
                 <td><a>30520</a></td>
                 <td>שמילי אונגר _ מקהלת ידידים - אידן אין אמעריקע</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30521')">
                 <td><a>30521</a></td>
                 <td>שמילי אונגר בסינגל חדש ''חסדי השם'' לרגל 3 שנים לתאומים</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30522')">
                 <td><a>30522</a></td>
                 <td>שערי דמעות</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30523')">
                 <td><a>30523</a></td>
                 <td>תעשה ברכה-מאך א ברכה</td>
                 <td>סינגלים</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30524')">
                 <td><a>30524</a></td>
                 <td>01 פתיחה</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30525')">
                 <td><a>30525</a></td>
                 <td>02 לכבוד שבת</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30526')">
                 <td><a>30526</a></td>
                 <td>03 תזכה למצוות</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30527')">
                 <td><a>30527</a></td>
                 <td>04 כבשה אחת</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30528')">
                 <td><a>30528</a></td>
                 <td>05 בטחו</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30529')">
                 <td><a>30529</a></td>
                 <td>06 סיני</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30530')">
                 <td><a>30530</a></td>
                 <td>07 ניגון שמחה</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30531')">
                 <td><a>30531</a></td>
                 <td>08 בסיעתא דשמיא</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30532')">
                 <td><a>30532</a></td>
                 <td>09 אם אין אני לי</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30533')">
                 <td><a>30533</a></td>
                 <td>10 אמת</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30534')">
                 <td><a>30534</a></td>
                 <td>11 מעט אור</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30535')">
                 <td><a>30535</a></td>
                 <td>12 בא יבוא</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30536')">
                 <td><a>30536</a></td>
                 <td>13 אדון עולם</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30537')">
                 <td><a>30537</a></td>
                 <td>14 רחמנא</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30538')">
                 <td><a>30538</a></td>
                 <td>15 רבי נהוראי</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30539')">
                 <td><a>30539</a></td>
                 <td>16 אין עוד מלבדו</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30540')">
                 <td><a>30540</a></td>
                 <td>17 יש בורא עולם</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30541')">
                 <td><a>30541</a></td>
                 <td>18 כי אנו עמך</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30542')">
                 <td><a>30542</a></td>
                 <td>19 די זיידעס</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30543')">
                 <td><a>30543</a></td>
                 <td>20 צעקה</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30544')">
                 <td><a>30544</a></td>
                 <td>21 יערב</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30545')">
                 <td><a>30545</a></td>
                 <td>22 יערב זיץ</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30546')">
                 <td><a>30546</a></td>
                 <td>23 פריילאך</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30547')">
                 <td><a>30547</a></td>
                 <td>24 ניגון הקפה שישית</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30548')">
                 <td><a>30548</a></td>
                 <td>25 הטוב הטוב</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30549')">
                 <td><a>30549</a></td>
                 <td>26 כה אמר</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30550')">
                 <td><a>30550</a></td>
                 <td>27 מלוך</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30551')">
                 <td><a>30551</a></td>
                 <td>28 שנית</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30552')">
                 <td><a>30552</a></td>
                 <td>29 וביום שמחתכם</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30553')">
                 <td><a>30553</a></td>
                 <td>30 אדמה ושמיים</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30554')">
                 <td><a>30554</a></td>
                 <td>31 אליהו הנביא</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30555')">
                 <td><a>30555</a></td>
                 <td>32 מי להשם אלי</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30556')">
                 <td><a>30556</a></td>
                 <td>33 יתגדל</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30557')">
                 <td><a>30557</a></td>
                 <td>34 רווח</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30558')">
                 <td><a>30558</a></td>
                 <td>35 גאולה</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30559')">
                 <td><a>30559</a></td>
                 <td>36 יומם</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30560')">
                 <td><a>30560</a></td>
                 <td>37 חתן זיץ</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30561')">
                 <td><a>30561</a></td>
                 <td>38 צרכי עמך</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30562')">
                 <td><a>30562</a></td>
                 <td>39 ברוך השם</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30563')">
                 <td><a>30563</a></td>
                 <td>40 צמאה</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30564')">
                 <td><a>30564</a></td>
                 <td>41 שיהא הכל</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30565')">
                 <td><a>30565</a></td>
                 <td>42 אפשר לתקן - ווען</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30566')">
                 <td><a>30566</a></td>
                 <td>43 מלאכי רחמים - רחמנא</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30567')">
                 <td><a>30567</a></td>
                 <td>44 ריבון</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30568')">
                 <td><a>30568</a></td>
                 <td>45 שתדריכני</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30569')">
                 <td><a>30569</a></td>
                 <td>46 המלך - שהחיינו</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30570')">
                 <td><a>30570</a></td>
                 <td>47 ונאמר אמן</td>
                 <td>על הבמה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30571')">
                 <td><a>30571</a></td>
                 <td>01 אמת</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30572')">
                 <td><a>30572</a></td>
                 <td>02 לולא</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30573')">
                 <td><a>30573</a></td>
                 <td>03 אני הולך</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30574')">
                 <td><a>30574</a></td>
                 <td>04 אשר בחר</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30575')">
                 <td><a>30575</a></td>
                 <td>05 עוד ישמע</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30576')">
                 <td><a>30576</a></td>
                 <td>06 רחמנא</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30577')">
                 <td><a>30577</a></td>
                 <td>07 אתה הראת</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30578')">
                 <td><a>30578</a></td>
                 <td>08 מה יתרון</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30579')">
                 <td><a>30579</a></td>
                 <td>09 יתן לך</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30580')">
                 <td><a>30580</a></td>
                 <td>10 ס'בענקט</td>
                 <td>שמואלי 2</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30581')">
                 <td><a>30581</a></td>
                 <td>01 מאך א ברכה</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30582')">
                 <td><a>30582</a></td>
                 <td>02 אדון עולם</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30583')">
                 <td><a>30583</a></td>
                 <td>03 ונאמר אמן</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30584')">
                 <td><a>30584</a></td>
                 <td>04 דיינו</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30585')">
                 <td><a>30585</a></td>
                 <td>05 שול</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30586')">
                 <td><a>30586</a></td>
                 <td>06 קל מסתתר</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30587')">
                 <td><a>30587</a></td>
                 <td>07 עמך ישראל</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30588')">
                 <td><a>30588</a></td>
                 <td>08 שלח</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30589')">
                 <td><a>30589</a></td>
                 <td>09 צמאה</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30590')">
                 <td><a>30590</a></td>
                 <td>10 תורה</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30591')">
                 <td><a>30591</a></td>
                 <td>11 לכבוד שבת</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30592')">
                 <td><a>30592</a></td>
                 <td>12 אם תחנה</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('30593')">
                 <td><a>30593</a></td>
                 <td>13 למען דעת</td>
                 <td>תעשה ברכה</td>
                 <td>שמילי אונגר</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

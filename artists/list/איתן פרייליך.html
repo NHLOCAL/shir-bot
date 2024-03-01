@@ -1,224 +1,206 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="NHLOCAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>איתן פרייליך</title>
+  <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
+  <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
+  <script src="https://nhlocal.github.io/general-settings.js"></script>
+</head>
 
-    <!DOCTYPE html>
-    <html lang="he">
-    <head>
-      <meta charset="utf-8">
-      <meta name="author" content="NHLOCAL">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <title>איתן פרייליך</title>
-      <link rel="canonical" href="https://nhlocal.github.io/shir-bot/" />
-      <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
-      <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
-      <script src="https://nhlocal.github.io/general-settings.js"></script>
-      
-    <script>
-      function createRowClickListener(song) {
-        return function() {
-          console.log('Song:', song);
-          // Add your custom logic here to handle the click event
-        };
-      }
-    </script>
+<body dir="rtl" style="background-color:#FFFEDB;">
+  <div class="topnav">
+  <header class="ripple-header">
+    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
+    <a class="right-item" href="https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
     
-    </head>
-    
-    <body dir="rtl" style="background-color:#FFFEDB;">
-      <div class="topnav">
-      <header class="ripple-header">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב"><i class="fas fa-envelope"></i></a>
-        <a class="right-item" href="https://nhlocal.github.io/shir-bot/" title="למעבר לדף הבית"><img width="50" style="border-radius: 30%;" src="https://nhlocal.github.io/shir-bot/archive/logo1.png" alt="סמל האתר"></a>
-        
-        <center class="parent-element">
-          <h3 id="nextObject">&nbspאיתן פרייליך</h3>
-        </center>
-      </header>
-    <form id="searchForm" class="search-form">
-      
-      <div class="input-container">
-        <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
-        <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+    <center class="parent-element">
+      <h3 id="nextObject">&nbspאיתן פרייליך</h3>
+    </center>
+  </header>
+<form id="searchForm" class="search-form">
+  
+  <div class="input-container">
+    <input type="text" id="searchInput" name="searchInput" class="search-input awesomplete" class="search-input" placeholder="נסה משהו אחר..." autofocus>
+    <div id="textBubble" class="text-bubble">נסה לחפש שירים חדשים שיצאו לאחרונה!</div>
+  </div>
+
+  <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+
+    <div id="loadingMessage" class="loading-message">
+      <div class="progress-bar-container">
+        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
+        <span id="progressText"></span>
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
       </div>
+    </div>
     
-      <button type="button" onclick="submitForm()" class="search-button"><i class="fas fa-search"></i></button>
-    </form>
+  <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
+  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+
+    <div id="resultsTable" class="custom-table">
+      <table>
+        <thead>
+          <tr>
+            <th>מספר סידורי</th>
+            <th>שם השיר</th>
+            <th>שם האלבום</th>
+            <th>שם הזמר</th>		  
+          </tr>
+        </thead>
+      <tbody>
     
-    <script>
-      // Function to submit the form
-      function submitForm() {
-        var searchTerm = document.getElementById('searchInput').value;
-        var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        // Optionally, you can include the searchBy parameter as well
-        // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
-        window.location.href = url;
-      }
-    
-      // Event listener to submit the form when Enter key is pressed
-      document.getElementById("searchInput").addEventListener("keypress", function(event) {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          submitForm();
-        }
-      });
-    </script>
-    
-      </div>
-    
-        <div id="resultsTable" class="custom-table">
-          <table>
-            <thead>
-              <tr>
-                <th>מספר סידורי</th>
-                <th>שם השיר</th>
-                <th>שם האלבום</th>
-                <th>שם הזמר</th>		  
-              </tr>
-            </thead>
-          <tbody>
-    
-              <tr>
+              <tr onclick="downloadSong('44610')">
                 <td><a>44610</a></td>
                 <td>איתן פרייליך - שירו להשם</td>
                 <td>איתן פרייליך</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44611')">
                 <td><a>44611</a></td>
                 <td>איתן פרייליך ותגלה </td>
                 <td>איתן פרייליך</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44612')">
                 <td><a>44612</a></td>
                 <td>01 עבדו</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44613')">
                 <td><a>44613</a></td>
                 <td>02 השכן נא</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44614')">
                 <td><a>44614</a></td>
                 <td>03 שירו להשם</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44615')">
                 <td><a>44615</a></td>
                 <td>04 יבוא שלום</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44616')">
                 <td><a>44616</a></td>
                 <td>05 יום זה</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44617')">
                 <td><a>44617</a></td>
                 <td>06 העט</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44618')">
                 <td><a>44618</a></td>
                 <td>07 ארץ ישראל</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44619')">
                 <td><a>44619</a></td>
                 <td>08 שולם במלאו</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44620')">
                 <td><a>44620</a></td>
                 <td>09 אמן ואמן</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44621')">
                 <td><a>44621</a></td>
                 <td>10 להודת להשם</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44622')">
                 <td><a>44622</a></td>
                 <td>מאת השם</td>
                 <td>יבוא שלום</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44623')">
                 <td><a>44623</a></td>
                 <td>יבוא שלום - תקציר</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44624')">
                 <td><a>44624</a></td>
                 <td>יבוא שלום</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44625')">
                 <td><a>44625</a></td>
                 <td>לא אירא</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44626')">
                 <td><a>44626</a></td>
                 <td>להודות לך</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44627')">
                 <td><a>44627</a></td>
                 <td>שולם במלואו</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-              <tr>
+              <tr onclick="downloadSong('44628')">
                 <td><a>44628</a></td>
                 <td>שירו להשם</td>
                 <td>סינגלים</td>
                 <td>איתן פרייליך</td>
               </tr>
         
-          </tbody>
-          </table>
-          </div>
-        <!--  גרסת בטא ניסיונית - לתקלות ניתן לשלוח משוב למייל היוצר  -->
-          <div class="fixed-bottom">
-            <p>זוהי תצוגה בלבד, להורדת שירים עברו ל<a href='https://nhlocal.github.io/shir-bot'>דף הבית</a></p>
-          </div>
-        </div>
-        </body>
-        </html>
+      </tbody>
+      </table>
+      </div>
+      
+      <div class="fixed-bottom">
+        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
+      </div>
+    </div>
+</body>
+</html>
     

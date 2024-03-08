@@ -36,8 +36,10 @@ const nextObject = document.getElementById("nextObject");
 
 // Add a click event listener
 nextObject.addEventListener("click", function() {
-// Re-enter the current page without refreshing
-window.location.href = window.location.href;
+    // Get the current URL without parameters
+    const urlWithoutParams = window.location.origin + window.location.pathname;
+    // Re-enter the current page without parameters
+    window.location.href = urlWithoutParams;
 });
 
 

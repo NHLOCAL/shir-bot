@@ -335,13 +335,14 @@ p {
 
 /* עיצוב הוראות שימוש */
 .instructions-container {
-  max-width: 400px;
+  max-width: 500px;
+  min-width: 35%;
   text-align: center;
   margin: auto;
-  padding: 0;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid #ddd;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 3px solid #ddd;
 }
 
 .instructions-container h3 {
@@ -363,6 +364,65 @@ p {
   color: #474747;
   padding: 0 20px 0px;
 }
+
+.small-ad-container {
+  display: flex;
+  width: 95%;
+}
+
+.small-ad-left,
+.small-ad-right {
+  background-color: transparent;
+  border: none;
+  margin: 20px;
+  width: 100%;
+  max-width: 25%;
+}
+
+.small-ad-bottom,
+.small-ad-top {
+  width: 100%; /* Adjust width as needed */
+  height: 49%; /* Adjust height as needed */
+  border-radius: 8px;
+  flex: 1; /* Distribute space equally */
+  text-align: center;
+  padding: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ddd;
+}
+
+.small-ad-top {
+  margin-top: 0;
+  margin-bottom: 10px;
+  top: 0px;
+}
+
+.small-ad-bottom {
+  margin-top: 10px;
+  margin-bottom: 0;
+  bottom: 0px;
+}
+
+.ad-text {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.title-song-list {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 5px; /* Add bottom space */
+}
+
+.song-list {
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+
+
 
 
 .loading-container {
@@ -560,7 +620,6 @@ position: static;
   margin-top: 15vh;
   margin-bottom: 5vh;
   width: 90%;
-  center: auto;
   height: 60%;
   padding: 5px;
 }
@@ -853,7 +912,7 @@ a {
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 8px 20px;
-  background-color: #FFFFF;
+  background-color: #FFFFFF;
   color: #5D3AB0;
   border-radius:24px;
   border-style: solid;
@@ -1001,14 +1060,11 @@ header.clicked::after {
 }
 
 
-
-
 /* עיצוב עבור כפתורי הקודם והבא */
 
 #prevSection,
 #nextSection {
     position: fixed;
-    top: 50%;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
@@ -1020,14 +1076,17 @@ header.clicked::after {
     z-index: 1000;
     transition: background 0.3s, color 0.3s; /* Smooth transition on hover */
     border: 2px solid #666699; /* Border style similar to the helpButton */
+    bottom: 50px;
 }
 
 #prevSection {
-    right: 3%;
+  left: 50%; /* Set the button to be centered on the right */
+  margin-left: 45px; /* Adjust the margin to prevent overlapping */
 }
 
 #nextSection {
-    left: 3%;
+  right: 50%; /* Set the button to be centered on the left */
+  margin-right: 45px; /* Adjust the margin to prevent overlapping */
 }
 
 #prevSection:hover,
@@ -1042,6 +1101,7 @@ header.clicked::after {
     color: white; /* White text color on click */
 }
 
+
 @media screen and (max-width: 600px) {
     #prevSection,
     #nextSection {
@@ -1049,16 +1109,8 @@ header.clicked::after {
         height: 30px;
         font-size: 14px;
 		bottom: 50px;
-		top: unset;
     }
-	
-	#prevSection {
-		right: 40%;
-	}
 
-	#nextSection {
-		left: 40%;
-	}
 }
 
 

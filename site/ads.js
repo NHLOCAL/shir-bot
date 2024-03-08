@@ -213,3 +213,97 @@ function closeHelp() {
 	const overlay = document.querySelector('.help-overlay');
 	overlay.style.display = 'none';
 }
+
+
+// Function to fetch random singer's name and sample songs from the CSV file and singer list from a text file
+async function getRandomSingerData() {
+  try {
+      // Fetch singer list from text file
+      const singersResponse = await fetch('https://nhlocal.github.io/shir-bot/artists/singers_list.txt');
+      const singersData = await singersResponse.text();
+      const singersList = singersData.split('\n').map(singer => singer.trim());
+
+      // Fetch songs from CSV file
+      const songsResponse = await fetch('https://nhlocal.github.io/shir-bot/site/new-songs.csv');
+      const songsData = await songsResponse.text();
+      const lines = songsData.split('\n');
+
+      // Select a random singer
+      const singerName = singersList[Math.floor(Math.random() * singersList.length)];
+
+      // Filter songs that belong to the selected singer
+      const singerSongs = lines.filter(line => {
+          const lineData = line.split(',');
+          return lineData.length === 4 && lineData[3].trim() === singerName;
+      }).map(song => song.split(',')[1].trim()); // Get song name from column B
+
+      // Select 4 random sample songs
+      const sampleSongs = [];
+      while (sampleSongs.length < 4 && singerSongs.length > 0) {
+          const randomIndex = Math.floor(Math.random() * singerSongs.length);
+          sampleSongs.push(singerSongs.splice(randomIndex, 1)[0]);
+      }
+
+      return { singerName, sampleSongs };
+  } catch (error) {
+      console.error('Error fetching singer data:', error);
+      return null;
+  }
+}
+
+// Function to generate HTML content for small ads
+async function generateSmallAdHTML() {
+  const singerData1 = await getRandomSingerData();
+  const singerData2 = await getRandomSingerData();
+  if (singerData1 && singerData2) {
+      // Construct HTML for small ads
+      const smallAdHTML1 = `
+      <div class="small-ad-top">
+          <br>
+          <p class="ad-text">נסה לחפש את...</p>
+          <button class="helpButton" onclick="searchSongs('${singerData1.singerName}', 'singer')">${singerData1.singerName}</button>
+          <p class="title-song-list">מבחר משירי ${singerData1.singerName}</p> <!-- Added class for styling -->
+          <ul class="song-list">
+              <li>${singerData1.sampleSongs[0]}</li>
+              <li>${singerData1.sampleSongs[1]}</li>
+              <li>${singerData1.sampleSongs[2]}</li>
+              <li>${singerData1.sampleSongs[3]}</li>
+          </ul>
+      </div>
+  `;
+  
+  const smallAdHTML2 = `
+      <div class="small-ad-bottom">
+          <br>
+          <p class="ad-text">נסה לחפש את...</p>
+          <button class="helpButton" onclick="searchSongs('${singerData2.singerName}', 'singer')">${singerData2.singerName}</button>
+          <p class="title-song-list">מבחר משירי ${singerData2.singerName}</p> <!-- Added class for styling -->
+          <ul class="song-list">
+              <li>${singerData2.sampleSongs[0]}</li>
+              <li>${singerData2.sampleSongs[1]}</li>
+              <li>${singerData2.sampleSongs[2]}</li>
+              <li>${singerData2.sampleSongs[3]}</li>
+          </ul>
+      </div>
+  `;
+  
+      return smallAdHTML1 + smallAdHTML2;
+  } else {
+      // Handle error or no data retrieved
+      return '';
+  }
+}
+
+
+// Update the content of the left and right small ad containers
+async function updateSmallAds() {
+  const leftSmallAdContainer = document.querySelector(".small-ad-left");
+  const rightSmallAdContainer = document.querySelector(".small-ad-right");
+
+  // Replace inner HTML of left and right small ad containers with small ad content
+  leftSmallAdContainer.innerHTML = await generateSmallAdHTML();
+  rightSmallAdContainer.innerHTML = await generateSmallAdHTML();
+}
+
+// Initial update of small ads
+updateSmallAds();

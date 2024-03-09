@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from urllib.parse import urljoin, quote
+from datetime import datetime
 
 def create_sitemap(directory, base_url, update_frequency, priority):
     # Create root element
@@ -16,7 +17,7 @@ def create_sitemap(directory, base_url, update_frequency, priority):
             loc_elem = ET.SubElement(url, "loc")
             loc_elem.text = loc
             lastmod_elem = ET.SubElement(url, "lastmod")  # You can add last modified date if needed
-            lastmod_elem.text = "2024-02-27"  # Placeholder for demonstration
+            lastmod_elem.text = datetime.now().strftime("%Y-%m-%d")  # Current date
             changefreq_elem = ET.SubElement(url, "changefreq")
             changefreq_elem.text = update_frequency
             priority_elem = ET.SubElement(url, "priority")

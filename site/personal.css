@@ -333,7 +333,7 @@ p {
 }
 
 
-/* עיצוב הוראות שימוש */
+/* עיצוב עבור מודעות בחזית המסך ומסך עזרה */
 .instructions-container {
   max-width: 500px;
   min-width: 35%;
@@ -420,6 +420,34 @@ p {
     margin-bottom: 0;
     list-style: none;
 }
+
+
+@media (max-width: 768px) {
+	
+  .instructions-container {
+    max-width: 90%;  
+  }
+   
+  .small-ad-container {
+    flex-direction: column; /* Change layout to column */
+  }
+
+  .small-ad-left,
+  .small-ad-right {
+    max-width: 100%; /* Occupy full width */
+    margin: 0;
+  }
+
+  .small-ad-top,
+  .small-ad-bottom {
+    height: auto; /* Allow height to adjust based on content */
+    margin: 10px; /* Add margin between ads */
+	margin-right: 0;
+	margin-left: 0;
+	Padding: 5px 0 5px 0;
+  }
+}
+
 
 
 

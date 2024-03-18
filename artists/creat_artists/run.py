@@ -14,6 +14,7 @@ def create_singer_html_file(folder_path, singer_name, songs):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>{singer_name}</title>
+  <link rel="canonical" href="https://nhlocal.github.io/shir-bot/artists/list/{singer_name}" />
   <link rel="icon" type="image/x-icon" href="https://nhlocal.github.io/shir-bot/site/favicon.ico">
   <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/styles.css">
   <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">

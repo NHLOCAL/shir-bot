@@ -1,7 +1,7 @@
 import csv
 
 # Define the input filename
-input_filename = 'output_with_paths.csv'
+input_filename = 'list-songs-with-paths.csv'
 
 # Define the output filenames for the two scenarios
 output_renumber_filename = 'songs-for-sheets.csv'

@@ -1,7 +1,7 @@
 // Function to submit the form
 function submitForm() {
 var searchTerm = document.getElementById('searchInput').value;
-var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm);
+var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm) + '&utm_source=artist&utm_medium=site';
 // Optionally, you can include the searchBy parameter as well
 // var url = 'https://nhlocal.github.io/shir-bot/?search=' + encodeURIComponent(searchTerm) + '&utm_source=artist&utm_medium=site';
 window.location.href = url;

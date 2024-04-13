@@ -81,7 +81,7 @@ function updateFooterContent() {
 }
 
 // Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 8000);
+setInterval(updateFooterContent, 5000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();
@@ -98,13 +98,13 @@ function beatplus_ad() {
 
 
 // קוד להצגת מודעות בחזית האתר באופן אוטומטי
-const newContent2 = `
-<h3>תפילה להצלחת המערכה</h3>
-	  <p style="text-align: justify"><b><small>א</small></b> לַמְנַצֵּחַ מִזְמוֹר לְדָוִד:  <b><small>ב</small></b> שְׁמַע אֱלֹהִים קוֹלִי בְשִׂיחִי מִפַּחַד אוֹיֵב תִּצֹּר חַיָּי:  <b><small>ג</small></b> תַּסְתִּירֵנִי מִסּוֹד מְרֵעִים מֵרִגְשַׁת פֹּעֲלֵי אָוֶן: <b><small>ד</small></b> אֲשֶׁר שָׁנְנוּ כַחֶרֶב לְשׁוֹנָם דָּרְכוּ חִצָּם דָּבָר מָר: <b><small>ה</small></b> לִירוֹת בַּמִּסְתָּרִים תָּם פִּתְאֹם יֹרֻהוּ וְלֹא יִירָאוּ: <b><small>ו</small></b> יְחַזְּקוּ לָמוֹ דָּבָר רָע יְסַפְּרוּ לִטְמוֹן מוֹקְשִׁים אָמְרוּ מִי יִרְאֶה לָּמוֹ: <b><small>ז</small></b> יַחְפְּשׂוּ עוֹלֹת תַּמְנוּ חֵפֶשׂ מְחֻפָּשׂ וְקֶרֶב אִישׁ וְלֵב עָמֹק: <b><small>ח</small></b> וַיֹּרֵם אֱלֹהִים חֵץ פִּתְאוֹם הָיוּ מַכּוֹתָם:<b><small>ט</small></b> וַיַּכְשִׁילוּהוּ עָלֵימוֹ לְשׁוֹנָם יִתְנֹדֲדוּ כָּל רֹאֵה בָם: <b><small>י</small></b> וַיִּירְאוּ כָּל אָדָם וַיַּגִּידוּ פֹּעַל אֱלֹהִים וּמַעֲשֵׂהוּ הִשְׂכִּילוּ: <b><small>יא</small></b> יִשְׂמַח צַדִּיק בַּיהוָה וְחָסָה בוֹ וְיִתְהַלְלוּ כָּל יִשְׁרֵי לֵב:</p>
+const newContent1 = `
+<h3>תהילים נגד טילים</h3>
+	  <p style="text-align: justify">לַמְנַצֵּ֗חַ מִזְמ֥וֹר לְדָוִֽד׃ יַֽעַנְךָ֣ יְ֭הוָה בְּי֣וֹם צָרָ֑ה יְ֝שַׂגֶּבְךָ֗ שֵׁ֤ם ׀ אֱלֹהֵ֬י יַֽעֲקֹֽב׃ יִשְׁלַֽח־עֶזְרְךָ֥ מִקֹּ֑דֶשׁ וּ֝מִצִּיּ֗וֹן יִסְעָדֶֽךָּ׃ יִזְכֹּ֥ר כָּל־מִנְחֹתֶ֑ךָ וְעוֹלָֽתְךָ֖ יְדַשְּׁנֶ֣ה סֶֽלָה׃ יִֽתֶּן־לְךָ֥ כִלְבָבֶ֑ךָ וְֽכָל־עֲצָתְךָ֥ יְמַלֵּֽא׃ נְרַנְּנָ֤ה ׀ בִּ֘ישׁ֤וּעָתֶ֗ךָ וּבְשֵֽׁם־אֱלֹהֵ֥ינוּ נִדְגֹּ֑ל יְמַלֵּ֥א יְ֝הוָ֗ה כָּל־מִשְׁאֲלוֹתֶֽיךָ׃ עַתָּ֤ה יָדַ֗עְתִּי כִּ֤י הוֹשִׁ֥יעַ ׀ יְהוָ֗ה מְשִׁ֫יח֥וֹ יַֽ֭עֲנֵהוּ מִשְּׁמֵ֣י קָדְשׁ֑וֹ בִּ֝גְבֻר֗וֹת יֵ֣שַׁע יְמִינֽוֹ׃ אֵ֣לֶּה בָ֭רֶכֶב וְאֵ֣לֶּה בַסּוּסִ֑ים וַֽאֲנַ֓חְנוּ בְּשֵׁם־יְהוָ֖ה אֱלֹהֵ֣ינוּ נַזְכִּֽיר׃ הֵ֭מָּה כָּֽרְע֣וּ וְנָפָ֑לוּ וַֽאֲנַ֥חְנוּ קַּ֝֗מְנוּ וַנִּתְעוֹדָֽד׃ יְהוָ֥ה הוֹשִׁ֑יעָה הַ֝מֶּ֗לֶךְ יַֽעֲנֵ֥נוּ בְיוֹם־קָרְאֵֽנוּ׃</p>
 	  <button class="helpButton" id="helpButton" onclick='openHelp()'>לחץ כאן לקבלת עזרה מפורטת</button>
 `;
 
-const newContent1 = `
+const newContent2 = `
       <h3 style="animation: colorTransition 2s infinite;">
       קבלו גישה מלאה ל-70,000 שירים בדרייב
     </h3>
@@ -150,7 +150,7 @@ function startAutoChange() {
     interval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
         updateContent();
-    },12000); // Reduced the interval to 10 seconds for the example
+    },15000); // Reduced the interval to 10 seconds for the example
 }
 
 // Event listeners for previous and next buttons

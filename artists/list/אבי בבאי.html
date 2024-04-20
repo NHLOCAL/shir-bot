@@ -12,6 +12,49 @@
   <link rel="stylesheet" href="https://nhlocal.github.io/shir-bot/site/personal.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
   <script src="https://nhlocal.github.io/general-settings.js"></script>
+  <style>
+.progress-bar-container {
+  position: sticky;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #362266;
+  background-color: #F3F3F3;
+  font-size: 16px;
+  box-shadow: 2px 5px 15px rgba(45, 67, 115, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar-container img {
+  width: 16px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+.progress-bar {
+  width: 100px;
+  background-color: #ccc;
+  height: 10px;
+  margin-top: 4px;
+  margin-right: 12px;
+  border-radius: 5px;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(to right, #3498db, #4D3091); /* Gradient fill */
+  transition: width 0.3s ease-in-out;
+}
+
+
+  </style>
 </head>
 
 <body dir="rtl" style="background-color:#FFFEDB;">
@@ -36,18 +79,10 @@
 </div>
 
 
-    <div id="loadingMessage" class="loading-message">
-      <div class="progress-bar-container">
-        <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה" />
-        <span id="progressText"></span>
-        <div class="progress-bar">
-          <div id="progress" class="progress"></div>
-        </div>
-      </div>
-    </div>
+    <div id="loadingMessage"></div>
     
   <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
-  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+  <script src="../main-artists.js"></script>
 
     <div id="resultsTable" class="custom-table">
       <table>
@@ -85,4 +120,3 @@
     </div>
 </body>
 </html>
-    

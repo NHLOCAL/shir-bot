@@ -17,74 +17,59 @@ if (event.keyCode === 13) {
 
 
 async function downloadSong(songNumber) {
-  var loadingMessageContainer = document.getElementById('loadingMessage'); // Get the loading message container
-
-  // Create a new progress bar container element
-  var progressBarContainer = document.createElement('div');
-  progressBarContainer.classList.add('progress-bar-container');
-  progressBarContainer.innerHTML = `
-    <img src="https://nhlocal.github.io/shir-bot/site/loading.gif" alt="טעינה">
-    <span id="progressText"></span>
-    <div class="progress-bar">
-      <div id="progress" class="progress"></div>
-    </div>
-  `;
-
-  // Reset progress bar width and text content
-  progressBarContainer.querySelector('#progress').style.width = '0';
-  progressBarContainer.querySelector('#progressText').innerText = '';
-
-  // Append the progress bar container as a child of the loading message container
-  loadingMessageContainer.appendChild(progressBarContainer);
+  var loadingMessage = document.getElementById('loadingMessage');
+  var progressText = document.getElementById('progressText');
+  var progressBar = document.getElementById('progress');
 
   // Reset progress bar and messages
-  var progressText = progressBarContainer.querySelector('#progressText');
-  var progressBar = progressBarContainer.querySelector('#progress');
   progressText.innerText = "עובד...";
   progressBar.style.width = '15%';
+
+  loadingMessage.classList.add('show'); // Display the loading message
+
   var scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec'; // Replace with your Google Apps Script web app URL
   var downloadUrl = scriptUrl + '?songNumber=' + encodeURIComponent(songNumber);
 
-  try {  
-    const response = await fetch(downloadUrl);
+  try {	
+	const response = await fetch(downloadUrl);
+	
+	progressText.innerText = "עובד...";
+	progressBar.style.width = '40%';
+	
+	const data = await response.json();
+	
+	if (data.success) {
+	  // Display the stages
+	  progressText.innerText = "מעבד...";
+	  progressBar.style.width = '60%';
 
-    progressText.innerText = "עובד...";
-    progressBar.style.width = '40%';
+	  setTimeout(async () => {
+		progressText.innerText = "מוריד...";
+		progressBar.style.width = '80%';
 
-    const data = await response.json();
+		// Background download continues here
+		var link = document.createElement('a');
+		link.href = data.downloadLink;
+		link.download = data.originalFileName;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
 
-    if (data.success) {
-      progressText.innerText = "מעבד...";
-      progressBar.style.width = '60%';
+		// Simulate final stage
+		await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
+		progressText.innerText = "הושלם!";
+		progressBar.style.width = '100%';
 
-      setTimeout(async () => {
-        progressText.innerText = "מוריד...";
-        progressBar.style.width = '80%';
-
-        // Background download continues here
-        var link = document.createElement('a');
-        link.href = data.downloadLink;
-        link.download = data.originalFileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Simulate final stage
-        await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
-        progressText.innerText = "הושלם!";
-        progressBar.style.width = '100%';
-
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        loadingMessageContainer.removeChild(progressBarContainer); // Remove the progress bar container on success
-      }, 1000);
-    } else {
-      alert(data.message);
-      loadingMessageContainer.removeChild(progressBarContainer); // Remove the progress bar container on error
-    }
+		await new Promise(resolve => setTimeout(resolve, 2000));
+		loadingMessage.classList.remove('show'); // Hide the loading message on success
+	  }, 1000);
+	} else {
+	  alert(data.message);
+	  loadingMessage.classList.remove('show'); // Hide the loading message on error
+	}
   } catch (error) {
-    console.error("Error:", error);
-    showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
-    loadingMessageContainer.removeChild(progressBarContainer); // Remove the progress bar container on error
+	console.error("Error:", error);
+	showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
+	loadingMessage.classList.remove('show'); // Hide the loading message on error
   }
 }
-

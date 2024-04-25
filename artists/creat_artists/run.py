@@ -56,7 +56,7 @@ def create_singer_html_file(folder_path, singer_name, songs):
     </div>
     
   <!-- הגדרת מעבר אוטומטי לדף הראשי והורדת השירים  -->
-  <script src="https://nhlocal.github.io/shir-bot/artists/main-artists.js"></script>
+  <script src="../main-artists.js"></script>
 
     <div id="resultsTable" class="custom-table">
       <table>

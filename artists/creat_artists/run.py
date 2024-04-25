@@ -11,6 +11,7 @@ def create_singer_html_file(folder_path, singer_name, songs):
 <head>
   <meta charset="utf-8">
   <meta name="author" content="NHLOCAL">
+  <meta name="keywords" content="הורדת שירים, מוזיקה בדרייב, שירים בדרייב, שירים חרדיים, מוזיקה חסידית, שיר-בוט, מאגר שירים, חיפוש שירים, זמרים חרדיים, שירים חסידיים, הורדה מהירה, מספר סידורי, אלבום, זמר, חרדים, יהדות, טקסטים, תורה, מוסיקליות, מועדים, אמנות">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>{singer_name}</title>
@@ -81,14 +82,15 @@ def create_singer_html_file(folder_path, singer_name, songs):
         """
     # Close the HTML template
     html_template += """
-      </tbody>
-      </table>
+          </tbody>
+        </table>
       </div>
       
-      <div class="fixed-bottom">
-        <p>מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a></p>
-      </div>
-    </div>
+	<div class="fixed-bottom">
+	  <p></p>
+	</div>
+
+    <script src="../ads.js"></script>
 </body>
 </html>
     """
@@ -97,13 +99,22 @@ def create_singer_html_file(folder_path, singer_name, songs):
         file.write(html_template)
 
 
-
 def contains_hebrew_singles(text):
     # Check if the text contains the word "סינגלים" in Hebrew
     return "סינגלים" in text
 
+def is_short_singer(name):
+    # Check if the singer's name has less than 4 words
+    return len(name.split()) < 4
+
+# List of singers' names to skip
+skip_singers = ["הראל סקעת", "יהורם גאון", "עדן חסון", "הפרויקט של רביבו", "בית ספר למוסיקה"]
+
 # Read data from CSV and create HTML files for each singer
 def create_html_files(csv_file_path, folder_path):
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     with open(csv_file_path, "r", encoding="utf-8") as csv_file:
         csv_reader = csv.DictReader(csv_file)
         current_singer = None
@@ -111,6 +122,7 @@ def create_html_files(csv_file_path, folder_path):
         for row in csv_reader:
             singer_name = row["Singer"]
             album_name = row["Album Name"]
+            
             if contains_hebrew_singles(singer_name) or contains_hebrew_singles(album_name):
                 song = {
                     "number": row["Serial Number"],
@@ -118,20 +130,20 @@ def create_html_files(csv_file_path, folder_path):
                     "album": album_name,
                     "artist": singer_name
                 }
-                if singer_name != current_singer:
-                    if current_singer:
-                        # Check if HTML file already exists
-                        html_file_path = os.path.join(folder_path, f"{current_singer}.html")
-                        if os.path.exists(html_file_path):
+                
+                if is_short_singer(singer_name) and singer_name not in skip_singers:
+                    if singer_name != current_singer:
+                        if current_singer and current_singer not in skip_singers:
+                            html_file_path = os.path.join(folder_path, f"{current_singer}.html")
                             create_singer_html_file(folder_path, current_singer, current_songs)
-                    current_singer = singer_name
-                    current_songs = []
-                current_songs.append(song)
+                        current_singer = singer_name
+                        current_songs = []
+                    current_songs.append(song)
+        
         # Create HTML file for the last singer if it exists
-        if current_singer:
+        if current_singer and current_singer not in skip_singers:
             html_file_path = os.path.join(folder_path, f"{current_singer}.html")
-            if os.path.exists(html_file_path):
-                create_singer_html_file(folder_path, current_singer, current_songs)
+            create_singer_html_file(folder_path, current_singer, current_songs)
 
 # Example usage
-create_html_files("songs.csv", r"C:\Users\משתמש\Documents\GitHub\shir-bot\artists\list")
+create_html_files("songs.csv", r"C:\Users\משתמש\Documents\GitHub\shir-bot\artists\list2")

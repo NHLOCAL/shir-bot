@@ -35,9 +35,9 @@ def create_sitemap(directory, base_url, update_frequency, priority):
         f.write(xml_str)
 
 # Set parameters
-directory = r"C:\Users\משתמש\Documents\GitHub\shir-bot\artists\list"  # Change this to the directory containing your HTML files
+directory = r"C:\Users\משתמש\Documents\GitHub\shir-bot\artists\list2"  # Change this to the directory containing your HTML files
 base_url = "https://nhlocal.github.io/shir-bot/artists/list/"
-update_frequency = "monthly"
+update_frequency = "weekly" #monthly
 priority = 0.7
 
 # Create sitemap

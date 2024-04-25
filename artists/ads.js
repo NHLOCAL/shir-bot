@@ -2,10 +2,9 @@
 
 // Step 1: Define an array of possible content for the footer.
 const footerContent = [
-  "מעוניין לקבל גישה לכל 70,000 השירים שבאתר ללא הגבלה ואפילו יותר <b>ב-50% הנחה?</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
+  "מעוניינים להוריד שירים נוספים? עברו כעת אל&nbsp<a href='https://nhlocal.github.io/shir-bot/?utm_source=artist&utm_medium=site'>דף הבית</a>",
 
-  "מעדיפים את האתר הישן? <a href='https://nhlocal.github.io/shir-bot/old'>למעבר מיידי</a>",
-  "<b>ביט פלוס-הבית של המוזיקאים!</b> אנחנו מציעים מגוון רחב של כלי נגינה | מקצבים | הגברה | מדריכים למוזיקה <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot/' target='_blank' onclick='beatplus_ad()'>עברו לאתר</a>",
+  "מעוניין לקבל גישה לכל 70,000 השירים שבאתר ואפילו יותר <b>ללא הגבלה?</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
 ];
 
 // Step 2: Get a reference to the footer element.
@@ -24,16 +23,7 @@ function updateFooterContent() {
 }
 
 // Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 3000);
+setInterval(updateFooterContent, 4000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();
-
-
-// מאזין אירועים ללחיצה על פרסומת
-function beatplus_ad() {
-    gtag('event', 'ad_click', {
-      'event_category': 'Ads',
-      'event_label': 'BeatPlus Ad Click' // You can customize the label
-    });
-}

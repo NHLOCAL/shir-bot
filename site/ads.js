@@ -223,7 +223,7 @@ async function getRandomSingerData() {
       const singersList = singersData.split('\n').map(singer => singer.trim());
 
       // Fetch songs from CSV file
-      const songsResponse = await fetch('https://nhlocal.github.io/shir-bot/site/new-songs.csv');
+      const songsResponse = await fetch('https://nhlocal.github.io/shir-bot/site/songs.csv');
       const songsData = await songsResponse.text();
       const lines = songsData.split('\n');
 

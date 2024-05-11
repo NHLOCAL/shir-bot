@@ -12,7 +12,8 @@ def create_sitemap(directory, base_url, update_frequency, priority):
     # Iterate through HTML files in directory
     for filename in os.listdir(directory):
         if filename.endswith(".html"):
-            loc = urljoin(base_url, quote(filename, safe=''))
+            clr_filename = os.path.splitext(filename)[0]
+            loc = urljoin(base_url, quote(clr_filename, safe=''))
             url = ET.SubElement(root, "url")
             loc_elem = ET.SubElement(url, "loc")
             loc_elem.text = loc

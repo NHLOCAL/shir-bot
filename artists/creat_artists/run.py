@@ -108,7 +108,7 @@ def is_short_singer(name):
     return len(name.split()) < 4
 
 # List of singers' names to skip
-skip_singers = ["הראל סקעת", "יהורם גאון", "עדן חסון", "הפרויקט של רביבו", "בית ספר למוסיקה"]
+skip_singers = ["הראל סקעת", "יהורם גאון", "עדן חסון", "הפרויקט של רביבו", "בית ספר למוסיקה", "אריק איינשטיין",]
 
 # Read data from CSV and create HTML files for each singer
 def create_html_files(csv_file_path, folder_path):

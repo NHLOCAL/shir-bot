@@ -25,6 +25,9 @@ with open(input_filename, 'r', encoding='utf-8') as input_file, \
         row[0] = str(row_counter)
         row_counter += 1
         
+        # Replace backslashes with forward slashes in the fourth column
+        row[4] = row[4].replace("\\", "/")
+        
         # Write the renumbered row to the output file without removing the fifth column
         writer_renumber.writerow(row)
         

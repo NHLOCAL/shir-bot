@@ -136,7 +136,7 @@ const prevButton = document.getElementById("prevSection");
 const nextButton = document.getElementById("nextSection");
 
 // Define an array of new content
-const newContents = [newContent1, newContent2, newContent3, newContent4];
+const newContents = [newContent2, newContent3, newContent4];
 let currentContentIndex = 0;
 let interval; // Declare the interval variable outside the setInterval function
 

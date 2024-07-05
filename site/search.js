@@ -1,9 +1,13 @@
+// Global variable to store the parsed CSV data
+let allSongs = [];
+
 document.getElementById('searchForm').addEventListener('submit', function(event) {
   event.preventDefault();
   var searchInput = document.getElementById('searchInput').value.toLowerCase();
   var searchBy = document.getElementById('searchBy').value;
   searchSongs(searchInput, searchBy);
 });
+
 
 
 
@@ -29,11 +33,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
   searchInput.value = searchValue || '';
 
   if (searchValue) {
-    // Simulate search if 'search' parameter is present.
     const searchBy = document.getElementById('searchBy').value;
     searchSongs(searchValue, searchBy);
+  } else {
+    // If there's no initial search, we can preload the CSV data
+    const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
+    const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv';
+
+    Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
+      .then(function ([currentCSVText, additionalCSVText]) {
+        const currentSongs = parseCSV(currentCSVText);
+        const additionalSongs = parseCSV(additionalCSVText);
+        allSongs = currentSongs.concat(additionalSongs);
+        console.log('CSV data preloaded');
+      });
   }
 });
+
 
 
 var results; // Declare results at the global level
@@ -55,15 +71,13 @@ singleFilterButton.addEventListener('click', function() {
 
 function searchSongs(query, searchBy) {
   var searchInput = document.getElementById('searchInput');
-  searchInput.value = query; // Fill the search term into the search input
-  // Check if the query string is empty or less than two letters/one number
+  searchInput.value = query;
   if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
-    return; // Do not perform a search
+    return;
   }
   
   var tableBody = document.querySelector('#resultsTable tbody');
-
-  tableBody.innerHTML = ''; // Clear the table body
+  tableBody.innerHTML = '';
   
   var loadingRow = document.createElement('tr');
   var loadingCell = document.createElement('td');
@@ -86,11 +100,24 @@ function searchSongs(query, searchBy) {
   loadingRow.appendChild(loadingCell);
   tableBody.appendChild(loadingRow);
 
-// Define the URLs for both CSV files
-const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
-const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv'; // Replace with the actual URL
+  if (allSongs.length === 0) {
+    // If the data hasn't been loaded yet, fetch and parse it
+    const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
+    const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv';
 
-// Create a function to fetch CSV data
+    Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
+      .then(function ([currentCSVText, additionalCSVText]) {
+        const currentSongs = parseCSV(currentCSVText);
+        const additionalSongs = parseCSV(additionalCSVText);
+        allSongs = currentSongs.concat(additionalSongs);
+        performSearch(query, searchBy);
+      });
+  } else {
+    // If the data is already loaded, perform the search immediately
+    performSearch(query, searchBy);
+  }
+}
+
 function fetchCSV(url) {
   return fetch(url)
     .then(function (response) {
@@ -98,36 +125,22 @@ function fetchCSV(url) {
     });
 }
 
-// Fetch data from both CSV files in parallel
-Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
-  .then(function ([currentCSVText, additionalCSVText]) {
-    // Parse both CSV data
-    const currentSongs = parseCSV(currentCSVText);
-    const additionalSongs = parseCSV(additionalCSVText);
+function performSearch(query, searchBy) {
+  var filteredSongs;
+  if (showSinglesOnly) {
+    filteredSongs = allSongs.filter(song => {
+      const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
+      const singerContainsSingles = song.singer.toLowerCase().includes('סינגלים');
+      return albumContainsSingles || singerContainsSingles;
+    });
+  } else {
+    filteredSongs = allSongs;
+  }
 
-    // Combine both sets of songs
-    const allSongs = currentSongs.concat(additionalSongs);
+  results = filterSongs(filteredSongs, query, searchBy);
+  displayResults(results.slice(0, 250));
 
-    // Apply the selected filter method
-    var filteredSongs;
-    if (showSinglesOnly) {
-      filteredSongs = allSongs.filter(song => {
-        const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
-        const singerContainsSingles = song.singer.toLowerCase().includes('סינגלים');
-        return albumContainsSingles || singerContainsSingles;
-      });
-    } else {
-      filteredSongs = allSongs;
-    }
-
-    results = filterSongs(filteredSongs, query, searchBy);
-    displayResults(results.slice(0, 250)); // Display the initial 100 results
-
-    // Show the "Load more" button after a search is performed
-    loadMoreButton.style.display = 'block';
-  });
-
-
+  loadMoreButton.style.display = 'block';
 }
 
 

@@ -1,6 +1,7 @@
-// Global variable to store the parsed CSV data
+// משתנה גלובלי לאחסון נתוני CSV לאחר עיבוד
 let allSongs = [];
 
+// מאזין אירועים עבור טופס החיפוש
 document.getElementById('searchForm').addEventListener('submit', function(event) {
   event.preventDefault();
   var searchInput = document.getElementById('searchInput').value.toLowerCase();
@@ -8,13 +9,9 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   searchSongs(searchInput, searchBy);
 });
 
-
-
-
 // הצגת הסינגלים החדשים
 document.getElementById('newsFilter').addEventListener('click', function() {
-  event.preventDefault(); // Prevent form submission
-  // Call the searchSongs function with the specified parameters
+  event.preventDefault();
   searchSongs('סינגלים חדשים - תשפד', 'singer');
 });
 
@@ -22,11 +19,13 @@ document.getElementById('newsFilter').addEventListener('click', function() {
 const urlParams = new URLSearchParams(window.location.search);
 const searchValue = urlParams.get('search');
 
+// הגדרת ערך חיפוש אוטומטי
 window.addEventListener('DOMContentLoaded', (event) => {
   const searchInput = document.getElementById('searchInput');
-  searchInput.value = searchValue || ''; // Set the value if 'search' parameter exists, or set it to an empty string if not.
+  searchInput.value = searchValue || '';
 });
 
+// טעינה מוקדמת של נתוני CSV
 window.addEventListener('DOMContentLoaded', (event) => {
   const searchInput = document.getElementById('searchInput');
   const searchValue = urlParams.get('search');
@@ -36,24 +35,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const searchBy = document.getElementById('searchBy').value;
     searchSongs(searchValue, searchBy);
   } else {
-    // If there's no initial search, we can preload the CSV data
-    const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
-    const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv';
-
-    Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
-      .then(function ([currentCSVText, additionalCSVText]) {
-        const currentSongs = parseCSV(currentCSVText);
-        const additionalSongs = parseCSV(additionalCSVText);
-        allSongs = currentSongs.concat(additionalSongs);
-        console.log('CSV data preloaded');
-      });
+    preloadCSVData();
   }
 });
 
+// פונקציה לטעינה מוקדמת של נתוני CSV
+async function preloadCSVData() {
+  const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
+  const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv';
 
+  try {
+    const [currentCSVText, additionalCSVText] = await Promise.all([
+      fetchCSV(currentCSVUrl),
+      fetchCSV(additionalCSVUrl)
+    ]);
 
-var results; // Declare results at the global level
+    const currentSongs = parseCSV(currentCSVText);
+    const additionalSongs = parseCSV(additionalCSVText);
+    allSongs = currentSongs.concat(additionalSongs);
+    console.log('CSV data preloaded');
+  } catch (error) {
+    console.error('Error preloading CSV data:', error);
+  }
+}
 
+// משתנה גלובלי לאחסון תוצאות החיפוש
+let results;
+
+// כפתור סינון סינגלים
 var singleFilterButton = document.getElementById('singleFilter');
 var showSinglesOnly = true;
 
@@ -67,66 +76,65 @@ singleFilterButton.addEventListener('click', function() {
   }
 });
 
-
-
-function searchSongs(query, searchBy) {
+// פונקציית חיפוש שירים
+async function searchSongs(query, searchBy) {
   var searchInput = document.getElementById('searchInput');
   searchInput.value = query;
+
+  // בדיקת תקינות קלט
   if (query.trim() === '' || (query.trim().length < 2 && !/^\d$/.test(query.trim()))) {
     return;
   }
-  
+
+  // הצגת הודעת טעינה
+  displayLoadingMessage();
+
+  // טעינת נתוני CSV במידה ועדיין לא נטענו
+  if (allSongs.length === 0) {
+    await preloadCSVData();
+  }
+
+  // ביצוע חיפוש
+  performSearch(query, searchBy);
+}
+
+// פונקציה להצגת הודעת טעינה
+function displayLoadingMessage() {
   var tableBody = document.querySelector('#resultsTable tbody');
   tableBody.innerHTML = '';
-  
+
   var loadingRow = document.createElement('tr');
   var loadingCell = document.createElement('td');
   loadingCell.setAttribute('colspan', '4');
-  
+
   var loadingContainer = document.createElement('div');
   loadingContainer.classList.add('loading-container');
-  
+
   var loadingImage = document.createElement('img');
   loadingImage.src = 'site/loading.gif';
   loadingImage.classList.add('loading-image');
-  
+
   var loadingText = document.createElement('p');
   loadingText.textContent = 'מחפש...';
   loadingText.classList.add('loading-text');
-  
+
   loadingContainer.appendChild(loadingImage);
   loadingContainer.appendChild(loadingText);
   loadingCell.appendChild(loadingContainer);
   loadingRow.appendChild(loadingCell);
   tableBody.appendChild(loadingRow);
-
-  if (allSongs.length === 0) {
-    // If the data hasn't been loaded yet, fetch and parse it
-    const currentCSVUrl = 'https://nhlocal.github.io/shir-bot/site/songs.csv';
-    const additionalCSVUrl = 'https://nhlocal.github.io/shir-bot/site/new-singles.csv';
-
-    Promise.all([fetchCSV(currentCSVUrl), fetchCSV(additionalCSVUrl)])
-      .then(function ([currentCSVText, additionalCSVText]) {
-        const currentSongs = parseCSV(currentCSVText);
-        const additionalSongs = parseCSV(additionalCSVText);
-        allSongs = currentSongs.concat(additionalSongs);
-        performSearch(query, searchBy);
-      });
-  } else {
-    // If the data is already loaded, perform the search immediately
-    performSearch(query, searchBy);
-  }
 }
 
-function fetchCSV(url) {
-  return fetch(url)
-    .then(function (response) {
-      return response.text();
-    });
+// פונקציה לטעינת נתוני CSV
+async function fetchCSV(url) {
+  const response = await fetch(url);
+  return await response.text();
 }
 
+// פונקציה לביצוע חיפוש
 function performSearch(query, searchBy) {
-  var filteredSongs;
+  let filteredSongs;
+
   if (showSinglesOnly) {
     filteredSongs = allSongs.filter(song => {
       const albumContainsSingles = song.album.toLowerCase().includes('סינגלים');
@@ -142,8 +150,6 @@ function performSearch(query, searchBy) {
 
   loadMoreButton.style.display = 'block';
 }
-
-
 
 function parseCSV(csvText) {
   var lines = csvText.split('\n');
@@ -415,10 +421,10 @@ function displayResults(resultsToDisplay) {
 
 
 
-// Define a variable to keep track of the number of results displayed.
+// משתנה למעקב אחר מספר התוצאות המוצגות
 var displayedResults = 0;
 
-// Add an event listener to the "Load more" button.
+// כפתור "טען עוד"
 var loadMoreButton = document.getElementById('loadMoreButton');
 loadMoreButton.addEventListener('click', loadMoreResults);
 
@@ -436,9 +442,12 @@ function loadMoreResults() {
   }
 }
 
-// Initially, hide the "Load more" button if there are fewer than 500 results.
-if (results.length <= 250) {
-  loadMoreButton.style.display = 'none';
+
+if (results && results.length > 0) {
+  // הסתרת כפתור "טען עוד" במידה ויש פחות מ-250 תוצאות
+  if (results.length <= 250) {
+	  loadMoreButton.style.display = 'none';
+  }
 }
 
 

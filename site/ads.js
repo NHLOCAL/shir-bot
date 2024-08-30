@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Step 1: Define an array of possible content for the footer.
 const footerContent = [
-  "מעוניין לקבל גישה לכל 70,000 השירים שבאתר ללא הגבלה ואפילו יותר <b>לשנה מלאה?</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
+  "מעוניין לקבל גישה לכל 70,000 השירים שבאתר ללא הגבלה ואפילו יותר <b>במחצית המחיר?!</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
 
   "<b>ביט פלוס-הבית של המוזיקאים!</b> אנחנו מציעים מגוון רחב של כלי נגינה | מקצבים | הגברה | מדריכים למוזיקה <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot/' target='_blank' onclick='beatplus_ad()'>עברו לאתר</a>",
 ];
@@ -81,7 +81,7 @@ function updateFooterContent() {
 }
 
 // Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 5000);
+setInterval(updateFooterContent, 20000);
 
 // Step 6: Call the updateFooterContent function initially to display the first content.
 updateFooterContent();
@@ -105,13 +105,31 @@ const newContent1 = `
 `;
 
 const newContent2 = `
-      <h3 style="animation: colorTransition 2s infinite;">
-      קבלו גישה מלאה ל-70,000 שירים בדרייב
-    </h3>
-  <p>מעוניינים לקבל גישה לכלל השירים שבאתר? הרשמו כעת, וקבלו גישה למאגר המלא בדרייב</p>
+<h3 style="
+  font-size: 2em;
+  animation: pulseFade 3s infinite ease-in-out;
+  text-align: center;
+">
+גישה מלאה ל-70,000 שירים ב-50% הנחה!
+</h3>
 
-  <p>המאגר כולל מגוון רחב של ז'אנרים, כולל מוזיקה חסידית, מזרחית, ישראלית, אלטרנטיבית, מוזיקה קלאסית ועוד ועוד</p>
-  <p>באמצעות המאגר תוכלו להוריד קבצים ולצפות במאגר ללא הגבלה. נצלו את האפשרות להירשם לשנה מלאה בסכום מינימלי!</p>
+<style>
+  @keyframes pulseFade {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+</style>
+
+  <p>קבלו גישה מלאה לכל התכנים באתר ועוד הרבה יותר ועכשיו במחצית המחיר!</p>
+
+  <p>400 ג'יגה של שירים יהודיים מכל הזמנים ומכל הסגנונות. חסידי, מזרחי, קלאסי ואלטרנטיבי. תוכן עדכני וגם תכנים נדירים שלא תמצאו בשום מקום אחר!</p>
+  <p><b>זה ההזדמנות שלכם לקבל מקסימום תוכן במינימום מחיר!</b></p>
 
   <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot', '_blank'); conversion_music_drive();">קבלו גישה עכשיו</button>
 `;

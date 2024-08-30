@@ -146,6 +146,7 @@ const newContent3 = `
 const newContent4 = `
 <h3>בלאגן במחשב? זה הפתרון</h3><p>מיואשים מחוסר הסדר בתיקיות המוזיקה שלכם?<br><br>קבלו את התוכנה שתבצע לכם סדר בקבצי המוזיקה שלכם בתוך דקות!<br><br>התוכנה פועלת באמצעות מערכות אוטומציה מתוחכמות בשילוב מגוון של כלים</p>
 <img style="border-radius: 1%; max-width: 70%; height: auto;" src="https://github.com/NHLOCAL/Singles-Sorter/blob/main/versions.data/program-screen.png?raw=true" alt="צילום מסך - מסדר הסינגלים">
+<br>
 <button class="helpButton" onclick="window.open('https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot&utm_medium=site', '_blank')">להורדת התוכנה</button>
 `;
 

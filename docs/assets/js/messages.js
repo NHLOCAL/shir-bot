@@ -35,11 +35,11 @@ setCookie("myCookie", "cookieValue", 7);
 const nextObject = document.getElementById("nextObject");
 
 // Add a click event listener
-nextObject.addEventListener("click", function() {
-    // Get the current URL without parameters
-    const urlWithoutParams = window.location.origin + window.location.pathname;
-    // Re-enter the current page without parameters
-    window.location.href = urlWithoutParams;
+nextObject.addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default behavior of the link
+
+    // Redirect to the home page
+    window.location.href = baseurl + "/";
 });
 
 

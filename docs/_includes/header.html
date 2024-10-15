@@ -10,5 +10,8 @@
       </h3>
     </center>
   </header>
-  {% include search_form.html %}
+  <!-- תנאי להצגת טופס החיפוש -->
+  {% if page.show_search_form != false %}
+    {% include search_form.html %}
+  {% endif %}
 </div>

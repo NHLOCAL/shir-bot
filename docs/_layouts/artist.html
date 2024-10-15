@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<div id="loadingMessage" class="loading-message">
+  <div class="progress-bar-container">
+    <img src="/assets/images/loading.gif" alt="טעינה" />
+    <span id="progressText"></span>
+    <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+  </div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-content">
+	<span id="modalMessage"></span><br>
+	<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+  </div>
+</div>
+
+<div id="resultsTable" class="custom-table">
+  <table>
+    <thead>
+      <tr>
+        <th>מספר סידורי</th>
+        <th>שם השיר</th>
+        <th>שם האלבום</th>
+        <th>שם הזמר</th>		  
+      </tr>
+    </thead>
+    <tbody class="songs-list">
+      {% for song in page.songs %}
+      <tr onclick="downloadSong('{{ song.number }}')">
+        <td><a>{{ song.number }}</a></td>
+        <td>{{ song.name }}</td>
+        <td>{{ song.album }}</td>
+        <td>{{ song.artist }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <!-- Add this button in your HTML where you want it to appear -->
+  <button id="loadMoreButton">טען עוד</button>
+</div>

@@ -1,0 +1,41 @@
+---
+layout: default
+title: "שגיאה 404"
+description: "דף לא נמצא"
+keywords: "שגיאה, 404, דף לא נמצא"
+canonical_url: "https://nhlocal.github.io/shir-bot/404"
+---
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page.title }}</title>
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    <style>
+	  .container {
+		margin: 10px auto;
+		max-width: 600px;
+		text-align: center;
+	  }
+	  h1 {
+		margin: 30px 0;
+		font-size: 4em;
+		line-height: 1;
+		letter-spacing: -1px;
+	  }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>אופס! הדף לא נמצא 😬</h1>
+        <p>לא הצלחנו למצוא את הדף שאתה מחפש</p>
+        <button onclick="goToHomePage()">עבור לדף הבית 🏠</button>
+    </div>
+
+    <script>
+        function goToHomePage() {
+            window.location.href = '/shir-bot?utm_source=404-code&utm_medium=site';
+        }
+    </script>
+</body>
+</html>

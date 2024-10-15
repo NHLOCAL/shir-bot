@@ -103,8 +103,9 @@ function displayLoadingMessage() {
 
 // פונקציה לטעינה מוקדמת של נתוני CSV
 async function preloadCSVData() {
-  const currentCSVUrl = '{{ site.baseurl }}/assets/data/songs.csv';
-  const additionalCSVUrl = '{{ site.baseurl }}/assets/data/new-singles.csv';
+  const currentCSVUrl = baseurl + '/assets/data/songs.csv';
+  const additionalCSVUrl = baseurl + '/assets/data/new-singles.csv';
+
 
   try {
     const [currentCSVText, additionalCSVText] = await Promise.all([

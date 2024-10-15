@@ -237,12 +237,12 @@ function closeHelp() {
 async function getRandomSingerData() {
   try {
       // Fetch singer list from text file
-      const singersResponse = await fetch('{{ site.baseurl }}/assets/data/singers_list.txt');
+      const singersResponse = await fetch(baseurl + '/assets/data/singers_list.txt');
       const singersData = await singersResponse.text();
       const singersList = singersData.split('\n').map(singer => singer.trim());
 
       // Fetch songs from CSV file
-      const songsResponse = await fetch('{{ site.baseurl }}/assets/data/songs.csv');
+      const songsResponse = await fetch(baseurl + '/assets/data/songs.csv');
       const songsData = await songsResponse.text();
       const lines = songsData.split('\n');
 

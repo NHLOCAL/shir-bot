@@ -52,10 +52,13 @@ def create_artist_markdown(csv_file_path, artists_folder):
         with open(filename, "w", encoding="utf-8") as f:
             f.write("---\n")
             f.write(f"layout: artist\n")
+            f.write(f"name: {singer}\n")
             f.write(f"title: \"{singer}\"\n")
             f.write(f"description: \"דף האמן {singer}\"\n")
             f.write(f"keywords: \"שירים, מוזיקה, {singer}\"\n")
-            f.write(f"permalink: /artists/{safe_singer_name.lower()}/\n")
+            f.write(f"permalink: /artists/{safe_singer_name}/\n")
+            f.write("redirect_from:\n")
+            f.write(f"  - /artists/list/{singer}\n")
             f.write("songs:\n")
             for song in songs:
                 f.write(f"  - number: \"{song['number']}\"\n")
@@ -63,6 +66,7 @@ def create_artist_markdown(csv_file_path, artists_folder):
                 f.write(f"    album: \"{song['album']}\"\n")
                 f.write(f"    artist: \"{song['artist']}\"\n")
             f.write("---\n")
+            # ניתן להוסיף תוכן נוסף כאן אם יש צורך
 
 # הפעלת הפונקציה עם הנתיב לקובץ ה-CSV ותיקיית היעד של קבצי האמנים
 create_artist_markdown("songs.csv", "_artists")

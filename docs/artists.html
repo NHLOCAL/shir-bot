@@ -1,0 +1,31 @@
+---
+layout: default
+title: "רשימת אמנים"
+description: "רשימה של כל האמנים הזמינים באתר שיר-בוט"
+keywords: "אמנים, מוזיקה, רשימה"
+---
+
+<div class="artists-list">
+  <ul>
+    {% for artist in site.artists %}
+      <li><a href="{{ site.baseurl }}{{ artist.url }}">{{ artist.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var searchForm = document.getElementById('searchForm');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // מניעת שליחת הטופס ברירת מחדל
+
+        var searchInput = document.getElementById('searchInput').value.trim();
+
+        if (searchInput) {
+            // יצירת URL עם פרמטרי חיפוש
+            var redirectUrl = baseurl + "/?search=" + encodeURIComponent(searchInput);
+            window.location.href = redirectUrl;
+        }
+    });
+});
+</script>

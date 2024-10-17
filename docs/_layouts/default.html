@@ -15,13 +15,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
   <script src="https://nhlocal.github.io/general-settings.js"></script>
   <script type="application/ld+json">
-	{
-	  "@context": "https://schema.org",
-	  "@type": "WebSite",
-	  "url": "https://nhlocal.github.io/shir-bot/",
-	  "name": "שיר-בוט",
-	  "description": "חיפוש חופשי והורדה בתוך מאגר של עשרות אלפי שירים..."
-	}
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://nhlocal.github.io/shir-bot/",
+    "name": "שיר-בוט",
+    "description": "חיפוש חופשי והורדה בתוך מאגר של עשרות אלפי שירים..."
+  }
   </script>
   {% seo %}
 
@@ -30,16 +30,32 @@
     var baseurl = "{{ site.baseurl }}";
   </script>  
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "רשימת אמנים",
+    "description": "רשימה של כל האמנים הזמינים באתר שיר-בוט",
+    "numberOfItems": {{ site.artists | size }},
+    "itemListElement": [
+      {% for artist in site.artists %}
+      {
+        "@type": "ListItem",
+        "position": {{ forloop.index }},
+        "url": "https://nhlocal.github.io{{ site.baseurl }}{{ artist.url }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+
 </head>
 <body dir="rtl" style="background-color:#FFFEDB;">
   {% include header.html %}
   <div class="content">
     {{ content }}
-
   </div>
-
   {% include footer.html %}
-  <script src="{{ site.baseurl }}/assets/js/search.js"></script>
   <script src="{{ site.baseurl }}/assets/js/messages.js"></script>
   <script src="{{ site.baseurl }}/assets/js/ads.js"></script>
 </body>

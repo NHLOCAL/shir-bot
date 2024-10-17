@@ -87,7 +87,7 @@ function displayLoadingMessage() {
   loadingContainer.classList.add('loading-container');
 
   const loadingImage = document.createElement('img');
-  loadingImage.src = '/assets/images/loading.gif';
+  loadingImage.src = baseurl + '/assets/images/loading.gif';
   loadingImage.classList.add('loading-image');
 
   const loadingTextElem = document.createElement('p');
@@ -540,5 +540,3 @@ searchInput.addEventListener("keypress", function(event) {
     submitForm();
   }
 });
-
-

@@ -1180,8 +1180,6 @@ header.clicked::after {
 }
 
 
-/* styles.css */
-
 /* סגנון לדף 404 */
 .error-page {
   background-color: #f8f9fa; /* רקע בהיר */
@@ -1217,4 +1215,61 @@ header.clicked::after {
 
 .error-page .btn:hover {
   background-color: #0056b3;
+}
+
+/* סגנון לדף רשימת האמנים */
+.artists-list {
+  padding: 240px 20px 60px 20px;
+  background-color: #FFFEDB;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.artists-list h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #362266;
+}
+
+.artists-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.artists-list li {
+  width: 200px;
+  padding: 10px;
+}
+
+.artists-list a {
+  padding: 20px;
+  text-decoration: none;
+  color: #5D3AB0;
+  font-size: 1.2em;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  border: 1px solid #5D3AB0;
+  border-radius: 8px;
+  background-color: #E6DCFF;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.artists-list a:hover {
+  background-color: #5D3AB0;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+	
+  .artists-list {
+	padding-top: 140px;
+    }
+	
 }

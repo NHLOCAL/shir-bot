@@ -7,6 +7,7 @@ keywords: "שירים, מוזיקה, אלירן D"
 permalink: /artists/אלירן-D
 redirect_from:
   - /artists/list/אלירן D
+  - /artists/אלירן-D/
 songs:
   - number: "57392"
     name: "חגיגה הלילה"

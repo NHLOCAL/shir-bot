@@ -56,7 +56,7 @@ def create_artist_markdown(csv_file_path, artists_folder):
             f.write(f"title: \"{singer}\"\n")
             f.write(f"description: \"דף האמן {singer}\"\n")
             f.write(f"keywords: \"שירים, מוזיקה, {singer}\"\n")
-            f.write(f"permalink: /artists/{safe_singer_name}/\n")
+            f.write(f"permalink: /artists/{safe_singer_name}\n")
             f.write("redirect_from:\n")
             f.write(f"  - /artists/list/{singer}\n")
             f.write("songs:\n")

@@ -4,7 +4,7 @@ name: אלירן D
 title: "אלירן D"
 description: "דף האמן אלירן D"
 keywords: "שירים, מוזיקה, אלירן D"
-permalink: /artists/אלירן-D
+permalink: /artists/אלירן-D/
 redirect_from:
   - /artists/list/אלירן D
 songs:

@@ -1273,3 +1273,64 @@ header.clicked::after {
     }
 	
 }
+
+
+/* סגנונות עבור קישור רשימת האמנים בסרגל העליון */
+.artists-link {
+  font-size: 20px; /* גודל הסמל */
+  color: white; /* צבע הסמל */
+  background-color: #5D3AB0; /* צבע הרקע של הכפתור */
+  border: none;
+  padding: 8px;
+  border-radius: 50%; /* עיגול הכפתור */
+  margin-right: 10px; /* רווח בין הכפתורים */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artists-link:hover {
+  background-color: #362266; /* צבע הרקע בעת ריחוף */
+  transform: scale(1.1); /* הגדלת הכפתור בעת ריחוף */
+}
+
+/* התאמות לנייד */
+@media screen and (max-width: 900px) {
+  .artists-link {
+    font-size: 18px;
+    padding: 6px;
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .artists-link {
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 6px;
+  }
+  
+  /* חבוי את הטקסט "שיר-בוט" במסכים קטנים */
+  .site-title {
+    display: none;
+  }
+
+  /* התאמת סגנון h3#nextObject */
+  #nextObject {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 75px;
+  }
+
+  .topnav img {
+    align-self: center;
+    }
+  
+  /* התאמת רווחים ועיצוב נוסף אם נדרש */
+  .parent-element {
+    gap: 5px; /* רווח קטן יותר בין הפריטים */
+  }
+}

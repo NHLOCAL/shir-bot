@@ -6,7 +6,7 @@ permalink: /site/pay/
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" title="PayPal היא הדרך הקלה והבטוחה יותר לשלם באינטרנט!">
   <input type="hidden" name="cmd" value="_s-xclick" />
-  <input type="hidden" name="hosted_button_id" value="TMSAX927X3LAG" />
+  <input type="hidden" name="hosted_button_id" value="N6KTYQ528G7ZG" />
   <input type="hidden" name="currency_code" value="ILS" />
   <div class="button-container">
     <button class="helpButton" style="padding: 20px; font-size: 30px; border-radius: 20px" type="submit">

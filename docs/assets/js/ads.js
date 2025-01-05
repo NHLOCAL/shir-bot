@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Step 1: Define an array of possible content for the footer.
 const footerContent = [
-  "מעוניין לקבל גישה לכל 70,000 השירים שבאתר ללא הגבלה ואפילו יותר <b>במחצית המחיר?!</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
+  "קבל כעת גישה ל-500 ג'יגה של תוכן מוזיקלי <b>לשנה מלאה</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
 
   "<b>ביט פלוס-הבית של המוזיקאים!</b> אנחנו מציעים מגוון רחב של כלי נגינה | מקצבים | הגברה | מדריכים למוזיקה <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot/' target='_blank' onclick='beatplus_ad()'>עברו לאתר</a>",
 ];
@@ -110,7 +110,7 @@ const newContent2 = `
   animation: pulseFade 3s infinite ease-in-out;
   text-align: center;
 ">
-גישה מלאה ל-70,000 שירים ב-50% הנחה!
+גישה מלאה ל-500 ג'יגה של תוכן מוזיקלי לשנה מלאה!
 </h3>
 
 <style>
@@ -126,12 +126,12 @@ const newContent2 = `
   }
 </style>
 
-  <p>קבלו גישה מלאה לכל התכנים באתר ועוד הרבה יותר ועכשיו במחצית המחיר!</p>
+  <p>קבלו גישה מלאה לכל התכנים באתר ועוד הרבה יותר לשנה מלאה</p>
 
-  <p>400 ג'יגה של שירים יהודיים מכל הזמנים ומכל הסגנונות. חסידי, מזרחי, קלאסי ואלטרנטיבי. תוכן עדכני וגם תכנים נדירים שלא תמצאו בשום מקום אחר!</p>
+  <p>500 ג'יגה של שירים יהודיים מכל הזמנים ומכל הסגנונות. חסידי, מזרחי, קלאסי ואלטרנטיבי. וגם תכני שמע נוספים. תוכן עדכני וגם תכנים נדירים שלא תמצאו בשום מקום אחר! </p>
   <p><b>זה ההזדמנות שלכם לקבל מקסימום תוכן במינימום מחיר!</b></p>
 
-  <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSffA3oncsWKu06mF7B5k39rz2gjMYrzYHGJAkfJIbBmuE79uQ/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot', '_blank'); conversion_music_drive();">קבלו גישה עכשיו</button>
+  <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot', '_blank'); conversion_music_drive();">קבלו גישה עכשיו</button>
 `;
 
 

@@ -278,6 +278,12 @@ function displayResults(resultsToDisplay) {
       const serialCell = document.createElement('td');
       const serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
+      serialLink.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const shareLink = window.location.origin + window.location.pathname;
+        copyToClipboard(shareLink + `?search=${encodeURIComponent(song.serial)}`);
+        showCopiedMessage();
+      });
       serialCell.appendChild(serialLink);
       row.appendChild(serialCell);
 
@@ -312,25 +318,9 @@ function displayResults(resultsToDisplay) {
       singerCell.appendChild(singerButton);
       row.appendChild(singerCell);
 
-      // יצירת כפתור לשיתוף
-      const shareButton = document.createElement('button');
-      shareButton.textContent = 'שתף';
-      shareButton.classList.add('share-button');
-      shareButton.dataset.serial = song.serial;
-      shareButton.addEventListener('click', function(event) {
-        event.stopPropagation(); // למנוע את האירוע לחיצה על השורה
-        const shareLink = window.location.origin + window.location.pathname;
-        copyToClipboard(shareLink + `?search=${encodeURIComponent(song.serial)}`);
-        showCopiedMessage();
-      });
-      row.appendChild(shareButton);
-
       // הוספת אירוע לחיצה על השורה
       row.addEventListener('click', function(event) {
-        if (
-          event.target.tagName !== 'BUTTON' &&
-          !event.target.classList.contains('share-button')
-        ) {
+        if (event.target.tagName !== 'BUTTON') {
           event.preventDefault();
 
           if (
@@ -346,8 +336,8 @@ function displayResults(resultsToDisplay) {
 
       resultsTableBody.appendChild(row);
     });
-	
-	// הוספת המחלקה לאחר הצגת השירים
+    
+    // הוספת המחלקה לאחר הצגת השירים
     resultsTableBody.classList.add('songs-list');
   }
 }

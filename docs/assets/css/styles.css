@@ -1,14 +1,23 @@
+:root {
+  --primary-color: #7E57C2;
+  --primary-hover: #5C3899;
+  --highlight-color: #00BCD4;
+  --secondary-color: #C0C0C0;
+  --white: #fff;
+  --font-base: 'Arimo', sans-serif;
+}
+
 /* Moved universal reset to top */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* Button hover effect */
+/* Updated transition for button hover effect */
 .button-image:hover {
   opacity: 0.95;
   transform: scale(0.98);
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
 }
 
@@ -16,28 +25,29 @@ main {
   margin-top: 30px;
 }
 
-/* Button style */
+/* Updated button style using CSS variables */
 a:link.butt, a:visited.butt {
   padding: 10px;
   text-align: center;
   border-radius: 5px;
   text-decoration: none;
   display: inline-block;
-  background-color: #fff;
+  background-color: var(--white);
   color: black;
   font-weight: bold;
 }
 
 a:hover.butt, a:active.butt {
-  color: #00BCD4;  /* Highlight color on hover/active */
-  background-color: #C0C0C0;
+  color: var(--highlight-color);
+  background-color: var(--secondary-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Centered red button style */
 a:link.center_butt, a:visited.center_butt {
   border-radius: 10px;
   background-color: #f44336;
-  color: white;
+  color: var(--white);
   padding: 15px 25px;
   text-align: center;
   text-decoration: none;
@@ -49,7 +59,7 @@ a:hover.center_butt, a:active.center_butt {
 }
 
 body {
-  font-family: 'Arimo', sans-serif;  /* Arimo font */
+  font-family: var(--font-base);
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -57,10 +67,10 @@ body {
 /* הגדרת הודעה קופצת */
 .alert {
   border-radius: 10px;
-  background-color: #7E57C2;  /* Primary color */
+  background-color: var(--primary-color);
   width: 70%;
-  color: white;
-  padding: 25px 25px;  
+  color: var(--white);
+  padding: 25px;
   text-align: center;
   text-decoration: none;
   margin: auto;
@@ -87,38 +97,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color:  #7E57C2;  /* Primary color */
+  background-color: var(--primary-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color:  #5C3899;  /* Darker primary color on hover */
+  background-color: var(--primary-hover);
 }
 
 /* הגדרת הקו המהבהב */
-.search-input::-webkit-caret {
-  border-width: 2px;
-}
-
-.search-input::-moz-caret {
-  border-width: 2px;
-}
-
+.search-input::-webkit-caret,
+.search-input::-moz-caret,
 .search-input::caret {
   border-width: 2px;
-}
-
-.search-input::-webkit-caret {
   border-style: solid;
-  border-color: #7E57C2;  /* Primary color */
-}
-
-.search-input::-moz-caret {
-  border-style: solid;
-  border-color: #7E57C2;  /* Primary color */
-}
-
-.search-input::caret {
-  border-style: solid;
-  border-color: #7E57C2;  /* Primary color */
+  border-color: var(--primary-color);
 }

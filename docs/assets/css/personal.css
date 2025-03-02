@@ -1,6 +1,6 @@
 /* Google Fonts - Arimo */
 body {
-  font-family: 'Arimo', sans-serif;
+  font-family: var(--font-base);
 }
 
 .text-bubble {
@@ -17,6 +17,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 0 3px 3px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .text-bubble.active {
@@ -115,13 +116,13 @@ border: none;
 
 .search-input,
 .search-select {
-  font-family: 'Arimo', sans-serif; /* Arimo font */
+  font-family: var(--font-base); /* Arimo font */
   padding-left: 10px;
   padding-right: 10px;
   height: 58px;
-  border: 1px solid #7E57C2; /* Primary color border */
+  border: 1px solid var(--primary-color); /* Primary color border */
   box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-select {
@@ -132,7 +133,7 @@ border: none;
 }
 
 .search-input {
-  caret-color: #7E57C2; /* Primary color caret */
+  caret-color: var(--primary-color); /* Primary color caret */
   font-size: 20px;
   height: 58.4px;
   width: 220px;
@@ -150,18 +151,18 @@ border: none;
 }
 
 .search-button {
-  font-family: 'Arimo', sans-serif; /* Arimo font */
+  font-family: var(--font-base); /* Arimo font */
   width: 100px;
   height: 60px;
   font-size: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  background-color: #7E57C2; /* Primary color */
-  color: #fff;
+  background-color: var(--primary-color); /* Primary color */
+  color: var(--white);
   border: none;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;  border-radius: 10px 5px 5px 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .search-input:hover,
@@ -171,11 +172,11 @@ border: none;
 }
 
 .search-button:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 .search-button:active {
-  background-color: #7E57C2; /* Primary color on active */
+  background-color: var(--primary-color); /* Primary color on active */
 }
 
 #resultsTable {
@@ -195,7 +196,7 @@ border: none;
   text-align: center;
   height: 60px;
   width: 100%;
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: inline-block;
   position: fixed;
@@ -229,9 +230,9 @@ border: none;
   display: flex;
   align-items: center;
   height: 100%;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   background-color: #fff;
-  color: #7E57C2; /* Primary color */
+  color: var(--primary-color); /* Primary color */
   border-radius: 5px;
 }
 
@@ -250,7 +251,7 @@ border: none;
 .topnav a:hover,
 .topnav a:active,
 .topnav h3.current {
-  color: #00BCD4; /* Highlight color on hover/active */
+  color: var(--highlight-color); /* Highlight color on hover/active */
   background-color: #C0C0C0;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
@@ -268,7 +269,7 @@ border: none;
 }
 
 a {
-  color: #7E57C2; /* Primary color for links */
+  color: var(--primary-color); /* Primary color for links */
   background-color: white;
   text-align: center;
   text-decoration: none;
@@ -281,12 +282,12 @@ a {
 a:hover,
 a:active,
 h3.current {
-  color: #00BCD4; /* Highlight color on hover/active */
+  color: var(--highlight-color); /* Highlight color on hover/active */
   background-color: #C0C0C0;
 }
 
 ::selection {
-  background-color: #00BCD4; /* Highlight color */
+  background-color: var(--highlight-color); /* Highlight color */
   color: white;
 }
 
@@ -344,7 +345,7 @@ p {
   padding: 18px;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border: 3px solid #7E57C2; /* Primary color border */
+  border: 3px solid var(--primary-color); /* Primary color border */
   background-color: #fff;
 }
 
@@ -352,7 +353,7 @@ p {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 30px;
-  color: #7E57C2; /* Primary color */
+  color: var(--primary-color); /* Primary color */
   padding: 8px;
   border-bottom: 1px solid #ddd;
   font-weight: 700;
@@ -513,15 +514,15 @@ p {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #7E57C2; /* Primary color */
-  color: #fff;
+  background-color: var(--primary-color); /* Primary color */
+  color: var(--white);
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .modal a:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 
@@ -532,14 +533,14 @@ p {
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
-  background: linear-gradient(90deg, #7E57C2 25%, #ADB1FF 50%, #7E57C2 75%); /* Adjusted gradient colors */
+  background: linear-gradient(90deg, var(--primary-color) 25%, #ADB1FF 50%, var(--primary-color) 75%); /* Adjusted gradient colors */
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
   transition: background-position 0.5s ease;
 }
 
 .efectButton:hover {
-  background: linear-gradient(90deg, #5C3899 25%, #7E57C2 50%, #5C3899 75%); /* Adjusted gradient colors on hover */
+  background: linear-gradient(90deg, var(--primary-hover) 25%, var(--primary-color) 50%, var(--primary-hover) 75%); /* Adjusted gradient colors on hover */
 
 }
 
@@ -595,7 +596,7 @@ img.button-image {
 .topnav a:hover,
 .topnav a:active,
 .topnav h3.current {
-color: #7E57C2; /* Primary color */
+color: var(--primary-color); /* Primary color */
 }
 
 /* Content on the left side */
@@ -705,7 +706,7 @@ a {
 /* עיצוב כפתור שיתוף שיר */
 .share-button {
   font-size: 14px;
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   color: #fff;
   margin: 12px;
   border: 8px;
@@ -719,7 +720,7 @@ a {
 }
 
 .share-button:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 .modal-overlay {
@@ -763,7 +764,7 @@ a {
   display: block;
   margin: 0 auto;
   padding: 6px 15px;
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -771,14 +772,14 @@ a {
 }
 
 .modal-content .share-link:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 .copied-message {
   position: fixed;
   top: 10px;
   right: 10px;
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
@@ -792,35 +793,35 @@ a {
 }
 
 .filter-container button {
-  font-family: 'Arimo', sans-serif; /* Arimo font */
+  font-family: var(--font-base); /* Arimo font */
   font-size: 14px;
   background-color: #F3F3F3;
-  color: #7E57C2; /* Primary color */
+  color: var(--primary-color); /* Primary color */
   border: none;
   border-radius: 20px;
   padding: 6px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #7E57C2; /* Primary color border */
+  border: 1px solid var(--primary-color); /* Primary color border */
 }
 
 .filter-container button:hover {
   background-color: #EDEDED;
-  color: #5C3899; /* Darker primary color on hover */
+  color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 #newsFilter {
-  background: linear-gradient(135deg, #7E57C2, #00BCD4); /* Primary to highlight gradient */
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color)); /* Primary to highlight gradient */
   color: #fff;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #7E57C2; /* Primary color border */
+  border: 1px solid var(--primary-color); /* Primary color border */
   display: none;
 }
 
 #newsFilter:hover {
-  background: linear-gradient(135deg, #5C3899, #00838F); /* Darker primary to darker highlight gradient on hover */
+  background: linear-gradient(135deg, var(--primary-hover), #00838F); /* Darker primary to darker highlight gradient on hover */
   color: #FFD700; /* Gold text color on hover for contrast */
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
   border: 1px solid #00838F; /* Darker highlight border on hover */
@@ -831,7 +832,7 @@ a {
   display: inline-block;
   margin-top: 	10px;
   padding: 5px 10px;
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -840,7 +841,7 @@ a {
 }
 
 #modalOkButton:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 /* עיצוב הודעת עזרה */
@@ -865,7 +866,7 @@ a {
 	top: 50%;
 	transform: translateY(-50%);
 	font-size: 18px;
-	color: #7E57C2; /* Primary color */
+	color: var(--primary-color); /* Primary color */
 	cursor: pointer;
 }
 
@@ -925,24 +926,24 @@ a {
 }
 
 .helpButton {
-  font-family: 'Arimo', sans-serif;  /* Arimo font */
+  font-family: var(--font-base);  /* Arimo font */
   font-weight: bold;
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 13px;
   padding: 8px 20px;
   background-color: #FFFFFF; /* White background */
-  color: #7E57C2;       /* Primary color text */
+  color: var(--primary-color);       /* Primary color text */
   border-radius:24px;
   border-style: solid;
-  border-color: #7E57C2;  /* Primary color border */
+  border-color: var(--primary-color);  /* Primary color border */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .helpButton:hover {
   color: white;
-  background-color: #5C3899;  /* Darker primary color on hover */
+  background-color: var(--primary-hover);  /* Darker primary color on hover */
 }
 
 /* הודעת "מוריד כעת" */
@@ -992,13 +993,13 @@ a {
   width: 0;
   height: 100%;
   border-radius: 5px;
-  background: linear-gradient(to right, #00BCD4, #7E57C2); /* Highlight to primary gradient fill */
+  background: linear-gradient(to right, var(--highlight-color), var(--primary-color)); /* Highlight to primary gradient fill */
   transition: width 0.3s ease-in-out;
 }
 
 /* Style for the "Load more" button */
 #loadMoreButton {
-  background-color: #5C3899;  /* Darker primary color */
+  background-color: var(--primary-hover);  /* Darker primary color */
   color: #fff; /* Text color */
   font-size: 16px; /* Font size */
   border: none; /* Remove borders */
@@ -1012,7 +1013,7 @@ a {
 
 /* Hover effect for the button */
 #loadMoreButton:hover {
-  background-color: #7E57C2; /* Primary color on hover */
+  background-color: var(--primary-color); /* Primary color on hover */
 }
 
 /* Style for album and singer buttons */
@@ -1032,7 +1033,7 @@ a {
 /* Change text color on hover */
 .album-button:hover,
 .singer-button:hover {
-  color: #5C3899;  /* Darker primary color on hover */
+  color: var(--primary-hover);  /* Darker primary color on hover */
   font-weight: 500;
   background: white;
   padding: 5px;
@@ -1085,7 +1086,7 @@ header.clicked::after {
     cursor: pointer;
     z-index: 1000;
     transition: background 0.3s, color 0.3s; /* Smooth transition on hover */
-    border: 2px solid #7E57C2;  /* Primary color border */
+    border: 2px solid var(--primary-color);  /* Primary color border */
     bottom: 50px;
 }
 
@@ -1101,13 +1102,13 @@ header.clicked::after {
 
 #prevSection:hover,
 #nextSection:hover {
-    background: #5C3899;  /* Darker primary color background on hover */
+    background: var(--primary-hover);  /* Darker primary color background on hover */
     color: white; /* White text color on hover */
 }
 
 #prevSection:active,
 #nextSection:active {
-    background: #7E57C2; /* Primary color background on click */
+    background: var(--primary-color); /* Primary color background on click */
     color: white; /* White text color on click */
 }
 
@@ -1123,11 +1124,11 @@ header.clicked::after {
 
 /* אפקטים עבור לחיצה ומעבר על שורה בטבלה */
 .custom-table tbody.songs-list tr:hover {
-  background-color: #f5f5f5;  /* Light gray background on hover */
+  background-color: #e0e0e0;  /* Slightly darker gray background on hover */
 }
 
 .custom-table tbody.songs-list tr:active {
-  background-color: #e0e0e0;  /* Slightly darker gray on active */
+  background-color: #e0e0e0be;  /* Slightly darker gray on active */
 }
 
 .custom-table tbody.songs-list tr, .custom-table tbody.songs-list tr a, .custom-table tbody.songs-list tr button {
@@ -1147,8 +1148,8 @@ header.clicked::after {
 }
 
 @keyframes colorTransition {
-  0% { color: #7E57C2; }  /* Primary color */
-  50% { color: #00BCD4; }  /* Highlight color */
+  0% { color: var(--primary-color); }  /* Primary color */
+  50% { color: var(--highlight-color); }  /* Highlight color */
   100% { color: #AED581; } /* Hover/interaction color */
 }
 
@@ -1179,14 +1180,14 @@ header.clicked::after {
 }
 
 .error-page .btn {
-  background-color: #7E57C2;  /* Primary color */
+  background-color: var(--primary-color);  /* Primary color */
   color: white;
   border: none;
   border-radius: 5px;
 }
 
 .error-page .btn:hover {
-  background-color: #5C3899;  /* Darker primary color on hover */
+  background-color: var(--primary-hover);  /* Darker primary color on hover */
 }
 
 /* סגנון לדף רשימת האמנים */
@@ -1220,19 +1221,19 @@ header.clicked::after {
 .artists-list a {
   padding: 20px;
   text-decoration: none;
-  color: #7E57C2;       /* Primary color */
+  color: var(--primary-color);       /* Primary color */
   font-size: 1.2em;
   border-radius: 5px;
   display: block;
   text-align: center;
-  border: 1px solid #7E57C2;  /* Primary color border */
+  border: 1px solid var(--primary-color);  /* Primary color border */
   border-radius: 8px;
   background-color: #f5f5f5;  /* Light gray background */
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
 }
 
 .artists-list a:hover {
-  background-color: #7E57C2;  /* Primary color on hover */
+  background-color: var(--primary-color);  /* Primary color on hover */
   color: #fff;
   transform: scale(1.05);
 }
@@ -1248,7 +1249,7 @@ header.clicked::after {
 .artists-link {
   font-size: 20px; /* גודל הסמל */
   color: white; /* צבע הסמל */
-  background-color: #7E57C2; /* Primary color */
+  background-color: var(--primary-color); /* Primary color */
   border: none;
   padding: 8px;
   border-radius: 50%; /* עיגול הכפתור */
@@ -1261,7 +1262,7 @@ header.clicked::after {
 }
 
 .artists-link:hover {
-  background-color: #5C3899; /* Darker primary color on hover */
+  background-color: var(--primary-hover); /* Darker primary color on hover */
   transform: scale(1.1); /* הגדלת הכפתור בעת ריחוף */
 }
 
@@ -1306,7 +1307,7 @@ header.clicked::after {
 
 /* Heading styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Arimo', sans-serif;
+  font-family: var(--font-base);
   font-weight: 700;
 }
 
@@ -1340,5 +1341,5 @@ h6 { font-size: 1em; }
 .search-input::caret {
   border-width: 2px;
   border-style: solid;
-  border-color: #7E57C2;  /* Primary color */
+  border-color: var(--primary-color);  /* Primary color */
 }

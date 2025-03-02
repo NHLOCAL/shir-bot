@@ -16,9 +16,6 @@ body {
   top: 140%; /* Position the bubble below the input */
   left: 50%;
   transform: translateX(-50%);
-  transform: translateX(-50%);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 300px;
   box-shadow: 0 0 3px 3px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
 }
 
@@ -113,7 +110,7 @@ border: none;
 /* קישורים לפרסומות */
 .fixed-bottom a {
   padding: 5px 10px;
-  Font-weight: bold;
+  font-weight: bold;
 }
 
 .search-input,
@@ -451,7 +448,7 @@ p {
     margin: 10px; /* Add margin between ads */
 	margin-right: 0;
 	margin-left: 0;
-	Padding: 5px 0 5px 0;
+	padding: 5px 0 5px 0;
   }
 }
 
@@ -1028,7 +1025,7 @@ a {
   font-family: inherit;
   color: inherit;
   cursor: pointer;
-  Padding: 5px;
+  padding: 5px;
   transition: color 0.1s; /* Smooth color transition on hover */
 }
 
@@ -1036,9 +1033,9 @@ a {
 .album-button:hover,
 .singer-button:hover {
   color: #5C3899;  /* Darker primary color on hover */
-  font-weight : 500;
-  Background: white;
-  Padding: 5px;
+  font-weight: 500;
+  background: white;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -1335,4 +1332,13 @@ h6 { font-size: 1em; }
 
 .get-title {
   font-weight: 600;
+}
+
+/* Combine caret rules into one block */
+.search-input::-webkit-caret,
+.search-input::-moz-caret,
+.search-input::caret {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #7E57C2;  /* Primary color */
 }

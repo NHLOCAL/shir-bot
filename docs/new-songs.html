@@ -1,0 +1,189 @@
+---
+layout: default
+title: "שירים חדשים"
+description: "רשימת השירים החדשים ביותר במאגר שיר-בוט."
+keywords: "שירים חדשים, מוזיקה חדשה, עדכונים, שיר-בוט"
+permalink: /new-songs/
+---
+
+<div id="loadingMessage" class="loading-message">
+  <div class="progress-bar-container">
+    <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+    <span id="progressText">טוען שירים...</span>
+      <div class="progress-bar">
+        <div id="progress" class="progress"></div>
+      </div>
+  </div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal-content">
+	<span id="modalMessage"></span><br>
+	<button id="modalOkButton" style="font-family: tahoma">אישור</button>
+  </div>
+</div>
+
+<div id="resultsTable" class="custom-table" style="display: none;">
+    <table>
+        <thead>
+            <tr>
+                <th>מספר סידורי</th>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>
+            </tr>
+        </thead>
+        <tbody class="songs-list">
+            <!-- Songs will be loaded here -->
+        </tbody>
+    </table>
+     <button id="loadMoreButton">טען עוד</button>
+</div>
+
+<script>
+// Function to fetch and display new songs
+async function fetchAndDisplayNewSongs() {
+    const response = await fetch("{{ site.baseurl }}/assets/data/new-singles.csv");
+    const csvText = await response.text();
+    const lines = csvText.split('\n');
+    const songs = [];
+
+    for (let i = 1; i < lines.length; i++) { // Start from index 1 to skip header
+        const line = lines[i].trim();
+        if (line) {
+            const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            if (columns.length >= 5) {
+                const song = {
+                    serial: columns[0].trim(),
+                    name: columns[1].trim(),
+                    album: columns[2].trim(),
+                    singer: columns[3].trim(),
+                    driveId: columns[4].trim()
+                };
+                songs.push(song);
+            } else {
+                console.warn('Skipped a line with insufficient columns:', line);
+            }
+        }
+    }
+    return songs;
+}
+
+let displayedSongs = 0;
+const songsPerPage = 250;
+let allSongs = [];
+
+// Function to display songs in the table
+function displaySongs(songs) {
+    const tbody = document.querySelector("#resultsTable tbody");
+
+    if (songs.length === 0) {
+        const instructionRow = document.createElement('tr');
+        const instructionCell = document.createElement('td');
+        instructionCell.setAttribute('colspan', '4');
+        instructionCell.textContent = 'לא נמצאו תוצאות.';
+        instructionRow.appendChild(instructionCell);
+        tbody.appendChild(instructionRow);
+    } else {
+        songs.slice(displayedSongs, displayedSongs + songsPerPage).forEach(song => {
+            const row = document.createElement('tr');
+
+            // Serial Number Cell
+            const serialCell = document.createElement('td');
+            const serialLink = document.createElement('a');
+            serialLink.textContent = song.serial;
+            // --- שיתוף שיר ---
+            serialLink.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent row click
+                const shareLink = window.location.origin + window.location.pathname + `?song=${encodeURIComponent(song.serial)}`;
+                copyToClipboard(shareLink);
+                showCopiedMessage();
+            });
+            serialCell.appendChild(serialLink);
+            row.appendChild(serialCell);
+
+            // Song Name Cell
+            const nameCell = document.createElement('td');
+            nameCell.textContent = song.name;
+            row.appendChild(nameCell);
+
+            // Album Name Cell with Button
+            const albumCell = document.createElement('td');
+            const albumButton = document.createElement('button');
+            albumButton.textContent = song.album;
+            albumButton.classList.add('album-button');
+            // --- חיפוש אלבום ---
+            albumButton.addEventListener('click', function(event) {
+              event.stopPropagation(); // Prevent row click
+              window.location.href = `{{ site.baseurl }}/?search=${encodeURIComponent(song.album)}&searchBy=album`;
+            });
+            albumCell.appendChild(albumButton);
+            row.appendChild(albumCell);
+
+            // Singer Name Cell with Button
+            const singerCell = document.createElement('td');
+            const singerButton = document.createElement('button');
+            singerButton.textContent = song.singer;
+            singerButton.classList.add('singer-button');
+            // --- חיפוש זמר ---
+            singerButton.addEventListener('click', function(event) {
+              event.stopPropagation(); // Prevent row click
+              window.location.href = `{{ site.baseurl }}/?search=${encodeURIComponent(song.singer)}&searchBy=singer`;
+            });
+            singerCell.appendChild(singerButton);
+            row.appendChild(singerCell);
+
+            // --- הורדת שיר (קורה רק בלחיצה על מקום *ריק* בשורה) ---
+            row.addEventListener('click', (event) => {
+                if (event.target === row || event.target.tagName === 'TD') { // Check if the click is on the row or an empty TD
+                    const link = document.createElement('a');
+                    link.href = `https://drive.google.com/uc?export=download&id=${song.driveId}`;
+                    link.download = `${song.name} - ${song.singer}.mp3`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            });
+
+            tbody.appendChild(row);
+        });
+
+        displayedSongs += songsPerPage;
+        document.getElementById('loadMoreButton').style.display = displayedSongs < songs.length ? 'block' : 'none';
+    }
+}
+
+document.getElementById('loadMoreButton').addEventListener('click', () => {
+    displaySongs(allSongs);
+});
+
+// --- העתקה ללוח (נשאר מחוץ ל-displaySongs) ---
+function copyToClipboard(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+}
+
+// --- הודעת "הועתק" (נשאר מחוץ ל-displaySongs) ---
+function showCopiedMessage() {
+  const message = document.createElement('div');
+  message.textContent = 'הקישור הועתק ללוח';
+  message.classList.add('copied-message');
+  document.body.appendChild(message);
+  setTimeout(() => {
+    document.body.removeChild(message);
+  }, 3000);
+}
+
+// Fetch and display new songs when page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    allSongs = await fetchAndDisplayNewSongs();
+    document.getElementById('loadingMessage').style.display = 'none';
+    document.getElementById('resultsTable').style.display = 'block';
+    displaySongs(allSongs);
+});
+
+</script>

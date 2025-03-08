@@ -25,7 +25,7 @@ let totalSongsToDownload = 0;
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const searchBySelect = document.getElementById('searchBy');
-const newsFilterButton = document.getElementById('newsFilter');
+// const newsFilterButton = document.getElementById('newsFilter'); // Remove this line
 const singleFilterButton = document.getElementById('singleFilter');
 const loadMoreButton = document.getElementById('loadMoreButton');
 const resultsTableBody = document.querySelector('#resultsTable tbody');
@@ -41,10 +41,11 @@ searchForm.addEventListener('submit', function(event) {
   searchSongs(query, searchBy);
 });
 
-newsFilterButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  searchSongs('סינגלים חדשים - תשפד', 'singer');
-});
+// Remove the event listener for newsFilterButton
+// newsFilterButton.addEventListener('click', function(event) {
+//   event.preventDefault();
+//   searchSongs('סינגלים חדשים - תשפד', 'singer');
+// });
 
 singleFilterButton.addEventListener('click', function(event) {
   event.preventDefault();
@@ -104,18 +105,20 @@ function displayLoadingMessage() {
 // פונקציה לטעינה מוקדמת של נתוני CSV
 async function preloadCSVData() {
   const currentCSVUrl = baseurl + '/assets/data/songs.csv';
-  const additionalCSVUrl = baseurl + '/assets/data/new-singles.csv';
+  // const additionalCSVUrl = baseurl + '/assets/data/new-singles.csv'; // No need to load new-singles.csv here
 
 
   try {
-    const [currentCSVText, additionalCSVText] = await Promise.all([
-      fetchCSV(currentCSVUrl),
-      fetchCSV(additionalCSVUrl)
-    ]);
+    // const [currentCSVText, additionalCSVText] = await Promise.all([ // Modify this line
+    //   fetchCSV(currentCSVUrl),
+    //   fetchCSV(additionalCSVUrl)
+    // ]);
+
+    const currentCSVText = await fetchCSV(currentCSVUrl);
 
     const currentSongs = parseCSV(currentCSVText);
-    const additionalSongs = parseCSV(additionalCSVText);
-    allSongs = currentSongs.concat(additionalSongs);
+    // const additionalSongs = parseCSV(additionalCSVText); // No need to combine with additionalSongs
+    allSongs = currentSongs; // Only use currentSongs
     console.log('CSV data preloaded');
   } catch (error) {
     console.error('Error preloading CSV data:', error);

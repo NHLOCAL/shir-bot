@@ -10,19 +10,30 @@
       <h3 id="nextObject">
         <img width="85" src="{{ site.baseurl }}/assets/images/logo.png" alt="סמל האתר"> <span class="site-title">שיר-בוט</span>
       </h3>
-      <!-- קישור לדף רשימת האמנים -->
-      <a class="artists-link" href="{{ site.baseurl }}/artists" title="רשימת אמנים">
-        <i class="fas fa-users"></i>
-      </a>
-        <!-- New Songs Button -->
-      <a class="artists-link"  href="{{ site.baseurl }}/new-songs" title="שירים חדשים">
-        <i class="fas fa-music"></i>
-      </a>
-
     </center>
   </header>
-  <!-- תנאי להצגת טופס החיפוש -->
-  {% if page.show_search_form != false %}
-    {% include search_form.html %}
-  {% endif %}
 </div>
+
+  {% if page.show_search_form != false %}
+  <div class="search-container">
+    <form class="search-bar" id="searchForm">
+        <input type="text" class="search-input" placeholder="חפש שירים, אמנים, אלבומים..." id="searchInput" autofocus>
+        <div class="search-icons">
+            <button type="button" title="חפש אמנים" aria-label="חפש אמנים" id="artistSearchButton"><i class="fas fa-user-friends"></i></button>
+            <button type="button"  title="חפש שירים חדשים" aria-label="חפש שירים חדשים" id="newSongsSearchButton"><i class="fas fa-fire"></i></button>
+        </div>
+        <button type="submit" class="search-icon-button" aria-label="חפש">
+          <i class="fas fa-search"></i>
+        </button>
+
+    </form>
+
+    <div class="search-filters">
+         <button class="filter-button active" data-filter="all">הכל</button>
+        <button class="filter-button" data-filter="serial">מספר סידורי</button>
+        <button class="filter-button" data-filter="name">שם השיר</button>
+        <button class="filter-button" data-filter="album">שם האלבום</button>
+        <button class="filter-button" data-filter="singer">שם הזמר</button>
+    </div>
+    </div>
+  {% endif %}

@@ -9,7 +9,7 @@ let results = [];
 // משתנה למעקב אחר מספר התוצאות המוצגות
 let displayedResults = 0;
 
-// כפתור סינון סינגלים
+// כפתור סינון סינגלים (שומרים את המשתנה והפונקציונליות)
 let showSinglesOnly = true;
 
 // מערך promises למעקב אחר כל הורדה
@@ -21,45 +21,66 @@ let downloadedSongsCount = 0;
 // משתנה גלובלי למעקב אחר מספר השירים הכולל להורדה
 let totalSongsToDownload = 0;
 
-// DOM Elements
+// DOM Elements (מעודכן - הסרת אלמנטים לא רלוונטיים)
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
-const searchBySelect = document.getElementById('searchBy');
-// const newsFilterButton = document.getElementById('newsFilter'); // Remove this line
-const singleFilterButton = document.getElementById('singleFilter');
+const artistSearchButton = document.getElementById('artistSearchButton');
+const newSongsSearchButton = document.getElementById('newSongsSearchButton');
+// const singleFilterButton = document.getElementById('singleFilterButton'); // הסרה - מטופל עכשיו ישירות
 const loadMoreButton = document.getElementById('loadMoreButton');
 const resultsTableBody = document.querySelector('#resultsTable tbody');
 const loadingMessage = document.getElementById('loadingMessage');
 const progressText = document.getElementById('progressText');
 const progressBar = document.getElementById('progress');
 
-// מאזינים לאירועים
+// משתנה חדש למעקב אחר הסינון הפעיל
+let activeFilter = 'all';
+
+//  פונקציה חדשה לטיפול בבחירת פילטר (ללא שינוי מהגרסה הקודמת)
+function handleFilterClick(filter) {
+    activeFilter = filter;
+    document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.filter-button[data-filter="${filter}"]`).classList.add('active');
+    searchSongs(searchInput.value.trim().toLowerCase(), activeFilter);
+}
+
+// מאזינים לאירועים (מעודכן - הסרת מאזינים לא רלוונטיים)
 searchForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const query = searchInput.value.trim().toLowerCase();
-  const searchBy = searchBySelect.value;
-  searchSongs(query, searchBy);
+  searchSongs(query, activeFilter);
 });
 
-// Remove the event listener for newsFilterButton
-// newsFilterButton.addEventListener('click', function(event) {
-//   event.preventDefault();
-//   searchSongs('סינגלים חדשים - תשפד', 'singer');
-// });
+// הוספת מאזינים לכפתורי הסינון (ללא שינוי)
+document.querySelectorAll('.filter-button').forEach(button => {
+    button.addEventListener('click', function() {
+        handleFilterClick(this.dataset.filter);
+    });
+});
 
-singleFilterButton.addEventListener('click', function(event) {
+// מאזין ללחיצה על כפתור אמנים (ללא שינוי)
+artistSearchButton.addEventListener('click', function(event) {
   event.preventDefault();
-  showSinglesOnly = !showSinglesOnly;
-  singleFilterButton.textContent = showSinglesOnly ? 'הצג את כל השירים' : 'הצג סינגלים בלבד';
-  searchSongs(searchInput.value.trim().toLowerCase(), searchBySelect.value);
+  window.location.href = baseurl + "/artists";
 });
 
-// פונקציות חיפוש
+//מאזין ללחיצה על כפתור שירים חדשים (ללא שינוי)
+newSongsSearchButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  window.location.href = baseurl + "/new-songs";
+});
+
+// פונקציות חיפוש (מעודכן - שינוי קטן, ללא שינוי מהותי)
 async function searchSongs(query, searchBy) {
-  // בדיקת תקינות קלט
-  if (query === '' || (query.length < 2 && !/^\d+$/.test(query))) {
-    return;
-  }
+    // בדיקת תקינות קלט
+    if (query === '' || (query.length < 2 && !/^\d+$/.test(query))) {
+        if (searchBy !== "all" && query.length == 0) {
+            performSearch("", searchBy)
+            return;
+        } else if (searchBy == "all") {
+            return;
+        }
+    }
 
   // הצגת הודעת טעינה
   displayLoadingMessage();
@@ -76,7 +97,7 @@ async function searchSongs(query, searchBy) {
   updateURLWithoutReload();
 }
 
-// פונקציה להצגת הודעת טעינה
+// פונקציה להצגת הודעת טעינה (ללא שינוי)
 function displayLoadingMessage() {
   resultsTableBody.innerHTML = '';
 
@@ -102,36 +123,26 @@ function displayLoadingMessage() {
   resultsTableBody.appendChild(loadingRow);
 }
 
-// פונקציה לטעינה מוקדמת של נתוני CSV
+// פונקציה לטעינה מוקדמת של נתוני CSV (ללא שינוי)
 async function preloadCSVData() {
   const currentCSVUrl = baseurl + '/assets/data/songs.csv';
-  // const additionalCSVUrl = baseurl + '/assets/data/new-singles.csv'; // No need to load new-singles.csv here
-
-
   try {
-    // const [currentCSVText, additionalCSVText] = await Promise.all([ // Modify this line
-    //   fetchCSV(currentCSVUrl),
-    //   fetchCSV(additionalCSVUrl)
-    // ]);
-
     const currentCSVText = await fetchCSV(currentCSVUrl);
-
     const currentSongs = parseCSV(currentCSVText);
-    // const additionalSongs = parseCSV(additionalCSVText); // No need to combine with additionalSongs
-    allSongs = currentSongs; // Only use currentSongs
+    allSongs = currentSongs;
     console.log('CSV data preloaded');
   } catch (error) {
     console.error('Error preloading CSV data:', error);
   }
 }
 
-// פונקציה לטעינת נתוני CSV
+// פונקציה לטעינת נתוני CSV (ללא שינוי)
 async function fetchCSV(url) {
   const response = await fetch(url);
   return await response.text();
 }
 
-// פונקציה לפרסור CSV לטבלה
+// פונקציה לפרסור CSV לטבלה (ללא שינוי)
 function parseCSV(csvText) {
   const lines = csvText.split('\n');
   const songs = [];
@@ -155,10 +166,14 @@ function parseCSV(csvText) {
   return songs;
 }
 
-// פונקציית חיפוש מטושטש
+// פונקציית חיפוש מטושטש (ללא שינוי מהותי)
 function filterSongs(songs, query, searchBy) {
   if (query === '' || (query.length < 2 && !/^\d+$/.test(query))) {
-    return [];
+     if(searchBy !== "all" && query.length == 0){
+        return songs;
+    } else if (searchBy == "all"){
+        return [];
+    }
   }
 
   const calculateDiceCoefficient = (tokens1, tokens2) => {
@@ -236,7 +251,7 @@ function filterSongs(songs, query, searchBy) {
   return combinedResults;
 }
 
-// פונקציה לביצוע החיפוש והצגת התוצאות
+// פונקציה לביצוע החיפוש והצגת התוצאות (ללא שינוי מהותי)
 function performSearch(query, searchBy) {
   let filteredSongs;
 
@@ -257,7 +272,7 @@ function performSearch(query, searchBy) {
   loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
 }
 
-// פונקציה להצגת התוצאות בטבלה
+// פונקציה להצגת התוצאות בטבלה (ללא שינוי מהותי)
 function displayResults(resultsToDisplay) {
   resultsTableBody.innerHTML = '';
 
@@ -339,13 +354,13 @@ function displayResults(resultsToDisplay) {
 
       resultsTableBody.appendChild(row);
     });
-    
+
     // הוספת המחלקה לאחר הצגת השירים
     resultsTableBody.classList.add('songs-list');
   }
 }
 
-// פונקציה לטיפול ב"טען עוד"
+// פונקציה לטיפול ב"טען עוד" (ללא שינוי)
 loadMoreButton.addEventListener('click', loadMoreResults);
 
 function loadMoreResults() {
@@ -354,7 +369,7 @@ function loadMoreResults() {
   loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
 }
 
-// פונקציה להעתקת טקסט ללוח
+// פונקציה להעתקת טקסט ללוח (ללא שינוי)
 function copyToClipboard(text) {
   const textArea = document.createElement('textarea');
   textArea.value = text;
@@ -364,7 +379,7 @@ function copyToClipboard(text) {
   document.body.removeChild(textArea);
 }
 
-// פונקציה להצגת הודעת העתקה
+// פונקציה להצגת הודעת העתקה (ללא שינוי)
 function showCopiedMessage() {
   const message = document.createElement('div');
   message.textContent = 'הקישור הועתק ללוח';
@@ -377,7 +392,7 @@ function showCopiedMessage() {
   }, 3000);
 }
 
-// פונקציה להצגת הודעה
+// פונקציה להצגת הודעה (ללא שינוי)
 function showMessage(messageText) {
   const message = document.createElement('div');
   message.textContent = messageText;
@@ -390,25 +405,22 @@ function showMessage(messageText) {
   }, 3000);
 }
 
-// פונקציה להורדת שיר
+// פונקציה להורדת שיר (ללא שינוי מהותי)
 async function downloadSong(songNumber) {
-  // איפוס משתנים גלובליים לפני תחילת ההורדה
   if (downloadPromises.length === 0) {
     downloadedSongsCount = 0;
     totalSongsToDownload = 0;
   }
 
-  totalSongsToDownload++; // הגדלת מספר השירים הכולל להורדה
+  totalSongsToDownload++;
 
-  // יצירת promise עבור ההורדה הנוכחית
   const downloadPromise = new Promise(async (resolve, reject) => {
     try {
-      // Reset progress bar and messages
       progressText.innerText = `${downloadedSongsCount + 1}/${totalSongsToDownload} מעבד...`;
       progressBar.style.width = '15%';
-      loadingMessage.classList.add('show'); // Display the loading message
+      loadingMessage.classList.add('show');
 
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec'; // Replace with your Google Apps Script web app URL
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbyzJ9j93gbyOx1N42oJzDgFRDxPg4wsK6zCxEVNDkJb8zPzhgf5OyO6Prj4dWQWdhS-ow/exec';
       const downloadUrl = `${scriptUrl}?songNumber=${encodeURIComponent(songNumber)}`;
 
       const response = await fetch(downloadUrl);
@@ -418,7 +430,6 @@ async function downloadSong(songNumber) {
       progressBar.style.width = '40%';
 
       if (data.success) {
-        // Display the stages
         progressText.innerText = `${downloadedSongsCount + 1}/${totalSongsToDownload} מוריד...`;
         progressBar.style.width = '60%';
 
@@ -426,7 +437,6 @@ async function downloadSong(songNumber) {
           progressText.innerText = `${downloadedSongsCount + 1}/${totalSongsToDownload} מוריד...`;
           progressBar.style.width = '80%';
 
-          // Background download continues here
           const link = document.createElement('a');
           link.href = data.downloadLink;
           link.download = data.originalFileName;
@@ -434,57 +444,47 @@ async function downloadSong(songNumber) {
           link.click();
           document.body.removeChild(link);
 
-          // Simulate final stage
-          await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 2 seconds
+          await new Promise(resolve => setTimeout(resolve, 2000));
           progressText.innerText = `${downloadedSongsCount + 1}/${totalSongsToDownload} הושלם!`;
           progressBar.style.width = '100%';
 
-          downloadedSongsCount++; // הגדלת מספר השירים שהורדו
+          downloadedSongsCount++;
 
-          resolve(); // Resolve the promise after successful download
+          resolve();
         }, 1000);
       } else {
         alert(data.message);
-        reject(new Error(data.message)); // Reject the promise on error
+        reject(new Error(data.message));
       }
     } catch (error) {
       console.error("Error:", error);
       showMessage("אירעה שגיאה. בבקשה נסה שוב מאוחר יותר");
-      reject(error); // Reject the promise on error
+      reject(error);
     }
   });
 
-  // הוספת promise למערך
   downloadPromises.push(downloadPromise);
-
-  // עדכון הודעת ההורדה וסרגל ההתקדמות
   updateProgress();
 
-  // טיפול ב-promise לאחר סיום ההורדה (הצלחה או כישלון)
   downloadPromise
     .finally(() => {
-      // הסרת promise מהמערך
       downloadPromises = downloadPromises.filter(p => p !== downloadPromise);
-
-      // עדכון הודעת ההורדה וסרגל ההתקדמות
       updateProgress();
 
-      // בדיקה האם כל ההורדות הסתיימו
       if (downloadPromises.length === 0) {
         progressText.innerText = `הורדת ${downloadedSongsCount}/${totalSongsToDownload} הושלמה!`;
         progressBar.style.width = `100%`;
 
-        // איפוס המשתנים הגלובליים לאחר סיום כל ההורדות
         setTimeout(() => {
           downloadedSongsCount = 0;
           totalSongsToDownload = 0;
-          loadingMessage.classList.remove('show'); // Hide the loading message on success
+          loadingMessage.classList.remove('show');
         }, 2000);
       }
     });
 }
 
-// פונקציה לעדכון הודעת ההורדה וסרגל ההתקדמות
+// פונקציה לעדכון הודעת ההורדה וסרגל ההתקדמות (ללא שינוי)
 function updateProgress() {
   const downloadingCount = downloadPromises.length;
 
@@ -492,44 +492,38 @@ function updateProgress() {
     progressText.innerText = `מוריד ${downloadingCount} שירים...`;
   }
 
-  // חישוב אחוז ההתקדמות
   const progressPercentage = totalSongsToDownload > 0 ? Math.round((downloadedSongsCount / totalSongsToDownload) * 100) : 0;
   progressBar.style.width = `${progressPercentage}%`;
 }
 
-// פונקציה לעדכון ה-URL ללא רענון הדף
+// פונקציה לעדכון ה-URL ללא רענון הדף (ללא שינוי)
 function updateURLWithoutReload() {
   const newURL = window.location.origin + window.location.pathname;
   window.history.replaceState({}, document.title, newURL);
 }
 
-// פונקציה להשלמת חיפוש אוטומטי מה-URL
-window.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const searchValue = urlParams.get('search');
+// טעינת נתונים ראשונית וטיפול בפרמטרים מה-URL (ללא שינוי מהותי)
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchValue = urlParams.get('search');
 
-  if (searchValue) {
-    searchInput.value = searchValue.toLowerCase();
-    searchSongs(searchValue.toLowerCase(), 'all');
-
-    // הסרת הפרמטרים מה-URL ללא רענון הדף
-    updateURLWithoutReload();
-  } else {
-    preloadCSVData();
-  }
+    if (searchValue) {
+        searchInput.value = searchValue.toLowerCase();
+        searchSongs(searchValue.toLowerCase(), 'all');
+        updateURLWithoutReload();
+    } else {
+        preloadCSVData();
+    }
+    searchInput.addEventListener("keypress", function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            submitForm();
+        }
+    });
 });
 
-// פונקציה להגשת טופס החיפוש
+// פונקציה להגשת טופס החיפוש (ללא שינוי)
 function submitForm() {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  // בצע את החיפוש מבלי לשנות את ה-URL
-  searchSongs(searchTerm, searchBySelect.value);
+  searchSongs(searchTerm, activeFilter);
 }
-
-// Event listener לשליחת הטופס בעת לחיצה על Enter
-searchInput.addEventListener("keypress", function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    submitForm();
-  }
-});

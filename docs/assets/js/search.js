@@ -275,6 +275,7 @@ function performSearch(query, searchBy) {
 
 // פונקציה להצגת התוצאות בטבלה (ללא שינוי מהותי)
 function displayResults(resultsToDisplay) {
+  const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
   resultsTableBody.innerHTML = '';
 
   if (resultsToDisplay.length === 0) {
@@ -359,15 +360,75 @@ function displayResults(resultsToDisplay) {
     // הוספת המחלקה לאחר הצגת השירים
     resultsTableBody.classList.add('songs-list');
   }
+
+  // עדכון הצגת כפתור "טען עוד"
+  if (loadMoreButton) {
+    loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+  }
 }
 
 // פונקציה לטיפול ב"טען עוד" (ללא שינוי)
 loadMoreButton.addEventListener('click', loadMoreResults);
 
 function loadMoreResults() {
-  displayedResults += 250;
-  displayResults(results.slice(0, displayedResults));
-  loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+  if (results.length > displayedResults) {
+    const nextBatch = results.slice(displayedResults, displayedResults + 250);
+    displayedResults += 250;
+    
+    const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
+    nextBatch.forEach(song => {
+      const row = document.createElement('tr');
+      
+      // יצירת תא עבור מספר סידורי
+      const serialCell = document.createElement('td');
+      const serialLink = document.createElement('a');
+      serialLink.textContent = song.serial;
+      serialLink.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const shareLink = window.location.origin + window.location.pathname;
+        copyToClipboard(shareLink + `?search=${encodeURIComponent(song.serial)}`);
+        showCopiedMessage();
+      });
+      serialCell.appendChild(serialLink);
+      row.appendChild(serialCell);
+
+      // יצירת תא עבור שם השיר
+      const nameCell = document.createElement('td');
+      nameCell.textContent = song.name;
+      row.appendChild(nameCell);
+
+      // יצירת תא עבור שם האלבום
+      const albumCell = document.createElement('td');
+      const albumButton = document.createElement('button');
+      albumButton.textContent = song.album;
+      albumButton.classList.add('album-button');
+      albumButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        searchInput.value = song.album.toLowerCase();
+        searchSongs(song.album.toLowerCase(), 'album');
+      });
+      albumCell.appendChild(albumButton);
+      row.appendChild(albumCell);
+
+      // יצירת תא עבור שם הזמר
+      const singerCell = document.createElement('td');
+      const singerButton = document.createElement('button');
+      singerButton.textContent = song.singer;
+      singerButton.classList.add('singer-button');
+      singerButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        searchInput.value = song.singer.toLowerCase();
+        searchSongs(song.singer.toLowerCase(), 'singer');
+      });
+      singerCell.appendChild(singerButton);
+      row.appendChild(singerCell);
+
+      resultsTableBody.appendChild(row);
+    });
+
+    // עדכון הצגת הכפתור
+    loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+  }
 }
 
 // פונקציה להעתקת טקסט ללוח (ללא שינוי)

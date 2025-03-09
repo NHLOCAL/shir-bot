@@ -24,53 +24,6 @@ main {
 }
 
 /* Button styles */
-.button-image:hover,
-a:hover.butt,
-a:active.butt,
-a:hover.center_butt,
-a:active.center_butt {
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-}
-
-.button-image:hover {
-  opacity: 0.95;
-  transform: scale(0.98);
-}
-
-a:link.butt,
-a:visited.butt {
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  text-decoration: none;
-  display: inline-block;
-  background-color: var(--white);
-  color: black;
-  font-weight: bold;
-}
-
-a:hover.butt,
-a:active.butt {
-  color: var(--highlight-color);
-  background-color: var(--secondary-color);
-}
-
-a:link.center_butt,
-a:visited.center_butt {
-  border-radius: 10px;
-  background-color: #f44336;
-  color: var(--white);
-  padding: 15px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-a:hover.center_butt,
-a:active.center_butt {
-  background-color: red;
-}
 
 /* Alert message */
 .alert {
@@ -82,21 +35,6 @@ a:active.center_butt {
   text-align: center;
   text-decoration: none;
   margin: auto;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
 }
 
 /* Scrollbar styling */
@@ -475,11 +413,6 @@ p {
   padding: 0 20px;
 }
 
-.instructions-container .disclaimer {
-  color: #607D8B;
-  padding: 0 20px 0;
-}
-
 /* Small ads */
 .small-ad-container {
   display: flex;
@@ -606,8 +539,7 @@ p {
 }
 
 .modal,
-.modal-content,
-.help-modal-container {
+.modal-content {
   max-width: 400px;
   padding: 40px;
   text-align: center;
@@ -615,14 +547,6 @@ p {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10001;
-}
-
-.help-modal-container {
-  background-color: #f1f1f1;
-  padding: 40px 20px;
-  height: 400px;
-  position: relative;
-  overflow-y: none;
 }
 
 .modal h2,
@@ -644,7 +568,6 @@ p {
 }
 
 .modal a,
-.modal-content .share-link,
 #modalOkButton {
   display: inline-block;
   margin-top: 20px;
@@ -657,28 +580,11 @@ p {
 }
 
 .modal a:hover,
-.modal-content .share-link:hover,
 #modalOkButton:hover {
   background-color: var(--primary-hover);
 }
 
 /* Shimmer button effect */
-.efectButton {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 4px;
-  background: linear-gradient(90deg, var(--primary-color) 25%, #ADB1FF 50%, var(--primary-color) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite linear; /* Changed to linear for smoother animation */
-  transition: background-position 0.5s ease;
-}
-
-.efectButton:hover {
-  background: linear-gradient(90deg, var(--primary-hover) 25%, var(--primary-color) 50%, var(--primary-hover) 75%);
-}
 
 @keyframes shimmer {
   0% {
@@ -701,12 +607,6 @@ p {
   .topnav img {
     position: static;
     margin: 0 auto;
-  }
-
-  img.button-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
   }
 
   .parent-element {
@@ -813,24 +713,6 @@ p {
 }
 
 /* Share button & modal */
-.share-button {
-  font-size: 14px;
-  background-color: var(--primary-color);
-  color: var(--white);
-  margin: 12px;
-  border-radius: 3px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-}
-
-.share-button:hover {
-  background-color: var(--primary-hover);
-}
 
 .modal-content {
   max-width: 400px;
@@ -839,17 +721,6 @@ p {
   background-color: #f1f1f1;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.modal-content .share-link {
-  display: block;
-  margin: 20px auto 0 auto;
-  padding: 6px 15px;
-  background-color: var(--primary-color);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
 }
 
 .copied-message {
@@ -915,33 +786,6 @@ p {
   height: auto;
   border-radius: 8px;
   margin-top: 10px;
-}
-
-.prev-step,
-.next-step {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
-.prev-step {
-  left: 10px;
-}
-
-.next-step {
-  right: 10px;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
 }
 
 .helpButton {
@@ -1322,13 +1166,11 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 .topnav h3,
 .instructions-container h3,
 .modal h2,
 .help-modal h2,
-.modal-content h2, /* Added modal-content h2 */
+.modal-content h2, 
 .get-title {
   font-family: var(--font-base);
   font-weight: 700;
@@ -1360,12 +1202,4 @@ h3 {
 
 h4 {
   font-size: 1.5em;
-}
-
-h5 {
-  font-size: 1.25em;
-}
-
-h6 {
-  font-size: 1em;
 }

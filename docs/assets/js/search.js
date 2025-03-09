@@ -48,7 +48,8 @@ function handleFilterClick(filter) {
 searchForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const query = searchInput.value.trim().toLowerCase();
-  searchSongs(query, activeFilter);
+  searchSongs(query, activeFilter); // שימוש ב-activeFilter
+    console.log("Active filter:", activeFilter);
 });
 
 // הוספת מאזינים לכפתורי הסינון (ללא שינוי)

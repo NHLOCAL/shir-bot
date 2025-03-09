@@ -1,22 +1,142 @@
-/* Google Fonts - Arimo */
-body {
-  font-family: var(--font-base);
+:root {
+  --primary-color: #7E57C2;
+  --primary-hover: #5C3899;
+  --highlight-color: #00BCD4;
+  --secondary-color: #C0C0C0;
+  --white: #fff;
+  --font-base: 'Arimo', sans-serif;
 }
 
+/* Universal reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main {
+  margin-top: 30px;
+}
+
+/* Button styles */
+.button-image:hover,
+a:hover.butt,
+a:active.butt,
+a:hover.center_butt,
+a:active.center_butt {
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-image:hover {
+  opacity: 0.95;
+  transform: scale(0.98);
+}
+
+a:link.butt,
+a:visited.butt {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  background-color: var(--white);
+  color: black;
+  font-weight: bold;
+}
+
+a:hover.butt,
+a:active.butt {
+  color: var(--highlight-color);
+  background-color: var(--secondary-color);
+}
+
+a:link.center_butt,
+a:visited.center_butt {
+  border-radius: 10px;
+  background-color: #f44336;
+  color: var(--white);
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover.center_butt,
+a:active.center_butt {
+  background-color: red;
+}
+
+/* Alert message */
+.alert {
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  width: 70%;
+  color: var(--white);
+  padding: 25px;
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Caret styling */
+.search-input::-webkit-caret,
+.search-input::-moz-caret,
+.search-input::caret {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--primary-color);
+}
+
+/* Text bubble */
 .text-bubble {
   display: none;
   background-color: #F0F2F5;
-  color: #212121; /* טקסט ראשי */
+  color: #212121;
   padding: 15px;
   border-radius: 14px;
   font-size: 16px;
   text-align: center;
   position: absolute;
   z-index: 9999;
-  top: 140%; /* Position the bubble below the input */
+  top: 140%;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 3px 3px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
+  box-shadow: 0 0 3px 3px rgba(126, 87, 194, 0.5);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -29,13 +149,19 @@ body {
 .text-bubble:before {
   content: "";
   position: absolute;
-  top: -14px; /* Adjust to position above the bubble */
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
   border-style: solid;
   border-width: 0 10px 15px;
-  border-color: transparent transparent #F0F2F5 transparent; /* Adjust the color to match the bubble */
+  border-color: transparent transparent #F0F2F5 transparent;
   z-index: -1;
+}
+
+/* Input container & form */
+.input-container,
+form {
+  text-align: center;
 }
 
 .input-container {
@@ -43,61 +169,97 @@ body {
   display: inline-block;
 }
 
-
 form {
   margin-bottom: 20px;
-  text-align: center;
 }
 
+/* Tables */
 table {
   width: 100%;
   overflow-y: scroll;
+  border-spacing: 0;
+  table-layout: auto;
 }
 
-
+th,
 td {
-  border-bottom: none;
   text-align: right;
   padding: 8px;
 }
 
 th {
   border-bottom: 1px solid #ddd;
-  text-align: right;
-  padding: 8px;
 }
 
-
-/* Content on the left side */
-.right-item {
-right: 20px;
-float: right;
-top: 5px;
-position: absolute;
-background: none;
-border: none;
+td {
+  border-bottom: none;
 }
 
+#resultsTable {
+  position: fixed;
+  margin: 30vh 3% 5vh 3%;
+  width: 92%;
+  height: 55%;
+  overflow: auto;
+  padding: 10px;
+}
 
+#resultsTable table {
+  width: 100%;
+}
+
+#resultsTable th:nth-child(1),
+#resultsTable td:nth-child(1) {
+  width: 15%;
+}
+
+#resultsTable th:nth-child(2),
+#resultsTable td:nth-child(2) {
+  width: 45%;
+}
+
+#resultsTable th:nth-child(3),
+#resultsTable td:nth-child(3),
+#resultsTable th:nth-child(4),
+#resultsTable td:nth-child(4) {
+  width: 20%;
+}
+
+#resultsTable th,
+#resultsTable td {
+  word-wrap: break-word;
+  max-width: 300px;
+}
+
+/* Right & Feedback buttons */
+.right-item,
 .feedback-button {
-  float: left;
-  left: 20px;
-  top: 5px;
   position: absolute;
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+  top: 5px;
   background: none;
   border: none;
 }
 
+.right-item {
+  right: 20px;
+  float: right;
+}
 
+.feedback-button {
+  float: left;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+}
 
+/* Fixed bottom section */
 .fixed-bottom {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
-  background-color: #ECEFF1; /* רקע משני */
+  background-color: #ECEFF1;
   padding-top: 15px;
   text-align: center;
   z-index: 9999;
@@ -108,21 +270,19 @@ border: none;
   font-size: 14px;
 }
 
-/* קישורים לפרסומות */
 .fixed-bottom a {
   padding: 5px 10px;
   font-weight: bold;
 }
 
+/* Search elements */
 .search-input,
-.search-select {
-  font-family: var(--font-base); /* Arimo font */
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 58px;
-  border: 1px solid var(--primary-color); /* Primary color border */
-  box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.search-select,
+.search-button {
+  font-family: var(--font-base);
+  box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  border: 1px solid var(--primary-color);
 }
 
 .search-select {
@@ -130,135 +290,115 @@ border: none;
   border-radius: 5px 10px 10px 5px;
   height: 60px;
   width: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .search-input {
-  caret-color: var(--primary-color); /* Primary color caret */
+  caret-color: var(--primary-color);
   font-size: 20px;
   height: 58.4px;
   width: 220px;
   border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.search-button {
+  width: 100px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .search-input:focus,
 .search-select:focus {
   outline: none;
-  background: #f5f5f5; /* Light gray background on focus */
+  background: #f5f5f5;
 }
 
 .search-select option {
   background-color: white;
 }
 
-.search-button {
-  font-family: var(--font-base); /* Arimo font */
-  width: 100px;
-  height: 60px;
-  font-size: 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: var(--primary-color); /* Primary color */
-  color: var(--white);
-  border: none;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
 .search-input:hover,
 .search-select:hover,
 .search-button:hover {
-  box-shadow: 0 10px 20px rgba(126, 87, 194, 0.5); /* Adjusted shadow on hover */
+  box-shadow: 0 10px 20px rgba(126, 87, 194, 0.5);
 }
 
 .search-button:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
+  background-color: var(--primary-hover);
 }
 
 .search-button:active {
-  background-color: var(--primary-color); /* Primary color on active */
+  background-color: var(--primary-color);
 }
 
-#resultsTable {
-  border-spacing: 0;
-  position: fixed;
-  margin-left: 3%;
-  margin-right: 3%;
-  margin-top: 30vh;
-  margin-bottom: 5vh;
-  width: 92%;
-  height: 55%;
-  overflow: auto;
-  padding: 10px;
-}
-
+/* Top navigation bar */
 .topnav {
   text-align: center;
   height: 60px;
   width: 100%;
-  background-color: var(--primary-color); /* Primary color */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: inline-block;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
   padding: 10px;
   z-index: 9999;
 }
 
 .search-form {
   position: absolute;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   padding-top: 40px;
   width: 100%;
   z-index: 9999;
   border-radius: 5px;
 }
 
-
-/* Navigation menu links */
-.topnav h3 {
-  font-size: 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
-  padding: 0 5px 0px 15px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  background-color: #fff;
-  color: var(--primary-color); /* Primary color */
-  border-radius: 5px;
-}
-
-
-/* Default link style for top bar */
+.topnav h3,
 .topnav a {
-  color: white;
-  text-align: center;
+  color: var(--white);
   text-decoration: none;
   display: inline-block;
   border-radius: 5px;
   padding: 10px 20px;
 }
 
-/* Hover and active link style for top bar */
+.topnav h3 {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0 5px 0 15px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  background-color: var(--white);
+  color: var(--primary-color);
+}
+
 .topnav a:hover,
 .topnav a:active,
 .topnav h3.current {
-  color: var(--highlight-color); /* Highlight color on hover/active */
-  background-color: #C0C0C0;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(126, 87, 194, 0.5); /* Shadow with primary color */
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  color: var(--highlight-color);
+  background-color: var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.5);
 }
 
-
+/* Parent element for centering */
 .parent-element {
   height: 60px;
   text-align: center;
@@ -268,9 +408,10 @@ border: none;
   cursor: pointer;
 }
 
+/* General links */
 a {
-  color: var(--primary-color); /* Primary color for links */
-  background-color: white;
+  color: var(--primary-color);
+  background-color: var(--white);
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -282,52 +423,22 @@ a {
 a:hover,
 a:active,
 h3.current {
-  color: var(--highlight-color); /* Highlight color on hover/active */
-  background-color: #C0C0C0;
+  color: var(--highlight-color);
+  background-color: var(--secondary-color);
 }
 
+/* Text selection color */
 ::selection {
-  background-color: var(--highlight-color); /* Highlight color */
-  color: white;
+  background-color: var(--highlight-color);
+  color: var(--white);
 }
 
-
-#resultsTable table {
-  width: 100%;
-  table-layout: auto;
-  border-spacing: 0;
-}
-
-#resultsTable th:nth-child(1),
-#resultsTable td:nth-child(1) {
-  width: 15%; /* Adjust the width for column 1 */
-}
-
-#resultsTable th:nth-child(2),
-#resultsTable td:nth-child(2) {
-  width: 45%; /* Adjust the width for column 2 */
-}
-
-#resultsTable th:nth-child(3),
-#resultsTable td:nth-child(3),
-#resultsTable th:nth-child(4),
-#resultsTable td:nth-child(4) {
-  width: 20%; /* Adjust the width for columns 3 and 4 */
-}
-
-#resultsTable th,
-#resultsTable td {
-  word-wrap: break-word;
-  max-width: 300px;
-}
-
-
-
+/* Headings & Paragraphs */
 h3 {
   margin-top: 10px;
   margin-bottom: 40px;
   font-size: 24px;
-  color: #212121; /* טקסט ראשי */
+  color: #212121;
 }
 
 p {
@@ -335,8 +446,7 @@ p {
   font-size: 15px;
 }
 
-
-/* עיצוב עבור מודעות בחזית המסך ומסך עזרה */
+/* Instructions container */
 .instructions-container {
   max-width: 500px;
   min-width: 35%;
@@ -345,15 +455,15 @@ p {
   padding: 18px;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border: 3px solid var(--primary-color); /* Primary color border */
-  background-color: #fff;
+  border: 3px solid var(--primary-color);
+  background-color: var(--white);
 }
 
 .instructions-container h3 {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 30px;
-  color: var(--primary-color); /* Primary color */
+  color: var(--primary-color);
   padding: 8px;
   border-bottom: 1px solid #ddd;
   font-weight: 700;
@@ -366,10 +476,11 @@ p {
 }
 
 .instructions-container .disclaimer {
-  color: #607D8B; /* Secondary text color */
-  padding: 0 20px 0px;
+  color: #607D8B;
+  padding: 0 20px 0;
 }
 
+/* Small ads */
 .small-ad-container {
   display: flex;
   width: 95%;
@@ -384,12 +495,12 @@ p {
   max-width: 25%;
 }
 
-.small-ad-bottom,
-.small-ad-top {
-  width: 100%; /* Adjust width as needed */
-  height: 49%; /* Adjust height as needed */
+.small-ad-top,
+.small-ad-bottom {
+  width: 100%;
+  height: 49%;
   border-radius: 8px;
-  flex: 1; /* Distribute space equally */
+  flex: 1;
   text-align: center;
   padding: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -399,60 +510,61 @@ p {
 .small-ad-top {
   margin-top: 0;
   margin-bottom: 10px;
-  top: 0px;
+  top: 0;
 }
 
 .small-ad-bottom {
   margin-top: 10px;
   margin-bottom: 0;
-  bottom: 0px;
+  bottom: 0;
+}
+
+.ad-text,
+.title-song-list {
+  margin-bottom: 5px;
 }
 
 .ad-text {
-    font-size: 15px;
-    margin-bottom: 5px;
+  font-size: 15px;
 }
 
 .title-song-list {
   font-weight: bold;
   font-size: 13px;
-  margin-bottom: 5px; /* Add bottom space */
 }
 
 .song-list {
-    font-size: 12px;
-    margin-top: 0;
-    margin-bottom: 0;
-    list-style: none;
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
 
-
+/* Responsive adjustments for ads and instructions */
 @media (max-width: 768px) {
-	
   .instructions-container {
-    max-width: 90%;  
+    max-width: 90%;
   }
-   
+
   .small-ad-container {
-    flex-direction: column; /* Change layout to column */
+    flex-direction: column;
   }
 
   .small-ad-left,
   .small-ad-right {
-    max-width: 100%; /* Occupy full width */
+    max-width: 100%;
     margin: 0;
   }
 
   .small-ad-top,
   .small-ad-bottom {
-    height: auto; /* Allow height to adjust based on content */
-    margin: 10px; /* Add margin between ads */
-	margin-right: 0;
-	margin-left: 0;
-	padding: 5px 0 5px 0;
+    height: auto;
+    margin: 10px 0;
+    padding: 5px 0;
   }
 }
 
+/* Loading indicator */
 .loading-container {
   display: flex;
   padding-top: 20px;
@@ -467,84 +579,107 @@ p {
 
 .loading-text {
   font-size: 20px;
-  color: #212121; /* טקסט ראשי */
+  color: #212121;
   font-weight: 600;
 }
 
-/* מודעת שדרוג */
-.overlay {
+/* Upgrade modal & Help Modal & Share Modal - Common Overlays and Modals */
+.overlay,
+.modal-overlay,
+.help-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none; /* Hidden by default */
   justify-content: center;
   align-items: center;
   z-index: 10000;
 }
 
-.modal {
-    max-width: 400px;
-    padding: 40px;
-    text-align: center;
-    background-color: #F7F0FF;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 10001;
+.overlay.show,
+.modal-overlay.show,
+.help-overlay.show {
+  display: flex; /* Show overlay when .show class is added */
 }
 
-.modal h2 {
+.modal,
+.modal-content,
+.help-modal-container {
+  max-width: 400px;
+  padding: 40px;
+  text-align: center;
+  background-color: #F7F0FF;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10001;
+}
+
+.help-modal-container {
+  background-color: #f1f1f1;
+  padding: 40px 20px;
+  height: 400px;
+  position: relative;
+  overflow-y: none;
+}
+
+.modal h2,
+.modal-content h2,
+.help-modal h2 {
   font-size: 24px;
-  color: #212121; /* טקסט ראשי */
+  color: #212121;
   margin-bottom: 20px;
   font-weight: 600;
 }
 
-.modal p {
+.modal p,
+.modal-content p,
+.help-modal p {
   font-size: 16px;
-  color: #607D8B; /* Secondary text color */
+  color: #607D8B;
   line-height: 1.6;
   margin-bottom: 5px;
 }
 
-
-.modal a {
+.modal a,
+.modal-content .share-link,
+#modalOkButton {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: var(--primary-color); /* Primary color */
+  background-color: var(--primary-color);
   color: var(--white);
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
-.modal a:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
+.modal a:hover,
+.modal-content .share-link:hover,
+#modalOkButton:hover {
+  background-color: var(--primary-hover);
 }
 
-
+/* Shimmer button effect */
 .efectButton {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--primary-color) 25%, #ADB1FF 50%, var(--primary-color) 75%); /* Adjusted gradient colors */
+  background: linear-gradient(90deg, var(--primary-color) 25%, #ADB1FF 50%, var(--primary-color) 75%);
   background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: shimmer 3s infinite linear; /* Changed to linear for smoother animation */
   transition: background-position 0.5s ease;
 }
 
 .efectButton:hover {
-  background: linear-gradient(90deg, var(--primary-hover) 25%, var(--primary-color) 50%, var(--primary-hover) 75%); /* Adjusted gradient colors on hover */
-
+  background: linear-gradient(90deg, var(--primary-hover) 25%, var(--primary-color) 50%, var(--primary-hover) 75%);
 }
 
-/* אפקטים של זוהר עבור כפתור הקישור */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -554,186 +689,147 @@ p {
   }
 }
 
+/* Responsive topnav adjustments */
 @media screen and (max-width: 900px) {
-.topnav {
-  height: auto;
-  padding: 10px 0;
-  position: static;
-  overflow: hidden;
-}
+  .topnav {
+    height: auto;
+    padding: 10px 0;
+    position: static;
+    overflow: hidden;
+  }
 
-.topnav img {
-position: static;
-margin: 0 auto;
-}
+  .topnav img {
+    position: static;
+    margin: 0 auto;
+  }
 
-img.button-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+  img.button-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
 
-.parent-element {
-  max-width: 100%;
-  width: 100%;
-}
+  .parent-element {
+    max-width: 100%;
+    width: 100%;
+  }
 
+  .topnav h3 {
+    float: none;
+    font-size: 20px;
+  }
 
-.topnav h3 {
-  left: auto;
-  right: auto;
-  float: center;
-  font-size: 20px;
-}
+  .topnav a {
+    display: block;
+    float: none;
+    text-align: center;
+    padding: 10px 20px;
+  }
 
-.topnav a {
-  display: block;
-  float: none;
-  text-align: center;
-  padding: 10px 20px;
-}
+  .topnav a:hover,
+  .topnav a:active,
+  .topnav h3.current {
+    color: var(--primary-color);
+  }
 
-.topnav a:hover,
-.topnav a:active,
-.topnav h3.current {
-color: var(--primary-color); /* Primary color */
-}
+  .topnav,
+  .right-item {
+    float: none;
+    position: static;
+  }
 
-/* Content on the left side */
-.topnav {
-left: auto;
-right: auto;
-float: center;
-position: static;
-}
+  .right-item {
+    right: 5px;
+    float: right;
+  }
 
-.right-item {
-  right: 5px;
-  float: right;
-}
+  .feedback-button {
+    left: 0;
+    float: left;
+  }
 
-.feedback-button {
-  left: 0px;
-  float: left;
-}
+  .search-input {
+    width: 150px;
+    font-size: 16px;
+  }
 
-.search-input {
-  width: 150px;
-  font-size: 16px;
-}
+  .search-select {
+    width: 80px;
+    font-size: 14px;
+  }
 
-.search-select {
-  width: 80px;
-  font-size: 14px;
+  .search-button {
+    width: 60px;
+    font-size: 16px;
+  }
 
-}
+  .search-button,
+  .search-select,
+  .search-input {
+    height: 50px;
+  }
 
-.search-button {
-  width: 60px;
-  font-size: 16px;
-}
+  #resultsTable {
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+    width: 90%;
+    height: 60%;
+    padding: 5px;
+  }
 
-.search-button,
-.search-select,
-.search-input {
-  height: 50px; 
-}
+  #resultsTable table {
+    table-layout: fixed;
+  }
 
-
-#resultsTable {
-  margin-top: 15vh;
-  margin-bottom: 5vh;
-  width: 90%;
-  height: 60%;
-  padding: 5px;
-}
-
-#resultsTable table {
-  table-layout: fixed;
-  width: 100%;
-}
-
-th {
-  font-size: 12px;
-  text-align: center;
-}
-
-td {
-  font-size: 12px;
-}
+  th,
+  td {
+    font-size: 12px;
+    text-align: center;
+  }
 
   #resultsTable th:nth-child(1),
-  #resultsTable td:nth-child(1) {
-    width: 20%; /* Adjust the width for column 1 */
-  }
-  
+  #resultsTable td:nth-child(1),
   #resultsTable th:nth-child(3),
   #resultsTable td:nth-child(3),
   #resultsTable th:nth-child(4),
   #resultsTable td:nth-child(4) {
-    width: 20%; /* Adjust the width for columns 3 and 4 */
+    width: 20%;
   }
 
-#resultsTable th,
-#resultsTable td {
-  word-wrap: break-word;
-  max-width: 300px;
+  a {
+    padding: 7px 10px;
+  }
+
+  .fixed-bottom {
+    position: fixed;
+    padding-top: 5px;
+    text-align: center;
+    height: 50px;
+  }
+
+  .fixed-bottom p {
+    font-size: 12px;
+  }
 }
 
-a {
-  padding: 7px 10px;
-}
-
-.fixed-bottom {
-  position: fixed;
-  padding-top: 5px;
-  text-align: center;
-  height: 50px;
-  z-index: 9999;
-}
-
-.fixed-bottom p {
-  font-size: 12px;
-}
-
-#music-in-drive {
-  margin-top: 5px;
-  padding: 4px;
-}
-
-}
-
-/* עיצוב כפתור שיתוף שיר */
+/* Share button & modal */
 .share-button {
   font-size: 14px;
-  background-color: var(--primary-color); /* Primary color */
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white);
   margin: 12px;
-  border: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 3px;
   padding: 6px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .share-button:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;  
-  display: none;
+  background-color: var(--primary-hover);
 }
 
 .modal-content {
@@ -743,210 +839,132 @@ a {
   background-color: #f1f1f1;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 10001;
-}
-
-.modal-content h2 {
-  font-size: 18px;
-  color: #212121; /* טקסט ראשי */
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.modal-content p {
-  font-size: 14px;
-  color: #607D8B; /* Secondary text color */
-  line-height: 1.6;
-  margin-bottom: 20px;
 }
 
 .modal-content .share-link {
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   padding: 6px 15px;
-  background-color: var(--primary-color); /* Primary color */
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white);
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-}
-
-.modal-content .share-link:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
 }
 
 .copied-message {
   position: fixed;
   top: 10px;
   right: 10px;
-  background-color: var(--primary-color); /* Primary color */
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white);
   padding: 5px 10px;
   border-radius: 5px;
   z-index: 9999;
 }
 
-/* עיצוב כפתור "הצג סינגלים בלבד" */
+/* Filter button */
 .filter-container {
   text-align: center;
   margin-top: 13px;
 }
 
-.filter-container button {
-  font-family: var(--font-base); /* Arimo font */
+.filter-container button,
+#newsFilter {
+  font-family: var(--font-base);
   font-size: 14px;
-  background-color: #F3F3F3;
-  color: var(--primary-color); /* Primary color */
-  border: none;
   border-radius: 20px;
   padding: 6px 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--primary-color); /* Primary color border */
+  border: 1px solid var(--primary-color);
+}
+
+.filter-container button {
+  background-color: #F3F3F3;
+  color: var(--primary-color);
+  border: none;
 }
 
 .filter-container button:hover {
   background-color: #EDEDED;
-  color: var(--primary-hover); /* Darker primary color on hover */
+  color: var(--primary-hover);
 }
 
 #newsFilter {
-  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color)); /* Primary to highlight gradient */
-  color: #fff;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--primary-color); /* Primary color border */
+  background: linear-gradient(135deg, var(--primary-color), var(--highlight-color));
+  color: var(--white);
   display: none;
+}
+
+#newsFilter.active {
+  display: inline-block;
 }
 
 #newsFilter:hover {
-  background: linear-gradient(135deg, var(--primary-hover), #00838F); /* Darker primary to darker highlight gradient on hover */
-  color: #FFD700; /* Gold text color on hover for contrast */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-  border: 1px solid #00838F; /* Darker highlight border on hover */
+  background: linear-gradient(135deg, var(--primary-hover), #00838F);
+  color: #FFD700;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #00838F;
 }
 
-/* Styles for the "OK" button */
-#modalOkButton {
-  display: inline-block;
-  margin-top: 	10px;
-  padding: 5px 10px;
-  background-color: var(--primary-color); /* Primary color */
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  cursor: pointer; 
-  transition: background-color 0.3s ease;
-}
-
-#modalOkButton:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
-}
-
-/* עיצוב הודעת עזרה */
-
-.help-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  display: none;
+/* Help modal elements */
+.help-modal img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
 }
 
 .prev-step,
 .next-step {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	font-size: 18px;
-	color: var(--primary-color); /* Primary color */
-	cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .prev-step {
-	left: 10px;
+  left: 10px;
 }
 
 .next-step {
-	right: 10px;
+  right: 10px;
 }
 
-/* Close button */
 .close-button {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	font-size: 24px;
-	cursor: pointer;
-	color: #666;
-}
-
-.help-modal {
-	padding: 40px;
-	text-align: center;
-}
-
-.help-modal img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px; /* Add rounded edges */
-	margin-top: 10px; /* Adjust spacing between text and image */
-}
-
-.help-modal h2 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 24px;
-  color: #212121; /* טקסט ראשי */
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.help-modal p {
-  font-size: 16px;
-  color: #607D8B; /* Secondary text color */
-  line-height: 1.6;
-  margin-bottom: 5px;
-}
-
-.help-modal-container {
-	width: 500px;
-	height: 400px; /* Set your desired height here */
-	background-color: #f1f1f1;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	z-index: 10001;
-	position: relative;
-	overflow-y: none;
+  cursor: pointer;
+  color: #666;
 }
 
 .helpButton {
-  font-family: var(--font-base);  /* Arimo font */
+  font-family: var(--font-base);
   font-weight: bold;
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 13px;
   padding: 8px 20px;
-  background-color: #FFFFFF; /* White background */
-  color: var(--primary-color);       /* Primary color text */
-  border-radius:24px;
-  border-style: solid;
-  border-color: var(--primary-color);  /* Primary color border */
+  background-color: var(--white);
+  color: var(--primary-color);
+  border-radius: 24px;
+  border: 1px solid var(--primary-color);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .helpButton:hover {
-  color: white;
-  background-color: var(--primary-hover);  /* Darker primary color on hover */
+  color: var(--white);
+  background-color: var(--primary-hover);
 }
 
-/* הודעת "מוריד כעת" */
+/* Loading message */
 .loading-message {
   display: none;
   position: fixed;
@@ -956,12 +974,16 @@ a {
   padding: 10px 15px;
   border-radius: 10px;
   font-weight: bold;
-  color: #212121;  /* טקסט ראשי */
+  color: #212121;
   background-color: #F3F3F3;
   font-size: 16px;
-  box-shadow: 2px 5px 15px rgba(126, 87, 194, 0.4); /* Shadow with primary color */
+  box-shadow: 2px 5px 15px rgba(126, 87, 194, 0.4);
   z-index: 9999;
   align-items: center;
+}
+
+.loading-message.show {
+  display: flex;
 }
 
 .loading-message img {
@@ -970,14 +992,11 @@ a {
   margin-left: 6px;
 }
 
-.loading-message.show {
-  display: flex;
-}
-
+/* Progress bar */
 .progress-bar-container {
   text-align: center;
-  display: flex; /* Add this line */
-  align-items: center; /* Add this line */
+  display: flex;
+  align-items: center;
 }
 
 .progress-bar {
@@ -993,71 +1012,66 @@ a {
   width: 0;
   height: 100%;
   border-radius: 5px;
-  background: linear-gradient(to right, var(--highlight-color), var(--primary-color)); /* Highlight to primary gradient fill */
+  background: linear-gradient(to right, var(--highlight-color), var(--primary-color));
   transition: width 0.3s ease-in-out;
 }
 
-/* Style for the "Load more" button */
+/* Load more button */
 #loadMoreButton {
-  background-color: var(--primary-hover);  /* Darker primary color */
-  color: #fff; /* Text color */
-  font-size: 16px; /* Font size */
-  border: none; /* Remove borders */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px 20px; /* Padding */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s ease; /* Smooth background color transition */
-  margin: 20px auto; /* Center the button horizontally */
-  display: none; /* Make it a block element for centering */
+  background-color: var(--primary-hover);
+  color: var(--white);
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 20px auto;
+  display: none;
 }
 
-/* Hover effect for the button */
+#loadMoreButton.show {
+  display: block;
+}
+
 #loadMoreButton:hover {
-  background-color: var(--primary-color); /* Primary color on hover */
+  background-color: var(--primary-color);
 }
 
-/* Style for album and singer buttons */
+/* Album & Singer buttons */
 .album-button,
 .singer-button {
   background: none;
   border: none;
-  padding: 0;
+  padding: 5px;
   font-size: inherit;
   font-family: inherit;
   color: inherit;
   cursor: pointer;
-  padding: 5px;
-  transition: color 0.1s; /* Smooth color transition on hover */
+  transition: color 0.1s;
 }
 
-/* Change text color on hover */
 .album-button:hover,
 .singer-button:hover {
-  color: var(--primary-hover);  /* Darker primary color on hover */
+  color: var(--primary-hover);
   font-weight: 500;
-  background: white;
-  padding: 5px;
+  background: var(--white);
   border-radius: 5px;
 }
 
-/* אפקט אדווה לסרגל הכותרת */
+/* Ripple header effect */
 .ripple-header::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.2);
-    animation: ripple 4s linear;
-    animation-fill-mode: forwards;
-    border-radius: inherit; /* Ensure the ripple covers the entire header */
-    z-index: -1; /* Place the ripple behind the header content */
-}
-
-header.clicked::after {
-  animation: ripple 4s linear;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  animation: ripple 4s linear forwards;
+  border-radius: inherit;
+  z-index: -1;
 }
 
 @keyframes ripple {
@@ -1071,92 +1085,92 @@ header.clicked::after {
   }
 }
 
-/* עיצוב עבור כפתורי הקודם והבא */
-
+/* Navigation section buttons */
 #prevSection,
 #nextSection {
-    position: fixed;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #EDEDED; /* Light gray background */
-    color: #555; /* Dark gray text color */
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: background 0.3s, color 0.3s; /* Smooth transition on hover */
-    border: 2px solid var(--primary-color);  /* Primary color border */
-    bottom: 50px;
+  position: fixed;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EDEDED;
+  color: #555;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s, color 0.3s;
+  border: 2px solid var(--primary-color);
+  bottom: 50px;
 }
 
 #prevSection {
-  left: 50%; /* Set the button to be centered on the right */
-  margin-left: 45px; /* Adjust the margin to prevent overlapping */
+  left: 50%;
+  margin-left: 45px;
 }
 
 #nextSection {
-  right: 50%; /* Set the button to be centered on the left */
-  margin-right: 45px; /* Adjust the margin to prevent overlapping */
+  right: 50%;
+  margin-right: 45px;
 }
 
 #prevSection:hover,
 #nextSection:hover {
-    background: var(--primary-hover);  /* Darker primary color background on hover */
-    color: white; /* White text color on hover */
+  background: var(--primary-hover);
+  color: var(--white);
 }
 
 #prevSection:active,
 #nextSection:active {
-    background: var(--primary-color); /* Primary color background on click */
-    color: white; /* White text color on click */
+  background: var(--primary-color);
+  color: var(--white);
 }
 
+/* Responsive nav section buttons */
 @media screen and (max-width: 600px) {
-    #prevSection,
-    #nextSection {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-		bottom: 50px;
-    }
+  #prevSection,
+  #nextSection {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
 }
 
-/* אפקטים עבור לחיצה ומעבר על שורה בטבלה */
-.custom-table tbody.songs-list tr:hover {
-  background-color: #e0e0e0;  /* Slightly darker gray background on hover */
-}
-
+/* Table row hover effects */
+.custom-table tbody.songs-list tr:hover,
 .custom-table tbody.songs-list tr:active {
-  background-color: #e0e0e0be;  /* Slightly darker gray on active */
+  background-color: #e0e0e0;
 }
 
-.custom-table tbody.songs-list tr, .custom-table tbody.songs-list tr a, .custom-table tbody.songs-list tr button {
+.custom-table tbody.songs-list tr,
+.custom-table tbody.songs-list tr a,
+.custom-table tbody.songs-list tr button {
   cursor: pointer;
 }
 
-.custom-table tbody.songs-list td, .custom-table tbody.songs-list th {
-  border-radius: 0px;
-}
-
-.custom-table tbody.songs-list tr td {
+.custom-table tbody.songs-list td,
+.custom-table tbody.songs-list th {
+  border-radius: 0;
+  padding: 10px;
   border-collapse: collapse;
 }
 
-.custom-table tbody.songs-list td, .custom-table tbody.songs-list th {
-  padding: 10px; /* Adjust the padding as needed */
-}
-
+/* Color transition animation */
 @keyframes colorTransition {
-  0% { color: var(--primary-color); }  /* Primary color */
-  50% { color: var(--highlight-color); }  /* Highlight color */
-  100% { color: #AED581; } /* Hover/interaction color */
+  0% {
+    color: var(--primary-color);
+  }
+  50% {
+    color: var(--highlight-color);
+  }
+  100% {
+    color: #AED581;
+  }
 }
 
-/* סגנון לדף 404 */
+/* 404 Error page */
 .error-page {
-  background-color: #ECEFF1;  /* Lighter primary background */
-  color: #212121;  /* טקסט ראשי */
+  background-color: #ECEFF1;
+  color: #212121;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
@@ -1179,21 +1193,26 @@ header.clicked::after {
   margin-bottom: 2rem;
 }
 
-.error-page .btn {
-  background-color: var(--primary-color);  /* Primary color */
-  color: white;
-  border: none;
+.error-page .btn,
+.artists-list a {
   border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.error-page .btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
 }
 
 .error-page .btn:hover {
-  background-color: var(--primary-hover);  /* Darker primary color on hover */
+  background-color: var(--primary-hover);
 }
 
-/* סגנון לדף רשימת האמנים */
+/* Artist list page */
 .artists-list {
   padding: 240px 20px 60px 20px;
-  background-color: #ECEFF1;  /* Lighter primary background */
+  background-color: #ECEFF1;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1202,7 +1221,7 @@ header.clicked::after {
   text-align: center;
   font-size: 2em;
   margin-bottom: 20px;
-  color: #212121;  /* טקסט ראשי */
+  color: #212121;
 }
 
 .artists-list ul {
@@ -1221,39 +1240,35 @@ header.clicked::after {
 .artists-list a {
   padding: 20px;
   text-decoration: none;
-  color: var(--primary-color);       /* Primary color */
+  color: var(--primary-color);
   font-size: 1.2em;
-  border-radius: 5px;
   display: block;
   text-align: center;
-  border: 1px solid var(--primary-color);  /* Primary color border */
-  border-radius: 8px;
-  background-color: #f5f5f5;  /* Light gray background */
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  border: 1px solid var(--primary-color);
+  background-color: #f5f5f5;
 }
 
 .artists-list a:hover {
-  background-color: var(--primary-color);  /* Primary color on hover */
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--white);
   transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-	
   .artists-list {
-	padding-top: 140px;
-    }	
+    padding-top: 140px;
+  }
 }
 
-/* סגנונות עבור קישור רשימת האמנים בסרגל העליון */
+/* Artists link in topnav */
 .artists-link {
-  font-size: 20px; /* גודל הסמל */
-  color: white; /* צבע הסמל */
-  background-color: var(--primary-color); /* Primary color */
+  font-size: 20px;
+  color: var(--white);
+  background-color: var(--primary-color);
   border: none;
   padding: 8px;
-  border-radius: 50%; /* עיגול הכפתור */
-  margin-right: 10px; /* רווח בין הכפתורים */
+  border-radius: 50%;
+  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   display: flex;
@@ -1262,11 +1277,11 @@ header.clicked::after {
 }
 
 .artists-link:hover {
-  background-color: var(--primary-hover); /* Darker primary color on hover */
-  transform: scale(1.1); /* הגדלת הכפתור בעת ריחוף */
+  background-color: var(--primary-hover);
+  transform: scale(1.1);
 }
 
-/* התאמות לנייד */
+/* Responsive artists link & site title */
 @media screen and (max-width: 900px) {
   .artists-link {
     font-size: 18px;
@@ -1281,13 +1296,11 @@ header.clicked::after {
     padding: 5px;
     margin-right: 6px;
   }
-  
-  /* חבוי את הטקסט "שיר-בוט" במסכים קטנים */
+
   .site-title {
-    display: none;
+    display: none; /* Hide site title on smaller screens */
   }
 
-  /* התאמת סגנון h3#nextObject */
   #nextObject {
     display: flex;
     align-items: center;
@@ -1297,49 +1310,62 @@ header.clicked::after {
 
   .topnav img {
     align-self: center;
-    }
-  
-  /* התאמת רווחים ועיצוב נוסף אם נדרש */
+  }
+
   .parent-element {
-    gap: 5px; /* רווח קטן יותר בין הפריטים */
+    gap: 5px;
   }
 }
 
-/* Heading styles */
-h1, h2, h3, h4, h5, h6 {
+/* Heading styles (consolidated) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.topnav h3,
+.instructions-container h3,
+.modal h2,
+.help-modal h2,
+.modal-content h2, /* Added modal-content h2 */
+.get-title {
   font-family: var(--font-base);
   font-weight: 700;
 }
 
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.75em; }
-h4 { font-size: 1.5em; }
-h5 { font-size: 1.25em; }
-h6 { font-size: 1em; }
-
-.topnav h3 {
-  font-weight: 600;
+.topnav h3,
+.modal h2,
+.help-modal h2,
+.modal-content h2,
+.get-title {
+  font-weight: 600; /* Override to 600 for specific elements */
 }
 
 .instructions-container h3 {
-  font-weight: 700;
+  font-weight: 700; /* Ensure instructions-container h3 remains 700 */
 }
 
-.modal h2,
-.help-modal h2 {
-  font-weight: 600;
+h1 {
+  font-size: 2.5em;
 }
 
-.get-title {
-  font-weight: 600;
+h2 {
+  font-size: 2em;
 }
 
-/* Combine caret rules into one block */
-.search-input::-webkit-caret,
-.search-input::-moz-caret,
-.search-input::caret {
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--primary-color);  /* Primary color */
+h3 {
+  font-size: 1.75em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1.25em;
+}
+
+h6 {
+  font-size: 1em;
 }

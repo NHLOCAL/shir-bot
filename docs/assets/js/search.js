@@ -1,20 +1,10 @@
 // assets/js/search.js
 
-// --- Dependencies ---
-// This file relies on functions defined in core.js:
-// - showMessage()
-// - copyToClipboard()
-// - showCopiedMessage()
-// It also relies on functions/variables potentially defined in homepage.js:
-// - showSearchResultsView()
-// - showHomepageView()
-// It also relies on the global 'baseurl' variable.
-
 // --- Global Variables & State ---
 let allSongs = [];
 let results = [];
 let displayedResults = 0;
-let showSinglesOnly = false; // Default to false (can be toggled if needed)
+let showSinglesOnly = true; // Default to false (can be toggled if needed)
 let downloadPromises = [];
 let downloadedSongsCount = 0;
 let totalSongsToDownload = 0;
@@ -179,23 +169,28 @@ async function searchSongs(query, searchBy) {
 
 
 function performSearch(query, searchBy) {
-    let filteredSongs;
+    let baseSongsToFilter; // Use a temporary variable
 
-    // Apply "Singles Only" filter if active (current default is false)
+    // Apply "Singles Only" filter if active
     if (showSinglesOnly) {
-        filteredSongs = allSongs.filter(song =>
-            song.album?.toLowerCase().includes('סינגלים') || song.singer?.toLowerCase().includes('סינגלים')
+        // Filter the master list 'allSongs' first
+        // Ensure checks handle null/undefined and non-string types gracefully
+        baseSongsToFilter = allSongs.filter(song =>
+            (song.album && typeof song.album === 'string' && song.album.toLowerCase().includes('סינגלים')) ||
+            (song.singer && typeof song.singer === 'string' && song.singer.toLowerCase().includes('סינגלים'))
         );
+         // console.log(`Filtering singles: ${allSongs.length} -> ${baseSongsToFilter.length}`); // Optional debug log
     } else {
-        filteredSongs = allSongs; // Use all loaded songs
+        // If not filtering by singles, use the entire list
+        baseSongsToFilter = allSongs;
     }
 
-    // Apply the main search filter
-    results = filterSongs(filteredSongs, query, searchBy);
+    // Apply the main search query filter ON TOP of the base list (which might already be filtered for singles)
+    results = filterSongs(baseSongsToFilter, query, searchBy);
 
     // Reset display count and show initial results
     displayedResults = 0;
-    const initialResultsToShow = results.slice(0, 250); // Show first 250
+    const initialResultsToShow = results.slice(0, 250); // Show first 250 of the FINAL results
     displayedResults = initialResultsToShow.length;
 
     displayResults(initialResultsToShow, false); // Display new results, overwrite old
@@ -636,6 +631,35 @@ async function downloadSong(songNumber) {
         showMessage("שגיאה: מספר שיר לא תקין.");
         return Promise.reject(new Error("Invalid song number")); // Return a rejected promise with an Error object
     }
+
+    // --- ADD THIS CHECK BACK ---
+    // Retrieve the full song details to check album/singer name
+    // Search within the 'results' array first if available, otherwise fallback to 'allSongs'
+    // Note: 'results' reflects the currently displayed filtered list.
+    let songData = results.find(s => s.serial === songNumber);
+    if (!songData) {
+        // If not in current results (e.g., direct link?), check allSongs
+        songData = allSongs.find(s => s.serial === songNumber);
+    }
+
+    // Check if filtering by singles is active AND song data was found
+    if (showSinglesOnly && songData) {
+        // Check if either album or singer contains "סינגלים"
+        const isSingle = (songData.album && typeof songData.album === 'string' && songData.album.toLowerCase().includes('סינגלים')) ||
+                         (songData.singer && typeof songData.singer === 'string' && songData.singer.toLowerCase().includes('סינגלים'));
+
+        // If it's NOT identified as a single, show message and reject
+        if (!isSingle) {
+            showMessage('באתר זה מוצגים סינגלים בלבד. לא ניתן להוריד שיר זה.');
+            // Find the corresponding row and remove the 'download-in-progress' class if it exists
+            // Use optional chaining for safety in case resultsTableBody is null
+            const row = resultsTableBody?.querySelector(`tr[data-song-serial="${songNumber}"]`);
+            if (row) row.classList.remove('download-in-progress');
+            return Promise.reject(new Error("Attempted to download non-single item")); // Reject the download
+        }
+    }
+    // --- END OF ADDED CHECK ---
+
 
     // Prevent multiple simultaneous downloads of the *same* song
     const existingPromise = downloadPromises.find(p => p.songNumber === songNumber);

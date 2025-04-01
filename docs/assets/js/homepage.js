@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchResultsArea = document.getElementById('search-results-area');
 
     const NUM_ARTISTS_TO_SHOW = 6;
-    const NUM_SONGS_TO_SHOW = 6;
+    const NUM_SONGS_TO_SHOW = 5;
 
     // --- Data Fetching and Parsing (Adapted from search.js - ensure consistency) ---
     async function fetchCSV(url) {

@@ -795,14 +795,15 @@ async function downloadSong(songNumber) {
 function updateProgressDisplay(percentage, currentQueuePosition, statusText = '') {
     // Only update if the loading message is actually visible
     if (loadingMessage && loadingMessage.classList.contains('show')) {
-        let progressPrefix = '';
-        // Show count like "1/3" only if multiple downloads are queued for this batch
-        if (totalSongsToDownload > 1) {
-             // Use the queue position passed in, representing the Nth song in the batch
-             progressPrefix = `${currentQueuePosition || '?'}/${totalSongsToDownload}`;
+        let progressPrefix = ''; // Initialize prefix
+
+        // Show count like "1/3" ONLY if updating a specific item's progress
+        // (currentQueuePosition is not null) AND multiple downloads are queued.
+        if (currentQueuePosition !== null && totalSongsToDownload > 1) {
+            progressPrefix = `${currentQueuePosition}/${totalSongsToDownload}`;
         }
 
-        // Update the text message
+        // Update the text message - always show status, optionally preceded by prefix
         if (progressText) {
             progressText.innerText = `${progressPrefix} ${statusText}`.trim();
         }
@@ -813,17 +814,15 @@ function updateProgressDisplay(percentage, currentQueuePosition, statusText = ''
             // Base percentage on successfully completed songs
             displayPercentage = Math.round((downloadedSongsCount / totalSongsToDownload) * 100);
 
-            // If the currently updating item provides a percentage, factor it in lightly
-            // (This gives a sense of progress for the current item but focuses on overall completion)
-            if (percentage !== null && downloadPromises.length > 0) {
+            // If the currently updating item (not null position) provides a percentage,
+            // factor it in lightly for visual feedback during processing.
+            if (currentQueuePosition !== null && percentage !== null && downloadPromises.length > 0) {
                  const weightOfCurrent = 1 / totalSongsToDownload; // Weight of the current item
                  const currentItemContribution = percentage * weightOfCurrent;
-                 // Adjust overall percentage slightly towards current item's progress
-                 // This is heuristic: aims to show *some* movement while one is active
                  const baseCompletedPercentage = (downloadedSongsCount / totalSongsToDownload) * 100;
-                 // Ensure we don't exceed 100 or go below the completed count %
+                 // Adjust overall percentage slightly towards current item's progress,
+                 // but don't let it go below the already completed % or above 100.
                  displayPercentage = Math.max(baseCompletedPercentage, Math.min(100, baseCompletedPercentage + currentItemContribution));
-
             }
              // Ensure display percentage is clamped between 0 and 100
              displayPercentage = Math.max(0, Math.min(100, Math.round(displayPercentage)));

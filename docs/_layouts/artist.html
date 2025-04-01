@@ -30,7 +30,7 @@ layout: default
     </thead>
     <tbody class="songs-list">
       {% for song in page.songs %}
-      <tr onclick="downloadSong('{{ song.number }}')">
+      <tr > <!-- Removed onclick attribute -->
         <td><a>{{ song.number }}</a></td>
         <td>{{ song.name }}</td>
         <td>{{ song.album }}</td>

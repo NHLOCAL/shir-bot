@@ -445,6 +445,12 @@ function displayResults(resultsToDisplay, append = false) {
 
         // Row Click Listener (for downloading)
         row.addEventListener('click', (event) => {
+
+            // בדוק אם הלחיצה (event.target) או אחד מאבותיו הקרובים הוא קישור או כפתור
+            if (event.target.closest('a, button')) {
+                // console.log("Clicked inside a link or button, preventing row download trigger.");
+                return; // אל תפעיל הורדה אם הלחיצה היתה על אלמנט אינטראקטיבי
+            }
             // Only trigger download if not clicking on a link or button within the row
             if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
                 event.preventDefault();

@@ -24,8 +24,8 @@ let totalSongsToDownload = 0;
 // DOM Elements (מעודכן - הסרת אלמנטים לא רלוונטיים)
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
-const artistSearchButton = document.getElementById('artistSearchButton');
-const newSongsSearchButton = document.getElementById('newSongsSearchButton');
+// const artistSearchButton = document.getElementById('artistSearchButton');
+// const newSongsSearchButton = document.getElementById('newSongsSearchButton');
 // const singleFilterButton = document.getElementById('singleFilterButton'); // הסרה - מטופל עכשיו ישירות
 const loadMoreButton = document.getElementById('loadMoreButton');
 const resultsTableBody = document.querySelector('#resultsTable tbody');
@@ -59,17 +59,6 @@ document.querySelectorAll('.filter-button').forEach(button => {
     });
 });
 
-// מאזין ללחיצה על כפתור אמנים (ללא שינוי)
-artistSearchButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  window.location.href = baseurl + "/artists";
-});
-
-//מאזין ללחיצה על כפתור שירים חדשים (ללא שינוי)
-newSongsSearchButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  window.location.href = baseurl + "/new-songs";
-});
 
 // פונקציות חיפוש (מעודכן - שינוי קטן, ללא שינוי מהותי)
 async function searchSongs(query, searchBy) {
@@ -267,27 +256,41 @@ function performSearch(query, searchBy) {
   }
 
   results = filterSongs(filteredSongs, query, searchBy);
-  displayedResults = 250;
-  displayResults(results.slice(0, displayedResults));
+  displayedResults = 0; // איתחול מחדש בחיפוש חדש
+  const initialResultsToShow = results.slice(0, 250);
+  displayedResults = initialResultsToShow.length; // עדכון לכמות שהוצגה בפועל
 
+  displayResults(initialResultsToShow); // קריאה רגילה, תמחק תוכן קודם
+
+  // הצג/הסתר כפתור "טען עוד" בהתבסס על התוצאות הכוללות
   loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
 }
 
-// פונקציה להצגת התוצאות בטבלה (ללא שינוי מהותי)
-function displayResults(resultsToDisplay) {
-  resultsTableBody.innerHTML = '';
+// פונקציה להצגת התוצאות בטבלה (עם אפשרות להוספה)
+function displayResults(resultsToDisplay, append = false) { // הוספנו פרמטר append
+  // מחק תוכן קיים רק אם לא במצב הוספה
+  if (!append) {
+    resultsTableBody.innerHTML = '';
+  }
 
-  if (resultsToDisplay.length === 0) {
+  // אם אין תוצאות והטבלה ריקה (לא במצב הוספה), הצג הודעה
+  if (!append && resultsToDisplay.length === 0) {
     const instructionRow = document.createElement('tr');
     const instructionCell = document.createElement('td');
     instructionCell.setAttribute('colspan', '4');
     instructionCell.textContent = 'לא נמצאו תוצאות. אנא נסה חיפוש אחר';
     instructionRow.appendChild(instructionCell);
     resultsTableBody.appendChild(instructionRow);
-  } else {
+    // הסתר את כותרת הטבלה אם אין תוצאות
+    const theadElement = document.querySelector(".custom-table thead");
+     if (theadElement) {
+       theadElement.style.display = "none";
+     }
+  } else if (resultsToDisplay.length > 0) { // אם יש תוצאות להציג
+     // ודא שכותרת הטבלה מוצגת
     const theadElement = document.querySelector(".custom-table thead");
     if (theadElement) {
-      theadElement.style.display = "table-header-group";
+      theadElement.style.display = "table-header-group"; // ברירת המחדל או הערך הרצוי להצגה
     }
 
     resultsToDisplay.forEach(song => {
@@ -297,8 +300,10 @@ function displayResults(resultsToDisplay) {
       const serialCell = document.createElement('td');
       const serialLink = document.createElement('a');
       serialLink.textContent = song.serial;
+      serialLink.href = '#'; // מניעת קפיצה
       serialLink.addEventListener('click', function(event) {
-        event.stopPropagation();
+        event.preventDefault(); // מניעת ניווט
+        event.stopPropagation(); // מניעת לחיצת שורה
         const shareLink = window.location.origin + window.location.pathname;
         copyToClipboard(shareLink + `?search=${encodeURIComponent(song.serial)}`);
         showCopiedMessage();
@@ -317,8 +322,13 @@ function displayResults(resultsToDisplay) {
       albumButton.textContent = song.album;
       albumButton.classList.add('album-button');
       albumButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // מניעת לחיצת שורה
         event.preventDefault();
         searchInput.value = song.album.toLowerCase();
+        // הגדר את הבחירה ב-dropdown (אם אתה משתמש בגרסה עם dropdown)
+        // searchBySelect.value = 'album';
+        // הפעל את הסינון המתאים (אם אתה משתמש בגרסה עם כפתורי סינון)
+        handleFilterClick('album'); // ודא שפונקציה זו קיימת אם אתה משתמש בה
         searchSongs(song.album.toLowerCase(), 'album');
       });
       albumCell.appendChild(albumButton);
@@ -330,8 +340,13 @@ function displayResults(resultsToDisplay) {
       singerButton.textContent = song.singer;
       singerButton.classList.add('singer-button');
       singerButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // מניעת לחיצת שורה
         event.preventDefault();
         searchInput.value = song.singer.toLowerCase();
+        // הגדר את הבחירה ב-dropdown (אם אתה משתמש בגרסה עם dropdown)
+        // searchBySelect.value = 'singer';
+         // הפעל את הסינון המתאים (אם אתה משתמש בגרסה עם כפתורי סינון)
+        handleFilterClick('singer'); // ודא שפונקציה זו קיימת אם אתה משתמש בה
         searchSongs(song.singer.toLowerCase(), 'singer');
       });
       singerCell.appendChild(singerButton);
@@ -339,7 +354,7 @@ function displayResults(resultsToDisplay) {
 
       // הוספת אירוע לחיצה על השורה
       row.addEventListener('click', function(event) {
-        if (event.target.tagName !== 'BUTTON') {
+        if (event.target.tagName !== 'BUTTON' && event.target.tagName !== 'A') {
           event.preventDefault();
 
           if (
@@ -353,21 +368,43 @@ function displayResults(resultsToDisplay) {
         }
       });
 
-      resultsTableBody.appendChild(row);
+      resultsTableBody.appendChild(row); // הוספת השורה לטבלה
     });
 
-    // הוספת המחלקה לאחר הצגת השירים
-    resultsTableBody.classList.add('songs-list');
+    // הוספת המחלקה לאחר הצגת השירים (אם זה עדיין נחוץ)
+    if (!resultsTableBody.classList.contains('songs-list')) {
+       resultsTableBody.classList.add('songs-list');
+    }
   }
 }
 
 // פונקציה לטיפול ב"טען עוד" (ללא שינוי)
 loadMoreButton.addEventListener('click', loadMoreResults);
 
+// פונקציה לטיפול ב"טען עוד" (מעודכן - יצירת והוספת שורות חדשות בלבד)
+// פונקציה לטיפול ב"טען עוד" (מעודכן - קורא ל-displayResults עם append)
 function loadMoreResults() {
-  displayedResults += 250;
-  displayResults(results.slice(0, displayedResults));
+  console.log("Load More Clicked. Current displayed:", displayedResults, "Total results:", results.length); // בדיקה
+  const startIndex = displayedResults;
+  const newLimit = displayedResults + 250;
+  const endIndex = Math.min(newLimit, results.length);
+
+  if (startIndex >= results.length) {
+      console.log("No more results to load."); // אין עוד תוצאות
+      loadMoreButton.style.display = 'none'; // הסתר כפתור
+      return;
+  }
+
+  const newResultsToDisplay = results.slice(startIndex, endIndex);
+  console.log("Loading results from index", startIndex, "to", endIndex, "(", newResultsToDisplay.length, "new songs)");
+
+  displayResults(newResultsToDisplay, true); // קריאה לפונקציה עם append = true
+
+  displayedResults = endIndex; // עדכון מספר התוצאות המוצגות *אחרי* ההוספה
+
+  // עדכן נראות כפתור
   loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+  console.log("Load More Finished. New displayed:", displayedResults, "Button visible:", loadMoreButton.style.display);
 }
 
 // פונקציה להעתקת טקסט ללוח (ללא שינוי)

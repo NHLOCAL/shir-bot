@@ -2,38 +2,46 @@
 layout: default
 title: "שיר-בוט - מאגר מוזיקה יהודית" # Updated Title
 description: "גלו אמנים פופולריים ושירים חדשים במאגר המוזיקה היהודית הגדול. חיפוש והורדה קלה של שירים חסידיים, מזרחיים ועוד. שיר-בוט: הפלטפורמה שלכם למוזיקה יהודית." # Updated Description
-keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים" # Updated Keywords
+keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, סינגלים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים" # Updated Keywords (added singles)
 canonical_url: "https://nhlocal.github.io/shir-bot"
 ---
 
+<!-- --- Homepage Content Area (Initially Visible) --- -->
 <div id="homepage-content" class="content-area">
+  <!-- --- Main Columns for Artists and Songs --- -->
   <div class="main-columns">
       <div class="artists-column">
           <h2><i class="fas fa-users"></i> אמנים במאגר</h2>
           <div class="artists-grid" id="popular-artists-grid">
-              <!-- Artist circles will be loaded here by JavaScript -->
-              <div class="loading-placeholder">טוען אמנים...</div> <!--Placeholder -->
+              <!-- Artist circles will be loaded here by homepage.js -->
+              <div class="loading-placeholder">טוען אמנים...</div> <!-- Placeholder -->
           </div>
       </div>
       <div class="songs-column">
           <h2><i class="fas fa-headphones-alt"></i> שירים מהמאגר</h2>
           <ul id="random-songs-list">
-              <!-- Song list items will be loaded here by JavaScript -->
-              <li class="loading-placeholder">טוען שירים...</li> <!--Placeholder -->
+              <!-- Song list items will be loaded here by homepage.js -->
+              <li class="loading-placeholder">טוען שירים...</li> <!-- Placeholder -->
           </ul>
       </div>
   </div>
 
-  <div class="ad-banner-container" id="ad-banner-container"> <!--Renamed container, use this ID for CSS/JS -->
-    <!--Content will be injected here by ads.js -->
-     <div class="loading-placeholder">טוען פרסומת...</div> <!--Placeholder -->
+  <!-- --- Rotating Ad Banner Section --- -->
+  <div class="ad-banner-container" id="ad-banner-container">
+      <!-- Content will be injected here by ads.js -->
+       <div class="loading-placeholder">טוען פרסומת...</div> <!-- Placeholder -->
 
-    <!--Buttons for rotating ad - positioned inside the banner -->
-    <button id="prevSection" aria-label="הקודם"><i class="fas fa-chevron-right"></i></button> <!--Changed icon -->
-    <button id="nextSection" aria-label="הבא"><i class="fas fa-chevron-left"></i></button> <!--Changed icon -->
+      <!-- Buttons for rotating ad - positioned inside the banner by CSS -->
+      <button id="prevSection" aria-label="הקודם"><i class="fas fa-chevron-right"></i></button>
+      <button id="nextSection" aria-label="הבא"><i class="fas fa-chevron-left"></i></button>
+  </div>
 </div>
+<!-- --- End of Homepage Content Area --- -->
 
+
+<!-- --- Search Results Area (Initially Hidden) --- -->
 <div id="search-results-area" style="display: none;">
+    <!-- Loading Message for downloads (controlled by search.js) -->
     <div id="loadingMessage" class="loading-message">
         <div class="progress-bar-container">
             <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
@@ -44,9 +52,11 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
         </div>
     </div>
 
+    <!-- Results Table container (styling in CSS, content by search.js) -->
+    <!-- Note: Removed position:fixed from CSS for this element -->
     <div id="resultsTable" class="custom-table">
         <table>
-            <thead>
+            <thead> <!-- Structure needed by search.js, visibility controlled by CSS/JS -->
                 <tr>
                     <th>מספר סידורי</th>
                     <th>שם השיר</th>
@@ -55,14 +65,18 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
                 </tr>
             </thead>
             <tbody class="songs-list">
-                <!--Search results populated here by search.js -->
+                <!-- Search results populated here by search.js -->
+                <!-- Initial loading message/placeholder removed as displayResults handles it -->
             </tbody>
         </table>
-        <button id="loadMoreButton" style="display: none;">טען עוד</button> <!--Keep for search.js -->
+        <!-- Load More button (visibility controlled by search.js) -->
+        <button id="loadMoreButton" style="display: none;">טען עוד</button>
     </div>
 </div>
+<!-- --- End of Search Results Area --- -->
 
-<!----- Modal Overlay (controlled by core.js) --- -->
+
+<!-- --- Modal Overlay (controlled by core.js, used by search.js etc.) --- -->
 <div id="modalOverlay" class="modal-overlay">
     <div class="modal-content">
         <span id="modalMessage"></span><br>
@@ -70,7 +84,8 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
     </div>
 </div>
 
-<!----- Include homepage-specific JS and standard search JS --- -->
+
+<!-- --- Script Includes for Homepage --- -->
+<!-- core.js and ads.js are loaded via the default layout (_layouts/default.html) -->
 <script src="{{ site.baseurl }}/assets/js/homepage.js" defer></script>
 <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
-<!--ads.js and core.js are loaded via default.html layout -->

@@ -75,13 +75,27 @@ td {
 }
 
 #resultsTable {
-  position: fixed;
-  margin: 1vh 3% 5vh 3%;
-  width: 92%;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding: 10px;
+  margin: 1vh 3% 5vh 3%; /* Adjust margins as needed below */
+  width: 92%; /* Keep or adjust */
+  max-height: 60vh; /* Keep */
+  overflow-y: auto; /* Keep */
+  padding: 10px; /* Keep or adjust */
+  /* Add margin-top to create space from the search bar/header */
+  margin-top: 20px; /* Example value, adjust as needed */
+  /* Remove fixed-position related margins if they conflict */
+  margin-left: auto; /* Center horizontally if width is less than 100% */
+  margin-right: auto;
+  margin-bottom: 20px; /* Space from bottom or load more button */
+  /* Maybe remove width: 92% and let it take 100% of parent? */
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width */
 }
+
+/* You might need to adjust the parent container's padding/margin too */
+#search-results-area {
+  padding: 0 15px; /* Example padding for the area containing the table */
+}
+
 
 #resultsTable table {
   width: 100%;

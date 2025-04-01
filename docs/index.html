@@ -1,63 +1,77 @@
 ---
 layout: default
-title: "שיר-בוט"
-description: "חיפוש חופשי והורדה בתוך מאגר של עשרות אלפי שירים, מוזיקה בדרייב, מאגר שירים חרדי: הורדת שירים חינם באופן פשוט וקליל. שיר-בוט: הפלטפורמה להורדת שירים חרדיים ברמה הגבוהה ביותר."
-keywords: "הורדת שירים, מוזיקה בדרייב, שירים בדרייב, שירים חרדיים, מוזיקה חסידית, שיר-בוט, מאגר שירים, חיפוש שירים, זמרים חרדיים, שירים חסידיים, הורדה מהירה, מספר סידורי, אלבום, זמר, חרדים, יהדות, טקסטים, תורה, מוסיקליות, מועדים, אמנות, song downloads, Chassidic songs, Jewish music, Shir-Bot, song database, song search, Chassidic singers, Chassidic music, fast download, serial number, album, singer, Chassidic, Judaism, lyrics, Torah, musicality, holidays, art"
+title: "שיר-בוט - מאגר מוזיקה יהודית" # Updated Title
+description: "גלו אמנים פופולריים ושירים חדשים במאגר המוזיקה היהודית הגדול. חיפוש והורדה קלה של שירים חסידיים, מזרחיים ועוד. שיר-בוט: הפלטפורמה שלכם למוזיקה יהודית." # Updated Description
+keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים" # Updated Keywords
 canonical_url: "https://nhlocal.github.io/shir-bot"
 ---
-  
-<div dir="rtl" style="background-color:#FFFEDB;">
-  
-  <div id="loadingMessage" class="loading-message">
-    <div class="progress-bar-container">
-      <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
-      <span id="progressText"></span>
-      <div class="progress-bar">
-        <div id="progress" class="progress"></div>
+
+<div id="homepage-content" class="content-area">
+  <div class="main-columns">
+      <div class="artists-column">
+          <h2><i class="fas fa-users"></i> אמנים במאגר</h2>
+          <div class="artists-grid" id="popular-artists-grid">
+              <!-- Artist circles will be loaded here by JavaScript -->
+              <div class="loading-placeholder">טוען אמנים...</div> <!--Placeholder -->
+          </div>
       </div>
-    </div>
+      <div class="songs-column">
+          <h2><i class="fas fa-headphones-alt"></i> שירים מהמאגר</h2>
+          <ul id="random-songs-list">
+              <!-- Song list items will be loaded here by JavaScript -->
+              <li class="loading-placeholder">טוען שירים...</li> <!--Placeholder -->
+          </ul>
+      </div>
   </div>
-  
-  <div id="modalOverlay" class="modal-overlay">
-    <div class="modal-content">
-      <span id="modalMessage"></span><br>
-      <button id="modalOkButton" style="font-family: tahoma">אישור</button>
-    </div>
+
+  <div class="ad-section" id="instructions">
+      <div class="ad-placeholder" id="instructions-container">
+          <!--Content injected by ads.js -->
+           <p class="loading-placeholder">טוען תוכן...</p> <!--Placeholder -->
+      </div>
+      <button id="prevSection" aria-label="הקודם" style="display: none;"><</button> 
+      <button id="nextSection" aria-label="הבא" style="display: none;">></button>
   </div>
-  
-  <div id="resultsTable" class="custom-table">
-    <table>
-      <thead style="display: none">
-        <tr>
-          <th>מספר סידורי</th>
-          <th>שם השיר</th>
-          <th>שם האלבום</th>
-          <th>שם הזמר</th>		  
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr>
-          <td style="border-bottom: 0;" colspan="4">
-            <center id="instructions">
-              <div class="small-ad-container">
-                <div class="small-ad-left"></div> <!-- Small ads on the left -->
-                <div id="instructions-container" class="instructions-container">
-                  <!-- Content of the large rotating ad goes here -->
-                </div>
-                <div class="small-ad-right"></div> <!-- Small ads on the right -->
-              </div>
-              <button id="prevSection"><</button>
-              <button id="nextSection">></button>
-            </center>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button id="loadMoreButton">טען עוד</button>
-  </div>
-  
 </div>
 
-<!-- סקריפט ספציפי לדף הבית -->
+<div id="search-results-area" style="display: none;">
+    <div id="loadingMessage" class="loading-message">
+        <div class="progress-bar-container">
+            <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+            <span id="progressText"></span>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultsTable" class="custom-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>מספר סידורי</th>
+                    <th>שם השיר</th>
+                    <th>שם האלבום</th>
+                    <th>שם הזמר</th>
+                </tr>
+            </thead>
+            <tbody class="songs-list">
+                <!--Search results populated here by search.js -->
+            </tbody>
+        </table>
+        <button id="loadMoreButton" style="display: none;">טען עוד</button> <!--Keep for search.js -->
+    </div>
+</div>
+
+<!----- Modal Overlay (controlled by core.js) --- -->
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal-content">
+        <span id="modalMessage"></span><br>
+        <button id="modalOkButton" style="font-family: tahoma">אישור</button>
+    </div>
+</div>
+
+<!----- Include homepage-specific JS and standard search JS --- -->
+<script src="{{ site.baseurl }}/assets/js/homepage.js" defer></script>
 <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
+<!--ads.js and core.js are loaded via default.html layout -->

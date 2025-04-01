@@ -1182,3 +1182,254 @@ h4 {
     padding: 6px 12px;
   }
 }
+
+
+
+/* assets/css/personal.css */
+/* ... (keep all existing styles) ... */
+
+/* --- Styles from עיצוב לדוגמה.html --- */
+.content-area {
+  margin-top: 20px; /* Adjust as needed */
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px; /* Add some padding */
+}
+
+.main-columns {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.artists-column, .songs-column {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Styling for column headers */
+.artists-column h2, .songs-column h2 {
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: rgba(126, 87, 194, 0.1); /* Light purple background */
+  color: var(--primary-hover); /* Darker purple text */
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.artists-column h2 i, .songs-column h2 i {
+  margin-left: 10px;
+  font-size: 1em;
+  opacity: 0.8;
+}
+
+/* Artists Column Grid */
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  gap: 25px;
+  text-align: center;
+}
+
+.artist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none; /* Ensure item itself isn't underlined */
+}
+
+.artist-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px; /* Icon size */
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  text-decoration: none; /* Remove underline from icon link */
+}
+
+a.artist-circle:hover { /* Style the <a> tag specifically */
+  background-color: var(--primary-color);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.artist-name {
+  font-size: 0.9em;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* Songs Column List */
+.songs-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.songs-column li {
+  padding: 12px 8px; /* Slightly more padding */
+  border-bottom: 1px solid #d8dde2; /* Use var(--light-gray) if defined */
+  font-size: 0.95em;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 2px; /* Small gap between items */
+}
+
+.songs-column li:hover {
+  color: var(--primary-hover);
+  background-color: rgba(0,0,0,0.03); /* Subtle hover */
+}
+
+.songs-column li:last-child {
+  border-bottom: none;
+}
+
+.songs-column li i.song-icon {
+  margin-left: 12px;
+  color: var(--highlight-color);
+  font-size: 1em;
+  width: 20px;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.songs-column li:hover i.song-icon {
+  color: #00aabd; /* var(--highlight-hover) if defined */
+}
+
+/* Ad Section - Reuse existing instructions-container styling? */
+.ad-section {
+  margin-top: 30px;
+  position: relative; /* Needed for prev/next button positioning if they are absolute */
+}
+
+/* Style for rotating ad placeholder */
+/* Reuse .instructions-container if possible, or adapt this */
+.ad-placeholder {
+ background-color: var(--white);
+ color: var(--text-color);
+ border: 1px solid #d8dde2; /* Use var(--light-gray) if defined */
+ border-radius: 8px;
+ padding: 25px;
+ text-align: center;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+ min-height: 150px; /* Ensure it has some height */
+ position: relative; /* Context for prev/next buttons */
+ border: 3px solid var(--primary-color); /* Keep border from original */
+ max-width: 500px; /* Keep max-width from original */
+ min-width: 35%; /* Keep min-width */
+ margin: auto; /* Center */
+}
+
+.ad-placeholder h3 {
+  font-size: 1.3em;
+  color: var(--primary-color);
+  margin-top: 0; margin-bottom: 15px;
+  display: inline-flex; align-items: center;
+  background-color: transparent; padding: 0; border-radius: 0;
+  /* Remove conflicting styles from original instructions-container h3 if needed */
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  font-weight: 700;
+}
+.ad-placeholder h3 i { margin-left: 8px; opacity: 0.8; }
+.ad-placeholder p {
+  font-size: 1em; /* Adjust if needed */
+  line-height: 1.6; margin-bottom: 20px; color: #555;
+  /* Original instructions-container p */
+  margin-bottom: 15px;
+  font-size: 20px;
+  padding: 0 20px;
+}
+.ad-placeholder a.helpButton, /* Style links inside if they use helpButton class */
+.ad-placeholder button.helpButton {
+ display: inline-block;
+ padding: 9px 20px;
+ background-color: var(--primary-color);
+ color: var(--white);
+ text-decoration: none; border-radius: 5px; font-weight: 600;
+ transition: background-color 0.3s ease, transform 0.2s ease;
+ /* Inherit other helpButton styles if necessary */
+ border: 1px solid var(--primary-color);
+ cursor: pointer;
+}
+.ad-placeholder a.helpButton:hover,
+.ad-placeholder button.helpButton:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  color: var(--white); /* Ensure text stays white */
+}
+
+/* Position ad rotation buttons relative to the ad container */
+#instructions #prevSection,
+#instructions #nextSection {
+  position: absolute;
+  bottom: 10px; /* Position at the bottom */
+  transform: translateY(0); /* Override previous transform */
+  width: 35px; height: 35px; font-size: 16px; /* Adjust size */
+  /* Keep other styles like background, color, border */
+  background: #EDEDED;
+  color: #555;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s, color 0.3s;
+  border: 2px solid var(--primary-color);
+  display: flex; /* Use flex to center icon */
+  align-items: center;
+  justify-content: center;
+}
+#instructions #prevSection { left: 10px; margin-left: 0;}
+#instructions #nextSection { right: 10px; margin-right: 0;}
+#instructions #prevSection:hover,
+#instructions #nextSection:hover { background: var(--primary-hover); color: var(--white); }
+#instructions #prevSection:active,
+#instructions #nextSection:active { background: var(--primary-color); color: var(--white); }
+
+
+/* Responsive adjustments */
+@media (max-width: 680px) {
+  .main-columns { flex-direction: column; gap: 30px; }
+  .artists-column, .songs-column { min-width: unset; }
+  .artists-column h2, .songs-column h2 { font-size: 1.3em; }
+}
+
+/* Loading placeholders */
+.loading-placeholder {
+  color: #999;
+  padding: 20px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* --- Visibility Toggle for Homepage/Search Results --- */
+/* #homepage-content { display: block; } Moved logic to JS inline style */
+/* #search-results-area { display: none; } Moved logic to JS inline style */
+
+/* Hide #resultsTable header initially or when no results */
+
+/* Adjust padding/margins if header/search bar overlaps */
+/* The existing .search-container margin-top should handle this */
+
+/* Ensure small ads (if still used) don't overlap */
+/* Small ads were inside the old #resultsTable tbody, they are removed */
+/* If you want small ads elsewhere, new CSS rules would be needed */

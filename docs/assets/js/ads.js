@@ -1,101 +1,42 @@
-// מודעת שדרוגים ועדכונים
-/*
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the message has been shown during the current visit
-  if (!localStorage.getItem("messageShown4")) {
-    // Display the modal overlay
-    var overlay = document.createElement("div");
-    overlay.classList.add("overlay");
+// assets/js/ads.js
 
-    var modal = document.createElement("div");
-    modal.classList.add("modal");
+// --- Global Variables & DOM Elements ---
+var baseurl = baseurl || ''; // Ensure baseurl is available
+const footerAdElement = document.querySelector(".fixed-bottom p"); // Moved selector here
+const contentSection = document.getElementById("instructions-container");
+const prevButton = document.getElementById("prevSection");
+const nextButton = document.getElementById("nextSection");
+const leftSmallAdContainer = document.querySelector(".small-ad-left");
+const rightSmallAdContainer = document.querySelector(".small-ad-right");
+const helpOverlay = document.querySelector(".help-overlay");
 
-    // Ad content
-    modal.innerHTML = `
-      <h2>ההגרלה הגדולה - רשימת הזוכים</h2>
-      <p><b>פרס ראשון:</b></p><p>הזוכה הוא - si*******4@gmail.com</p>
-      <p><b>פרס שני:</b></p><p>הזוכה הוא - e******9@gmail.com</p>
-      <p><b>פרס שלישי:</b></p><p>הזוכה הוא - m**********2@gmail.com</p>
-      <br><p>הודעה נמסרה לזוכים במייל</p>
-      <a style="" <a href="#" id="searchButton">אישור</a>
-      <br><br><a href="https://nhlocal.github.io/shir-bot/old" id="searchButton" style="margin: 0; padding: 0; border: none; background: none; color: inherit; text-decoration: underline;">לכניסה לאתר הישן</a>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Close the modal overlay and move to the search input when clicking "אישור"
-    var searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", function(event) {
-      event.preventDefault();
-      overlay.remove();
-      var searchInput = document.querySelector("#searchInput");
-      if (searchInput) {
-        searchInput.focus();
-      }
-
-      // Set local storage to indicate that the message has been shown during the current visit
-      localStorage.setItem("messageShown4", "true");
-
-      // Set a cookie with an expiration date of 30 days
-      var expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + 30);
-      document.cookie = "messageShown4=true; expires=" + expirationDate.toUTCString() + "; path=/";
-    });
-
-    // Close the modal overlay when clicking outside the modal content
-    overlay.addEventListener("click", function(event) {
-      if (event.target === overlay) {
-        overlay.remove();
-      }
-    });
-  }
-});
-*/
-
-
-
-
-// פרסומת מתחלפת לכותרת התחתונה
-
-// Step 1: Define an array of possible content for the footer.
-const footerContent = [
-  "קבל כעת גישה ל-500 ג'יגה של תוכן מוזיקלי <b>לשנה מלאה</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
-
-  "<b>ביט פלוס-הבית של המוזיקאים!</b> אנחנו מציעים מגוון רחב של כלי נגינה | מקצבים | הגברה | מדריכים למוזיקה <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot/' target='_blank' onclick='beatplus_ad()'>עברו לאתר</a>",
-];
-
-// Step 2: Get a reference to the footer element.
-const footer = document.querySelector(".fixed-bottom p");
-
-// Step 3: Initialize an index to keep track of the current content.
-let currentIndex = 0;
-
-// Step 4: Define a function to update the footer content.
-function updateFooterContent() {
-  // Set the innerHTML of the footer to the content at the current index.
-  footer.innerHTML = footerContent[currentIndex];
-
-  // Increment the index or reset it to 0 if it reaches the end.
-  currentIndex = (currentIndex + 1) % footerContent.length;
-}
-
-// Step 5: Use setInterval to call the updateFooterContent function every 30 seconds.
-setInterval(updateFooterContent, 30000);
-
-// Step 6: Call the updateFooterContent function initially to display the first content.
-updateFooterContent();
-
-
-// מאזין אירועים ללחיצה על פרסומת
+// --- GA Event Functions (Specific to Ads) ---
 function beatplus_ad() {
     gtag('event', 'ad_click', {
-      'event_category': 'Ads',
-      'event_label': 'BeatPlus Ad Click' // You can customize the label
+        'event_category': 'Ads',
+        'event_label': 'BeatPlus Ad Click'
     });
 }
 
+function conversion_music_drive() {
+     gtag('event', 'conversion', {
+        'event_category': 'Subscription',
+        'event_label': 'Music Drive Signup Click'
+     });
+}
 
+// --- Footer Ad ---
+const footerContent = [
+    "קבל כעת גישה ל-500 ג'יגה של תוכן מוזיקלי <b>לשנה מלאה</b> <a id='music-in-drive' href='https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://nhlocal.github.io/shir-bot' target='_blank' onclick='conversion_music_drive()'>הרשם כאן!</a>",
+    "<b>ביט פלוס-הבית של המוזיקאים!</b> אנחנו מציעים מגוון רחב של כלי נגינה | מקצבים | הגברה | מדריכים למוזיקה <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot/' target='_blank' onclick='beatplus_ad()'>עברו לאתר</a>",
+];
+let currentFooterIndex = 0; // Renamed to avoid potential conflicts
+
+function updateFooterContent() {
+    if (!footerAdElement) return; // Guard clause
+    footerAdElement.innerHTML = footerContent[currentFooterIndex];
+    currentFooterIndex = (currentFooterIndex + 1) % footerContent.length;
+}
 
 // קוד להצגת מודעות בחזית האתר באופן אוטומטי
 const newContent1 = `
@@ -150,56 +91,37 @@ const newContent4 = `
 <button class="helpButton" onclick="window.open('https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot&utm_medium=site', '_blank')">להורדת התוכנה</button>
 `;
 
-const contentSection = document.getElementById("instructions-container");
-const prevButton = document.getElementById("prevSection");
-const nextButton = document.getElementById("nextSection");
-
-// Define an array of new content
-const newContents = [newContent2, newContent3, newContent4];
+const newContents = [newContent2, newContent3, newContent4]; // Assuming newContent1 was temporary/unused
 let currentContentIndex = 0;
-let interval; // Declare the interval variable outside the setInterval function
+let adInterval; // Declare the interval variable
 
-// Function to update the content section
 function updateContent() {
+    if (!contentSection) return; // Guard clause
     contentSection.innerHTML = newContents[currentContentIndex];
+     // Re-attach help button listener if needed after innerHTML change
+     const helpButton = contentSection.querySelector("#helpButton");
+     if(helpButton) {
+        helpButton.onclick = openHelp; // Re-assign if using direct onclick
+        // Or use addEventListener if preferred
+     }
 }
 
-// Function to handle the automatic content change
 function startAutoChange() {
-    interval = setInterval(() => {
+    if (!contentSection || !prevButton || !nextButton) return; // Guard if elements missing
+    clearInterval(adInterval); // Clear existing interval if any
+    adInterval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
         updateContent();
-    },15000); // Reduced the interval to 10 seconds for the example
+    }, 15000);
 }
 
-// Event listeners for previous and next buttons
-prevButton.addEventListener("click", () => {
-    currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
-    updateContent();
-    clearInterval(interval); // Reset the interval on arrow click
-    startAutoChange(); // Restart the automatic change
-});
-
-nextButton.addEventListener("click", () => {
-    currentContentIndex = (currentContentIndex + 1) % newContents.length;
-    updateContent();
-    clearInterval(interval); // Reset the interval on arrow click
-    startAutoChange(); // Restart the automatic change
-});
-
-// Initial content update
-updateContent();
-startAutoChange(); // Start the automatic content change
-
-
-// הודעת עזרה מפורטת
-
+// --- Help Modal ---
 let currentStep = 1;
 
 function showStep(stepChange) {
 	currentStep += stepChange;
-	const modalSteps = document.querySelectorAll('.help-modal');
-	
+	const modalSteps = document.querySelectorAll('.help-modal'); // Assuming these are inside the overlay
+
 	if (currentStep < 1) {
 		currentStep = 1;
 	} else if (currentStep > modalSteps.length) {
@@ -212,116 +134,197 @@ function showStep(stepChange) {
 	});
 
 	// Show the current step
-	modalSteps[currentStep - 1].style.display = 'block';
+	if (modalSteps[currentStep - 1]) {
+	    modalSteps[currentStep - 1].style.display = 'block';
+    }
 }
 
 function openHelp() {
-    // Get a reference to the Help button
-    // Get a reference to the Help button
-    const helpButton = document.getElementById("helpButton");
-
-    // Get a reference to the Help overlay
-    const overlay = document.querySelector(".help-overlay");
-
-    // Show the Help overlay
-    overlay.style.display = "flex"; // Display the overlay when the button is clicked
+    if (helpOverlay) {
+        helpOverlay.style.display = "flex";
+        currentStep = 1; // Reset to first step
+        showStep(0); // Show the initial step
+    }
 }
 
 function closeHelp() {
-	const overlay = document.querySelector('.help-overlay');
-	overlay.style.display = 'none';
+	if (helpOverlay) {
+	    helpOverlay.style.display = 'none';
+    }
 }
 
-
-// Function to fetch random singer's name and sample songs from the CSV file and singer list from a text file
+// --- Small Singer Suggestion Ads ---
 async function getRandomSingerData() {
-  try {
-      // Fetch singer list from text file
-      const singersResponse = await fetch(baseurl + '/assets/data/singers_list.txt');
-      const singersData = await singersResponse.text();
-      const singersList = singersData.split('\n').map(singer => singer.trim());
+    // Check if data files exist - return null if configured paths are invalid
+    if (!baseurl || typeof baseurl !== 'string') {
+        console.error("Base URL not configured for fetching data.");
+        return null;
+    }
+    const singersListPath = baseurl + '/assets/data/singers_list.txt';
+    const songsCsvPath = baseurl + '/assets/data/songs.csv'; // Assuming this path is now valid
 
-      // Fetch songs from CSV file
-      const songsResponse = await fetch(baseurl + '/assets/data/songs.csv');
-      const songsData = await songsResponse.text();
-      const lines = songsData.split('\n');
+    try {
+        // Fetch singer list
+        const singersResponse = await fetch(singersListPath);
+        if (!singersResponse.ok) throw new Error(`Failed to fetch singers list: ${singersResponse.statusText}`);
+        const singersData = await singersResponse.text();
+        const singersList = singersData.split('\n').map(singer => singer.trim()).filter(Boolean);
+        if (singersList.length === 0) throw new Error("Singers list is empty or invalid.");
 
-      // Select a random singer
-      const singerName = singersList[Math.floor(Math.random() * singersList.length)];
 
-      // Filter songs that belong to the selected singer
-      const singerSongs = lines.filter(line => {
-          const lineData = line.split(',');
-          return lineData.length === 4 && lineData[3].trim() === singerName;
-      }).map(song => song.split(',')[1].trim()); // Get song name from column B
+        // Fetch songs from CSV file
+        const songsResponse = await fetch(songsCsvPath);
+        if (!songsResponse.ok) throw new Error(`Failed to fetch songs CSV: ${songsResponse.statusText}`);
+        const songsData = await songsResponse.text();
+        const lines = songsData.split('\n');
 
-      // Select 4 random sample songs
-      const sampleSongs = [];
-      while (sampleSongs.length < 4 && singerSongs.length > 0) {
-          const randomIndex = Math.floor(Math.random() * singerSongs.length);
-          sampleSongs.push(singerSongs.splice(randomIndex, 1)[0]);
-      }
+        // Select a random singer
+        const singerName = singersList[Math.floor(Math.random() * singersList.length)];
 
-      return { singerName, sampleSongs };
-  } catch (error) {
-      console.error('Error fetching singer data:', error);
-      return null;
-  }
+        // Filter songs for the selected singer
+        const singerSongs = lines
+            .map(line => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)) // CSV parsing robust to commas in quotes
+            .filter(lineData => lineData.length >= 4 && lineData[3]?.trim() === singerName)
+            .map(lineData => lineData[1]?.trim()) // Get song name (column B, index 1)
+            .filter(Boolean); // Remove empty song names
+
+        // Select 4 random sample songs
+        const sampleSongs = [];
+        let attempts = 0; // Prevent infinite loop if not enough songs
+        while (sampleSongs.length < 4 && singerSongs.length > 0 && attempts < 20) {
+            const randomIndex = Math.floor(Math.random() * singerSongs.length);
+            sampleSongs.push(singerSongs.splice(randomIndex, 1)[0]);
+            attempts++;
+        }
+
+        // Fill remaining slots if fewer than 4 unique songs were found
+        while (sampleSongs.length < 4) {
+            sampleSongs.push("..."); // Placeholder
+        }
+
+
+        return { singerName, sampleSongs };
+    } catch (error) {
+        console.error('Error fetching singer data:', error);
+        // Don't display ads if data fetching fails
+        return null;
+    }
 }
 
-// Function to generate HTML content for small ads
-async function generateSmallAdHTML() {
-  const singerData1 = await getRandomSingerData();
-  const singerData2 = await getRandomSingerData();
-  if (singerData1 && singerData2) {
-      // Construct HTML for small ads
-      const smallAdHTML1 = `
-      <div class="small-ad-top">
-          <br>
-          <p class="ad-text">נסה לחפש את...</p>
-          <button class="helpButton" onclick="searchSongs('${singerData1.singerName}', 'singer')">${singerData1.singerName}</button>
-          <p class="title-song-list">מבחר משירי ${singerData1.singerName}</p> <!-- Added class for styling -->
-          <ul class="song-list">
-              <li>${singerData1.sampleSongs[0]}</li>
-              <li>${singerData1.sampleSongs[1]}</li>
-              <li>${singerData1.sampleSongs[2]}</li>
-              <li>${singerData1.sampleSongs[3]}</li>
-          </ul>
-      </div>
-  `;
-  
-  const smallAdHTML2 = `
-      <div class="small-ad-bottom">
-          <br>
-          <p class="ad-text">נסה לחפש את...</p>
-          <button class="helpButton" onclick="searchSongs('${singerData2.singerName}', 'singer')">${singerData2.singerName}</button>
-          <p class="title-song-list">מבחר משירי ${singerData2.singerName}</p> <!-- Added class for styling -->
-          <ul class="song-list">
-              <li>${singerData2.sampleSongs[0]}</li>
-              <li>${singerData2.sampleSongs[1]}</li>
-              <li>${singerData2.sampleSongs[2]}</li>
-              <li>${singerData2.sampleSongs[3]}</li>
-          </ul>
-      </div>
-  `;
-  
-      return smallAdHTML1 + smallAdHTML2;
-  } else {
-      // Handle error or no data retrieved
-      return '';
-  }
+// Function to trigger search from ad buttons (assuming search.js is loaded on the page)
+function searchFromAd(query, type) {
+    if (typeof searchSongs === 'function') {
+         // Find the search input and set its value
+         const searchInputElem = document.getElementById('searchInput');
+         if (searchInputElem) {
+            searchInputElem.value = query;
+         }
+         // Set the active filter visually (assuming filter buttons exist)
+         document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+         const filterButton = document.querySelector(`.filter-button[data-filter="${type}"]`);
+         if (filterButton) {
+            filterButton.classList.add('active');
+         }
+         // Call the main search function from search.js
+         searchSongs(query, type);
+    } else {
+        // Fallback: Redirect to index page with search parameters if searchSongs isn't available
+        window.location.href = `${baseurl}/?search=${encodeURIComponent(query)}&searchBy=${type}`;
+    }
 }
 
 
-// Update the content of the left and right small ad containers
+async function generateSmallAdHTML(singerData) {
+    if (!singerData) return ''; // Return empty if data is null
+
+    // Use the searchFromAd function for the button click
+    return `
+        <div class="small-ad-box"> <!-- Changed class for potential styling -->
+            <br>
+            <p class="ad-text">נסה לחפש את...</p>
+            <button class="helpButton" onclick="searchFromAd('${singerData.singerName}', 'singer')">${singerData.singerName}</button>
+            <p class="title-song-list">מבחר משירי ${singerData.singerName}</p>
+            <ul class="song-list">
+                <li>${singerData.sampleSongs[0] || '...'}</li>
+                <li>${singerData.sampleSongs[1] || '...'}</li>
+                <li>${singerData.sampleSongs[2] || '...'}</li>
+                <li>${singerData.sampleSongs[3] || '...'}</li>
+            </ul>
+        </div>
+    `;
+}
+
+
 async function updateSmallAds() {
-  const leftSmallAdContainer = document.querySelector(".small-ad-left");
-  const rightSmallAdContainer = document.querySelector(".small-ad-right");
+    if (!leftSmallAdContainer || !rightSmallAdContainer) return; // Guard clauses
 
-  // Replace inner HTML of left and right small ad containers with small ad content
-  leftSmallAdContainer.innerHTML = await generateSmallAdHTML();
-  rightSmallAdContainer.innerHTML = await generateSmallAdHTML();
+    const singerData1 = await getRandomSingerData();
+    const singerData2 = await getRandomSingerData();
+
+    // Generate HTML only if data was fetched successfully
+    leftSmallAdContainer.innerHTML = await generateSmallAdHTML(singerData1);
+    rightSmallAdContainer.innerHTML = await generateSmallAdHTML(singerData2);
 }
 
-// Initial update of small ads
-updateSmallAds();
+
+// --- Initialization ---
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize Footer Ad
+    if (footerAdElement) {
+        setInterval(updateFooterContent, 30000);
+        updateFooterContent(); // Initial display
+    }
+
+    // Initialize Instructions Ad Rotator
+    if (contentSection && prevButton && nextButton) {
+        prevButton.addEventListener("click", () => {
+            currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
+            updateContent();
+            startAutoChange(); // Reset interval on manual change
+        });
+
+        nextButton.addEventListener("click", () => {
+            currentContentIndex = (currentContentIndex + 1) % newContents.length;
+            updateContent();
+            startAutoChange(); // Reset interval on manual change
+        });
+
+        updateContent(); // Initial display
+        startAutoChange(); // Start automatic rotation
+    }
+
+    // Initialize Help Modal Button (assuming the button exists in the initial HTML or is added by updateContent)
+    // Using event delegation on a parent container might be more robust if the button is dynamically added/removed
+    document.body.addEventListener('click', function(event){
+        if(event.target && event.target.id === 'helpButton'){
+             openHelp();
+        }
+        // Add listener for close button if it exists within the help modal overlay
+        const closeBtn = helpOverlay?.querySelector('.close-help-button'); // Add a class/id to your close button
+        if (closeBtn && event.target === closeBtn) {
+            closeHelp();
+        }
+    });
+     // Also close help modal on overlay click
+     if(helpOverlay) {
+         helpOverlay.addEventListener('click', function(event){
+             if(event.target === helpOverlay){
+                 closeHelp();
+             }
+         });
+     }
+
+
+    // Initialize Small Ads (if placeholders exist)
+    if (leftSmallAdContainer && rightSmallAdContainer) {
+       updateSmallAds();
+    }
+
+    // Initial setup for help modal steps (hide all except first)
+     if (helpOverlay) {
+        const modalSteps = helpOverlay.querySelectorAll('.help-modal');
+        modalSteps.forEach((step, index) => {
+            step.style.display = index === 0 ? 'block' : 'none';
+        });
+     }
+});

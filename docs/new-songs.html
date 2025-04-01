@@ -62,25 +62,5 @@ permalink: /new-songs/
     </table>
 </div>
 
-<script>
-// --- העתקה ללוח (נשאר מחוץ ל-displaySongs) ---
-function copyToClipboard(text) {
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textArea);
-}
-
-// --- הודעת "הועתק" (נשאר מחוץ ל-displaySongs) ---
-function showCopiedMessage() {
-  const message = document.createElement('div');
-  message.textContent = 'הקישור הועתק ללוח';
-  message.classList.add('copied-message');
-  document.body.appendChild(message);
-  setTimeout(() => {
-    document.body.removeChild(message);
-  }, 3000);
-}
-</script>
+<!-- סקריפט ספציפי לדף שירים חדשים -->
+<script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script>

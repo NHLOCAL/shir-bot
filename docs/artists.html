@@ -14,19 +14,6 @@ permalink: /artists
   </ul>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var searchForm = document.getElementById('searchForm');
-    searchForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // מניעת שליחת הטופס ברירת מחדל
-
-        var searchInput = document.getElementById('searchInput').value.trim();
-
-        if (searchInput) {
-            // יצירת URL עם פרמטרי חיפוש
-            var redirectUrl = baseurl + "/?search=" + encodeURIComponent(searchInput);
-            window.location.href = redirectUrl;
         }
-    });
-});
-</script>
+<!-- סקריפט ספציפי לדף רשימת אמנים -->
+<script src="{{ site.baseurl }}/assets/js/artists-list.js" defer></script>

@@ -57,6 +57,15 @@
     {{ content }}
   </div>
   {% include footer.html %}
-  <script src="{{ site.baseurl }}/assets/js/messages.js"></script>
+  
+  <!-- הגדרת משתנה baseurl עבור JavaScript (חייב להופיע לפני שאר הסקריפטים) -->
+  <script>
+    var baseurl = "{{ site.baseurl }}";
+  </script>
+
+  <!-- סקריפטים מרכזיים וגלובליים -->
+  <script src="{{ site.baseurl }}/assets/js/core.js" defer></script>
+  <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script> <!-- טוען גם פרסומות וגם לוגיקת Modal עזרה -->
+
 </body>
 </html>

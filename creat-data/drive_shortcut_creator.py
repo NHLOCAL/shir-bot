@@ -7,7 +7,6 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-# from googleapiclient.http import MediaFileUpload # Not needed for shortcuts
 
 # --- הגדרות ---
 # Using drive scope ensures read/write capabilities needed

@@ -6,7 +6,7 @@ on:
       - "new-singles" # שנה ל-master אם זה הענף הראשי שלך
     paths:
       # Trigger only when the Python script itself changes
-      - 'creat-data/drive_shortcut_creator.py'
+      - 'drive_shortcut_creator.py'
       - '.github/workflows/drive_sync.yml'
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
         GOOGLE_TOKEN_JSON: ${{ secrets.GOOGLE_TOKEN_JSON }}
 
     - name: Run the Python script
-      run: python "creat-data/drive_shortcut_creator.py"
+      run: python drive_shortcut_creator.py
 
     - name: Clean up credential files 
       if: always() 

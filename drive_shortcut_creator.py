@@ -1,5 +1,5 @@
 import os
-import certifi # Keep for potential direct SSL context needs if runners change
+import certifi
 import time
 import json # Needed for parsing JSON from environment variables
 from google.auth.transport.requests import Request

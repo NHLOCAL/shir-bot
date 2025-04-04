@@ -21,9 +21,6 @@ SOURCE_ROOT_FOLDER_ID = "1sMGZLisLMAZKKeCVnkGREZbUW7aXst08"  # ID תיקיית �
 TARGET_ROOT_FOLDER_ID = "1dfyehiuGrgj2B_76-9I-nJqJ3VOLP3v_"  # ID תיקיית היעד לקיצורי הדרך
 SINGLES_FOLDER_NAME = "סינגלים"  # השם המדויק של תיקיית הסינגלים
 
-# Remove or comment out the limit for automated runs
-# MAX_FILES_TO_PROCESS = 20 
-# --- סוף הגדרות ---
 
 def authenticate():
     """

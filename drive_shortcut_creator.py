@@ -19,7 +19,6 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 SOURCE_ROOT_FOLDER_ID = "1sMGZLisLMAZKKeCVnkGREZbUW7aXst08"
 TARGET_ROOT_FOLDER_ID = "1dfyehiuGrgj2B_76-9I-nJqJ3VOLP3v_"
 SINGLES_FOLDER_NAME = "סינגלים"
-
 # --- סוף הגדרות ---
 
 def authenticate():

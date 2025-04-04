@@ -2,12 +2,6 @@ import os
 import certifi
 import time
 
-# This should be set automatically by the runner environment
-# os.environ['SSL_CERT_FILE'] = certifi.where() 
-# If you encounter SSL issues in GitHub Actions, you might need certifi explicitly
-# but often the runners handle this. Try without it first.
-
-
 from google_auth_oauthlib.flow import InstalledAppFlow # Keep import for Credentials loading
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials

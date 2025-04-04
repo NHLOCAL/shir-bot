@@ -3,12 +3,10 @@ name: Sync Drive Shortcuts
 on:
   push:
     branches:
-      - new-singles # שנה ל-master אם זה הענף הראשי שלך
+      - "new-singles" # שנה ל-master אם זה הענף הראשי שלך
     paths:
       # Trigger only when the Python script itself changes
-      - 'creat-data/drive_shortcut_creator.py' 
-  # מאפשר הרצה ידנית דרך ממשק ה-Actions ב-GitHub (אופציונלי)
-  workflow_dispatch: 
+      - 'creat-data/drive_shortcut_creator.py'
 
 jobs:
   run-script:

@@ -1358,7 +1358,6 @@ a.column-title-link i {
     flex-shrink: 0; /* Prevent logo image from shrinking */
   }
 
-  /* --- !!! показ Title on Mobile !!! --- */
   .site-title {
     display: inline; /* Was 'none', now visible */
     margin: 0 5px 0 5px; /* Add some space after the logo */
@@ -1472,9 +1471,23 @@ a.column-title-link i {
   }
 
 
+  .constrained-content-area {
+    margin-top: 1.5rem;    /* הקטנת שוליים עליונים למובייל */
+    margin-bottom: 1.5rem; /* הקטנת שוליים תחתונים למובייל */
+    padding-left: 0.5rem;  /* הקטנת ריווח פנימי למובייל */
+    padding-right: 0.5rem;
+    /* אין צורך לשנות max-width במובייל בדרך כלל */
+  }
+
+  /* עדכון הטבלה הפנימית במובייל - להסיר margin-top */
+  .constrained-content-area > #resultsTable { /* סלקטור יותר ספציפי */
+     margin-top: 0; /* הסרת השוליים מהטבלה הפנימית, נסמכים על שולי הקונטיינר */
+  }
+
+
   /* --- Table Adjustments --- */
   #resultsTable {
-    margin-top: 1rem; /* Reduced top margin */
+    margin-top: 0 !important;
     max-height: 60vh;
     width: 100%;
     margin-left: 0;

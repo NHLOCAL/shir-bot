@@ -93,8 +93,23 @@ td {
 }
 
 /* You might need to adjust the parent container's padding/margin too */
+/* --- Search Results Area Styling --- */
 #search-results-area {
-  padding: 0 40px; /* Example padding for the area containing the table */
+  display: none; /* Keep initially hidden */
+
+  /* --- Limiting Width and Centering on Large Screens --- */
+  max-width: 1200px; /* הגדרת רוחב מקסימלי (ניתן לשנות ל-1140px או 1200px לפי העדפה) */
+  margin-left: auto;  /* ממקם אוטומטית לשוליים השמאליים */
+  margin-right: auto; /* ממקם אוטומטית לשוליים הימניים (ביחד = מרכוז) */
+
+  /* --- Adding Vertical Margins and Horizontal Padding --- */
+  margin-top: 2rem;    /* שוליים עליונים גדולים יותר */
+  margin-bottom: 2rem; /* שוליים תחתונים גדולים יותר */
+  padding-left: 1rem;  /* ריווח פנימי בצדדים כדי שהתוכן לא ייגע בקצוות */
+  padding-right: 1rem; /* ריווח פנימי בצדדים */
+
+  /* --- חשוב לוודא שה-padding לא מוסיף לרוחב הכולל --- */
+  box-sizing: border-box;
 }
 
 

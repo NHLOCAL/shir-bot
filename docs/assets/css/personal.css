@@ -123,22 +123,34 @@ td {
 
 #resultsTable table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: fixed; /* חשוב לפיזור רוחב */
 }
 
-#resultsTable th:nth-child(1), #resultsTable td:nth-child(1) {
-  width: 15%;
+/* עדכון רוחבי עמודות */
+#resultsTable th, #resultsTable td {
+  padding: 15px 8px; /* התאמת ריווח פנימי */
+  text-align: right;
+  vertical-align: middle; /* יישור אנכי לאמצע */
+  word-wrap: break-word;
 }
 
-#resultsTable th:nth-child(2), #resultsTable td:nth-child(2) {
-  width: 45%;
+#resultsTable th:nth-child(1), /* שם השיר */
+#resultsTable td:nth-child(1) {
+  width: 40%; /* הרחבת שם השיר */
 }
 
-#resultsTable th:nth-child(3),
-#resultsTable td:nth-child(3),
-#resultsTable th:nth-child(4),
+#resultsTable th:nth-child(2), /* שם האלבום */
+#resultsTable td:nth-child(2) {
+  width: 22%;
+}
+#resultsTable th:nth-child(3), /* שם הזמר */
+#resultsTable td:nth-child(3) {
+  width: 22%;
+}
+#resultsTable th:nth-child(4), /* פעולות (חדש) */
 #resultsTable td:nth-child(4) {
-  width: 20%;
+  width: 16%;
+  text-align: center; /* מרכוז כפתורים */
 }
 
 #resultsTable th, #resultsTable td {
@@ -146,6 +158,11 @@ td {
   text-align: right;
   vertical-align: middle; /* יישור אנכי לאמצע */
   word-wrap: break-word;
+}
+
+.custom-table tbody.songs-list tr,
+.custom-table tbody.songs-list tr td {
+    cursor: default;
 }
 
 /* Right & Feedback buttons */

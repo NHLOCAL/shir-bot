@@ -4,14 +4,14 @@
 let allSongs = [];
 let results = [];
 let displayedResults = 0;
-// Default showSinglesOnly to true as per original code, adjust if needed
-let showSinglesOnly = true;
+let showSinglesOnly = true; // Keep existing logic if needed, otherwise remove check
 let downloadPromises = [];
 let downloadedSongsCount = 0;
 let totalSongsToDownload = 0;
 let activeFilter = 'all'; // Default filter
 
 // --- DOM Elements ---
+// ... (שמור על הגדרות DOM קיימות)
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.filter-button');
@@ -26,13 +26,11 @@ const homepageContent = document.getElementById('homepage-content');
 const searchResultsArea = document.getElementById('search-results-area');
 
 // --- Helper Function ---
-// Function to clear URL parameters without reloading
+// ... (שמור על clearUrlParams)
 function clearUrlParams() {
     try {
-        // Use replaceState to modify URL without adding to history
-        // Construct the correct clean URL pointing to the site root (index.html)
         const cleanUrl = window.location.origin + (baseurl || '') + '/';
-        if (window.location.href !== cleanUrl) { // Only replace if different
+        if (window.location.href !== cleanUrl) {
              window.history.replaceState({}, document.title, cleanUrl);
              console.log("URL parameters cleared.");
         }
@@ -42,92 +40,82 @@ function clearUrlParams() {
 }
 
 // --- Initialization ---
+// ... (שמור על רוב לוגיקת האתחול, כולל קריאה ל-preloadCSVData)
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if this is the homepage
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || ''); // Added check for just baseurl
-
+    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     const urlParams = new URLSearchParams(window.location.search);
     const searchValue = urlParams.get('search');
     const searchByParam = urlParams.get('searchBy') || 'all';
 
-    // Preload CSV data first
     preloadCSVData().then(() => {
         let searchPerformedFromUrl = false;
-        // Handle initial search ONLY on the homepage based on URL parameters
         if (isHomepage && searchValue) {
             console.log(`Homepage loaded with search params: search=${searchValue}, searchBy=${searchByParam}`);
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-            handleFilterClick(searchByParam, false); // Set filter visually only
-            searchSongs(searchValue.toLowerCase(), searchByParam); // Perform initial search
-            searchPerformedFromUrl = true; // Mark that a search was done
+            handleFilterClick(searchByParam, false);
+            searchSongs(searchValue.toLowerCase(), searchByParam);
+            searchPerformedFromUrl = true;
         } else if (isHomepage) {
-             // Homepage loaded without search params
              console.log("Homepage loaded without search params.");
-             handleFilterClick('all', false); // Ensure 'all' filter is visually active
-             // Use internal function or global if available
+             handleFilterClick('all', false);
              if (typeof showHomepageView === 'function') {
                  showHomepageView();
              } else {
                  showHomepageViewInternal();
              }
         }
-        // else: Not homepage, preloadCSVData finished, specific page JS will handle interactions.
 
-        // Clear URL parameters *after* potential initial search on homepage is done
-        // Only clear if params actually existed initially
         if (isHomepage && (searchValue || urlParams.has('searchBy'))) {
-             // Delay slightly to ensure search rendering starts if needed
-             setTimeout(clearUrlParams, 150); // Increased delay slightly
+             setTimeout(clearUrlParams, 150);
         }
 
     }).catch(error => {
         console.error("Error during initialization or initial data load:", error);
-        // Display error in results area only if it's supposed to be visible
         const shouldShowResults = isHomepage && (!homepageContent || homepageContent.style.display === 'none');
         if (shouldShowResults) {
-            if (resultsTableBody) {
-                 resultsTableBody.innerHTML = '<tr><td colspan="4">שגיאה חמורה בטעינת נתונים. נסה לרענן.</td></tr>';
+             if (resultsTableBody) {
+                 resultsTableBody.innerHTML = `<tr><td colspan="${resultsTableThead ? resultsTableThead.rows[0].cells.length : 4}">שגיאה חמורה בטעינת נתונים. נסה לרענן.</td></tr>`;
                  if (resultsTableThead) resultsTableThead.style.display = "none";
                  if (loadMoreButton) loadMoreButton.style.display = 'none';
-            }
+             }
         }
     });
 
-
-    // Add Enter key listener to search input
     if (searchInput) {
         searchInput.addEventListener("keypress", function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                submitForm(); // Call the consolidated submit function
+                submitForm();
             }
         });
     }
 
-    // Add submit listener to form
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
           event.preventDefault();
-          submitForm(); // Call the consolidated submit function
+          submitForm();
         });
     }
 
-    // Add click listeners to filter buttons
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Determine if search should be triggered based on current page
              const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-            handleFilterClick(this.dataset.filter, isHomepage); // Pass true only if on homepage
+            handleFilterClick(this.dataset.filter, isHomepage);
         });
     });
 
-     // Add click listener for "Load More" button
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', loadMoreResults);
+    }
+
+    // Attach listeners specific to homepage search results table
+    if (isHomepage && resultsTableBody) {
+         attachHomepageTableListeners();
     }
 });
 
 // --- View Switching ---
+// ... (שמור על showSearchResultsViewInternal, showHomepageViewInternal)
 function showSearchResultsViewInternal() {
     if (homepageContent) homepageContent.style.display = 'none';
     if (searchResultsArea) searchResultsArea.style.display = 'block';
@@ -142,134 +130,108 @@ function showHomepageViewInternal() {
 }
 
 // --- Search Execution ---
+// ... (שמור על submitForm, handleFilterClick, searchSongs, performSearch)
 function submitForm() {
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    const searchTerm = searchInput ? searchInput.value.trim() : ''; // Get value safely
+    const searchTerm = searchInput ? searchInput.value.trim() : '';
     const searchTermLower = searchTerm.toLowerCase();
-    const currentActiveFilter = activeFilter; // Use the globally tracked active filter
+    const currentActiveFilter = activeFilter;
 
     if (!isHomepage) {
-        // If NOT on homepage, REDIRECT
         if (searchTerm) {
              const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
              console.log(`Redirecting from non-homepage search submit to: ${redirectUrl}`);
              window.location.href = redirectUrl;
         } else {
-             searchInput?.focus(); // Just focus if empty on other pages
+             searchInput?.focus();
         }
     } else {
-        // --- If ON homepage, perform search locally ---
         searchSongs(searchTermLower, currentActiveFilter);
-        // Clear URL params AFTER the search is initiated on the homepage
-        // Use a timeout to ensure it happens after searchSongs might update display
         setTimeout(clearUrlParams, 100);
     }
 }
 
-// --- handleFilterClick updated ---
-function handleFilterClick(filter, doSearch = false) { // Default doSearch to false
+function handleFilterClick(filter, doSearch = false) {
     if (!filter) return;
-    activeFilter = filter; // Update global active filter state
+    activeFilter = filter;
     filterButtons.forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) {
         activeButton.classList.add('active');
     }
-    // Trigger search only if explicitly told to (e.g., on homepage filter click)
     if (doSearch) {
-       const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : ''; // Get value safely
+       const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
        searchSongs(searchTerm, activeFilter);
-       // Clear URL params AFTER the search from filter click is initiated
        setTimeout(clearUrlParams, 100);
     }
 }
 
-// --- searchSongs function ---
 async function searchSongs(query, searchBy) {
-    // Show search view immediately when a search is triggered on homepage
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
      if (isHomepage) {
-         // Use internal function or global if available
          if (typeof showSearchResultsView === 'function') {
              showSearchResultsView();
          } else {
              showSearchResultsViewInternal();
          }
      } else {
-          // This function should ideally only run fully on the homepage now.
-          // If called elsewhere, it might be an error unless specifically intended.
           console.warn("searchSongs called on non-homepage. Redirect should have happened.");
-          return; // Prevent execution on non-homepage
+          return;
      }
 
-    // Handle empty query based on searchBy
+    const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!query && searchBy === 'all') {
-        displayResults([]); // Display empty state message
+        displayResults([]);
         if (resultsTableThead) resultsTableThead.style.display = "none";
         if(loadMoreButton) loadMoreButton.style.display = 'none';
-        return; // Stop processing
+        return;
     }
 
-    displayLoadingMessage(); // Show loading indicator
+    displayLoadingMessage(colspan); // Pass colspan
 
-    // Ensure data is loaded
     if (allSongs.length === 0) {
         try {
-            await preloadCSVData(); // Wait for preload to finish if not already done
+            await preloadCSVData();
         } catch (error) {
              console.error("Failed to load song data during search:", error);
-             if (resultsTableBody) resultsTableBody.innerHTML = '<tr><td colspan="4">שגיאה בטעינת נתונים. נסה לרענן את הדף.</td></tr>';
+             if (resultsTableBody) resultsTableBody.innerHTML = `<tr><td colspan="${colspan}">שגיאה בטעינת נתונים. נסה לרענן את הדף.</td></tr>`;
              if (resultsTableThead) resultsTableThead.style.display = "none";
              if (loadMoreButton) loadMoreButton.style.display = 'none';
              return;
         }
-        // Check again if loading failed despite waiting
         if (allSongs.length === 0) {
              console.error("Song data is still empty after attempting load.");
-              if (resultsTableBody) resultsTableBody.innerHTML = '<tr><td colspan="4">שגיאה בטעינת נתונים. נסה לרענן את הדף.</td></tr>';
+              if (resultsTableBody) resultsTableBody.innerHTML = `<tr><td colspan="${colspan}">שגיאה בטעינת נתונים. נסה לרענן את הדף.</td></tr>`;
              if (resultsTableThead) resultsTableThead.style.display = "none";
              if (loadMoreButton) loadMoreButton.style.display = 'none';
              return;
         }
     }
 
-    // Perform the actual search and display
     performSearch(query, searchBy);
-    // URL clearing is handled by the caller (submitForm, filter click, initial load)
 }
 
-// --- performSearch --- (No changes needed here for redirection logic)
 function performSearch(query, searchBy) {
-    let baseSongsToFilter; // Use a temporary variable
-
-    // Apply "Singles Only" filter if active
+    let baseSongsToFilter;
     if (showSinglesOnly) {
-        // Filter the master list 'allSongs' first
-        // Ensure checks handle null/undefined and non-string types gracefully
         baseSongsToFilter = allSongs.filter(song =>
             (song.album && typeof song.album === 'string' && song.album.toLowerCase().includes('סינגלים')) ||
             (song.singer && typeof song.singer === 'string' && song.singer.toLowerCase().includes('סינגלים'))
         );
-         // console.log(`Filtering singles: ${allSongs.length} -> ${baseSongsToFilter.length}`); // Optional debug log
     } else {
-        // If not filtering by singles, use the entire list
         baseSongsToFilter = allSongs;
     }
 
-    // Apply the main search query filter ON TOP of the base list
     results = filterSongs(baseSongsToFilter, query, searchBy);
-
-    // Reset display count and show initial results
     displayedResults = 0;
-    const initialResultsToShow = results.slice(0, 250); // Show first 250 of the FINAL results
+    const initialResultsToShow = results.slice(0, 250);
     displayedResults = initialResultsToShow.length;
-
-    displayResults(initialResultsToShow, false); // Display new results, overwrite old
-
-    // toggleLoadMoreButton is called within displayResults
+    displayResults(initialResultsToShow, false);
 }
 
+
 // --- Data Loading & Parsing ---
+// ... (שמור על preloadCSVData, fetchCSV, parseCSV ללא שינוי)
 async function preloadCSVData() {
     if (preloadCSVData.loading) {
         console.log("CSV data is already loading.");
@@ -281,7 +243,7 @@ async function preloadCSVData() {
     }
 
     preloadCSVData.loading = true;
-    const currentCSVUrl = (baseurl || '') + '/assets/data/songs.csv'; // Ensure baseurl is handled
+    const currentCSVUrl = (baseurl || '') + '/assets/data/songs.csv';
 
     preloadCSVData.promise = new Promise(async (resolve, reject) => {
         try {
@@ -323,7 +285,7 @@ async function fetchCSV(url) {
         return text;
     } catch (error) {
          console.error(`Failed to fetch CSV from ${url}:`, error);
-         throw error; // Re-throw
+         throw error;
     }
 }
 
@@ -344,7 +306,7 @@ function parseCSV(csvText) {
                     album: columns[2] || '',
                     singer: columns[3] || ''
                 };
-                if (song.serial || song.name) { // Basic validation
+                if (song.serial || song.name) {
                     songs.push(song);
                 }
             }
@@ -354,18 +316,25 @@ function parseCSV(csvText) {
 }
 
 // --- Filtering Logic ---
+// ... (שמור על filterSongs ללא שינוי)
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) {
         if (searchBy === 'all') {
             return [];
         } else {
-            return songsToFilter.filter(song => song[searchBy] && String(song[searchBy]).trim() !== '');
+            // If searchBy is specified but query is empty, return all songs matching that field non-empty
+            // (e.g., all songs with *any* album name if searchBy is 'album')
+             return songsToFilter.filter(song => {
+                const value = song[searchBy];
+                // Check if the value exists and is not just whitespace
+                return value !== null && value !== undefined && String(value).trim() !== '';
+            });
         }
     }
 
-    // Fuzzy search logic (Dice Coefficient & Levenshtein Distance)
+    // Fuzzy search logic remains the same...
     const calculateDiceCoefficient = (tokens1, tokens2) => {
-        if (!tokens1.length || !tokens2.length) return 0;
+        if (!tokens1?.length || !tokens2?.length) return 0;
         const intersection = new Set(tokens1.filter(token => tokens2.includes(token)));
         return (2 * intersection.size) / (tokens1.length + tokens2.length);
     };
@@ -375,7 +344,7 @@ function filterSongs(songsToFilter, query, searchBy) {
         const len2 = str2.length;
         if (len1 === 0) return len2 > 0 ? 1 : 0;
         if (len2 === 0) return len1 > 0 ? 1 : 0;
-        if (Math.abs(len1 - len2) > Math.max(len1, len2) * 0.6) return 1;
+        if (Math.abs(len1 - len2) > Math.max(len1, len2) * 0.6) return 1; // Optimization
 
         const matrix = Array.from({ length: len1 + 1 }, (_, i) => [i]);
         for (let j = 1; j <= len2; j++) matrix[0][j] = j;
@@ -394,7 +363,8 @@ function filterSongs(songsToFilter, query, searchBy) {
         return maxLen === 0 ? 0 : matrix[len1][len2] / maxLen;
     };
 
-    const queryTokens = query.split(/\s+/).filter(Boolean);
+    const queryLower = query.toLowerCase(); // Use lowercase query consistently
+    const queryTokens = queryLower.split(/\s+/).filter(Boolean);
     const fuzzyThreshold = 0.55;
     const levenshteinThreshold = 0.45;
 
@@ -412,22 +382,25 @@ function filterSongs(songsToFilter, query, searchBy) {
             const lowerValue = stringValue.toLowerCase();
 
             // 1. Exact match variations
-            if (searchBy === 'serial' && lowerValue.startsWith(query)) return true;
-            if (searchBy !== 'serial' && lowerValue.includes(query)) return true;
-            if (searchBy === 'all' && lowerValue.includes(query)) return true; // Ensure 'all' includes check works
+            if (searchBy === 'serial' && lowerValue.startsWith(queryLower)) return true; // Use queryLower
+            if (searchBy !== 'serial' && lowerValue.includes(queryLower)) return true; // Use queryLower
+            if (searchBy === 'all' && lowerValue.includes(queryLower)) return true; // Use queryLower
 
             // 2. Fuzzy match
             const valueTokens = lowerValue.split(/\s+/).filter(Boolean);
             const diceSim = calculateDiceCoefficient(queryTokens, valueTokens);
             if (diceSim >= fuzzyThreshold) return true;
 
-            const levDist = calculateNormalizedLevenshteinDistance(query, lowerValue);
-            if (levDist <= levenshteinThreshold) return true;
+            // Only calculate Levenshtein if Dice is low and strings aren't too different in length
+             if (Math.abs(queryLower.length - lowerValue.length) <= Math.max(queryLower.length, lowerValue.length) * 0.5) {
+                 const levDist = calculateNormalizedLevenshteinDistance(queryLower, lowerValue);
+                 if (levDist <= levenshteinThreshold) return true;
+            }
         }
         return false;
     });
 
-    // Sort by serial
+    // Sort by serial number (numeric comparison)
     return filtered.sort((a, b) => {
         const serialA = parseInt(a.serial, 10) || 0;
         const serialB = parseInt(b.serial, 10) || 0;
@@ -436,34 +409,32 @@ function filterSongs(songsToFilter, query, searchBy) {
 }
 
 // --- Display Logic ---
-function displayLoadingMessage() {
+function displayLoadingMessage(colspan = 4) { // Default colspan
     if (!resultsTableBody) return;
-    // Ensure search results view is active
-     if (typeof showSearchResultsView === 'function') showSearchResultsView(); else showSearchResultsViewInternal();
+    if (typeof showSearchResultsView === 'function') showSearchResultsView(); else showSearchResultsViewInternal();
 
-    resultsTableBody.innerHTML = ''; // Clear previous content
+    resultsTableBody.innerHTML = '';
 
     const loadingRow = document.createElement('tr');
     const loadingCell = document.createElement('td');
-    loadingCell.setAttribute('colspan', '4');
+    loadingCell.setAttribute('colspan', colspan); // Use dynamic colspan
     loadingCell.style.textAlign = 'center';
 
     const loadingContainer = document.createElement('div');
     loadingContainer.classList.add('loading-container');
-
+    // ... (rest of loading indicator remains the same)
     const loadingImage = document.createElement('img');
-    loadingImage.src = (baseurl || '') + '/assets/images/loading.gif'; // Handle baseurl
+    loadingImage.src = (baseurl || '') + '/assets/images/loading.gif';
     loadingImage.alt = "טוען...";
     loadingImage.classList.add('loading-image');
-
     const loadingTextElem = document.createElement('p');
     loadingTextElem.textContent = 'מחפש...';
     loadingTextElem.classList.add('loading-text');
-
     loadingContainer.appendChild(loadingImage);
     loadingContainer.appendChild(loadingTextElem);
     loadingCell.appendChild(loadingContainer);
     loadingRow.appendChild(loadingCell);
+
     resultsTableBody.appendChild(loadingRow);
 
     if (resultsTableThead) resultsTableThead.style.display = "none";
@@ -472,9 +443,9 @@ function displayLoadingMessage() {
 
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
-
-    // Ensure search results view is active
     if (typeof showSearchResultsView === 'function') showSearchResultsView(); else showSearchResultsViewInternal();
+
+    const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
 
     if (!append) {
         resultsTableBody.innerHTML = '';
@@ -483,7 +454,7 @@ function displayResults(resultsToDisplay, append = false) {
     if (resultsToDisplay.length === 0 && !append) {
         const noResultsRow = document.createElement('tr');
         const noResultsCell = document.createElement('td');
-        noResultsCell.setAttribute('colspan', '4');
+        noResultsCell.setAttribute('colspan', colspan); // Use dynamic colspan
         noResultsCell.textContent = 'לא נמצאו תוצאות התואמות את החיפוש.';
         noResultsCell.style.textAlign = 'center';
         noResultsRow.appendChild(noResultsCell);
@@ -494,23 +465,13 @@ function displayResults(resultsToDisplay, append = false) {
     }
 
     if (resultsToDisplay.length > 0 && resultsTableThead && (resultsTableThead.style.display === "none" || !resultsTableThead.style.display)) {
-        resultsTableThead.style.display = "";
+        resultsTableThead.style.display = ""; // Or "table-header-group"
     }
 
     const fragment = document.createDocumentFragment();
     resultsToDisplay.forEach(song => {
         const row = document.createElement('tr');
-        row.dataset.songSerial = song.serial;
-
-        // Serial Number Cell (with copy link)
-        const serialCell = document.createElement('td');
-        const serialLink = document.createElement('a');
-        serialLink.textContent = song.serial;
-        serialLink.href = '#';
-        serialLink.title = 'העתק קישור לשיר זה';
-        serialLink.classList.add('serial-link');
-        serialCell.appendChild(serialLink);
-        row.appendChild(serialCell);
+        row.dataset.songSerial = song.serial; // Keep serial on row for reference
 
         // Song Name Cell
         const nameCell = document.createElement('td');
@@ -522,7 +483,7 @@ function displayResults(resultsToDisplay, append = false) {
         const albumButton = document.createElement('button');
         albumButton.textContent = song.album;
         albumButton.classList.add('album-button');
-        albumButton.dataset.albumName = song.album;
+        albumButton.dataset.albumName = song.album; // Use data attribute
         albumButton.title = `חפש אלבום: ${song.album}`;
         albumCell.appendChild(albumButton);
         row.appendChild(albumCell);
@@ -532,10 +493,33 @@ function displayResults(resultsToDisplay, append = false) {
         const singerButton = document.createElement('button');
         singerButton.textContent = song.singer;
         singerButton.classList.add('singer-button');
-        singerButton.dataset.singerName = song.singer;
+        singerButton.dataset.singerName = song.singer; // Use data attribute
         singerButton.title = `חפש זמר: ${song.singer}`;
         singerCell.appendChild(singerButton);
         row.appendChild(singerCell);
+
+        // --- Actions Cell (New) ---
+        const actionsCell = document.createElement('td');
+        actionsCell.classList.add('actions-cell');
+
+        // Download Button
+        const downloadButton = document.createElement('button');
+        downloadButton.classList.add('download-button');
+        downloadButton.dataset.songSerial = song.serial;
+        downloadButton.title = 'הורדה';
+        downloadButton.innerHTML = '<i class="fas fa-download"></i>'; // Use icon
+        actionsCell.appendChild(downloadButton);
+
+        // Share Button
+        const shareButton = document.createElement('button');
+        shareButton.classList.add('share-button');
+        shareButton.dataset.songSerial = song.serial;
+        shareButton.title = 'שיתוף';
+        shareButton.innerHTML = '<i class="fas fa-share-alt"></i>'; // Use icon
+        actionsCell.appendChild(shareButton);
+
+        row.appendChild(actionsCell);
+        // --- End Actions Cell ---
 
         fragment.appendChild(row);
     });
@@ -544,105 +528,88 @@ function displayResults(resultsToDisplay, append = false) {
     toggleLoadMoreButton();
 }
 
-// --- Event Delegation for Row Clicks ---
-if (resultsTableBody) {
-    resultsTableBody.addEventListener('click', (event) => {
-        const target = event.target;
-        const row = target.closest('tr');
-        if (!row || !row.dataset.songSerial) return;
+// --- Event Delegation for HOMEPAGE Table Clicks ---
+// This listener ONLY handles clicks within the search results on the homepage
+function attachHomepageTableListeners() {
+     if (!resultsTableBody) return;
 
-        const songSerial = row.dataset.songSerial;
-        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
+     // Remove previous listener if re-attaching (though typically done once on DOMContentLoaded)
+     // resultsTableBody.removeEventListener('click', handleHomepageTableClick); // Need a named function
 
-        // 1. Handle Serial Link Click (Copy)
-        if (target.classList.contains('serial-link')) {
-            event.preventDefault();
-            const shareLink = `${window.location.origin}${baseurl || ''}/?search=${encodeURIComponent(songSerial)}&searchBy=serial`;
-            // Use functions from core.js (assuming they are globally available)
-            if (typeof copyToClipboard === 'function') copyToClipboard(shareLink);
-            if (typeof showCopiedMessage === 'function') showCopiedMessage();
-            return;
-        }
-
-        // 2. Handle Album Button Click (Search on Homepage or Redirect)
-        if (target.classList.contains('album-button')) {
-            event.preventDefault();
-            const albumName = target.dataset.albumName;
-            if (albumName) {
-                 if (isHomepage && searchInput) { // Check searchInput exists
-                     searchInput.value = albumName;
-                     handleFilterClick('album', true); // Activate filter and trigger search on homepage
-                     // URL clearing is handled by handleFilterClick
-                 } else {
-                      // Fallback redirect:
-                      const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(albumName)}&searchBy=album`;
-                      window.location.href = redirectUrl;
-                 }
-            }
-            return;
-        }
-
-        // 3. Handle Singer Button Click (Search on Homepage or Redirect)
-        if (target.classList.contains('singer-button')) {
-            event.preventDefault();
-            const singerName = target.dataset.singerName;
-            if (singerName) {
-                 if (isHomepage && searchInput) { // Check searchInput exists
-                    searchInput.value = singerName;
-                    handleFilterClick('singer', true); // Activate filter and trigger search on homepage
-                    // URL clearing is handled by handleFilterClick
-                 } else {
-                     // Fallback redirect:
-                     const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(singerName)}&searchBy=singer`;
-                     window.location.href = redirectUrl;
-                 }
-            }
-            return;
-        }
-
-        // 4. Handle Row Click (Download) - Only if on homepage and target is TD/TR
-        if (isHomepage && (target.tagName === 'TD' || target.tagName === 'TR')) {
-            // Prevent accidental double-clicks
-            if (row.classList.contains('download-in-progress')) {
-                console.warn("Download already in progress for this row.");
-                return;
-            }
-            row.classList.add('download-in-progress');
-
-            // Retrieve the full song details for the single check
-            let songData = results.find(s => s.serial === songSerial) || allSongs.find(s => s.serial === songSerial);
-
-            // Check if filtering by singles is active AND song data was found AND it's NOT a single
-            if (showSinglesOnly && songData) {
-                const isSingle = (songData.album && typeof songData.album === 'string' && songData.album.toLowerCase().includes('סינגלים')) ||
-                                 (songData.singer && typeof songData.singer === 'string' && songData.singer.toLowerCase().includes('סינגלים'));
-                if (!isSingle) {
-                     if (typeof showMessage === 'function') showMessage('באתר זה מוצגים סינגלים בלבד. לא ניתן להוריד שיר זה.'); // Use core.js function
-                     row.classList.remove('download-in-progress'); // Remove flag
-                     return; // Stop download attempt
-                }
-            }
-
-            // Proceed with download (assuming downloadSong function exists)
-            if (typeof downloadSong === 'function') {
-                 downloadSong(songSerial)
-                    .catch(err => console.error("Download promise rejected in row click:", err)) // Error likely shown in downloadSong
-                    .finally(() => {
-                        setTimeout(() => {
-                            if (row) row.classList.remove('download-in-progress');
-                        }, 1500);
-                    });
-            } else {
-                 console.error("downloadSong function is not defined.");
-                 if(typeof showMessage === 'function') showMessage("שגיאה: פונקציית ההורדה אינה זמינה.");
-                 row.classList.remove('download-in-progress');
-            }
-        }
-        // Note: Row clicks on non-homepage (like artist page) might still trigger download via their respective JS files if downloadSong is global
-    });
+     resultsTableBody.addEventListener('click', handleHomepageTableClick);
+     console.log("Attached HOMEPAGE specific table listener.");
 }
 
+function handleHomepageTableClick(event) {
+    const target = event.target;
+    const button = target.closest('button'); // Find the closest button clicked
+
+    if (!button) return; // Exit if click wasn't on or inside a button
+
+    const row = button.closest('tr');
+    if (!row || !row.dataset.songSerial) return; // Ensure we are in a valid song row
+
+    const songSerial = button.dataset.songSerial || row.dataset.songSerial; // Get serial from button or row
+
+    // 1. Handle Download Button Click
+    if (button.classList.contains('download-button')) {
+        event.preventDefault();
+        event.stopPropagation(); // Prevent potential nested listeners
+        if (songSerial) {
+             if (typeof downloadSong === 'function') {
+                 downloadSongWrapper(button); // Use wrapper to handle button state
+             } else {
+                 console.error("downloadSong function is not defined.");
+                 if (typeof showMessage === 'function') showMessage("שגיאה: פונקציית ההורדה אינה זמינה.");
+             }
+        }
+        return;
+    }
+
+    // 2. Handle Share Button Click
+    if (button.classList.contains('share-button')) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (songSerial) {
+            const shareLink = `${window.location.origin}${baseurl || ''}/?search=${encodeURIComponent(songSerial)}&searchBy=serial`;
+            if (typeof copyToClipboard === 'function' && typeof showCopiedMessage === 'function') {
+                copyToClipboard(shareLink);
+                showCopiedMessage();
+            } else {
+                console.warn("Clipboard functions not available.");
+            }
+        }
+        return;
+    }
+
+    // 3. Handle Album Button Click (Search on Homepage)
+    if (button.classList.contains('album-button')) {
+        event.preventDefault();
+        event.stopPropagation();
+        const albumName = button.dataset.albumName; // Get from data attribute
+        if (albumName && searchInput) {
+             searchInput.value = albumName;
+             handleFilterClick('album', true);
+        }
+        return;
+    }
+
+    // 4. Handle Singer Button Click (Search on Homepage)
+    if (button.classList.contains('singer-button')) {
+        event.preventDefault();
+        event.stopPropagation();
+        const singerName = button.dataset.singerName; // Get from data attribute
+        if (singerName && searchInput) {
+            searchInput.value = singerName;
+            handleFilterClick('singer', true);
+        }
+        return;
+    }
+}
+
+
 // --- Load More Logic ---
+// ... (שמור על loadMoreResults, toggleLoadMoreButton ללא שינוי)
 function loadMoreResults() {
     console.log(`Load More: Displayed=${displayedResults}, Total=${results.length}`);
     const startIndex = displayedResults;
@@ -657,12 +624,8 @@ function loadMoreResults() {
 
     const newResultsToDisplay = results.slice(startIndex, endIndex);
     console.log(`Loading results from ${startIndex} to ${endIndex} (${newResultsToDisplay.length} new songs)`);
-
-    displayResults(newResultsToDisplay, true); // Append the new results
-
-    displayedResults = endIndex; // Update the count
-
-    // toggleLoadMoreButton is called within displayResults
+    displayResults(newResultsToDisplay, true);
+    displayedResults = endIndex;
     console.log(`Load More Finished. New displayed=${displayedResults}, Button visible=${loadMoreButton ? loadMoreButton.style.display : 'N/A'}`);
 }
 
@@ -672,34 +635,76 @@ function toggleLoadMoreButton() {
      }
 }
 
+
 // --- Download Logic ---
-async function downloadSong(songNumber) {
+
+// Wrapper function to handle button state during download
+async function downloadSongWrapper(buttonElement) {
+    if (!buttonElement) return;
+    const songSerial = buttonElement.dataset.songSerial;
+    if (!songSerial) return;
+
+    // Prevent multiple clicks on the same button
+    if (buttonElement.disabled || buttonElement.classList.contains('download-in-progress')) {
+        console.warn("Download already in progress for this button.");
+        return;
+    }
+
+    buttonElement.disabled = true;
+    buttonElement.classList.add('download-in-progress');
+    const originalIcon = buttonElement.innerHTML;
+    buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; // Loading spinner
+
+    try {
+        await downloadSong(songSerial);
+        // Success feedback (optional, progress bar handles it)
+        // buttonElement.innerHTML = '<i class="fas fa-check"></i>';
+    } catch (error) {
+        // Failure feedback (optional, message modal handles it)
+        // buttonElement.innerHTML = '<i class="fas fa-times"></i>';
+        console.error(`Download wrapper caught error for ${songSerial}:`, error);
+    } finally {
+        // Restore button after a delay, regardless of success/failure
+        setTimeout(() => {
+            if (buttonElement) {
+                buttonElement.innerHTML = originalIcon;
+                buttonElement.disabled = false;
+                buttonElement.classList.remove('download-in-progress');
+            }
+        }, 2000); // Adjust delay as needed
+    }
+}
+
+
+// Make downloadSong globally accessible IF NEEDED by other scripts (like shared handler)
+// Ensure this doesn't conflict with other scripts defining it.
+window.downloadSong = async function(songNumber) { // Use window.downloadSong
     if (!songNumber) {
         console.error("Invalid song number provided for download.");
         if(typeof showMessage === 'function') showMessage("שגיאה: מספר שיר לא תקין.");
         return Promise.reject(new Error("Invalid song number"));
     }
 
-    // Retrieve song details for single check
-    let songData = results.find(s => s.serial === songNumber) || allSongs.find(s => s.serial === songNumber);
-
-    // Single check logic
-    if (showSinglesOnly && songData) {
-        const isSingle = (songData.album && typeof songData.album === 'string' && songData.album.toLowerCase().includes('סינגלים')) ||
-                         (songData.singer && typeof songData.singer === 'string' && songData.singer.toLowerCase().includes('סינגלים'));
-        if (!isSingle) {
-             if(typeof showMessage === 'function') showMessage('באתר זה מוצגים סינגלים בלבד. לא ניתן להוריד שיר זה.');
-            const row = resultsTableBody?.querySelector(`tr[data-song-serial="${songNumber}"]`);
-            if (row) row.classList.remove('download-in-progress');
-            return Promise.reject(new Error("Attempted to download non-single item"));
+    // --- Optional: Single check (if showSinglesOnly logic is still relevant) ---
+    if (showSinglesOnly) {
+        let songData = results.find(s => s.serial === songNumber) || allSongs.find(s => s.serial === songNumber);
+        if (songData) {
+            const isSingle = (songData.album && typeof songData.album === 'string' && songData.album.toLowerCase().includes('סינגלים')) ||
+                             (songData.singer && typeof songData.singer === 'string' && songData.singer.toLowerCase().includes('סינגלים'));
+            if (!isSingle) {
+                 if(typeof showMessage === 'function') showMessage('באתר זה מוצגים סינגלים בלבד. לא ניתן להוריד שיר זה.');
+                 // No row class to remove here, handled by wrapper
+                return Promise.reject(new Error("Attempted to download non-single item"));
+            }
         }
     }
+    // --- End Optional Single Check ---
 
-    // Prevent multiple downloads of the same song
+
     const existingPromise = downloadPromises.find(p => p.songNumber === songNumber);
     if (existingPromise) {
         console.warn(`Download for song ${songNumber} already in progress.`);
-        return existingPromise.promise;
+        return existingPromise.promise; // Return existing promise
     }
 
     // Initialize/Update Progress Bar State
@@ -725,14 +730,14 @@ async function downloadSong(songNumber) {
             const fetchUrl = `${scriptUrl}?songNumber=${encodeURIComponent(songNumber)}`;
 
             const response = await fetch(fetchUrl);
-            let errorMsg = `שגיאת רשת (${response.status})`; // Default error
+            let errorMsg = `שגיאת רשת (${response.status})`;
             if (!response.ok) {
-                try { // Try to parse specific error from script
+                try {
                     const errorData = await response.json();
                     if (errorData && errorData.message) {
                         errorMsg = errorData.message;
                     }
-                } catch (e) { /* Ignore if not JSON */ }
+                } catch (e) { /* Ignore */ }
                 throw new Error(errorMsg);
             }
 
@@ -741,10 +746,7 @@ async function downloadSong(songNumber) {
 
             if (data.success && data.downloadLink) {
                 updateProgressDisplay(60, currentDownloadQueuePosition, 'מוריד...');
-                await new Promise(res => setTimeout(res, 50));
-                updateProgressDisplay(80, currentDownloadQueuePosition, 'מוריד...');
-
-                // Trigger download
+                // Trigger download via hidden link
                 const link = document.createElement('a');
                 link.href = data.downloadLink;
                 const filename = data.originalFileName || `${songNumber}.mp3`;
@@ -766,7 +768,7 @@ async function downloadSong(songNumber) {
             console.error(`Download Error for ${songNumber}:`, error);
             if(typeof showMessage === 'function') showMessage(`שגיאה בהורדת שיר ${songNumber}: ${error.message}`);
             updateProgressDisplay(null, currentDownloadQueuePosition, 'נכשל');
-            reject({ songNumber: songNumber, status: 'error', error: error });
+            reject({ songNumber: songNumber, status: 'error', error: error }); // Reject the promise
         }
     });
 
@@ -776,9 +778,10 @@ async function downloadSong(songNumber) {
 
     // Handle Promise Completion (Finally Block)
     downloadAction
-      .catch(err => { /* Error handled within promise catch */ })
+      .catch(err => { /* Error handled within promise catch, and by wrapper */ })
       .finally(() => {
-          downloadPromises = downloadPromises.filter(p => p.songNumber !== songNumber); // Remove from active list
+          // Remove from active list
+          downloadPromises = downloadPromises.filter(p => p.songNumber !== songNumber);
 
           if (downloadPromises.length === 0) {
               // Last download finished
@@ -787,25 +790,24 @@ async function downloadSong(songNumber) {
                       const finalMessage = `הורדת ${downloadedSongsCount}/${totalSongsToDownload} שירים הושלמה!`;
                       if (progressText) progressText.innerText = finalMessage;
                       if (progressBar) progressBar.style.width = `100%`;
-
                       setTimeout(() => {
                           loadingMessage.classList.remove('show');
-                          // Reset counters after hiding
-                          downloadedSongsCount = 0;
+                          downloadedSongsCount = 0; // Reset counters
                           totalSongsToDownload = 0;
-                      }, 2000);
+                      }, 2000); // Hide after showing completion message
                   }
-              }, 500);
+              }, 500); // Short delay before showing final completion
           } else {
-              // More downloads pending
+              // More downloads pending - update progress based on completed count
               updateProgressDisplay(null, null, `מוריד (${downloadPromises.length} נותרו)`);
           }
       });
 
-    return downloadAction;
+    return downloadAction; // Return the promise
 }
 
 // Helper to update progress UI
+// ... (שמור על updateProgressDisplay ללא שינוי)
 function updateProgressDisplay(percentage, currentQueuePosition, statusText = '') {
     if (loadingMessage && loadingMessage.classList.contains('show')) {
         let progressPrefix = '';
@@ -819,43 +821,25 @@ function updateProgressDisplay(percentage, currentQueuePosition, statusText = ''
 
         let displayPercentage = 0;
         if (totalSongsToDownload > 0) {
-            displayPercentage = Math.round((downloadedSongsCount / totalSongsToDownload) * 100);
-            if (currentQueuePosition !== null && percentage !== null && downloadPromises.length > 0) {
+            // Calculate percentage based on completed count + progress of current item
+            const baseCompletedPercentage = (downloadedSongsCount / totalSongsToDownload) * 100;
+             if (currentQueuePosition !== null && percentage !== null && downloadPromises.length > 0) {
+                 // Only add contribution of the *current* downloading item
                  const weightOfCurrent = 1 / totalSongsToDownload;
                  const currentItemContribution = percentage * weightOfCurrent;
-                 const baseCompletedPercentage = (downloadedSongsCount / totalSongsToDownload) * 100;
-                 displayPercentage = Math.max(baseCompletedPercentage, Math.min(100, baseCompletedPercentage + currentItemContribution));
+                 displayPercentage = baseCompletedPercentage + currentItemContribution;
+            } else {
+                // If no current item progress, just show based on completed count
+                displayPercentage = baseCompletedPercentage;
             }
              displayPercentage = Math.max(0, Math.min(100, Math.round(displayPercentage)));
         }
 
+
         if (progressBar) {
             progressBar.style.width = `${displayPercentage}%`;
+            // Optional: Add transition for smoother updates
+            // progressBar.style.transition = 'width 0.3s ease-in-out';
         }
     }
 }
-
-// --- URL Handling ---
-// updateURLWithoutReload is NO LONGER USED for setting params on homepage search.
-/*
-function updateURLWithoutReload(query = null, searchBy = null) {
-    // Function deprecated for setting params post-search on homepage.
-    // Kept commented for historical reference if needed.
-    // try {
-    //     const url = new URL(window.location.href);
-    //     url.searchParams.delete('search');
-    //     url.searchParams.delete('searchBy');
-    //     const cleanQuery = query ? String(query).trim() : '';
-    //     if (cleanQuery) {
-    //         url.searchParams.set('search', cleanQuery);
-    //         const cleanSearchBy = searchBy ? String(searchBy).trim() : 'all';
-    //         if (cleanSearchBy !== 'all') {
-    //             url.searchParams.set('searchBy', cleanSearchBy);
-    //         }
-    //     }
-    //     window.history.replaceState({}, document.title, url.toString());
-    // } catch (e) {
-    //      console.error("Error updating URL:", e);
-    // }
-}
-*/

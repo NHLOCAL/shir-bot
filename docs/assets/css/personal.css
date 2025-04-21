@@ -82,7 +82,7 @@ td {
   overflow-y: auto; /* Keep */
   padding: 10px; /* Keep or adjust */
   /* Add margin-top to create space from the search bar/header */
-  margin-top: 20px; /* Example value, adjust as needed */
+  margin-top: 10px; /* Example value, adjust as needed */
   /* Remove fixed-position related margins if they conflict */
   margin-left: auto; /* Center horizontally if width is less than 100% */
   margin-right: auto;
@@ -121,9 +121,9 @@ td {
 }
 
 
-
 #resultsTable table {
   width: 100%;
+  table-layout: fixed;
 }
 
 #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) {
@@ -142,8 +142,10 @@ td {
 }
 
 #resultsTable th, #resultsTable td {
+  padding: 10px 8px; /* התאמת ריווח פנימי */
+  text-align: right;
+  vertical-align: middle; /* יישור אנכי לאמצע */
   word-wrap: break-word;
-  max-width: 300px;
 }
 
 /* Right & Feedback buttons */
@@ -676,15 +678,8 @@ p {
 
 
 /* Table row hover effects */
-.custom-table tbody.songs-list tr:hover,
-.custom-table tbody.songs-list tr:active {
+.custom-table tbody.songs-list tr:hover {
   background-color: #e0e0e0;
-}
-
-.custom-table tbody.songs-list tr,
-.custom-table tbody.songs-list tr a,
-.custom-table tbody.songs-list tr button {
-  cursor: pointer;
 }
 
 .custom-table tbody.songs-list td,
@@ -692,6 +687,53 @@ p {
   border-radius: 0;
   padding: 10px;
   border-collapse: collapse;
+}
+
+
+/* --- סגנון לכפתורי פעולות (הורדה ושיתוף) --- */
+.actions-cell {
+  white-space: nowrap; /* מניעת שבירת שורה בין הכפתורים */
+}
+
+.download-button,
+.share-button,
+.download-button-new { /* כלול את הכפתור המיוחד מדף שירים חדשים */
+background-color: transparent;
+border: 1px solid var(--primary-color);
+color: var(--primary-color);
+padding: 5px 10px; /* ריווח פנימי קטן יותר */
+margin: 0 3px; /* רווח קטן בין הכפתורים */
+border-radius: 4px;
+cursor: pointer;
+font-size: 14px; /* גודל פונט (אייקון) */
+line-height: 1; /* למנוע גובה מיותר */
+transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+vertical-align: middle; /* יישור אנכי */
+}
+
+.download-button:hover,
+.share-button:hover,
+.download-button-new:hover {
+background-color: var(--primary-hover);
+color: var(--white);
+transform: translateY(-1px); /* אפקט הרמה קטן */
+}
+
+.download-button:active,
+.share-button:active,
+.download-button-new:active {
+transform: translateY(0px); /* החזרה למקום בלחיצה */
+}
+
+/* סגנון כפתור בזמן טעינה (אופציונלי אם לא משתמשים ב-wrapper) */
+.download-button:disabled,
+.download-button-new:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.download-button.download-in-progress,
+.download-button-new.download-in-progress { /* אם משתמשים בקלאס מה-wrapper */
+   cursor: wait;
 }
 
 /* Color transition animation */
@@ -1508,23 +1550,29 @@ a.column-title-link i {
     padding: 6px 4px; /* Keep reduced padding */
   }
 
-  /* Column Widths (Keep previous adjustments or refine as needed) */
-   #resultsTable th:nth-child(1), /* Serial */
-  #resultsTable td:nth-child(1) {
-    width: 18%;
-  }
-  #resultsTable th:nth-child(2), /* Name */
-  #resultsTable td:nth-child(2) {
-    width: 34%;
-  }
-  #resultsTable th:nth-child(3), /* Album */
-  #resultsTable td:nth-child(3) {
-     width: 24%;
-  }
-   #resultsTable th:nth-child(4), /* Singer */
-  #resultsTable td:nth-child(4) {
-     width: 24%;
-  }
+    /* התאמת טבלה למובייל */
+    #resultsTable th, #resultsTable td {
+      font-size: 11px; /* הקטנת פונט נוספת */
+      padding: 8px 4px; /* ריווח קטן יותר */
+    }
+
+   /* עדכון רוחבי עמודות למובייל */
+   #resultsTable th:nth-child(1), /* שם השיר */
+   #resultsTable td:nth-child(1) {
+     width: 35%;
+   }
+   #resultsTable th:nth-child(2), /* שם האלבום */
+   #resultsTable td:nth-child(2) {
+      width: 20%;
+   }
+    #resultsTable th:nth-child(3), /* שם הזמר */
+   #resultsTable td:nth-child(3) {
+      width: 20%;
+   }
+    #resultsTable th:nth-child(4), /* פעולות */
+   #resultsTable td:nth-child(4) {
+      width: 25%; /* קצת יותר מקום לכפתורים */
+   }
 
 
   /* --- Other Mobile Adjustments --- */
@@ -1541,6 +1589,14 @@ a.column-title-link i {
 
   .fixed-bottom p {
     font-size: 12px;
+  }
+
+  .download-button,
+  .share-button,
+  .download-button-new {
+      padding: 4px 8px;
+      font-size: 13px;
+      margin: 0 2px;
   }
 
 }

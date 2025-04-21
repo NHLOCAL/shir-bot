@@ -18,22 +18,21 @@ layout: default # Inherits from default, which loads core.js, ads.js, shared-red
   </div>
 </div>
 
-<div id="resultsTable" class="custom-table constrained-content-area"> <!-- ID is correct, ADDED CLASS -->
+<div id="resultsTable" class="custom-table constrained-content-area">
   <table>
     <thead>
       <tr>
-        <th>מספר סידורי</th>
+        <!-- הוסרה עמודת מספר סידורי -->
         <th>שם השיר</th>
         <th>שם האלבום</th>
         <th>שם הזמר</th>
+        <th>פעולות</th> <!-- עמודה חדשה -->
       </tr>
     </thead>
-    <tbody class="songs-list"> <!-- Class is correct -->
+    <tbody class="songs-list">
       {% for song in page.songs %}
       <tr data-song-serial="{{ song.number | escape }}">
-        <td>
-            <a>{{ song.number }}</a>
-        </td>
+        <!-- הוסרה תא מספר סידורי -->
         <td>
             {{ song.name }}
         </td>
@@ -43,11 +42,18 @@ layout: default # Inherits from default, which loads core.js, ads.js, shared-red
         <td>
             <button class="singer-button">{{ song.artist }}</button>
         </td>
+        <td class="actions-cell"> <!-- תא חדש לפעולות -->
+           <button class="download-button" data-song-serial="{{ song.number | escape }}" title="הורדה">
+               <i class="fas fa-download"></i>
+           </button>
+           <button class="share-button" data-song-serial="{{ song.number | escape }}" title="שיתוף">
+               <i class="fas fa-share-alt"></i>
+           </button>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-
 </div>
 
 <!-- סקריפטים ספציפיים לדף אמן -->

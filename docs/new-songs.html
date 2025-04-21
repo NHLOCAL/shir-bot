@@ -10,57 +10,44 @@ permalink: /new-songs/
     <table>
         <thead>
             <tr>
-                <th>מספר סידורי</th>
+                <!-- הוסרה עמודת מספר סידורי -->
                 <th>שם השיר</th>
                 <th>שם האלבום</th>
                 <th>שם הזמר</th>
+                <th>פעולות</th> <!-- עמודה חדשה -->
             </tr>
         </thead>
         <tbody class="songs-list">
             {% for song in site.data.new_songs %}
-                <tr>
-                    <td>
-                        <a onclick="event.stopPropagation(); copyToClipboard('{{ site.url }}{{ site.baseurl }}{{ page.url }}?song={{ song.serial }}'); showCopiedMessage();">
-                            {{ song.serial }}
-                        </a>
-                    </td>
+                <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}"> <!-- הוספנו data-drive-id -->
+                    <!-- הוסרה תא מספר סידורי -->
                     <td>{{ song.name }}</td>
                     <td>
-                        <button class="album-button" onclick="event.stopPropagation(); window.location.href='{{ site.baseurl }}/?search={{ song.album | url_encode }}&searchBy=album'">
+                        <button class="album-button" data-album-name="{{ song.album | escape }}">
                             {{ song.album }}
                         </button>
                     </td>
                     <td>
-                        <button class="singer-button" onclick="event.stopPropagation(); window.location.href='{{ site.baseurl }}/?search={{ song.singer | url_encode }}&searchBy=singer'">
+                        <button class="singer-button" data-singer-name="{{ song.singer | escape }}">
                             {{ song.singer }}
                         </button>
                     </td>
-                     <td style="display:none;">
-                        <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3"></a>
+                    <td class="actions-cell"> <!-- תא חדש לפעולות -->
+                       <button class="download-button-new" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" data-filename="{{ song.name }} - {{ song.singer }}.mp3" title="הורדה">
+                           <i class="fas fa-download"></i>
+                       </button>
+                       <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
+                           <i class="fas fa-share-alt"></i>
+                       </button>
+                       <!-- קישור ההורדה הישן מוסתר עדיין לשימוש ע"י JS -->
+                       <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a>
                     </td>
                 </tr>
-                <script>
-                    // הוספת אירוע לחיצה על השורה
-                    document.addEventListener('DOMContentLoaded', function() {
-                    const rows = document.querySelectorAll('#resultsTable tbody.songs-list tr');
-                    rows.forEach(row => {
-                        row.addEventListener('click', function(event) {
-                            if (event.target.tagName !== 'BUTTON' && event.target.tagName !== 'A') {
-                                    event.preventDefault();
-                                const downloadLink = this.querySelector('td[style="display:none;"] a');
-                                    if (downloadLink) {
-                                        downloadLink.click();
-                                      }
-                                }
-                            });
-                        });
-                    });
-
-                </script>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
 <!-- סקריפט ספציפי לדף שירים חדשים -->
+<!-- shared-redirect-handler מטפל בכפתורי שיתוף/אלבום/זמר -->
 <script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script>

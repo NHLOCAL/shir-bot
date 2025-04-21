@@ -72,28 +72,26 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
         </div>
     </div>
 
-    <!-- Results Table container (styling in CSS, content by search.js) -->
-    <!-- Note: Removed position:fixed from CSS for this element -->
+    <!-- Results Table container -->
     <div id="resultsTable" class="custom-table">
         <table>
-            <thead> <!-- Structure needed by search.js, visibility controlled by CSS/JS -->
+            <thead> <!-- Structure needed by search.js -->
                 <tr>
-                    <th>מספר סידורי</th>
+                    <!-- הוסרה עמודת מספר סידורי -->
                     <th>שם השיר</th>
                     <th>שם האלבום</th>
                     <th>שם הזמר</th>
+                    <th>פעולות</th> <!-- עמודה חדשה -->
                 </tr>
             </thead>
             <tbody class="songs-list">
                 <!-- Search results populated here by search.js -->
-                <!-- Initial loading message/placeholder removed as displayResults handles it -->
             </tbody>
         </table>
-        <!-- Load More button (visibility controlled by search.js) -->
+        <!-- Load More button -->
         <button id="loadMoreButton" style="display: none;">טען עוד</button>
     </div>
 </div>
-<!-- --- End of Search Results Area --- -->
 
 
 <!-- --- Modal Overlay (controlled by core.js, used by search.js etc.) --- -->

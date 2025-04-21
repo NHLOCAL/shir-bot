@@ -502,23 +502,33 @@ function displayResults(resultsToDisplay, append = false) {
         const actionsCell = document.createElement('td');
         actionsCell.classList.add('actions-cell');
 
+        // **** 1. Create the wrapper DIV ****
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'actions-button-group';
+
+        // **** 2. Create Buttons (as before) ****
         // Download Button
         const downloadButton = document.createElement('button');
         downloadButton.classList.add('download-button');
         downloadButton.dataset.songSerial = song.serial;
         downloadButton.title = 'הורדה';
-        downloadButton.innerHTML = '<i class="fas fa-download"></i>'; // Use icon
-        actionsCell.appendChild(downloadButton);
+        downloadButton.innerHTML = '<i class="fas fa-download"></i>';
 
         // Share Button
         const shareButton = document.createElement('button');
         shareButton.classList.add('share-button');
         shareButton.dataset.songSerial = song.serial;
         shareButton.title = 'שיתוף';
-        shareButton.innerHTML = '<i class="fas fa-share-alt"></i>'; // Use icon
-        actionsCell.appendChild(shareButton);
+        shareButton.innerHTML = '<i class="fas fa-share-alt"></i>';
 
-        row.appendChild(actionsCell);
+        // **** 3. Append Buttons to the DIV ****
+        groupDiv.appendChild(downloadButton);
+        groupDiv.appendChild(shareButton);
+
+        // **** 4. Append the DIV to the Cell ****
+        actionsCell.appendChild(groupDiv);
+
+        row.appendChild(actionsCell); // Append the cell to the row
         // --- End Actions Cell ---
 
         fragment.appendChild(row);

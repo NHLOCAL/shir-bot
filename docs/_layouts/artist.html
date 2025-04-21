@@ -43,13 +43,15 @@ layout: default # Inherits from default, which loads core.js, ads.js, shared-red
             <button class="singer-button">{{ song.artist }}</button>
         </td>
         <td class="actions-cell"> <!-- תא חדש לפעולות -->
-           <button class="download-button" data-song-serial="{{ song.number | escape }}" title="הורדה">
-               <i class="fas fa-download"></i>
-           </button>
-           <button class="share-button" data-song-serial="{{ song.number | escape }}" title="שיתוף">
-               <i class="fas fa-share-alt"></i>
-           </button>
-        </td>
+          <div class="actions-button-group"> <!-- הוספת ה-DIV העוטף -->
+            <button class="download-button" data-song-serial="{{ song.number | escape }}" title="הורדה">
+                <i class="fas fa-download"></i>
+            </button>
+            <button class="share-button" data-song-serial="{{ song.number | escape }}" title="שיתוף">
+                <i class="fas fa-share-alt"></i>
+            </button>
+          </div> <!-- סגירת ה-DIV העוטף -->
+       </td>
       </tr>
       {% endfor %}
     </tbody>

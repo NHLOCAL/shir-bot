@@ -709,45 +709,55 @@ p {
   white-space: nowrap; /* מניעת שבירת שורה בין הכפתורים */
 }
 
-.download-button,
-.share-button,
-.download-button-new { /* כלול את הכפתור המיוחד מדף שירים חדשים */
-background-color: transparent;
-border: 1px solid var(--primary-color);
-color: var(--primary-color);
-padding: 5px 10px; /* ריווח פנימי קטן יותר */
-margin: 0 3px; /* רווח קטן בין הכפתורים */
-border-radius: 4px;
-cursor: pointer;
-font-size: 14px; /* גודל פונט (אייקון) */
-line-height: 1; /* למנוע גובה מיותר */
-transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
-vertical-align: middle; /* יישור אנכי */
+.actions-button-group {
+  display: inline-flex; /* Align buttons horizontally */
+  border: 1px solid rgba(126, 87, 194, 0.4); /* Border using primary color with opacity */
+  border-radius: 4px; /* Adjust to match site's border-radius for small elements */
+  overflow: hidden; /* Crucial for clipping button corners inside the rounded container */
+  vertical-align: middle; /* Align with other cell content if needed */
 }
 
-.download-button:hover,
-.share-button:hover,
-.download-button-new:hover {
-background-color: var(--primary-hover);
-color: var(--white);
-transform: translateY(-1px); /* אפקט הרמה קטן */
+/* Styling for individual buttons INSIDE the split group */
+.actions-button-group .download-button,
+.actions-button-group .share-button,
+.actions-button-group .download-button-new {
+  margin: 0; /* Remove default button margins */
+  border: none; /* Remove individual button borders */
+  border-radius: 0; /* Remove individual button rounding */
+  padding: 6px 10px; /* Adjust padding as needed */
+  background-color: transparent; /* Default transparent background */
+  color: var(--primary-color); /* Default icon color */
+  font-size: 14px; /* Icon size */
+  line-height: 1;
+  cursor: pointer;
+  position: relative; /* Needed for the separator pseudo-element */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.download-button:active,
-.share-button:active,
-.download-button-new:active {
-transform: translateY(0px); /* החזרה למקום בלחיצה */
+/* Vertical separator line using ::before on the second button (Share) */
+/* Assumes Download button is always first, Share is second */
+.actions-button-group .share-button::before {
+  content: "";
+  position: absolute;
+  right: 0; /* Position line on the right (for RTL) */
+  top: 15%; /* Start line slightly below the top */
+  bottom: 15%; /* End line slightly above the bottom */
+  width: 1px;
+  background-color: rgba(126, 87, 194, 0.4); /* Same color as the main border */
 }
 
-/* סגנון כפתור בזמן טעינה (אופציונלי אם לא משתמשים ב-wrapper) */
-.download-button:disabled,
-.download-button-new:disabled {
-  cursor: not-allowed;
-  opacity: 0.7;
+/* Hover/Active states for buttons inside the group */
+.actions-button-group .download-button:hover,
+.actions-button-group .share-button:hover,
+.actions-button-group .download-button-new:hover {
+  background-color: var(--primary-light-bg); /* Use the light purple background from :root */
+  color: var(--primary-hover); /* Optional: Darken the icon slightly */
 }
-.download-button.download-in-progress,
-.download-button-new.download-in-progress { /* אם משתמשים בקלאס מה-wrapper */
-   cursor: wait;
+
+.actions-button-group .download-button:active,
+.actions-button-group .share-button:active,
+.actions-button-group .download-button-new:active {
+  background-color: var(--primary-light-bg-hover); /* Slightly darker background on click */
 }
 
 /* Color transition animation */

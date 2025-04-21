@@ -32,16 +32,18 @@ permalink: /new-songs/
                             {{ song.singer }}
                         </button>
                     </td>
-                    <td class="actions-cell"> <!-- תא חדש לפעולות -->
-                       <button class="download-button-new" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" data-filename="{{ song.name }} - {{ song.singer }}.mp3" title="הורדה">
-                           <i class="fas fa-download"></i>
-                       </button>
-                       <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
-                           <i class="fas fa-share-alt"></i>
-                       </button>
-                       <!-- קישור ההורדה הישן מוסתר עדיין לשימוש ע"י JS -->
-                       <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a>
-                    </td>
+                    <td class="actions-cell">
+                        <div class="actions-button-group"> <!-- **** הוספת ה-DIV **** -->
+                            <button class="download-button-new" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" data-filename="{{ song.name }} - {{ song.singer }}.mp3" title="הורדה">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+                        </div> <!-- **** סגירת ה-DIV **** -->
+                        <!-- הקישור המוסתר נשאר מחוץ ל-div אך בתוך ה-td -->
+                        <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a>
+                     </td>
                 </tr>
             {% endfor %}
         </tbody>

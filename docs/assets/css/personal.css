@@ -135,6 +135,8 @@ td {
 .right-item img.nhlocal-icon {
   display: block;
   border-radius: 50%;
+  width: 24px; /* הקטנה מ-27px בהתאם לכפתור */
+  height: auto; /* לשמירה על פרופורציות */
 }
 
 /* Fixed bottom section (גובה לפי הקוד המקורי) */
@@ -171,10 +173,10 @@ td {
   top: 0;
   left: 0;
   right: 0;
-  padding: 0.5rem 1rem;
+  /* הקטנת padding עליון/תחתון */
+  padding: 0.2rem 1rem; /* במקום 0.5rem 1rem */
   z-index: 9999;
 }
-
 /* יישור האייקונים והטקסט בסרגל העליון */
 .topnav i {
   vertical-align: middle;
@@ -184,10 +186,10 @@ td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* הקטנת padding עליון/תחתון והקטנת גובה מינימלי */
-  margin: 0 auto; /* או 0 אם רוצים רוחב מלא */
-  min-height: 1.2rem; /* הקטנת גובה מינימלי */
-  padding: 0.25rem 1rem;
+  margin: 0 auto;
+  /* ביטול גובה מינימלי ו-padding מינימלי */
+  min-height: auto; /* נותן לתוכן לקבוע את הגובה */
+  padding: 0.1rem 1rem; /* Padding מינימלי */
 }
 
 .logo-container {
@@ -201,9 +203,10 @@ td {
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px;
-  font-size: 20px;
+  gap: 6px; /* אפשר להקטין מעט את הרווח */
+  /* הקטנת padding פנימי והתאמת גודל גופן */
+  padding: 2px; /* הקטנה משמעותית מ-5px */
+  font-size: 18px; /* הקטנה מ-20px */
 }
 
 .icons-container {
@@ -222,16 +225,19 @@ td {
   align-items: center;
   justify-content: center;
   background: none;
-  width: 35px;
-  height: 35px;
+  /* הקטנת הגובה והרוחב */
+  width: 28px;  /* במקום 35px */
+  height: 28px; /* במקום 35px */
 }
 
 .feedback-button {
-  font-size: 24px;
+  /* התאמת גודל הפונט לגודל הכפתור החדש */
+  font-size: 20px; /* במקום 24px */
 }
 
 .feedback-button i {
-  font-size: 24px;
+  /* התאמת גודל הפונט לגודל הכפתור החדש */
+  font-size: 20px; /* במקום 24px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,41 +248,141 @@ td {
 /* Search container - עם מרווח כדי לא להיסתר מתחת לסרגל העליון */
 
 @media screen and (max-width: 600px) {
+  /* --- התאמת Header Container למובייל --- */
   .header-container {
-    min-height: 2.5rem;
-    padding: 0 0.5rem;
+    /* שמירה על padding מינימלי, אולי מעט פחות רווח אופקי */
+    padding: 0.1rem 0.5rem;
+    min-height: auto; /* שמירה על גובה אוטומטי */
   }
 
+  /* --- התאמת לוגו/כותרת למובייל --- */
   .logo-container h3 {
-    font-size: 16px;
+    font-size: 16px; /* גודל פונט קטן יותר למובייל */
     gap: 5px;
+    padding: 2px; /* Padding מינימלי */
   }
-
   .logo-container img {
-    width: 30px !important;
+    /* התאמה לגודל החדש של הסרגל */
+    width: 26px !important;
+    height: auto;
   }
-
-  .right-item, .feedback-button {
-    width: 30px;
-    height: 30px;
-  }
-
-  .right-item img {
-    width: 25px !important;
-  }
-
-  .feedback-button {
-    font-size: 20px;
-  }
-
-  .feedback-button i {
-    font-size: 20px;
-  }
-
+  /* השארת הכותרת מוסתרת במובייל */
   .site-title {
     display: none;
   }
-}
+
+  /* --- התאמת אייקונים למובייל --- */
+  .right-item, .feedback-button {
+    /* התאמה לגודל החדש של הסרגל */
+    width: 26px;
+    height: 26px;
+  }
+  .right-item img.nhlocal-icon {
+    /* התאמה לגודל החדש */
+    width: 22px !important;
+    height: auto;
+  }
+  .feedback-button {
+    /* התאמת גודל פונט לגודל כפתור */
+    font-size: 18px;
+  }
+  .feedback-button i {
+    /* התאמת גודל פונט לגודל כפתור */
+    font-size: 18px;
+  }
+
+  /* --- התאמת סרגל חיפוש למובייל --- */
+  .search-bar {
+    flex-direction: column;
+    /* ה-padding הועבר ל-.search-container */
+    width: 95%; /* הגבלת רוחב קלה */
+    max-width: none; /* דריסת הגדרת רוחב מקסימלי מדסקטופ */
+  }
+  /* הסלקטורים של .search-input, .search-icon-button, .search-icons, .search-filters יישארו כפי שהיו בתוך המדיה קוורי הזה */
+   .search-input {
+    font-size: 16px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-radius: 20px;
+  }
+  .search-icon-button {
+    margin-left: 0;
+  }
+  .search-icons {
+    margin-left: auto;
+    margin-top: 5px;
+    justify-content: center;
+  }
+  .search-icons a {
+    font-size: 18px;
+  }
+  .search-filters {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .filter-button {
+    font-size: 14px;
+    margin: 3px;
+    padding: 6px 12px;
+  }
+
+  /* --- התאמת טבלת תוצאות למובייל --- */
+  #resultsTable {
+    /* הקטנת המרווח העליון מהתוכן שמעל */
+    margin-top: 1rem; /* היה 10vh */
+    /* הסרת גובה קבוע באחוזים */
+    max-height: 60vh; /* שמירה על גובה מקסימלי */
+    width: 100%; /* וידוא רוחב מלא */
+    margin-left: 0; /* איפוס שוליים אופקיים */
+    margin-right: 0;
+    /* --- הוספת גלישה אופקית אם צריך --- */
+    overflow-x: auto; /* מאפשר גלילה אם התוכן רחב מדי */
+  }
+  #resultsTable table {
+    table-layout: fixed;
+    width: 100%; /* וידוא שהטבלה מנסה לתפוס 100% מהקונטיינר */
+  }
+  th, td {
+    font-size: 12px;
+    text-align: center;
+    /* וידוא שבירת מילים */
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* חלופה מודרנית */
+    padding: 6px 4px; /* הקטנת ריווח פנימי בתאים */
+  }
+  /* הגדרת רוחב עמודות (חשוב שסכומם יהיה 100% או פחות אם יש padding) */
+  #resultsTable th:nth-child(1), /* Serial */
+  #resultsTable td:nth-child(1) {
+    width: 18%; /* הקטנה קלה */
+  }
+  #resultsTable th:nth-child(2), /* Name */
+  #resultsTable td:nth-child(2) {
+    width: 34%; /* מעט פחות, לאפשר מקום לאחרים */
+  }
+  #resultsTable th:nth-child(3), /* Album */
+  #resultsTable td:nth-child(3) {
+     width: 24%; /* הגדלה קלה */
+  }
+   #resultsTable th:nth-child(4), /* Singer */
+  #resultsTable td:nth-child(4) {
+     width: 24%; /* הגדלה קלה */
+  }
+
+  /* --- סגנונות כלליים אחרים למובייל --- */
+  a {
+    padding: 7px 10px; /* קישורים כלליים */
+  }
+  .fixed-bottom {
+    /* אין שינוי נדרש כאן מהקוד הקיים */
+     position: fixed;
+     padding-top: 15px;
+     text-align: center;
+     height: auto;
+  }
+  .fixed-bottom p {
+    font-size: 12px; /* פונט קטן יותר בתחתית */
+  }
+} /* סוף בלוק @media (max-width: 600px) */
 
 .topnav h3, .topnav a {
   color: var(--white);
@@ -964,7 +1070,7 @@ h4 {
   flex-direction: column;
   align-items: center;
   margin-top: 55px;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   width: 100%;
 }
 

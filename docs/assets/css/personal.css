@@ -92,25 +92,34 @@ td {
   box-sizing: border-box; /* Include padding in width */
 }
 
-/* You might need to adjust the parent container's padding/margin too */
-/* --- Search Results Area Styling --- */
-#search-results-area {
-  display: none; /* Keep initially hidden */
-
+/* --- Constrained Content Area Styling (Shared) --- */
+.constrained-content-area {
   /* --- Limiting Width and Centering on Large Screens --- */
-  max-width: 1200px; /* הגדרת רוחב מקסימלי (ניתן לשנות ל-1140px או 1200px לפי העדפה) */
-  margin-left: auto;  /* ממקם אוטומטית לשוליים השמאליים */
-  margin-right: auto; /* ממקם אוטומטית לשוליים הימניים (ביחד = מרכוז) */
+  max-width: 1200px; /* הגדרת רוחב מקסימלי (ניתן לשנות) */
+  margin-left: auto;
+  margin-right: auto;
 
   /* --- Adding Vertical Margins and Horizontal Padding --- */
-  margin-top: 2rem;    /* שוליים עליונים גדולים יותר */
-  margin-bottom: 2rem; /* שוליים תחתונים גדולים יותר */
-  padding-left: 1rem;  /* ריווח פנימי בצדדים כדי שהתוכן לא ייגע בקצוות */
+  margin-top: 2rem;    /* שוליים עליונים */
+  margin-bottom: 2rem; /* שוליים תחתונים */
+  padding-left: 1rem;  /* ריווח פנימי בצדדים */
   padding-right: 1rem; /* ריווח פנימי בצדדים */
 
   /* --- חשוב לוודא שה-padding לא מוסיף לרוחב הכולל --- */
   box-sizing: border-box;
+
+  /* ודא שזה לא מוסתר כברירת מחדל - בניגוד ל-search-results-area */
+  display: block; /* או מה שהיה במקור אם לא block */
 }
+
+
+/* --- Search Results Area Specific Styling --- */
+#search-results-area {
+  /* ספציפי לאזור החיפוש בדף הבית */
+  display: none; /* Keep initially hidden on homepage */
+  /* את סגנונות הפריסה הוא יורש מ- .constrained-content-area */
+}
+
 
 
 #resultsTable table {

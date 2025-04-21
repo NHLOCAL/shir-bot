@@ -1,14 +1,38 @@
 // assets/js/new-songs.js
 
 // --- Dependencies ---
-// This file relies on functions defined in core.js:
-// - copyToClipboard()
-// - showCopiedMessage()
-// It also relies on the global 'baseurl' variable.
+// Relies on functions defined in core.js: copyToClipboard(), showCopiedMessage()
+// Relies on the global 'baseurl' variable.
 
 document.addEventListener('DOMContentLoaded', function() {
     const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
+    const searchForm = document.getElementById('searchForm'); // Handle header search form
 
+    // --- Header Search Form Redirect ---
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default submission on this page
+
+            const searchInput = document.getElementById('searchInput');
+            const searchInputVal = searchInput ? searchInput.value.trim() : '';
+            // Find the currently active filter button to get the searchBy value
+            const activeFilterButton = document.querySelector('.filter-button.active');
+            const searchBy = activeFilterButton ? activeFilterButton.dataset.filter : 'all'; // Default to 'all'
+
+            if (searchInputVal) {
+                // Construct the redirect URL for the homepage
+                const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchInputVal)}&searchBy=${encodeURIComponent(searchBy)}`;
+                console.log(`Redirecting from new-songs page (header search) to: ${redirectUrl}`);
+                window.location.href = redirectUrl;
+            } else {
+                 searchInput?.focus();
+            }
+        });
+    } else {
+        console.warn("Search form not found on new-songs page.");
+    }
+
+    // --- Table Interaction Logic ---
     if (resultsTableBody) {
         resultsTableBody.addEventListener('click', function(event) {
             const target = event.target;
@@ -22,23 +46,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 event.stopPropagation();
                 const songSerial = target.textContent.trim();
                 if (songSerial) {
-                    // Construct the share link (assuming baseurl and page.url are available globally or passed differently)
-                    // Using fixed structure based on permalink setting
-                    const shareLink = `${window.location.origin}${baseurl}/new-songs/?song=${encodeURIComponent(songSerial)}`;
+                    // Construct the share link using current page structure
+                    // NOTE: The original onclick had a direct link structure which is fine for copy
+                    const shareLink = `${window.location.origin}${baseurl || ''}${window.location.pathname}?song=${encodeURIComponent(songSerial)}`;
                     copyToClipboard(shareLink);
                     showCopiedMessage();
                 }
             }
-            // Handling Album/Singer Button Click (Redirecting)
+            // Handling Album/Singer Button Click (Redirecting to Homepage Search)
             else if (target.tagName === 'BUTTON' && (target.classList.contains('album-button') || target.classList.contains('singer-button'))) {
+                 event.preventDefault(); // Prevent button default action if any
                  event.stopPropagation(); // Prevent row click
                  const searchTerm = target.textContent.trim();
                  const searchType = target.classList.contains('album-button') ? 'album' : 'singer';
                  if (searchTerm) {
-                      window.location.href = `${baseurl}/?search=${encodeURIComponent(searchTerm)}&searchBy=${searchType}`;
+                      // CORRECTED: Ensure redirect goes to homepage '/'
+                      const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}`;
+                      console.log(`Redirecting from new-songs page (button click) to: ${redirectUrl}`);
+                      window.location.href = redirectUrl;
                  }
             }
-            // Handling Row Click (for direct download)
+            // Handling Row Click (for direct download using hidden link)
             else if (target.tagName !== 'A' && target.tagName !== 'BUTTON') {
                 event.preventDefault();
                 // Find the hidden download link within this specific row
@@ -50,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.error('Download link not found or invalid for this row.');
                     // Optional: Show an error to the user using showMessage() from core.js?
-                    // showMessage("שגיאה: קישור הורדה לא תקין.");
+                    // if (typeof showMessage === 'function') showMessage("שגיאה: קישור הורדה לא תקין.");
                 }
             }
         });

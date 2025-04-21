@@ -184,15 +184,17 @@ td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  min-height: 2rem;
-  padding: 0.25rem 1rem; 
+  /* הקטנת padding עליון/תחתון והקטנת גובה מינימלי */
+  margin: 0 auto; /* או 0 אם רוצים רוחב מלא */
+  min-height: 1.2rem; /* הקטנת גובה מינימלי */
+  padding: 0.25rem 1rem;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   margin-right: 0;
+  cursor: pointer;
 }
 
 .logo-container h3 {
@@ -1219,7 +1221,7 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 
 .songs-column li i.song-icon {
   margin-left: 12px;
-  color: var(--highlight-color);
+  color: var(--primary-color);
   font-size: 1em;
   width: 20px;
   text-align: center;
@@ -1422,4 +1424,34 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
   }
   .ad-banner-container #prevSection { right: 5px; }
   .ad-banner-container #nextSection { left: 5px; }
+}
+
+
+/* --- עדכון לעיצוב קישורי הכותרות --- */
+a.column-title-link {
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  /* שכפול הסגנון של h2 המקורי */
+  padding: 8px 15px;
+  background-color: rgba(126, 87, 194, 0.1); /* Light purple background */
+  color: var(--primary-hover); /* Darker purple text */
+  border-radius: 6px;
+  font-weight: 600;
+  /* איפוס סגנונות קישור */
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a.column-title-link:hover {
+  background-color: rgba(126, 87, 194, 0.2); /* רקע מעט כהה יותר בריחוף */
+  color: var(--primary-color); /* צבע מעט בהיר יותר בריחוף */
+}
+
+a.column-title-link i {
+  margin-left: 10px;
+  font-size: 1em;
+  opacity: 0.8;
 }

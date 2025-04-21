@@ -30,7 +30,7 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
               <li class="loading-placeholder">טוען שירים...</li> <!-- Placeholder -->
           </ul>
       </div>
-  </div>
+  </div> <!-- סגירת <div class="main-columns"> -->
 
   <!-- --- Rotating Ad Banner Section --- -->
   <div class="ad-banner-container" id="ad-banner-container">
@@ -41,6 +41,20 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
       <button id="prevSection" aria-label="הקודם"><i class="fas fa-chevron-right"></i></button>
       <button id="nextSection" aria-label="הבא"><i class="fas fa-chevron-left"></i></button>
   </div>
+
+  <!-- *** הוספה: סקריפט להטמעת נתוני אמנים *** -->
+  <script id="artistsData" type="application/json">
+    [
+      {% for artist in site.artists %}
+        {
+          "name": {{ artist.title | jsonify }},
+          "url": "{{ artist.url | relative_url }}"
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  </script>
+  <!-- *** סוף הוספה *** -->
+
 </div>
 <!-- --- End of Homepage Content Area --- -->
 

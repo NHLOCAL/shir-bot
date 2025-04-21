@@ -3,18 +3,19 @@
 // Dependencies:
 // - Global `baseurl` variable (from layout)
 // - `searchSongs` function from search.js (if available) for song clicks
-// - `fetchCSV`, `parseCSV` (can be copied/adapted from search.js or assumed available)
+// - `fetchCSV`, `parseCSV` (needed ONLY for random songs list)
 
 document.addEventListener('DOMContentLoaded', () => {
     const artistsGrid = document.getElementById('popular-artists-grid');
     const songsList = document.getElementById('random-songs-list');
     const homepageContent = document.getElementById('homepage-content');
     const searchResultsArea = document.getElementById('search-results-area');
+    const artistsDataElement = document.getElementById('artistsData'); // Get the embedded data script tag
 
     const NUM_ARTISTS_TO_SHOW = 6;
     const NUM_SONGS_TO_SHOW = 5;
 
-    // --- Data Fetching and Parsing (Adapted from search.js - ensure consistency) ---
+    // --- Data Fetching and Parsing (Adapted from search.js - needed for SONGS ONLY) ---
     async function fetchCSV(url) {
         try {
             const response = await fetch(url);
@@ -56,47 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
         return shuffled.slice(0, count);
     }
 
-    function displayArtists(allSongs) {
+    // --- Updated function to use data from site.artists (via embedded JSON) ---
+    function displayArtists(availableArtists) {
         if (!artistsGrid) return;
 
-        // Extract unique, non-empty, non-"סינגלים" singer names
-        const uniqueSingers = [...new Set(allSongs.map(song => song.singer))]
-            .filter(singer => singer && !singer.toLowerCase().includes('סינגלים') && singer.trim() !== '');
+        // Get random artists directly from the provided list
+        const randomArtists = getRandomItems(availableArtists, NUM_ARTISTS_TO_SHOW);
 
-        const randomSingers = getRandomItems(uniqueSingers, NUM_ARTISTS_TO_SHOW);
-
-        if (randomSingers.length === 0) {
+        if (randomArtists.length === 0) {
             artistsGrid.innerHTML = '<p>לא נטענו אמנים.</p>';
             return;
         }
 
         let html = '';
-        randomSingers.forEach(singer => {
-            // Generate URL-safe name (simple version)
-            const safeName = singer.replace(/\s+/g, '-').replace(/[/\\?%*:|"<>]/g, '');
-            const artistUrl = `${baseurl}/artists/${safeName}/`; // Assumes permalink structure
+        randomArtists.forEach(artist => {
+            // Use the name and url directly from the artist object
+            const artistUrl = artist.url;
+            const singerName = artist.name;
 
             html += `
-                <div class="artist-item" data-artist-name="${singer}">
-                    <a href="${artistUrl}" class="artist-circle" title="עבור לדף האמן ${singer}">
+                <div class="artist-item" data-artist-name="${singerName}">
+                    <a href="${artistUrl}" class="artist-circle" title="עבור לדף האמן ${singerName}">
                        <i class="fas fa-user"></i>
                     </a>
-                    <span class="artist-name">${singer}</span>
+                    <span class="artist-name">${singerName}</span>
                 </div>`;
         });
         artistsGrid.innerHTML = html;
-
-        // Add click listeners (optional, as links work directly)
-        // artistsGrid.querySelectorAll('.artist-item').forEach(item => {
-        //     item.addEventListener('click', (e) => {
-        //         // Could potentially use search instead of direct link
-        //         const artistName = item.dataset.artistName;
-        //         console.log("Artist clicked:", artistName);
-        //         // window.location.href = item.querySelector('a').href; // Direct link handled by <a>
-        //     });
-        // });
     }
 
+    // --- This function remains the same, using CSV data ---
     function displaySongs(allSongs) {
         if (!songsList) return;
 
@@ -125,47 +115,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 const serial = item.dataset.songSerial;
                 console.log("Song clicked, searching for serial:", serial);
 
-                // Use searchSongs function from search.js if available
                 if (typeof searchSongs === 'function') {
-                     // Update search input visually
                      const searchInput = document.getElementById('searchInput');
                      if(searchInput) searchInput.value = serial;
-                     // Set filter visually
                      document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
                      const serialFilterButton = document.querySelector('.filter-button[data-filter="serial"]');
                      if(serialFilterButton) serialFilterButton.classList.add('active');
-                     // Trigger search
                      searchSongs(serial, 'serial');
-                     // Switch view
                      showSearchResultsView();
                 } else {
-                    // Fallback: Redirect to index with search params
                     window.location.href = `${baseurl}/?search=${encodeURIComponent(serial)}&searchBy=serial`;
                 }
             });
         });
     }
 
-     // Function to switch view from homepage content to search results
      function showSearchResultsView() {
          if (homepageContent) homepageContent.style.display = 'none';
          if (searchResultsArea) searchResultsArea.style.display = 'block';
-         // Ensure results table itself is visible if it was hidden separately
          const resultsTable = document.getElementById('resultsTable');
-         if(resultsTable) resultsTable.style.display = ''; // Or 'table'
+         if(resultsTable) resultsTable.style.display = '';
      }
 
-     // Function to switch view back to homepage (e.g., if search is cleared)
-     window.showHomepageView = function() { // Expose globally for search.js potentially
+     window.showHomepageView = function() {
          if (homepageContent) homepageContent.style.display = 'block';
          if (searchResultsArea) searchResultsArea.style.display = 'none';
      }
 
     async function initHomepage() {
-        // Check if we are already showing search results from URL params
         const urlParams = new URLSearchParams(window.location.search);
         const hasSearchParams = urlParams.has('search') || urlParams.has('searchBy');
 
+        // 1. Read Artist Data from Embedded JSON
+        let artistsFromCollection = [];
+        if (artistsDataElement) {
+            try {
+                artistsFromCollection = JSON.parse(artistsDataElement.textContent);
+                console.log(`Loaded ${artistsFromCollection.length} artists from embedded data.`);
+            } catch (e) {
+                console.error("Failed to parse artists JSON data:", e);
+                 if (artistsGrid) artistsGrid.innerHTML = '<p>שגיאה בטעינת נתוני אמנים.</p>';
+            }
+        } else {
+            console.warn("Artists data script tag (#artistsData) not found.");
+             if (artistsGrid) artistsGrid.innerHTML = '<p>שגיאה בטעינת נתוני אמנים.</p>';
+        }
+
+        // 2. Fetch and Parse CSV for Songs (still needed)
+        let allSongs = [];
+        const csvUrl = `${baseurl}/assets/data/songs.csv`;
+        const csvData = await fetchCSV(csvUrl);
+        if (csvData) {
+            allSongs = parseCSV(csvData);
+            if (allSongs.length === 0) {
+                 console.warn("Parsed song data from CSV is empty.");
+                 if (songsList) songsList.innerHTML = '<li>שגיאה בעיבוד נתוני שירים.</li>';
+            }
+        } else {
+            if (songsList) songsList.innerHTML = '<li>שגיאה בטעינת נתוני שירים.</li>';
+        }
+
+        // 3. Handle View Logic (Search Params vs Homepage)
         if (hasSearchParams) {
              console.log("Search params detected, hiding homepage content initially.");
              showSearchResultsView(); // Start in search view
@@ -173,20 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
              console.log("No search params, showing homepage content.");
              showHomepageView(); // Start in homepage view
-             const csvUrl = `${baseurl}/assets/data/songs.csv`;
-             const csvData = await fetchCSV(csvUrl);
-             if (csvData) {
-                 const allSongs = parseCSV(csvData);
-                 if (allSongs.length > 0) {
-                     displayArtists(allSongs);
-                     displaySongs(allSongs);
-                 } else {
-                     if (artistsGrid) artistsGrid.innerHTML = '<p>שגיאה בעיבוד נתוני שירים.</p>';
-                     if (songsList) songsList.innerHTML = '<li>שגיאה בעיבוד נתוני שירים.</li>';
-                 }
-             } else {
-                 if (artistsGrid) artistsGrid.innerHTML = '<p>שגיאה בטעינת נתוני שירים.</p>';
-                 if (songsList) songsList.innerHTML = '<li>שגיאה בטעינת נתוני שירים.</li>';
+
+             // Display Artists using data from _artists collection
+             displayArtists(artistsFromCollection);
+
+             // Display Songs using data from CSV
+             if (allSongs.length > 0) {
+                 displaySongs(allSongs);
              }
         }
          // Let ads.js handle the rotating ad content

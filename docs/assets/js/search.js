@@ -834,28 +834,3 @@ function updateProgressDisplay(percentage, currentQueuePosition, statusText = ''
         }
     }
 }
-
-// --- URL Handling ---
-// updateURLWithoutReload is NO LONGER USED for setting params on homepage search.
-/*
-function updateURLWithoutReload(query = null, searchBy = null) {
-    // Function deprecated for setting params post-search on homepage.
-    // Kept commented for historical reference if needed.
-    // try {
-    //     const url = new URL(window.location.href);
-    //     url.searchParams.delete('search');
-    //     url.searchParams.delete('searchBy');
-    //     const cleanQuery = query ? String(query).trim() : '';
-    //     if (cleanQuery) {
-    //         url.searchParams.set('search', cleanQuery);
-    //         const cleanSearchBy = searchBy ? String(searchBy).trim() : 'all';
-    //         if (cleanSearchBy !== 'all') {
-    //             url.searchParams.set('searchBy', cleanSearchBy);
-    //         }
-    //     }
-    //     window.history.replaceState({}, document.title, url.toString());
-    // } catch (e) {
-    //      console.error("Error updating URL:", e);
-    // }
-}
-*/

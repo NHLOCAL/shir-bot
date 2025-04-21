@@ -18,49 +18,37 @@ permalink: /new-songs/
         </thead>
         <tbody class="songs-list">
             {% for song in site.data.new_songs %}
-                <tr>
+                <tr data-song-serial="{{ song.serial }}"> <!-- Added data attribute -->
                     <td>
-                        <a onclick="event.stopPropagation(); copyToClipboard('{{ site.url }}{{ site.baseurl }}{{ page.url }}?song={{ song.serial }}'); showCopiedMessage();">
+                        <!-- Changed to standard link handled by JS -->
+                        <a href="#" class="serial-link" title="העתק קישור לשיר זה">
                             {{ song.serial }}
                         </a>
                     </td>
                     <td>{{ song.name }}</td>
                     <td>
-                        <button class="album-button" onclick="event.stopPropagation(); window.location.href='{{ site.baseurl }}/?search={{ song.album | url_encode }}&searchBy=album'">
+                        <!-- Removed inline onclick -->
+                        <button class="album-button" title="חפש אלבום: {{ song.album }}">
                             {{ song.album }}
                         </button>
                     </td>
                     <td>
-                        <button class="singer-button" onclick="event.stopPropagation(); window.location.href='{{ site.baseurl }}/?search={{ song.singer | url_encode }}&searchBy=singer'">
+                        <!-- Removed inline onclick -->
+                        <button class="singer-button" title="חפש זמר: {{ song.singer }}">
                             {{ song.singer }}
                         </button>
                     </td>
-                     <td style="display:none;">
-                        <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3"></a>
+                     <td style="display:none;"> <!-- Keep hidden cell for download link -->
+                        <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" class="download-link"></a>
                     </td>
                 </tr>
-                  <script>
-                    // הוספת אירוע לחיצה על השורה
-                    document.addEventListener('DOMContentLoaded', function() {
-                    const rows = document.querySelectorAll('#resultsTable tbody.songs-list tr');
-                    rows.forEach(row => {
-                        row.addEventListener('click', function(event) {
-                            if (event.target.tagName !== 'BUTTON' && event.target.tagName !== 'A') {
-                                    event.preventDefault();
-                                const downloadLink = this.querySelector('td[style="display:none;"] a');
-                                    if (downloadLink) {
-                                        downloadLink.click();
-                                      }
-                                }
-                            });
-                        });
-                    });
-
-                </script>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
+<!-- Removed inline script block as functionality moved to new-songs.js -->
+
 <!-- סקריפט ספציפי לדף שירים חדשים -->
 <script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script>
+<!-- core.js loaded via default layout -->

@@ -1337,7 +1337,7 @@ a.column-title-link i {
   /* --- !!! показ Title on Mobile !!! --- */
   .site-title {
     display: inline; /* Was 'none', now visible */
-    margin-right: 5px; /* Add some space after the logo */
+    margin: 0 5px 0 5px; /* Add some space after the logo */
     /* Ensure it doesn't wrap unnecessarily */
     white-space: nowrap;
     overflow: hidden; /* Hide overflow if it happens */
@@ -1376,45 +1376,66 @@ a.column-title-link i {
     padding: 1rem 0.5rem; /* Reduced horizontal padding */
   }
 
+  /* --- Search Bar Adjustments --- */
   .search-bar {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping */
-    row-gap: 10px;    /* Space between input row and controls row */
-    width: 100%;      /* Take full width */
+    gap: 5px;
+    flex-wrap: nowrap;
+    width: 100%;
     max-width: none;
-    padding: 0; /* Remove internal padding, handled by search-container */
-    /* Removed flex-direction: column */
-  }
+    padding: 5px;
+    background-color: var(--white);
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
   .search-input {
-    flex-basis: 100%; /* Input takes the full first line */
-    order: 1;         /* Ensure it's first visually */
+    flex: 1 1 auto;       /* Shortcut for: flex-grow: 1, flex-shrink: 1, flex-basis: auto */
+    min-width: 0;         /* Crucial: Allow input to shrink below its content size */
+    height: 38.4px;
+    padding: 6px 12px;    /* Adjust padding as needed */
     font-size: 16px;
-    width: 100%;
-    border-radius: 20px;
-    margin-bottom: 0; /* Remove bottom margin */
+    border: none;         /* Remove default border */
+    outline: none;        /* Remove default outline */
+    background: none;     /* Ensure no background color interferes */
+    border-radius: 20px;  /* Optional: match container or remove */
+    /* Remove width: auto or width: 100% */
+    /* Remove order and margin-bottom */
   }
 
   .search-icons {
-    order: 2;         /* Icons come second */
-    margin-left: 0;   /* Reset margin */
-    margin-top: 0;    /* Reset margin */
     display: flex;
     align-items: center;
-    gap: 10px; /* Add gap between icons */
+    gap: 8px;
+    flex-shrink: 0;       /* Prevent icon container from shrinking */
+    margin: 0;            /* Reset margins */
+    padding: 0;           /* Reset padding */
+    /* Remove order */
   }
 
   .search-icons a {
-    font-size: 20px; /* Slightly larger icons if desired */
+    font-size: 20px;      /* Icon size */
+    color: var(--primary-color); /* Ensure color */
+    padding: 4px;         /* Add some clickable area */
+    display: flex;        /* For alignment */
+    align-items: center;
   }
 
   /* Submit button specific targeting */
-  .search-bar > button.search-icon-button[type="submit"] {
-    order: 3;         /* Submit button comes third */
-    margin-left: auto; /* Push it to the right */
-    margin-top: 0;    /* Reset margin */
-    font-size: 20px; /* Match other icons */
-  }
+.search-bar > button.search-icon-button[type="submit"] {
+    flex-shrink: 0;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 20px;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+}
 
   .search-filters {
     flex-wrap: wrap;

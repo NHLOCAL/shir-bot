@@ -247,142 +247,7 @@ td {
 
 /* Search container - עם מרווח כדי לא להיסתר מתחת לסרגל העליון */
 
-@media screen and (max-width: 600px) {
-  /* --- התאמת Header Container למובייל --- */
-  .header-container {
-    /* שמירה על padding מינימלי, אולי מעט פחות רווח אופקי */
-    padding: 0.1rem 0.5rem;
-    min-height: auto; /* שמירה על גובה אוטומטי */
-  }
 
-  /* --- התאמת לוגו/כותרת למובייל --- */
-  .logo-container h3 {
-    font-size: 16px; /* גודל פונט קטן יותר למובייל */
-    gap: 5px;
-    padding: 2px; /* Padding מינימלי */
-  }
-  .logo-container img {
-    /* התאמה לגודל החדש של הסרגל */
-    width: 26px !important;
-    height: auto;
-  }
-  /* השארת הכותרת מוסתרת במובייל */
-  .site-title {
-    display: none;
-  }
-
-  /* --- התאמת אייקונים למובייל --- */
-  .right-item, .feedback-button {
-    /* התאמה לגודל החדש של הסרגל */
-    width: 26px;
-    height: 26px;
-  }
-  .right-item img.nhlocal-icon {
-    /* התאמה לגודל החדש */
-    width: 22px !important;
-    height: auto;
-  }
-  .feedback-button {
-    /* התאמת גודל פונט לגודל כפתור */
-    font-size: 18px;
-  }
-  .feedback-button i {
-    /* התאמת גודל פונט לגודל כפתור */
-    font-size: 18px;
-  }
-
-  /* --- התאמת סרגל חיפוש למובייל --- */
-  .search-bar {
-    flex-direction: column;
-    /* ה-padding הועבר ל-.search-container */
-    width: 95%; /* הגבלת רוחב קלה */
-    max-width: none; /* דריסת הגדרת רוחב מקסימלי מדסקטופ */
-  }
-  /* הסלקטורים של .search-input, .search-icon-button, .search-icons, .search-filters יישארו כפי שהיו בתוך המדיה קוורי הזה */
-   .search-input {
-    font-size: 16px;
-    margin-bottom: 5px;
-    width: 100%;
-    border-radius: 20px;
-  }
-  .search-icon-button {
-    margin-left: 0;
-  }
-  .search-icons {
-    margin-left: auto;
-    margin-top: 5px;
-    justify-content: center;
-  }
-  .search-icons a {
-    font-size: 18px;
-  }
-  .search-filters {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .filter-button {
-    font-size: 14px;
-    margin: 3px;
-    padding: 6px 12px;
-  }
-
-  /* --- התאמת טבלת תוצאות למובייל --- */
-  #resultsTable {
-    /* הקטנת המרווח העליון מהתוכן שמעל */
-    margin-top: 1rem; /* היה 10vh */
-    /* הסרת גובה קבוע באחוזים */
-    max-height: 60vh; /* שמירה על גובה מקסימלי */
-    width: 100%; /* וידוא רוחב מלא */
-    margin-left: 0; /* איפוס שוליים אופקיים */
-    margin-right: 0;
-    /* --- הוספת גלישה אופקית אם צריך --- */
-    overflow-x: auto; /* מאפשר גלילה אם התוכן רחב מדי */
-  }
-  #resultsTable table {
-    table-layout: fixed;
-    width: 100%; /* וידוא שהטבלה מנסה לתפוס 100% מהקונטיינר */
-  }
-  th, td {
-    font-size: 12px;
-    text-align: center;
-    /* וידוא שבירת מילים */
-    word-wrap: break-word;
-    overflow-wrap: break-word; /* חלופה מודרנית */
-    padding: 6px 4px; /* הקטנת ריווח פנימי בתאים */
-  }
-  /* הגדרת רוחב עמודות (חשוב שסכומם יהיה 100% או פחות אם יש padding) */
-  #resultsTable th:nth-child(1), /* Serial */
-  #resultsTable td:nth-child(1) {
-    width: 18%; /* הקטנה קלה */
-  }
-  #resultsTable th:nth-child(2), /* Name */
-  #resultsTable td:nth-child(2) {
-    width: 34%; /* מעט פחות, לאפשר מקום לאחרים */
-  }
-  #resultsTable th:nth-child(3), /* Album */
-  #resultsTable td:nth-child(3) {
-     width: 24%; /* הגדלה קלה */
-  }
-   #resultsTable th:nth-child(4), /* Singer */
-  #resultsTable td:nth-child(4) {
-     width: 24%; /* הגדלה קלה */
-  }
-
-  /* --- סגנונות כלליים אחרים למובייל --- */
-  a {
-    padding: 7px 10px; /* קישורים כלליים */
-  }
-  .fixed-bottom {
-    /* אין שינוי נדרש כאן מהקוד הקיים */
-     position: fixed;
-     padding-top: 15px;
-     text-align: center;
-     height: auto;
-  }
-  .fixed-bottom p {
-    font-size: 12px; /* פונט קטן יותר בתחתית */
-  }
-} /* סוף בלוק @media (max-width: 600px) */
 
 .topnav h3, .topnav a {
   color: var(--white);
@@ -579,97 +444,6 @@ p {
   }
 }
 
-/* Responsive topnav adjustments */
-@media screen and (max-width: 900px) {
-  .topnav {
-    padding: 1rem 0;
-    position: static;
-    overflow: hidden;
-  }
-
-  .topnav img {
-    position: static;
-    margin: 0 auto;
-  }
-
-  .topnav h3 {
-    float: none;
-    font-size: 20px;
-  }
-
-  .topnav a {
-    display: block;
-    float: none;
-    text-align: center;
-    padding: 10px 20px;
-  }
-
-  .topnav a:hover,
-  .topnav a:active,
-  .topnav h3.current {
-    color: var(--primary-color);
-  }
-
-  .topnav, .right-item {
-    float: none;
-    position: static;
-  }
-
-  .right-item {
-    right: 5px;
-    float: right;
-  }
-
-  .feedback-button {
-    left: 0;
-    float: left;
-  }
-
-  @media (max-width: 600px) {
-    .search-bar {
-      flex-direction: column;
-      padding: 10px;
-    }
-
-    #resultsTable {
-      margin-top: 10vh;
-      height: 50%;
-    }
-
-    #resultsTable table {
-      table-layout: fixed;
-    }
-
-    th, td {
-      font-size: 12px;
-      text-align: center;
-    }
-
-    #resultsTable th:nth-child(1),
-    #resultsTable td:nth-child(1),
-    #resultsTable th:nth-child(3),
-    #resultsTable td:nth-child(3),
-    #resultsTable th:nth-child(4),
-    #resultsTable td:nth-child(4) {
-      width: 20%;
-    }
-
-    a {
-      padding: 7px 10px;
-    }
-
-    .fixed-bottom {
-      position: fixed;
-      padding-top: 15px;
-      text-align: center;
-      height: auto;
-    }
-
-    .fixed-bottom p {
-      font-size: 12px;
-    }
-  }
-}
 
 /* Share button & modal */
 .modal-content {
@@ -876,15 +650,6 @@ p {
   color: var(--white);
 }
 
-/* Responsive nav section buttons */
-@media screen and (max-width: 600px) {
-  #prevSection,
-  #nextSection {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-}
 
 /* Table row hover effects */
 .custom-table tbody.songs-list tr:hover,
@@ -1007,30 +772,6 @@ p {
 @media (max-width: 768px) {
   .artists-list {
     padding-top: 140px;
-  }
-}
-
-/*  הסרת סגנונות מיותרים */
-/* .nav-buttons-container, .artists-link {   display: none; } */
-
-/* Responsive artists link & site title */
-@media screen and (max-width: 900px) {
-  @media screen and (max-width: 600px) {
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .site-title {
-    display: none;
-  }
-  #nextObject {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 75px;
-  }
-  .topnav img {
-    align-self: center;
   }
 }
 
@@ -1560,4 +1301,190 @@ a.column-title-link i {
   margin-left: 10px;
   font-size: 1em;
   opacity: 0.8;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  /* --- Header Adjustments --- */
+  .header-container {
+    padding: 0.1rem 0.5rem; /* Reduced padding */
+    min-height: auto;
+  }
+
+  .logo-container {
+    /* Allow logo container to shrink if needed */
+    flex-shrink: 1;
+    min-width: 0; /* Allow shrinking below intrinsic size */
+  }
+
+  .logo-container h3 {
+    font-size: 16px; /* Smaller font */
+    gap: 5px;       /* Reduced gap */
+    padding: 2px;
+    /* Prevent text wrapping inside the h3 */
+    white-space: nowrap;
+    align-items: center; /* Ensure vertical alignment */
+    display: inline-flex; /* Use inline-flex */
+  }
+
+  .logo-container img {
+    width: 26px !important; /* Adjusted logo size */
+    height: auto;
+    flex-shrink: 0; /* Prevent logo image from shrinking */
+  }
+
+  /* --- !!! показ Title on Mobile !!! --- */
+  .site-title {
+    display: inline; /* Was 'none', now visible */
+    margin-right: 5px; /* Add some space after the logo */
+    /* Ensure it doesn't wrap unnecessarily */
+    white-space: nowrap;
+    overflow: hidden; /* Hide overflow if it happens */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    vertical-align: middle; /* Align vertically with the logo */
+    max-width: 100px; /* Limit width to prevent pushing icons too far */
+  }
+
+  .icons-container {
+    /* Prevent icon container from shrinking */
+    flex-shrink: 0;
+    margin-left: 5px; /* Add some space from the edge or title */
+  }
+
+  .right-item, .feedback-button {
+    width: 26px;   /* Smaller icons */
+    height: 26px;
+  }
+
+  .right-item img.nhlocal-icon {
+    width: 22px !important; /* Adjusted NH icon size */
+    height: auto;
+  }
+
+  .feedback-button {
+    font-size: 18px; /* Adjusted icon font size */
+  }
+
+  .feedback-button i {
+    font-size: 18px; /* Adjusted icon font size */
+  }
+
+  /* --- Search Bar Adjustments --- */
+  .search-container {
+    margin-top: 45px; /* Existing adjustment - Keep */
+    padding: 1rem 0.5rem; /* Reduced horizontal padding */
+  }
+
+  .search-bar {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    row-gap: 10px;    /* Space between input row and controls row */
+    width: 100%;      /* Take full width */
+    max-width: none;
+    padding: 0; /* Remove internal padding, handled by search-container */
+    /* Removed flex-direction: column */
+  }
+
+  .search-input {
+    flex-basis: 100%; /* Input takes the full first line */
+    order: 1;         /* Ensure it's first visually */
+    font-size: 16px;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+
+  .search-icons {
+    order: 2;         /* Icons come second */
+    margin-left: 0;   /* Reset margin */
+    margin-top: 0;    /* Reset margin */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add gap between icons */
+  }
+
+  .search-icons a {
+    font-size: 20px; /* Slightly larger icons if desired */
+  }
+
+  /* Submit button specific targeting */
+  .search-bar > button.search-icon-button[type="submit"] {
+    order: 3;         /* Submit button comes third */
+    margin-left: auto; /* Push it to the right */
+    margin-top: 0;    /* Reset margin */
+    font-size: 20px; /* Match other icons */
+  }
+
+  .search-filters {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem; /* Keep space below search bar */
+  }
+
+  .filter-button {
+    font-size: 14px;
+    margin: 3px;
+    padding: 6px 12px;
+  }
+
+
+  /* --- Table Adjustments --- */
+  #resultsTable {
+    margin-top: 1rem; /* Reduced top margin */
+    max-height: 60vh;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow-x: auto; /* Keep horizontal scroll */
+  }
+
+  #resultsTable table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  th, td {
+    font-size: 12px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 6px 4px; /* Keep reduced padding */
+  }
+
+  /* Column Widths (Keep previous adjustments or refine as needed) */
+   #resultsTable th:nth-child(1), /* Serial */
+  #resultsTable td:nth-child(1) {
+    width: 18%;
+  }
+  #resultsTable th:nth-child(2), /* Name */
+  #resultsTable td:nth-child(2) {
+    width: 34%;
+  }
+  #resultsTable th:nth-child(3), /* Album */
+  #resultsTable td:nth-child(3) {
+     width: 24%;
+  }
+   #resultsTable th:nth-child(4), /* Singer */
+  #resultsTable td:nth-child(4) {
+     width: 24%;
+  }
+
+
+  /* --- Other Mobile Adjustments --- */
+  a {
+    padding: 7px 10px;
+  }
+
+  .fixed-bottom {
+    position: fixed;
+    padding-top: 15px;
+    text-align: center;
+    height: auto;
+  }
+
+  .fixed-bottom p {
+    font-size: 12px;
+  }
+
 }

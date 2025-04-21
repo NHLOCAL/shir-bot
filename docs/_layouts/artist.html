@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default # Inherits from default, which loads core.js, ads.js, shared-redirect-handler.js
 ---
 <div id="loadingMessage" class="loading-message">
   <div class="progress-bar-container">
@@ -18,33 +18,42 @@ layout: default
   </div>
 </div>
 
-<div id="resultsTable" class="custom-table">
+<div id="resultsTable" class="custom-table"> <!-- ID is correct -->
   <table>
     <thead>
       <tr>
         <th>מספר סידורי</th>
         <th>שם השיר</th>
         <th>שם האלבום</th>
-        <th>שם הזמר</th>		  
+        <th>שם הזמר</th>
       </tr>
     </thead>
-    <tbody class="songs-list">
+    <tbody class="songs-list"> <!-- Class is correct -->
       {% for song in page.songs %}
-      <tr > <!-- Removed onclick attribute -->
-        <td><a>{{ song.number }}</a></td>
-        <td>{{ song.name }}</td>
-        <td>{{ song.album }}</td>
-        <td>{{ song.artist }}</td>
+      <tr data-song-serial="{{ song.number | escape }}">
+        <td>
+            <a>{{ song.number }}</a>
+        </td>
+        <td>
+            {{ song.name }}
+        </td>
+        <td>
+            <button class="album-button">{{ song.album }}</button>
+        </td>
+        <td>
+            <button class="singer-button">{{ song.artist }}</button>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  
-  <!-- Add this button in your HTML where you want it to appear -->
-  <button id="loadMoreButton">טען עוד</button>
+
+  <!-- Load more button? (Not standard in this layout) -->
+  <!-- <button id="loadMoreButton">טען עוד</button> -->
 </div>
 
 <!-- סקריפטים ספציפיים לדף אמן -->
-<!-- search.js נדרש עבור פונקציית downloadSong -->
+<!-- search.js נדרש עבור פונקציית downloadSong (צריך להיות גלובלי) -->
+<!-- artist-page.js צריך להיטען אחרי search.js -->
 <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
 <script src="{{ site.baseurl }}/assets/js/artist-page.js" defer></script>

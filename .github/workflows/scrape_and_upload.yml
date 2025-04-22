@@ -1,0 +1,85 @@
+name: Scrape Prog Forum and Upload to Drive
+
+on:
+  workflow_dispatch: # Allows manual triggering from the Actions tab
+  schedule:
+    - cron: '0 3 * * *' # Runs daily at 3 AM UTC (adjust as needed)
+
+permissions:
+  contents: write # Allow workflow to commit changes back to the repo
+
+jobs:
+  scrape-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch entire history to compare changes properly if needed,
+          # though just fetching HEAD should be fine for simple commits.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Choose a Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Authenticate Google Drive
+        env:
+          # Populate the env var the Python script expects
+          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
+        run: |
+          # Check if the secret is empty/unset
+          if [ -z "$GDRIVE_TOKEN_JSON_CONTENT" ]; then
+            echo "::error::GDRIVE_TOKEN_JSON secret is not set or empty. Authentication cannot proceed."
+            exit 1
+          else
+            echo "Google Drive secret found. Proceeding..."
+            # No need to write to token.json file, script reads env var directly
+          fi
+
+      - name: Run Scraper and Uploader Script
+        env:
+          # Pass the secret content again just in case (though authenticate should pick it up)
+          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
+        run: python down_and_up.py # Assuming script is in the root
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Check for changes in state or csv file
+        id: check_changes
+        run: |
+          git add state.json songs.csv
+          if git diff --staged --quiet; then
+            echo "No changes detected in state.json or songs.csv."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in state.json or songs.csv."
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git commit -m "Update state.json and songs.csv from scrape job [skip ci]"
+          # Add retry logic for push in case of transient network issues
+          retry_count=0
+          max_retries=3
+          until git push || [ $retry_count -eq $max_retries ]; do
+            retry_count=$((retry_count+1))
+            echo "Push failed. Retrying ($retry_count/$max_retries) in 10 seconds..."
+            sleep 10
+          done
+          if [ $retry_count -eq $max_retries ]; then
+            echo "::error::Failed to push changes after multiple retries."
+            exit 1
+          fi
+          echo "Changes committed and pushed successfully."

@@ -638,14 +638,38 @@ function handleHomepageTableClick(event) {
         event.stopPropagation();
         if (songSerial) {
             const shareLink = `${window.location.origin}${baseurl || ''}/?search=${encodeURIComponent(songSerial)}&searchBy=serial`;
-            if (typeof copyToClipboard === 'function' && typeof showCopiedMessage === 'function') {
-                copyToClipboard(shareLink);
-                showCopiedMessage();
+
+            if (typeof copyToClipboard === 'function') {
+                const success = copyToClipboard(shareLink); // Perform copy and check success
+
+                if (success) {
+                    // --- Visual Feedback Logic ---
+                    const originalIconHTML = button.innerHTML; // Store original icon (e.g., <i class="fas fa-share-alt"></i>)
+                    button.innerHTML = '<i class="fas fa-check" style="color: green;"></i>'; // Change to checkmark
+                    button.classList.add('copied'); // Add class for state/styling
+                    button.disabled = true; // Temporarily disable
+
+                    // Revert after a delay
+                    setTimeout(() => {
+                        if (button) { // Check if button still exists
+                             button.innerHTML = originalIconHTML; // Restore original icon
+                             button.classList.remove('copied'); // Remove class
+                             button.disabled = false; // Re-enable
+                        }
+                    }, 1500); // 1.5 seconds delay
+                    // --- End Visual Feedback Logic ---
+                } else {
+                     console.warn("Homepage Handler: copyToClipboard function failed.");
+                     // Optional: Show error message if copy failed
+                     if (typeof showMessage === 'function') showMessage("שגיאה בהעתקת הקישור.");
+                }
             } else {
-                console.warn("Clipboard functions not available.");
+                 console.warn("Homepage Handler: copyToClipboard function not found.");
+                 // Optional: Show error message if copy function is missing
+                 if (typeof showMessage === 'function') showMessage("שגיאה: לא ניתן להעתיק קישור.");
             }
         }
-        return;
+        return; // Add return here as well
     }
 
     // 3. Handle Album Button Click (Search on Homepage)

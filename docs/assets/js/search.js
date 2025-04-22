@@ -318,20 +318,15 @@ function parseCSV(csvText) {
 // --- Filtering Logic ---
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) {
-        // אם אין שאילתה והחיפוש הוא 'הכל', החזר ריק
-        if (searchBy === 'all') {
-            return [];
-        } else {
-            // אם אין שאילתה אבל יש סוג חיפוש, החזר את כל השירים עם ערך בשדה הרלוונטי
-             return songsToFilter.filter(song => {
-                const value = song[searchBy];
-                // Check if the value exists and is not just whitespace
-                return value !== null && value !== undefined && String(value).trim() !== '';
-            });
-        }
+        // Return empty if no query for 'all', or all non-empty for specific field
+        if (searchBy === 'all') return [];
+        return songsToFilter.filter(song => {
+            const value = song[searchBy];
+            return value !== null && value !== undefined && String(value).trim() !== '';
+        });
     }
 
-    // Fuzzy search logic remains the same...
+    // --- Relevance Helper Functions (Dice and Levenshtein remain the same) ---
     const calculateDiceCoefficient = (tokens1, tokens2) => {
         if (!tokens1?.length || !tokens2?.length) return 0;
         const intersection = new Set(tokens1.filter(token => tokens2.includes(token)));
@@ -361,14 +356,18 @@ function filterSongs(songsToFilter, query, searchBy) {
         const maxLen = Math.max(len1, len2);
         return maxLen === 0 ? 0 : matrix[len1][len2] / maxLen;
     };
+    // --- End Helper Functions ---
 
-    const queryLower = query.toLowerCase(); // Use lowercase query consistently
+    const queryLower = query.toLowerCase();
     const queryTokens = queryLower.split(/\s+/).filter(Boolean);
-    const fuzzyThreshold = 0.55; // Similarity threshold for Dice
-    const levenshteinThreshold = 0.45; // Distance threshold for Levenshtein (lower is better)
+    const fuzzyThreshold = 0.55; // Dice similarity threshold
+    const levenshteinThreshold = 0.45; // Levenshtein distance threshold (lower is better)
 
-    // Filter songs based on the search criteria
-    const filtered = songsToFilter.filter(song => {
+    // --- MODIFICATION START: Score calculation during filtering ---
+    const scoredResults = songsToFilter.map(song => {
+        song._relevanceScore = 0; // Initialize score for this song
+        let bestScoreForSong = 0;
+
         const fieldsToCheck = [];
         if (searchBy === 'all') {
             fieldsToCheck.push(song.serial, song.name, song.album, song.singer);
@@ -378,66 +377,88 @@ function filterSongs(songsToFilter, query, searchBy) {
 
         for (const value of fieldsToCheck) {
             const stringValue = (value === null || value === undefined) ? '' : String(value);
-            if (!stringValue) continue; // Skip empty fields
+            if (!stringValue) continue;
             const lowerValue = stringValue.toLowerCase();
+            let currentFieldScore = 0;
 
-            // 1. Exact match variations (prioritize serial prefix match)
-            if (searchBy === 'serial' && lowerValue.startsWith(queryLower)) return true;
-            if (searchBy !== 'serial' && lowerValue.includes(queryLower)) return true;
-            if (searchBy === 'all' && lowerValue.includes(queryLower)) return true; // Basic substring check for 'all'
+            // 1. Check for exact substring match (highest relevance)
+            // For serial, we prioritize prefix match if searching by serial
+            const isExactMatch = (searchBy === 'serial' && lowerValue.startsWith(queryLower)) ||
+                                 (searchBy !== 'serial' && lowerValue.includes(queryLower)) ||
+                                 (searchBy === 'all' && lowerValue.includes(queryLower));
 
-            // 2. Fuzzy match (only if not exact match)
-            const valueTokens = lowerValue.split(/\s+/).filter(Boolean);
-            const diceSim = calculateDiceCoefficient(queryTokens, valueTokens);
-            if (diceSim >= fuzzyThreshold) return true;
+            if (isExactMatch) {
+                currentFieldScore = 1.0; // Assign max score for exact match
+            } else {
+                // 2. If not exact, check Dice coefficient (token similarity)
+                const valueTokens = lowerValue.split(/\s+/).filter(Boolean);
+                const diceSim = calculateDiceCoefficient(queryTokens, valueTokens);
+                if (diceSim >= fuzzyThreshold) {
+                    currentFieldScore = Math.max(currentFieldScore, diceSim); // Use Dice score
+                }
 
-            // 3. Levenshtein distance (only if Dice is low and strings aren't too different in length)
-             if (Math.abs(queryLower.length - lowerValue.length) <= Math.max(queryLower.length, lowerValue.length) * 0.5) {
-                 const levDist = calculateNormalizedLevenshteinDistance(queryLower, lowerValue);
-                 if (levDist <= levenshteinThreshold) return true;
+                // 3. If still low score, check Levenshtein distance (character similarity)
+                // (Only calculate if necessary and strings are comparable length)
+                if (currentFieldScore < fuzzyThreshold && // Avoid redundant checks if already matched well
+                    Math.abs(queryLower.length - lowerValue.length) <= Math.max(queryLower.length, lowerValue.length) * 0.5)
+                {
+                    const levDist = calculateNormalizedLevenshteinDistance(queryLower, lowerValue);
+                    if (levDist <= levenshteinThreshold) {
+                        // Convert distance (lower=better) to similarity (higher=better)
+                        currentFieldScore = Math.max(currentFieldScore, (1 - levDist));
+                    }
+                }
             }
+            // Update the song's best score found across all its checked fields
+            bestScoreForSong = Math.max(bestScoreForSong, currentFieldScore);
         }
-        return false; // No match found in any relevant field
-    });
+        song._relevanceScore = bestScoreForSong; // Store the highest score found for this song
+        return song; // Return the song object with its score
 
-    // --- MODIFICATION START: Conditional Sorting ---
-    // Check if searching specifically by serial and the query is a valid number
+    }).filter(song => song._relevanceScore > 0); // Keep only songs that had some match
+    // --- MODIFICATION END: Score calculation ---
+
+
+    // --- Sorting Logic ---
+    // Special sorting for valid numeric serial search (prioritize exact, then proximity)
     if (searchBy === 'serial') {
         const targetSerial = parseInt(queryLower, 10);
-
-        // Only apply special sorting if the targetSerial is a valid number
         if (!isNaN(targetSerial)) {
-            return filtered.sort((a, b) => {
+            return scoredResults.sort((a, b) => {
                 const serialA = parseInt(a.serial, 10) || 0;
                 const serialB = parseInt(b.serial, 10) || 0;
 
-                // Prioritize exact match
                 const isAExact = serialA === targetSerial;
                 const isBExact = serialB === targetSerial;
 
-                if (isAExact && !isBExact) return -1; // a is exact, b is not -> a comes first
-                if (!isAExact && isBExact) return 1;  // b is exact, a is not -> b comes first
-                if (isAExact && isBExact) return 0;   // both are exact (unlikely but handle) -> order doesn't matter
+                if (isAExact && !isBExact) return -1;
+                if (!isAExact && isBExact) return 1;
+                if (isAExact && isBExact) return 0;
 
-                // If neither is exact, sort by proximity (absolute difference)
                 const diffA = Math.abs(serialA - targetSerial);
                 const diffB = Math.abs(serialB - targetSerial);
 
                 if (diffA !== diffB) {
-                    return diffA - diffB; // Sort by smallest difference first
+                    return diffA - diffB; // Sort by proximity
                 } else {
-                    // Tie-breaker: If differences are equal, sort by the actual serial number
-                    return serialA - serialB;
+                    return serialA - serialB; // Tie-breaker: serial number
                 }
             });
         }
+        // Fall through to relevance sort if serial query wasn't a valid number
     }
 
-    // Default sort: If not searching by serial, or if serial query wasn't a number,
-    // sort results numerically by their serial number.
-    return filtered.sort((a, b) => {
-        const serialA = parseInt(a.serial, 10) || 0; // Use 0 if parsing fails
-        const serialB = parseInt(b.serial, 10) || 0; // Use 0 if parsing fails
+    // --- MODIFICATION: Relevance-based sorting for all other search types ---
+    // Sort primarily by relevance score (descending), then by serial number (ascending) as tie-breaker
+    return scoredResults.sort((a, b) => {
+        // Primary sort: Higher relevance score comes first
+        if (a._relevanceScore !== b._relevanceScore) {
+            return b._relevanceScore - a._relevanceScore; // Note: b - a for descending order
+        }
+
+        // Secondary sort (tie-breaker): Lower serial number comes first
+        const serialA = parseInt(a.serial, 10) || 0;
+        const serialB = parseInt(b.serial, 10) || 0;
         return serialA - serialB;
     });
     // --- MODIFICATION END ---

@@ -18,7 +18,8 @@ permalink: /new-songs/
             </tr>
         </thead>
         <tbody class="songs-list">
-            {% for song in site.data.new_songs %}
+            {% assign sorted_songs = site.data.new_songs | sort: 'serial' | reverse %}
+            {% for song in sorted_songs %}
                 <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}"> <!-- הוספנו data-drive-id -->
                     <!-- הוסרה תא מספר סידורי -->
                     <td>{{ song.name }}</td>

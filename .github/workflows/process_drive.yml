@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - main
-      - new-singles # או כל ענף רלוונטי אחר
+      - new-singles
     paths:
       # טריגר אם הסקריפטים, ה-workflow או התלויות משתנים
       - 'drive_data/process_drive_folder.py'
-      - 'drive_data/csv_to_yaml_converter.py' # <-- הוספת הקובץ החדש
+      - 'drive_data/csv_to_yaml_converter.py'
       - '.github/workflows/process_drive.yml'
       - 'requirements.txt'
-  workflow_dispatch: # הפעלה ידנית
+  workflow_dispatch:
   schedule:
     # יומי ב-4:00 UTC
     - cron: '0 4 * * *'

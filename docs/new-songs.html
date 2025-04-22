@@ -6,43 +6,43 @@ keywords: "שירים חדשים, מוזיקה חדשה, עדכונים, שיר-
 permalink: /new-songs/
 ---
 
+<div id="loadingMessage" class="loading-message" style="display: none;">
+    <div class="progress-bar-container">
+        <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+        <span id="progressText">מתחיל הורדות...</span>
+        <div class="progress-bar" style="display: none;">
+            <div id="progress" class="progress"></div>
+        </div>
+    </div>
+</div>
+
+
 <div id="resultsTable" class="custom-table">
     <table>
         <thead>
             <tr>
-                <!-- הוסרה עמודת מספר סידורי -->
                 <th>שם השיר</th>
                 <th>שם האלבום</th>
                 <th>שם הזמר</th>
-                <th>פעולות</th> <!-- עמודה חדשה -->
+                <th>פעולות</th>
             </tr>
         </thead>
         <tbody class="songs-list">
             {% assign sorted_songs = site.data.new_songs | sort: 'serial' | reverse %}
             {% for song in sorted_songs %}
-                <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}"> <!-- הוספנו data-drive-id -->
-                    <!-- הוסרה תא מספר סידורי -->
+                <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
                     <td>{{ song.name }}</td>
-                    <td>
-                        <button class="album-button" data-album-name="{{ song.album | escape }}">
-                            {{ song.album }}
-                        </button>
-                    </td>
-                    <td>
-                        <button class="singer-button" data-singer-name="{{ song.singer | escape }}">
-                            {{ song.singer }}
-                        </button>
-                    </td>
+                    <td><button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button></td>
+                    <td><button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button></td>
                     <td class="actions-cell">
-                        <div class="actions-button-group"> <!-- **** הוספת ה-DIV **** -->
+                        <div class="actions-button-group">
                             <button class="download-button-new" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" data-filename="{{ song.name }} - {{ song.singer }}.mp3" title="הורדה">
                                 <i class="fas fa-download"></i>
                             </button>
                             <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
                                 <i class="fas fa-share-alt"></i>
                             </button>
-                        </div> <!-- **** סגירת ה-DIV **** -->
-                        <!-- הקישור המוסתר נשאר מחוץ ל-div אך בתוך ה-td -->
+                        </div>
                         <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a>
                      </td>
                 </tr>
@@ -51,6 +51,4 @@ permalink: /new-songs/
     </table>
 </div>
 
-<!-- סקריפט ספציפי לדף שירים חדשים -->
-<!-- shared-redirect-handler מטפל בכפתורי שיתוף/אלבום/זמר -->
 <script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script>

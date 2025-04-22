@@ -52,13 +52,13 @@ const newContent1 = `
 
 const newContent2 = `
   <h3>אל תפספסו אף שיר חדש!</h3>
-  <p>הרשמו לרשימת התפוצה שלנו וקבלו עדכונים על סינגלים חדשים, תכונות בלעדיות לאתר ובונוסים ישירות למייל שלכם.</p>
+  <p>הרשמו כעת לרשימת התפוצה של שיר בוט, כדי לקבל את העדכונים והחידושים האחרונים באתר, תכונות בלעדיות ובונוסים ישירות למייל שלכם.</p>
   <button class="helpButton" onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A6%D7%A8%D7%A3+%D7%90%D7%95%D7%AA%D7%99+%D7%9C%D7%A7%D7%91%D7%9C%D7%AA+%D7%A2%D7%93%D7%9B%D7%95%D7%A0%D7%99%D7%9D+%D7%A2%D7%9C+%D7%94%D7%90%D7%AA%D7%A8!&to=shir-bot%2Bsubscribe%40googlegroups.com', '_blank')">להרשמה מהירה</button>
 `;
 
 const newContent3 = `
   <h3>בלגן בתיקיית המוזיקה? יש פתרון!</h3>
-  <p>'מסדר הסינגלים' - התוכנה החינמית שתארגן לכם את כל קבצי השירים במחשב באופן אוטומטי. מיינו לפי אמן, אלבום ועוד בקליק אחד.</p>
+  <p>'מסדר הסינגלים' - התוכנה החינמית שתארגן לכם את קבצי המוזיקה שלכם באופן אוטומטי, בשילוב AI מתקדם ובקליק אחד!</p>
   <button class="helpButton" onclick="window.open('https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורידו עכשיו בחינם</button>
 `;
 

@@ -26,19 +26,17 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 # --- Configuration & Constants ---
 SCRIPT_DIR = Path(__file__).parent.resolve()
 GDRIVE_SETUP_DIR = SCRIPT_DIR # For client_secret.json / initial token.json
-STATE_FILE = SCRIPT_DIR / "drive_state.json" # New state file name
-CSV_FILE = SCRIPT_DIR / "new-songs.csv"      # New CSV file name
+STATE_FILE = SCRIPT_DIR / "drive_state.json" # State file name
+CSV_FILE = SCRIPT_DIR / "new-songs.csv"      # CSV file name
 TOKEN_FILE = SCRIPT_DIR / "token.json"       # Reused for target drive authentication
 CLIENT_SECRET_FILE = GDRIVE_SETUP_DIR / 'client_secret_auth.json' # For target drive auth setup
 
 # --- Google Drive IDs ---
-# !!! IMPORTANT: User needs to ensure the service account/user running this script
-# !!! has at least VIEWER access to the SOURCE_FOLDER_ID and EDITOR access to the TARGET_BASE_FOLDER_ID.
 SOURCE_FOLDER_ID = "16C0em4CCbg0UX0mKCwqVY9WsgRaz_1TB" # Public source folder
-TARGET_BASE_FOLDER_ID = "1Rh2QafUuSjb4inShuqXwpHmh_V5HlJac" # Private target base folder (replace if different)
+TARGET_BASE_FOLDER_ID = "1Rh2QafUuSjb4inShuqXwpHmh_V5HlJac" # Private target base folder
 
 # --- Google API ---
-SCOPES = ['https://www.googleapis.com/auth/drive'] # Need full drive scope for moving files (update)
+SCOPES = ['https://www.googleapis.com/auth/drive']
 
 # --- Logging Setup ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -51,9 +49,8 @@ def load_state():
         try:
             with open(STATE_FILE, "r", encoding="utf-8") as f:
                 state = json.load(f)
-            # Provide defaults if keys are missing
-            state.setdefault("last_processed_timestamp", None) # Use None to indicate never run before
-            state.setdefault("next_serial", 1) # Start serials from 1 or another base
+            state.setdefault("last_processed_timestamp", None)
+            state.setdefault("next_serial", 1)
             logging.info(f"Loaded state: Last timestamp={state['last_processed_timestamp']}, Next serial={state['next_serial']}")
             return state
         except json.JSONDecodeError:
@@ -68,11 +65,9 @@ def save_state(state):
     try:
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(state, f, ensure_ascii=False, indent=4)
-        # Don't log every save if saving frequently, maybe only on change?
-        # logging.info(f"State saved to {STATE_FILE}")
+        # logging.info(f"State saved: {state}")
     except Exception as e:
         logging.error(f"Failed to save state to {STATE_FILE}: {e}")
-
 
 def write_csv_header_if_needed():
     """Writes the CSV header if the file doesn't exist or is empty."""
@@ -80,50 +75,85 @@ def write_csv_header_if_needed():
         try:
             with open(CSV_FILE, "w", newline="", encoding="utf-8") as csvfile:
                 writer = csv.writer(csvfile)
-                # Updated columns based on new logic
-                writer.writerow(["Serial Number", "Song Name", "Hebrew Date Folder", "Singer", "Drive ID"])
+                writer.writerow(["Serial Number", "Song Name", "Hebrew Date Folder", "Singer", "Copied Drive ID"])
             logging.info(f"Created CSV header in {CSV_FILE}")
         except Exception as e:
             logging.error(f"Failed to write CSV header to {CSV_FILE}: {e}")
 
-def append_song_to_csv(serial, song_name, hebrew_folder, singer, drive_id):
+def append_song_to_csv(serial, song_name, hebrew_folder, singer, copied_drive_id):
     """Appends a processed song's details to the CSV file."""
     try:
         with open(CSV_FILE, "a", newline="", encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow([serial, song_name, hebrew_folder, singer, drive_id])
-        logging.info(f"Appended song Serial {serial} ('{song_name}') to {CSV_FILE}")
+            writer.writerow([serial, song_name, hebrew_folder, singer, copied_drive_id])
+        logging.info(f"Appended song Serial {serial} ('{song_name}') to {CSV_FILE} (Copied ID: {copied_drive_id})")
     except Exception as e:
         logging.error(f"Failed to append song {serial} to {CSV_FILE}: {e}")
 
-
 def convert_rfc3339_to_hebrew_month_year(rfc3339_str):
-    """Converts an RFC 3339 timestamp string (from Drive API) to a Hebrew Month Year string."""
+    """
+    Converts an RFC 3339 timestamp string (from Drive API) to a cleaned
+    Hebrew Month Year string suitable for a folder name (e.g., "אדר תשפה").
+    """
     try:
-        # Handle potential timezone offsets, convert to UTC naive datetime object
-        # Google Drive API typically provides UTC time ('Z' suffix)
+        # Parse the RFC 3339 timestamp string
         if rfc3339_str.endswith('Z'):
             rfc3339_str = rfc3339_str[:-1] + '+00:00'
-
         dt_aware = datetime.datetime.fromisoformat(rfc3339_str)
+        # Convert to UTC naive datetime and then get the date part
         dt_utc_naive = dt_aware.astimezone(datetime.timezone.utc).replace(tzinfo=None)
-
         g_date = dt_utc_naive.date()
+        # Convert Gregorian date object to HebrewDate object
         heb_date = dates.GregorianDate(g_date.year, g_date.month, g_date.day).to_heb()
-        return f"{hebrewcal.Month(heb_date.year, heb_date.month).hebrew_month_name()} {heb_date.hebrew_year_str()}"
-    except Exception as e:
-        logging.error(f"Error converting timestamp '{rfc3339_str}' to Hebrew date: {e}")
-        # Fallback: use Gregorian year-month if conversion fails
+
+        # 1. Get the Hebrew month name
+        heb_month_name = hebrewcal.Month(heb_date.year, heb_date.month).month_name(True)
+
+        # 2. Get the full Hebrew date string which includes the formatted year
+        full_heb_string = heb_date.hebrew_date_string(True) # e.g., 'ט״ו ניסן ה׳תשפ״ד'
+
+        # 3. Extract the year part (usually the last word)
+        parts = full_heb_string.split()
+        heb_year_str_raw = ""
+        if len(parts) > 0:
+            heb_year_str_raw = parts[-1]
+        else:
+            # Fallback if string splitting fails
+            logging.warning(f"Could not split '{full_heb_string}' to extract Hebrew year string from timestamp {rfc3339_str}.")
+            heb_year_str_raw = str(heb_date.year) # Uses heb_date.year which should exist
+
+        # --- START OF CLEANING LOGIC ---
+        # 4. Clean the raw year string
+        cleaned_year_str = heb_year_str_raw
+        # Remove leading ה׳ if it exists
+        if cleaned_year_str.startswith("ה׳"):
+            cleaned_year_str = cleaned_year_str[2:]
+        # Remove geresh (׳) and gershayim (״)
+        cleaned_year_str = cleaned_year_str.replace("׳", "").replace("״", "")
+        # --- END OF CLEANING LOGIC ---
+
+        # 5. Combine them for the final folder name
+        folder_name = f"{heb_month_name} {cleaned_year_str}"
+        logging.debug(f"Generated folder name: '{folder_name}' from raw date '{rfc3339_str}' / raw year '{heb_year_str_raw}'")
+        return folder_name
+
+    except ImportError:
+        logging.error("pyluach library not found. Cannot convert to Hebrew date. Install it using 'pip install pyluach'.")
         try:
             dt_aware = datetime.datetime.fromisoformat(rfc3339_str)
-            return dt_aware.strftime("%Y-%m") + " (Fallback)"
+            return dt_aware.strftime("%Y-%m") + " (Fallback - pyluach missing)"
         except:
-             return "תאריך לא זמין" # Absolute fallback
-
+             return "תאריך לא זמין"
+    except Exception as e:
+        logging.error(f"Error converting timestamp '{rfc3339_str}' to cleaned Hebrew date folder name: {e}", exc_info=True)
+        try: # Fallback to YYYY-MM
+            dt_aware = datetime.datetime.fromisoformat(rfc3339_str)
+            return dt_aware.strftime("%Y-%m") + " (Fallback - conversion error)"
+        except:
+             return "תאריך לא זמין"
 
 def authenticate():
-    """Authenticates the user for accessing the TARGET Google Drive.
-       Uses GitHub Secrets first, then local files."""
+    """Authenticates the user for accessing the TARGET Google Drive."""
     creds = None
     token_json_content = os.environ.get('GDRIVE_TOKEN_JSON_CONTENT')
 
@@ -176,13 +206,11 @@ def authenticate():
                      return None
                 try:
                     flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRET_FILE), SCOPES)
-                    # Try console flow first, fall back to local server
                     try:
                         creds = flow.run_console()
-                    except Exception: # Catch broad exceptions if console fails
+                    except Exception:
                         logging.warning("Console flow failed, trying local server.")
                         creds = flow.run_local_server(port=0)
-
                 except Exception as e:
                     logging.error(f"Authentication flow failed: {e}")
                     return None
@@ -206,7 +234,6 @@ def authenticate():
 
 def get_or_create_folder(service, folder_name, parent_folder_id):
     """Gets the ID of a folder by name within a parent, creates it if it doesn't exist."""
-    # Sanitize folder name for Drive API query
     sanitized_name = folder_name.replace("'", "\\'")
     query = f"name='{sanitized_name}' and '{parent_folder_id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false"
     try:
@@ -220,62 +247,57 @@ def get_or_create_folder(service, folder_name, parent_folder_id):
         else:
             logging.info(f"Folder '{folder_name}' not found in parent {parent_folder_id}. Creating it.")
             file_metadata = {
-                'name': folder_name, # Use original name for creation
+                'name': folder_name,
                 'mimeType': 'application/vnd.google-apps.folder',
                 'parents': [parent_folder_id]
             }
-            # Ensure sufficient permissions before attempting create
             folder = service.files().create(body=file_metadata, fields='id').execute()
             folder_id = folder.get('id')
             logging.info(f"Created folder: '{folder_name}' with ID: {folder_id} in parent {parent_folder_id}")
             return folder_id
     except HttpError as error:
         logging.error(f"An API error occurred while finding/creating folder '{folder_name}': {error}")
-        # Check for specific permission errors if possible
         if error.resp.status == 403:
-            logging.error("Permission denied. Ensure the authenticated user/service account has sufficient permissions for the target folder.")
-        raise # Re-raise to stop processing if folder handling fails critically
+            logging.error("Permission denied. Ensure the authenticated user/service account has EDITOR permissions for the target base folder.")
+        raise
     except Exception as e:
         logging.error(f"An unexpected error occurred finding/creating folder '{folder_name}': {e}")
         raise
 
 
-def move_file(service, file_id, file_name, source_folder_id, target_folder_id):
-    """Moves a file from the source folder to the target folder."""
-    logging.info(f"Attempting to move file '{file_name}' (ID: {file_id}) from {source_folder_id} to {target_folder_id}")
+def copy_file(service, source_file_id, target_folder_id, new_filename=None):
+    """Copies a file to the target folder. Returns the ID of the new copy."""
+    logging.info(f"Attempting to copy file ID: {source_file_id} to target folder ID: {target_folder_id}")
     try:
-        # Retrieve the file's existing parents to ensure source_folder_id is among them
-        file_metadata = service.files().get(fileId=file_id, fields='parents').execute()
-        previous_parents = ",".join(file_metadata.get('parents'))
+        copy_metadata = {'parents': [target_folder_id]}
+        if new_filename:
+            copy_metadata['name'] = new_filename
 
-        # Use update method to change parents
-        updated_file = service.files().update(
-            fileId=file_id,
-            addParents=target_folder_id,
-            removeParents=source_folder_id,
-            fields='id, parents' # Request parents back to confirm
+        copied_file = service.files().copy(
+            fileId=source_file_id,
+            body=copy_metadata,
+            fields='id, name'
         ).execute()
 
-        logging.info(f"Successfully moved file '{file_name}' (ID: {file_id}) to folder {target_folder_id}.")
-        return True
+        copied_file_id = copied_file.get('id')
+        copied_file_name = copied_file.get('name')
+        logging.info(f"Successfully copied file as '{copied_file_name}' (New ID: {copied_file_id}) to folder {target_folder_id}.")
+        return copied_file_id
     except HttpError as error:
-        logging.error(f"API error moving file '{file_name}' (ID: {file_id}): {error}")
-        # Log specific permission issues
+        logging.error(f"API error copying file ID {source_file_id}: {error}")
         if error.resp.status == 403:
-             logging.error("Permission denied. Check permissions on BOTH source and target folders.")
+             logging.error("Permission denied. Check permissions on target folder (need Editor) or access to source file.")
         elif error.resp.status == 404:
-             logging.error("File or one of the folders not found.")
-        # If the error suggests the file is already moved (e.g., source parent not found), log but maybe continue?
-        # This requires more specific error parsing which can be complex.
-        return False
+             logging.error("Source file or target folder not found.")
+        return None
     except Exception as e:
-        logging.error(f"Unexpected error moving file '{file_name}' (ID: {file_id}): {e}")
-        return False
+        logging.error(f"Unexpected error copying file ID {source_file_id}: {e}")
+        return None
 
 # --- Main Processing Function ---
 
 def main():
-    logging.info("--- Drive Folder Processing Script Start ---")
+    logging.info("--- Drive Folder Copy Script Start ---")
     state = load_state()
     last_processed_timestamp = state.get("last_processed_timestamp")
     next_serial = state.get("next_serial")
@@ -296,128 +318,133 @@ def main():
         sys.exit(1)
 
     # --- Process Files from Source Folder ---
-    logging.info(f"Scanning source folder ID: {SOURCE_FOLDER_ID}")
+    logging.info(f"Scanning source folder ID: {SOURCE_FOLDER_ID} for MP3 files to copy.") # Updated log message
     page_token = None
     files_processed_count = 0
-    new_files_found = False # Flag to track if any new files were processed in this run
+    new_files_copied = False # Flag to track if any new files were copied
 
-    # Convert last processed timestamp string to datetime object for comparison, if it exists
     last_processed_dt = None
     if last_processed_timestamp:
         try:
             last_processed_dt = datetime.datetime.fromisoformat(last_processed_timestamp.replace('Z', '+00:00'))
-            logging.info(f"Will process files created after: {last_processed_dt}")
+            logging.info(f"Will process files created after: {last_processed_dt.isoformat()}")
         except ValueError:
             logging.error(f"Invalid timestamp format in state file: {last_processed_timestamp}. Processing all files.")
-            last_processed_timestamp = None # Reset to process all
+            last_processed_timestamp = None
 
     while True:
         try:
-            # List files directly in the source folder, ordered by creation time ascending
-            # Ensure we only get files, not folders
             query = f"'{SOURCE_FOLDER_ID}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false"
             response = service.files().list(
                 q=query,
                 spaces='drive',
-                fields='nextPageToken, files(id, name, createdTime, modifiedTime)', # Get createdTime
-                orderBy='createdTime asc', # Process oldest first
+                fields='nextPageToken, files(id, name, createdTime)', # Request fields needed
+                orderBy='createdTime asc',
                 pageToken=page_token
             ).execute()
 
             files = response.get('files', [])
-            if not files:
-                logging.info("No files found in the source folder (or page).")
+            if not files and page_token is None:
+                 logging.info("No files found in the source folder.")
+                 break
 
-            newly_processed_in_page = 0
+            newly_copied_in_page = 0
             for file in files:
-                file_id = file.get('id')
-                file_name = file.get('name')
-                created_time_str = file.get('createdTime') # RFC 3339 format (e.g., "2023-10-27T10:00:00.000Z")
+                source_file_id = file.get('id')
+                source_file_name = file.get('name')
+                created_time_str = file.get('createdTime')
 
-                if not file_id or not file_name or not created_time_str:
+                if not source_file_id or not source_file_name or not created_time_str:
                     logging.warning(f"Skipping file with missing data: {file}")
                     continue
 
-                # Convert current file's created time to datetime for comparison
+                # ===============================================
+                # ===   CHECK IF THE FILE IS AN MP3 FILE      ===
+                # ===============================================
+                if not source_file_name.lower().endswith(".mp3"):
+                    logging.debug(f"Skipping non-MP3 file: '{source_file_name}'")
+                    continue # Skip to the next file in the loop
+                # ===============================================
+                # === END MP3 Check                             ===
+                # ===============================================
+
+                # --- Continue processing only if it's an MP3 ---
                 try:
                     current_file_dt = datetime.datetime.fromisoformat(created_time_str.replace('Z', '+00:00'))
                 except ValueError:
-                    logging.error(f"Invalid createdTime format for file '{file_name}' (ID: {file_id}): {created_time_str}. Skipping.")
+                    logging.error(f"Invalid createdTime format for file '{source_file_name}' (ID: {source_file_id}): {created_time_str}. Skipping.")
                     continue
 
                 # --- Check if file is newer than the last processed ---
                 if last_processed_dt and current_file_dt <= last_processed_dt:
-                    # This file was created at or before the last processed one, skip it
-                    logging.debug(f"Skipping already processed file: '{file_name}' (Created: {created_time_str})")
+                    logging.debug(f"Skipping already processed MP3 file: '{source_file_name}' (Created: {created_time_str})") # Updated log message
                     continue
 
-                logging.info(f"Processing new file: '{file_name}' (ID: {file_id}, Created: {created_time_str})")
-                new_files_found = True
+                logging.info(f"Processing new MP3 file to copy: '{source_file_name}' (ID: {source_file_id}, Created: {created_time_str})") # Updated log message
 
-                # 1. Determine Hebrew Date Folder Name
+                # 1. Determine Hebrew Date Folder Name (cleaned)
                 hebrew_folder_name = convert_rfc3339_to_hebrew_month_year(created_time_str)
+                if hebrew_folder_name == "תאריך לא זמין" or "(Fallback" in hebrew_folder_name:
+                     logging.warning(f"Using fallback folder name '{hebrew_folder_name}' for file '{source_file_name}' due to date conversion issue.")
+                     # Consider if you want to skip instead:
+                     # logging.error(f"Skipping file '{source_file_name}' due to failed Hebrew date conversion.")
+                     # continue
 
                 try:
-                    # 2. Get or Create Target Hebrew Date Folder in the TARGET base folder
+                    # 2. Get or Create Target Hebrew Date Folder
                     target_hebrew_folder_id = get_or_create_folder(service, hebrew_folder_name, TARGET_BASE_FOLDER_ID)
 
-                    # 3. Move the file
-                    if move_file(service, file_id, file_name, SOURCE_FOLDER_ID, target_hebrew_folder_id):
-                        # 4. Record in CSV and update state (only if move was successful)
-                        song_name_cleaned = Path(file_name).stem # Basic name cleaning
-                        singer_name = "שירים מהדרייב" # Default singer, adjust if needed
+                    # 3. Copy the file (keeping original name)
+                    copied_file_id = copy_file(service, source_file_id, target_hebrew_folder_id, new_filename=source_file_name)
 
-                        append_song_to_csv(next_serial, song_name_cleaned, hebrew_folder_name, singer_name, file_id)
+                    if copied_file_id:
+                        new_files_copied = True
+                        # 4. Record in CSV and update state
+                        song_name_cleaned = Path(source_file_name).stem
+                        singer_name = "שירים מהדרייב" # Default singer
 
-                        # Update state *only after successful processing*
-                        state["last_processed_timestamp"] = created_time_str # Store the exact timestamp string from API
+                        append_song_to_csv(next_serial, song_name_cleaned, hebrew_folder_name, singer_name, copied_file_id)
+
+                        # Update state *only after successful copy and record*
+                        state["last_processed_timestamp"] = created_time_str
                         state["next_serial"] += 1
-                        save_state(state) # Save state after each successful file
+                        save_state(state)
 
                         files_processed_count += 1
-                        newly_processed_in_page += 1
-                        next_serial = state["next_serial"] # Keep local variable in sync
-                        last_processed_dt = current_file_dt # Update comparison timestamp
+                        newly_copied_in_page += 1
+                        next_serial = state["next_serial"]
+                        last_processed_dt = current_file_dt
                     else:
-                        logging.error(f"Failed to move file '{file_name}'. Skipping CSV/state update for this file.")
-                        # Consider whether to stop the whole process or just skip the file. Skipping for now.
+                        logging.error(f"Failed to copy MP3 file '{source_file_name}' (ID: {source_file_id}). Skipping CSV/state update.")
 
                 except Exception as e:
-                    # Catch errors from get/create folder or other unexpected issues
-                    logging.error(f"Error processing file '{file_name}' (ID: {file_id}): {e}. Skipping.")
-                    # Decide if script should halt on such errors. Continuing for now.
+                    # Catch errors during folder creation or copy process
+                    logging.error(f"Error processing MP3 file '{source_file_name}' (ID: {source_file_id}): {e}", exc_info=True)
 
             # --- Pagination ---
             page_token = response.get('nextPageToken', None)
             if page_token is None:
-                logging.info("Reached end of file listing.")
-                break # Exit the while loop
-
-            logging.info(f"Processed {newly_processed_in_page} files from this page. Requesting next page...")
-            time.sleep(1) # Small delay before fetching next page
+                logging.info("Reached end of file listing in source folder.")
+                break
+            logging.info(f"Processed {newly_copied_in_page} MP3 files from this page. Requesting next page...") # Updated log message
+            time.sleep(1) # Small delay
 
         except HttpError as error:
             logging.error(f"An API error occurred during file listing: {error}")
             if error.resp.status == 403:
-                 logging.error("Permission denied accessing source folder. Ensure the authenticated user/service account has at least VIEWER rights.")
+                 logging.error("Permission denied accessing source folder listing.")
             elif error.resp.status == 404:
                  logging.error(f"Source folder ID {SOURCE_FOLDER_ID} not found.")
-            # Decide how to handle API errors - retry, stop, etc. Stopping for now.
             break
         except Exception as e:
-            logging.error(f"An unexpected error occurred during file listing/processing loop: {e}")
-            break # Stop on unexpected errors
+            logging.error(f"An unexpected error occurred during file listing/processing loop: {e}", exc_info=True)
+            break
 
-    if new_files_found:
-        logging.info(f"Finished processing. Total new files moved and recorded: {files_processed_count}")
+    if new_files_copied:
+        logging.info(f"Finished processing. Total new MP3 files copied and recorded: {files_processed_count}") # Updated log message
     else:
-        logging.info("No new files found to process in this run.")
+        logging.info("No new MP3 files found to copy in this run.") # Updated log message
 
-    # Final state save (might be redundant if saved after each file, but safe)
-    # save_state(state)
-    logging.info("--- Drive Folder Processing Script End ---")
-
+    logging.info("--- Drive Folder Copy Script End ---")
 if __name__ == "__main__":
     main()
-
-# --- END OF FILE process_drive_folder.py ---

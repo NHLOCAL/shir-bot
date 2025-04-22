@@ -316,14 +316,13 @@ function parseCSV(csvText) {
 }
 
 // --- Filtering Logic ---
-// ... (שמור על filterSongs ללא שינוי)
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) {
+        // אם אין שאילתה והחיפוש הוא 'הכל', החזר ריק
         if (searchBy === 'all') {
             return [];
         } else {
-            // If searchBy is specified but query is empty, return all songs matching that field non-empty
-            // (e.g., all songs with *any* album name if searchBy is 'album')
+            // אם אין שאילתה אבל יש סוג חיפוש, החזר את כל השירים עם ערך בשדה הרלוונטי
              return songsToFilter.filter(song => {
                 const value = song[searchBy];
                 // Check if the value exists and is not just whitespace
@@ -365,9 +364,10 @@ function filterSongs(songsToFilter, query, searchBy) {
 
     const queryLower = query.toLowerCase(); // Use lowercase query consistently
     const queryTokens = queryLower.split(/\s+/).filter(Boolean);
-    const fuzzyThreshold = 0.55;
-    const levenshteinThreshold = 0.45;
+    const fuzzyThreshold = 0.55; // Similarity threshold for Dice
+    const levenshteinThreshold = 0.45; // Distance threshold for Levenshtein (lower is better)
 
+    // Filter songs based on the search criteria
     const filtered = songsToFilter.filter(song => {
         const fieldsToCheck = [];
         if (searchBy === 'all') {
@@ -378,34 +378,69 @@ function filterSongs(songsToFilter, query, searchBy) {
 
         for (const value of fieldsToCheck) {
             const stringValue = (value === null || value === undefined) ? '' : String(value);
-            if (!stringValue) continue;
+            if (!stringValue) continue; // Skip empty fields
             const lowerValue = stringValue.toLowerCase();
 
-            // 1. Exact match variations
-            if (searchBy === 'serial' && lowerValue.startsWith(queryLower)) return true; // Use queryLower
-            if (searchBy !== 'serial' && lowerValue.includes(queryLower)) return true; // Use queryLower
-            if (searchBy === 'all' && lowerValue.includes(queryLower)) return true; // Use queryLower
+            // 1. Exact match variations (prioritize serial prefix match)
+            if (searchBy === 'serial' && lowerValue.startsWith(queryLower)) return true;
+            if (searchBy !== 'serial' && lowerValue.includes(queryLower)) return true;
+            if (searchBy === 'all' && lowerValue.includes(queryLower)) return true; // Basic substring check for 'all'
 
-            // 2. Fuzzy match
+            // 2. Fuzzy match (only if not exact match)
             const valueTokens = lowerValue.split(/\s+/).filter(Boolean);
             const diceSim = calculateDiceCoefficient(queryTokens, valueTokens);
             if (diceSim >= fuzzyThreshold) return true;
 
-            // Only calculate Levenshtein if Dice is low and strings aren't too different in length
+            // 3. Levenshtein distance (only if Dice is low and strings aren't too different in length)
              if (Math.abs(queryLower.length - lowerValue.length) <= Math.max(queryLower.length, lowerValue.length) * 0.5) {
                  const levDist = calculateNormalizedLevenshteinDistance(queryLower, lowerValue);
                  if (levDist <= levenshteinThreshold) return true;
             }
         }
-        return false;
+        return false; // No match found in any relevant field
     });
 
-    // Sort by serial number (numeric comparison)
+    // --- MODIFICATION START: Conditional Sorting ---
+    // Check if searching specifically by serial and the query is a valid number
+    if (searchBy === 'serial') {
+        const targetSerial = parseInt(queryLower, 10);
+
+        // Only apply special sorting if the targetSerial is a valid number
+        if (!isNaN(targetSerial)) {
+            return filtered.sort((a, b) => {
+                const serialA = parseInt(a.serial, 10) || 0;
+                const serialB = parseInt(b.serial, 10) || 0;
+
+                // Prioritize exact match
+                const isAExact = serialA === targetSerial;
+                const isBExact = serialB === targetSerial;
+
+                if (isAExact && !isBExact) return -1; // a is exact, b is not -> a comes first
+                if (!isAExact && isBExact) return 1;  // b is exact, a is not -> b comes first
+                if (isAExact && isBExact) return 0;   // both are exact (unlikely but handle) -> order doesn't matter
+
+                // If neither is exact, sort by proximity (absolute difference)
+                const diffA = Math.abs(serialA - targetSerial);
+                const diffB = Math.abs(serialB - targetSerial);
+
+                if (diffA !== diffB) {
+                    return diffA - diffB; // Sort by smallest difference first
+                } else {
+                    // Tie-breaker: If differences are equal, sort by the actual serial number
+                    return serialA - serialB;
+                }
+            });
+        }
+    }
+
+    // Default sort: If not searching by serial, or if serial query wasn't a number,
+    // sort results numerically by their serial number.
     return filtered.sort((a, b) => {
-        const serialA = parseInt(a.serial, 10) || 0;
-        const serialB = parseInt(b.serial, 10) || 0;
+        const serialA = parseInt(a.serial, 10) || 0; // Use 0 if parsing fails
+        const serialB = parseInt(b.serial, 10) || 0; // Use 0 if parsing fails
         return serialA - serialB;
     });
+    // --- MODIFICATION END ---
 }
 
 // --- Display Logic ---

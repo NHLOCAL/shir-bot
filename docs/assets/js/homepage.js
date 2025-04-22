@@ -1,21 +1,14 @@
-// assets/js/homepage.js
-
-// Dependencies:
-// - Global `baseurl` variable (from layout)
-// - `searchSongs` function from search.js (if available) for song clicks
-// - `fetchCSV`, `parseCSV` (needed ONLY for random songs list)
-
 document.addEventListener('DOMContentLoaded', () => {
     const artistsGrid = document.getElementById('popular-artists-grid');
     const songsList = document.getElementById('random-songs-list');
     const homepageContent = document.getElementById('homepage-content');
     const searchResultsArea = document.getElementById('search-results-area');
-    const artistsDataElement = document.getElementById('artistsData'); // Get the embedded data script tag
+    const artistsDataElement = document.getElementById('artistsData');
 
     const NUM_ARTISTS_TO_SHOW = 6;
     const NUM_SONGS_TO_SHOW = 5;
 
-    // --- Data Fetching and Parsing (Adapted from search.js - needed for SONGS ONLY) ---
+
     async function fetchCSV(url) {
         try {
             const response = await fetch(url);
@@ -31,13 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!csvText) return [];
         const lines = csvText.split('\n');
         const songs = [];
-        for (let i = 1; i < lines.length; i++) { // Skip header
+        for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (line) {
                 const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(field =>
                     field.trim().replace(/^"|"$/g, '')
                 );
-                if (columns.length >= 4 && (columns[0] || columns[1])) {
+                if (columns.length >= 4 && (columns[0] || columns[1])) { // Ensure serial OR name exists
                     songs.push({
                         serial: columns[0] || '',
                         name: columns[1] || '',
@@ -86,16 +79,25 @@ document.addEventListener('DOMContentLoaded', () => {
         artistsGrid.innerHTML = html;
     }
 
-    // --- This function remains the same, using CSV data ---
+    // --- MODIFIED function to display only singles ---
     function displaySongs(allSongs) {
         if (!songsList) return;
 
-        // Filter out songs without a name or serial
-        const validSongs = allSongs.filter(song => song.name && song.serial);
-        const randomSongs = getRandomItems(validSongs, NUM_SONGS_TO_SHOW);
+        // --- MODIFICATION START ---
+        // Filter for valid songs (have name and serial) that are explicitly marked as singles
+        const singleSongs = allSongs.filter(song => {
+            // Check if singer or album contains 'סינגל' (singular or plural)
+            const isSingle = (song.singer && typeof song.singer === 'string' && song.singer.includes('סינגל')) ||
+                           (song.album && typeof song.album === 'string' && song.album.includes('סינגל'));
+            // Check if the song has essential data (name AND serial)
+            const isValid = song.name && song.serial;
+            return isValid && isSingle;
+        });
+        const randomSongs = getRandomItems(singleSongs, NUM_SONGS_TO_SHOW);
+        // --- MODIFICATION END ---
 
         if (randomSongs.length === 0) {
-            songsList.innerHTML = '<li>לא נטענו שירים.</li>';
+            songsList.innerHTML = '<li>לא נמצאו סינגלים אחרונים.</li>'; // Updated message
             return;
         }
 
@@ -109,34 +111,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         songsList.innerHTML = html;
 
-        // Add click listeners to search for the song
+        // Add click listeners to search for the song by its serial number
         songsList.querySelectorAll('li[data-song-serial]').forEach(item => {
             item.addEventListener('click', () => {
                 const serial = item.dataset.songSerial;
                 console.log("Song clicked, searching for serial:", serial);
 
-                if (typeof searchSongs === 'function') {
+                // Ensure the search function and UI elements exist
+                if (typeof searchSongs === 'function' && typeof showSearchResultsView === 'function') {
                      const searchInput = document.getElementById('searchInput');
-                     if(searchInput) searchInput.value = serial;
+                     if(searchInput) searchInput.value = serial; // Put serial in search box
+
+                     // Deactivate all filters and activate the 'serial' filter
                      document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
                      const serialFilterButton = document.querySelector('.filter-button[data-filter="serial"]');
                      if(serialFilterButton) serialFilterButton.classList.add('active');
+
+                     // Trigger the search with the serial number and 'serial' type
                      searchSongs(serial, 'serial');
+
+                     // Switch view to show results
                      showSearchResultsView();
                 } else {
-                    window.location.href = `${baseurl}/?search=${encodeURIComponent(serial)}&searchBy=serial`;
+                    // Fallback: Redirect to homepage with search parameters if function/view unavailable
+                    console.warn("Search function or view switcher not found, redirecting.");
+                    window.location.href = `${baseurl || ''}/?search=${encodeURIComponent(serial)}&searchBy=serial`;
                 }
             });
         });
     }
 
+
      function showSearchResultsView() {
          if (homepageContent) homepageContent.style.display = 'none';
          if (searchResultsArea) searchResultsArea.style.display = 'block';
          const resultsTable = document.getElementById('resultsTable');
-         if(resultsTable) resultsTable.style.display = '';
+         if(resultsTable) resultsTable.style.display = ''; // Ensure table container is visible
      }
 
+     // Function to switch back to the homepage view (e.g., if search is cleared)
      window.showHomepageView = function() {
          if (homepageContent) homepageContent.style.display = 'block';
          if (searchResultsArea) searchResultsArea.style.display = 'none';
@@ -146,7 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const hasSearchParams = urlParams.has('search') || urlParams.has('searchBy');
 
-        // 1. Read Artist Data from Embedded JSON
+
+        // Load artists from embedded JSON
         let artistsFromCollection = [];
         if (artistsDataElement) {
             try {
@@ -161,40 +175,44 @@ document.addEventListener('DOMContentLoaded', () => {
              if (artistsGrid) artistsGrid.innerHTML = '<p>שגיאה בטעינת נתוני אמנים.</p>';
         }
 
-        // 2. Fetch and Parse CSV for Songs (still needed)
+
+        // Fetch and parse song data from CSV
         let allSongs = [];
-        const csvUrl = `${baseurl}/assets/data/songs.csv`;
+        const csvUrl = `${baseurl || ''}/assets/data/songs.csv`; // Use baseurl
         const csvData = await fetchCSV(csvUrl);
         if (csvData) {
             allSongs = parseCSV(csvData);
             if (allSongs.length === 0) {
                  console.warn("Parsed song data from CSV is empty.");
                  if (songsList) songsList.innerHTML = '<li>שגיאה בעיבוד נתוני שירים.</li>';
+            } else {
+                console.log(`Loaded ${allSongs.length} songs from CSV.`);
             }
         } else {
+            // Handle CSV fetch failure
             if (songsList) songsList.innerHTML = '<li>שגיאה בטעינת נתוני שירים.</li>';
         }
 
-        // 3. Handle View Logic (Search Params vs Homepage)
+
+        // Decide whether to show homepage or search results based on URL params
         if (hasSearchParams) {
              console.log("Search params detected, hiding homepage content initially.");
-             showSearchResultsView(); // Start in search view
-             // Let search.js handle the actual search based on params
+             showSearchResultsView();
+             // Note: The actual search based on params is handled in search.js's DOMContentLoaded
         } else {
              console.log("No search params, showing homepage content.");
-             showHomepageView(); // Start in homepage view
+             showHomepageView();
 
-             // Display Artists using data from _artists collection
+             // Display artists and songs (now filtered for singles)
              displayArtists(artistsFromCollection);
-
-             // Display Songs using data from CSV
              if (allSongs.length > 0) {
-                 displaySongs(allSongs);
+                 displaySongs(allSongs); // This now displays only singles
              }
         }
-         // Let ads.js handle the rotating ad content
+
     }
 
+    // Initialize the homepage logic
     initHomepage();
 
 });

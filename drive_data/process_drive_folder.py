@@ -46,7 +46,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def ensure_script_dir_exists():
     """Ensures the script's directory exists (mainly for robustness)."""
-    # Since the script runs from here, it should exist, but this is a safety check.
     try:
         SCRIPT_DIR.mkdir(parents=True, exist_ok=True)
     except Exception as e:
@@ -60,15 +59,18 @@ def load_state():
             with open(STATE_FILE, "r", encoding="utf-8") as f:
                 state = json.load(f)
             state.setdefault("last_processed_timestamp", None)
-            state.setdefault("next_serial", 1)
+            # --- MODIFIED: Default serial starts at 70000 if missing ---
+            state.setdefault("next_serial", 70000)
             logging.info(f"Loaded state from {STATE_FILE}: Last timestamp={state['last_processed_timestamp']}, Next serial={state['next_serial']}")
             return state
         except json.JSONDecodeError:
             logging.error(f"Error decoding JSON from {STATE_FILE}. Starting fresh.")
-            return {"last_processed_timestamp": None, "next_serial": 1}
+            # --- MODIFIED: Default serial starts at 70000 ---
+            return {"last_processed_timestamp": None, "next_serial": 70000}
     else:
         logging.info(f"{STATE_FILE} not found. Starting fresh.")
-        return {"last_processed_timestamp": None, "next_serial": 1}
+        # --- MODIFIED: Default serial starts at 70000 ---
+        return {"last_processed_timestamp": None, "next_serial": 70000}
 
 def save_state(state):
     """Saves the current state (timestamp, serial) to the state file."""
@@ -76,7 +78,7 @@ def save_state(state):
     try:
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(state, f, ensure_ascii=False, indent=4)
-        # logging.info(f"State saved to {STATE_FILE}")
+        # logging.info(f"State saved to {STATE_FILE}") # Logged more contextually now
     except Exception as e:
         logging.error(f"Failed to save state to {STATE_FILE}: {e}")
 
@@ -240,6 +242,7 @@ def get_or_create_folder(service, folder_name, parent_folder_id):
     sanitized_name = folder_name.replace("'", "\\'")
     # Query uses the actual parent_folder_id, but logging redacts it
     actual_query = f"name='{sanitized_name}' and '{parent_folder_id}' in parents and mimeType='application/vnd.google-apps.folder' and trashed=false"
+    logging.debug(f"Searching for folder with query parameters: name='{folder_name}', parent=<REDACTED>")
 
     try:
         response = service.files().list(q=actual_query, spaces='drive', fields='files(id, name)').execute()
@@ -264,10 +267,10 @@ def get_or_create_folder(service, folder_name, parent_folder_id):
         logging.error(f"API error finding/creating folder '{folder_name}' in parent <REDACTED>: {error}")
         if error.resp.status == 403:
             logging.error("Permission denied. Check editor permissions on the target base folder.")
-        raise
+        raise # Re-raise after logging specific message
     except Exception as e:
         logging.error(f"Unexpected error finding/creating folder '{folder_name}' in parent <REDACTED>: {e}")
-        raise
+        raise # Re-raise after logging
 
 def copy_file(service, source_file_id, target_folder_id, new_filename=None):
     """Copies a file to the target folder. Returns the ID of the new copy."""
@@ -280,7 +283,7 @@ def copy_file(service, source_file_id, target_folder_id, new_filename=None):
         copied_file = service.files().copy(
             fileId=source_file_id,
             body=copy_metadata,
-            fields='id, name'
+            fields='id, name' # Request fields needed for logging
         ).execute()
 
         copied_file_id = copied_file.get('id')
@@ -288,15 +291,15 @@ def copy_file(service, source_file_id, target_folder_id, new_filename=None):
         logging.info(f"Successfully copied file as '{copied_file_name}' (New ID: <REDACTED>) to folder <REDACTED>.")
         return copied_file_id
     except HttpError as error:
-        logging.error(f"API error copying file ID <REDACTED>: {error}")
+        logging.error(f"API error copying file ID <REDACTED> to target <REDACTED>: {error}")
         if error.resp.status == 403:
              logging.error("Permission denied. Check permissions on target folder or source file.")
         elif error.resp.status == 404:
-             logging.error("Source file or target folder not found.")
-        return None
+             logging.error("Source file or target folder not found during copy.")
+        return None # Indicate failure
     except Exception as e:
-        logging.error(f"Unexpected error copying file ID <REDACTED>: {e}")
-        return None
+        logging.error(f"Unexpected error copying file ID <REDACTED> to target <REDACTED>: {e}")
+        return None # Indicate failure
 
 # --- Main Processing Function ---
 
@@ -306,7 +309,7 @@ def main():
 
     state = load_state()
     last_processed_timestamp = state.get("last_processed_timestamp")
-    next_serial = state.get("next_serial")
+    next_serial = state.get("next_serial") # Will be 70000 or loaded value
 
     write_csv_header_if_needed()
 
@@ -326,8 +329,8 @@ def main():
     # --- Process Files ---
     logging.info(f"Scanning source folder ID: <REDACTED> for new MP3 files.")
     page_token = None
-    files_processed_count = 0
-    new_files_copied = False
+    files_processed_count = 0 # Counts files actually copied in this run
+    new_files_copied = False # Flag if any file was actually copied
 
     last_processed_dt = None
     if last_processed_timestamp:
@@ -342,6 +345,7 @@ def main():
     while True: # Loop through pages of files
         try:
             # Query uses the actual SOURCE_FOLDER_ID, but logging redacts it
+            logging.debug(f"Querying files in source folder <REDACTED> with page token: {page_token}")
             actual_query = f"'{SOURCE_FOLDER_ID}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed = false"
             response = service.files().list(
                 q=actual_query,
@@ -368,7 +372,7 @@ def main():
 
                 # Filter for MP3 files only
                 if not source_file_name.lower().endswith(".mp3"):
-                    logging.debug(f"Skipping non-MP3 file: '{source_file_name}'")
+                    logging.debug(f"Skipping non-MP3 file: '{source_file_name}' (ID: <REDACTED>)")
                     continue
 
                 # Parse current file timestamp
@@ -378,13 +382,13 @@ def main():
                     logging.error(f"Invalid createdTime format for MP3 file '{source_file_name}' (ID: <REDACTED>): {created_time_str}. Skipping.")
                     continue
 
-                # Check if file is newer than the last processed one
+                # Check if file is older than or same as the last processed one
                 if last_processed_dt and current_file_dt <= last_processed_dt:
-                    logging.debug(f"Skipping already processed MP3 file: '{source_file_name}' (Created: {created_time_str})")
+                    logging.debug(f"Skipping already processed MP3 file: '{source_file_name}' (Created: {created_time_str}) based on timestamp.")
                     continue
 
-                # --- Process this new MP3 file ---
-                logging.info(f"Processing new MP3 file: '{source_file_name}' (ID: <REDACTED>, Created: {created_time_str})")
+                # --- Process this potentially new MP3 file ---
+                logging.info(f"Checking MP3 file: '{source_file_name}' (ID: <REDACTED>, Created: {created_time_str})")
 
                 # 1. Get Hebrew Date Folder Name
                 hebrew_folder_name = convert_rfc3339_to_hebrew_month_year(created_time_str)
@@ -396,36 +400,86 @@ def main():
                     # 2. Get or Create Target Folder
                     target_hebrew_folder_id = get_or_create_folder(service, hebrew_folder_name, TARGET_BASE_FOLDER_ID)
 
-                    # 3. Copy File
+                    # --- START: Check for file existence in target folder ---
+                    file_already_exists = False
+                    try:
+                        # Escape single quotes in filename for the query
+                        escaped_filename = source_file_name.replace("'", "\\'")
+                        # Query to find a file with the exact name in the specific target folder
+                        existence_query = f"name='{escaped_filename}' and '{target_hebrew_folder_id}' in parents and mimeType != 'application/vnd.google-apps.folder' and trashed=false"
+                        logging.debug(f"Checking existence with query: name='{source_file_name}', parent=<REDACTED>")
+
+                        # Execute the search query
+                        existence_response = service.files().list(
+                            q=existence_query,
+                            spaces='drive',
+                            fields='files(id)', # Only need to know if at least one exists
+                            pageSize=1 # Only need one result
+                        ).execute()
+
+                        existing_files = existence_response.get('files', [])
+
+                        # If the list is not empty, a file with that name already exists
+                        if existing_files:
+                            file_already_exists = True
+                            logging.info(f"Skipping copy: File '{source_file_name}' already exists in target folder '{hebrew_folder_name}'.")
+                            # --- IMPORTANT: Update timestamp to mark as processed ---
+                            # Even though we didn't copy, we processed it by checking.
+                            last_processed_dt = current_file_dt # Update the loop's comparison time
+                            state["last_processed_timestamp"] = created_time_str # Save timestamp of this checked file
+                            save_state(state) # Persist the timestamp update
+                            logging.debug(f"Updated last processed timestamp to {created_time_str} after skipping existing file.")
+                            continue # Skip to the next file in the source folder
+
+                        else:
+                            # File does not exist in target folder, proceed with copy
+                            logging.debug(f"File '{source_file_name}' not found in target. Proceeding with copy.")
+
+                    except HttpError as http_err:
+                        # Handle errors during the existence check API call
+                        logging.error(f"API error checking existence for '{source_file_name}' in target folder '{hebrew_folder_name}': {http_err}. Skipping this file for now.")
+                        # Don't update timestamp here, let it retry next time
+                        continue # Skip to the next file
+                    except Exception as e_check:
+                        # Handle unexpected errors during the existence check
+                        logging.error(f"Unexpected error checking existence for '{source_file_name}': {e_check}. Skipping this file for now.")
+                        # Don't update timestamp here, let it retry next time
+                        continue # Skip to the next file
+                    # --- END: Check for file existence ---
+
+                    # --- 3. Copy File (Only if file_already_exists is False) ---
+                    # This block is now implicitly skipped if 'continue' was hit above
                     copied_file_id = copy_file(service, source_file_id, target_hebrew_folder_id, new_filename=source_file_name)
 
                     if copied_file_id:
-                        # 4. Record Success
-                        new_files_copied = True
+                        # --- 4. Record Success (Only happens if copy occurred) ---
+                        new_files_copied = True # Set flag that at least one copy happened
                         song_name_cleaned = Path(source_file_name).stem
                         singer_name = "סינגלים חדשים" # Default singer name
 
                         append_song_to_csv(next_serial, song_name_cleaned, hebrew_folder_name, singer_name, copied_file_id)
 
                         # Update state ONLY after successful copy and record
-                        state["last_processed_timestamp"] = created_time_str # Use the precise timestamp string from API
-                        state["next_serial"] += 1
+                        state["last_processed_timestamp"] = created_time_str # Timestamp of the copied file
+                        state["next_serial"] += 1 # Increment serial ONLY on successful copy
                         save_state(state) # Save state immediately
+                        logging.debug(f"Updated state: timestamp={created_time_str}, next_serial={state['next_serial']}")
 
                         # Update tracking variables for this run
                         files_processed_count += 1
                         newly_copied_in_page += 1
-                        next_serial = state["next_serial"] # Get the updated serial
+                        next_serial = state["next_serial"] # Get the updated serial for the log message
                         last_processed_dt = current_file_dt # Update the latest processed time for this run
 
                     else:
-                        logging.error(f"Failed to copy MP3 file '{source_file_name}' (ID: <REDACTED>). Will retry on next run if applicable.")
-                        # NOTE: Because state isn't updated, this file will be re-attempted next time.
+                        # copy_file returned None, indicating an error during copy
+                        logging.error(f"Copy command failed for MP3 file '{source_file_name}' (ID: <REDACTED>). Will retry on next run if applicable.")
+                        # NOTE: Because state isn't updated, this file might be re-attempted next time.
 
                 except Exception as e:
-                    # Catch errors during folder creation or the copy attempt itself
-                    logging.error(f"Error processing MP3 file '{source_file_name}' (ID: <REDACTED>): {e}", exc_info=True)
-                    # Continue to the next file, this one will be retried next run
+                    # Catch errors during folder creation or other processing steps (like pyluach conversion issues)
+                    logging.error(f"Error processing MP3 file '{source_file_name}' (ID: <REDACTED>) before copy check/attempt: {e}", exc_info=True)
+                    # Continue to the next file, this one might be retried next run if timestamp not updated
 
             # --- Pagination ---
             page_token = response.get('nextPageToken', None)
@@ -433,7 +487,10 @@ def main():
                 logging.info("Reached end of file listing in source folder.")
                 break # Exit the 'while True' loop
             else:
-                 logging.info(f"Processed {newly_copied_in_page} new MP3 files from this page. Requesting next page...")
+                 if newly_copied_in_page > 0:
+                     logging.info(f"Processed {newly_copied_in_page} new MP3 files copied from this page. Requesting next page...")
+                 else:
+                     logging.debug("No new MP3 files copied from this page. Requesting next page...")
                  time.sleep(1) # Brief pause before next page request
 
         except HttpError as error:
@@ -452,10 +509,9 @@ def main():
     if new_files_copied:
         logging.info(f"Finished processing. Total new MP3 files copied and recorded in this run: {files_processed_count}")
     else:
-        logging.info("No new MP3 files found to copy in this run.")
+        logging.info("No new MP3 files found to copy in this run (or all new files already existed in target).")
 
     logging.info("--- Drive Folder Copy Script End ---")
 
 if __name__ == "__main__":
     main()
-# --- END OF FILE drive_data/process_drive_folder.py ---

@@ -76,43 +76,32 @@ td {
 }
 
 #resultsTable {
-  margin: 1vh 3% 5vh 3%;
-  width: 92%;
+  width: 100%;          /* הטבלה תופסת 100% מהרוחב הזמין בתוך .content המרופד */
+  margin-left: 0;       /* הסרת שוליים אופקיים שמיותרים כעת */
+  margin-right: 0;      /* הסרת שוליים אופקיים שמיותרים כעת */
+  /* שמירה על שוליים אנכיים קיימים אם יש */
+  margin-top: 1rem;     /* לדוגמה - שמור/שנה לפי הצורך */
+  margin-bottom: 2rem;  /* לדוגמה - שמור/שנה לפי הצורך */
+
+  /* שמור את שאר ההגדרות הקיימות והרלוונטיות */
   max-height: 60vh;
   overflow-y: auto;
-  padding: 10px;
-
-  margin-top: 10px;
-
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-
-  width: 100%;
-  box-sizing: border-box;
+  padding: 10px;        /* שמור ריפוד פנימי אם קיים ורצוי */
+  box-sizing: border-box; /* מומלץ גם כאן */
+  /* ודא שאין הגדרות סותרות שהוסרו בשלב א' (כמו width: 92%;) */
 }
 
-
-.constrained-content-area {
-
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-
-
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-
-  box-sizing: border-box;
-
-
-  display: block;
+.content {
+  max-width: 1200px; /* רוחב מקסימלי לאזור התוכן */
+  margin-left: auto; /* מרכוז אופקי */
+  margin-right: auto; /* מרכוז אופקי */
+  padding-left: 15px;  /* יצירת מרווח קבוע מימין */
+  padding-right: 15px; /* יצירת מרווח קבוע משמאל */
+  box-sizing: border-box; /* הריפוד לא יוסיף לרוחב מעבר ל-max-width */
+  /* אפשר להוסיף גם ריפוד אנכי אם רוצים להרחיק מהכותרת/פוטר */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
-
-
 
 #search-results-area {
 

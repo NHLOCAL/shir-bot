@@ -3,19 +3,17 @@
 // --- Global Variables & DOM Elements ---
 var baseurl = baseurl || ''; // Ensure baseurl is available
 const footerAdElement = document.querySelector(".fixed-bottom p"); // For footer ad
-// *** UPDATED SELECTOR to target the new banner container ID ***
-const contentSection = document.getElementById("ad-banner-container");
+const contentSection = document.getElementById("ad-banner-container"); // For banner ad
 const prevButton = document.getElementById("prevSection"); // Banner previous button
 const nextButton = document.getElementById("nextSection"); // Banner next button
 const helpOverlay = document.querySelector(".help-overlay"); // For help modal
 
 // --- GA Event Functions (Specific to Ads) ---
-// These functions are called via onclick attributes in the ad HTML
 function beatplus_ad() {
     if (typeof gtag === 'function') {
         gtag('event', 'ad_click', {
             'event_category': 'Ads',
-            'event_label': 'BeatPlus Ad Click - Footer' // Specify footer
+            'event_label': 'BeatPlus Ad Click - Footer'
         });
     }
 }
@@ -24,7 +22,7 @@ function conversion_music_drive() {
     if (typeof gtag === 'function') {
         gtag('event', 'conversion', {
             'event_category': 'Subscription',
-            'event_label': 'Music Drive Signup Click' // Can specify Footer or Banner if needed
+            'event_label': 'Music Drive Signup Click'
         });
     }
 }
@@ -35,6 +33,7 @@ const footerContent = [
     "<b>ביט פלוס-הבית של המוזיקאים!</b> מגוון כלי נגינה, מקצבים, ציוד הגברה ומדריכים <a id='beatplus' href='https://beatplus.co.il/?utm_source=nhlocal.github.io/shir-bot&utm_medium=footer_ad' target='_blank' onclick='beatplus_ad()'>בקרו באתר</a>",
 ];
 let currentFooterIndex = 0;
+let footerAdInterval; // Variable to hold the footer interval timer
 
 function updateFooterContent() {
     if (!footerAdElement) return; // Guard clause
@@ -42,8 +41,25 @@ function updateFooterContent() {
     currentFooterIndex = (currentFooterIndex + 1) % footerContent.length;
 }
 
-// --- REWRITTEN AD CONTENT for Banner (Short, Focused, Text-Only) ---
+function startFooterAutoChange() {
+    if (!footerAdElement) return; // Guard clause
+    clearInterval(footerAdInterval); // Clear existing interval if any
+    footerAdInterval = setInterval(updateFooterContent, 5000); // Rotate every 30 seconds
+}
 
+// --- NEW: Functions to pause and resume FOOTER ad rotation ---
+function pauseFooterAdRotation() {
+    // console.log("Pausing footer ad rotation"); // Optional: for debugging
+    clearInterval(footerAdInterval); // Stop the timer
+}
+
+function resumeFooterAdRotation() {
+    // console.log("Resuming footer ad rotation"); // Optional: for debugging
+    startFooterAutoChange(); // Restart the timer
+}
+
+
+// --- Banner Ad ---
 const newContent1 = `
   <h3>מאגר המוזיקה היהודית הגדול בישראל!</h3>
   <p>גישה מיידית ל-500GB של שירים מכל הסגנונות והזמנים. תכנים נדירים וסינגלים מתעדכנים - הכל במקום אחד ובמחיר מיוחד.</p>
@@ -62,93 +78,65 @@ const newContent3 = `
   <button class="helpButton" onclick="window.open('https://nhlocal.github.io/Singles-Sorter/?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורידו עכשיו בחינם</button>
 `;
 
-// Array of the rewritten ad contents
 const newContents = [newContent1, newContent2, newContent3];
 let currentContentIndex = 0; // Index for the rotating banner ad
-let adInterval; // Variable to hold the interval timer
+let bannerAdInterval; // Variable to hold the banner interval timer (renamed from adInterval for clarity)
 
 // --- Banner Ad Rotation Logic ---
-
-function updateContent() {
-    if (!contentSection) return; // Guard clause if banner container not found
-
-    // Inject the HTML content into the banner container
-    // Use a temporary div to parse the HTML string safely if needed,
-    // but direct innerHTML is usually fine for trusted content like this.
+function updateBannerContent() { // Renamed from updateContent for clarity
+    if (!contentSection) return;
     contentSection.innerHTML = newContents[currentContentIndex];
-
-    // Re-enable or ensure visibility of prev/next buttons *after* content is set.
-    // They are part of the static HTML structure now, just need display style.
-    if (prevButton) prevButton.style.display = 'flex'; // Use 'flex' due to centering styles
-    if (nextButton) nextButton.style.display = 'flex'; // Use 'flex' due to centering styles
-
-    // Note: No need to re-attach listeners for buttons with onclick attributes.
-    // If a button uses an ID like '#helpButton' for the general help modal,
-    // the listener attachment logic (or delegation) in Initialization is needed.
+    if (prevButton) prevButton.style.display = 'flex';
+    if (nextButton) nextButton.style.display = 'flex';
 }
 
-function startAutoChange() {
-    // Ensure required elements exist before starting interval
+function startBannerAutoChange() { // Renamed from startAutoChange
     if (!contentSection || !prevButton || !nextButton) {
-        console.warn("Cannot start ad rotation: Banner elements missing.");
+        console.warn("Cannot start banner ad rotation: Banner elements missing.");
         return;
     }
-    clearInterval(adInterval); // Clear existing interval if any
-    adInterval = setInterval(() => {
+    clearInterval(bannerAdInterval);
+    bannerAdInterval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
-        updateContent();
-    }, 15000); // Rotate every 15 seconds
+        updateBannerContent();
+    }, 3000);
+}
+
+// --- Functions to pause and resume BANNER ad rotation ---
+function pauseBannerAdRotation() { // Renamed from pauseAdRotation
+    // console.log("Pausing banner ad rotation");
+    clearInterval(bannerAdInterval);
+}
+
+function resumeBannerAdRotation() { // Renamed from resumeAdRotation
+    // console.log("Resuming banner ad rotation");
+    startBannerAutoChange();
 }
 
 // --- Help Modal Logic ---
-// Assumes help modal HTML exists in the main layout or index.html
-let currentStep = 1; // Tracks the current step in a multi-step help modal
-
+let currentStep = 1;
 function showStep(stepChange) {
     if (!helpOverlay) return;
 	currentStep += stepChange;
-	const modalSteps = helpOverlay.querySelectorAll('.help-modal'); // Find steps inside overlay
-
-    if (!modalSteps || modalSteps.length === 0) return; // No steps found
-
-	// Clamp step index within bounds
-	if (currentStep < 1) {
-		currentStep = 1;
-	} else if (currentStep > modalSteps.length) {
-		currentStep = modalSteps.length;
-	}
-
-	// Hide all steps
-	modalSteps.forEach(step => {
-		step.style.display = 'none';
-	});
-
-	// Show the current step
-	if (modalSteps[currentStep - 1]) {
-	    modalSteps[currentStep - 1].style.display = 'block';
-    }
+	const modalSteps = helpOverlay.querySelectorAll('.help-modal');
+    if (!modalSteps || modalSteps.length === 0) return;
+	if (currentStep < 1) currentStep = 1;
+	else if (currentStep > modalSteps.length) currentStep = modalSteps.length;
+	modalSteps.forEach(step => step.style.display = 'none');
+	if (modalSteps[currentStep - 1]) modalSteps[currentStep - 1].style.display = 'block';
 }
-
 function openHelp() {
     if (helpOverlay) {
-        helpOverlay.style.display = "flex"; // Show the overlay
-        currentStep = 1; // Reset to first step when opening
-        showStep(0); // Show the initial step
+        helpOverlay.style.display = "flex";
+        currentStep = 1;
+        showStep(0);
     } else {
         console.warn("Help overlay element not found.");
     }
 }
-
 function closeHelp() {
-	if (helpOverlay) {
-	    helpOverlay.style.display = 'none'; // Hide the overlay
-    }
+	if (helpOverlay) helpOverlay.style.display = 'none';
 }
-
-// --- Small Singer Suggestion Ads Logic (REMOVED) ---
-// The functions getRandomSingerData, generateSmallAdHTML, updateSmallAds,
-// and related DOM selectors (leftSmallAdContainer, rightSmallAdContainer)
-// have been removed as they are no longer relevant to the current banner design.
 
 // --- Initialization ---
 document.addEventListener("DOMContentLoaded", function() {
@@ -156,7 +144,12 @@ document.addEventListener("DOMContentLoaded", function() {
     if (footerAdElement) {
         try {
             updateFooterContent(); // Initial display
-            setInterval(updateFooterContent, 30000); // Rotate every 30 seconds
+            startFooterAutoChange(); // Start automatic rotation
+
+            // *** NEW: Add hover listeners to pause/resume FOOTER rotation ***
+            footerAdElement.addEventListener('mouseenter', pauseFooterAdRotation);
+            footerAdElement.addEventListener('mouseleave', resumeFooterAdRotation);
+
         } catch (error) {
             console.error("Error initializing footer ad:", error);
         }
@@ -165,60 +158,56 @@ document.addEventListener("DOMContentLoaded", function() {
     // 2. Initialize Banner Ad Rotation
     if (contentSection && prevButton && nextButton) {
         try {
-            // Add click listeners for manual navigation
+            // Manual navigation listeners
             prevButton.addEventListener("click", () => {
                 currentContentIndex = (currentContentIndex - 1 + newContents.length) % newContents.length;
-                updateContent();
-                // Optional: Reset interval timer on manual change to prevent immediate auto-change
-                clearInterval(adInterval);
-                startAutoChange();
+                updateBannerContent();
+                clearInterval(bannerAdInterval); // Reset interval timer
+                startBannerAutoChange();
             });
-
             nextButton.addEventListener("click", () => {
                 currentContentIndex = (currentContentIndex + 1) % newContents.length;
-                updateContent();
-                // Optional: Reset interval timer
-                clearInterval(adInterval);
-                startAutoChange();
+                updateBannerContent();
+                clearInterval(bannerAdInterval); // Reset interval timer
+                startBannerAutoChange();
             });
 
-            updateContent(); // Initial display of the first ad
-            startAutoChange(); // Start automatic rotation
+            // Add hover listeners to pause/resume BANNER rotation
+            contentSection.addEventListener('mouseenter', pauseBannerAdRotation);
+            contentSection.addEventListener('mouseleave', resumeBannerAdRotation);
+            prevButton.addEventListener('mouseenter', pauseBannerAdRotation);
+            prevButton.addEventListener('mouseleave', resumeBannerAdRotation);
+            nextButton.addEventListener('mouseenter', pauseBannerAdRotation);
+            nextButton.addEventListener('mouseleave', resumeBannerAdRotation);
+
+            updateBannerContent(); // Initial display
+            startBannerAutoChange(); // Start automatic rotation
         } catch (error) {
             console.error("Error initializing banner ad rotation:", error);
-            // Attempt to hide buttons if setup fails
              if (prevButton) prevButton.style.display = 'none';
              if (nextButton) nextButton.style.display = 'none';
         }
     } else {
-        // Log if elements are missing, hide buttons if they exist but container doesn't
         console.warn("Ad banner container or navigation buttons not found during init.");
         if (prevButton) prevButton.style.display = 'none';
         if (nextButton) nextButton.style.display = 'none';
     }
 
     // 3. Initialize Help Modal Interactions
-    // Using event delegation on the body for the help button is robust
     document.body.addEventListener('click', function(event){
-        // Check if the clicked element *is* the help button OR is inside the help modal close button
         if(event.target && event.target.id === 'helpButton' && typeof openHelp === 'function'){
              openHelp();
         }
-        // Example: Add a class 'close-help-button' to your close button inside the modal
         if (event.target && event.target.classList.contains('close-help-button') && typeof closeHelp === 'function') {
              closeHelp();
         }
     });
-
-    // Add listener to close help modal if clicking outside the content area (on the overlay)
      if(helpOverlay) {
          helpOverlay.addEventListener('click', function(event){
-             // Check if the click target is the overlay itself, not its content
              if(event.target === helpOverlay && typeof closeHelp === 'function'){
                  closeHelp();
              }
          });
-         // Initialize help modal steps (hide all except first) on load
          const modalSteps = helpOverlay.querySelectorAll('.help-modal');
          if (modalSteps && modalSteps.length > 0) {
              modalSteps.forEach((step, index) => {
@@ -226,8 +215,4 @@ document.addEventListener("DOMContentLoaded", function() {
              });
          }
      }
-
-    // 4. Small Ads Initialization (REMOVED)
-    // No longer initializing updateSmallAds()
-
 });

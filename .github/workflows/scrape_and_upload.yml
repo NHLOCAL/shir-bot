@@ -1,6 +1,11 @@
 name: Scrape Prog Forum and Upload to Drive
 
 on:
+  push:
+    branches:
+      - new-singles
+    paths:
+      - 'down_and_up.py'
   workflow_dispatch: # Allows manual triggering from the Actions tab
   schedule:
     - cron: '0 3 * * *' # Runs daily at 3 AM UTC (adjust as needed)

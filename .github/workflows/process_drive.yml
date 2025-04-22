@@ -1,26 +1,21 @@
-name: Process New Drive Files and Update CSV
-
 on:
   push:
     branches:
-      # Adjust branch name if needed, e.g., 'main' or your feature branch
       - main
-      - new-singles # Or keep the original branch if preferred
+      - new-singles # או כל ענף רלוונטי אחר
     paths:
-      # --- UPDATED: Trigger if the script in its new location changes ---
+      # טריגר אם הסקריפטים, ה-workflow או התלויות משתנים
       - 'drive_data/process_drive_folder.py'
+      - 'drive_data/csv_to_yaml_converter.py' # <-- הוספת הקובץ החדש
       - '.github/workflows/process_drive.yml'
-      # Optionally trigger if requirements change (still in root)
       - 'requirements.txt'
-      # Optionally trigger if data files change (already correct)
-      # - 'drive_data/**'
-  workflow_dispatch: # Allows manual triggering
+  workflow_dispatch: # הפעלה ידנית
   schedule:
-    # Runs daily at 4 AM UTC (adjust as needed, consider timezone of file uploads)
+    # יומי ב-4:00 UTC
     - cron: '0 4 * * *'
 
 permissions:
-  contents: write # Allow workflow to commit changes (state.json, new-songs.csv)
+  contents: write # נדרש לביצוע commit חזרה לריפו
 
 jobs:
   process-drive-files:
@@ -34,13 +29,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.10' # או גרסת פייתון אחרת
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Assumes requirements.txt is still in the root directory
-          pip install -r requirements.txt
+          # הנחה ש-requirements.txt נמצא בשורש הריפו
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Authenticate Google Drive (Target Account)
         env:
@@ -56,33 +51,38 @@ jobs:
       - name: Run Drive Processing Script
         env:
           GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
-        # --- UPDATED: Run the script from its new location ---
         run: python drive_data/process_drive_folder.py
+
+      # --- שלב מעודכן: הרצת סקריפט ההמרה הנפרד ---
+      - name: Convert new-songs.csv to YAML using script
+        run: |
+          python drive_data/csv_to_yaml_converter.py \
+            --csv-input drive_data/new-songs.csv \
+            --yaml-output docs/_data/new_songs.yml
 
       - name: Configure Git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Check for changes in state or csv file
+      # שלב בדיקת השינויים נשאר זהה - הוא כבר בודק את הקבצים הנכונים
+      - name: Check for changes in state, csv, or yaml file
         id: check_changes
         run: |
-          # Paths are already correct as they point into drive_data
-          git add drive_data/drive_state.json drive_data/new-songs.csv
+          git add drive_data/drive_state.json drive_data/new-songs.csv docs/_data/new_songs.yml
           if git diff --staged --quiet; then
-            echo "No changes detected in drive_data/drive_state.json or drive_data/new-songs.csv."
+            echo "No changes detected in state file, CSV, or YAML."
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected in drive_data/drive_state.json or drive_data/new-songs.csv."
+            echo "Changes detected in state file, CSV, or YAML."
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
+      # שלב ה-Commit וה-Push נשאר זהה
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
-          # Commit message is already correct
-          git commit -m "Update drive_data/drive_state.json and drive_data/new-songs.csv from Drive processing [skip ci]"
-
+          git commit -m "Update Drive state, CSV, and YAML from processing [skip ci]"
           retry_count=0
           max_retries=3
           until git pull --rebase && git push || [ $retry_count -eq $max_retries ]; do
@@ -90,9 +90,9 @@ jobs:
             echo "Push failed or conflict detected. Retrying ($retry_count/$max_retries) after git pull --rebase in 15 seconds..."
             sleep 15
           done
-
           if [ $retry_count -eq $max_retries ]; then
             echo "::error::Failed to push changes after multiple retries. Please check for conflicts manually."
+            exit 1
           else
             echo "Changes committed and pushed successfully."
           fi

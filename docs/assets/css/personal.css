@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: #7E57C2;
   --primary-hover: #5C3899;
@@ -5,6 +6,15 @@
   --secondary-color: #C0C0C0;
   --white: #fff;
   --font-base: 'Arimo', sans-serif;
+  --light-gray-bg: #f0f2f5; /* רקע כללי בהיר יותר */
+  --unit-bg: var(--white); /* רקע היחידה הצפה */
+  --border-color: #e0e0e0; /* גבול כללי עדין */
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* צל מעט רך יותר */
+  --border-radius-main: 14px; /* עיגול פינות ליחידה */
+  --navbar-height: 68px; /* גובה סרגל עליון */
+  --search-field-height: 46px; /* גובה שדה החיפוש */
+  --filter-section-height: 55px; /* גובה אזור פילטרים */
+  --fixed-top-margin: 10px; /* מרווח מהקצה העליון */
 }
 
 
@@ -19,15 +29,211 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   line-height: 1.6;
-  padding-bottom: 70px;
+  background-color: var(--light-gray-bg); /* Set light background */
+  /* Dynamic padding to account for fixed header height + top margin + extra space */
+  padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px);
+  /* padding-bottom: 70px; */ /* Removed to allow footer ad to control bottom space */
 }
 
 main {
-  margin-top: 30px;
+  /* margin-top: 30px; */ /* Removed - handled by body padding */
   padding: 0 1rem;
 }
 
+/* Fixed wrapper with top margin */
+.fixed-header-wrapper {
+    position: fixed;
+    top: var(--fixed-top-margin);
+    left: 15px;
+    right: 15px;
+    z-index: 1000;
+}
 
+/* Inner unit with background, border, rounding, shadow */
+.header-content-unit {
+    background-color: var(--unit-bg);
+    border-radius: var(--border-radius-main);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    overflow: hidden; /* Important for rounded borders */
+    max-width: 1300px; /* Limit max width */
+    margin: 0 auto; /* Center the unit if screen is very wide */
+}
+
+/* Top Row: Logo, Search, Icons */
+.top-navbar-section {
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center; /* שמירה על יישור אנכי */
+  padding: 0 20px;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--primary-color);
+  justify-content: space-between;
+}
+
+/* Logo container within top section */
+.top-navbar-section .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    flex-shrink: 0; /* Prevent shrinking */
+    cursor: pointer; /* Keep pointer cursor */
+    /* Removed padding/background styles from old .topnav h3 */
+}
+.top-navbar-section .logo-container img {
+    width: 32px; /* Slightly larger logo */
+    height: auto;
+    /* Removed hover effect specific to old .topnav h3 */
+}
+.top-navbar-section .logo-container .site-title {
+    font-size: 1.2em; /* Adjust size as needed */
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--primary-color); /* Ensure color */
+}
+
+/* Search Bar (within top section) - adapted from original */
+.top-navbar-section .search-bar {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* נשאר כדי שתתפוס מקום פנוי, אבל מוגבלת ב-max-width */
+  background-color: var(--white);
+  border-radius: 25px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 0 0.5rem 0 1rem;
+  height: var(--search-field-height);
+  border: 1px solid #dfe1e5;
+  transition: box-shadow 0.2s;
+  min-width: 200px;
+  max-width: 700px;
+  /* margin: 0 15px; */ /* <<< הסרת המרווח האופקי */
+  margin: 0 auto; /* <<< נסיון מרכוז מפורש יותר */
+}
+.top-navbar-section .search-bar:focus-within {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    border-color: #c0c0c0;
+}
+
+/* Search Input (within new search bar) - adapted from original */
+.top-navbar-section .search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1em; /* Adjusted size */
+    padding: 8px 10px;
+    font-family: var(--font-base);
+    height: 100%; /* Fill the bar height */
+    caret-color: var(--primary-color);
+    color: #333;
+}
+
+/* Search Icons (within new search bar) - adapted from original */
+.top-navbar-section .search-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Spacing between icons */
+    margin-left: 10px; /* Space before submit button */
+}
+.top-navbar-section .search-icon-button { /* Applied to both icons and submit button */
+    background: none;
+    border: none;
+    color: var(--primary-color); /* Original icon color */
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.15em; /* Adjust icon size */
+    margin-left: 0px; /* Reset margin from old style */
+    transition: color 0.2s;
+    width: 36px; /* Fixed width for button */
+    height: 36px; /* Fixed height for button */
+    border-radius: 50%; /* Make round */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.top-navbar-section .search-icon-button:hover {
+    color: var(--highlight-color); /* Original hover color */
+    background-color: #f0f0f0; /* Slight background on hover */
+}
+
+/* Right Side Icons container (within top section) */
+.top-navbar-section .icons-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adjust gap */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+/* Individual Icons (within top section) - adapted from original */
+.top-navbar-section .icons-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit; /* Inherit --primary-color from parent */
+    font-size: 1.2em; /* Icon size */
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    /* Remove specific background/padding from old .right-item/.feedback-button */
+    background: none;
+    padding: 0;
+    position: static; /* Override old position */
+    margin: 0;
+}
+.top-navbar-section .icons-container a:hover {
+    background-color: rgba(126, 87, 194, 0.1); /* Subtle purple background on hover */
+}
+.top-navbar-section .icons-container .nhlocal-icon-wrapper {
+    /* Keep original wrapper styles if needed */
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+}
+.top-navbar-section .icons-container .nhlocal-icon {
+    /* Keep original icon styles */
+    display: block; border-radius: 50%; width: 24px; height: auto;
+}
+.top-navbar-section .icons-container .feedback-button i {
+    font-size: 1em; /* Match container font-size */
+    /* Reset old specific feedback icon styles */
+    width: auto; height: auto;
+}
+
+/* Bottom Row: Filters Section */
+.filters-section {
+    min-height: var(--filter-section-height);
+    background-color: var(--unit-bg); /* Same background as top section */
+    padding: 8px 15px; /* Add padding */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center filters horizontally */
+    gap: 10px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* Filter Buttons (reuse original styling) */
+.filter-button {
+  background-color: transparent;
+  border: 1px solid #7E57C2;
+  color: #7E57C2;
+  padding: 8px 16px; /* Original padding */
+  margin: 0 5px; /* Original margin */
+  border-radius: 20px; /* Original radius */
+  cursor: pointer;
+  font-size: 16px; /* Original font size */
+  font-family: var(--font-base);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+  transition: background-color 0.2s, color 0.2s;
+}
+.filter-button:hover:not(.active) {
+  background-color: rgba(126, 87, 194, 0.1);
+}
+.filter-button.active {
+  background-color: #7E57C2;
+  color: white;
+}
 
 .alert {
   border-radius: 10px;
@@ -57,7 +263,7 @@ main {
 
 table {
   width: 100%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */ /* Avoid double scrollbars if table is inside other scrollable container */
   border-spacing: 0;
   table-layout: auto;
 }
@@ -76,29 +282,25 @@ td {
 }
 
 #resultsTable {
-  width: 100%;          /* הטבלה תופסת 100% מהרוחב הזמין בתוך .content המרופד */
-  margin-left: 0;       /* הסרת שוליים אופקיים שמיותרים כעת */
-  margin-right: 0;      /* הסרת שוליים אופקיים שמיותרים כעת */
-  /* שמירה על שוליים אנכיים קיימים אם יש */
-  margin-top: 1rem;     /* לדוגמה - שמור/שנה לפי הצורך */
-  margin-bottom: 2rem;  /* לדוגמה - שמור/שנה לפי הצורך */
-
-  /* שמור את שאר ההגדרות הקיימות והרלוונטיות */
-  max-height: 60vh;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   overflow-y: auto;
-  padding: 10px;        /* שמור ריפוד פנימי אם קיים ורצוי */
-  box-sizing: border-box; /* מומלץ גם כאן */
-  /* ודא שאין הגדרות סותרות שהוסרו בשלב א' (כמו width: 92%;) */
+  padding: 10px;
+  box-sizing: border-box;
+
 }
 
 .content {
-  max-width: 1200px; /* רוחב מקסימלי לאזור התוכן */
-  margin-left: auto; /* מרכוז אופקי */
-  margin-right: auto; /* מרכוז אופקי */
-  padding-left: 15px;  /* יצירת מרווח קבוע מימין */
-  padding-right: 15px; /* יצירת מרווח קבוע משמאל */
-  box-sizing: border-box; /* הריפוד לא יוסיף לרוחב מעבר ל-max-width */
-  /* אפשר להוסיף גם ריפוד אנכי אם רוצים להרחיק מהכותרת/פוטר */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -108,7 +310,6 @@ td {
   display: none;
 
 }
-
 
 #resultsTable table {
   width: 100%;
@@ -157,171 +358,172 @@ td {
   height: 100%;
 }
 
-.right-item img.nhlocal-icon {
-  display: block;
-  border-radius: 50%;
-  width: 24px;
-  height: auto;
-}
-
-
 .fixed-bottom {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #ECEFF1;
+  /* background-color: #ECEFF1; */ /* Use body background */
+  background-color: transparent;
   padding-top: 10px;
   text-align: center;
-  z-index: 9999;
-
-  box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
+  z-index: 100; /* Below header */
 }
 
 .fixed-bottom p {
   margin-bottom: 15px;
   font-size: 15px;
+  /* Add background/padding for readability if needed */
+  display: inline-block;
+  background-color: rgba(240, 242, 245, 0.9); /* Semi-transparent light background */
+  padding: 5px 15px;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .fixed-bottom a {
-  padding: 5px 10px;
+  /* padding: 5px 10px; */ /* Removed extra padding */
   font-weight: bold;
+  color: var(--primary-color); /* Ensure link color */
+  text-decoration: underline;
+}
+.fixed-bottom a:hover {
+    color: var(--primary-hover);
+    text-decoration: none;
 }
 
-.fixed-bottom p a {
+/* .fixed-bottom p a {
   margin-right: 15px;
+} */
+
+/* --- START: Responsive adjustments for New Header --- */
+
+@media (max-width: 1024px) {
+     /* Hide site title earlier */
+    .top-navbar-section .site-title { display: none; }
 }
 
-
-.topnav {
-  text-align: center;
-  width: 100%;
-  background-color: var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  padding: 0.2rem 1rem;
-  z-index: 9999;
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 60px;
+        --search-field-height: 44px;
+        --filter-section-height: 50px;
+        --fixed-top-margin: 5px;
+    }
+    .fixed-header-wrapper { left: 10px; right: 10px; }
+    .header-content-unit { border-radius: 10px; }
+    .top-navbar-section { padding: 0 15px; gap: 10px; }
+    .top-navbar-section .search-bar { margin: 0 auto; }
+    .top-navbar-section .search-input { font-size: 0.95em; }
+    .top-navbar-section .search-icon-button { width: 34px; height: 34px; font-size: 1.1em; }
+    .top-navbar-section .icons-container { gap: 5px; }
+    .top-navbar-section .icons-container a { width: 34px; height: 34px; font-size: 1.15em; }
+    .filters-section { gap: 8px; min-height: var(--filter-section-height); padding: 5px 10px; }
+    .filter-button { padding: 6px 14px; font-size: 0.9em; }
+    body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px); }
 }
 
-.topnav i {
-  vertical-align: middle;
+@media (max-width: 600px) { /* Combine previous mobile adjustments */
+    :root {
+        --navbar-height: 55px; /* Further reduce height */
+        --search-field-height: 40px;
+        --filter-section-height: 45px; /* Can be auto if wrapping is okay */
+    }
+     body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 10px); }
+     .fixed-header-wrapper { left: 5px; right: 5px; }
+     .header-content-unit { border-radius: 8px; }
+
+     .top-navbar-section { padding: 0 8px; gap: 8px; }
+     .top-navbar-section .logo-container { display: none; } /* Hide logo */
+     .top-navbar-section .search-bar { margin: 0 auto; padding: 0 0.5rem 0 0.8rem; }
+     .top-navbar-section .search-input { font-size: 0.9em; }
+     .top-navbar-section .search-icons { display: none; } /* Hide internal search icons */
+     .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; } /* Submit button */
+
+     .top-navbar-section .icons-container { gap: 5px; margin-right: 0;}
+     .top-navbar-section .icons-container a { width: 32px; height: 32px; font-size: 1.1em;}
+     .top-navbar-section .icons-container a[href^="https://nhlocal"] { display: none; } /* Hide NH icon */
+
+     .filters-section { padding: 5px 8px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; /* Enable horizontal scroll for filters */}
+     .filters-section::-webkit-scrollbar { height: 0; } /* Hide scrollbar */
+     .filter-button { padding: 5px 10px; font-size: 0.85em; flex-shrink: 0; } /* Prevent shrinking */
+
+     /* Old mobile header styles removal */
+     /* .header-container { padding: 0.1rem 0.5rem; } */
+     /* .logo-container h3 { font-size: 16px; } */
+     /* .logo-container img { width: 26px !important; } */
+     /* .site-title { display: inline; max-width: 100px; } */
+     /* .icons-container { margin-left: 5px; } */
+     /* .right-item, .feedback-button { width: 26px; } */
+     /* .right-item img.nhlocal-icon { width: 22px !important; } */
+     /* .feedback-button { font-size: 18px; } */
+     /* .feedback-button i { font-size: 18px; } */
+
+     /* Old mobile search bar adjustments removal */
+     /* .search-container { margin-top: 45px; padding: 1rem 0.5rem; } */
+     /* .search-bar { flex-direction: row; gap: 5px; } // Now handled by new structure */
+     /* .search-input { flex: 1 1 auto; min-width: 0; } */
+     /* .search-icons { gap: 8px; flex-shrink: 0; } */
+     /* .search-icons a { font-size: 20px; } */
+     /* .search-bar > button.search-icon-button[type="submit"] { padding-left: 10px; } */
+     /* .search-filters { flex-wrap: wrap; } // Now .filters-section */
+     /* .filter-button { font-size: 14px; } */
+
+     .constrained-content-area {
+        margin-top: 1rem; /* Adjust margin */
+        margin-bottom: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+     }
+     .constrained-content-area > #resultsTable { margin-top: 0; }
+
+     #resultsTable {
+        margin-top: 0 !important;
+        max-height: 70vh; /* Allow slightly more height */
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: auto;
+     }
+      #resultsTable table { table-layout: fixed; width: 100%; }
+      th, td { font-size: 11px; padding: 6px 3px; } /* Slightly smaller font/padding */
+      #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; }
+      /* Adjust column widths if needed */
+      #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
+      #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
+      #resultsTable th:nth-child(3), #resultsTable td:nth-child(3) { width: 20%; }
+      #resultsTable th:nth-child(4), #resultsTable td:nth-child(4) { width: 20%; }
+
+      a { padding: 7px 10px; }
+
+      .fixed-bottom { padding-top: 10px; }
+      .fixed-bottom p { font-size: 11px; padding: 4px 10px; }
+
+      .actions-button-group .download-button,
+      .actions-button-group .share-button,
+      .actions-button-group .download-button-new {
+        padding: 5px 8px; font-size: 11px;
+      }
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
+/* --- END: Responsive adjustments --- */
 
-  min-height: auto;
-  padding: 0.1rem 1rem;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  margin-right: 0;
-  cursor: pointer;
-}
-
-.logo-container h3 {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 2px;
-  font-size: 18px;
-}
-
-.icons-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 0;
-}
-
-
-.right-item, .feedback-button {
-  position: static;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-
-  width: 28px;
-  height: 28px;
-}
-
-.feedback-button {
-
-  font-size: 20px;
-}
-
-.feedback-button i {
-
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-
-
-
-
-.topnav h3, .topnav a {
-  color: var(--white);
-  text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-
-.topnav h3 {
-  font-size: 24px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
-  padding: 0 5px 0 15px;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-  background-color: var(--white);
-  color: var(--primary-color);
-}
-
-.topnav a:hover, .topnav a:active, .topnav h3.current {
-  color: var(--highlight-color);
-  background-color: var(--secondary-color);
-  box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.5);
-}
 
 
 a {
   color: var(--primary-color);
-  background-color: var(--white);
+  /* background-color: var(--white); */ /* Removed default background */
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 10px 20px;
+  /* display: inline-block; */ /* Let display be contextual */
+  /* border-radius: 5px; */ /* Remove default radius */
+  /* padding: 10px 20px; */ /* Remove default padding */
   cursor: pointer;
 }
 
-a:hover, a:active, h3.current {
+a:hover, a:active {
   color: var(--highlight-color);
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color); */ /* Removed default hover background */
 }
 
 
@@ -332,9 +534,9 @@ a:hover, a:active, h3.current {
 
 
 h3 {
-  margin-top: 10px;
-  margin-bottom: 40px;
-  font-size: 24px;
+  /* margin-top: 10px; */ /* Adjusted by context */
+  margin-bottom: 20px; /* Keep bottom margin */
+  font-size: 1.75em; /* Keep original size */
   color: #212121;
 }
 
@@ -364,7 +566,7 @@ p {
 }
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) { // Moved responsive inside main media queries
   .instructions-container {
     max-width: 90%;
   }
@@ -385,7 +587,7 @@ p {
     margin: 10px 0;
     padding: 5px 0;
   }
-}
+} */
 
 
 .loading-container {
@@ -457,6 +659,7 @@ p {
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  border: none; /* Ensure button reset */
 }
 
 .modal a:hover, #modalOkButton:hover {
@@ -484,7 +687,7 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Removed .copied-message class styling as it's no longer used */
+
 
 
 .help-modal img {
@@ -556,12 +759,13 @@ p {
   margin-top: 4px;
   margin-right: 12px;
   border-radius: 5px;
+  overflow: hidden; /* Contain progress */
 }
 
 .progress {
   width: 0;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 5px 0 0 5px; /* Adjust radius */
   background: linear-gradient(to right, var(--highlight-color), var(--primary-color));
   transition: width 0.3s ease-in-out;
 }
@@ -598,40 +802,23 @@ p {
   color: inherit;
   cursor: pointer;
   transition: color 0.1s;
+  text-align: right; /* Ensure text aligns right */
+  display: inline; /* Allow wrapping naturally */
+  line-height: inherit; /* Ensure line height matches cell */
 }
 
 .album-button:hover, .singer-button:hover {
   color: var(--primary-hover);
   font-weight: 500;
-  background: var(--white);
+  /* background: var(--white); */ /* Avoid background change on hover */
   border-radius: 5px;
+  text-decoration: underline; /* Add underline on hover */
 }
 
 
-.ripple-header::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  animation: ripple 4s linear forwards;
-  border-radius: inherit;
-  z-index: -1;
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    opacity: 0.5;
-  }
-  100% {
-    width: 100%;
-    opacity: 0;
-  }
-}
+/* --- Remove Ripple Header effect --- */
+/* .ripple-header::before { ... } */
+/* @keyframes ripple { ... } */
 
 /* Navigation section buttons */
 #prevSection, #nextSection {
@@ -648,6 +835,9 @@ p {
   transition: background 0.3s, color 0.3s;
   border: 2px solid var(--primary-color);
   bottom: 50px;
+  display: flex; /* Use flex to center icon */
+  align-items: center;
+  justify-content: center;
 }
 
 #prevSection {
@@ -687,6 +877,7 @@ p {
 /* --- סגנון לכפתורי פעולות (הורדה ושיתוף) --- */
 .actions-cell {
   white-space: nowrap; /* מניעת שבירת שורה בין הכפתורים */
+  text-align: center; /* Center the button group */
 }
 
 .actions-button-group {
@@ -730,14 +921,14 @@ p {
 .actions-button-group .download-button:hover,
 .actions-button-group .share-button:hover,
 .actions-button-group .download-button-new:hover {
-  background-color: var(--primary-light-bg); /* Use the light purple background from :root */
+  background-color: rgba(126, 87, 194, 0.1); /* Use the light purple background */
   color: var(--primary-hover); /* Optional: Darken the icon slightly */
 }
 
 .actions-button-group .download-button:active,
 .actions-button-group .share-button:active,
 .actions-button-group .download-button-new:active {
-  background-color: var(--primary-light-bg-hover); /* Slightly darker background on click */
+  background-color: rgba(126, 87, 194, 0.2); /* Slightly darker background on click */
 }
 
 /* Style for the check icon when the 'copied' class is present */
@@ -767,27 +958,29 @@ p {
 
 /* 404 Error page */
 .error-page {
-  background-color: #ECEFF1;
+  background-color: var(--light-gray-bg); /* Use new background */
   color: #212121;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center; /* Ensure text is centered */
+  padding: 50px;
 }
 
 .error-page h1 {
-  font-size: 4rem;
+  font-size: 4rem; /* Keep original size */
   margin-bottom: 1rem;
 }
 
 .error-page h2 {
-  font-size: 2.5rem;
+  font-size: 2.5rem; /* Keep original size */
   margin-bottom: 1.5rem;
 }
 
 .error-page p {
-  font-size: 1.5rem;
+  font-size: 1.5rem; /* Keep original size */
   margin-bottom: 2rem;
 }
 
@@ -800,16 +993,21 @@ p {
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
+  padding: 10px 20px; /* Explicit padding */
+  font-size: 1em; /* Explicit font size */
+  text-decoration: none; /* Ensure no underline */
 }
 
 .error-page .btn:hover {
   background-color: var(--primary-hover);
+  transform: translateY(-2px); /* Add slight lift */
 }
 
 /* Artist list page */
 .artists-list {
   padding: 20px 20px 60px 20px;
-  background-color: #ECEFF1;
+  /* background-color: #ECEFF1; */ /* Use body background */
+  background-color: transparent;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -827,11 +1025,12 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 15px; /* Add gap */
 }
 
 .artists-list li {
   width: 200px;
-  padding: 10px;
+  /* padding: 10px; */ /* Remove padding, handled by link */
 }
 
 .artists-list a {
@@ -842,34 +1041,34 @@ p {
   display: block;
   text-align: center;
   border: 1px solid var(--primary-color);
-  background-color: #f5f5f5;
+  background-color: var(--white); /* Use white background */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Add subtle shadow */
 }
 
 .artists-list a:hover {
   background-color: var(--primary-color);
   color: var(--white);
   transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12); /* Enhance shadow on hover */
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) { // Moved responsive inside main media queries
   .artists-list {
     padding-top: 140px;
   }
-}
+} */
 
 /* Heading styles (consolidated) */
-h1, h2, h3, h4, .topnav h3, .instructions-container h3, .modal h2, .help-modal h2, .modal-content h2, .get-title {
+h1, h2, h3, h4, .get-title { /* Removed .topnav h3 */
   font-family: var(--font-base);
   font-weight: 700;
 }
 
-.topnav h3, .modal h2, .help-modal h2, .modal-content h2, .get-title {
-  font-weight: 600;
-}
+/* Removed styles specific to old .topnav h3, .modal h2 etc. */
 
-.instructions-container h3 {
+/* .instructions-container h3 {
   font-weight: 700;
-}
+} */
 
 h1 {
   font-size: 2.5em;
@@ -879,164 +1078,31 @@ h2 {
   font-size: 2em;
 }
 
-h3 {
+/* h3 { // Defined above
   font-size: 1.75em;
-}
+} */
 
 h4 {
   font-size: 1.5em;
 }
 
-/* --- סגנונות חדשים לסרגל החיפוש --- */
-.search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 55px;
-  padding: 1rem 1rem;
-  width: 100%;
-}
+/* --- סגנונות חדשים לסרגל החיפוש (Now part of .top-navbar-section) --- */
+/* .search-container { ... } */
+/* .search-bar { ... } */
+/* .search-input { ... } */
+/* .search-icon-button { ... } */
+/* .search-filters { ... } // Now .filters-section */
+/* .filter-button { ... } // Styling moved below .filters-section */
+/* .search-icons { ... } */
+/* .search-icons a { ... } */
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  background-color: var(--white);
-  border-radius: 25px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem 1rem;
-  margin: 0 auto;
-}
-
-.search-input {
-  flex-grow: 1;
-  border: none;
-  font-size: 18px;
-  padding: 10px;
-  outline: none;
-  caret-color: var(--primary-color);
-  height: 38.4px;
-  border-radius: 20px;
-  font-family: var(--font-base);
-}
-
-.search-icon-button {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-  padding: 0;
-  font-size: 20px;
-  margin-left: 10px;
-  transition: color 0.2s;
-  width: auto;
-  height: auto;
-}
-
-.search-icon-button:hover {
-  color: #00BCD4;
-}
-
-.search-filters {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  width: 100%;
-  text-align: center;
-}
-
-.filter-button {
-  background-color: transparent;
-  border: 1px solid #7E57C2;
-  color: #7E57C2;
-  padding: 8px 16px;
-  margin: 0 5px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  font-family: var(--font-base);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.filter-button:hover, .filter-button.active {
-  background-color: #7E57C2;
-  color: white;
-}
-
-.search-icons {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.search-icons a {
-  background: none;
-  border: none;
-  color: #7E57C2;
-  cursor: pointer;
-  font-size: 20px;
-  margin-left: 10px;
-  transition: color 0.2s;
-  position: relative;
-  width: auto;
-  height: auto;
-  padding: 5px;
-}
-
-.search-icons a:first-child {
-  margin-left: 0;
-}
-
-.search-icons a:hover {
-  color: #00BCD4;
-}
-
-/* --- התאמות רספונסיביות --- */
-@media (max-width: 600px) {
-  .search-bar {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .search-input {
-    font-size: 16px;
-    margin-bottom: 5px;
-    width: 100%;
-    border-radius: 20px;
-  }
-
-  .search-icon-button {
-    margin-left: 0;
-  }
-
-  .search-icons {
-    margin-left: auto;
-    margin-top: 5px;
-    justify-content: center;
-  }
-
-  .search-icons a {
-    font-size: 18px;
-  }
-
-  .search-filters {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .filter-button {
-    font-size: 14px;
-    margin: 3px;
-    padding: 6px 12px;
-  }
-}
+/* --- התאמות רספונסיביות (Moved to main media queries) --- */
+/* @media (max-width: 600px) { ... } */
 
 /* --- סגנונות חדשים לאזור התוכן --- */
 .content-area {
   margin-top: 20px; /* Adjust as needed */
-  max-width: 960px;
+  max-width: 1200px; /* Wider content area */
   margin-left: auto;
   margin-right: auto;
   padding: 0 15px; /* Add some padding */
@@ -1052,10 +1118,14 @@ h4 {
 .artists-column, .songs-column {
   flex: 1;
   min-width: 280px;
+  background: var(--white); /* Give columns a background */
+  padding: 25px; /* Add padding */
+  border-radius: 8px; /* Round corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06); /* Add shadow */
 }
 
 /* Styling for column headers */
-.artists-column h2, .songs-column h2 {
+.artists-column h2, .songs-column h2, a.column-title-link { /* Apply to link as well */
   font-size: 1.5em;
   margin-top: 0;
   margin-bottom: 25px;
@@ -1066,9 +1136,15 @@ h4 {
   color: var(--primary-hover); /* Darker purple text */
   border-radius: 6px;
   font-weight: 600;
+  text-decoration: none; /* Ensure link isn't underlined */
+  transition: background-color 0.2s ease, color 0.2s ease; /* Add transition */
+}
+a.column-title-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
-.artists-column h2 i, .songs-column h2 i {
+.artists-column h2 i, .songs-column h2 i, a.column-title-link i {
   margin-left: 10px;
   font-size: 1em;
   opacity: 0.8;
@@ -1116,7 +1192,7 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 
 .artist-name {
   font-size: 0.9em;
-  color: var(--text-color);
+  color: #333; /* Use darker text color */
   font-weight: 500;
 }
 
@@ -1129,7 +1205,7 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 
 .songs-column li {
   padding: 12px 8px; /* Slightly more padding */
-  border-bottom: 1px solid #d8dde2; /* Use var(--light-gray) if defined */
+  border-bottom: 1px solid var(--border-color); /* Use variable */
   font-size: 0.95em;
   display: flex;
   align-items: center;
@@ -1158,7 +1234,7 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 }
 
 .songs-column li:hover i.song-icon {
-  color: #00aabd; /* var(--highlight-hover) if defined */
+  color: var(--highlight-color); /* Use highlight color */
 }
 
 /* Ad Section - Reuse existing instructions-container styling? */
@@ -1171,38 +1247,30 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 /* Reuse .instructions-container if possible, or adapt this */
 .ad-placeholder {
  background-color: var(--white);
- color: var(--text-color);
- border: 1px solid #d8dde2; /* Use var(--light-gray) if defined */
+ color: #333; /* Use darker text color */
+ border: 1px solid var(--border-color); /* Use variable */
  border-radius: 8px;
  padding: 25px;
  text-align: center;
  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
  min-height: 150px; /* Ensure it has some height */
  position: relative; /* Context for prev/next buttons */
- border: 3px solid var(--primary-color); /* Keep border from original */
- max-width: 500px; /* Keep max-width from original */
- min-width: 35%; /* Keep min-width */
- margin: auto; /* Center */
+ /* border: 3px solid var(--primary-color); */ /* Removed extra border */
+ max-width: 600px; /* Increase max-width */
+ /* min-width: 35%; */ /* Remove min-width */
+ margin: 30px auto; /* Center and add margin */
 }
 
 .ad-placeholder h3 {
   font-size: 1.3em;
   color: var(--primary-color);
   margin-top: 0; margin-bottom: 15px;
-  display: inline-flex; align-items: center;
-  background-color: transparent; padding: 0; border-radius: 0;
-  /* Remove conflicting styles from original instructions-container h3 if needed */
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
   font-weight: 700;
 }
 .ad-placeholder h3 i { margin-left: 8px; opacity: 0.8; }
 .ad-placeholder p {
   font-size: 1em; /* Adjust if needed */
   line-height: 1.6; margin-bottom: 20px; color: #555;
-  /* Original instructions-container p */
-  margin-bottom: 15px;
-  font-size: 20px;
   padding: 0 20px;
 }
 .ad-placeholder a.helpButton, /* Style links inside if they use helpButton class */
@@ -1229,8 +1297,8 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 /* Responsive adjustments */
 @media (max-width: 680px) {
   .main-columns { flex-direction: column; gap: 30px; }
-  .artists-column, .songs-column { min-width: unset; }
-  .artists-column h2, .songs-column h2 { font-size: 1.3em; }
+  .artists-column, .songs-column { min-width: unset; padding: 20px; }
+  .artists-column h2, .songs-column h2, a.column-title-link { font-size: 1.3em; }
 }
 
 /* Loading placeholders */
@@ -1243,19 +1311,16 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 
 
 /* --- Styling for the new Ad Banner --- */
-/* --- Styling for the new Ad Banner --- */
 .ad-banner-container {
   width: 100%; /* Span full width */
-  background-color: #f8f9fa; /* Light background color, adjust as needed */
-  /* שינוי קל בפדינג האנכי ליותר אוויר */
+  background-color: var(--white); /* Use white background */
   padding: 35px 60px; /* Increased vertical padding, keep horizontal */
   text-align: center;
   margin-top: 40px; /* Space above the banner */
-  /* אין צורך ב-margin-bottom כאן, ה-padding-bottom ב-body ידאג למרווח */
-  /* margin-bottom: 20px; */ /* הסר או הער שורה זו */
+  margin-bottom: 30px; /* Space below banner */
   position: relative; /* Context for absolute positioning of buttons */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow */
-  border-radius: 8px; /* Optional rounded corners */
+  box-shadow: var(--card-shadow); /* Use standard shadow */
+  border-radius: var(--border-radius-main); /* Use standard radius */
   overflow: hidden; /* Prevent buttons from overflowing visually */
   min-height: 120px; /* Ensure minimum height */
   display: flex; /* Use flex to center content vertically if needed */
@@ -1353,265 +1418,4 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
   }
   .ad-banner-container #prevSection { right: 5px; }
   .ad-banner-container #nextSection { left: 5px; }
-}
-
-
-/* --- עדכון לעיצוב קישורי הכותרות --- */
-a.column-title-link {
-  font-size: 1.5em;
-  margin-top: 0;
-  margin-bottom: 25px;
-  display: inline-flex;
-  align-items: center;
-  /* שכפול הסגנון של h2 המקורי */
-  padding: 8px 15px;
-  background-color: rgba(126, 87, 194, 0.1); /* Light purple background */
-  color: var(--primary-hover); /* Darker purple text */
-  border-radius: 6px;
-  font-weight: 600;
-  /* איפוס סגנונות קישור */
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-a.column-title-link:hover {
-  background-color: var(--primary-color); /* רקע סגול מלא (כמו כפתורים) */
-  color: var(--white); /* טקסט לבן */
-}
-
-a.column-title-link i {
-  margin-left: 10px;
-  font-size: 1em;
-  opacity: 0.8;
-}
-
-
-@media screen and (max-width: 600px) {
-
-  /* --- Header Adjustments --- */
-  .header-container {
-    padding: 0.1rem 0.5rem; /* Reduced padding */
-    min-height: auto;
-  }
-
-  .logo-container {
-    /* Allow logo container to shrink if needed */
-    flex-shrink: 1;
-    min-width: 0; /* Allow shrinking below intrinsic size */
-  }
-
-  .logo-container h3 {
-    font-size: 16px; /* Smaller font */
-    gap: 5px;       /* Reduced gap */
-    padding: 2px;
-    /* Prevent text wrapping inside the h3 */
-    white-space: nowrap;
-    align-items: center; /* Ensure vertical alignment */
-    display: inline-flex; /* Use inline-flex */
-  }
-
-  .logo-container img {
-    width: 26px !important; /* Adjusted logo size */
-    height: auto;
-    flex-shrink: 0; /* Prevent logo image from shrinking */
-  }
-
-  .site-title {
-    display: inline; /* Was 'none', now visible */
-    margin: 0 5px 0 5px; /* Add some space after the logo */
-    /* Ensure it doesn't wrap unnecessarily */
-    white-space: nowrap;
-    overflow: hidden; /* Hide overflow if it happens */
-    text-overflow: ellipsis; /* Add ellipsis if text overflows */
-    vertical-align: middle; /* Align vertically with the logo */
-    max-width: 100px; /* Limit width to prevent pushing icons too far */
-  }
-
-  .icons-container {
-    /* Prevent icon container from shrinking */
-    flex-shrink: 0;
-    margin-left: 5px; /* Add some space from the edge or title */
-  }
-
-  .right-item, .feedback-button {
-    width: 26px;   /* Smaller icons */
-    height: 26px;
-  }
-
-  .right-item img.nhlocal-icon {
-    width: 22px !important; /* Adjusted NH icon size */
-    height: auto;
-  }
-
-  .feedback-button {
-    font-size: 18px; /* Adjusted icon font size */
-  }
-
-  .feedback-button i {
-    font-size: 18px; /* Adjusted icon font size */
-  }
-
-  /* --- Search Bar Adjustments --- */
-  .search-container {
-    margin-top: 45px; /* Existing adjustment - Keep */
-    padding: 1rem 0.5rem; /* Reduced horizontal padding */
-  }
-
-  /* --- Search Bar Adjustments --- */
-  .search-bar {
-    display: flex;
-    gap: 5px;
-    flex-wrap: nowrap;
-    width: 100%;
-    max-width: none;
-    padding: 5px;
-    background-color: var(--white);
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    align-content: center;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-  .search-input {
-    flex: 1 1 auto;       /* Shortcut for: flex-grow: 1, flex-shrink: 1, flex-basis: auto */
-    min-width: 0;         /* Crucial: Allow input to shrink below its content size */
-    height: 38.4px;
-    padding: 8px 10px 2px;    /* Adjust padding as needed */
-    font-size: 16px;
-    border: none;         /* Remove default border */
-    outline: none;        /* Remove default outline */
-    background: none;     /* Ensure no background color interferes */
-    border-radius: 20px;  /* Optional: match container or remove */
-  }
-
-  .search-icons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;       /* Prevent icon container from shrinking */
-    margin: 0;            /* Reset margins */
-    padding: 0;           /* Reset padding */
-    /* Remove order */
-  }
-
-  .search-icons a {
-    font-size: 20px;      /* Icon size */
-    color: var(--primary-color); /* Ensure color */
-    padding: 4px;         /* Add some clickable area */
-    display: flex;        /* For alignment */
-    align-items: center;
-  }
-
-  /* Submit button specific targeting */
-.search-bar > button.search-icon-button[type="submit"] {
-    flex-shrink: 0;
-    margin: 0;
-    padding-left: 20px;
-    font-size: 20px;
-    color: var(--primary-color);
-    background: none;
-    border: none;
-    display: flex;
-    align-items: center;
-}
-
-  .search-filters {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
-  .filter-button {
-    font-size: 14px;
-    margin: 3px;
-    padding: 6px 12px;
-  }
-
-
-  .constrained-content-area {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-
-  }
-
-
-  .constrained-content-area > #resultsTable {
-     margin-top: 0;
-  }
-
-
-
-  #resultsTable {
-    margin-top: 0 !important;
-    max-height: 60vh;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: auto;
-  }
-
-  #resultsTable table {
-    table-layout: fixed;
-    width: 100%;
-  }
-
-  th, td {
-    font-size: 12px;
-    text-align: center;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    padding: 6px 4px;
-  }
-
-
-    #resultsTable th, #resultsTable td {
-      font-size: 11px;
-      padding: 8px 4px;
-    }
-
-
-   #resultsTable th:nth-child(1),
-   #resultsTable td:nth-child(1) {
-     width: 35%;
-   }
-   #resultsTable th:nth-child(2),
-   #resultsTable td:nth-child(2) {
-      width: 20%;
-   }
-    #resultsTable th:nth-child(3),
-   #resultsTable td:nth-child(3) {
-      width: 20%;
-   }
-    #resultsTable th:nth-child(4),
-   #resultsTable td:nth-child(4) {
-      width: 25%;
-   }
-
-
-
-  a {
-    padding: 7px 10px;
-  }
-
-  .fixed-bottom {
-    position: fixed;
-    padding-top: 15px;
-    text-align: center;
-    height: auto;
-  }
-
-  .fixed-bottom p {
-    font-size: 12px;
-  }
-
-  .actions-button-group .download-button,
-  .actions-button-group .share-button,
-  .actions-button-group .download-button-new {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-
 }

@@ -40,22 +40,33 @@ main {
     z-index: 1000;
 }
 .header-content-unit {
-    background-color: var(--unit-bg);
-    border-radius: var(--border-radius-main);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--card-shadow);
-    overflow: hidden; 
-    max-width: 1300px; 
-    margin: 0 auto; 
+  /* background-color: var(--unit-bg); */ /* החלפת הרקע הלבן */
+  background-color: rgba(126, 87, 194, 0.15); /* <<< רקע סגול בהיר עם שקיפות (שחק עם 0.15 לפי הצורך) */
+  border-radius: var(--border-radius-main);
+  /* border: 1px solid var(--border-color); */ /* החלפת גבול אטום */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* <<< גבול לבן שקוף למחצה (אופייני לזכוכית) */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל מעט מודגש יותר לאפקט ריחוף */
+  overflow: hidden;
+  max-width: 1300px;
+  margin: 0 auto;
+
+  /* --- הוספת אפקט הזכוכית --- */
+  -webkit-backdrop-filter: blur(12px); /* טשטוש הרקע מאחור (עם תאימות לדפדפנים ישנים) */
+  backdrop-filter: blur(12px);       /* טשטוש הרקע מאחור */
 }
+
+
+
 .top-navbar-section {
+  /* background-color: var(--unit-bg); */ /* <<< הסר הגדרת רקע ספציפית כאן אם קיימת */
   height: var(--navbar-height);
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding: 0 20px;
   gap: 15px;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--primary-color);
+  /* border-bottom: 1px solid var(--border-color); */ /* התאמת קו ההפרדה */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* <<< קו הפרדה לבן שקוף יותר */
+  color: var(--primary-color); /* צבע טקסט/אייקונים נשאר סגול */
   justify-content: space-between;
 }
 .top-navbar-section .logo-container {
@@ -170,14 +181,15 @@ main {
     width: auto; height: auto;
 }
 .filters-section {
-    min-height: var(--filter-section-height);
-    background-color: var(--unit-bg); 
-    padding: 8px 15px; 
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    gap: 10px;
-    flex-wrap: wrap; 
+  /* background-color: var(--unit-bg); */ /* <<< הסר הגדרת רקע ספציפית כאן אם קיימת */
+ min-height: var(--filter-section-height);
+ padding: 8px 15px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 10px;
+ flex-wrap: wrap;
+ /* אין צורך בקו הפרדה עליון אם זה אותו רקע */
 }
 .filter-button {
   background-color: transparent;

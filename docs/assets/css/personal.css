@@ -1,4 +1,3 @@
-
 :root {
   --primary-color: #7E57C2;
   --primary-hover: #5C3899;
@@ -6,41 +5,33 @@
   --secondary-color: #C0C0C0;
   --white: #fff;
   --font-base: 'Arimo', sans-serif;
-  --light-gray-bg: #f0f2f5; /* רקע כללי בהיר יותר */
-  --unit-bg: var(--white); /* רקע היחידה הצפה */
-  --border-color: #e0e0e0; /* גבול כללי עדין */
-  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* צל מעט רך יותר */
-  --border-radius-main: 14px; /* עיגול פינות ליחידה */
-  --navbar-height: 68px; /* גובה סרגל עליון */
-  --search-field-height: 46px; /* גובה שדה החיפוש */
-  --filter-section-height: 55px; /* גובה אזור פילטרים */
-  --fixed-top-margin: 10px; /* מרווח מהקצה העליון */
+  --light-gray-bg: #f0f2f5; 
+  --unit-bg: var(--white); 
+  --border-color: #e0e0e0; 
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+  --border-radius-main: 14px; 
+  --navbar-height: 68px; 
+  --search-field-height: 46px; 
+  --filter-section-height: 55px; 
+  --fixed-top-margin: 10px; 
 }
-
-
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: var(--font-base);
   max-width: 100%;
   overflow-x: hidden;
   line-height: 1.6;
-  background-color: var(--light-gray-bg); /* Set light background */
-  /* Dynamic padding to account for fixed header height + top margin + extra space */
+  background-color: var(--light-gray-bg);
   padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px);
-  /* padding-bottom: 70px; */ /* Removed to allow footer ad to control bottom space */
+  padding-bottom: 60px;
 }
-
 main {
-  /* margin-top: 30px; */ /* Removed - handled by body padding */
   padding: 0 1rem;
 }
-
-/* Fixed wrapper with top margin */
 .fixed-header-wrapper {
     position: fixed;
     top: var(--fixed-top-margin);
@@ -48,58 +39,48 @@ main {
     right: 15px;
     z-index: 1000;
 }
-
-/* Inner unit with background, border, rounding, shadow */
 .header-content-unit {
     background-color: var(--unit-bg);
     border-radius: var(--border-radius-main);
     border: 1px solid var(--border-color);
     box-shadow: var(--card-shadow);
-    overflow: hidden; /* Important for rounded borders */
-    max-width: 1300px; /* Limit max width */
-    margin: 0 auto; /* Center the unit if screen is very wide */
+    overflow: hidden; 
+    max-width: 1300px; 
+    margin: 0 auto; 
 }
-
-/* Top Row: Logo, Search, Icons */
 .top-navbar-section {
   height: var(--navbar-height);
   display: flex;
-  align-items: center; /* שמירה על יישור אנכי */
+  align-items: center; 
   padding: 0 20px;
   gap: 15px;
   border-bottom: 1px solid var(--border-color);
   color: var(--primary-color);
   justify-content: space-between;
 }
-
-/* Logo container within top section */
 .top-navbar-section .logo-container {
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
     color: inherit;
-    flex-shrink: 0; /* Prevent shrinking */
-    cursor: pointer; /* Keep pointer cursor */
-    /* Removed padding/background styles from old .topnav h3 */
+    flex-shrink: 0; 
+    cursor: pointer; 
 }
 .top-navbar-section .logo-container img {
-    width: 32px; /* Slightly larger logo */
+    width: 32px; 
     height: auto;
-    /* Removed hover effect specific to old .topnav h3 */
 }
 .top-navbar-section .logo-container .site-title {
-    font-size: 1.2em; /* Adjust size as needed */
+    font-size: 1.2em; 
     font-weight: 600;
     white-space: nowrap;
-    color: var(--primary-color); /* Ensure color */
+    color: var(--primary-color); 
 }
-
-/* Search Bar (within top section) - adapted from original */
 .top-navbar-section .search-bar {
   display: flex;
   align-items: center;
-  flex-grow: 1; /* נשאר כדי שתתפוס מקום פנוי, אבל מוגבלת ב-max-width */
+  flex-grow: 1; 
   background-color: var(--white);
   border-radius: 25px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -109,122 +90,106 @@ main {
   transition: box-shadow 0.2s;
   min-width: 200px;
   max-width: 700px;
-  /* margin: 0 15px; */ /* <<< הסרת המרווח האופקי */
-  margin: 0 auto; /* <<< נסיון מרכוז מפורש יותר */
+  margin: 0 auto; 
 }
 .top-navbar-section .search-bar:focus-within {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     border-color: #c0c0c0;
 }
-
-/* Search Input (within new search bar) - adapted from original */
 .top-navbar-section .search-input {
     flex-grow: 1;
     border: none;
     outline: none;
     background: none;
-    font-size: 1em; /* Adjusted size */
+    font-size: 1em; 
     padding: 8px 10px;
     font-family: var(--font-base);
-    height: 100%; /* Fill the bar height */
+    height: 100%; 
     caret-color: var(--primary-color);
     color: #333;
 }
-
-/* Search Icons (within new search bar) - adapted from original */
 .top-navbar-section .search-icons {
     display: flex;
     align-items: center;
-    gap: 6px; /* Spacing between icons */
-    margin-left: 10px; /* Space before submit button */
+    gap: 6px; 
+    margin-left: 10px; 
 }
-.top-navbar-section .search-icon-button { /* Applied to both icons and submit button */
+.top-navbar-section .search-icon-button { 
     background: none;
     border: none;
-    color: var(--primary-color); /* Original icon color */
+    color: var(--primary-color); 
     cursor: pointer;
     padding: 0;
-    font-size: 1.15em; /* Adjust icon size */
-    margin-left: 0px; /* Reset margin from old style */
+    font-size: 1.15em; 
+    margin-left: 0px; 
     transition: color 0.2s;
-    width: 36px; /* Fixed width for button */
-    height: 36px; /* Fixed height for button */
-    border-radius: 50%; /* Make round */
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .top-navbar-section .search-icon-button:hover {
-    color: var(--highlight-color); /* Original hover color */
-    background-color: #f0f0f0; /* Slight background on hover */
+    color: var(--highlight-color); 
+    background-color: #f0f0f0; 
 }
-
-/* Right Side Icons container (within top section) */
 .top-navbar-section .icons-container {
     display: flex;
     align-items: center;
-    gap: 8px; /* Adjust gap */
-    flex-shrink: 0; /* Prevent shrinking */
+    gap: 8px; 
+    flex-shrink: 0; 
 }
-/* Individual Icons (within top section) - adapted from original */
 .top-navbar-section .icons-container a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: inherit; /* Inherit --primary-color from parent */
-    font-size: 1.2em; /* Icon size */
+    color: inherit; 
+    font-size: 1.2em; 
     width: 38px;
     height: 38px;
     border-radius: 50%;
     transition: background-color 0.2s;
     text-decoration: none;
-    /* Remove specific background/padding from old .right-item/.feedback-button */
     background: none;
     padding: 0;
-    position: static; /* Override old position */
+    position: static; 
     margin: 0;
 }
 .top-navbar-section .icons-container a:hover {
-    background-color: rgba(126, 87, 194, 0.1); /* Subtle purple background on hover */
+    background-color: rgba(126, 87, 194, 0.1); 
 }
 .top-navbar-section .icons-container .nhlocal-icon-wrapper {
-    /* Keep original wrapper styles if needed */
     display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
 }
 .top-navbar-section .icons-container .nhlocal-icon {
-    /* Keep original icon styles */
     display: block; border-radius: 50%; width: 24px; height: auto;
 }
 .top-navbar-section .icons-container .feedback-button i {
-    font-size: 1em; /* Match container font-size */
-    /* Reset old specific feedback icon styles */
+    font-size: 1em; 
     width: auto; height: auto;
 }
-
-/* Bottom Row: Filters Section */
 .filters-section {
     min-height: var(--filter-section-height);
-    background-color: var(--unit-bg); /* Same background as top section */
-    padding: 8px 15px; /* Add padding */
+    background-color: var(--unit-bg); 
+    padding: 8px 15px; 
     display: flex;
     align-items: center;
-    justify-content: center; /* Center filters horizontally */
+    justify-content: center; 
     gap: 10px;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap; 
 }
-
-/* Filter Buttons (reuse original styling) */
 .filter-button {
   background-color: transparent;
   border: 1px solid #7E57C2;
   color: #7E57C2;
-  padding: 8px 16px; /* Original padding */
-  margin: 0 5px; /* Original margin */
-  border-radius: 20px; /* Original radius */
+  padding: 8px 16px; 
+  margin: 0 5px; 
+  border-radius: 20px; 
   cursor: pointer;
-  font-size: 16px; /* Original font size */
+  font-size: 16px; 
   font-family: var(--font-base);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
   transition: background-color 0.2s, color 0.2s;
 }
 .filter-button:hover:not(.active) {
@@ -234,7 +199,6 @@ main {
   background-color: #7E57C2;
   color: white;
 }
-
 .alert {
   border-radius: 10px;
   background-color: var(--primary-color);
@@ -245,42 +209,31 @@ main {
   text-decoration: none;
   margin: auto;
 }
-
-
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary-color);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary-hover);
 }
-
-
 table {
   width: 100%;
-  /* overflow-y: scroll; */ /* Avoid double scrollbars if table is inside other scrollable container */
   border-spacing: 0;
   table-layout: auto;
 }
-
 th, td {
   text-align: right;
   padding: 8px;
 }
-
 th {
   border-bottom: 1px solid #ddd;
 }
-
 td {
   border-bottom: none;
 }
-
 #resultsTable {
   width: 100%;
   margin-left: 0;
@@ -290,9 +243,7 @@ td {
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
-
 }
-
 .content {
   max-width: 1200px;
   margin-left: auto;
@@ -300,35 +251,26 @@ td {
   padding-left: 15px;
   padding-right: 15px;
   box-sizing: border-box;
-
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
 #search-results-area {
-
   display: none;
-
 }
-
 #resultsTable table {
   width: 100%;
   table-layout: fixed;
 }
-
-
 #resultsTable th, #resultsTable td {
   padding: 15px 15px;
   text-align: right;
   vertical-align: middle;
   word-wrap: break-word;
 }
-
 #resultsTable th:nth-child(1),
 #resultsTable td:nth-child(1) {
   width: 50%;
 }
-
 #resultsTable th:nth-child(2),
 #resultsTable td:nth-child(2) {
   width: 20%;
@@ -342,14 +284,10 @@ td {
   width: 10%;
   text-align: center;
 }
-
 .custom-table tbody.songs-list tr,
 .custom-table tbody.songs-list tr td {
     cursor: default;
 }
-
-
-
 .nhlocal-icon-wrapper {
   display: flex;
   align-items: center;
@@ -357,52 +295,37 @@ td {
   width: 100%;
   height: 100%;
 }
-
 .fixed-bottom {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  /* background-color: #ECEFF1; */ /* Use body background */
-  background-color: transparent;
-  padding-top: 10px;
+  background-color: rgba(240, 242, 245, 0.95); 
+  padding: 10px 0;
   text-align: center;
-  z-index: 100; /* Below header */
+  z-index: 999;
+  border-top: 1px solid rgba(224, 224, 224, 0.7); 
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.04); 
 }
-
 .fixed-bottom p {
-  margin-bottom: 15px;
   font-size: 15px;
-  /* Add background/padding for readability if needed */
-  display: inline-block;
-  background-color: rgba(240, 242, 245, 0.9); /* Semi-transparent light background */
-  padding: 5px 15px;
-  border-radius: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: transparent; 
+  margin: 0;
+  padding: 0;
+  color: #333; 
 }
-
 .fixed-bottom a {
-  /* padding: 5px 10px; */ /* Removed extra padding */
   font-weight: bold;
-  color: var(--primary-color); /* Ensure link color */
+  color: var(--primary-color);
   text-decoration: underline;
 }
 .fixed-bottom a:hover {
     color: var(--primary-hover);
     text-decoration: none;
 }
-
-/* .fixed-bottom p a {
-  margin-right: 15px;
-} */
-
-/* --- START: Responsive adjustments for New Header --- */
-
 @media (max-width: 1024px) {
-     /* Hide site title earlier */
     .top-navbar-section .site-title { display: none; }
 }
-
 @media (max-width: 768px) {
     :root {
         --navbar-height: 60px;
@@ -422,193 +345,111 @@ td {
     .filter-button { padding: 6px 14px; font-size: 0.9em; }
     body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px); }
 }
-
-@media (max-width: 600px) { /* Combine previous mobile adjustments */
+@media (max-width: 600px) { 
     :root {
-        --navbar-height: 55px; /* Further reduce height */
+        --navbar-height: 55px; 
         --search-field-height: 40px;
-        --filter-section-height: 45px; /* Can be auto if wrapping is okay */
+        --filter-section-height: 45px; 
     }
      body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 10px); }
      .fixed-header-wrapper { left: 5px; right: 5px; }
      .header-content-unit { border-radius: 8px; }
-
      .top-navbar-section { padding: 0 8px; gap: 8px; }
-     .top-navbar-section .logo-container { display: none; } /* Hide logo */
+     .top-navbar-section .logo-container { display: none; } 
      .top-navbar-section .search-bar { margin: 0 auto; padding: 0 0.5rem 0 0.8rem; }
      .top-navbar-section .search-input { font-size: 0.9em; }
-     .top-navbar-section .search-icons { display: none; } /* Hide internal search icons */
-     .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; } /* Submit button */
-
+     .top-navbar-section .search-icons { display: none; } 
+     .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; } 
      .top-navbar-section .icons-container { gap: 5px; margin-right: 0;}
      .top-navbar-section .icons-container a { width: 32px; height: 32px; font-size: 1.1em;}
-     .top-navbar-section .icons-container a[href^="https://nhlocal"] { display: none; } /* Hide NH icon */
-
-     .filters-section { padding: 5px 8px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; /* Enable horizontal scroll for filters */}
-     .filters-section::-webkit-scrollbar { height: 0; } /* Hide scrollbar */
-     .filter-button { padding: 5px 10px; font-size: 0.85em; flex-shrink: 0; } /* Prevent shrinking */
-
-     /* Old mobile header styles removal */
-     /* .header-container { padding: 0.1rem 0.5rem; } */
-     /* .logo-container h3 { font-size: 16px; } */
-     /* .logo-container img { width: 26px !important; } */
-     /* .site-title { display: inline; max-width: 100px; } */
-     /* .icons-container { margin-left: 5px; } */
-     /* .right-item, .feedback-button { width: 26px; } */
-     /* .right-item img.nhlocal-icon { width: 22px !important; } */
-     /* .feedback-button { font-size: 18px; } */
-     /* .feedback-button i { font-size: 18px; } */
-
-     /* Old mobile search bar adjustments removal */
-     /* .search-container { margin-top: 45px; padding: 1rem 0.5rem; } */
-     /* .search-bar { flex-direction: row; gap: 5px; } // Now handled by new structure */
-     /* .search-input { flex: 1 1 auto; min-width: 0; } */
-     /* .search-icons { gap: 8px; flex-shrink: 0; } */
-     /* .search-icons a { font-size: 20px; } */
-     /* .search-bar > button.search-icon-button[type="submit"] { padding-left: 10px; } */
-     /* .search-filters { flex-wrap: wrap; } // Now .filters-section */
-     /* .filter-button { font-size: 14px; } */
-
+     .top-navbar-section .icons-container a[href^="https://nhlocal"] { display: none; } 
+     .filters-section { padding: 5px 8px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; }
+     .filters-section::-webkit-scrollbar { height: 0; } 
+     .filter-button { padding: 5px 10px; font-size: 0.85em; flex-shrink: 0; } 
      .constrained-content-area {
-        margin-top: 1rem; /* Adjust margin */
+        margin-top: 1rem; 
         margin-bottom: 1rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
      }
      .constrained-content-area > #resultsTable { margin-top: 0; }
-
      #resultsTable {
         margin-top: 0 !important;
-        max-height: 70vh; /* Allow slightly more height */
+        max-height: 70vh; 
         width: 100%;
         margin-left: 0;
         margin-right: 0;
         overflow-x: auto;
      }
       #resultsTable table { table-layout: fixed; width: 100%; }
-      th, td { font-size: 11px; padding: 6px 3px; } /* Slightly smaller font/padding */
+      th, td { font-size: 11px; padding: 6px 3px; } 
       #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; }
-      /* Adjust column widths if needed */
       #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
       #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
       #resultsTable th:nth-child(3), #resultsTable td:nth-child(3) { width: 20%; }
       #resultsTable th:nth-child(4), #resultsTable td:nth-child(4) { width: 20%; }
-
       a { padding: 7px 10px; }
-
       .fixed-bottom { padding-top: 10px; }
       .fixed-bottom p { font-size: 11px; padding: 4px 10px; }
-
       .actions-button-group .download-button,
       .actions-button-group .share-button,
       .actions-button-group .download-button-new {
         padding: 5px 8px; font-size: 11px;
       }
 }
-
-/* --- END: Responsive adjustments --- */
-
-
-
 a {
   color: var(--primary-color);
-  /* background-color: var(--white); */ /* Removed default background */
   text-align: center;
   text-decoration: none;
-  /* display: inline-block; */ /* Let display be contextual */
-  /* border-radius: 5px; */ /* Remove default radius */
-  /* padding: 10px 20px; */ /* Remove default padding */
   cursor: pointer;
 }
-
 a:hover, a:active {
   color: var(--highlight-color);
-  /* background-color: var(--secondary-color); */ /* Removed default hover background */
 }
-
-
 ::selection {
   background-color: var(--highlight-color);
   color: var(--white);
 }
-
-
 h3 {
-  /* margin-top: 10px; */ /* Adjusted by context */
-  margin-bottom: 20px; /* Keep bottom margin */
-  font-size: 1.75em; /* Keep original size */
+  margin-bottom: 20px; 
+  font-size: 1.75em; 
   color: #212121;
 }
-
 p {
   margin-bottom: 30px;
   font-size: 15px;
 }
-
 .ad-text, .title-song-list {
   margin-bottom: 5px;
 }
-
 .ad-text {
   font-size: 15px;
 }
-
 .title-song-list {
   font-weight: bold;
   font-size: 13px;
 }
-
 .song-list {
   font-size: 12px;
   margin-top: 0;
   margin-bottom: 0;
   list-style: none;
 }
-
-
-/* @media (max-width: 768px) { // Moved responsive inside main media queries
-  .instructions-container {
-    max-width: 90%;
-  }
-
-  .small-ad-container {
-    flex-direction: column;
-  }
-
-  .small-ad-left,
-  .small-ad-right {
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .small-ad-top,
-  .small-ad-bottom {
-    height: auto;
-    margin: 10px 0;
-    padding: 5px 0;
-  }
-} */
-
-
 .loading-container {
   display: flex;
   padding-top: 20px;
   align-items: baseline;
   justify-content: center;
 }
-
 .loading-image {
   width: 20px;
   padding-left: 10px;
 }
-
 .loading-text {
   font-size: 20px;
   color: #212121;
   font-weight: 600;
 }
-
-
 .overlay, .modal-overlay, .help-overlay {
   position: fixed;
   top: 0;
@@ -621,11 +462,9 @@ p {
   align-items: center;
   z-index: 10000;
 }
-
 .overlay.show, .modal-overlay.show, .help-overlay.show {
   display: flex;
 }
-
 .modal, .modal-content {
   max-width: 400px;
   padding: 40px;
@@ -635,21 +474,18 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10001;
 }
-
 .modal h2, .modal-content h2, .help-modal h2 {
   font-size: 24px;
   color: #212121;
   margin-bottom: 20px;
   font-weight: 600;
 }
-
 .modal p, .modal-content p, .help-modal p {
   font-size: 16px;
   color: #607D8B;
   line-height: 1.6;
   margin-bottom: 5px;
 }
-
 .modal a, #modalOkButton {
   display: inline-block;
   margin-top: 20px;
@@ -659,14 +495,11 @@ p {
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  border: none; /* Ensure button reset */
+  border: none; 
 }
-
 .modal a:hover, #modalOkButton:hover {
   background-color: var(--primary-hover);
 }
-
-
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -675,9 +508,6 @@ p {
     background-position: 200px 0;
   }
 }
-
-
-
 .modal-content {
   max-width: 400px;
   padding: 20px;
@@ -686,17 +516,12 @@ p {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
 .help-modal img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   margin-top: 10px;
 }
-
 .helpButton {
   font-family: var(--font-base);
   font-weight: bold;
@@ -711,13 +536,10 @@ p {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 .helpButton:hover {
   color: var(--white);
   background-color: var(--primary-hover);
 }
-
-
 .loading-message {
   display: none;
   position: fixed;
@@ -734,24 +556,19 @@ p {
   z-index: 9999;
   align-items: center;
 }
-
 .loading-message.show {
   display: flex;
 }
-
 .loading-message img {
   width: 16px;
   vertical-align: middle;
   margin-left: 6px;
 }
-
-
 .progress-bar-container {
   text-align: center;
   display: flex;
   align-items: center;
 }
-
 .progress-bar {
   width: 100px;
   background-color: #ccc;
@@ -759,18 +576,15 @@ p {
   margin-top: 4px;
   margin-right: 12px;
   border-radius: 5px;
-  overflow: hidden; /* Contain progress */
+  overflow: hidden; 
 }
-
 .progress {
   width: 0;
   height: 100%;
-  border-radius: 5px 0 0 5px; /* Adjust radius */
+  border-radius: 5px 0 0 5px; 
   background: linear-gradient(to right, var(--highlight-color), var(--primary-color));
   transition: width 0.3s ease-in-out;
 }
-
-
 #loadMoreButton {
   background-color: var(--primary-hover);
   color: var(--white);
@@ -783,16 +597,12 @@ p {
   margin: 20px auto;
   display: none;
 }
-
 #loadMoreButton.show {
   display: block;
 }
-
 #loadMoreButton:hover {
   background-color: var(--primary-color);
 }
-
-
 .album-button, .singer-button {
   background: none;
   border: none;
@@ -802,25 +612,16 @@ p {
   color: inherit;
   cursor: pointer;
   transition: color 0.1s;
-  text-align: right; /* Ensure text aligns right */
-  display: inline; /* Allow wrapping naturally */
-  line-height: inherit; /* Ensure line height matches cell */
+  text-align: right; 
+  display: inline; 
+  line-height: inherit; 
 }
-
 .album-button:hover, .singer-button:hover {
   color: var(--primary-hover);
   font-weight: 500;
-  /* background: var(--white); */ /* Avoid background change on hover */
   border-radius: 5px;
-  text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline; 
 }
-
-
-/* --- Remove Ripple Header effect --- */
-/* .ripple-header::before { ... } */
-/* @keyframes ripple { ... } */
-
-/* Navigation section buttons */
 #prevSection, #nextSection {
   position: fixed;
   transform: translateY(-50%);
@@ -835,115 +636,87 @@ p {
   transition: background 0.3s, color 0.3s;
   border: 2px solid var(--primary-color);
   bottom: 50px;
-  display: flex; /* Use flex to center icon */
+  display: flex; 
   align-items: center;
   justify-content: center;
 }
-
 #prevSection {
   left: 50%;
   margin-left: 45px;
 }
-
 #nextSection {
   right: 50%;
   margin-right: 45px;
 }
-
 #prevSection:hover, #nextSection:hover {
   background: var(--primary-hover);
   color: var(--white);
 }
-
 #prevSection:active, #nextSection:active {
   background: var(--primary-color);
   color: var(--white);
 }
-
-
-/* Table row hover effects */
 .custom-table tbody.songs-list tr:hover {
   background-color: #e0e0e0;
 }
-
 .custom-table tbody.songs-list td,
 .custom-table tbody.songs-list th {
   border-radius: 0;
   padding: 10px;
   border-collapse: collapse;
 }
-
-
-/* --- סגנון לכפתורי פעולות (הורדה ושיתוף) --- */
 .actions-cell {
-  white-space: nowrap; /* מניעת שבירת שורה בין הכפתורים */
-  text-align: center; /* Center the button group */
+  white-space: nowrap; 
+  text-align: center; 
 }
-
 .actions-button-group {
-  display: inline-flex; /* Align buttons horizontally */
-  border: 1px solid rgba(126, 87, 194, 0.4); /* Border using primary color with opacity */
-  border-radius: 4px; /* Adjust to match site's border-radius for small elements */
-  overflow: hidden; /* Crucial for clipping button corners inside the rounded container */
-  vertical-align: middle; /* Align with other cell content if needed */
+  display: inline-flex; 
+  border: 1px solid rgba(126, 87, 194, 0.4); 
+  border-radius: 4px; 
+  overflow: hidden; 
+  vertical-align: middle; 
 }
-
-/* Styling for individual buttons INSIDE the split group */
 .actions-button-group .download-button,
 .actions-button-group .share-button,
 .actions-button-group .download-button-new {
-  margin: 0; /* Remove default button margins */
-  border: none; /* Remove individual button borders */
-  border-radius: 0; /* Remove individual button rounding */
-  padding: 6px 10px; /* Adjust padding as needed */
-  background-color: transparent; /* Default transparent background */
-  color: var(--primary-color); /* Default icon color */
-  font-size: 14px; /* Icon size */
+  margin: 0; 
+  border: none; 
+  border-radius: 0; 
+  padding: 6px 10px; 
+  background-color: transparent; 
+  color: var(--primary-color); 
+  font-size: 14px; 
   line-height: 1;
   cursor: pointer;
-  position: relative; /* Needed for the separator pseudo-element */
+  position: relative; 
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
-/* Vertical separator line using ::before on the second button (Share) */
-/* Assumes Download button is always first, Share is second */
 .actions-button-group .share-button::before {
   content: "";
   position: absolute;
-  right: 0; /* Position line on the right (for RTL) */
-  top: 15%; /* Start line slightly below the top */
-  bottom: 15%; /* End line slightly above the bottom */
+  right: 0; 
+  top: 15%; 
+  bottom: 15%; 
   width: 1px;
-  background-color: rgba(126, 87, 194, 0.4); /* Same color as the main border */
+  background-color: rgba(126, 87, 194, 0.4); 
 }
-
-/* Hover/Active states for buttons inside the group */
 .actions-button-group .download-button:hover,
 .actions-button-group .share-button:hover,
 .actions-button-group .download-button-new:hover {
-  background-color: rgba(126, 87, 194, 0.1); /* Use the light purple background */
-  color: var(--primary-hover); /* Optional: Darken the icon slightly */
+  background-color: rgba(126, 87, 194, 0.1); 
+  color: var(--primary-hover); 
 }
-
 .actions-button-group .download-button:active,
 .actions-button-group .share-button:active,
 .actions-button-group .download-button-new:active {
-  background-color: rgba(126, 87, 194, 0.2); /* Slightly darker background on click */
+  background-color: rgba(126, 87, 194, 0.2); 
 }
-
-/* Style for the check icon when the 'copied' class is present */
 .actions-button-group .share-button.copied i.fa-check {
-    color: #4CAF50; /* Green color for success */
+    color: #4CAF50; 
 }
-
-/* Style for the button itself when copied (optional) */
 .actions-button-group .share-button.copied {
-    /* background-color: #e8f5e9; */ /* Example: Very light green background */
-    cursor: default; /* Indicate temporary disabled state */
+    cursor: default; 
 }
-
-
-/* Color transition animation */
 @keyframes colorTransition {
   0% {
     color: var(--primary-color);
@@ -955,84 +728,68 @@ p {
     color: #AED581;
   }
 }
-
-/* 404 Error page */
 .error-page {
-  background-color: var(--light-gray-bg); /* Use new background */
+  background-color: var(--light-gray-bg); 
   color: #212121;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center; /* Ensure text is centered */
+  text-align: center; 
   padding: 50px;
 }
-
 .error-page h1 {
-  font-size: 4rem; /* Keep original size */
+  font-size: 4rem; 
   margin-bottom: 1rem;
 }
-
 .error-page h2 {
-  font-size: 2.5rem; /* Keep original size */
+  font-size: 2.5rem; 
   margin-bottom: 1.5rem;
 }
-
 .error-page p {
-  font-size: 1.5rem; /* Keep original size */
+  font-size: 1.5rem; 
   margin-bottom: 2rem;
 }
-
 .error-page .btn, .artists-list a {
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
-
 .error-page .btn {
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
-  padding: 10px 20px; /* Explicit padding */
-  font-size: 1em; /* Explicit font size */
-  text-decoration: none; /* Ensure no underline */
+  padding: 10px 20px; 
+  font-size: 1em; 
+  text-decoration: none; 
 }
-
 .error-page .btn:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-2px); /* Add slight lift */
+  transform: translateY(-2px); 
 }
-
-/* Artist list page */
 .artists-list {
   padding: 20px 20px 60px 20px;
-  /* background-color: #ECEFF1; */ /* Use body background */
   background-color: transparent;
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .artists-list h2 {
   text-align: center;
   font-size: 2em;
   margin-bottom: 20px;
   color: #212121;
 }
-
 .artists-list ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px; /* Add gap */
+  gap: 15px; 
 }
-
 .artists-list li {
   width: 200px;
-  /* padding: 10px; */ /* Remove padding, handled by link */
 }
-
 .artists-list a {
   padding: 20px;
   text-decoration: none;
@@ -1041,130 +798,84 @@ p {
   display: block;
   text-align: center;
   border: 1px solid var(--primary-color);
-  background-color: var(--white); /* Use white background */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Add subtle shadow */
+  background-color: var(--white); 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
 }
-
 .artists-list a:hover {
   background-color: var(--primary-color);
   color: var(--white);
   transform: scale(1.05);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12); /* Enhance shadow on hover */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12); 
 }
-
-/* @media (max-width: 768px) { // Moved responsive inside main media queries
-  .artists-list {
-    padding-top: 140px;
-  }
-} */
-
-/* Heading styles (consolidated) */
-h1, h2, h3, h4, .get-title { /* Removed .topnav h3 */
+h1, h2, h3, h4, .get-title { 
   font-family: var(--font-base);
   font-weight: 700;
 }
-
-/* Removed styles specific to old .topnav h3, .modal h2 etc. */
-
-/* .instructions-container h3 {
-  font-weight: 700;
-} */
-
 h1 {
   font-size: 2.5em;
 }
-
 h2 {
   font-size: 2em;
 }
-
-/* h3 { // Defined above
-  font-size: 1.75em;
-} */
-
 h4 {
   font-size: 1.5em;
 }
-
-/* --- סגנונות חדשים לסרגל החיפוש (Now part of .top-navbar-section) --- */
-/* .search-container { ... } */
-/* .search-bar { ... } */
-/* .search-input { ... } */
-/* .search-icon-button { ... } */
-/* .search-filters { ... } // Now .filters-section */
-/* .filter-button { ... } // Styling moved below .filters-section */
-/* .search-icons { ... } */
-/* .search-icons a { ... } */
-
-/* --- התאמות רספונסיביות (Moved to main media queries) --- */
-/* @media (max-width: 600px) { ... } */
-
-/* --- סגנונות חדשים לאזור התוכן --- */
 .content-area {
-  margin-top: 20px; /* Adjust as needed */
-  max-width: 1200px; /* Wider content area */
+  margin-top: 20px; 
+  max-width: 1200px; 
   margin-left: auto;
   margin-right: auto;
-  padding: 0 15px; /* Add some padding */
+  padding: 0 15px; 
 }
-
 .main-columns {
   display: flex;
   gap: 40px;
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
-
 .artists-column, .songs-column {
   flex: 1;
   min-width: 280px;
-  background: var(--white); /* Give columns a background */
-  padding: 25px; /* Add padding */
-  border-radius: 8px; /* Round corners */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.06); /* Add shadow */
+  background: var(--white); 
+  padding: 25px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06); 
 }
-
-/* Styling for column headers */
-.artists-column h2, .songs-column h2, a.column-title-link { /* Apply to link as well */
+.artists-column h2, .songs-column h2, a.column-title-link { 
   font-size: 1.5em;
   margin-top: 0;
   margin-bottom: 25px;
   display: inline-flex;
   align-items: center;
   padding: 8px 15px;
-  background-color: rgba(126, 87, 194, 0.1); /* Light purple background */
-  color: var(--primary-hover); /* Darker purple text */
+  background-color: rgba(126, 87, 194, 0.1); 
+  color: var(--primary-hover); 
   border-radius: 6px;
   font-weight: 600;
-  text-decoration: none; /* Ensure link isn't underlined */
-  transition: background-color 0.2s ease, color 0.2s ease; /* Add transition */
+  text-decoration: none; 
+  transition: background-color 0.2s ease, color 0.2s ease; 
 }
 a.column-title-link:hover {
     background-color: var(--primary-color);
     color: var(--white);
 }
-
 .artists-column h2 i, .songs-column h2 i, a.column-title-link i {
   margin-left: 10px;
   font-size: 1em;
   opacity: 0.8;
 }
-
-/* Artists Column Grid */
 .artists-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
   gap: 25px;
   text-align: center;
 }
-
 .artist-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none; /* Ensure item itself isn't underlined */
+  text-decoration: none; 
 }
-
 .artist-circle {
   width: 70px;
   height: 70px;
@@ -1175,55 +886,47 @@ a.column-title-link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px; /* Icon size */
+  font-size: 28px; 
   margin-bottom: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  text-decoration: none; /* Remove underline from icon link */
+  text-decoration: none; 
 }
-
-a.artist-circle:hover { /* Style the <a> tag specifically */
+a.artist-circle:hover { 
   background-color: var(--primary-color);
   color: var(--white);
   transform: translateY(-3px);
   box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
-
 .artist-name {
   font-size: 0.9em;
-  color: #333; /* Use darker text color */
+  color: #333; 
   font-weight: 500;
 }
-
-/* Songs Column List */
 .songs-column ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .songs-column li {
-  padding: 12px 8px; /* Slightly more padding */
-  border-bottom: 1px solid var(--border-color); /* Use variable */
+  padding: 12px 8px; 
+  border-bottom: 1px solid var(--border-color); 
   font-size: 0.95em;
   display: flex;
   align-items: center;
   transition: color 0.2s ease, background-color 0.2s ease;
   cursor: pointer;
   border-radius: 4px;
-  margin-bottom: 2px; /* Small gap between items */
+  margin-bottom: 2px; 
 }
-
 .songs-column li:hover {
   color: var(--primary-hover);
-  background-color: rgba(0,0,0,0.03); /* Subtle hover */
+  background-color: rgba(0,0,0,0.03); 
 }
-
 .songs-column li:last-child {
   border-bottom: none;
 }
-
 .songs-column li i.song-icon {
   margin-left: 12px;
   color: var(--primary-color);
@@ -1232,35 +935,26 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
   text-align: center;
   transition: color 0.2s ease;
 }
-
 .songs-column li:hover i.song-icon {
-  color: var(--highlight-color); /* Use highlight color */
+  color: var(--highlight-color); 
 }
-
-/* Ad Section - Reuse existing instructions-container styling? */
 .ad-section {
   margin-top: 30px;
-  position: relative; /* Needed for prev/next button positioning if they are absolute */
+  position: relative; 
 }
-
-/* Style for rotating ad placeholder */
-/* Reuse .instructions-container if possible, or adapt this */
 .ad-placeholder {
  background-color: var(--white);
- color: #333; /* Use darker text color */
- border: 1px solid var(--border-color); /* Use variable */
+ color: #333; 
+ border: 1px solid var(--border-color); 
  border-radius: 8px;
  padding: 25px;
  text-align: center;
  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
- min-height: 150px; /* Ensure it has some height */
- position: relative; /* Context for prev/next buttons */
- /* border: 3px solid var(--primary-color); */ /* Removed extra border */
- max-width: 600px; /* Increase max-width */
- /* min-width: 35%; */ /* Remove min-width */
- margin: 30px auto; /* Center and add margin */
+ min-height: 150px; 
+ position: relative; 
+ max-width: 600px; 
+ margin: 30px auto; 
 }
-
 .ad-placeholder h3 {
   font-size: 1.3em;
   color: var(--primary-color);
@@ -1269,11 +963,11 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 }
 .ad-placeholder h3 i { margin-left: 8px; opacity: 0.8; }
 .ad-placeholder p {
-  font-size: 1em; /* Adjust if needed */
+  font-size: 1em; 
   line-height: 1.6; margin-bottom: 20px; color: #555;
   padding: 0 20px;
 }
-.ad-placeholder a.helpButton, /* Style links inside if they use helpButton class */
+.ad-placeholder a.helpButton, 
 .ad-placeholder button.helpButton {
  display: inline-block;
  padding: 9px 20px;
@@ -1281,7 +975,6 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
  color: var(--white);
  text-decoration: none; border-radius: 5px; font-weight: 600;
  transition: background-color 0.3s ease, transform 0.2s ease;
- /* Inherit other helpButton styles if necessary */
  border: 1px solid var(--primary-color);
  cursor: pointer;
 }
@@ -1289,89 +982,71 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
 .ad-placeholder button.helpButton:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
-  color: var(--white); /* Ensure text stays white */
+  color: var(--white); 
 }
-
-
-
-/* Responsive adjustments */
 @media (max-width: 680px) {
   .main-columns { flex-direction: column; gap: 30px; }
   .artists-column, .songs-column { min-width: unset; padding: 20px; }
   .artists-column h2, .songs-column h2, a.column-title-link { font-size: 1.3em; }
 }
-
-/* Loading placeholders */
 .loading-placeholder {
   color: #999;
   padding: 20px;
   text-align: center;
   font-style: italic;
 }
-
-
-/* --- Styling for the new Ad Banner --- */
 .ad-banner-container {
-  width: 100%; /* Span full width */
-  background-color: var(--white); /* Use white background */
-  padding: 35px 60px; /* Increased vertical padding, keep horizontal */
+  width: 100%; 
+  background-color: var(--white); 
+  padding: 35px 60px; 
   text-align: center;
-  margin-top: 40px; /* Space above the banner */
-  margin-bottom: 30px; /* Space below banner */
-  position: relative; /* Context for absolute positioning of buttons */
-  box-shadow: var(--card-shadow); /* Use standard shadow */
-  border-radius: var(--border-radius-main); /* Use standard radius */
-  overflow: hidden; /* Prevent buttons from overflowing visually */
-  min-height: 120px; /* Ensure minimum height */
-  display: flex; /* Use flex to center content vertically if needed */
+  margin-top: 40px; 
+  margin-bottom: 30px; 
+  position: relative; 
+  box-shadow: var(--card-shadow); 
+  border-radius: var(--border-radius-main); 
+  overflow: hidden; 
+  min-height: 120px; 
+  display: flex; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; /* Include padding in width calculation */
+  box-sizing: border-box; 
 }
-/* Style content within the banner */
 .ad-banner-container h3 {
-  font-size: 1.4em; /* Adjust size */
+  font-size: 1.4em; 
   color: var(--primary-color);
   margin-top: 0;
   margin-bottom: 10px;
   font-weight: 600;
-  /* Remove previous border/padding specific to old layout */
   border-bottom: none;
   padding: 0;
 }
-
 .ad-banner-container p {
-  font-size: 1.1em; /* Adjust size */
-  color: #333; /* Darker text */
+  font-size: 1.1em; 
+  color: #333; 
   line-height: 1.6;
   margin-bottom: 15px;
-  max-width: 700px; /* Limit text width for readability */
+  max-width: 700px; 
   margin-left: auto;
   margin-right: auto;
-  /* Remove previous padding specific to old layout */
   padding: 0;
 }
-
-/* Ensure helpButton looks good in the banner context */
 .ad-banner-container .helpButton {
- padding: 10px 25px; /* Adjust padding */
- font-size: 1em; /* Adjust font size */
- /* Keep other helpButton styles (background, color, border, transition) */
+ padding: 10px 25px; 
+ font-size: 1em; 
 }
-
-/* --- Reposition Prev/Next Buttons for the Banner --- */
 .ad-banner-container #prevSection,
 .ad-banner-container #nextSection {
   position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Precise vertical centering */
-  width: 40px; /* Adjust size */
-  height: 40px; /* Adjust size */
-  font-size: 18px; /* Icon size */
-  background: rgba(126, 87, 194, 0.6); /* Semi-transparent background */
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 40px; 
+  height: 40px; 
+  font-size: 18px; 
+  background: rgba(126, 87, 194, 0.6); 
   color: var(--white);
-  border: none; /* Remove border */
+  border: none; 
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
@@ -1379,30 +1054,22 @@ a.artist-circle:hover { /* Style the <a> tag specifically */
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7; /* Slightly transparent */
+  opacity: 0.7; 
 }
-
 .ad-banner-container #prevSection:hover,
 .ad-banner-container #nextSection:hover {
-  background: var(--primary-color); /* Solid background on hover */
+  background: var(--primary-color); 
   opacity: 1;
 }
-
 .ad-banner-container #prevSection {
-  right: 10px; /* Position on the right */
-  /* margin-left: 0; Ensure no conflicting margins */
+  right: 10px; 
 }
-
 .ad-banner-container #nextSection {
-  left: 10px; /* Position on the left */
-  /* margin-right: 0; Ensure no conflicting margins */
+  left: 10px; 
 }
-
-
-/* --- Responsive adjustments for banner --- */
 @media (max-width: 768px) {
   .ad-banner-container {
-      padding: 20px 50px; /* Adjust padding on smaller screens */
+      padding: 20px 50px; 
   }
   .ad-banner-container h3 {
       font-size: 1.2em;

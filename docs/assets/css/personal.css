@@ -668,15 +668,27 @@ p {
   background: var(--primary-color);
   color: var(--white);
 }
-.custom-table tbody.songs-list tr:hover {
-  background-color: #e0e0e0;
-}
 .custom-table tbody.songs-list td,
 .custom-table tbody.songs-list th {
   border-radius: 0;
   padding: 10px;
-  border-collapse: collapse;
 }
+
+.custom-table tbody.songs-list tr:hover {
+  background-color: #e0e0e0;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.custom-table tbody.songs-list tr:hover td:first-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.custom-table tbody.songs-list tr:hover td:last-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .actions-cell {
   white-space: nowrap; 
   text-align: center; 

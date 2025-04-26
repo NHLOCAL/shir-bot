@@ -699,22 +699,33 @@ p {
   transition: width 0.3s ease-in-out;
 }
 #loadMoreButton {
-  background-color: var(--primary-hover);
-  color: var(--white);
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 20px auto;
   display: none;
+  margin: 25px auto;
+  padding: 10px 25px;
+  font-family: var(--font-base);
+  font-size: 0.95em;
+  font-weight: 500;
+  color: var(--primary-hover);
+  background-color: rgba(126, 87, 194, 0.1);
+  border: 1px solid rgba(126, 87, 194, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none;
 }
+
 #loadMoreButton.show {
   display: block;
 }
-#loadMoreButton:hover {
+
+#loadMoreButton:hover,
+#loadMoreButton:focus {
+  color: var(--white);
   background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 3px 6px rgba(126, 87, 194, 0.2);
+  transform: translateY(-2px);
+  outline: none;
 }
 .album-button,
 .singer-button {

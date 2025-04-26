@@ -84,10 +84,10 @@ main {
     height: auto;
 }
 .top-navbar-section .logo-container .site-title {
-    font-size: 1.2em; 
-    font-weight: 600;
-    white-space: nowrap;
-    color: var(--primary-color); 
+  font-size: 1.2em; /* שמירה על גודל קיים */
+  font-weight: 800;
+  white-space: nowrap;
+  color: var(--primary-hover);
 }
 .top-navbar-section .search-bar {
   display: flex;
@@ -886,21 +886,29 @@ p {
   width: 200px;
 }
 .artists-list a {
-  padding: 20px;
+  display: block; /* Ensure it takes full width of the li */
+  padding: 15px 20px; /* Adjusted padding for better balance */
   text-decoration: none;
-  color: var(--primary-color);
-  font-size: 1.2em;
-  display: block;
   text-align: center;
-  border: 1px solid var(--primary-color);
-  background-color: var(--white); 
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08); 
+  font-size: 1.05em; /* Slightly adjusted font size */
+  font-weight: 500; /* Medium weight for better presence */
+  color: var(--primary-color); /* Use primary color for text */
+  background-color: var(--white); /* White background */
+  border: 1px solid var(--border-color); /* Lighter border color */
+  border-radius: 8px; /* Softer rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
+  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
+  cursor: pointer; /* Explicitly set cursor */
 }
-.artists-list a:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
-  transform: scale(1.05);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.12); 
+
+.artists-list a:hover,
+.artists-list a:focus { /* Added :focus for accessibility */
+  color: var(--white); /* White text on hover/focus */
+  background-color: var(--primary-color); /* Primary color background */
+  border-color: var(--primary-color); /* Match border to background */
+  box-shadow: 0 4px 8px rgba(126, 87, 194, 0.2); /* Enhanced shadow with primary tint */
+  transform: translateY(-2px); /* Subtle lift effect */
+  outline: none; /* Remove default focus outline if visual style is sufficient */
 }
 h1, h2, h3, h4, .get-title { 
   font-family: var(--font-base);

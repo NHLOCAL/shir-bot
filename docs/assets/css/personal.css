@@ -13,7 +13,8 @@
   --navbar-height: 68px; 
   --search-field-height: 46px; 
   --filter-section-height: 55px; 
-  --fixed-top-margin: 10px; 
+  --fixed-top-margin: 10px;
+  --scrollbar-track-line-color: rgba(126, 87, 194, 0.2);
 }
 *, *::before, *::after {
   margin: 0;
@@ -221,16 +222,86 @@ main {
   text-decoration: none;
   margin: auto;
 }
+
+
+/* הגדרות כלליות לסרגל הגלילה (רוחב/גובה) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 14px;  /* רוחב הסרגל */
+  height: 14px; /* גובה (רלוונטי לסרגלים אופקיים אם יופיעו) */
 }
+
+/* המסלול (Track) - החלק שמאחורי הידית */
+::-webkit-scrollbar-track {
+  background: linear-gradient(to right,
+    transparent 0px,
+    transparent 6px, /* עד תחילת הקו */
+    var(--scrollbar-track-line-color) 6px, /* תחילת הקו */
+    var(--scrollbar-track-line-color) 8px, /* סוף הקו */
+    transparent 8px, /* אחרי הקו */
+    transparent 14px /* סוף המסלול */
+  );
+}
+
+/* הידית הנגררת (Thumb) - החלק שאוחזים וגוררים */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 4px;
+  background-color: var(--primary-color); /* צבע הידית - צבע ראשי של האתר */
+  border-radius: 10px;      /* פינות מעוגלות לאחיזה נוחה */
+  /* גבול שקוף ליצירת מרווח פנימי, גורם ל-Thumb להיראות מעל הקו */
+  border: 3px solid transparent;
+  background-clip: padding-box; /* צובע רק עד הגבול הפנימי */
 }
+
+/* הידית במצב ריחוף (hover) */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-hover);
+  background-color: var(--primary-hover); /* צבע הידית בריחוף */
 }
+
+/* --- Button Styling (מותאם לאתר) --- */
+
+/* הסתרת כפתורים כברירת מחדל למניעת כפילויות */
+::-webkit-scrollbar-button {
+   display: none;
+}
+
+/* כפתור חץ עליון (סרגל אנכי) */
+::-webkit-scrollbar-button:vertical:start:decrement {
+  display: block;
+  height: 15px;
+  background-color: #f0f0f0; /* רקע בהיר לכפתור */
+  /* אייקון חץ עם צבע מותאם (#7E57C2 = var(--primary-color) מקודד ל-URL) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237E57C2'><polygon points='5,0 10,10 0,10'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 4px 4px 0 0; /* עיגול פינות עליונות */
+  margin-bottom: 2px;
+}
+
+/* כפתור חץ תחתון (סרגל אנכי) */
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: block;
+  height: 15px;
+  background-color: #f0f0f0; /* רקע בהיר לכפתור */
+   /* אייקון חץ עם צבע מותאם (#7E57C2 = var(--primary-color) מקודד ל-URL) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237E57C2'><polygon points='5,10 10,0 0,0'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 0 0 4px 4px; /* עיגול פינות תחתונות */
+  margin-top: 2px;
+}
+
+/* כפתורי חיצים אנכיים במצב ריחוף */
+::-webkit-scrollbar-button:vertical:hover {
+   /* רקע בריחוף - גרסה בהירה/שקופה של הצבע הראשי */
+   background-color: rgba(126, 87, 194, 0.1);
+}
+
+/* פינת המפגש (אם יש סרגל אופקי ואנכי בו זמנית) */
+::-webkit-scrollbar-corner {
+    background: transparent; /* הסתר את הריבוע בפינה */
+}
+
+
+
 table {
   width: 100%;
   border-spacing: 0;

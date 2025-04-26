@@ -395,17 +395,47 @@ td {
   background-color: transparent; 
   margin: 0;
   padding: 0;
-  color: #333; 
+  color: #333;
 }
-.fixed-bottom a {
-  font-weight: bold;
-  color: var(--primary-color);
-  text-decoration: underline;
+.fixed-bottom p a,
+.fixed-bottom p button {
+  display: inline-block; /* Allow padding and margins */
+  padding: 5px 12px; /* Comfortable padding */
+  margin: 0 5px; /* Space between multiple buttons/links */
+  font-weight: 500; /* Slightly bolder */
+  text-decoration: none; /* Remove underline from links */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.2s ease-in-out; /* Smooth transition */
+  cursor: pointer;
+  font-size: 0.9em; /* Slightly smaller than main text */
+  line-height: 1.4; /* Adjust line height */
+  vertical-align: baseline; /* Align with surrounding text */
+
+  /* Default State - Light background, primary text */
+  background-color: rgba(126, 87, 194, 0.08); /* Very light primary background */
+  color: var(--primary-hover); /* Darker primary text */
+  border: 1px solid rgba(126, 87, 194, 0.2); /* Subtle primary border */
 }
-.fixed-bottom a:hover {
-    color: var(--primary-hover);
-    text-decoration: none;
+
+.fixed-bottom p a:hover,
+.fixed-bottom p button:hover,
+.fixed-bottom p a:focus,
+.fixed-bottom p button:focus {
+  /* Hover/Focus State - Primary background, white text */
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+  box-shadow: 0 1px 3px rgba(126, 87, 194, 0.2); /* Subtle shadow on interaction */
+  outline: none;
 }
+
+/* Ensure buttons added by JS (like helpButton) also fit in */
+.fixed-bottom .helpButton {
+    font-size: 0.9em; /* Match size */
+    padding: 5px 12px; /* Match padding */
+    /* Inherit other styles or override as needed */
+}
+
 @media (max-width: 1024px) {
     .top-navbar-section .site-title { display: none; }
 }
@@ -686,24 +716,38 @@ p {
 #loadMoreButton:hover {
   background-color: var(--primary-color);
 }
-.album-button, .singer-button {
-  background: none;
-  border: none;
-  padding: 5px;
-  font-size: inherit;
+.album-button,
+.singer-button {
+  display: inline-block;
+  background: rgba(126, 87, 194, 0.08); /* Light primary tint background */
+  border: 1px solid rgba(126, 87, 194, 0.15); /* Very subtle primary border */
+  padding: 3px 10px;
+  font-size: 0.9em;
   font-family: inherit;
-  color: inherit;
+  color: var(--primary-hover); /* Darker primary color text */
+  border-radius: 20px;
   cursor: pointer;
-  transition: color 0.1s;
-  text-align: right; 
-  display: inline; 
-  line-height: inherit; 
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 400;
+  text-decoration: none;
 }
-.album-button:hover, .singer-button:hover {
-  color: var(--primary-hover);
-  font-weight: 500;
-  border-radius: 5px;
-  text-decoration: underline; 
+.album-button:hover,
+.singer-button:hover,
+.album-button:focus,
+.singer-button:focus {
+  /* Slightly darker background tint */
+  background-color: rgba(126, 87, 194, 0.15);
+  /* Change text color to the main primary color */
+  color: var(--primary-color);
+  /* Slightly darker/more prominent border */
+  border-color: rgba(126, 87, 194, 0.3);
+  /* Remove box-shadow for a flatter, cleaner table look */
+  box-shadow: none;
+  /* Ensure NO underline appears */
+  text-decoration: none;
+  outline: none;
 }
 #prevSection, #nextSection {
   position: fixed;

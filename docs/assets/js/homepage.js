@@ -1,75 +1,103 @@
 // File: assets/js/homepage.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("Homepage.js: DOMContentLoaded");
+
+    // DOM Element References
     const artistsGrid = document.getElementById('popular-artists-grid');
     const songsList = document.getElementById('random-songs-list');
-    const homepageContent = document.getElementById('homepage-content'); // Keep reference if needed
-    const searchResultsArea = document.getElementById('search-results-area'); // Keep reference if needed
-    // --- שינוי: הסרת artistsDataElement, הנתונים גלובליים ---
-    // const artistsDataElement = document.getElementById('artistsData');
-    // -----------------------------------------------------
+    const homepageContent = document.getElementById('homepage-content');
+    const searchResultsArea = document.getElementById('search-results-area'); // Needed to hide/show
 
+    // Configuration
     const NUM_ARTISTS_TO_SHOW = 6;
-    const NUM_SONGS_TO_SHOW = 5; // או מספר אחר רצוי
+    const NUM_SONGS_TO_SHOW = 5; // Number of recent/random songs to display
 
-    // --- שינוי: הסרת fetchCSV ו-parseCSV ---
-    // async function fetchCSV(url) { ... }
-    // function parseCSV(csvText) { ... }
-    // ---------------------------------------
+    // --- Helper Functions ---
 
-    // Function to get unique artists from song data
+    /**
+     * Extracts unique artists and their corresponding page URLs from the song data.
+     * Requires the UNF library for proper Hebrew slug generation if used for URLs.
+     * @param {Array} allSongs - The array of all song objects.
+     * @returns {Array} - An array of objects like { name: 'Artist Name', url: '/artists/artist-name/' }.
+     */
     function getUniqueArtists(allSongs) {
         if (!Array.isArray(allSongs)) return [];
         const artistMap = new Map();
         allSongs.forEach(song => {
             if (song.singer && !artistMap.has(song.singer)) {
-                // Generate slug similar to the plugin for linking (handle Hebrew)
-                 const normalized_text = typeof UNF !== 'undefined' ? UNF.normalize(song.singer, 'nfkc').toLowerCase() : song.singer.toLowerCase();
-                 let slug = normalized_text.replace(/[\s.\/\\?%*:|"<>]+/g, '-');
-                 slug = slug.replace(/^-+|-+$/g, '');
-                 slug = slug || "artist"; // Fallback if slug becomes empty
+                let slug = "unknown-artist"; // Default slug
+                try {
+                    // Attempt to create a URL-friendly slug (requires UNF library loaded)
+                    if (typeof UNF !== 'undefined' && UNF.Normalizer) {
+                        const normalized_text = UNF.Normalizer.normalize(song.singer, 'nfkc').toLowerCase();
+                         slug = normalized_text.replace(/[\s.\/\\?%*:|"<>]+/g, '-');
+                         slug = slug.replace(/^-+|-+$/g, ''); // Trim leading/trailing hyphens
+                         slug = slug || "artist"; // Fallback if slug becomes empty after replace
+                    } else {
+                         // Basic fallback if UNF is not available
+                         slug = song.singer.toLowerCase().replace(/[^a-z0-9\u0590-\u05FF\-]+/g, '-').replace(/^-+|-+$/g, '');
+                         slug = slug || "artist";
+                         if (typeof UNF === 'undefined') console.warn("UNF library not loaded, using basic slug for artist:", song.singer);
+                    }
+                } catch (e) {
+                     console.error("Error creating slug for artist:", song.singer, e);
+                     slug = "error-artist"; // Indicate error in URL
+                }
                 artistMap.set(song.singer, `${baseurl || ''}/artists/${slug}/`); // Construct the expected URL
             }
         });
-        // Convert Map to array of objects [{name: '...', url: '...'}]
-        return Array.from(artistMap, ([name, url]) => ({ name, url }));
+        // Convert Map to array of objects sorted alphabetically
+        return Array.from(artistMap, ([name, url]) => ({ name, url })).sort((a, b) => a.name.localeCompare(b.name, 'he'));
     }
 
-
+    /**
+     * Selects a specified number of random items from an array.
+     * @param {Array} array - The array to select from.
+     * @param {number} count - The number of items to select.
+     * @returns {Array} - A new array containing the random items.
+     */
     function getRandomItems(array, count) {
         if (!array || array.length === 0) return [];
-        const shuffled = array.slice().sort(() => 0.5 - Math.random());
+        // Fisher-Yates (Knuth) Shuffle for better randomness
+        const shuffled = array.slice(); // Create a copy
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+        }
         return shuffled.slice(0, count);
     }
 
-    // --- Updated function to use artists derived from allSongs data ---
+    /**
+     * Populates the artists grid with random artists.
+     * @param {Array} availableArtists - Array of artist objects {name, url}.
+     */
     function displayArtists(availableArtists) {
-        if (!artistsGrid) return;
-
+        if (!artistsGrid) {
+            console.warn("Homepage.js: artistsGrid element not found.");
+            return;
+        }
         const randomArtists = getRandomItems(availableArtists, NUM_ARTISTS_TO_SHOW);
 
         if (randomArtists.length === 0) {
-            artistsGrid.innerHTML = '<p class="loading-placeholder">לא נמצאו אמנים.</p>';
+            artistsGrid.innerHTML = '<p class="loading-placeholder">לא נמצאו אמנים להצגה.</p>';
             return;
         }
 
         let html = '';
         randomArtists.forEach(artist => {
-            // Use name and generated URL
-            const artistUrl = artist.url;
-            const singerName = artist.name;
-
+            const artistNameEscaped = artist.name.replace(/"/g, '"'); // Escape quotes for title attribute
             html += `
-                <div class="artist-item" data-artist-name="${singerName}">
-                    <a href="${artistUrl}" class="artist-circle" title="עבור לדף האמן ${singerName}">
+                <div class="artist-item" data-artist-name="${artistNameEscaped}">
+                    <a href="${artist.url}" class="artist-circle" title="עבור לדף האמן ${artistNameEscaped}">
                        <i class="fas fa-user"></i>
                     </a>
-                    <span class="artist-name">${singerName}</span>
+                    <span class="artist-name">${artist.name}</span>
                 </div>`;
         });
         artistsGrid.innerHTML = html;
 
-         // Add GA event tracking for artist clicks if needed
+        // Add GA event tracking for artist clicks
         artistsGrid.querySelectorAll('a.artist-circle').forEach(link => {
             link.addEventListener('click', (event) => {
                 const artistName = link.closest('.artist-item')?.dataset.artistName || 'unknown';
@@ -79,28 +107,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         'item_id': artistName
                     });
                  }
-                 // Allow default navigation
             });
         });
     }
 
-    // --- Updated function to display songs from allSongs data ---
-    // (Optional: Filter for singles if still desired, or show any random)
+    /**
+     * Populates the songs list with random, downloadable songs.
+     * Adds click listeners to trigger a search for the selected song.
+     * @param {Array} allSongs - The full array of song objects.
+     */
     function displaySongs(allSongs) {
-        if (!songsList) return;
+        if (!songsList) {
+            console.warn("Homepage.js: songsList element not found.");
+            return;
+        }
 
-        // Example: Filter for songs with a driveId (implies they are likely downloadable)
-        // Or apply the 'סינגלים' filter if needed
-        const downloadableSongs = allSongs.filter(song => song.driveId && song.name && song.serial);
-        /* // Alternative: Filter for singles
-        const singleSongs = allSongs.filter(song => {
-             const isSingle = (song.singer && typeof song.singer === 'string' && song.singer.includes('סינגל')) ||
-                            (song.album && typeof song.album === 'string' && song.album.includes('סינגל'));
-             const isValid = song.name && song.serial && song.driveId; // Ensure valid data
-             return isValid && isSingle;
-         }); */
-
-        const randomSongs = getRandomItems(downloadableSongs, NUM_SONGS_TO_SHOW); // Use the filtered list
+        // Filter for songs that seem valid and potentially downloadable
+        const displayableSongs = allSongs.filter(song => song.name && song.serial && song.driveId);
+        const randomSongs = getRandomItems(displayableSongs, NUM_SONGS_TO_SHOW);
 
         if (randomSongs.length === 0) {
             songsList.innerHTML = '<li class="loading-placeholder">לא נמצאו שירים להצגה.</li>';
@@ -109,45 +133,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let html = '';
         randomSongs.forEach(song => {
+             const songNameEscaped = song.name.replace(/"/g, '"');
             html += `
-                <li data-song-serial="${song.serial}" title="חפש את '${song.name}'">
-                    <i class="fas fa-music song-icon"></i> <!-- Changed icon -->
+                <li data-song-serial="${song.serial}" title="חפש את '${songNameEscaped}'">
+                    <i class="fas fa-music song-icon"></i>
                     ${song.name} - ${song.singer || 'לא ידוע'}
                 </li>`;
         });
         songsList.innerHTML = html;
 
-        // Add click listeners to search for the song by its serial number
+        // Add click listeners to trigger search in search.js
         songsList.querySelectorAll('li[data-song-serial]').forEach(item => {
             item.addEventListener('click', () => {
                 const serial = item.dataset.songSerial;
-                console.log("Homepage song clicked, searching for serial:", serial);
+                console.log("Homepage.js: Song clicked, serial:", serial);
 
-                // Ensure search function and UI elements exist from search.js
+                // Access functions and state from search.js (ensure they exist)
                 const searchInputGlobal = document.getElementById('searchInput');
-                const searchHandler = window.searchSongs; // Access search function globally
-                const filterHandler = window.handleFilterClick; // Access filter function globally
+                const searchHandler = window.searchSongs; // Defined in search.js
+                const filterHandler = window.handleFilterClick; // Defined in search.js
+                const isDataReady = typeof songsDataLoaded !== 'undefined' && songsDataLoaded; // Check flag from search.js
 
-                if (searchHandler && filterHandler && searchInputGlobal) {
-                     searchInputGlobal.value = serial; // Put serial in search box
+                if (searchHandler && filterHandler && searchInputGlobal && isDataReady) {
+                     searchInputGlobal.value = serial; // Set search input value
+                     filterHandler('serial', false); // Update filter buttons visually
+                     searchHandler(serial, 'serial'); // Trigger the search (will also show results view)
 
-                     // Activate the 'serial' filter visually
-                     filterHandler('serial', false); // Update filter buttons without triggering search yet
-
-                     // Trigger the search with the serial number and 'serial' type
-                     searchHandler(serial, 'serial'); // This will also switch the view
-
-                      // Optional: GA Event for homepage song click leading to search
+                     // Optional: GA Event for homepage song click leading to search
                       if (typeof gtag === 'function') {
                          gtag('event', 'select_content', {
                            'content_type': 'song_homepage_list',
                            'item_id': serial
                          });
                       }
-
+                } else if (!isDataReady) {
+                     console.warn("Homepage.js: Song clicked, but song data is not ready yet.");
+                     if(typeof showMessage === 'function') showMessage("מאגר השירים עדיין בטעינה, נסה לחפש שוב בעוד רגע.");
                 } else {
-                    // Fallback: Redirect to homepage with search parameters if functions unavailable
-                    console.warn("Search function/filter function/input not found, redirecting as fallback.");
+                    // Fallback if search functions are not available
+                    console.warn("Homepage.js: Search/filter functions or input not found, redirecting as fallback.");
                     window.location.href = `${baseurl || ''}/?search=${encodeURIComponent(serial)}&searchBy=serial`;
                 }
             });
@@ -155,64 +179,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-     // --- שינוי: הסרת פונקציות החלפת תצוגה ---
-     // search.js מטפל בזה כעת דרך searchSongs
-     /*
-     function showSearchResultsView() { ... }
-     window.showHomepageView = function() { ... }
-     */
-     // ------------------------------------------
+    // --- Main Initialization Logic ---
 
-    // --- Updated initHomepage ---
-    function initHomepage() {
+    /**
+     * Initializes the homepage content (artists, songs) once the main song data is ready.
+     * @param {Array} songs - The loaded array of all songs.
+     */
+    function initializeHomepageContent(songs) {
+        console.log("Homepage.js: Initializing content (songsDataReady event received).");
         const urlParams = new URLSearchParams(window.location.search);
         const hasSearchParams = urlParams.has('search') || urlParams.has('searchBy');
 
-        // --- שינוי: קבלת נתונים מהמשתנה הגלובלי ---
-        let localAllSongs = [];
-        if (window.allSongsData && Array.isArray(window.allSongsData)) {
-            localAllSongs = window.allSongsData;
-             console.log(`Homepage.js: Using ${localAllSongs.length} songs from global data.`);
-        } else {
-            console.error("Homepage.js: Global song data (window.allSongsData) not found or invalid.");
-             if (artistsGrid) artistsGrid.innerHTML = '<p class="loading-placeholder">שגיאה בטעינת נתונים.</p>';
-             if (songsList) songsList.innerHTML = '<li class="loading-placeholder">שגיאה בטעינת נתונים.</li>';
-             // Don't proceed if data is missing
-        }
-        // ------------------------------------------
-
-        // If search params exist, search.js's init logic should handle showing results.
-        // If no search params, display homepage content.
+        // Display homepage content ONLY if there are no search parameters in the URL
+        // (If there are params, search.js should handle showing the results)
         if (!hasSearchParams) {
-             console.log("Homepage.js: No search params, showing homepage content.");
-             if (homepageContent) homepageContent.style.display = 'block'; // Ensure visible
-             if (searchResultsArea) searchResultsArea.style.display = 'none'; // Ensure hidden
+            if (homepageContent) homepageContent.style.display = 'block';
+            if (searchResultsArea) searchResultsArea.style.display = 'none';
 
-             // Generate artists list from the loaded songs
-             const uniqueArtists = getUniqueArtists(localAllSongs);
-             displayArtists(uniqueArtists);
+            const uniqueArtists = getUniqueArtists(songs);
+            displayArtists(uniqueArtists);
 
-             // Display random songs
-             if (localAllSongs.length > 0) {
-                 displaySongs(localAllSongs);
-             }
+            if (songs.length > 0) {
+                displaySongs(songs);
+            }
         } else {
-            // If search params *are* present, search.js initializer should have
-            // already called searchSongs, which hides homepage content.
-            // We don't need to do anything extra here.
-             console.log("Homepage.js: Search params detected, homepage content should be hidden by search.js.");
-              if (homepageContent) homepageContent.style.display = 'none'; // Explicitly hide just in case
+            console.log("Homepage.js: Search params detected in URL, letting search.js handle view.");
+            if (homepageContent) homepageContent.style.display = 'none'; // Ensure homepage content is hidden
         }
     }
 
-    // --- קריאה לאתחול ---
-    // Ensure UNF is loaded if needed for slug generation, might need to wait or check
-     if (typeof UNF !== 'undefined') {
-         initHomepage();
-     } else {
-         // Fallback or wait if UNF loads async (less likely with simple include)
-         console.warn("Homepage.js: UNF library not found, artist links might be incorrect.");
-         initHomepage(); // Try anyway
+    /**
+     * Sets the initial loading state placeholders.
+     */
+    function setInitialLoadingState() {
+         console.log("Homepage.js: Setting initial loading placeholders.");
+         if (artistsGrid) artistsGrid.innerHTML = '<div class="loading-placeholder">טוען אמנים...</div>';
+         if (songsList) songsList.innerHTML = '<li class="loading-placeholder">טוען שירים...</li>';
+         // Ensure homepage content is visible initially, search results hidden
+         if (homepageContent) homepageContent.style.display = 'block';
+         if (searchResultsArea) searchResultsArea.style.display = 'none';
+    }
+
+     /**
+     * Displays error messages if data loading fails.
+     */
+     function displayDataLoadErrorHomepage() {
+         console.error("Homepage.js: Displaying data load error.");
+         if (artistsGrid) artistsGrid.innerHTML = '<p class="loading-placeholder" style="color: red;">שגיאה בטעינת נתונים.</p>';
+         if (songsList) songsList.innerHTML = '<li class="loading-placeholder" style="color: red;">שגיאה בטעינת נתונים.</li>';
      }
 
-});
+
+    // --- Event Listeners and Initial Check ---
+
+    console.log("Homepage.js: Setting up event listeners.");
+
+    // Listen for the custom event fired by search.js when data is ready
+    document.addEventListener('songsDataReady', (event) => {
+        console.log("Homepage.js: 'songsDataReady' event caught.");
+        if (event.detail && Array.isArray(event.detail)) {
+             initializeHomepageContent(event.detail);
+        } else {
+             console.error("Homepage.js: 'songsDataReady' event fired without valid data array.");
+             displayDataLoadErrorHomepage();
+        }
+    });
+
+     // Listen for the error event from search.js
+     document.addEventListener('songsDataError', (event) => {
+         console.error("Homepage.js: 'songsDataError' event caught.", event.detail);
+         displayDataLoadErrorHomepage();
+     });
+
+     // Initial check: Maybe the data loaded *before* this script's listener was attached?
+     // Access global flags/data set by search.js
+     if (typeof songsDataLoaded !== 'undefined' && songsDataLoaded && typeof allSongs !== 'undefined' && allSongs.length > 0) {
+         // Data is already available globally
+         console.log("Homepage.js: Data was already loaded, initializing content immediately.");
+         initializeHomepageContent(allSongs); // Initialize right away
+     }
+     // Check if loading failed *before* listener was attached
+     else if (typeof songsDataLoaded !== 'undefined' && !songsDataLoaded && typeof isLoadingSongs !== 'undefined' && !isLoadingSongs) {
+         console.error("Homepage.js: Data loading seems to have failed before listener was ready.");
+         displayDataLoadErrorHomepage();
+     }
+     // Otherwise, data is still loading or hasn't started yet
+     else {
+         console.log("Homepage.js: Waiting for 'songsDataReady' event...");
+         setInitialLoadingState(); // Show placeholders while waiting
+     }
+
+}); // End DOMContentLoaded
+
+console.log("homepage.js loaded");

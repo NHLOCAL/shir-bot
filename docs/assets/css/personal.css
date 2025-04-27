@@ -5,14 +5,14 @@
   --secondary-color: #C0C0C0;
   --white: #fff;
   --font-base: 'Arimo', sans-serif;
-  --light-gray-bg: #f0f2f5; 
-  --unit-bg: var(--white); 
-  --border-color: #e0e0e0; 
-  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
-  --border-radius-main: 14px; 
-  --navbar-height: 68px; 
-  --search-field-height: 46px; 
-  --filter-section-height: 55px; 
+  --light-gray-bg: #f0f2f5;
+  --unit-bg: var(--white);
+  --border-color: #e0e0e0;
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --border-radius-main: 14px;
+  --navbar-height: 68px;
+  --search-field-height: 46px;
+  --filter-section-height: 55px;
   --fixed-top-margin: 10px;
   --scrollbar-track-line-color: rgba(126, 87, 194, 0.2);
 }
@@ -41,33 +41,24 @@ main {
     z-index: 1000;
 }
 .header-content-unit {
-  /* background-color: var(--unit-bg); */ /* החלפת הרקע הלבן */
-  background-color: rgba(126, 87, 194, 0.15); /* <<< רקע סגול בהיר עם שקיפות (שחק עם 0.15 לפי הצורך) */
+  background-color: rgba(126, 87, 194, 0.15);
   border-radius: var(--border-radius-main);
-  /* border: 1px solid var(--border-color); */ /* החלפת גבול אטום */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* <<< גבול לבן שקוף למחצה (אופייני לזכוכית) */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* צל מעט מודגש יותר לאפקט ריחוף */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   max-width: 1300px;
   margin: 0 auto;
-
-  /* --- הוספת אפקט הזכוכית --- */
-  -webkit-backdrop-filter: blur(12px); /* טשטוש הרקע מאחור (עם תאימות לדפדפנים ישנים) */
-  backdrop-filter: blur(12px);       /* טשטוש הרקע מאחור */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
-
-
-
 .top-navbar-section {
-  /* background-color: var(--unit-bg); */ /* <<< הסר הגדרת רקע ספציפית כאן אם קיימת */
   height: var(--navbar-height);
   display: flex;
   align-items: center;
   padding: 0 20px;
   gap: 15px;
-  /* border-bottom: 1px solid var(--border-color); */ /* התאמת קו ההפרדה */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* <<< קו הפרדה לבן שקוף יותר */
-  color: var(--primary-color); /* צבע טקסט/אייקונים נשאר סגול */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--primary-color);
   justify-content: space-between;
 }
 .top-navbar-section .logo-container {
@@ -76,15 +67,15 @@ main {
     gap: 10px;
     text-decoration: none;
     color: inherit;
-    flex-shrink: 0; 
-    cursor: pointer; 
+    flex-shrink: 0;
+    cursor: pointer;
 }
 .top-navbar-section .logo-container img {
-    width: 32px; 
+    width: 32px;
     height: auto;
 }
 .top-navbar-section .logo-container .site-title {
-  font-size: 1.2em; /* שמירה על גודל קיים */
+  font-size: 1.2em;
   font-weight: 800;
   white-space: nowrap;
   color: var(--primary-hover);
@@ -92,7 +83,7 @@ main {
 .top-navbar-section .search-bar {
   display: flex;
   align-items: center;
-  flex-grow: 1; 
+  flex-grow: 1;
   background-color: var(--white);
   border-radius: 25px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -102,7 +93,7 @@ main {
   transition: box-shadow 0.2s;
   min-width: 200px;
   max-width: 700px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 .top-navbar-section .search-bar:focus-within {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
@@ -113,51 +104,51 @@ main {
     border: none;
     outline: none;
     background: none;
-    font-size: 1em; 
+    font-size: 1em;
     padding: 8px 10px;
     font-family: var(--font-base);
-    height: 100%; 
+    height: 100%;
     caret-color: var(--primary-color);
     color: #333;
 }
 .top-navbar-section .search-icons {
     display: flex;
     align-items: center;
-    gap: 6px; 
-    margin-left: 10px; 
+    gap: 6px;
+    margin-left: 10px;
 }
-.top-navbar-section .search-icon-button { 
+.top-navbar-section .search-icon-button {
     background: none;
     border: none;
-    color: var(--primary-color); 
+    color: var(--primary-color);
     cursor: pointer;
     padding: 0;
-    font-size: 1.15em; 
-    margin-left: 0px; 
+    font-size: 1.15em;
+    margin-left: 0px;
     transition: color 0.2s;
-    width: 36px; 
-    height: 36px; 
-    border-radius: 50%; 
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .top-navbar-section .search-icon-button:hover {
-    color: var(--highlight-color); 
-    background-color: #f0f0f0; 
+    color: var(--highlight-color);
+    background-color: #f0f0f0;
 }
 .top-navbar-section .icons-container {
     display: flex;
     align-items: center;
-    gap: 8px; 
-    flex-shrink: 0; 
+    gap: 8px;
+    flex-shrink: 0;
 }
 .top-navbar-section .icons-container a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: inherit; 
-    font-size: 1.2em; 
+    color: inherit;
+    font-size: 1.2em;
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -165,11 +156,11 @@ main {
     text-decoration: none;
     background: none;
     padding: 0;
-    position: static; 
+    position: static;
     margin: 0;
 }
 .top-navbar-section .icons-container a:hover {
-    background-color: rgba(126, 87, 194, 0.1); 
+    background-color: rgba(126, 87, 194, 0.1);
 }
 .top-navbar-section .icons-container .nhlocal-icon-wrapper {
     display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
@@ -178,11 +169,10 @@ main {
     display: block; border-radius: 50%; width: 24px; height: auto;
 }
 .top-navbar-section .icons-container .feedback-button i {
-    font-size: 1em; 
+    font-size: 1em;
     width: auto; height: auto;
 }
 .filters-section {
-  /* background-color: var(--unit-bg); */ /* <<< הסר הגדרת רקע ספציפית כאן אם קיימת */
  min-height: var(--filter-section-height);
  padding: 8px 15px;
  display: flex;
@@ -190,19 +180,18 @@ main {
  justify-content: center;
  gap: 10px;
  flex-wrap: wrap;
- /* אין צורך בקו הפרדה עליון אם זה אותו רקע */
 }
 .filter-button {
   background-color: transparent;
   border: 1px solid #7E57C2;
   color: #7E57C2;
-  padding: 8px 16px; 
-  margin: 0 5px; 
-  border-radius: 20px; 
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 16px; 
+  font-size: 16px;
   font-family: var(--font-base);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s, color 0.2s;
 }
 .filter-button:hover:not(.active) {
@@ -222,86 +211,58 @@ main {
   text-decoration: none;
   margin: auto;
 }
-
-
-/* הגדרות כלליות לסרגל הגלילה (רוחב/גובה) */
 ::-webkit-scrollbar {
-  width: 14px;  /* רוחב הסרגל */
-  height: 14px; /* גובה (רלוונטי לסרגלים אופקיים אם יופיעו) */
+  width: 14px;
+  height: 14px;
 }
-
-/* המסלול (Track) - החלק שמאחורי הידית */
 ::-webkit-scrollbar-track {
   background: linear-gradient(to right,
     transparent 0px,
-    transparent 6px, /* עד תחילת הקו */
-    var(--scrollbar-track-line-color) 6px, /* תחילת הקו */
-    var(--scrollbar-track-line-color) 8px, /* סוף הקו */
-    transparent 8px, /* אחרי הקו */
-    transparent 14px /* סוף המסלול */
+    transparent 6px,
+    var(--scrollbar-track-line-color) 6px,
+    var(--scrollbar-track-line-color) 8px,
+    transparent 8px,
+    transparent 14px
   );
 }
-
-/* הידית הנגררת (Thumb) - החלק שאוחזים וגוררים */
 ::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color); /* צבע הידית - צבע ראשי של האתר */
-  border-radius: 10px;      /* פינות מעוגלות לאחיזה נוחה */
-  /* גבול שקוף ליצירת מרווח פנימי, גורם ל-Thumb להיראות מעל הקו */
+  background-color: var(--primary-color);
+  border-radius: 10px;
   border: 3px solid transparent;
-  background-clip: padding-box; /* צובע רק עד הגבול הפנימי */
+  background-clip: padding-box;
 }
-
-/* הידית במצב ריחוף (hover) */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-hover); /* צבע הידית בריחוף */
+  background-color: var(--primary-hover);
 }
-
-/* --- Button Styling (מותאם לאתר) --- */
-
-/* הסתרת כפתורים כברירת מחדל למניעת כפילויות */
 ::-webkit-scrollbar-button {
    display: none;
 }
-
-/* כפתור חץ עליון (סרגל אנכי) */
 ::-webkit-scrollbar-button:vertical:start:decrement {
   display: block;
   height: 15px;
-  background-color: #f0f0f0; /* רקע בהיר לכפתור */
-  /* אייקון חץ עם צבע מותאם (#7E57C2 = var(--primary-color) מקודד ל-URL) */
+  background-color: #f0f0f0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237E57C2'><polygon points='5,0 10,10 0,10'/></svg>");
   background-repeat: no-repeat;
   background-position: center center;
-  border-radius: 4px 4px 0 0; /* עיגול פינות עליונות */
+  border-radius: 4px 4px 0 0;
   margin-bottom: 2px;
 }
-
-/* כפתור חץ תחתון (סרגל אנכי) */
 ::-webkit-scrollbar-button:vertical:end:increment {
   display: block;
   height: 15px;
-  background-color: #f0f0f0; /* רקע בהיר לכפתור */
-   /* אייקון חץ עם צבע מותאם (#7E57C2 = var(--primary-color) מקודד ל-URL) */
+  background-color: #f0f0f0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%237E57C2'><polygon points='5,10 10,0 0,0'/></svg>");
   background-repeat: no-repeat;
   background-position: center center;
-  border-radius: 0 0 4px 4px; /* עיגול פינות תחתונות */
+  border-radius: 0 0 4px 4px;
   margin-top: 2px;
 }
-
-/* כפתורי חיצים אנכיים במצב ריחוף */
 ::-webkit-scrollbar-button:vertical:hover {
-   /* רקע בריחוף - גרסה בהירה/שקופה של הצבע הראשי */
    background-color: rgba(126, 87, 194, 0.1);
 }
-
-/* פינת המפגש (אם יש סרגל אופקי ואנכי בו זמנית) */
 ::-webkit-scrollbar-corner {
-    background: transparent; /* הסתר את הריבוע בפינה */
+    background: transparent;
 }
-
-
-
 table {
   width: 100%;
   border-spacing: 0;
@@ -383,59 +344,51 @@ td {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(240, 242, 245, 0.95); 
+  background-color: rgba(240, 242, 245, 0.95);
   padding: 10px 0;
   text-align: center;
   z-index: 999;
-  border-top: 1px solid rgba(224, 224, 224, 0.7); 
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.04); 
+  border-top: 1px solid rgba(224, 224, 224, 0.7);
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.04);
 }
 .fixed-bottom p {
   font-size: 15px;
-  background-color: transparent; 
+  background-color: transparent;
   margin: 0;
   padding: 0;
   color: #333;
 }
 .fixed-bottom p a,
 .fixed-bottom p button {
-  display: inline-block; /* Allow padding and margins */
-  padding: 5px 12px; /* Comfortable padding */
-  margin: 0 5px; /* Space between multiple buttons/links */
-  font-weight: 500; /* Slightly bolder */
-  text-decoration: none; /* Remove underline from links */
-  border-radius: 5px; /* Rounded corners */
-  transition: all 0.2s ease-in-out; /* Smooth transition */
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 0 5px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
-  font-size: 0.9em; /* Slightly smaller than main text */
-  line-height: 1.4; /* Adjust line height */
-  vertical-align: baseline; /* Align with surrounding text */
-
-  /* Default State - Light background, primary text */
-  background-color: rgba(126, 87, 194, 0.08); /* Very light primary background */
-  color: var(--primary-hover); /* Darker primary text */
-  border: 1px solid rgba(126, 87, 194, 0.2); /* Subtle primary border */
+  font-size: 0.9em;
+  line-height: 1.4;
+  vertical-align: baseline;
+  background-color: rgba(126, 87, 194, 0.08);
+  color: var(--primary-hover);
+  border: 1px solid rgba(126, 87, 194, 0.2);
 }
-
 .fixed-bottom p a:hover,
 .fixed-bottom p button:hover,
 .fixed-bottom p a:focus,
 .fixed-bottom p button:focus {
-  /* Hover/Focus State - Primary background, white text */
   background-color: var(--primary-color);
   color: var(--white);
   border-color: var(--primary-color);
-  box-shadow: 0 1px 3px rgba(126, 87, 194, 0.2); /* Subtle shadow on interaction */
+  box-shadow: 0 1px 3px rgba(126, 87, 194, 0.2);
   outline: none;
 }
-
-/* Ensure buttons added by JS (like helpButton) also fit in */
 .fixed-bottom .helpButton {
-    font-size: 0.9em; /* Match size */
-    padding: 5px 12px; /* Match padding */
-    /* Inherit other styles or override as needed */
+    font-size: 0.9em;
+    padding: 5px 12px;
 }
-
 @media (max-width: 1024px) {
     .top-navbar-section .site-title { display: none; }
 }
@@ -458,11 +411,11 @@ td {
     .filter-button { padding: 6px 14px; font-size: 0.9em; }
     body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem); }
 }
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
     :root {
-        --navbar-height: 55px; 
+        --navbar-height: 55px;
         --search-field-height: 40px;
-        --filter-section-height: 45px; 
+        --filter-section-height: 45px;
     }
      body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem); }
      .fixed-header-wrapper { left: 5px; right: 5px; }
@@ -471,16 +424,16 @@ td {
      .top-navbar-section .icons-container .feedback-button { display: none;}
      .top-navbar-section .search-bar { margin: 0 auto; padding: 0 0.5rem 0 0.8rem; }
      .top-navbar-section .search-input { font-size: 0.9em; }
-     .top-navbar-section .search-icons { display: none; } 
-     .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; } 
+     .top-navbar-section .search-icons { display: none; }
+     .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; }
      .top-navbar-section .icons-container { gap: 5px; margin-right: 0;}
      .top-navbar-section .icons-container a { width: 32px; height: 32px; font-size: 1.1em;}
-     .top-navbar-section .icons-container a[href^="https://nhlocal"] { display: none; } 
+     .top-navbar-section .icons-container a[href^="https://nhlocal"] { display: none; }
      .filters-section { padding: 5px 8px; justify-content: flex-start; overflow-x: auto; white-space: nowrap; }
-     .filters-section::-webkit-scrollbar { height: 0; } 
-     .filter-button { padding: 5px 10px; font-size: 0.85em; flex-shrink: 0; } 
+     .filters-section::-webkit-scrollbar { height: 0; }
+     .filter-button { padding: 5px 10px; font-size: 0.85em; flex-shrink: 0; }
      .constrained-content-area {
-        margin-top: 1rem; 
+        margin-top: 1rem;
         margin-bottom: 1rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
@@ -488,14 +441,14 @@ td {
      .constrained-content-area > #resultsTable { margin-top: 0; }
      #resultsTable {
         margin-top: 0 !important;
-        max-height: 70vh; 
+        max-height: 70vh;
         width: 100%;
         margin-left: 0;
         margin-right: 0;
         overflow-x: auto;
      }
       #resultsTable table { table-layout: fixed; width: 100%; }
-      th, td { font-size: 11px; padding: 6px 3px; } 
+      th, td { font-size: 11px; padding: 6px 3px; }
       #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; }
       #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
       #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
@@ -524,8 +477,8 @@ a:hover, a:active {
   color: var(--white);
 }
 h3 {
-  margin-bottom: 20px; 
-  font-size: 1.75em; 
+  margin-bottom: 20px;
+  font-size: 1.75em;
   color: #212121;
 }
 p {
@@ -608,7 +561,7 @@ p {
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  border: none; 
+  border: none;
 }
 .modal a:hover, #modalOkButton:hover {
   background-color: var(--primary-hover);
@@ -689,12 +642,12 @@ p {
   margin-top: 4px;
   margin-right: 12px;
   border-radius: 5px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 .progress {
   width: 0;
   height: 100%;
-  border-radius: 5px 0 0 5px; 
+  border-radius: 5px 0 0 5px;
   background: linear-gradient(to right, var(--highlight-color), var(--primary-color));
   transition: width 0.3s ease-in-out;
 }
@@ -713,11 +666,9 @@ p {
   transition: all 0.2s ease-in-out;
   box-shadow: none;
 }
-
 #loadMoreButton.show {
   display: block;
 }
-
 #loadMoreButton:hover,
 #loadMoreButton:focus {
   color: var(--white);
@@ -730,12 +681,12 @@ p {
 .album-button,
 .singer-button {
   display: inline-block;
-  background: rgba(126, 87, 194, 0.08); /* Light primary tint background */
-  border: 1px solid rgba(126, 87, 194, 0.15); /* Very subtle primary border */
+  background: rgba(126, 87, 194, 0.08);
+  border: 1px solid rgba(126, 87, 194, 0.15);
   padding: 3px 10px;
   font-size: 0.9em;
   font-family: inherit;
-  color: var(--primary-hover); /* Darker primary color text */
+  color: var(--primary-hover);
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -748,15 +699,10 @@ p {
 .singer-button:hover,
 .album-button:focus,
 .singer-button:focus {
-  /* Slightly darker background tint */
   background-color: rgba(126, 87, 194, 0.15);
-  /* Change text color to the main primary color */
   color: var(--primary-color);
-  /* Slightly darker/more prominent border */
   border-color: rgba(126, 87, 194, 0.3);
-  /* Remove box-shadow for a flatter, cleaner table look */
   box-shadow: none;
-  /* Ensure NO underline appears */
   text-decoration: none;
   outline: none;
 }
@@ -774,7 +720,7 @@ p {
   transition: background 0.3s, color 0.3s;
   border: 2px solid var(--primary-color);
   bottom: 50px;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -799,73 +745,69 @@ p {
   border-radius: 0;
   padding: 10px;
 }
-
 .custom-table tbody.songs-list tr:hover {
   background-color: #e0e0e0;
   transition: background-color 0.15s ease-in-out;
 }
-
 .custom-table tbody.songs-list tr:hover td:first-child {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-
 .custom-table tbody.songs-list tr:hover td:last-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
-
 .actions-cell {
-  white-space: nowrap; 
-  text-align: center; 
+  white-space: nowrap;
+  text-align: center;
 }
 .actions-button-group {
-  display: inline-flex; 
-  border: 1px solid rgba(126, 87, 194, 0.4); 
-  border-radius: 4px; 
-  overflow: hidden; 
-  vertical-align: middle; 
+  display: inline-flex;
+  border: 1px solid rgba(126, 87, 194, 0.4);
+  border-radius: 4px;
+  overflow: hidden;
+  vertical-align: middle;
 }
 .actions-button-group .download-button,
 .actions-button-group .share-button,
 .actions-button-group .download-button-new {
-  margin: 0; 
-  border: none; 
-  border-radius: 0; 
-  padding: 6px 10px; 
-  background-color: transparent; 
-  color: var(--primary-color); 
-  font-size: 14px; 
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  padding: 6px 10px;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 14px;
   line-height: 1;
   cursor: pointer;
-  position: relative; 
+  position: relative;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 .actions-button-group .share-button::before {
   content: "";
   position: absolute;
-  right: 0; 
-  top: 15%; 
-  bottom: 15%; 
+  right: 0;
+  top: 15%;
+  bottom: 15%;
   width: 1px;
-  background-color: rgba(126, 87, 194, 0.4); 
+  background-color: rgba(126, 87, 194, 0.4);
 }
 .actions-button-group .download-button:hover,
 .actions-button-group .share-button:hover,
 .actions-button-group .download-button-new:hover {
-  background-color: rgba(126, 87, 194, 0.1); 
-  color: var(--primary-hover); 
+  background-color: rgba(126, 87, 194, 0.1);
+  color: var(--primary-hover);
 }
 .actions-button-group .download-button:active,
 .actions-button-group .share-button:active,
 .actions-button-group .download-button-new:active {
-  background-color: rgba(126, 87, 194, 0.2); 
+  background-color: rgba(126, 87, 194, 0.2);
 }
 .actions-button-group .share-button.copied i.fa-check {
-    color: #4CAF50; 
+    color: #4CAF50;
 }
 .actions-button-group .share-button.copied {
-    cursor: default; 
+    cursor: default;
 }
 @keyframes colorTransition {
   0% {
@@ -879,26 +821,26 @@ p {
   }
 }
 .error-page {
-  background-color: var(--light-gray-bg); 
+  background-color: var(--light-gray-bg);
   color: #212121;
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center; 
+  text-align: center;
   padding: 50px;
 }
 .error-page h1 {
-  font-size: 4rem; 
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 .error-page h2 {
-  font-size: 2.5rem; 
+  font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
 .error-page p {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   margin-bottom: 2rem;
 }
 .error-page .btn, .artists-list a {
@@ -909,13 +851,13 @@ p {
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
-  padding: 10px 20px; 
-  font-size: 1em; 
-  text-decoration: none; 
+  padding: 10px 20px;
+  font-size: 1em;
+  text-decoration: none;
 }
 .error-page .btn:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
 }
 .artists-list {
   padding: 0.5rem 20px 60px 20px;
@@ -929,58 +871,52 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px; 
+  gap: 15px;
 }
 .artists-list li {
   width: 200px;
 }
 .artists-list a {
-  display: block; /* Ensure it takes full width of the li */
-  padding: 15px 20px; /* Adjusted padding for better balance */
+  display: block;
+  padding: 15px 20px;
   text-decoration: none;
   text-align: center;
-  font-size: 1.05em; /* Slightly adjusted font size */
-  font-weight: 500; /* Medium weight for better presence */
-  color: var(--primary-color); /* Use primary color for text */
-  background-color: var(--white); /* White background */
-  border: 1px solid var(--border-color); /* Lighter border color */
-  border-radius: 8px; /* Softer rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
-  transition: all 0.2s ease-in-out; /* Smooth transition for all properties */
-  cursor: pointer; /* Explicitly set cursor */
+  font-size: 1.05em;
+  font-weight: 500;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
-
 .artists-list a:hover,
-.artists-list a:focus { /* Added :focus for accessibility */
-  color: var(--white); /* White text on hover/focus */
-  background-color: var(--primary-color); /* Primary color background */
-  border-color: var(--primary-color); /* Match border to background */
-  box-shadow: 0 4px 8px rgba(126, 87, 194, 0.2); /* Enhanced shadow with primary tint */
-  transform: translateY(-2px); /* Subtle lift effect */
-  outline: none; /* Remove default focus outline if visual style is sufficient */
+.artists-list a:focus {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(126, 87, 194, 0.2);
+  transform: translateY(-2px);
+  outline: none;
 }
-
-
 .page-main-title {
-  background-color: #F8F5FD; /* שומרים על הרקע הבהיר */
-  color: var(--primary-hover); /* שומרים על צבע הטקסט */
-  padding: 0.6rem 1.5rem; /* לדוגמה: 0.6rem אנכי, 1.5rem אופקי (קודם היה 0.9rem 1.8rem) */
-  margin-top: 0rem;        /* שומרים על הרווח העליון שהוגדר */
-  margin-bottom: 1.5rem;     /* שומרים על הרווח התחתון */
-  border-radius: 6px;        /* אפשר להקטין מעט את הפינות למראה עדין יותר */
-  box-shadow: 0 2px 6px rgba(126, 87, 194, 0.05); /* צל עדין מאוד, מותאם לגודל הקטן */
+  background-color: #F8F5FD;
+  color: var(--primary-hover);
+  padding: 0.6rem 1.5rem;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(126, 87, 194, 0.05);
   text-align: center;
-  font-size: 1.7em; /* לדוגמה (קודם היה 1.8em) */
+  font-size: 1.7em;
   font-weight: 600;
-  max-width: 550px; /* לדוגמה (קודם היה 850px). אפשר לשחק עם הערך הזה */
+  max-width: 550px;
   margin-left: auto;
   margin-right: auto;
   border: none;
 }
-
-
-
-h1, h2, h3, h4, .get-title { 
+h1, h2, h3, h4, .get-title {
   font-family: var(--font-base);
   font-weight: 700;
 }
@@ -994,11 +930,11 @@ h4 {
   font-size: 1.5em;
 }
 .content-area {
-  margin-top: 20px; 
-  max-width: 1200px; 
+  margin-top: 20px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 15px; 
+  padding: 0 15px;
 }
 .main-columns {
   display: flex;
@@ -1009,24 +945,24 @@ h4 {
 .artists-column, .songs-column {
   flex: 1;
   min-width: 280px;
-  background: #fafafa; 
-  padding: 25px; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 5px rgba(0,0,0,0.06); 
+  background: #fafafa;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
 }
-.artists-column h2, .songs-column h2, a.column-title-link { 
+.artists-column h2, .songs-column h2, a.column-title-link {
   font-size: 1.5em;
   margin-top: 0;
   margin-bottom: 25px;
   display: inline-flex;
   align-items: center;
   padding: 8px 15px;
-  background-color: rgba(126, 87, 194, 0.1); 
-  color: var(--primary-hover); 
+  background-color: rgba(126, 87, 194, 0.1);
+  color: var(--primary-hover);
   border-radius: 6px;
   font-weight: 600;
-  text-decoration: none; 
-  transition: background-color 0.2s ease, color 0.2s ease; 
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 a.column-title-link:hover {
     background-color: var(--primary-color);
@@ -1047,7 +983,7 @@ a.column-title-link:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none; 
+  text-decoration: none;
 }
 .artist-circle {
   width: 70px;
@@ -1059,14 +995,14 @@ a.column-title-link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px; 
+  font-size: 28px;
   margin-bottom: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  text-decoration: none; 
+  text-decoration: none;
 }
-a.artist-circle:hover { 
+a.artist-circle:hover {
   background-color: var(--primary-color);
   color: var(--white);
   transform: translateY(-3px);
@@ -1074,7 +1010,7 @@ a.artist-circle:hover {
 }
 .artist-name {
   font-size: 0.9em;
-  color: #333; 
+  color: #333;
   font-weight: 500;
 }
 .songs-column ul {
@@ -1083,19 +1019,19 @@ a.artist-circle:hover {
   margin: 0;
 }
 .songs-column li {
-  padding: 12px 8px; 
-  border-bottom: 1px solid var(--border-color); 
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color);
   font-size: 0.95em;
   display: flex;
   align-items: center;
   transition: color 0.2s ease, background-color 0.2s ease;
   cursor: pointer;
   border-radius: 4px;
-  margin-bottom: 2px; 
+  margin-bottom: 2px;
 }
 .songs-column li:hover {
   color: var(--primary-hover);
-  background-color: rgba(0,0,0,0.03); 
+  background-color: rgba(0,0,0,0.03);
 }
 .songs-column li:last-child {
   border-bottom: none;
@@ -1109,24 +1045,24 @@ a.artist-circle:hover {
   transition: color 0.2s ease;
 }
 .songs-column li:hover i.song-icon {
-  color: var(--highlight-color); 
+  color: var(--highlight-color);
 }
 .ad-section {
   margin-top: 30px;
-  position: relative; 
+  position: relative;
 }
 .ad-placeholder {
  background-color: var(--white);
- color: #333; 
- border: 1px solid var(--border-color); 
+ color: #333;
+ border: 1px solid var(--border-color);
  border-radius: 8px;
  padding: 25px;
  text-align: center;
  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
- min-height: 150px; 
- position: relative; 
- max-width: 600px; 
- margin: 30px auto; 
+ min-height: 150px;
+ position: relative;
+ max-width: 600px;
+ margin: 30px auto;
 }
 .ad-placeholder h3 {
   font-size: 1.3em;
@@ -1136,11 +1072,11 @@ a.artist-circle:hover {
 }
 .ad-placeholder h3 i { margin-left: 8px; opacity: 0.8; }
 .ad-placeholder p {
-  font-size: 1em; 
+  font-size: 1em;
   line-height: 1.6; margin-bottom: 20px; color: #555;
   padding: 0 20px;
 }
-.ad-placeholder a.helpButton, 
+.ad-placeholder a.helpButton,
 .ad-placeholder button.helpButton {
  display: inline-block;
  padding: 9px 20px;
@@ -1155,7 +1091,7 @@ a.artist-circle:hover {
 .ad-placeholder button.helpButton:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
-  color: var(--white); 
+  color: var(--white);
 }
 @media (max-width: 680px) {
   .main-columns { flex-direction: column; gap: 30px; }
@@ -1169,25 +1105,25 @@ a.artist-circle:hover {
   font-style: italic;
 }
 .ad-banner-container {
-  width: 100%; 
-  background-color: var(--white); 
-  padding: 35px 60px; 
+  width: 100%;
+  background-color: var(--white);
+  padding: 35px 60px;
   text-align: center;
-  margin-top: 40px; 
-  margin-bottom: 30px; 
-  position: relative; 
-  box-shadow: var(--card-shadow); 
-  border-radius: var(--border-radius-main); 
-  overflow: hidden; 
-  min-height: 120px; 
-  display: flex; 
+  margin-top: 40px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-main);
+  overflow: hidden;
+  min-height: 120px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 .ad-banner-container h3 {
-  font-size: 1.4em; 
+  font-size: 1.4em;
   color: var(--primary-color);
   margin-top: 0;
   margin-bottom: 10px;
@@ -1196,30 +1132,30 @@ a.artist-circle:hover {
   padding: 0;
 }
 .ad-banner-container p {
-  font-size: 1.1em; 
-  color: #333; 
+  font-size: 1.1em;
+  color: #333;
   line-height: 1.6;
   margin-bottom: 15px;
-  max-width: 700px; 
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
 }
 .ad-banner-container .helpButton {
- padding: 10px 25px; 
- font-size: 1em; 
+ padding: 10px 25px;
+ font-size: 1em;
 }
 .ad-banner-container #prevSection,
 .ad-banner-container #nextSection {
   position: absolute;
-  top: 50%; 
-  transform: translateY(-50%); 
-  width: 40px; 
-  height: 40px; 
-  font-size: 18px; 
-  background: rgba(126, 87, 194, 0.6); 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background: rgba(126, 87, 194, 0.6);
   color: var(--white);
-  border: none; 
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
@@ -1227,22 +1163,22 @@ a.artist-circle:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7; 
+  opacity: 0.7;
 }
 .ad-banner-container #prevSection:hover,
 .ad-banner-container #nextSection:hover {
-  background: var(--primary-color); 
+  background: var(--primary-color);
   opacity: 1;
 }
 .ad-banner-container #prevSection {
-  right: 10px; 
+  right: 10px;
 }
 .ad-banner-container #nextSection {
-  left: 10px; 
+  left: 10px;
 }
 @media (max-width: 768px) {
   .ad-banner-container {
-      padding: 20px 50px; 
+      padding: 20px 50px;
   }
   .ad-banner-container h3 {
       font-size: 1.2em;
@@ -1258,4 +1194,22 @@ a.artist-circle:hover {
   }
   .ad-banner-container #prevSection { right: 5px; }
   .ad-banner-container #nextSection { left: 5px; }
+}
+
+@media (max-width: 600px) {
+  .artists-list ul {
+    gap: 10px;
+  }
+  .artists-list li {
+    width: 140px;
+  }
+  .artists-list a {
+    padding: 10px 10px;
+    font-size: 0.95em;
+  }
+}
+@media (max-width: 768px) and (min-width: 601px) {
+   .artists-list li {
+    width: 160px;
+  }
 }

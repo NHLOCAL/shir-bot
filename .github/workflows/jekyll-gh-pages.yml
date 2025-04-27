@@ -1,67 +1,56 @@
 # שם ה-Workflow
-name: Build and Deploy Jekyll site from /docs folder to GitHub Pages
+name: Deploy Jekyll site from /docs folder to GitHub Pages
 
 on:
+  # מופעל כאשר יש push לבראנץ' new-singles בלבד
   push:
-    branches:
-      - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow
+    branches: ["new-singles"]
 
+  # מאפשר הרצה ידנית מהטאב Actions
   workflow_dispatch:
 
+# הרשאות נדרשות לפריסה
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# הגדרת מניעת ריצות כפולות
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  # עבודת הבנייה
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Setup Ruby ✨
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1' # ודא שהגרסה מתאימה
-          # bundler-cache: true # <-- הסרנו או הפכנו להערה את השורה הזו
-
-      # --- שלב חדש: התקנת תלויות מפורשת ---
-      - name: Install dependencies 📦
-        # הרץ את הפקודה בתוך תיקיית docs
-        working-directory: ./docs
-        # הפקודה להתקנת ה-Gems מה-Gemfile
-        run: bundle install
-
       - name: Setup Pages ⚙️
-        id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5 # פעולה זו מכינה את הסביבה כולל baseurl נכון
 
       - name: Build with Jekyll 🏗️
-        working-directory: ./docs # חשוב: הרץ בתוך docs
-        # עכשיו הפקודה הזו אמורה למצוא את jekyll כי bundle install רץ קודם
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
+        # משתמש בפעולה המובנית של GitHub Actions לבניית Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs # <-- שינוי: מציין שהמקור הוא תיקיית docs
+          destination: ./docs/_site # הפלט יהיה בתוך תיקיית docs/_site (יחסית ל-source)
 
       - name: Upload artifact ⬆️
+        # מעלה את התוצאה מתיקיית הפלט הנכונה
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './docs/_site' # הנתיב לתיקיית הפלט בתוך docs
+          path: ./docs/_site # <-- שינוי: מציין את הנתיב המדויק לארטיפקט שנוצר
 
+  # עבודת הפריסה (לא דורשת שינוי)
   deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to GitHub Pages 🚀
         id: deployment

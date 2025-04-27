@@ -1,21 +1,18 @@
-let allSongs = []; // יכיל את הנתונים המאוחדים
+let allSongs = [];
 let results = [];
 let displayedResults = 0;
 let showSinglesOnly = true;
 let activeFilter = 'all';
 
-// משתני תור ההורדות (iframe) נשארים
 const downloadQueue = [];
 let isProcessingQueue = false;
 const INTER_DOWNLOAD_DELAY_MS = 300;
 const BUTTON_RESTORE_DELAY_MS = 3000;
 const IFRAME_REMOVE_DELAY_MS = 5000;
 
-// מצב טעינת נתונים
 let isLoadingSongs = false;
 let songsDataLoaded = false;
 
-// רפרנסים לאלמנטים (נשארים)
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.filter-button');
@@ -28,7 +25,6 @@ const resultsTable = document.getElementById('resultsTable');
 const homepageContent = document.getElementById('homepage-content');
 const searchResultsArea = document.getElementById('search-results-area');
 
-// --- שינוי: פונקציה לטעינת ואיחוד נתוני השירים ---
 function loadAllSongsData() {
     if (songsDataLoaded || isLoadingSongs) {
         if (songsDataLoaded) return Promise.resolve(allSongs);
@@ -37,12 +33,10 @@ function loadAllSongsData() {
 
     isLoadingSongs = true;
     console.log("Search.js: Starting to load both song data files...");
-    // displayDataLoadingMessage(); // הצג הודעת טעינה ראשונית
 
     const allSongsUrl = `${baseurl || ''}/assets/data/all_songs.json`;
     const newSongsUrl = `${baseurl || ''}/assets/data/new_songs.json`;
 
-    // טען את שני הקבצים במקביל
     window.songsDataPromise = Promise.all([
         fetch(allSongsUrl).then(response => {
             if (!response.ok) throw new Error(`Failed to load all_songs.json: ${response.status}`);
@@ -50,7 +44,7 @@ function loadAllSongsData() {
         }).catch(error => {
             console.error("Error loading all_songs.json:", error);
             return [];
-        }), // החזר מערך ריק במקרה שגיאה בקובץ זה
+        }),
 
         fetch(newSongsUrl).then(response => {
             if (!response.ok) throw new Error(`Failed to load new_songs.json: ${response.status}`);
@@ -58,67 +52,47 @@ function loadAllSongsData() {
         }).catch(error => {
             console.error("Error loading new_songs.json:", error);
             return [];
-        }) // החזר מערך ריק במקרה שגיאה בקובץ זה
+        })
     ])
     .then(([allSongsData, newSongsData]) => {
         console.log(`Search.js: Loaded ${allSongsData.length} from all_songs.json`);
         console.log(`Search.js: Loaded ${newSongsData.length} from new_songs.json`);
 
-        // ודא ששני המערכים תקינים
         const validAllSongs = Array.isArray(allSongsData) ? allSongsData : [];
         const validNewSongs = Array.isArray(newSongsData) ? newSongsData : [];
 
-        // איחוד הנתונים:
-        // 1. צור Map מהשירים החדשים (נותן עדיפות להם במקרה של serial זהה)
         const songsMap = new Map();
         validNewSongs.forEach(song => {
             if (song && song.serial) {
-                // ודא שיש driveId גם אם מגיע מ-new_songs
                 if (!song.driveId) {
-                    // נסה למצוא אותו ב-all_songs אם חסר כאן
                     const matchingOldSong = validAllSongs.find(oldSong => oldSong.serial === song.serial);
                     if (matchingOldSong && matchingOldSong.driveId) {
                         song.driveId = matchingOldSong.driveId;
-                    } else {
-                        // console.warn(`Song ${song.serial} from new_songs is missing driveId.`);
-                        // אפשר להחליט אם להכניס אותו בכלל או לא
                     }
                 }
-                // הוסף למפה, ידרוס שיר ישן עם אותו serial אם יש
                 songsMap.set(song.serial, song);
             }
         });
 
-        // 2. הוסף את השירים מהמאגר הכללי, רק אם ה-serial לא קיים כבר במפה
         validAllSongs.forEach(song => {
             if (song && song.serial && !songsMap.has(song.serial)) {
-                // ודא שיש driveId (חשוב אם זה רק ב-all_songs)
-                if (!song.driveId) {
-                    // console.warn(`Song ${song.serial} from all_songs is missing driveId.`);
-                    // אפשר להחליט אם להכניס או לא
-                }
+                 if (!song.driveId) {
+                 }
                 songsMap.set(song.serial, song);
             }
         });
 
-        // 3. המר את המפה חזרה למערך
         allSongs = Array.from(songsMap.values());
 
-        // בדיקה סופית
         if (allSongs.length === 0 && (validAllSongs.length > 0 || validNewSongs.length > 0)) {
             console.warn("Search.js: Merged song list is empty, but source arrays were not. Check data structure/serials.");
-            // אולי להשתמש באחד המקורות כגיבוי?
-            // allSongs = validAllSongs.length > 0 ? validAllSongs : validNewSongs;
         } else if (allSongs.length === 0) {
             console.warn("Search.js: Both source song files seem empty or failed to load/parse.");
-            // אין נתונים, נתמודד עם זה בהמשך
         }
-
 
         songsDataLoaded = true;
         isLoadingSongs = false;
         console.log(`Search.js: Successfully merged data. Total unique songs: ${allSongs.length}.`);
-        // hideDataLoadingMessage();
 
         document.dispatchEvent(new CustomEvent('songsDataReady', {
             detail: allSongs
@@ -126,7 +100,6 @@ function loadAllSongsData() {
         return allSongs;
     })
     .catch(error => {
-        // שגיאה זו תופעל רק אם Promise.all נכשל לגמרי (נדיר אם טיפלנו בשגיאות fetch פרטניות)
         isLoadingSongs = false;
         songsDataLoaded = false;
         console.error('Search.js: Critical error during Promise.all for song data:', error);
@@ -141,7 +114,6 @@ function loadAllSongsData() {
 }
 
 function displayDataLoadError() {
-    /* ... קוד זהה ... */
     if (resultsTableBody) {
         const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center; color: red;">שגיאה בטעינת מאגר השירים. נסה לרענן את הדף.</td></tr>`;
@@ -153,46 +125,37 @@ function displayDataLoadError() {
         }
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchValue = urlParams.get('search');
-    const searchByParam = urlParams.get('searchBy') || 'all';
-    console.log("Search.js: DOMContentLoaded");
     loadAllSongsData().then(() => {
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
-    
-        if (isHomepage && searchValue && searchByParam === 'serial') {
-            // --- Case 1: Homepage load WITH a specific serial search request ---
-            console.log(`Search.js: Processing URL serial search: search=${searchValue}, searchBy=${searchByParam}`);
-            if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-    
-            handleFilterClick('serial', false); // Update button appearance (temporarily)
-            searchSongs(searchValue.toLowerCase(), 'serial'); // Execute the specific search
 
-            handleFilterClick('all', false); // Set 'All' button as active and reset internal state
-    
-            setTimeout(clearUrlParams, 150); // Clear URL params as usual
-    
-        } else if (isHomepage && searchValue) {
-            console.log(`Search.js: Processing regular URL search: search=${searchValue}, searchBy=${searchByParam}`);
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchValue = urlParams.get('search');
+        const searchByParam = urlParams.get('searchBy') || 'all';
+        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
+
+        handleFilterClick(searchByParam, false);
+
+        if (searchValue) {
+            console.log(`Search.js: Processing URL search params: search=${searchValue}, searchBy=${searchByParam}`);
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-            // Set filter based on URL param (or default to 'all' if missing/invalid)
-            handleFilterClick(searchByParam, false);
             searchSongs(searchValue.toLowerCase(), searchByParam);
-            setTimeout(clearUrlParams, 150);
-    
-        } else if (isHomepage) {
-            console.log("Search.js: Homepage loaded without search params. Data ready.");
-            handleFilterClick('all', false); // Ensure 'all' is the default active filter
-    
+            if (isHomepage) {
+                setTimeout(clearUrlParams, 150);
+            }
         } else {
-            console.log("Search.js: Non-homepage loaded. Data ready.");
+            if (isHomepage) {
+                console.log("Search.js: Homepage loaded without search params. Displaying homepage content.");
+            } else {
+                 console.log("Search.js: Non-homepage loaded without search params.");
+            }
         }
-    
+
     }).catch(error => {
         console.error("Search.js: Initial data load failed in DOMContentLoaded.", error);
     });
+
     if (searchInput) {
         searchInput.addEventListener("keypress", function(event) {
             if (event.key === 'Enter') {
@@ -201,35 +164,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
             event.preventDefault();
             submitForm();
         });
     }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const isCurrentlyHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-            handleFilterClick(this.dataset.filter, isCurrentlyHomepage);
+            handleFilterClick(this.dataset.filter, true);
         });
     });
+
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', loadMoreResults);
     }
 });
+
 async function submitForm() {
-    /* ... קוד זהה עם בדיקת songsDataLoaded/isLoadingSongs ... */
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     const searchTerm = searchInput ? searchInput.value.trim() : '';
     const searchTermLower = searchTerm.toLowerCase();
     const currentActiveFilter = activeFilter;
+
     if (!isHomepage) {
         if (searchTerm) {
             const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
             window.location.href = redirectUrl;
         } else {
-            // *** CORRECTION HERE ***
-            searchInput?.focus(); // Line 223 corrected
+            searchInput?.focus();
         }
     } else {
         if (!songsDataLoaded) {
@@ -260,13 +225,14 @@ async function submitForm() {
         }
     }
 }
+
 async function searchSongs(query, searchBy) {
-    /* ... קוד זהה עם בדיקת songsDataLoaded/isLoadingSongs ... */
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     if (isHomepage) {
         showSearchResultsViewInternal();
     }
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
+
     if (!songsDataLoaded) {
         if (isLoadingSongs) {
             console.log("SearchSongs: Waiting for data...");
@@ -283,23 +249,16 @@ async function searchSongs(query, searchBy) {
             return;
         }
     }
-    if (!query && searchBy === 'all') {
-        displayResults([]);
-        if (resultsTableThead) resultsTableThead.style.display = "none";
-        if (loadMoreButton) loadMoreButton.style.display = 'none';
-        return;
-    }
+
     displayLoadingMessage(colspan);
     performSearch(query, searchBy);
 }
 
 function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
-    /* ... קוד זהה ... */
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
     resultsTableBody.innerHTML = '';
-    const lr = document.createElement('tr'),
-        lc = document.createElement('td');
+    const lr = document.createElement('tr'), lc = document.createElement('td');
     lc.setAttribute('colspan', colspan);
     lc.style.textAlign = 'center';
     const lcont = document.createElement('div');
@@ -321,7 +280,6 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
 }
 
 function updateDownloadLoadingMessage() {
-    /* ... קוד זהה ... */
     if (!loadingMessage || !progressText) return;
     const buttonsInProgress = document.querySelectorAll('button.download-button.download-in-progress, button.download-button-new.download-in-progress').length;
     const itemsInQueue = downloadQueue.length;
@@ -349,7 +307,6 @@ function updateDownloadLoadingMessage() {
 }
 
 function restoreDownloadButton(songSerial) {
-    /* ... קוד זהה ... */
     const btn = document.querySelector(`button.download-button[data-song-serial="${songSerial}"], button.download-button-new[data-song-serial="${songSerial}"]`);
     if (btn && btn.classList.contains('download-in-progress')) {
         const icon = btn.dataset.originalIcon || '<i class="fas fa-download"></i>';
@@ -363,7 +320,6 @@ function restoreDownloadButton(songSerial) {
 }
 
 function processDownloadQueue() {
-    /* ... קוד זהה ... */
     if (downloadQueue.length === 0) {
         isProcessingQueue = false;
         console.log("DL Queue empty.");
@@ -399,8 +355,8 @@ function processDownloadQueue() {
         setTimeout(processDownloadQueue, 50);
     }
 }
+
 window.downloadSongWithDriveId = function(buttonElement) {
-    /* ... קוד זהה ... */
     if (!buttonElement) {
         console.error("DL Handler: Invalid button.");
         return;
@@ -441,7 +397,6 @@ window.downloadSongWithDriveId = function(buttonElement) {
 }
 
 function clearUrlParams() {
-    /* ... קוד זהה ... */
     try {
         const cleanUrl = window.location.origin + (baseurl || '') + '/';
         if (window.location.href !== cleanUrl) {
@@ -454,7 +409,6 @@ function clearUrlParams() {
 }
 
 function showSearchResultsViewInternal() {
-    /* ... קוד זהה ... */
     if (homepageContent) homepageContent.style.display = 'none';
     if (searchResultsArea) searchResultsArea.style.display = 'block';
     if (resultsTable && resultsTable.style.display === 'none') {
@@ -463,27 +417,45 @@ function showSearchResultsViewInternal() {
 }
 
 function showHomepageViewInternal() {
-    /* ... קוד זהה ... */
     if (homepageContent) homepageContent.style.display = 'block';
     if (searchResultsArea) searchResultsArea.style.display = 'none';
 }
 
-function handleFilterClick(filter, doSearch = false) {
-    /* ... קוד זהה ... */
+function handleFilterClick(filter, triggeredByUserClick = false) {
     if (!filter) return;
+
+    const previousFilter = activeFilter;
     activeFilter = filter;
+
     filterButtons.forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) activeButton.classList.add('active');
-    if (doSearch) {
-        const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
-        searchSongs(searchTerm, activeFilter);
-        setTimeout(clearUrlParams, 100);
+
+    const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
+
+    let performSearchAction = false;
+
+    if (searchTerm) {
+        performSearchAction = true;
+        console.log(`handleFilterClick: Search triggered due to existing query: '${searchTerm}' with filter '${filter}'`);
+    } else if (triggeredByUserClick) {
+        performSearchAction = true;
+        console.log(`handleFilterClick: Search triggered by user click on filter '${filter}' with empty query.`);
+    }
+
+    if (performSearchAction) {
+        searchSongs(searchTerm, filter);
+        if (isHomepage && searchTerm) {
+            setTimeout(clearUrlParams, 100);
+        }
+    } else {
+        console.log(`handleFilterClick: Filter '${filter}' set, but search not triggered (no query, not a direct user click).`);
     }
 }
 
+
 function performSearch(query, searchBy) {
-    /* ... קוד זהה ... */
     let baseSongsToFilter = allSongs;
     results = filterSongs(baseSongsToFilter, query, searchBy);
     displayedResults = 0;
@@ -493,68 +465,56 @@ function performSearch(query, searchBy) {
 }
 
 function filterSongs(songsToFilter, query, searchBy) {
-    /* ... קוד זהה ... */
     if (!query) {
-        if (searchBy === 'all') return [];
-        const keyMap = {
-            name: 'name',
-            album: 'album',
-            singer: 'singer',
-            serial: 'serial'
-        };
+        if (searchBy === 'all') {
+            console.log("Filtering: Empty query, 'all' filter -> returning all valid songs.");
+            return songsToFilter.filter(song => song && song.serial && song.name);
+        }
+
+        const keyMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
         const key = keyMap[searchBy];
-        if (!key) return false; // Should be return [] for consistency
+        if (!key) return [];
+        console.log(`Filtering: Empty query, specific filter '${searchBy}' -> returning songs with non-empty '${key}'.`);
         return songsToFilter.filter(song => {
             const value = song[key];
             return value != null && String(value).trim() !== '';
         });
     }
+
     const calcDice = (t1, t2) => {
-        // *** CORRECTION HERE ***
-        if (!t1?.length || !t2?.length) return 0; // Line 504 corrected
+        if (!t1?.length || !t2?.length) return 0;
         const i = new Set(t1.filter(t => t2.includes(t)));
         return (2 * i.size) / (t1.length + t2.length);
     };
     const calcLev = (s1 = '', s2 = '') => {
-        const l1 = s1.length,
-            l2 = s2.length;
+        const l1 = s1.length, l2 = s2.length;
         if (l1 == 0) return l2 > 0 ? 1 : 0;
         if (l2 == 0) return l1 > 0 ? 1 : 0;
         if (Math.abs(l1 - l2) > Math.max(l1, l2) * 0.6) return 1;
-        const m = Array.from({
-            length: l1 + 1
-        }, (_, i) => [i]);
+        const m = Array.from({ length: l1 + 1 }, (_, i) => [i]);
         for (let j = 1; j <= l2; j++) m[0][j] = j;
         for (let i = 1; i <= l1; i++)
             for (let j = 1; j <= l2; j++) m[i][j] = Math.min(m[i - 1][j] + 1, m[i][j - 1] + 1, m[i - 1][j - 1] + (s1[i - 1] === s2[j - 1] ? 0 : 1));
         const maxL = Math.max(l1, l2);
         return maxL === 0 ? 0 : m[l1][l2] / maxL;
     };
-    const qL = query.toLowerCase(),
-        qT = qL.split(/\s+/).filter(Boolean),
-        fT = 0.55,
-        lT = 0.45;
-    const fMap = {
-        name: 'name',
-        album: 'album',
-        singer: 'singer',
-        serial: 'serial'
-    };
+
+    const qL = query.toLowerCase(), qT = qL.split(/\s+/).filter(Boolean), fT = 0.55, lT = 0.45;
+    const fMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
+
     const scored = songsToFilter.map(s => {
         s._score = 0;
         let best = 0;
         const keys = searchBy === 'all' ? ['serial', 'name', 'album', 'singer'] : (fMap[searchBy] ? [fMap[searchBy]] : []);
         for (const k of keys) {
-            const v = s[k],
-                sv = v == null ? '' : String(v);
+            const v = s[k], sv = v == null ? '' : String(v);
             if (!sv) continue;
             const lv = sv.toLowerCase();
             let current = 0;
             const exact = (k === 'serial' && lv.startsWith(qL)) || (k !== 'serial' && lv.includes(qL)) || (searchBy === 'all' && lv.includes(qL));
             if (exact) current = 1.0;
             else {
-                const vT = lv.split(/\s+/).filter(Boolean),
-                    dice = calcDice(qT, vT);
+                const vT = lv.split(/\s+/).filter(Boolean), dice = calcDice(qT, vT);
                 if (dice >= fT) current = Math.max(current, dice);
                 if (current < fT && Math.abs(qL.length - lv.length) <= Math.max(qL.length, lv.length) * 0.5) {
                     const lev = calcLev(qL, lv);
@@ -566,39 +526,36 @@ function filterSongs(songsToFilter, query, searchBy) {
         s._score = best;
         return s;
     }).filter(s => s._score > 0);
+
     if (searchBy === 'serial') {
         const tS = parseInt(qL, 10);
         if (!isNaN(tS)) return scored.sort((a, b) => {
-            const sA = parseInt(a.serial, 10) || 0,
-                sB = parseInt(b.serial, 10) || 0;
-            const isA = sA === tS,
-                isB = sB === tS;
+            const sA = parseInt(a.serial, 10) || 0, sB = parseInt(b.serial, 10) || 0;
+            const isA = sA === tS, isB = sB === tS;
             if (isA && !isB) return -1;
             if (!isA && isB) return 1;
             if (isA && isB) return 0;
             if (a._score !== b._score) return b._score - a._score;
-            const dA = Math.abs(sA - tS),
-                dB = Math.abs(sB - tS);
+            const dA = Math.abs(sA - tS), dB = Math.abs(sB - tS);
             return dA !== dB ? dA - dB : sA - sB;
         });
     }
+
     return scored.sort((a, b) => {
         if (a._score !== b._score) return b._score - a._score;
-        const sA = parseInt(a.serial, 10) || 0,
-            sB = parseInt(b.serial, 10) || 0;
+        const sA = parseInt(a.serial, 10) || 0, sB = parseInt(b.serial, 10) || 0;
         return sA - sB;
     });
 }
 
+
 function displayResults(resultsToDisplay, append = false) {
-    /* ... קוד זהה ... */
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!append) resultsTableBody.innerHTML = '';
     if (resultsToDisplay.length === 0 && !append) {
-        const nr = document.createElement('tr'),
-            nc = document.createElement('td');
+        const nr = document.createElement('tr'), nc = document.createElement('td');
         nc.setAttribute('colspan', colspan);
         nc.textContent = 'לא נמצאו תוצאות.';
         nc.style.textAlign = 'center';
@@ -661,11 +618,8 @@ function displayResults(resultsToDisplay, append = false) {
 }
 
 function loadMoreResults() {
-    /* ... קוד זהה ... */
     console.log(`Load More: Disp=${displayedResults}, Total=${results.length}`);
-    const start = displayedResults,
-        limit = displayedResults + 250,
-        end = Math.min(limit, results.length);
+    const start = displayedResults, limit = displayedResults + 250, end = Math.min(limit, results.length);
     if (start >= results.length) {
         console.log("No more.");
         if (loadMoreButton) loadMoreButton.style.display = 'none';
@@ -678,10 +632,7 @@ function loadMoreResults() {
 }
 
 function toggleLoadMoreButton() {
-    /* ... קוד זהה ... */
     if (loadMoreButton) {
         loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
     }
 }
-
-// --- סוף הדבקת קוד ---

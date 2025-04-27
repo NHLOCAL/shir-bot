@@ -1,64 +1,58 @@
-# שם ה-Workflow שיוצג בטאב Actions ב-GitHub
+# שם ה-Workflow
 name: Build and Deploy Jekyll site from /docs folder to GitHub Pages
 
-# מתי ה-Workflow ירוץ
 on:
-  # מופעל כאשר יש push לבראנץ' new-singles בלבד
   push:
     branches:
-      - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow בדחיפה
+      - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow
 
-  # מאפשר הרצה ידנית מהטאב Actions (אופציונלי)
   workflow_dispatch:
 
-# הגדרת הרשאות נדרשות עבור ה-Actions (חשוב לפריסה)
 permissions:
-  contents: read      # נדרש כדי לעשות checkout לקוד
-  pages: write        # נדרש כדי לכתוב ל-GitHub Pages
-  id-token: write     # נדרש כדי לאמת את הפריסה
+  contents: read
+  pages: write
+  id-token: write
 
-# הגדרת מניעת ריצות כפולות עבור אותו commit/branch
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # עבודת הבנייה והפריסה
   build:
-    runs-on: ubuntu-latest # מערכת ההפעלה של הרץ
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        # פעולה זו עדיין מורידה את כל המאגר, כולל תיקיית docs
         uses: actions/checkout@v4
 
       - name: Setup Ruby ✨
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1' # ודא שהגרסה מתאימה
-          bundler-cache: true # מפעיל שמירת מטמון. חשוב: הוא יחפש את Gemfile בנתיב ברירת המחדל (שורש), או בנתיב שנגדיר. נראה אם הוא מסתדר, אם לא, נתקין בנפרד.
-          # אופציונלי: אפשר לנסות לציין את הנתיב ל-Gemfile אם bundler-cache לא מוצא אותו אוטומטית
-          # cache-version: 1 # שנה אם תשנה את הגדרות ה-cache
+          # bundler-cache: true # <-- הסרנו או הפכנו להערה את השורה הזו
+
+      # --- שלב חדש: התקנת תלויות מפורשת ---
+      - name: Install dependencies 📦
+        # הרץ את הפקודה בתוך תיקיית docs
+        working-directory: ./docs
+        # הפקודה להתקנת ה-Gems מה-Gemfile
+        run: bundle install
 
       - name: Setup Pages ⚙️
         id: pages
         uses: actions/configure-pages@v4
 
-      # --- שינוי עיקרי: הרצת הבנייה מתוך תיקיית docs ---
       - name: Build with Jekyll 🏗️
-        # הוספנו working-directory כדי שהפקודה תרוץ בתוך תיקיית docs
-        working-directory: ./docs
+        working-directory: ./docs # חשוב: הרץ בתוך docs
+        # עכשיו הפקודה הזו אמורה למצוא את jekyll כי bundle install רץ קודם
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
-      # --- שינוי עיקרי: ציון הנתיב הנכון לארטיפקט ---
       - name: Upload artifact ⬆️
         uses: actions/upload-pages-artifact@v3
         with:
-          # הנתיב כעת הוא לתיקיית _site שנמצאת *בתוך* docs
-          path: './docs/_site'
+          path: './docs/_site' # הנתיב לתיקיית הפלט בתוך docs
 
-  # עבודת הפריסה (לא דורשת שינוי כאן, היא משתמשת בארטיפקט שהועלה)
   deploy:
     needs: build
     permissions:

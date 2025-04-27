@@ -1,5 +1,5 @@
 # שם ה-Workflow שיוצג בטאב Actions ב-GitHub
-name: Build and Deploy Jekyll site to GitHub Pages (from new-singles branch) # שיניתי את השם כדי שיהיה ברור
+name: Build and Deploy Jekyll site from /docs folder to GitHub Pages
 
 # מתי ה-Workflow ירוץ
 on:
@@ -8,7 +8,7 @@ on:
     branches:
       - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow בדחיפה
 
-  # מאפשר הרצה ידנית מהטאב Actions (אופציונלי, עדיין שימושי לבדיקה)
+  # מאפשר הרצה ידנית מהטאב Actions (אופציונלי)
   workflow_dispatch:
 
 # הגדרת הרשאות נדרשות עבור ה-Actions (חשוב לפריסה)
@@ -28,31 +28,37 @@ jobs:
     runs-on: ubuntu-latest # מערכת ההפעלה של הרץ
     steps:
       - name: Checkout 🛎️
-        # פעולה זו תוריד את הקוד מהבראנץ' שהפעיל את ה-workflow (כלומר, new-singles)
+        # פעולה זו עדיין מורידה את כל המאגר, כולל תיקיית docs
         uses: actions/checkout@v4
 
       - name: Setup Ruby ✨
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1' # ודא שהגרסה מתאימה
-          bundler-cache: true # מפעיל שמירת מטמון (cache)
+          bundler-cache: true # מפעיל שמירת מטמון. חשוב: הוא יחפש את Gemfile בנתיב ברירת המחדל (שורש), או בנתיב שנגדיר. נראה אם הוא מסתדר, אם לא, נתקין בנפרד.
+          # אופציונלי: אפשר לנסות לציין את הנתיב ל-Gemfile אם bundler-cache לא מוצא אותו אוטומטית
+          # cache-version: 1 # שנה אם תשנה את הגדרות ה-cache
 
       - name: Setup Pages ⚙️
         id: pages
         uses: actions/configure-pages@v4
 
+      # --- שינוי עיקרי: הרצת הבנייה מתוך תיקיית docs ---
       - name: Build with Jekyll 🏗️
-        # הפקודה תבנה את האתר מתוכן הבראנץ' new-singles
+        # הוספנו working-directory כדי שהפקודה תרוץ בתוך תיקיית docs
+        working-directory: ./docs
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
+      # --- שינוי עיקרי: ציון הנתיב הנכון לארטיפקט ---
       - name: Upload artifact ⬆️
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_site'
+          # הנתיב כעת הוא לתיקיית _site שנמצאת *בתוך* docs
+          path: './docs/_site'
 
-  # עבודת הפריסה
+  # עבודת הפריסה (לא דורשת שינוי כאן, היא משתמשת בארטיפקט שהועלה)
   deploy:
     needs: build
     permissions:

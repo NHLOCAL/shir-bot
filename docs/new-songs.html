@@ -10,12 +10,9 @@ permalink: /new-songs/
     <div class="progress-bar-container">
         <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
         <span id="progressText">מתחיל הורדות...</span>
-        <div class="progress-bar" style="display: none;">
-            <div id="progress" class="progress"></div>
-        </div>
+        <!-- הסרת progress bar ישן אם משתמשים באותו אלמנט הודעה כללי -->
     </div>
 </div>
-
 
 <div id="resultsTable" class="custom-table">
     <table>
@@ -29,26 +26,36 @@ permalink: /new-songs/
         </thead>
         <tbody class="songs-list">
             {% assign sorted_songs = site.data.new_songs | sort: 'serial' | reverse %}
-            {% for song in sorted_songs %}
-                <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
-                    <td>{{ song.name }}</td>
-                    <td><button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button></td>
-                    <td><button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button></td>
-                    <td class="actions-cell">
-                        <div class="actions-button-group">
-                            <button class="download-button-new" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" data-filename="{{ song.name }} - {{ song.singer }}.mp3" title="הורדה">
-                                <i class="fas fa-download"></i>
-                            </button>
-                            <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-                        </div>
-                        <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a>
-                     </td>
+            {% if sorted_songs and sorted_songs.size > 0 %}
+                {% for song in sorted_songs %}
+                    <!-- לוודא שיש driveId מהקובץ new_songs.yml -->
+                    <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
+                        <td>{{ song.name }}</td>
+                        <td><button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button></td>
+                        <td><button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button></td>
+                        <td class="actions-cell">
+                            <div class="actions-button-group">
+                                <!-- שינוי: שימוש במחלקה אחידה download-button -->
+                                <button class="download-button" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                            <!-- הסרת הקישור הנסתר, לא נחוץ יותר עם הורדת iframe -->
+                            <!-- <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a> -->
+                         </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">לא נמצאו שירים חדשים כרגע.</td>
                 </tr>
-            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 </div>
 
-<script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script>
+<!-- הסרת טעינת new-songs.js -->
+<!-- <script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script> -->

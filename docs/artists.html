@@ -1,15 +1,33 @@
 ---
 layout: default
 title: "רשימת אמנים"
-description: "רשימה של כל האמנים הזמינים באתר שיר-בוט"
-keywords: "אמנים, מוזיקה, רשימה"
-permalink: /artists
+description: "רשימה של כל האמנים הזמינים באתר שיר-בוט עם קישורים לדפי השירים שלהם."
+keywords: "אמנים, מוזיקה, רשימה, שיר-בוט"
+permalink: /artists/
 ---
 
+{% comment %}
+  דרך 1: לאסוף אמנים מנתוני השירים (יכול להיות איטי בבנייה)
+  {% assign artists = site.data.all_songs | map: "singer" | uniq | sort %}
+{% endcomment %}
+
+{% comment %}
+  דרך 2: להסתמך על הדפים שהפלאגין יצר (יותר יעיל אם הפלאגין רץ קודם)
+  אנו צריכים לסנן דפים שנמצאים בתיקייה 'artists'
+{% endcomment %}
+{% assign artist_pages = site.pages | where_exp: "item", "item.path contains 'artists/'" | sort: "title" %}
+
+
 <div class="artists-list">
-  <ul>
-    {% for artist in site.artists %}
-      <li><a href="{{ site.baseurl }}{{ artist.url }}">{{ artist.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <h2>רשימת אמנים</h2>
+  {% if artist_pages.size > 0 %}
+    <ul>
+      {% for artist_page in artist_pages %}
+        <li><a href="{{ site.baseurl }}{{ artist_page.url }}">{{ artist_page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p style="text-align: center;">טוען רשימת אמנים או שלא נמצאו אמנים...</p>
+    <p style="text-align: center;">(ודא שהפלאגין ArtistPageGenerator רץ בהצלחה בעת בניית האתר)</p>
+  {% endif %}
 </div>

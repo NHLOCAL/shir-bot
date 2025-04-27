@@ -1,13 +1,16 @@
 ---
-layout: default # Inherits from default, which loads core.js, ads.js, shared-redirect-handler.js
+layout: default # Inherits from default, which loads core.js, ads.js, search.js, shared-redirect-handler.js
 ---
 <div id="loadingMessage" class="loading-message">
   <div class="progress-bar-container">
     <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
     <span id="progressText"></span>
+    <!-- הסרת progress bar ישן אם משתמשים באותו אלמנט הודעה כללי -->
+    <!--
     <div class="progress-bar">
       <div id="progress" class="progress"></div>
     </div>
+     -->
   </div>
 </div>
 
@@ -18,46 +21,54 @@ layout: default # Inherits from default, which loads core.js, ads.js, shared-red
   </div>
 </div>
 
+<!-- ניתן להוסיף כותרת עם שם האמן -->
+<h2 style="text-align: center; margin-top: 1.5rem; margin-bottom: 1rem;">{{ page.title }}</h2>
+
 <div id="resultsTable" class="custom-table">
   <table>
     <thead>
       <tr>
-        <!-- הוסרה עמודת מספר סידורי -->
         <th>שם השיר</th>
         <th>שם האלבום</th>
         <th>שם הזמר</th>
-        <th>פעולות</th> <!-- עמודה חדשה -->
+        <th>פעולות</th>
       </tr>
     </thead>
     <tbody class="songs-list">
-      {% for song in page.songs %}
-      <tr data-song-serial="{{ song.number | escape }}">
-        <!-- הוסרה תא מספר סידורי -->
-        <td>
-            {{ song.name }}
-        </td>
-        <td>
-            <button class="album-button">{{ song.album }}</button>
-        </td>
-        <td>
-            <button class="singer-button">{{ song.artist }}</button>
-        </td>
-        <td class="actions-cell"> <!-- תא חדש לפעולות -->
-          <div class="actions-button-group"> <!-- הוספת ה-DIV העוטף -->
-            <button class="download-button" data-song-serial="{{ song.number | escape }}" title="הורדה">
-                <i class="fas fa-download"></i>
-            </button>
-            <button class="share-button" data-song-serial="{{ song.number | escape }}" title="שיתוף">
-                <i class="fas fa-share-alt"></i>
-            </button>
-          </div> <!-- סגירת ה-DIV העוטף -->
-       </td>
-      </tr>
-      {% endfor %}
+      {% if page.songs and page.songs.size > 0 %}
+        {% for song in page.songs %}
+          <!-- שינוי: הוספת driveId לשורה -->
+          <tr data-song-serial="{{ song.number | escape }}" data-drive-id="{{ song.driveId | escape }}">
+            <td>{{ song.name }}</td>
+            <td>
+                <!-- שינוי: הוספת data attribute לכפתור -->
+                <button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button>
+            </td>
+            <td>
+                 <!-- שינוי: הוספת data attribute לכפתור -->
+                <button class="singer-button" data-singer-name="{{ song.artist | escape }}">{{ song.artist }}</button>
+            </td>
+            <td class="actions-cell">
+              <div class="actions-button-group">
+                <!-- שינוי: הוספת driveId לכפתור ושימוש במחלקה גנרית -->
+                <button class="download-button" data-song-serial="{{ song.number | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="share-button" data-song-serial="{{ song.number | escape }}" title="שיתוף">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+              </div>
+           </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+            <td colspan="4" style="text-align: center;">לא נמצאו שירים עבור אמן זה.</td>
+        </tr>
+      {% endif %}
     </tbody>
   </table>
 </div>
 
-<!-- סקריפטים ספציפיים לדף אמן -->
-<script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
-<script src="{{ site.baseurl }}/assets/js/artist-page.js" defer></script>
+<!-- אין צורך לטעון search.js כאן, הוא נטען ב-default -->
+<!-- אין צורך לטעון artist-page.js, הלוגיקה עברה ל-shared-redirect-handler -->

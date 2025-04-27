@@ -1,100 +1,77 @@
 ---
 layout: default
-title: "שיר-בוט - מאגר מוזיקה יהודית" # Updated Title
-description: "גלו אמנים פופולריים ושירים חדשים במאגר המוזיקה היהודית הגדול. חיפוש והורדה קלה של שירים חסידיים, מזרחיים ועוד. שיר-בוט: הפלטפורמה שלכם למוזיקה יהודית." # Updated Description
-keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, סינגלים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים" # Updated Keywords (added singles)
+title: "שיר-בוט - מאגר מוזיקה יהודית"
+description: "גלו אמנים פופולריים ושירים חדשים במאגר המוזיקה היהודית הגדול. חיפוש והורדה קלה של שירים חסידיים, מזרחיים ועוד. שיר-בוט: הפלטפורמה שלכם למוזיקה יהודית."
+keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, סינגלים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים"
 canonical_url: "https://nhlocal.github.io/shir-bot"
 ---
 
-<!-- --- Homepage Content Area (Initially Visible) --- -->
 <div id="homepage-content" class="content-area">
-  <!-- --- Main Columns for Artists and Songs --- -->
+  <!-- תוכן דף הבית נשאר זהה מבחינת HTML -->
   <div class="main-columns">
       <div class="artists-column">
-          <!-- --- הפיכת הכותרת לקישור --- -->
-          <a href="{{ site.baseurl }}/artists/" class="column-title-link">
+          <!-- שינוי: הקישור צריך להיות לדף אמנים שייתכן ונרצה ליצור או להפנות אליו -->
+          <a href="{{ site.baseurl }}/artists/" class="column-title-link"> <!-- או אולי לא נציג דף כללי? נשאיר בינתיים -->
               <i class="fas fa-users"></i> אמנים בולטים
           </a>
           <div class="artists-grid" id="popular-artists-grid">
-              <!-- Artist circles will be loaded here by homepage.js -->
-              <div class="loading-placeholder">טוען אמנים...</div> <!-- Placeholder -->
+              <div class="loading-placeholder">טוען אמנים...</div>
           </div>
       </div>
       <div class="songs-column">
-          <!-- --- הפיכת הכותרת לקישור --- -->
           <a href="{{ site.baseurl }}/new-songs/" class="column-title-link">
               <i class="fas fa-headphones-alt"></i> שירים אחרונים
           </a>
           <ul id="random-songs-list">
-              <!-- Song list items will be loaded here by homepage.js -->
-              <li class="loading-placeholder">טוען שירים...</li> <!-- Placeholder -->
+              <li class="loading-placeholder">טוען שירים...</li>
           </ul>
       </div>
-  </div> <!-- סגירת <div class="main-columns"> -->
+  </div>
 
-  <!-- --- Rotating Ad Banner Section --- -->
   <div class="ad-banner-container" id="ad-banner-container">
-      <!-- Content will be injected here by ads.js -->
-       <div class="loading-placeholder">טוען פרסומת...</div> <!-- Placeholder -->
-
-      <!-- Buttons for rotating ad - positioned inside the banner by CSS -->
+       <div class="loading-placeholder">טוען פרסומת...</div>
       <button id="prevSection" aria-label="הקודם"><i class="fas fa-chevron-right"></i></button>
       <button id="nextSection" aria-label="הבא"><i class="fas fa-chevron-left"></i></button>
   </div>
 
-  <!-- *** הוספה: סקריפט להטמעת נתוני אמנים *** -->
-  <script id="artistsData" type="application/json">
-    [
-      {% for artist in site.artists %}
-        {
-          "name": {{ artist.title | jsonify }},
-          "url": "{{ artist.url | relative_url }}"
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  </script>
-  <!-- *** סוף הוספה *** -->
-
+  <!-- הסרת הטמעת artistsData, הנתונים יגיעו מ-allSongsData ב-default.html -->
+  <!--
+  <script id="artistsData" type="application/json"> ... </script>
+  -->
 </div>
-<!-- --- End of Homepage Content Area --- -->
 
 
-<!-- --- Search Results Area (Initially Hidden) --- -->
+<!-- אזור תוצאות החיפוש -->
 <div id="search-results-area" style="display: none;">
-    <!-- Loading Message for downloads (controlled by search.js) -->
+    <!-- הודעת טעינה להורדות/חיפוש -->
     <div id="loadingMessage" class="loading-message">
         <div class="progress-bar-container">
             <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
             <span id="progressText"></span>
-            <div class="progress-bar">
-                <div id="progress" class="progress"></div>
-            </div>
+            <!-- הסרת progress bar ישן אם משתמשים באותו אלמנט הודעה כללי -->
         </div>
     </div>
 
-    <!-- Results Table container -->
+    <!-- הטבלה תאוכלס ע"י search.js -> displayResults, שכבר עודכן להכיל data-drive-id -->
     <div id="resultsTable" class="custom-table">
         <table>
-            <thead> <!-- Structure needed by search.js -->
+            <thead>
                 <tr>
-                    <!-- הוסרה עמודת מספר סידורי -->
                     <th>שם השיר</th>
                     <th>שם האלבום</th>
                     <th>שם הזמר</th>
-                    <th>פעולות</th> <!-- עמודה חדשה -->
+                    <th>פעולות</th>
                 </tr>
             </thead>
             <tbody class="songs-list">
-                <!-- Search results populated here by search.js -->
+                <!-- התוכן יוכנס דינמית -->
             </tbody>
         </table>
-        <!-- Load More button -->
         <button id="loadMoreButton" style="display: none;">טען עוד</button>
     </div>
 </div>
 
-
-<!-- --- Modal Overlay (controlled by core.js, used by search.js etc.) --- -->
+<!-- Modal Overlay נשאר זהה -->
 <div id="modalOverlay" class="modal-overlay">
     <div class="modal-content">
         <span id="modalMessage"></span><br>
@@ -102,8 +79,8 @@ canonical_url: "https://nhlocal.github.io/shir-bot"
     </div>
 </div>
 
-
-<!-- --- Script Includes for Homepage --- -->
-<!-- core.js and ads.js are loaded via the default layout (_layouts/default.html) -->
+<!-- הסרת טעינת הסקריפטים שכבר נטענים ב-default.html -->
+<!--
 <script src="{{ site.baseurl }}/assets/js/homepage.js" defer></script>
 <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
+-->

@@ -11,7 +11,7 @@
   <link rel="canonical" href="{{ page.canonical_url }}" />
   <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/images/favicon.png">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/personal.css">
-  <!-- Google Fonts - Arimo -->
+
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
   <script src="https://nhlocal.github.io/general-settings.js"></script>
@@ -26,20 +26,21 @@
   </script>
   {% seo %}
 
-  <!-- הגדרת משתנה baseurl עבור JavaScript (מוקדם ככל האפשר) -->
   <script>
     var baseurl = "{{ site.baseurl }}";
-  </script>  
+  </script>
 
+  <!-- הסרת סכמת אמנים ישנה, הפלאגין מייצר דפים רגילים -->
+  <!--
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "רשימת אמנים",
     "description": "רשימה של כל האמנים הזמינים באתר שיר-בוט",
-    "numberOfItems": {{ site.artists | size }},
+    "numberOfItems": {{ site.artists | size }}, // <-- זה כבר לא יעבוד
     "itemListElement": [
-      {% for artist in site.artists %}
+      {% for artist in site.artists %} // <-- זה כבר לא יעבוד
       {
         "@type": "ListItem",
         "position": {{ forloop.index }},
@@ -49,6 +50,7 @@
     ]
   }
   </script>
+  -->
 
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
@@ -57,15 +59,23 @@
     {{ content }}
   </div>
   {% include footer.html %}
-  
-  <!-- סקריפטים מרכזיים וגלובליים -->
-  <!-- baseurl כבר הוגדר למעלה -->
+
+  <!-- ================== הוספה: הטמעת נתוני שירים ================== -->
+  <script id="allSongsData" type="application/json">
+    {{ site.data.all_songs | jsonify }}
+  </script>
+  <!-- ================== סוף הוספה ================== -->
+
   <script src="{{ site.baseurl }}/assets/js/core.js" defer></script>
-  <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script> <!-- טוען גם פרסומות וגם לוגיקת Modal עזרה -->
-  <!-- <<< הוספת הקובץ המשותף >>> -->
+  <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script>
+  <!-- search.js חייב לבוא לפני shared-redirect-handler כדי שהפונקציה הגלובלית תהיה זמינה -->
+  <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/shared-redirect-handler.js" defer></script>
 
-  <!-- קבצים ספציפיים לדף ייטענו על ידי הדפים עצמם או layoutים ספציפיים שלהם, למשל _layouts/artist.html -->
+  <!-- אם הקובץ homepage.js עדיין קיים ונטען רק בדף הבית, נשאיר אותו שם -->
+  {% if page.url == '/' or page.url == '/index.html' %}
+    <script src="{{ site.baseurl }}/assets/js/homepage.js" defer></script>
+  {% endif %}
 
 </body>
 </html>

@@ -24,32 +24,58 @@ document.addEventListener('DOMContentLoaded', () => {
     function getUniqueArtists(allSongs) {
         if (!Array.isArray(allSongs)) return [];
         const artistMap = new Map();
+        console.log("Homepage.js: Filtering artists based on word count (max 3 words)...");
+        let skippedCount = 0;
+
         allSongs.forEach(song => {
-            if (song.singer && !artistMap.has(song.singer)) {
-                let slug = "unknown-artist"; // Default slug
-                try {
-                    // Attempt to create a URL-friendly slug (requires UNF library loaded)
-                    if (typeof UNF !== 'undefined' && UNF.Normalizer) {
-                        const normalized_text = UNF.Normalizer.normalize(song.singer, 'nfkc').toLowerCase();
-                         slug = normalized_text.replace(/[\s.\/\\?%*:|"<>]+/g, '-');
-                         slug = slug.replace(/^-+|-+$/g, ''); // Trim leading/trailing hyphens
-                         slug = slug || "artist"; // Fallback if slug becomes empty after replace
-                    } else {
-                         // Basic fallback if UNF is not available
-                         slug = song.singer.toLowerCase().replace(/[^a-z0-9\u0590-\u05FF\-]+/g, '-').replace(/^-+|-+$/g, '');
-                         slug = slug || "artist";
-                         if (typeof UNF === 'undefined') console.warn("UNF library not loaded, using basic slug for artist:", song.singer);
+            const singerName = song.singer; // Get the singer name
+
+            // --- Existing check: Ensure name is valid and not already added ---
+            if (singerName && !artistMap.has(singerName)) {
+
+                // --- <<< NEW CHECK: Check word count >>> ---
+                // Split by whitespace (robustly handling multiple spaces) and count non-empty parts
+                const wordCount = singerName.split(/\s+/).filter(Boolean).length;
+
+                if (wordCount <= 3) {
+                    // --- <<< Artist passes the check, proceed with adding to map >>> ---
+                    let slug = "unknown-artist";
+                    try {
+                        // --- Slug generation logic (existing code) ---
+                        if (typeof UNF !== 'undefined' && UNF.Normalizer) {
+                            const normalized_text = UNF.Normalizer.normalize(singerName, 'nfkc').toLowerCase();
+                            slug = normalized_text.replace(/[^a-z0-9\u0590-\u05FF\-]+/g, '-').replace(/^-+|-+$/g, '');
+                            slug = slug || "artist";
+                        } else {
+                            slug = singerName.toLowerCase().replace(/[^a-z0-9\u0590-\u05FF\-]+/g, '-').replace(/^-+|-+$/g, '');
+                            slug = slug || "artist";
+                            // Warning moved outside the loop if needed once
+                        }
+                        // --- End Slug generation logic ---
+                    } catch (e) {
+                         console.error("Error creating slug for artist:", singerName, e);
+                         slug = "error-artist"; // Fallback slug on error
                     }
-                } catch (e) {
-                     console.error("Error creating slug for artist:", song.singer, e);
-                     slug = "error-artist"; // Indicate error in URL
+                    // Add the valid artist and their URL to the map
+                    artistMap.set(singerName, `${baseurl || ''}/artists/${slug}/`);
+                } else {
+                    // --- <<< Artist fails the check (more than 3 words), skip it >>> ---
+                    skippedCount++;
+                    // Optional: Log skipped artists for debugging (can be noisy)
+                    // console.log(`Homepage: Skipping artist '${singerName}' (word count: ${wordCount})`);
                 }
-                artistMap.set(song.singer, `${baseurl || ''}/artists/${slug}/`); // Construct the expected URL
+                 // --- <<< End of NEW CHECK >>> ---
             }
         });
-        // Convert Map to array of objects sorted alphabetically
+
+        if (typeof UNF === 'undefined') {
+            console.warn("UNF library not loaded, using basic slug generation for artists.");
+        }
+        console.log(`Homepage.js: Filtered artists. Kept ${artistMap.size}, skipped ${skippedCount} due to word count.`);
+        // Return the filtered list sorted alphabetically (existing code)
         return Array.from(artistMap, ([name, url]) => ({ name, url })).sort((a, b) => a.name.localeCompare(b.name, 'he'));
     }
+
 
     /**
      * Selects a specified number of random items from an array.

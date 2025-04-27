@@ -1,23 +1,45 @@
-<div class="topnav">
-  <header class="ripple-header">
-    <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר">
-      <img width="50" style="border-radius: 48%;" src="{{ site.baseurl }}/assets/images/NH.LOCAL.jpg" alt="הסמל של המחבר">
-    </a>
-    <center class="parent-element">
-      <h3 id="nextObject">
-        <img width="85" src="{{ site.baseurl }}/assets/images/logo.png" alt="סמל האתר"> <span class="site-title">שיר-בוט</span>
-      </h3>
-      <!-- קישור לדף רשימת האמנים -->
-      <a class="artists-link" href="{{ site.baseurl }}/artists" title="רשימת אמנים">
-        <i class="fas fa-users"></i>
+<div class="fixed-header-wrapper">
+  <div class="header-content-unit">
+    {% comment %} --- Top Row: Logo, Search, Icons --- {% endcomment %}
+    <nav class="top-navbar-section">
+      <a href="{{ site.baseurl }}/" class="logo-container" id="nextObject">
+        <img width="32" src="{{ site.baseurl }}/assets/images/logo.png" alt="סמל האתר">
+        <span class="site-title">שיר-בוט</span>
       </a>
-    </center>
-  </header>
-  <!-- תנאי להצגת טופס החיפוש -->
-  {% if page.show_search_form != false %}
-    {% include search_form.html %}
-  {% endif %}
+
+      {% comment %} --- Search Bar (Adapted from original structure) --- {% endcomment %}
+      <form class="search-bar" id="searchForm">
+          <input type="text" class="search-input" placeholder="חפש שירים, אמנים, אלבומים..." id="searchInput" autofocus>
+          <div class="search-icons">
+              <a href="{{ site.baseurl }}/artists" title="חפש אמנים" aria-label="חפש אמנים" class="search-icon-button"><i class="fas fa-user-friends"></i></a>
+              <a href="{{ site.baseurl }}/new-songs" title="חפש שירים חדשים" aria-label="חפש שירים חדשים" class="search-icon-button"><i class="fas fa-fire"></i></a>
+          </div>
+          <button type="submit" class="search-icon-button" aria-label="חפש">
+            <i class="fas fa-search"></i>
+          </button>
+      </form>
+
+      {% comment %} --- Right Side Icons (From original structure) --- {% endcomment %}
+      <div class="icons-container">
+        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר">
+          <div class="nhlocal-icon-wrapper">
+            <img class="nhlocal-icon" width="24" src="{{ site.baseurl }}/assets/images/NH.LOCAL.jpg" alt="הסמל של המחבר">
+          </div>
+        </a>
+      </div>
+    </nav>
+
+    {% comment %} --- Bottom Row: Filters (Adapted from original structure) --- {% endcomment %}
+    {% if page.show_search_form != false %}
+    <div class="filters-section">
+         <button class="filter-button active" data-filter="all">הכל</button>
+         <button class="filter-button" data-filter="name">שם השיר</button>
+         <button class="filter-button" data-filter="album">שם האלבום</button>
+         <button class="filter-button" data-filter="singer">שם הזמר</button>
+    </div>
+    {% endif %}
+  </div>
 </div>

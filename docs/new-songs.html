@@ -1,0 +1,53 @@
+---
+layout: default
+title: "שירים חדשים"
+description: "רשימת השירים החדשים ביותר במאגר שיר-בוט."
+keywords: "שירים חדשים, מוזיקה חדשה, עדכונים, שיר-בוט"
+permalink: /new-songs/
+---
+
+<div id="loadingMessage" class="loading-message" style="display: none;">
+    <div class="progress-bar-container">
+        <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+        <span id="progressText">מתחיל הורדות...</span>
+    </div>
+</div>
+
+<div id="resultsTable" class="custom-table">
+    <table>
+        <thead>
+            <tr>
+                <th>שם השיר</th>
+                <th>שם האלבום</th>
+                <th>שם הזמר</th>
+                <th>פעולות</th>
+            </tr>
+        </thead>
+        <tbody class="songs-list">
+            {% assign sorted_songs = site.data.new_songs | sort: 'serial' | reverse %}
+            {% if sorted_songs and sorted_songs.size > 0 %}
+                {% for song in sorted_songs %}
+                    <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
+                        <td>{{ song.name }}</td>
+                        <td><button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button></td>
+                        <td><button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button></td>
+                        <td class="actions-cell">
+                            <div class="actions-button-group">
+                                <button class="download-button" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                         </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">לא נמצאו שירים חדשים כרגע.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>

@@ -27,7 +27,7 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   background-color: var(--light-gray-bg);
-  padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px);
+  padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.8rem);
   padding-bottom: 60px;
 }
 main {
@@ -456,7 +456,7 @@ td {
     .top-navbar-section .icons-container a { width: 34px; height: 34px; font-size: 1.15em; }
     .filters-section { gap: 8px; min-height: var(--filter-section-height); padding: 5px 10px; }
     .filter-button { padding: 6px 14px; font-size: 0.9em; }
-    body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 15px); }
+    body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem); }
 }
 @media (max-width: 600px) { 
     :root {
@@ -464,7 +464,7 @@ td {
         --search-field-height: 40px;
         --filter-section-height: 45px; 
     }
-     body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 10px); }
+     body { padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem); }
      .fixed-header-wrapper { left: 5px; right: 5px; }
      .header-content-unit { border-radius: 8px; }
      .top-navbar-section { padding: 0 8px; gap: 0px; }
@@ -918,16 +918,10 @@ p {
   transform: translateY(-2px); 
 }
 .artists-list {
-  padding: 20px 20px 60px 20px;
+  padding: 0.5rem 20px 60px 20px;
   background-color: transparent;
   max-width: 1200px;
   margin: 0 auto;
-}
-.artists-list h2 {
-  text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #212121;
 }
 .artists-list ul {
   list-style: none;
@@ -965,6 +959,30 @@ p {
   transform: translateY(-2px); /* Subtle lift effect */
   outline: none; /* Remove default focus outline if visual style is sufficient */
 }
+
+
+.page-main-title {
+  background-color: #F8F5FD;
+  color: var(--primary-hover);
+  padding: 0.9rem 1.8rem;
+  /* --- שינוי (אופציונלי, לכיוונון סופי) --- */
+  /* לאחר תיקון ה-body padding וה-container padding, ייתכן שתרצה לכוונן את ה-margin-top הזה.
+     אפשר להתחיל עם ערך קטן יותר או להשאיר 0.8rem ולראות איך זה נראה. */
+  margin-top: 0.5rem; /* <-- אפשר לנסות ערך זה או להשאיר 0.8rem מהקוד הקודם */
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(126, 87, 194, 0.06);
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 600;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+
+
+
 h1, h2, h3, h4, .get-title { 
   font-family: var(--font-base);
   font-weight: 700;

@@ -1,0 +1,68 @@
+# שם ה-Workflow שיוצג בטאב Actions ב-GitHub
+name: Build and Deploy Jekyll site to GitHub Pages (from new-singles branch) # שיניתי את השם כדי שיהיה ברור
+
+# מתי ה-Workflow ירוץ
+on:
+  # מופעל כאשר יש push לבראנץ' new-singles בלבד
+  push:
+    branches:
+      - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow בדחיפה
+
+  # מאפשר הרצה ידנית מהטאב Actions (אופציונלי, עדיין שימושי לבדיקה)
+  workflow_dispatch:
+
+# הגדרת הרשאות נדרשות עבור ה-Actions (חשוב לפריסה)
+permissions:
+  contents: read      # נדרש כדי לעשות checkout לקוד
+  pages: write        # נדרש כדי לכתוב ל-GitHub Pages
+  id-token: write     # נדרש כדי לאמת את הפריסה
+
+# הגדרת מניעת ריצות כפולות עבור אותו commit/branch
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # עבודת הבנייה והפריסה
+  build:
+    runs-on: ubuntu-latest # מערכת ההפעלה של הרץ
+    steps:
+      - name: Checkout 🛎️
+        # פעולה זו תוריד את הקוד מהבראנץ' שהפעיל את ה-workflow (כלומר, new-singles)
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby ✨
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # ודא שהגרסה מתאימה
+          bundler-cache: true # מפעיל שמירת מטמון (cache)
+
+      - name: Setup Pages ⚙️
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Build with Jekyll 🏗️
+        # הפקודה תבנה את האתר מתוכן הבראנץ' new-singles
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact ⬆️
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site'
+
+  # עבודת הפריסה
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -14,8 +14,8 @@ on:
       - 'requirements.txt'
   workflow_dispatch: # Allow manual trigger
   schedule:
-    # Run daily at 00:30 Israel Time (21:30 UTC during standard time)
-    - cron: '30 21 * * *'
+    # הפעלה כל יום שני וחמישי בשעה 1:00 שעון ישראל
+    - cron: '00 21 * * 1,4'
 
 permissions:
   contents: write # Required to commit changes back to the repo

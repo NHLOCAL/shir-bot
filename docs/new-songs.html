@@ -10,7 +10,6 @@ permalink: /new-songs/
     <div class="progress-bar-container">
         <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
         <span id="progressText">מתחיל הורדות...</span>
-        <!-- הסרת progress bar ישן אם משתמשים באותו אלמנט הודעה כללי -->
     </div>
 </div>
 
@@ -28,14 +27,12 @@ permalink: /new-songs/
             {% assign sorted_songs = site.data.new_songs | sort: 'serial' | reverse %}
             {% if sorted_songs and sorted_songs.size > 0 %}
                 {% for song in sorted_songs %}
-                    <!-- לוודא שיש driveId מהקובץ new_songs.yml -->
                     <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
                         <td>{{ song.name }}</td>
                         <td><button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button></td>
                         <td><button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button></td>
                         <td class="actions-cell">
                             <div class="actions-button-group">
-                                <!-- שינוי: שימוש במחלקה אחידה download-button -->
                                 <button class="download-button" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
                                     <i class="fas fa-download"></i>
                                 </button>
@@ -43,8 +40,6 @@ permalink: /new-songs/
                                     <i class="fas fa-share-alt"></i>
                                 </button>
                             </div>
-                            <!-- הסרת הקישור הנסתר, לא נחוץ יותר עם הורדת iframe -->
-                            <!-- <a href="https://drive.google.com/uc?export=download&id={{ song.driveId }}" download="{{ song.name }} - {{ song.singer }}.mp3" style="display:none;" class="hidden-download-link"></a> -->
                          </td>
                     </tr>
                 {% endfor %}
@@ -56,6 +51,3 @@ permalink: /new-songs/
         </tbody>
     </table>
 </div>
-
-<!-- הסרת טעינת new-songs.js -->
-<!-- <script src="{{ site.baseurl }}/assets/js/new-songs.js" defer></script> -->

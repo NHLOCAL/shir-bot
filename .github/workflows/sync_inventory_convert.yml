@@ -1,0 +1,118 @@
+name: Sync Drive Inventory
+
+on:
+  push:
+    branches:
+      - main # Or your main development branch
+    paths:
+      # UPDATED Python script name in trigger paths
+      - 'drive_data/drive_sync_inventory.py'
+      - 'drive_data/csv_to_yaml_converter.py'
+      - 'drive_data/ignore_singers.txt'
+      - '.github/workflows/sync_inventory_convert.yml'
+      - 'requirements.txt'
+  workflow_dispatch: # Allow manual trigger
+  schedule:
+    # Run daily at 00:30 Israel Time (21:30 UTC during standard time)
+    - cron: '30 21 * * *'
+
+permissions:
+  contents: write # Required to commit changes back to the repo
+
+jobs:
+  sync-inventory-convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Authenticate Google Drive
+        env:
+          # Use the appropriate secret name you decided on (e.g., GDRIVE_TOKEN_JSON or GDRIVE_TOKEN_SYNC_INVENTORY)
+          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
+        run: |
+          if [ -z "$GDRIVE_TOKEN_JSON_CONTENT" ]; then
+            echo "::error::Google Drive secret is not set or empty."
+            exit 1
+          fi
+          echo "$GDRIVE_TOKEN_JSON_CONTENT" | python -m json.tool > /dev/null
+          if [ $? -ne 0 ]; then
+            echo "::error::Secret does not contain valid JSON."
+            exit 1
+          fi
+          echo "Secret found and appears to be valid JSON."
+
+      - name: Run Drive Sync and Inventory Script
+        env:
+          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }} # Pass the same secret
+        run: |
+          # UPDATED: Run the renamed python script
+          python drive_data/drive_sync_inventory.py
+          if [ $? -ne 0 ]; then
+            echo "::error::Drive sync and inventory script failed."
+            exit 1
+          fi
+
+      - name: Convert Inventory CSV to YAML
+        run: |
+          if [ ! -f drive_data/csv_to_yaml_converter.py ]; then
+            echo "::error::CSV to YAML converter script not found."
+            exit 1
+          fi
+          # UPDATED: Use the new CSV filename as input
+          python drive_data/csv_to_yaml_converter.py \
+            --csv-input drive_data/all_songs.csv \
+            --yaml-output docs/_data/all_songs.yml
+          if [ $? -ne 0 ]; then
+            echo "::error::CSV to YAML conversion script failed."
+            exit 1
+          fi
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Check for changes in All Songs CSV or YAML
+        id: check_changes
+        run: |
+          # UPDATED: Add the new CSV filename and the YAML file
+          git add drive_data/all_songs.csv docs/_data/all_songs.yml
+          if git diff --staged --quiet; then
+            echo "No changes detected in all_songs CSV or YAML."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in all_songs CSV or YAML."
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          # UPDATED: Commit message reflects the new CSV name
+          git commit -m "Update Drive all_songs CSV and YAML [skip ci]"
+          retry_count=0
+          max_retries=3
+          until git pull --rebase origin ${{ github.ref_name }} && git push origin ${{ github.ref_name }} || [ $retry_count -eq $max_retries ]; do
+            retry_count=$((retry_count+1))
+            echo "Push failed or conflict detected (Retry $retry_count/$max_retries). Pulling with rebase..."
+            sleep 15
+          done
+          if [ $retry_count -eq $max_retries ]; then
+            echo "::error::Failed to push changes after multiple retries."
+            exit 1
+          else
+            echo "Changes committed and pushed successfully."
+          fi

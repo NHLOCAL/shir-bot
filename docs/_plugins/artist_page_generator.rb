@@ -3,9 +3,9 @@
 
 require 'jekyll'
 require 'unf' # Required for proper UTF-8 slugification
+# ודא ש- gem 'unf' מותקן
 
 module Jekyll
-  # Custom generator for creating artist pages from _data/all_songs.yml
   class ArtistPageGenerator < Generator
     safe true
     priority :lowest
@@ -13,45 +13,55 @@ module Jekyll
     def generate(site)
       puts "ArtistPageGenerator: Starting generation..."
 
-      # Check if data exists
+      # קריאת נתונים וקיבוץ (כמו קודם)
       unless site.data['all_songs']
-        puts "ArtistPageGenerator: Error - site.data['all_songs'] not found. Ensure _data/all_songs.yml exists and is loaded."
+        puts "ArtistPageGenerator: Error - site.data['all_songs'] not found."
         return
       end
-
       all_songs_data = site.data['all_songs']
-      if !all_songs_data.is_a?(Array) || all_songs_data.empty?
+      unless all_songs_data.is_a?(Array) && !all_songs_data.empty?
         puts "ArtistPageGenerator: Warning - site.data['all_songs'] is empty or not an array."
         return
       end
-
-      puts "ArtistPageGenerator: Found #{all_songs_data.length} songs in site.data['all_songs']."
-
-      # Group songs by singer
-      singers = all_songs_data.group_by { |song| song['singer'] }
+      singers = all_songs_data.group_by { |song| song['singer'] }.compact # Use compact to remove nil singer group
 
       puts "ArtistPageGenerator: Grouped songs into #{singers.keys.length} singers."
 
-      # Define the target directory within the source
-      target_dir = 'artists' # We'll generate files into a source folder named 'artists'
+      target_dir = 'artists' # Relative to site.source
 
-      # Ensure the target directory exists in the source
-      source_target_path = File.join(site.source, target_dir)
-      FileUtils.mkdir_p(source_target_path) unless Dir.exist?(source_target_path)
-
-      # Create a page for each singer
       singers.each do |singer_name, songs|
         next if singer_name.nil? || singer_name.strip.empty? # Skip if singer name is missing
 
-        # Create a URL-safe slug from the singer name (handling Hebrew)
         safe_singer_slug = create_slug(singer_name)
-        page_path = File.join(target_dir, "#{safe_singer_slug}.md")
+        page_name = "#{safe_singer_slug}.md" # Just the filename
 
-        puts "ArtistPageGenerator: Generating page for '#{singer_name}' at #{page_path}"
+        puts "ArtistPageGenerator: Preparing page for '#{singer_name}' -> #{target_dir}/#{page_name}"
 
-        # Create a new Page instance
-        page = ArtistPage.new(site, site.source, target_dir, "#{safe_singer_slug}.md", singer_name, songs)
-        site.pages << page
+        # --- שינוי: יצירת דף סטנדרטי והזנת הנתונים ---
+        page = Page.new(site, site.source, target_dir, page_name)
+
+        # הכנת נתוני השירים עבור Front Matter
+        page_songs = songs.map do |song|
+          {
+            'number' => song['serial'],
+            'name' => song['name'],
+            'album' => song['album'],
+            'artist' => song['singer'],
+            'driveId' => song['driveId']
+          }.compact # Remove nil values if any field is missing
+        end
+
+        # הגדרת Front Matter ישירות על אובייקט הדף
+        page.data['layout'] = 'artist'
+        page.data['name'] = singer_name # For compatibility if layout uses it
+        page.data['title'] = singer_name
+        page.data['description'] = "דף האמן #{singer_name} בשיר-בוט"
+        page.data['keywords'] = "שירים, מוזיקה, #{singer_name}, שיר-בוט"
+        page.data['songs'] = page_songs
+
+        # --- סוף שינוי ---
+
+        site.pages << page # הוסף את הדף לרשימת הדפים לעיבוד
       end
 
       puts "ArtistPageGenerator: Finished generation."
@@ -59,54 +69,17 @@ module Jekyll
 
     private
 
-    # Function to create a URL-friendly slug (handles Hebrew)
+    # פונקציית יצירת slug (נשארת זהה)
     def create_slug(text)
-      # Normalize Unicode characters (important for consistent slugification)
-      normalized_text = UNF::Normalizer.normalize(text, :nfkc).downcase
-      # Replace spaces and invalid characters with hyphens
-      slug = normalized_text.gsub(/[\s.\/\\?%*:|"<>]+/, '-')
-      # Remove leading/trailing hyphens
-      slug.gsub!(/^-+|-+$/, '')
-      # Ensure it's not empty
-      slug = "artist" if slug.empty?
-      slug
-    end
-  end
-
-  # Custom Page class to handle artist pages
-  class ArtistPage < Page
-    def initialize(site, base, dir, name, singer_name, songs)
-      super(site, base, dir, name)
-
-      # Prepare songs data for Front Matter (select relevant fields)
-      page_songs = songs.map do |song|
-        {
-          'number' => song['serial'],
-          'name' => song['name'],
-          'album' => song['album'],
-          'artist' => song['singer'], # Redundant but matches original layout expectation
-          'driveId' => song['driveId'] # Include driveId
-        }
-      end
-
-      # Set the Front Matter data for the page
-      self.data['layout'] = 'artist'
-      self.data['name'] = singer_name # Used by the layout/collection logic before
-      self.data['title'] = singer_name
-      self.data['description'] = "דף האמן #{singer_name} בשיר-בוט"
-      self.data['keywords'] = "שירים, מוזיקה, #{singer_name}, שיר-בוט"
-      # Permalink is automatically handled by Jekyll based on file path (artists/slug.html)
-      # self.data['permalink'] = "/artists/#{create_slug(singer_name)}/" # Define explicitly if needed
-      self.data['songs'] = page_songs # Add the list of songs
-    end
-
-    # Helper method (needed if used in initialize's permalink)
-    def create_slug(text)
-       normalized_text = UNF::Normalizer.normalize(text, :nfkc).downcase
-       slug = normalized_text.gsub(/[\s.\/\\?%*:|"<>]+/, '-')
-       slug.gsub!(/^-+|-+$/, '')
+      # ... (אותה לוגיקה עם UNF) ...
+       normalized_text = UNF::Normalizer.normalize(text, :nfkc).downcase rescue text.downcase # Fallback if UNF fails
+       slug = normalized_text.gsub(/[^a-z0-9\u0590-\u05FF\-_\.]/i, '-') # Allow Hebrew, numbers, -, _, .
+       slug.gsub!(/\s+/, '-') # Replace spaces with hyphens
+       slug.gsub!(/-+/, '-') # Replace multiple hyphens with one
+       slug.gsub!(/^-+|-+$/, '') # Remove leading/trailing hyphens
        slug = "artist" if slug.empty?
        slug
     end
   end
+
 end

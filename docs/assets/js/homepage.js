@@ -168,36 +168,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         songsList.innerHTML = html;
 
-        // Add click listeners to trigger search in search.js
         songsList.querySelectorAll('li[data-song-serial]').forEach(item => {
             item.addEventListener('click', () => {
                 const serial = item.dataset.songSerial;
                 console.log("Homepage.js: Song clicked, serial:", serial);
-
-                // Access functions and state from search.js (ensure they exist)
+        
                 const searchInputGlobal = document.getElementById('searchInput');
-                const searchHandler = window.searchSongs; // Defined in search.js
-                const filterHandler = window.handleFilterClick; // Defined in search.js
-                const isDataReady = typeof songsDataLoaded !== 'undefined' && songsDataLoaded; // Check flag from search.js
-
+                const searchHandler = window.searchSongs; // Function from search.js
+                const filterHandler = window.handleFilterClick; // Function from search.js
+                const isDataReady = typeof songsDataLoaded !== 'undefined' && songsDataLoaded; // Flag from search.js
+        
                 if (searchHandler && filterHandler && searchInputGlobal && isDataReady) {
-                     searchInputGlobal.value = serial; // Set search input value
-                     filterHandler('serial', false); // Update filter buttons visually
-                     searchHandler(serial, 'serial'); // Trigger the search (will also show results view)
+                    searchInputGlobal.value = serial; // Set search input value
+        
+                    filterHandler('serial', false); // Update button appearance (temporarily)
+                    searchHandler(serial, 'serial'); // Trigger the specific search using the serial
 
-                     // Optional: GA Event for homepage song click leading to search
-                      if (typeof gtag === 'function') {
-                         gtag('event', 'select_content', {
-                           'content_type': 'song_homepage_list',
-                           'item_id': serial
-                         });
-                      }
+                    filterHandler('all', false); // Set 'All' button as active and reset internal state
+        
+                    // Optional: GA Event for homepage song click leading to search
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'select_content', {
+                            'content_type': 'song_homepage_list',
+                            'item_id': serial
+                        });
+                    }
+
                 } else if (!isDataReady) {
-                     console.warn("Homepage.js: Song clicked, but song data is not ready yet.");
-                     if(typeof showMessage === 'function') showMessage("מאגר השירים עדיין בטעינה, נסה לחפש שוב בעוד רגע.");
+                    console.warn("Homepage.js: Song clicked, but song data is not ready yet.");
+                    if(typeof showMessage === 'function') showMessage("מאגר השירים עדיין בטעינה, נסה לחפש שוב בעוד רגע.");
                 } else {
                     // Fallback if search functions are not available
                     console.warn("Homepage.js: Search/filter functions or input not found, redirecting as fallback.");
+                    // Consider if this fallback is still needed or should show an error
                     window.location.href = `${baseurl || ''}/?search=${encodeURIComponent(serial)}&searchBy=serial`;
                 }
             });

@@ -1,5 +1,3 @@
-// File: assets/js/search.js
-
 let allSongs = []; // יכיל את הנתונים המאוחדים
 let results = [];
 let displayedResults = 0;
@@ -142,12 +140,6 @@ function loadAllSongsData() {
     return window.songsDataPromise;
 }
 
-// --- שאר הקוד ב-search.js נשאר זהה ---
-// (כולל DOMContentLoaded, submitForm, searchSongs, displayResults, הורדות וכו')
-// ...
-// הדבקת כל שאר הקוד מ-search.js מהתשובה הקודמת כאן
-// ...
-
 function displayDataLoadError() {
     /* ... קוד זהה ... */
     if (resultsTableBody) {
@@ -162,7 +154,6 @@ function displayDataLoadError() {
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
-    /* ... קוד זהה עם קריאה ל-loadAllSongsData ... */
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     const urlParams = new URLSearchParams(window.location.search);
     const searchValue = urlParams.get('search');
@@ -170,18 +161,35 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Search.js: DOMContentLoaded");
     loadAllSongsData().then(() => {
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
-        if (isHomepage && searchValue) {
-            console.log(`Search.js: Processing URL search params: search=${searchValue}, searchBy=${searchByParam}`);
+    
+        if (isHomepage && searchValue && searchByParam === 'serial') {
+            // --- Case 1: Homepage load WITH a specific serial search request ---
+            console.log(`Search.js: Processing URL serial search: search=${searchValue}, searchBy=${searchByParam}`);
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
+    
+            handleFilterClick('serial', false); // Update button appearance (temporarily)
+            searchSongs(searchValue.toLowerCase(), 'serial'); // Execute the specific search
+
+            handleFilterClick('all', false); // Set 'All' button as active and reset internal state
+    
+            setTimeout(clearUrlParams, 150); // Clear URL params as usual
+    
+        } else if (isHomepage && searchValue) {
+            console.log(`Search.js: Processing regular URL search: search=${searchValue}, searchBy=${searchByParam}`);
+            if (searchInput) searchInput.value = decodeURIComponent(searchValue);
+            // Set filter based on URL param (or default to 'all' if missing/invalid)
             handleFilterClick(searchByParam, false);
             searchSongs(searchValue.toLowerCase(), searchByParam);
             setTimeout(clearUrlParams, 150);
+    
         } else if (isHomepage) {
             console.log("Search.js: Homepage loaded without search params. Data ready.");
-            handleFilterClick('all', false);
+            handleFilterClick('all', false); // Ensure 'all' is the default active filter
+    
         } else {
             console.log("Search.js: Non-homepage loaded. Data ready.");
         }
+    
     }).catch(error => {
         console.error("Search.js: Initial data load failed in DOMContentLoaded.", error);
     });

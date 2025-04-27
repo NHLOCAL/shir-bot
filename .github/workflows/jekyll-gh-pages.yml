@@ -1,56 +1,68 @@
 # שם ה-Workflow
-name: Deploy Jekyll site from /docs folder to GitHub Pages
+name: Build and Deploy Jekyll site from /docs folder to GitHub Pages
 
 on:
-  # מופעל כאשר יש push לבראנץ' new-singles בלבד
   push:
-    branches: ["new-singles"]
+    branches:
+      - new-singles # רק הבראנץ' הזה יפעיל את ה-workflow
 
-  # מאפשר הרצה ידנית מהטאב Actions
   workflow_dispatch:
 
-# הרשאות נדרשות לפריסה
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# הגדרת מניעת ריצות כפולות
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # עבודת הבנייה
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
+      - name: Setup Ruby ✨
+        uses: ruby/setup-ruby@v1
+        with:
+          # ודא שזו גרסת רובי שתומכת ב-Jekyll 4.3.4
+          ruby-version: '3.1' # או 3.0, 3.2 - בדוק תאימות אם צריך
+          # לא משתמשים ב-bundler-cache כאן כדי למנוע התנגשויות
+
+      - name: Install dependencies 📦
+        # הרץ את הפקודה בתוך תיקיית docs
+        working-directory: ./docs
+        # הפקודה להתקנת ה-Gems מה-Gemfile (כולל Jekyll 4.3.4 ו-unf)
+        run: bundle install
+
       - name: Setup Pages ⚙️
-        uses: actions/configure-pages@v5 # פעולה זו מכינה את הסביבה כולל baseurl נכון
+        id: pages
+        uses: actions/configure-pages@v5 # ניתן להשתמש בגרסה עדכנית
 
       - name: Build with Jekyll 🏗️
-        # משתמש בפעולה המובנית של GitHub Actions לבניית Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs # <-- שינוי: מציין שהמקור הוא תיקיית docs
-          destination: ./docs/_site # הפלט יהיה בתוך תיקיית docs/_site (יחסית ל-source)
+        working-directory: ./docs # חשוב: הרץ בתוך docs
+        # הפקודה הזו תריץ את Jekyll 4.3.4 שהותקן בשלב הקודם
+        # ותטען את הפלאגין מ- _plugins
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact ⬆️
-        # מעלה את התוצאה מתיקיית הפלט הנכונה
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/_site # <-- שינוי: מציין את הנתיב המדויק לארטיפקט שנוצר
+          path: './docs/_site' # הנתיב לתיקיית הפלט בתוך docs
 
-  # עבודת הפריסה (לא דורשת שינוי)
   deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages 🚀
         id: deployment

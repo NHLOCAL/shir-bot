@@ -40,7 +40,7 @@ IGNORE_SINGERS_FILE = Path("drive_data/ignore_singers.txt")
 # --- Target & Common ---
 TARGET_ROOT_FOLDER_ID = "1dfyehiuGrgj2B_76-9I-nJqJ3VOLP3v_"
 SINGLES_FOLDER_NAME = "סינגלים"
-MAX_FILES_TO_COPY_PER_RUN = 10000
+MAX_FILES_TO_COPY_PER_RUN = 50000
 
 # --- Output File Paths (Relative to Repo Root) ---
 # UPDATED CSV FILENAME

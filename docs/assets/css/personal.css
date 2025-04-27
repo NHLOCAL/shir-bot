@@ -962,20 +962,17 @@ p {
 
 
 .page-main-title {
-  background-color: #F8F5FD;
-  color: var(--primary-hover);
-  padding: 0.9rem 1.8rem;
-  /* --- שינוי (אופציונלי, לכיוונון סופי) --- */
-  /* לאחר תיקון ה-body padding וה-container padding, ייתכן שתרצה לכוונן את ה-margin-top הזה.
-     אפשר להתחיל עם ערך קטן יותר או להשאיר 0.8rem ולראות איך זה נראה. */
-  margin-top: 0.5rem; /* <-- אפשר לנסות ערך זה או להשאיר 0.8rem מהקוד הקודם */
-  margin-bottom: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(126, 87, 194, 0.06);
+  background-color: #F8F5FD; /* שומרים על הרקע הבהיר */
+  color: var(--primary-hover); /* שומרים על צבע הטקסט */
+  padding: 0.6rem 1.5rem; /* לדוגמה: 0.6rem אנכי, 1.5rem אופקי (קודם היה 0.9rem 1.8rem) */
+  margin-top: 0.8rem;        /* שומרים על הרווח העליון שהוגדר */
+  margin-bottom: 1.5rem;     /* שומרים על הרווח התחתון */
+  border-radius: 6px;        /* אפשר להקטין מעט את הפינות למראה עדין יותר */
+  box-shadow: 0 2px 6px rgba(126, 87, 194, 0.05); /* צל עדין מאוד, מותאם לגודל הקטן */
   text-align: center;
-  font-size: 1.8em;
+  font-size: 1.7em; /* לדוגמה (קודם היה 1.8em) */
   font-weight: 600;
-  max-width: 850px;
+  max-width: 550px; /* לדוגמה (קודם היה 850px). אפשר לשחק עם הערך הזה */
   margin-left: auto;
   margin-right: auto;
   border: none;

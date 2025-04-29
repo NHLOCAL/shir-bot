@@ -162,10 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isDataReady = typeof songsDataLoaded !== 'undefined' && songsDataLoaded;
 
                 if (searchHandler && filterHandler && searchInputGlobal && isDataReady) {
+                     // 1. עדכן את שדה החיפוש
                      searchInputGlobal.value = serial;
-                     filterHandler('serial', false);
+                     // 2. קבע את הפילטר הויזואלי והפנימי ל-'all'
+                     filterHandler('all', false);
+                     // 3. קרא לפונקציית החיפוש והעבר לה במפורש לחפש לפי 'serial'
                      searchHandler(serial, 'serial');
 
+                      // 4. שלח אירוע ל-GA
                       if (typeof gtag === 'function') {
                          gtag('event', 'select_content', {
                            'content_type': 'song_homepage_list',

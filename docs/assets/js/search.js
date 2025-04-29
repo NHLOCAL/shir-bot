@@ -140,20 +140,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchByParam = urlParams.get('searchBy') || 'all';
         const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
 
-        handleFilterClick(searchByParam, false);
-
-        if (searchValue) {
-            console.log(`Search.js: Processing URL search params: search=${searchValue}, searchBy=${searchByParam}`);
+        if (searchValue && searchByParam === 'serial') {
+            // אם החיפוש הוא לפי סריאלי מה-URL
+            console.log(`Search.js: Processing URL serial search: search=${searchValue}`);
+            // 1. עדכן את שדה החיפוש
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-            searchSongs(searchValue.toLowerCase(), searchByParam);
+            // 2. הגדר את הפילטר הויזואלי והפנימי ל-'all'
+            handleFilterClick('all', false);
+            // 3. בצע את החיפוש בפועל עם searchBy='serial'
+            searchSongs(searchValue.toLowerCase(), 'serial');
             if (isHomepage) {
                 setTimeout(clearUrlParams, 150);
             }
         } else {
-            if (isHomepage) {
-                console.log("Search.js: Homepage loaded without search params. Displaying homepage content.");
+            // אם זה חיפוש רגיל מה-URL (לא סריאלי) או אין חיפוש מה-URL
+            // 1. הגדר את הפילטר (ויזואלי ופנימי) לפי מה שכתוב ב-URL (או ברירת מחדל 'all')
+             handleFilterClick(searchByParam, false);
+
+             if (searchValue) {
+                // אם יש ערך חיפוש (והוא לא היה סריאלי מהבלוק הקודם)
+                console.log(`Search.js: Processing URL general search: search=${searchValue}, searchBy=${searchByParam}`);
+                if (searchInput) searchInput.value = decodeURIComponent(searchValue);
+                // 2. בצע חיפוש לפי הפרמטרים הרגילים מה-URL
+                searchSongs(searchValue.toLowerCase(), searchByParam);
+                if (isHomepage) {
+                    setTimeout(clearUrlParams, 150);
+                }
             } else {
-                 console.log("Search.js: Non-homepage loaded without search params.");
+                // אין ערך חיפוש ב-URL
+                if (isHomepage) {
+                    console.log("Search.js: Homepage loaded without search params. Displaying homepage content.");
+                } else {
+                    console.log("Search.js: Non-homepage loaded without search params.");
+                }
             }
         }
 

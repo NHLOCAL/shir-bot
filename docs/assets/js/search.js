@@ -27,7 +27,7 @@ const searchResultsArea = document.getElementById('search-results-area');
 
 function loadAllSongsData() {
     if (songsDataLoaded || isLoadingSongs) {
-        if (songsDataLoaded) return Promise.resolve(allSongs);
+        if (songsDataLoaded) return Promise.resolve({ allSongs, newSongs: window.cachedNewSongs || [] });
         return window.songsDataPromise;
     }
 
@@ -60,6 +60,7 @@ function loadAllSongsData() {
 
         const validAllSongs = Array.isArray(allSongsData) ? allSongsData : [];
         const validNewSongs = Array.isArray(newSongsData) ? newSongsData : [];
+        window.cachedNewSongs = validNewSongs; // Cache new songs separately
 
         const songsMap = new Map();
         validNewSongs.forEach(song => {
@@ -76,8 +77,8 @@ function loadAllSongsData() {
 
         validAllSongs.forEach(song => {
             if (song && song.serial && !songsMap.has(song.serial)) {
-                 if (!song.driveId) {
-                 }
+                if (!song.driveId) {
+                }
                 songsMap.set(song.serial, song);
             }
         });
@@ -95,9 +96,13 @@ function loadAllSongsData() {
         console.log(`Search.js: Successfully merged data. Total unique songs: ${allSongs.length}.`);
 
         document.dispatchEvent(new CustomEvent('songsDataReady', {
-            detail: allSongs
+            detail: {
+                allSongs: allSongs,
+                newSongs: validNewSongs
+            }
         }));
-        return allSongs;
+
+        return { allSongs, newSongs: validNewSongs };
     })
     .catch(error => {
         isLoadingSongs = false;
@@ -127,7 +132,7 @@ function displayDataLoadError() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadAllSongsData().then(() => {
+    loadAllSongsData().then(({ allSongs, newSongs }) => { // Destructure here if needed
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
 
         const urlParams = new URLSearchParams(window.location.search);

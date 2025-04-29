@@ -46,7 +46,7 @@ main {
   border-radius: var(--border-radius-main);
   border: 1px solid rgba(224, 224, 224, 0.5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+  /* overflow: hidden; */ /* הוסר כדי לאפשר להצעות ההשלמה להופיע במלואן */
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -81,6 +81,7 @@ main {
   color: var(--primary-hover);
 }
 .top-navbar-section .search-bar {
+  position: relative;
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -90,7 +91,7 @@ main {
   padding: 0 0.5rem 0 1rem;
   height: var(--search-field-height);
   border: 1px solid #dfe1e5;
-  transition: box-shadow 0.2s;
+  transition: border-radius 0.15s ease-in-out, border-color 0.15s ease-in-out;
   min-width: 200px;
   max-width: 700px;
   margin: 0 auto;
@@ -1212,4 +1213,84 @@ a.artist-circle:hover {
    .artists-list li {
     width: 160px;
   }
+}
+
+
+/* Style for search bar when suggestions are open */
+.search-bar.search-bar--suggestions-open {
+  /* Make bottom corners sharp */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /* Hide the original bottom border by making it transparent or matching background */
+  /* Option 1: Transparent (if background underneath is consistent) */
+  /* border-bottom-color: transparent; */
+  /* Option 2: Match suggestions background (safer) */
+  border-bottom-color: var(--white); /* Match suggestion box background */
+}
+
+/* Suggestions container styling */
+.autocomplete-suggestions-container {
+  position: absolute;
+  top: 100%; /* Position right below the search bar */
+  left: 0;
+  right: 0;
+  background-color: var(--white); /* Match search bar input background */
+
+  /* Borders: Match search bar sides/bottom, NO top border */
+  border-left: 1px solid #dfe1e5;
+  border-right: 1px solid #dfe1e5;
+  border-bottom: 1px solid #dfe1e5;
+  border-top: none; /* Crucial for seamless connection */
+
+  /* Corners: Sharp top to match modified search bar, rounded bottom */
+  border-radius: 0 0 12px 12px; /* Adjust radius (e.g., 12px) as needed */
+
+  z-index: 1100; /* Ensure it's above other elements */
+  /* Consistent shadow with Google's feel */
+  box-shadow: 0 4px 6px rgba(32,33,36,.28);
+  display: none; /* Hidden by default */
+
+  /* Remove any conflicting margin */
+  margin-top: 0;
+}
+
+/* Suggestion item styling */
+.autocomplete-suggestion-item {
+  padding: 8px 18px; /* Slightly reduced padding */
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #202124;
+  /* Remove individual borders, rely on container border */
+  border-bottom: none; /* Remove bottom border */
+  /* Add a subtle separator using background on hover/focus */
+  transition: background-color 0.1s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Add a very subtle top border for separation *except* for the first item */
+  border-top: 1px solid #ebebeb;
+}
+
+/* Remove top border from the very first suggestion item */
+.autocomplete-suggestion-item:first-child {
+    border-top: none;
+}
+
+
+/* Hover/active state */
+.autocomplete-suggestion-item:hover,
+.autocomplete-suggestion-item.active {
+  background-color: #f8f9fa;
+  color: var(--primary-hover);
+}
+
+/* Highlight styling */
+.autocomplete-suggestion-item strong {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Ensure no extra margins within the container */
+.autocomplete-suggestions-container > div {
+  margin: 0;
 }

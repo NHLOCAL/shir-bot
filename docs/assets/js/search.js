@@ -76,8 +76,6 @@ function loadAllSongsData() {
 
         validAllSongs.forEach(song => {
             if (song && song.serial && !songsMap.has(song.serial)) {
-                 if (!song.driveId) {
-                 }
                 songsMap.set(song.serial, song);
             }
         });
@@ -95,7 +93,10 @@ function loadAllSongsData() {
         console.log(`Search.js: Successfully merged data. Total unique songs: ${allSongs.length}.`);
 
         document.dispatchEvent(new CustomEvent('songsDataReady', {
-            detail: allSongs
+            detail: {
+                allSongs: allSongs,
+                newSongs: validNewSongs
+            }
         }));
         return allSongs;
     })

@@ -1,5 +1,5 @@
 # drive_data/drive_sync_inventory.py
-# Updated: Refactored sync logic, added pre-sync cleanup for ignored items, renamed file, changed CSV output name, suppressed IDs in standard logs.
+# Updated: Fixed f-string backslash error, added pre-sync cleanup, renamed file, changed CSV output name, suppressed IDs in standard logs.
 
 import os
 import certifi
@@ -146,13 +146,19 @@ def list_items(service, query, fields="nextPageToken, files(id, name, mimeType)"
             status_code = getattr(error, 'resp', None) and getattr(error.resp, 'status', None)
             is_retryable = status_code in [403, 429, 500, 502, 503, 504]
             reason = None
-            if hasattr(error, 'error_details') and error.error_details:
-                 reason = error.error_details[0].get('reason') if isinstance(error.error_details, list) else None
-            elif hasattr(error, 'reason'): # Sometimes it's directly on the error object
-                 reason = error.reason
+            try:
+                # Error details can be complex, try to parse common structures
+                error_json = json.loads(error.content)
+                if isinstance(error_json, dict) and 'error' in error_json:
+                    err_content = error_json['error']
+                    if isinstance(err_content, dict) and 'errors' in err_content:
+                         if isinstance(err_content['errors'], list) and len(err_content['errors']) > 0:
+                              reason = err_content['errors'][0].get('reason')
+            except: # Ignore parsing errors, just won't have the reason
+                 pass
 
             # Handle specific 403 reasons if possible
-            if status_code == 403 and reason in ['userRateLimitExceeded', 'rateLimitExceeded', 'backendError']:
+            if status_code == 403 and reason in ['userRateLimitExceeded', 'rateLimitExceeded', 'backendError', 'internalError']: # Added internalError
                 is_retryable = True # Force retry for these specific 403s
                 print(f"שגיאה 403 ספציפית הניתנת לניסיון חוזר (reason='{reason}'). ממתין ומנסה שוב...", file=sys.stderr)
 
@@ -231,7 +237,8 @@ def get_or_create_folder(service, name, parent_id):
     Returns folder ID or None.
     """
     try:
-        safe_name = name.replace("\\", "\\\\").replace("'", "\\'")
+        # Escape single quotes for the query string
+        safe_name = name.replace("'", "\\'")
         # Keep parent_id in query, but don't log it routinely
         query = f"'{parent_id}' in parents and name = '{safe_name}' and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
         # Request only 'id' and 'name' for efficiency
@@ -249,6 +256,7 @@ def get_or_create_folder(service, name, parent_id):
         else:
             # Suppress parent_id in standard log
             print(f"  יוצר תיקיה '{name}' (Parent ID מוסתר)...")
+            # Use the original name (without escaping) for folder creation metadata
             folder_metadata = {'name': name, 'mimeType': 'application/vnd.google-apps.folder', 'parents': [parent_id]}
             retries = 3
             delay = 1
@@ -303,20 +311,27 @@ def copy_file(service, source_file_id, file_name, target_parent_id):
             print(f"      שגיאה בהעתקת קובץ '{file_name}' (מזהה מקור: {source_file_id}, הורה יעד: {target_parent_id}): {error}", file=sys.stderr)
             status_code = getattr(error, 'resp', None) and getattr(error.resp, 'status', None)
             reason = None
-            if hasattr(error, 'error_details') and error.error_details:
-                 reason = error.error_details[0].get('reason') if isinstance(error.error_details, list) else None
-            elif hasattr(error, 'reason'):
-                 reason = error.reason
+            try:
+                # Error details can be complex, try to parse common structures
+                error_json = json.loads(error.content)
+                if isinstance(error_json, dict) and 'error' in error_json:
+                    err_content = error_json['error']
+                    if isinstance(err_content, dict) and 'errors' in err_content:
+                         if isinstance(err_content['errors'], list) and len(err_content['errors']) > 0:
+                              reason = err_content['errors'][0].get('reason')
+            except: # Ignore parsing errors, just won't have the reason
+                 pass
+
 
             is_retryable = status_code in [403, 429, 500, 502, 503, 504]
-            if status_code == 403 and reason in ['userRateLimitExceeded', 'rateLimitExceeded', 'backendError']:
+            if status_code == 403 and reason in ['userRateLimitExceeded', 'rateLimitExceeded', 'backendError', 'internalError']:
                 is_retryable = True
                 print(f"      שגיאת 403 ספציפית הניתנת לניסיון חוזר (reason='{reason}'). ממתין ומנסה שוב...", file=sys.stderr)
 
 
             if is_retryable and i < retries - 1:
                 wait_time = delay + (delay * i * 0.5) + (delay * 0.2 * (i+1)) # Exponential backoff with jitter
-                print(f"      שגיאה הניתנת לניסיון חוזר ({status_code}). מנסה שוב בעוד {wait_time:.2f} שניות...", file=sys.stderr)
+                print(f"      שגיאה הניתנת לניסיון חוזר ({status_code}, reason={reason}). מנסה שוב בעוד {wait_time:.2f} שניות...", file=sys.stderr)
                 time.sleep(wait_time)
                 delay = min(delay * 1.5, 32.0)
                 continue
@@ -324,7 +339,7 @@ def copy_file(service, source_file_id, file_name, target_parent_id):
                  if status_code == 404:
                     print(f"      מזהה קובץ המקור {source_file_id} לא נמצא. לא ניתן להעתיק.", file=sys.stderr); return None
                  if status_code == 403:
-                    print("      שגיאת הרשאה או חריגה ממכסה (403).", file=sys.stderr)
+                    print(f"      שגיאת הרשאה או חריגה ממכסה (403, reason={reason}).", file=sys.stderr)
                  if status_code == 400 and 'invalid parents field' in str(error).lower():
                      print(f"      מזהה תיקיית הורה היעד '{target_parent_id}' אינו תקין. לא ניתן להעתיק.", file=sys.stderr); return None
                  print(f"      לא ניתן היה להעתיק את הקובץ '{file_name}' (מזהה מקור: {source_file_id}) לאחר {i+1} ניסיונות או שגיאה שאינה ניתנת לניסיון חוזר.", file=sys.stderr)
@@ -531,7 +546,13 @@ def sync_categorized_source(service, source_root_id, source_description, target_
         # --- Check if target category exists BEFORE processing artists ---
         # We need the target category ID to find artists within it for deletion, but only create it if needed for copying.
         target_category_folder_id = None
-        target_category_query = f"'{target_root_id}' in parents and name = '{category_name.replace('\'', '\\\'')}' and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+        # ***************************************************************
+        # ***** START FIX for f-string backslash error *****
+        # Escape single quotes in the category name for the query
+        safe_category_name_for_query = category_name.replace("'", "\\'")
+        target_category_query = f"'{target_root_id}' in parents and name = '{safe_category_name_for_query}' and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+        # ***** END FIX for f-string backslash error *****
+        # ***************************************************************
         existing_target_categories = list_items(service, target_category_query, fields="files(id)", page_size=1)
         if existing_target_categories:
             target_category_folder_id = existing_target_categories[0].get('id')
@@ -702,7 +723,9 @@ def run_sync_and_inventory():
                     # Suppress category_id
                     print(f"\n  בודק קטגוריית יעד: '{category_name}' (ID מוסתר)")
                     # List artist folders inside this target category
-                    target_artist_query = f"'{category_id}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+                    # Escape single quotes in category name for the query
+                    safe_category_name_for_query_phase0 = category_name.replace("'", "\\'")
+                    target_artist_query = f"'{category_id}' in parents and mimeType = 'application/vnd.google-apps.folder' and trashed = false" # Query uses ID, no need to escape name here
                     target_artist_folders = list_items(service, target_artist_query, fields="files(id, name)")
 
                     if target_artist_folders is None:

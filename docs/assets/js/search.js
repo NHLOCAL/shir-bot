@@ -12,6 +12,7 @@ const IFRAME_REMOVE_DELAY_MS = 5000;
 
 let isLoadingSongs = false;
 let songsDataLoaded = false;
+let userIsTyping = false; // Flag for autocomplete trigger
 
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -97,7 +98,7 @@ function loadAllSongsData() {
 
         const validAllSongs = Array.isArray(allSongsData) ? allSongsData : [];
         const validNewSongs = Array.isArray(newSongsData) ? newSongsData : [];
-        window.cachedNewSongs = validNewSongs; // Cache for homepage use
+        window.cachedNewSongs = validNewSongs;
 
         const songsMap = new Map();
         validNewSongs.forEach(song => {
@@ -114,8 +115,8 @@ function loadAllSongsData() {
 
         validAllSongs.forEach(song => {
             if (song && song.serial && !songsMap.has(song.serial)) {
-                 if (!song.driveId) {
-                 }
+                if (!song.driveId) {
+                }
                 songsMap.set(song.serial, song);
             }
         });
@@ -168,6 +169,8 @@ function displayDataLoadError() {
      hideAutocompleteSuggestions();
 }
 
+const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
+
 document.addEventListener('DOMContentLoaded', () => {
     loadAllSongsData().then(({ allSongs, newSongs }) => {
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
@@ -210,7 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (searchInput) {
         searchInput.addEventListener('input', () => {
-             handleAutocompleteInput(searchInput.value);
+             userIsTyping = true;
+             debouncedHandleAutocomplete(searchInput.value);
         });
 
         searchInput.addEventListener("keypress", function(event) {
@@ -237,9 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             handleFilterClick(this.dataset.filter, true);
-             if(searchInput){
-                handleAutocompleteInput(searchInput.value);
-             }
         });
     });
 
@@ -514,16 +515,10 @@ function handleFilterClick(filter, triggeredByUserClick = false) {
          if(isHomepage){
             searchSongs(searchTerm, filter);
          } else {
-
              if (searchInput) searchInput.focus();
          }
     } else {
         console.log(`handleFilterClick: Filter set to '${filter}' programmatically.`);
-    }
-
-
-    if(searchInput && songsDataLoaded){
-         handleAutocompleteInput(searchInput.value);
     }
 }
 
@@ -709,6 +704,12 @@ function toggleLoadMoreButton() {
 }
 
 function handleAutocompleteInput(query) {
+    if (!userIsTyping) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+    userIsTyping = false;
+
     if (!suggestionsContainer || !songsDataLoaded) return;
 
     query = query.trim();
@@ -776,9 +777,7 @@ function handleAutocompleteInput(query) {
         }
     }
 
-
     const uniqueSuggestions = Array.from(new Map(suggestions.map(item => [item.value, item])).values());
-
 
     const limitedSuggestions = uniqueSuggestions.slice(0, MAX_AUTOCOMPLETE_SUGGESTIONS);
     renderAutocompleteSuggestions(limitedSuggestions, lowerQuery);

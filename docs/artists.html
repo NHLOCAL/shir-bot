@@ -7,7 +7,8 @@ keywords: "אמנים, מוזיקה, רשימה, שיר-בוט"
 permalink: /artists/
 ---
 
-{% assign artist_pages = site.pages | where_exp: "item", "item.path contains 'artists/'" | sort: "title" %}
+{% assign all_artist_pages = site.pages | where_exp: "item", "item.path contains 'artists/'" %}
+{% assign filtered_artist_pages = all_artist_pages | where_exp: "item", "item.songs.size >= 3" | sort: "title" %}
 
 
 <script type="application/ld+json">
@@ -16,9 +17,9 @@ permalink: /artists/
   "@type": "ItemList",
   "name": "{{ page.title }}",
   "description": "{{ page.description }}",
-  "numberOfItems": {{ artist_pages | size }},
+  "numberOfItems": {{ filtered_artist_pages | size }},
   "itemListElement": [
-    {% for artist_page in artist_pages %}
+    {% for artist_page in filtered_artist_pages %}
     {
       "@type": "ListItem",
       "position": {{ forloop.index }},
@@ -36,14 +37,14 @@ permalink: /artists/
 
 <div class="artists-list">
   <h2 class="page-main-title">רשימת האמנים</h2>
-     {% if artist_pages.size > 0 %}
+     {% if filtered_artist_pages.size > 0 %}
     <ul>
-      {% for artist_page in artist_pages %}
+      {% for artist_page in filtered_artist_pages %}
         <li><a href="{{ site.baseurl }}{{ artist_page.url }}">{{ artist_page.title }}</a></li>
       {% endfor %}
     </ul>
   {% else %}
-    <p style="text-align: center;">טוען רשימת אמנים או שלא נמצאו אמנים...</p>
+    <p style="text-align: center;">טוען רשימת אמנים או שלא נמצאו אמנים (עם 3 שירים ומעלה)...</p>
     <p style="text-align: center;">(ודא שהפלאגין ArtistPageGenerator רץ בהצלחה בעת בניית האתר)</p>
   {% endif %}
 </div>

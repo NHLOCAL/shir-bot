@@ -12,6 +12,7 @@ const IFRAME_REMOVE_DELAY_MS = 5000;
 
 let isLoadingSongs = false;
 let songsDataLoaded = false;
+let userIsTyping = false; // Flag for autocomplete trigger
 
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -24,6 +25,43 @@ const resultsTableThead = document.querySelector("#resultsTable thead");
 const resultsTable = document.getElementById('resultsTable');
 const homepageContent = document.getElementById('homepage-content');
 const searchResultsArea = document.getElementById('search-results-area');
+
+let uniqueArtistNames = [];
+let uniqueSongTitles = [];
+let uniqueAlbumNames = [];
+const suggestionsContainer = document.getElementById('autocomplete-suggestions');
+const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
+const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
+function prepareAutocompleteData(songs) {
+    const artistSet = new Set();
+    const songSet = new Set();
+    const albumSet = new Set();
+
+    songs.forEach(song => {
+        if (song.singer) artistSet.add(song.singer.trim());
+        if (song.name) songSet.add(song.name.trim());
+        if (song.album) albumSet.add(song.album.trim());
+    });
+
+    uniqueArtistNames = Array.from(artistSet).sort((a, b) => a.localeCompare(b, 'he'));
+    uniqueSongTitles = Array.from(songSet).sort((a, b) => a.localeCompare(b, 'he'));
+    uniqueAlbumNames = Array.from(albumSet).sort((a, b) => a.localeCompare(b, 'he'));
+
+    console.log(`Autocomplete data prepared: ${uniqueArtistNames.length} artists, ${uniqueSongTitles.length} songs, ${uniqueAlbumNames.length} albums.`);
+}
 
 function loadAllSongsData() {
     if (songsDataLoaded || isLoadingSongs) {
@@ -60,7 +98,7 @@ function loadAllSongsData() {
 
         const validAllSongs = Array.isArray(allSongsData) ? allSongsData : [];
         const validNewSongs = Array.isArray(newSongsData) ? newSongsData : [];
-        window.cachedNewSongs = validNewSongs; // Cache new songs separately
+        window.cachedNewSongs = validNewSongs;
 
         const songsMap = new Map();
         validNewSongs.forEach(song => {
@@ -101,7 +139,6 @@ function loadAllSongsData() {
                 newSongs: validNewSongs
             }
         }));
-
         return { allSongs, newSongs: validNewSongs };
     })
     .catch(error => {
@@ -129,11 +166,15 @@ function displayDataLoadError() {
             showSearchResultsViewInternal();
         }
     }
+     hideAutocompleteSuggestions();
 }
 
+const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
+
 document.addEventListener('DOMContentLoaded', () => {
-    loadAllSongsData().then(({ allSongs, newSongs }) => { // Destructure here if needed
+    loadAllSongsData().then(({ allSongs, newSongs }) => {
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
+        prepareAutocompleteData(allSongs);
 
         const urlParams = new URLSearchParams(window.location.search);
         const searchValue = urlParams.get('search');
@@ -141,33 +182,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
 
         if (searchValue && searchByParam === 'serial') {
-            // אם החיפוש הוא לפי סריאלי מה-URL
             console.log(`Search.js: Processing URL serial search: search=${searchValue}`);
-            // 1. עדכן את שדה החיפוש
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-            // 2. הגדר את הפילטר הויזואלי והפנימי ל-'all'
             handleFilterClick('all', false);
-            // 3. בצע את החיפוש בפועל עם searchBy='serial'
             searchSongs(searchValue.toLowerCase(), 'serial');
             if (isHomepage) {
                 setTimeout(clearUrlParams, 150);
             }
         } else {
-            // אם זה חיפוש רגיל מה-URL (לא סריאלי) או אין חיפוש מה-URL
-            // 1. הגדר את הפילטר (ויזואלי ופנימי) לפי מה שכתוב ב-URL (או ברירת מחדל 'all')
              handleFilterClick(searchByParam, false);
-
              if (searchValue) {
-                // אם יש ערך חיפוש (והוא לא היה סריאלי מהבלוק הקודם)
                 console.log(`Search.js: Processing URL general search: search=${searchValue}, searchBy=${searchByParam}`);
                 if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-                // 2. בצע חיפוש לפי הפרמטרים הרגילים מה-URL
                 searchSongs(searchValue.toLowerCase(), searchByParam);
                 if (isHomepage) {
                     setTimeout(clearUrlParams, 150);
                 }
             } else {
-                // אין ערך חיפוש ב-URL
                 if (isHomepage) {
                     console.log("Search.js: Homepage loaded without search params. Displaying homepage content.");
                 } else {
@@ -181,17 +212,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (searchInput) {
+        searchInput.addEventListener('input', () => {
+             userIsTyping = true;
+             debouncedHandleAutocomplete(searchInput.value);
+        });
+
         searchInput.addEventListener("keypress", function(event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
+                hideAutocompleteSuggestions();
                 submitForm();
             }
+        });
+
+        searchInput.addEventListener('blur', () => {
+            setTimeout(hideAutocompleteSuggestions, 150);
         });
     }
 
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
             event.preventDefault();
+            hideAutocompleteSuggestions();
             submitForm();
         });
     }
@@ -205,6 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', loadMoreResults);
     }
+
+     if (suggestionsContainer) {
+        suggestionsContainer.addEventListener('mousedown', (event) => {
+            const target = event.target.closest('.autocomplete-suggestion-item');
+            if (target && searchInput) {
+                const suggestionText = target.dataset.suggestionValue || target.textContent;
+                console.log('Suggestion selected:', suggestionText);
+                searchInput.value = suggestionText;
+                hideAutocompleteSuggestions();
+                searchInput.focus();
+                submitForm();
+            }
+        });
+    }
 });
 
 async function submitForm() {
@@ -214,12 +270,8 @@ async function submitForm() {
     const currentActiveFilter = activeFilter;
 
     if (!isHomepage) {
-        if (searchTerm) {
-            const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
-            window.location.href = redirectUrl;
-        } else {
-            searchInput?.focus();
-        }
+        const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
+        window.location.href = redirectUrl;
     } else {
         if (!songsDataLoaded) {
             if (isLoadingSongs) {
@@ -458,26 +510,17 @@ function handleFilterClick(filter, triggeredByUserClick = false) {
     const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
 
-    let performSearchAction = false;
-
-    if (searchTerm) {
-        performSearchAction = true;
-        console.log(`handleFilterClick: Search triggered due to existing query: '${searchTerm}' with filter '${filter}'`);
-    } else if (triggeredByUserClick) {
-        performSearchAction = true;
-        console.log(`handleFilterClick: Search triggered by user click on filter '${filter}' with empty query.`);
-    }
-
-    if (performSearchAction) {
-        searchSongs(searchTerm, filter);
-        if (isHomepage && searchTerm) {
-            setTimeout(clearUrlParams, 100);
-        }
+    if (triggeredByUserClick) {
+         console.log(`handleFilterClick: Filter changed to '${filter}' by user click.`);
+         if(isHomepage){
+            searchSongs(searchTerm, filter);
+         } else {
+             if (searchInput) searchInput.focus();
+         }
     } else {
-        console.log(`handleFilterClick: Filter '${filter}' set, but search not triggered (no query, not a direct user click).`);
+        console.log(`handleFilterClick: Filter set to '${filter}' programmatically.`);
     }
 }
-
 
 function performSearch(query, searchBy) {
     let baseSongsToFilter = allSongs;
@@ -572,7 +615,6 @@ function filterSongs(songsToFilter, query, searchBy) {
     });
 }
 
-
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
@@ -658,5 +700,129 @@ function loadMoreResults() {
 function toggleLoadMoreButton() {
     if (loadMoreButton) {
         loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+    }
+}
+
+function handleAutocompleteInput(query) {
+    if (!userIsTyping) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+    userIsTyping = false;
+
+    if (!suggestionsContainer || !songsDataLoaded) return;
+
+    query = query.trim();
+
+    if (query.length < MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+
+    const lowerQuery = query.toLowerCase();
+    let suggestions = [];
+    let suggestionPool = [];
+    let poolType = '';
+
+    switch(activeFilter) {
+        case 'singer':
+            suggestionPool = uniqueArtistNames;
+            poolType = 'artist';
+            break;
+        case 'name':
+            suggestionPool = uniqueSongTitles;
+            poolType = 'song';
+            break;
+        case 'album':
+            suggestionPool = uniqueAlbumNames;
+            poolType = 'album';
+            break;
+        case 'all':
+        case 'serial':
+        default:
+            suggestions = suggestions.concat(
+                uniqueArtistNames
+                    .filter(name => name.toLowerCase().startsWith(lowerQuery))
+                    .map(name => ({ type: 'artist', value: name }))
+            );
+            if (suggestions.length < MAX_AUTOCOMPLETE_SUGGESTIONS) {
+                suggestions = suggestions.concat(
+                    uniqueSongTitles
+                        .filter(name => name.toLowerCase().startsWith(lowerQuery) && !suggestions.some(s => s.value === name))
+                        .map(name => ({ type: 'song', value: name }))
+                );
+            }
+             if (suggestions.length < MAX_AUTOCOMPLETE_SUGGESTIONS) {
+                suggestions = suggestions.concat(
+                    uniqueAlbumNames
+                        .filter(name => name.toLowerCase().startsWith(lowerQuery) && !suggestions.some(s => s.value === name))
+                        .map(name => ({ type: 'album', value: name }))
+                );
+            }
+            break;
+    }
+
+    if (suggestionPool.length > 0) {
+        suggestions = suggestions.concat(
+            suggestionPool
+                .filter(name => name.toLowerCase().startsWith(lowerQuery))
+                .map(name => ({ type: poolType, value: name }))
+        );
+        if (suggestions.length < MAX_AUTOCOMPLETE_SUGGESTIONS) {
+             suggestions = suggestions.concat(
+                suggestionPool
+                    .filter(name => name.toLowerCase().includes(lowerQuery) && !suggestions.some(s => s.value === name))
+                    .map(name => ({ type: poolType, value: name }))
+            );
+        }
+    }
+
+    const uniqueSuggestions = Array.from(new Map(suggestions.map(item => [item.value, item])).values());
+
+    const limitedSuggestions = uniqueSuggestions.slice(0, MAX_AUTOCOMPLETE_SUGGESTIONS);
+    renderAutocompleteSuggestions(limitedSuggestions, lowerQuery);
+}
+
+function renderAutocompleteSuggestions(suggestions, lowerQuery) {
+    if (!suggestionsContainer || !searchForm) return;
+
+    if (suggestions.length === 0) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+
+    suggestionsContainer.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+
+    suggestions.forEach(suggestion => {
+        const item = document.createElement('div');
+        item.classList.add('autocomplete-suggestion-item');
+        item.setAttribute('role', 'option');
+        item.dataset.suggestionValue = suggestion.value;
+
+        const index = suggestion.value.toLowerCase().indexOf(lowerQuery);
+        let highlightedText = suggestion.value;
+        if (index !== -1) {
+            const before = suggestion.value.substring(0, index);
+            const match = suggestion.value.substring(index, index + lowerQuery.length);
+            const after = suggestion.value.substring(index + lowerQuery.length);
+            highlightedText = `${before}<strong>${match}</strong>${after}`;
+        }
+        item.innerHTML = highlightedText;
+        fragment.appendChild(item);
+    });
+
+    suggestionsContainer.appendChild(fragment);
+    suggestionsContainer.style.display = 'block';
+    searchForm.classList.add('search-bar--suggestions-open');
+}
+
+function hideAutocompleteSuggestions() {
+    if (suggestionsContainer) {
+        suggestionsContainer.style.display = 'none';
+        suggestionsContainer.innerHTML = '';
+    }
+    if (searchForm) {
+         searchForm.classList.remove('search-bar--suggestions-open');
     }
 }

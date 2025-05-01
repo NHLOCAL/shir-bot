@@ -46,7 +46,7 @@ main {
   border-radius: var(--border-radius-main);
   border: 1px solid rgba(224, 224, 224, 0.5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
+  /* overflow: hidden; */ /* הוסר כדי לאפשר להצעות ההשלמה להופיע במלואן */
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -81,6 +81,7 @@ main {
   color: var(--primary-hover);
 }
 .top-navbar-section .search-bar {
+  position: relative;
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -90,7 +91,7 @@ main {
   padding: 0 0.5rem 0 1rem;
   height: var(--search-field-height);
   border: 1px solid #dfe1e5;
-  transition: box-shadow 0.2s;
+  transition: border-radius 0.15s ease-in-out, border-color 0.15s ease-in-out;
   min-width: 200px;
   max-width: 700px;
   margin: 0 auto;
@@ -1212,4 +1213,95 @@ a.artist-circle:hover {
    .artists-list li {
     width: 160px;
   }
+}
+
+
+/* Suggestions container styling */
+.autocomplete-suggestions-container {
+  position: absolute;
+  top: 100%; /* Position right below the search bar */
+
+  /* --- Precise Alignment --- */
+  /* Use negative margin/positioning to align the *outer border* edges */
+  /* This assumes the parent .search-bar has a 1px border */
+  left: -1px;  /* Align outer left border */
+  right: -1px; /* Align outer right border */
+  /* Explicitly set width to compensate for negative positioning */
+  /* Width should be 100% of parent + 2px (1px for left border, 1px for right) */
+  width: calc(100% + 2px);
+
+  background-color: var(--white); /* Match search bar input background */
+
+  /* Use the focus-within color of the search bar (#c0c0c0) */
+  border-left: 1px solid #c0c0c0;  /* <-- Changed color */
+  border-right: 1px solid #c0c0c0; /* <-- Changed color */
+  border-bottom: 1px solid #c0c0c0;/* <-- Changed color */
+  border-top: none;
+
+  /* Corners: Sharp top, rounded bottom */
+  border-radius: 0 0 12px 12px; /* Adjust radius as needed */
+
+  z-index: 1100;
+  box-shadow: 0 4px 6px rgba(32,33,36,.28);
+  display: none; /* Hidden by default */
+  margin-top: 0; /* Ensure no conflicting margin */
+  box-sizing: border-box; /* Explicitly set for safety */
+}
+
+/* --- Ensure search bar has consistent box-sizing --- */
+/* (Though it should be inherited from global rules, let's be explicit) */
+.search-bar {
+  position: relative;
+  transition: border-radius 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  box-sizing: border-box; /* Add for clarity */
+}
+
+/* Style for search bar when suggestions are open - No change */
+.search-bar.search-bar--suggestions-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: var(--white); /* Match suggestion box background */
+}
+
+
+/* --- Suggestion item styling - No changes needed here --- */
+.autocomplete-suggestion-item {
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 0.95em;
+  color: #202124;
+  border-bottom: none;
+  transition: background-color 0.1s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top: 1px solid #ebebeb;
+}
+
+.autocomplete-suggestion-item:first-child {
+  border-top: none;
+}
+
+.autocomplete-suggestion-item:hover,
+.autocomplete-suggestion-item.active {
+  background-color: #f8f9fa;
+  color: var(--primary-hover);
+}
+
+.autocomplete-suggestion-item strong {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.autocomplete-suggestions-container > div {
+  margin: 0;
+}
+
+.autocomplete-suggestion-item:last-child {
+  border-bottom: none; /* Keep this rule */
+  /* Add the matching bottom border-radius */
+  border-bottom-left-radius: 12px;  /* Match container's radius */
+  border-bottom-right-radius: 12px; /* Match container's radius */
+  /* Ensure overflow hidden to clip background on hover */
+  overflow: hidden;
 }

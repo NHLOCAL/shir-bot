@@ -1,3 +1,3 @@
 @ echo off
 
-start http://localhost:4000 && bundle exec jekyll serve
+start http://127.0.0.1:4000 && bundle exec jekyll serve

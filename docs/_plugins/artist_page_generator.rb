@@ -141,7 +141,7 @@ module Jekyll
 
          normalized_text = UNF::Normalizer.normalize(text, :nfkc).downcase
 
-         slug = normalized_text.gsub(/[^a-z0-9\u0590-\u05ff\-\.]/i, '-')
+         slug = normalized_text.gsub(/[^a-z0-9\u0590-\u05ff\-\.\']/i, '-')
 
          slug.gsub!(/\s+/, '-')
 

@@ -46,7 +46,7 @@ main {
   border-radius: var(--border-radius-main);
   border: 1px solid rgba(224, 224, 224, 0.5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  /* overflow: hidden; */ /* הוסר כדי לאפשר להצעות ההשלמה להופיע במלואן */
+
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -567,14 +567,7 @@ p {
 .modal a:hover, #modalOkButton:hover {
   background-color: var(--primary-hover);
 }
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: 200px 0;
-  }
-}
+
 .modal-content {
   max-width: 400px;
   padding: 20px;
@@ -606,6 +599,51 @@ p {
 .helpButton:hover {
   color: var(--white);
   background-color: var(--primary-hover);
+}
+
+/* START: Updated styles for היכל הנגינה link button */
+.hngn-link-button {
+  display: inline-block;
+  background-color: rgba(126, 87, 194, 0.08); /* רקע בהיר מבוסס צבע יסוד, כמו album-button */
+  color: var(--primary-hover); /* צבע טקסט מצבע היסוד */
+  border: 1px solid rgba(126, 87, 194, 0.25); /* גבול עדין, מעט יותר מודגש מ-album-button */
+  padding: 7px 16px; /* ריפוד מעט מוקטן */
+  border-radius: 20px; /* פינות מעוגלות כמו filter-button ו-album-button */
+  text-decoration: none;
+  font-size: 0.9em; /* גודל פונט דומה ל-album-button */
+  font-family: var(--font-base);
+  font-weight: 500; /* משקל פונט סטנדרטי לכפתורים מסוג זה */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* צל עדין מאוד */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hngn-link-button:hover,
+.hngn-link-button:focus {
+  background-color: rgba(126, 87, 194, 0.12); /* רקע מעט כהה יותר ב-hover */
+  color: var(--primary-color);
+  border-color: rgba(126, 87, 194, 0.4);
+  transform: translateY(-1px); /* אפקט הרמה עדין */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* צל מעט מודגש יותר ב-hover */
+  text-decoration: none;
+  outline: none;
+}
+
+.hngn-link-button i.fa-external-link-alt {
+  margin-left: 6px; /* רווח מותאם לאייקון (עבור RTL) */
+  font-size: 0.8em; /* אייקון מעט קטן יותר */
+  vertical-align: middle;
+}
+/* END: Updated styles for היכל הנגינה link button */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
 }
 .loading-message {
   display: none;
@@ -1216,55 +1254,55 @@ a.artist-circle:hover {
 }
 
 
-/* Suggestions container styling */
+
 .autocomplete-suggestions-container {
   position: absolute;
-  top: 100%; /* Position right below the search bar */
+  top: 100%;
 
-  /* --- Precise Alignment --- */
-  /* Use negative margin/positioning to align the *outer border* edges */
-  /* This assumes the parent .search-bar has a 1px border */
-  left: -1px;  /* Align outer left border */
-  right: -1px; /* Align outer right border */
-  /* Explicitly set width to compensate for negative positioning */
-  /* Width should be 100% of parent + 2px (1px for left border, 1px for right) */
+
+
+
+  left: -1px;
+  right: -1px;
+
+
   width: calc(100% + 2px);
 
-  background-color: var(--white); /* Match search bar input background */
+  background-color: var(--white);
 
-  /* Use the focus-within color of the search bar (#c0c0c0) */
-  border-left: 1px solid #c0c0c0;  /* <-- Changed color */
-  border-right: 1px solid #c0c0c0; /* <-- Changed color */
-  border-bottom: 1px solid #c0c0c0;/* <-- Changed color */
+
+  border-left: 1px solid #c0c0c0;
+  border-right: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
   border-top: none;
 
-  /* Corners: Sharp top, rounded bottom */
-  border-radius: 0 0 12px 12px; /* Adjust radius as needed */
+
+  border-radius: 0 0 12px 12px;
 
   z-index: 1100;
   box-shadow: 0 4px 6px rgba(32,33,36,.28);
-  display: none; /* Hidden by default */
-  margin-top: 0; /* Ensure no conflicting margin */
-  box-sizing: border-box; /* Explicitly set for safety */
+  display: none;
+  margin-top: 0;
+  box-sizing: border-box;
 }
 
-/* --- Ensure search bar has consistent box-sizing --- */
-/* (Though it should be inherited from global rules, let's be explicit) */
+
+
 .search-bar {
   position: relative;
   transition: border-radius 0.15s ease-in-out, border-color 0.15s ease-in-out;
-  box-sizing: border-box; /* Add for clarity */
+  box-sizing: border-box;
 }
 
-/* Style for search bar when suggestions are open - No change */
+
 .search-bar.search-bar--suggestions-open {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-bottom-color: var(--white); /* Match suggestion box background */
+  border-bottom-color: var(--white);
 }
 
 
-/* --- Suggestion item styling - No changes needed here --- */
+
 .autocomplete-suggestion-item {
   padding: 8px 18px;
   cursor: pointer;
@@ -1298,10 +1336,10 @@ a.artist-circle:hover {
 }
 
 .autocomplete-suggestion-item:last-child {
-  border-bottom: none; /* Keep this rule */
-  /* Add the matching bottom border-radius */
-  border-bottom-left-radius: 12px;  /* Match container's radius */
-  border-bottom-right-radius: 12px; /* Match container's radius */
-  /* Ensure overflow hidden to clip background on hover */
+  border-bottom: none;
+
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
   overflow: hidden;
 }

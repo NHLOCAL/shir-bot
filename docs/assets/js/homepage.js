@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function displaySongs(songsToDisplay) { // Renamed parameter for clarity
+    function displaySongs(songsToDisplay) {
         if (!songsList) {
             console.warn("Homepage.js: songsList element not found.");
             return;
@@ -142,12 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '';
         randomSongs.forEach(song => {
              const songNameEscaped = song.name.replace(/"/g, '"');
-             const singerName = song.singer || 'לא ידוע';
-             const titleText = `חפש את '${songNameEscaped}' מאת ${singerName}`;
+             const albumName = song.album || 'לא ידוע'; // Changed from singerName to albumName
+             const titleText = `חפש את '${songNameEscaped}' מאלבום '${albumName}'`; // Updated titleText
             html += `
                 <li data-song-serial="${song.serial}" title="${titleText}">
                     <i class="fas fa-music song-icon"></i>
-                    ${song.name} - ${singerName}
+                    ${song.name} - ${albumName} 
                 </li>`;
         });
         songsList.innerHTML = html;

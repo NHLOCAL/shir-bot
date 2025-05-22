@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const NUM_ARTISTS_TO_SHOW = 6;
     const NUM_SONGS_TO_SHOW = 5;
+    const NUM_NEWEST_SONGS_POOL = 30; // Define the pool size for newest songs
 
     function getUniqueArtists(allSongs) {
         if (!Array.isArray(allSongs)) return [];
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function displaySongs(songsToDisplay) { // Renamed parameter for clarity
+    function displaySongs(songsToDisplay) {
         if (!songsList) {
             console.warn("Homepage.js: songsList element not found.");
             return;
@@ -141,12 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '';
         randomSongs.forEach(song => {
              const songNameEscaped = song.name.replace(/"/g, '"');
-             const singerName = song.singer || 'לא ידוע';
-             const titleText = `חפש את '${songNameEscaped}' מאת ${singerName}`;
+             const albumName = song.album || 'לא ידוע'; // Changed from singerName to albumName
+             const titleText = `חפש את '${songNameEscaped}' מאלבום '${albumName}'`; // Updated titleText
             html += `
                 <li data-song-serial="${song.serial}" title="${titleText}">
                     <i class="fas fa-music song-icon"></i>
-                    ${song.name} - ${singerName}
+                    ${song.name} - ${albumName} 
                 </li>`;
         });
         songsList.innerHTML = html;
@@ -201,7 +202,19 @@ document.addEventListener('DOMContentLoaded', () => {
             displayArtists(uniqueArtists);
 
             if (newSongsOnly && newSongsOnly.length > 0) {
-                displaySongs(newSongsOnly);
+                // Sort newSongsOnly by serial in descending order (newest first)
+                const sortedNewSongs = [...newSongsOnly].sort((a, b) => {
+                    const serialA = parseInt(a.serial, 10) || 0;
+                    const serialB = parseInt(b.serial, 10) || 0;
+                    return serialB - serialA; // Descending order for newest first
+                });
+
+                // Take the top NUM_NEWEST_SONGS_POOL (e.g., 30) songs
+                const newestSongsPool = sortedNewSongs.slice(0, NUM_NEWEST_SONGS_POOL);
+                console.log(`Homepage.js: Selected ${newestSongsPool.length} newest songs for the random pool.`);
+
+                // Display a random selection from this pool
+                displaySongs(newestSongsPool);
             } else {
                 if (songsList) songsList.innerHTML = '<li class="loading-placeholder">לא נמצאו שירים חדשים במאגר.</li>';
             }

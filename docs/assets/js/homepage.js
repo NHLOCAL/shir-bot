@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const NUM_ARTISTS_TO_SHOW = 6;
     const NUM_SONGS_TO_SHOW = 5;
+    const NUM_NEWEST_SONGS_POOL = 30; // Define the pool size for newest songs
 
     function getUniqueArtists(allSongs) {
         if (!Array.isArray(allSongs)) return [];
@@ -201,7 +202,19 @@ document.addEventListener('DOMContentLoaded', () => {
             displayArtists(uniqueArtists);
 
             if (newSongsOnly && newSongsOnly.length > 0) {
-                displaySongs(newSongsOnly);
+                // Sort newSongsOnly by serial in descending order (newest first)
+                const sortedNewSongs = [...newSongsOnly].sort((a, b) => {
+                    const serialA = parseInt(a.serial, 10) || 0;
+                    const serialB = parseInt(b.serial, 10) || 0;
+                    return serialB - serialA; // Descending order for newest first
+                });
+
+                // Take the top NUM_NEWEST_SONGS_POOL (e.g., 30) songs
+                const newestSongsPool = sortedNewSongs.slice(0, NUM_NEWEST_SONGS_POOL);
+                console.log(`Homepage.js: Selected ${newestSongsPool.length} newest songs for the random pool.`);
+
+                // Display a random selection from this pool
+                displaySongs(newestSongsPool);
             } else {
                 if (songsList) songsList.innerHTML = '<li class="loading-placeholder">לא נמצאו שירים חדשים במאגר.</li>';
             }

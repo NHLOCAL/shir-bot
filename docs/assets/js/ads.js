@@ -62,8 +62,8 @@ function resumeFooterAdRotation() {
 // --- Banner Ad ---
 const newContent1 = `
   <h3>מאגר המוזיקה היהודית הגדול בישראל!</h3>
-  <p>גישה מיידית ל-500GB של שירים מכל הסגנונות והזמנים. מוזיקה נוסטגלית וגם תוכן עדכני - הכל במקום אחד ובמחיר מיוחד.</p>
-    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top/, '_blank'); conversion_music_drive();">הצטרפו עכשיו במחיר מיוחד</button>
+  <p>גישה מיידית ל-500 ג'יגה של שירים מכל הסגנונות והזמנים. מוזיקה נוסטגלית וגם תוכן עדכני - הכל במקום אחד ובמחיר מיוחד.</p>
+    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top/', '_blank'); conversion_music_drive();">הצטרפו עכשיו במחיר מיוחד</button>
 `;
 
 const newContent2 = `

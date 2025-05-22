@@ -30,7 +30,7 @@ function conversion_music_drive() {
 // --- Footer Ad ---
 const footerContent = [
     "קבלו גישה ל-500 ג'יגה של תוכן מוזיקלי <b>לשנה מלאה</b> <a id='music-in-drive-footer' href='https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top' target='_blank' onclick='conversion_music_drive()'>הרשמו כאן!</a>",
-    "<b>ביט פלוס-הבית של המוזיקאים!</b> מגוון כלי נגינה, מקצבים, ציוד הגברה ומדריכים <a id='beatplus' href='https://beatplus.co.il/?utm_source=shir-bot.ze-kal.top/&utm_medium=footer_ad' target='_blank' onclick='beatplus_ad()'>בקרו באתר</a>",
+    "<b>ביט פלוס-הבית של המוזיקאים!</b> מגוון כלי נגינה, מקצבים, ציוד הגברה ומדריכים <a id='beatplus' href='https://beatplus.co.il/?utm_source=shir-bot.ze-kal.top&utm_medium=footer_ad' target='_blank' onclick='beatplus_ad()'>בקרו באתר</a>",
 ];
 let currentFooterIndex = 0;
 let footerAdInterval; // Variable to hold the footer interval timer
@@ -62,8 +62,8 @@ function resumeFooterAdRotation() {
 // --- Banner Ad ---
 const newContent1 = `
   <h3>מאגר המוזיקה היהודית הגדול בישראל!</h3>
-  <p>גישה מיידית ל-500 ג'יגה של שירים מכל הסגנונות והזמנים. מוזיקה נוסטגלית וגם תוכן עדכני - הכל במקום אחד ובמחיר מיוחד.</p>
-    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top/', '_blank'); conversion_music_drive();">הצטרפו עכשיו במחיר מיוחד</button>
+  <p>גישה מיידית ל-500 ג'יגה של שירים מכל הסגנונות והזמנים. מוזיקה נוסטגלית וגם תוכן עדכני - הכל במקום אחד ובמחיר מוזל</p>
+    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top', '_blank'); conversion_music_drive();">הצטרפו עכשיו במחיר מיוחד</button>
 `;
 
 const newContent2 = `
@@ -75,7 +75,7 @@ const newContent2 = `
 const newContent3 = `
   <h3>בלגן בתיקיית המוזיקה? יש פתרון!</h3>
   <p>'מסדר הסינגלים' - התוכנה החינמית שתארגן לכם את קבצי המוזיקה שלכם באופן אוטומטי, בשילוב AI מתקדם ובקליק אחד!</p>
-  <button class="helpButton" onclick="window.open('https://singles-sorter.ze-kal.top/?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורידו עכשיו בחינם</button>
+  <button class="helpButton" onclick="window.open('https://singles-sorter.ze-kal.top?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורידו עכשיו בחינם</button>
 `;
 
 const newContents = [newContent1, newContent2, newContent3];

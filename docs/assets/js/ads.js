@@ -61,21 +61,21 @@ function resumeFooterAdRotation() {
 
 // --- Banner Ad ---
 const newContent1 = `
-  <h3>מאגר המוזיקה היהודית הגדול בישראל!</h3>
-  <p>גישה מיידית ל-500 ג'יגה של שירים מכל הסגנונות והזמנים. מוזיקה נוסטגלית וגם תוכן עדכני - הכל במקום אחד ובמחיר מוזל</p>
-    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top', '_blank'); conversion_music_drive();">הצטרפו עכשיו במחיר מיוחד</button>
+  <h3>מאגר המוזיקה היהודית שלך, מקיף ונגיש מתמיד</h3>
+  <p>מאות ג'יגה-בייטים של מוזיקה יהודית אותנטית מחכים לך במקום אחד! המאגר שלנו כולל מגוון עצום של שירים מכל הזמנים והסגנונות - קלאסיקות נצחיות, ניגונים מרגשים ולהיטים מוכרים מעולם המוזיקה החסידית, המזרחית והיהודית. המאגר מתעדכן ומשתפר באופן שוטף כדי להבטיח שתמיד תהיה לך גישה נוחה ומהירה לכל השירים האהובים עליך, והכל במחיר מיוחד למצטרפים דרך האתר</p>
+    <button class="helpButton" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top', '_blank'); conversion_music_drive();">אני רוצה גישה למאגר המלא!</button>
 `;
 
 const newContent2 = `
-  <h3>אל תפספסו אף שיר חדש!</h3>
-  <p>הרשמו כעת לרשימת התפוצה של שיר בוט, כדי לקבל את העדכונים והחידושים האחרונים באתר, תכונות בלעדיות ובונוסים ישירות למייל שלכם.</p>
-  <button class="helpButton" onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A6%D7%A8%D7%A3+%D7%90%D7%95%D7%AA%D7%99+%D7%9C%D7%A7%D7%91%D7%9C%D7%AA+%D7%A2%D7%93%D7%9B%D7%95%D7%A0%D7%99%D7%9D+%D7%A2%D7%9C+%D7%94%D7%90%D7%AA%D7%A8!&to=shir-bot%2Bsubscribe%40googlegroups.com', '_blank')">להרשמה מהירה</button>
+  <h3>שדרגו את חווית שיר-בוט עם עדכונים, טיפים ובונוסים ייחודיים!</h3>
+  <p>הירשמו לרשימת התפוצה שלנו ותקבלו ישירות למייל עדכונים על שיפורים טכניים, תכונות חדשות וטיפים שימושיים לניווט קל ויעיל באתר. כחלק מההצטרפות, תיהנו גם מהטבות בלעדיות, בונוסים מיוחדים והזדמנות להכיר את מלוא האפשרויות בשיר-בוט, להישאר תמיד מחוברים ואף להשפיע על עתידו של שלו</p>
+  <button class="helpButton" onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A6%D7%A8%D7%A3+%D7%90%D7%95%D7%AA%D7%99+%D7%9C%D7%A8%D7%A9%D7%99%D7%9E%D7%AA+%D7%94%D7%AA%D7%A4%D7%95%D7%A6%D7%94+%D7%A9%D7%9C+%D7%A9%D7%99%D7%A8-%D7%91%D7%95%D7%98&to=shir-bot%2Bsubscribe%40googlegroups.com', '_blank')">להרשמה וקבלת הטבות בלעדיות</button>
 `;
 
 const newContent3 = `
-  <h3>בלגן בתיקיית המוזיקה? יש פתרון!</h3>
-  <p>'מסדר הסינגלים' - התוכנה החינמית שתארגן לכם את קבצי המוזיקה שלכם באופן אוטומטי, בשילוב AI מתקדם ובקליק אחד!</p>
-  <button class="helpButton" onclick="window.open('https://singles-sorter.ze-kal.top?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורידו עכשיו בחינם</button>
+  <h3>סוף לבלגן במוזיקה שלך! תוכנה חינמית לארגון אוטומטי</h3>
+  <p>נמאס לכם לחפש שירים בתיקיות מבולגנות ולאבד זמן יקר? מסדר הסינגלים הוא הפתרון המושלם עבורכם. התוכנה החינמית הזו משתמשת בטכנולוגיית AI חכמה כדי לזהות, למיין ולארגן את כל קבצי המוזיקה שלכם באופן אוטומטי. כך תוכלו לבזבז פחות זמן על חיפושים ויותר זמן על הנאה מהמוזיקה שאתם אוהבים</p>
+  <button class="helpButton" onclick="window.open('https://singles-sorter.ze-kal.top?utm_source=shir_bot_banner&utm_medium=site', '_blank')">הורדה חינם של מסדר הסינגלים</button>
 `;
 
 const newContents = [newContent1, newContent2, newContent3];

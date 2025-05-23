@@ -99,7 +99,7 @@ function startBannerAutoChange() { // Renamed from startAutoChange
     bannerAdInterval = setInterval(() => {
         currentContentIndex = (currentContentIndex + 1) % newContents.length;
         updateBannerContent();
-    }, 3000);
+    }, 7000);
 }
 
 // --- Functions to pause and resume BANNER ad rotation ---

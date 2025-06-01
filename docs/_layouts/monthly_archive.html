@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<h2 class="page-main-title">{{ page.album_name }}</h2>
+
+<div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 10px;">
+  <a href="{{ site.baseurl }}/archive/"
+     class="hngn-link-button"
+     title="חזרה לאינדקס הארכיון">
+    <i class="fas fa-archive"></i> ארכיון המוזיקה
+  </a>
+  <a href="{{ site.baseurl }}/new-songs/"
+     class="hngn-link-button"
+     title="מעבר לדף השירים החדשים">
+    <i class="fas fa-fire"></i> שירים חדשים
+  </a>
+</div>
+
+<div id="resultsTable" class="custom-table">
+  <table>
+    <thead>
+      <tr>
+        <th>שם השיר</th>
+        <th>שם האלבום</th>
+        <th>שם הזמר</th>
+        <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody class="songs-list">
+      {% if page.songs and page.songs.size > 0 %}
+        {% for song in page.songs %}
+          <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
+            <td>{{ song.name }}</td>
+            <td>
+                <button class="album-button" data-album-name="{{ song.album | escape }}" title="כל השירים מתוך {{ song.album }}">{{ song.album }}</button>
+            </td>
+            <td>
+                <button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button>
+            </td>
+            <td class="actions-cell">
+              <div class="actions-button-group">
+                <button class="download-button" data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="share-button" data-song-serial="{{ song.serial | escape }}" title="שיתוף">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+              </div>
+           </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+            <td colspan="4" style="text-align: center;">לא נמצאו שירים עבור חודש זה בארכיון.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+<div id="loadingMessage" class="loading-message" style="display: none;">
+    <div class="progress-bar-container">
+        <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+        <span id="progressText">מתחיל הורדות...</span>
+    </div>
+</div>

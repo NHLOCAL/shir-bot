@@ -17,17 +17,21 @@ layout: default # Inherits from default, which loads core.js, ads.js, search.js,
 
 <h2 class="page-main-title">{{ page.title }}</h2>
 
-<!-- START: New button for היכל הנגינה -->
-<div style="text-align: center; margin-bottom: 20px;">
+<div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 10px;">
+  <a href="{{ site.baseurl }}/artists/"
+     class="hngn-link-button"
+     title="חזרה לרשימת כל האמנים">
+     <i class="fas fa-users"></i> כל האמנים
+  </a>
   <a href="https://www.hngn.co.il/זמרים/{{ page.title }}?utm_source=shir-bot.ze-kal.top&utm_medium=referral"
      class="hngn-link-button"
      target="_blank"
      rel="noopener noreferrer"
      title="האזן לשיריו של {{ page.title }} באתר היכל הנגינה">
-    לדף הזמר בהיכל הנגינה <i class="fas fa-external-link-alt"></i>
+    דף הזמר בהיכל הנגינה <i class="fas fa-external-link-alt"></i>
   </a>
 </div>
-<!-- END: New button for היכל הנגינה -->
+
 
 <div id="resultsTable" class="custom-table">
   <table>
@@ -46,16 +50,13 @@ layout: default # Inherits from default, which loads core.js, ads.js, search.js,
           <tr data-song-serial="{{ song.number | escape }}" data-drive-id="{{ song.driveId | escape }}">
             <td>{{ song.name }}</td>
             <td>
-
                 <button class="album-button" data-album-name="{{ song.album | escape }}">{{ song.album }}</button>
             </td>
             <td>
-
                 <button class="singer-button" data-singer-name="{{ song.artist | escape }}">{{ song.artist }}</button>
             </td>
             <td class="actions-cell">
               <div class="actions-button-group">
-
                 <button class="download-button" data-song-serial="{{ song.number | escape }}" data-drive-id="{{ song.driveId | escape }}" title="הורדה">
                     <i class="fas fa-download"></i>
                 </button>

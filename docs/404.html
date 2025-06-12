@@ -11,3 +11,12 @@ show_search_form: false
   <p style="font-size: 1.2em; margin-bottom: 30px;">הדף שאתה מחפש אינו זמין או לא קיים 🙁</p>
   <a href="{{ site.baseurl }}/" class="btn btn-primary" style="padding: 10px 20px; font-size: 1em; text-decoration: none;">חזור לדף הבית</a>
 </div>
+
+<script>
+  (function() {
+    if (window.location.pathname.startsWith((baseurl || '') + '/artists/')) {
+      // Redirect to the main artists list page.
+      window.location.href = (baseurl || '') + '/artists/';
+    }
+  })();
+</script>

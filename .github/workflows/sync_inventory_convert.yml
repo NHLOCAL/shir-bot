@@ -41,7 +41,6 @@ jobs:
 
       - name: Authenticate Google Drive
         env:
-          # Use the appropriate secret name you decided on (e.g., GDRIVE_TOKEN_JSON or GDRIVE_TOKEN_SYNC_INVENTORY)
           GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
         run: |
           if [ -z "$GDRIVE_TOKEN_JSON_CONTENT" ]; then
@@ -57,9 +56,8 @@ jobs:
 
       - name: Run Drive Sync and Inventory Script
         env:
-          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }} # Pass the same secret
+          GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
         run: |
-          # UPDATED: Run the renamed python script
           python drive_data/drive_sync_inventory.py
           if [ $? -ne 0 ]; then
             echo "::error::Drive sync and inventory script failed."
@@ -72,7 +70,6 @@ jobs:
             echo "::error::CSV to YAML converter script not found."
             exit 1
           fi
-          # UPDATED: Use the new CSV filename as input
           python drive_data/csv_to_yaml_converter.py \
             --csv-input drive_data/all_songs.csv \
             --yaml-output docs/_data/all_songs.yml
@@ -89,7 +86,6 @@ jobs:
       - name: Check for changes in All Songs CSV or YAML
         id: check_changes
         run: |
-          # UPDATED: Add the new CSV filename and the YAML file
           git add drive_data/all_songs.csv docs/_data/all_songs.yml
           if git diff --staged --quiet; then
             echo "No changes detected in all_songs CSV or YAML."
@@ -102,7 +98,6 @@ jobs:
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
-          # UPDATED: Commit message reflects the new CSV name
           git commit -m "Update Drive all_songs CSV and YAML [skip ci]"
           retry_count=0
           max_retries=3
@@ -117,3 +112,8 @@ jobs:
           else
             echo "Changes committed and pushed successfully."
           fi
+
+      # --- שלב חדש: הפעלת פריסה ב-Cloudflare ---
+      - name: Trigger Cloudflare Deploy
+        if: success() && steps.check_changes.outputs.changed == 'true'
+        run: curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}"

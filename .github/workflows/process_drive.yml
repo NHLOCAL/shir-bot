@@ -55,7 +55,6 @@ jobs:
           GDRIVE_TOKEN_JSON_CONTENT: ${{ secrets.GDRIVE_TOKEN_JSON }}
         run: python drive_data/process_drive_folder.py
 
-      # --- שלב מעודכן: הרצת סקריפט ההמרה הנפרד ---
       - name: Convert new-songs.csv to YAML using script
         run: |
           python drive_data/csv_to_yaml_converter.py \
@@ -67,7 +66,6 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      # שלב בדיקת השינויים נשאר זהה - הוא כבר בודק את הקבצים הנכונים
       - name: Check for changes in state, csv, or yaml file
         id: check_changes
         run: |
@@ -80,7 +78,6 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      # שלב ה-Commit וה-Push נשאר זהה
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
@@ -98,3 +95,8 @@ jobs:
           else
             echo "Changes committed and pushed successfully."
           fi
+
+      # --- שלב חדש: הפעלת פריסה ב-Cloudflare ---
+      - name: Trigger Cloudflare Deploy
+        if: success() && steps.check_changes.outputs.changed == 'true'
+        run: curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}"

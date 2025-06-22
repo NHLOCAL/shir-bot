@@ -109,4 +109,30 @@ document.addEventListener("DOMContentLoaded", function() {
         });
      }
 
+
+    // Dynamic feedback mail link (Windows: Gmail, others: mailto)
+    document.querySelectorAll('.feedback-mail-link, .email-link').forEach(function(link) {
+        var isWindows = navigator.userAgent.indexOf('Windows') !== -1;
+        var email = link.getAttribute('data-email') || 'mesader.singelim@gmail.com';
+        var subject = link.getAttribute('data-subject') || '';
+        var body = link.getAttribute('data-body') || '';
+        if (isWindows) {
+            // Gmail compose link
+            var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
+            if(subject) gmailUrl += '&su=' + encodeURIComponent(subject);
+            if(body) gmailUrl += '&body=' + encodeURIComponent(body);
+            link.setAttribute('href', gmailUrl);
+            link.setAttribute('target', '_blank');
+        } else {
+            // Regular mailto
+            var mailto = 'mailto:' + encodeURIComponent(email);
+            var params = [];
+            if(subject) params.push('subject=' + encodeURIComponent(subject));
+            if(body) params.push('body=' + encodeURIComponent(body));
+            if(params.length > 0) mailto += '?' + params.join('&');
+            link.setAttribute('href', mailto);
+            link.removeAttribute('target');
+        }
+    });
+
 });

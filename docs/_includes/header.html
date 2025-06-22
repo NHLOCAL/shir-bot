@@ -47,3 +47,28 @@
     {% endif %}
   </div>
 </div>
+
+<!-- תנאי שימוש - הודעה קופצת בתחתית המסך -->
+<div id="terms-modal" class="terms-modal" style="display:none;">
+  <span class="terms-modal-text">
+    אני מאשר את <a href="{{ site.baseurl }}/terms.html" target="_blank" class="terms-link">תנאי השימוש</a>
+  </span>
+  <button id="terms-accept-btn" class="terms-modal-btn">אישור</button>
+</div>
+<script>
+(function() {
+  if (typeof window === 'undefined') return;
+  try {
+    var accepted = localStorage.getItem('termsAccepted');
+    if (!accepted) {
+      var modal = document.getElementById('terms-modal');
+      if (modal) modal.style.display = 'flex';
+      var btn = document.getElementById('terms-accept-btn');
+      if (btn) btn.onclick = function() {
+        localStorage.setItem('termsAccepted', 'yes');
+        modal.style.display = 'none';
+      };
+    }
+  } catch(e) {}
+})();
+</script>

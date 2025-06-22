@@ -1343,3 +1343,58 @@ a.artist-circle:hover {
 
   overflow: hidden;
 }
+
+/* הודעת תנאי שימוש בתחתית המסך */
+.terms-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: var(--unit-bg, #fff);
+  color: var(--primary-color, #7E57C2);
+  border-top: 1px solid var(--border-color, #e0e0e0);
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.07);
+  padding: 14px 10px 10px 10px;
+  font-size: 1em;
+  gap: 12px;
+  border-radius: 14px 14px 0 0;
+}
+.terms-modal-text {
+  margin: 0 8px 0 0;
+  font-size: 1em;
+  display: inline-block;
+}
+.terms-link {
+  color: var(--primary-color, #7E57C2);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.terms-modal-btn {
+  background: var(--primary-color, #7E57C2);
+  color: var(--white, #fff);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background 0.2s;
+}
+.terms-modal-btn:hover {
+  background: var(--primary-hover, #5C3899);
+}
+@media (max-width: 600px) {
+  .terms-modal {
+    font-size: 0.95em;
+    padding: 10px 2vw 8px 2vw;
+  }
+  .terms-modal-btn {
+    padding: 6px 10px;
+    font-size: 0.98em;
+  }
+}

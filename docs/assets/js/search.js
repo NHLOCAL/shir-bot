@@ -12,7 +12,7 @@ const IFRAME_REMOVE_DELAY_MS = 5000;
 
 let isLoadingSongs = false;
 let songsDataLoaded = false;
-let userIsTyping = false; // Flag for autocomplete trigger
+let userIsTyping = false;
 
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -33,6 +33,9 @@ const suggestionsContainer = document.getElementById('autocomplete-suggestions')
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
 
+const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
+const MAX_HISTORY_ITEMS = 5;
+
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -44,6 +47,41 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
+
+function getSearchHistory() {
+    try {
+        const history = localStorage.getItem(SEARCH_HISTORY_KEY);
+        return history ? JSON.parse(history) : [];
+    } catch (e) {
+        console.error("Failed to get search history:", e);
+        return [];
+    }
+}
+
+function saveSearchToHistory(query) {
+    if (!query) return;
+    let history = getSearchHistory();
+    history = history.filter(item => item.toLowerCase() !== query.toLowerCase());
+    history.unshift(query);
+    if (history.length > MAX_HISTORY_ITEMS) {
+        history.length = MAX_HISTORY_ITEMS;
+    }
+    try {
+        localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(history));
+    } catch (e) {
+        console.error("Failed to save search history:", e);
+    }
+}
+
+function clearSearchHistory() {
+    try {
+        localStorage.removeItem(SEARCH_HISTORY_KEY);
+        hideAutocompleteSuggestions();
+        console.log("Search history cleared.");
+    } catch (e) {
+        console.error("Failed to clear search history:", e);
+    }
+}
 
 function prepareAutocompleteData(songs) {
     const artistSet = new Set();
@@ -212,9 +250,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (searchInput) {
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value.trim().length === 0) {
+                renderHistorySuggestions();
+            }
+        });
+        
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
-             debouncedHandleAutocomplete(searchInput.value);
+             const query = searchInput.value.trim();
+             if (query.length === 0) {
+                 renderHistorySuggestions();
+             } else {
+                debouncedHandleAutocomplete(query);
+             }
         });
 
         searchInput.addEventListener("keypress", function(event) {
@@ -250,14 +299,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
      if (suggestionsContainer) {
         suggestionsContainer.addEventListener('mousedown', (event) => {
-            const target = event.target.closest('.autocomplete-suggestion-item');
-            if (target && searchInput) {
-                const suggestionText = target.dataset.suggestionValue || target.textContent;
-                console.log('Suggestion selected:', suggestionText);
-                searchInput.value = suggestionText;
-                hideAutocompleteSuggestions();
-                searchInput.focus();
-                submitForm();
+            const suggestionItem = event.target.closest('.autocomplete-suggestion-item');
+            if (!suggestionItem) return;
+
+            if (suggestionItem.classList.contains('clear-history-button')) {
+                event.preventDefault();
+                clearSearchHistory();
+                return;
+            }
+
+            if (searchInput) {
+                const suggestionText = suggestionItem.dataset.suggestionValue;
+                if (suggestionText) {
+                    console.log('Suggestion selected:', suggestionText);
+                    searchInput.value = suggestionText;
+                    hideAutocompleteSuggestions();
+                    searchInput.focus();
+                    submitForm();
+                }
             }
         });
     }
@@ -268,6 +327,8 @@ async function submitForm() {
     const searchTerm = searchInput ? searchInput.value.trim() : '';
     const searchTermLower = searchTerm.toLowerCase();
     const currentActiveFilter = activeFilter;
+    
+    saveSearchToHistory(searchTerm);
 
     if (!isHomepage) {
         const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
@@ -811,6 +872,39 @@ function renderAutocompleteSuggestions(suggestions, lowerQuery) {
         item.innerHTML = highlightedText;
         fragment.appendChild(item);
     });
+
+    suggestionsContainer.appendChild(fragment);
+    suggestionsContainer.style.display = 'block';
+    searchForm.classList.add('search-bar--suggestions-open');
+}
+
+function renderHistorySuggestions() {
+    if (!suggestionsContainer || !searchForm) return;
+
+    const history = getSearchHistory();
+    if (history.length === 0) {
+        hideAutocompleteSuggestions();
+        return;
+    }
+
+    suggestionsContainer.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+
+    history.forEach(query => {
+        const item = document.createElement('div');
+        item.classList.add('autocomplete-suggestion-item', 'history-item');
+        item.setAttribute('role', 'option');
+        item.dataset.suggestionValue = query;
+        const sanitizedQuery = query.replace(/</g, "<").replace(/>/g, ">");
+        item.innerHTML = `<i class="fas fa-history"></i><span>${sanitizedQuery}</span>`;
+        fragment.appendChild(item);
+    });
+
+    const clearButton = document.createElement('div');
+    clearButton.classList.add('autocomplete-suggestion-item', 'clear-history-button');
+    clearButton.setAttribute('role', 'button');
+    clearButton.textContent = 'מחק היסטוריה';
+    fragment.appendChild(clearButton);
 
     suggestionsContainer.appendChild(fragment);
     suggestionsContainer.style.display = 'block';

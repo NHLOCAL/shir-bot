@@ -601,19 +601,19 @@ p {
   background-color: var(--primary-hover);
 }
 
-/* START: Updated styles for היכל הנגינה link button */
+
 .hngn-link-button {
   display: inline-block;
-  background-color: rgba(126, 87, 194, 0.08); /* רקע בהיר מבוסס צבע יסוד, כמו album-button */
-  color: var(--primary-hover); /* צבע טקסט מצבע היסוד */
-  border: 1px solid rgba(126, 87, 194, 0.25); /* גבול עדין, מעט יותר מודגש מ-album-button */
-  padding: 7px 16px; /* ריפוד מעט מוקטן */
-  border-radius: 20px; /* פינות מעוגלות כמו filter-button ו-album-button */
+  background-color: rgba(126, 87, 194, 0.08);
+  color: var(--primary-hover);
+  border: 1px solid rgba(126, 87, 194, 0.25);
+  padding: 7px 16px;
+  border-radius: 20px;
   text-decoration: none;
-  font-size: 0.9em; /* גודל פונט דומה ל-album-button */
+  font-size: 0.9em;
   font-family: var(--font-base);
-  font-weight: 500; /* משקל פונט סטנדרטי לכפתורים מסוג זה */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* צל עדין מאוד */
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   text-align: center;
   cursor: pointer;
@@ -621,21 +621,21 @@ p {
 
 .hngn-link-button:hover,
 .hngn-link-button:focus {
-  background-color: rgba(126, 87, 194, 0.12); /* רקע מעט כהה יותר ב-hover */
+  background-color: rgba(126, 87, 194, 0.12);
   color: var(--primary-color);
   border-color: rgba(126, 87, 194, 0.4);
-  transform: translateY(-1px); /* אפקט הרמה עדין */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* צל מעט מודגש יותר ב-hover */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   text-decoration: none;
   outline: none;
 }
 
 .hngn-link-button i.fa-external-link-alt {
-  margin-left: 6px; /* רווח מותאם לאייקון (עבור RTL) */
-  font-size: 0.8em; /* אייקון מעט קטן יותר */
+  margin-left: 6px;
+  font-size: 0.8em;
   vertical-align: middle;
 }
-/* END: Updated styles for היכל הנגינה link button */
+
 
 @keyframes shimmer {
   0% {
@@ -1344,7 +1344,30 @@ a.artist-circle:hover {
   overflow: hidden;
 }
 
-/* הודעת תנאי שימוש בתחתית המסך */
+.autocomplete-suggestion-item.history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.autocomplete-suggestion-item.history-item i.fa-history {
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+.autocomplete-suggestion-item.clear-history-button {
+    text-align: center;
+    color: #d32f2f;
+    font-weight: 500;
+    font-size: 0.9em;
+    border-top: 1px solid #e0e0e0;
+}
+
+.autocomplete-suggestion-item.clear-history-button:hover {
+    background-color: #fbe9e7 !important;
+    color: #c62828 !important;
+}
+
 .terms-modal {
   position: fixed;
   bottom: 0;

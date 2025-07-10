@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
             link.setAttribute('target', '_blank');
         } else {
             // Regular mailto
-            var mailto = 'mailto:' + encodeURIComponent(email);
+            var mailto = 'mailto:' + email;
             var params = [];
             if(subject) params.push('subject=' + encodeURIComponent(subject));
             if(body) params.push('body=' + encodeURIComponent(body));

@@ -1,3 +1,26 @@
+
+(function() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    let hasUtmParams = false;
+
+    utmParams.forEach(param => {
+        if (queryParams.has(param)) {
+            hasUtmParams = true;
+            queryParams.delete(param);
+        }
+    });
+
+    if (hasUtmParams) {
+        try {
+            const newUrl = window.location.pathname + (queryParams.toString() ? '?' + queryParams.toString() : '') + window.location.hash;
+            window.history.replaceState(null, '', newUrl);
+        } catch (e) {
+            console.error("Could not update URL", e);
+        }
+    }
+})();
+
 var baseurl = baseurl || ''; // Ensure baseurl is available, provided by Jekyll layout
 const modalOverlay = document.getElementById('modalOverlay');
 const modalMessage = document.getElementById('modalMessage');
@@ -108,5 +131,31 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
      }
+
+
+    // Dynamic feedback mail link (Windows: Gmail, others: mailto)
+    document.querySelectorAll('.feedback-mail-link, .email-link').forEach(function(link) {
+        var isWindows = navigator.userAgent.indexOf('Windows') !== -1;
+        var email = link.getAttribute('data-email') || 'mesader.singelim@gmail.com';
+        var subject = link.getAttribute('data-subject') || '';
+        var body = link.getAttribute('data-body') || '';
+        if (isWindows) {
+            // Gmail compose link
+            var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
+            if(subject) gmailUrl += '&su=' + encodeURIComponent(subject);
+            if(body) gmailUrl += '&body=' + encodeURIComponent(body);
+            link.setAttribute('href', gmailUrl);
+            link.setAttribute('target', '_blank');
+        } else {
+            // Regular mailto
+            var mailto = 'mailto:' + email;
+            var params = [];
+            if(subject) params.push('subject=' + encodeURIComponent(subject));
+            if(body) params.push('body=' + encodeURIComponent(body));
+            if(params.length > 0) mailto += '?' + params.join('&');
+            link.setAttribute('href', mailto);
+            link.removeAttribute('target');
+        }
+    });
 
 });

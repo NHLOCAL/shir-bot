@@ -23,7 +23,9 @@
 
       {% comment %} --- Right Side Icons (From original structure) --- {% endcomment %}
       <div class="icons-container">
-        <a class="feedback-button" href="mailto:mesader.singelim@gmail.com" target="_blank" title="שלח משוב">
+        <a class="feedback-button feedback-mail-link" data-email="mesader.singelim@gmail.com" data-subject="משוב לאתר שיר-בוט" data-body="שלום,
+
+רציתי לשלוח משוב: " href="mailto:mesader.singelim@gmail.com" title="שלח משוב">
           <i class="fas fa-envelope"></i>
         </a>
         <a class="right-item" href="https://nhlocal.github.io/" title="לשאר התוכנות של היוצר">
@@ -45,3 +47,30 @@
     {% endif %}
   </div>
 </div>
+
+<!-- תנאי שימוש - הודעה קופצת בתחתית המסך -->
+<div id="terms-modal" class="terms-modal" style="display:none;">
+  <span class="terms-modal-text">
+    אני מאשר את <a href="{{ site.baseurl }}/terms/" target="_blank" class="terms-link">תנאי השימוש</a>
+  </span>
+  <button id="terms-accept-btn" class="terms-modal-btn">אישור</button>
+</div>
+<script>
+(function() {
+  if (typeof window === 'undefined') return;
+  try {
+    var accepted = localStorage.getItem('termsAccepted');
+    if (!accepted) {
+      var modal = document.getElementById('terms-modal');
+      if (modal) modal.style.display = 'flex';
+      var btn = document.getElementById('terms-accept-btn');
+      if (btn) btn.onclick = function() {
+        localStorage.setItem('termsAccepted', 'yes');
+        modal.style.display = 'none';
+      };
+    }
+  } catch(e) {
+    console.error('Failed to handle terms acceptance logic:', e);
+  }
+})();
+</script>

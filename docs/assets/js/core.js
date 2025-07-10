@@ -1,3 +1,26 @@
+
+(function() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+    let hasUtmParams = false;
+
+    utmParams.forEach(param => {
+        if (queryParams.has(param)) {
+            hasUtmParams = true;
+            queryParams.delete(param);
+        }
+    });
+
+    if (hasUtmParams) {
+        try {
+            const newUrl = window.location.pathname + (queryParams.toString() ? '?' + queryParams.toString() : '') + window.location.hash;
+            window.history.replaceState(null, '', newUrl);
+        } catch (e) {
+            console.error("Could not update URL", e);
+        }
+    }
+})();
+
 var baseurl = baseurl || ''; // Ensure baseurl is available, provided by Jekyll layout
 const modalOverlay = document.getElementById('modalOverlay');
 const modalMessage = document.getElementById('modalMessage');

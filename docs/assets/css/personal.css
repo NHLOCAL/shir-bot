@@ -1143,32 +1143,41 @@ a.artist-circle:hover {
   text-align: center;
   font-style: italic;
 }
+
 .features-container {
   display: flex;
   gap: 0;
   justify-content: center;
-  padding: 20px 0;
-  background-color: var(--white);
+  padding: 0;
+  background-color: #fafafa;
   border-radius: var(--border-radius-main);
   box-shadow: var(--card-shadow);
   margin-top: 40px;
   margin-bottom: 30px;
   flex-wrap: wrap;
+  overflow: hidden;
 }
+
 .feature-item {
   flex: 1;
   min-width: 260px;
   max-width: 33.33%;
   text-align: center;
   padding: 20px 25px;
-  border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.feature-item:last-child {
-  border-right: none;
+
+.features-container {
+    gap: 1px;
+    background-color: var(--border-color);
 }
+.feature-item {
+    background-color: #fafafa;
+}
+
+
 .feature-icon {
   font-size: 2.2em;
   color: var(--primary-color);
@@ -1179,6 +1188,7 @@ a.artist-circle:hover {
   align-items: center;
   justify-content: center;
 }
+
 .feature-item h3 {
   font-size: 1.2em;
   color: var(--primary-hover);
@@ -1186,6 +1196,7 @@ a.artist-circle:hover {
   margin-bottom: 12px;
   font-weight: 700;
 }
+
 .feature-item p {
   font-size: 0.9em;
   color: #555;
@@ -1193,6 +1204,7 @@ a.artist-circle:hover {
   margin-bottom: 20px;
   flex-grow: 1;
 }
+
 .feature-item .helpButton {
    display: inline-block;
    padding: 8px 18px;
@@ -1200,25 +1212,25 @@ a.artist-circle:hover {
    border-radius: 5px;
    margin-top: auto;
 }
+
 @media (max-width: 900px) {
   .features-container {
     flex-direction: column;
-    padding: 10px 0;
+    padding: 0;
   }
+  
   .feature-item {
     max-width: 100%;
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
     padding: 25px 20px;
   }
-  .feature-item:last-child {
-    border-bottom: none;
-  }
+
   .feature-item p {
     flex-grow: 0;
   }
 }
+
+
 @media (max-width: 600px) {
   .artists-list ul {
     gap: 10px;

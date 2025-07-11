@@ -6,11 +6,11 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
 ---
 
 <div id="homepage-content" class="content-area">
-  <!-- תוכן דף הבית נשאר זהה מבחינת HTML -->
+
   <div class="main-columns">
       <div class="artists-column">
-          <!-- שינוי: הקישור צריך להיות לדף אמנים שייתכן ונרצה ליצור או להפנות אליו -->
-          <a href="{{ site.baseurl }}/artists/" class="column-title-link"> <!-- או אולי לא נציג דף כללי? נשאיר בינתיים -->
+
+          <a href="{{ site.baseurl }}/artists/" class="column-title-link">
               <i class="fas fa-users"></i> אמנים בולטים
           </a>
           <div class="artists-grid" id="popular-artists-grid">
@@ -27,27 +27,42 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
       </div>
   </div>
 
-  <div class="ad-banner-container" id="ad-banner-container">
-       <div class="loading-placeholder">טוען פרסומת...</div>
-      <button id="prevSection" aria-label="הקודם"><i class="fas fa-chevron-right"></i></button>
-      <button id="nextSection" aria-label="הבא"><i class="fas fa-chevron-left"></i></button>
+  <div class="features-container">
+    <div class="feature-item">
+        <i class="fas fa-database feature-icon"></i>
+        <h3>מאגר המוזיקה בדרייב</h3>
+        <p>קבלו גישה למאות ג'יגה-בייט של מוזיקה יהודית, מכל הז'אנרים. כל השירים במקום אחד</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top" target="_blank" onclick="conversion_music_drive()" class="helpButton">אני רוצה גישה למאגר!</a>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-envelope-open-text feature-icon"></i>
+        <h3>הישארו מעודכנים</h3>
+        <p>הצטרפו וקבלו עדכונים על תכונות חדשות, טיפים ובונוסים ייחודיים ישירות למייל</p>
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&su=%D7%A6%D7%A8%D7%A3+%D7%90%D7%95%D7%AA%D7%99+%D7%9C%D7%A8%D7%A9%D7%99%D7%9E%D7%AA+%D7%94%D7%AA%D7%A4%D7%95%D7%A6%D7%94+%D7%A9%D7%9C+%D7%A9%D7%99%D7%A8-%D7%91%D7%95%D7%98&to=shir-bot%2Bsubscribe%40googlegroups.com" target="_blank" class="helpButton">להרשמה וקבלת הטבות</a>
+    </div>
+    <div class="feature-item">
+        <i class="fas fa-magic feature-icon"></i>
+        <h3>מסדר הסינגלים</h3>
+        <p>תוכנה חינמית וחכמה שתעשה לכם סדר בתיקיות המוזיקה שלכם באופן אוטומטי</p>
+        <a href="https://singles-sorter.ze-kal.top?utm_source=shir_bot_banner&utm_medium=site" target="_blank" class="helpButton">הורדה בחינם</a>
+    </div>
   </div>
 
 </div>
 
 
-<!-- אזור תוצאות החיפוש -->
+
 <div id="search-results-area" style="display: none;">
-    <!-- הודעת טעינה להורדות/חיפוש -->
+
     <div id="loadingMessage" class="loading-message">
         <div class="progress-bar-container">
             <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
             <span id="progressText"></span>
-            <!-- הסרת progress bar ישן אם משתמשים באותו אלמנט הודעה כללי -->
+
         </div>
     </div>
 
-    <!-- הטבלה תאוכלס ע"י search.js -> displayResults, שכבר עודכן להכיל data-drive-id -->
+
     <div id="resultsTable" class="custom-table">
         <table>
             <thead>
@@ -59,14 +74,14 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
                 </tr>
             </thead>
             <tbody class="songs-list">
-                <!-- התוכן יוכנס דינמית -->
+
             </tbody>
         </table>
         <button id="loadMoreButton" style="display: none;">טען עוד</button>
     </div>
 </div>
 
-<!-- Modal Overlay נשאר זהה -->
+
 <div id="modalOverlay" class="modal-overlay">
     <div class="modal-content">
         <span id="modalMessage"></span><br>

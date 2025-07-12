@@ -10,7 +10,7 @@
   <title>{{ page.title }}</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/images/favicon.png">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/personal.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
   <script src="https://nhlocal.github.io/general-settings.js"></script>
@@ -29,10 +29,8 @@
   </script>
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
-
   <div class="body-wrapper">
     {%- assign cta = site.data.ads.default_cta -%}
-
     {% comment %} --- START: Right Ad Sidebar (First in RTL) --- {% endcomment %}
     <aside class="ad-sidebar ad-sidebar-right">
       {%- assign banner = site.data.ads.right_banner -%}
@@ -48,8 +46,6 @@
       {%- endif -%}
     </aside>
     {% comment %} --- END: Right Ad Sidebar --- {% endcomment %}
-
-
     {% comment %} --- START: Main Content Column --- {% endcomment %}
     <div class="main-content-column">
       {% include header.html %}
@@ -59,8 +55,6 @@
       {% include footer.html %}
     </div>
     {% comment %} --- END: Main Content Column --- {% endcomment %}
-
-
     {% comment %} --- START: Left Ad Sidebar (Last in RTL) --- {% endcomment %}
     <aside class="ad-sidebar ad-sidebar-left">
       {%- assign banner = site.data.ads.left_banner -%}
@@ -76,9 +70,7 @@
       {%- endif -%}
     </aside>
     {% comment %} --- END: Left Ad Sidebar --- {% endcomment %}
-
   </div>
-
   <script src="{{ site.baseurl }}/assets/js/core.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>

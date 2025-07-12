@@ -30,25 +30,11 @@
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
 
-  {% comment %} --- START: Ad Sidebars (Improved Logic) --- {% endcomment %}
-  <div class="ad-sidebars">
+  <div class="body-wrapper">
     {%- assign cta = site.data.ads.default_cta -%}
 
-    <div class="ad-sidebar ad-sidebar-left">
-      {%- assign banner = site.data.ads.left_banner -%}
-      {%- if banner and banner.enabled == true -%}
-        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
-          <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
-        </a>
-      {%- else -%}
-        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
-          <span class="cta-text">{{ cta.cta_text }}</span>
-          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
-        </a>
-      {%- endif -%}
-    </div>
-
-    <div class="ad-sidebar ad-sidebar-right">
+    {% comment %} --- START: Right Ad Sidebar (First in RTL) --- {% endcomment %}
+    <aside class="ad-sidebar ad-sidebar-right">
       {%- assign banner = site.data.ads.right_banner -%}
       {%- if banner and banner.enabled == true -%}
         <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
@@ -60,15 +46,39 @@
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>
       {%- endif -%}
-    </div>
-  </div>
-  {% comment %} --- END: Ad Sidebars --- {% endcomment %}
+    </aside>
+    {% comment %} --- END: Right Ad Sidebar --- {% endcomment %}
 
-  {% include header.html %}
-  <div class="content">
-    {{ content }}
+
+    {% comment %} --- START: Main Content Column --- {% endcomment %}
+    <div class="main-content-column">
+      {% include header.html %}
+      <div class="content">
+        {{ content }}
+      </div>
+      {% include footer.html %}
+    </div>
+    {% comment %} --- END: Main Content Column --- {% endcomment %}
+
+
+    {% comment %} --- START: Left Ad Sidebar (Last in RTL) --- {% endcomment %}
+    <aside class="ad-sidebar ad-sidebar-left">
+      {%- assign banner = site.data.ads.left_banner -%}
+      {%- if banner and banner.enabled == true -%}
+        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
+          <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
+        </a>
+      {%- else -%}
+        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
+          <span class="cta-text">{{ cta.cta_text }}</span>
+          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
+        </a>
+      {%- endif -%}
+    </aside>
+    {% comment %} --- END: Left Ad Sidebar --- {% endcomment %}
+
   </div>
-  {% include footer.html %}
+
   <script src="{{ site.baseurl }}/assets/js/core.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>

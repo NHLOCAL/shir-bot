@@ -1,0 +1,32 @@
+# ==============================================================================
+#  קובץ ניהול פרסומות (מבנה משופר)
+# ==============================================================================
+# default_cta: זוהי הצעת "פרסם כאן" שתוצג אוטומטית אם אחת
+#              מהפרסומות למטה אינה מופעלת (enabled: false).
+#
+# left_banner & right_banner: פרסומות ספציפיות.
+#  - enabled: true/false. אם תגדיר false, ה-default_cta יוצג במקום.
+#  - image_url: נתיב לתמונת הפרסומת.
+#  - link_url:  הקישור אליו המודעה מפנה.
+#  - alt_text:  טקסט חלופי לתמונה.
+# ==============================================================================
+
+# --- הצעת פרסום קבועה (ברירת מחדל) ---
+default_cta:
+  cta_text: "פרסם כאן"
+  cta_subtext: "במחירי השקה מיוחדים"
+  link_url: "mailto:mesader.singelim@gmail.com?subject=פרסום באתר שיר-בוט"
+
+# --- באנרים של פרסום ---
+left_banner:
+  enabled: false # הגדר כ-true כדי להציג פרסומת ספציפית בצד שמאל
+  image_url: "/assets/images/ads/ad-left-placeholder.png"
+  link_url: "https://example.com/left-ad"
+  alt_text: "פרסומת צד שמאל"
+
+right_banner:
+  enabled: true
+  type: "image" # הצגת פרסומת עם תמונה
+  image_url: "/assets/images/ads/ze-kal-channel.png" # דוגמה. עליך ליצור את התמונה הזו
+  link_url: "https://www.youtube.com/@Ze-Kal"
+  alt_text: "פרסומת לדוגמה"

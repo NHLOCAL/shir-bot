@@ -11,7 +11,6 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/images/favicon.png">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/personal.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGD4VQW4X8"></script>
   <script src="https://nhlocal.github.io/general-settings.js"></script>
@@ -25,30 +24,57 @@
   }
   </script>
   {% seo %}
-
   <script>
     var baseurl = "{{ site.baseurl }}";
   </script>
-
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
+
+  {% comment %} --- START: Ad Sidebars (Improved Logic) --- {% endcomment %}
+  <div class="ad-sidebars">
+    {%- assign cta = site.data.ads.default_cta -%}
+
+    <div class="ad-sidebar ad-sidebar-left">
+      {%- assign banner = site.data.ads.left_banner -%}
+      {%- if banner and banner.enabled == true -%}
+        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
+          <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
+        </a>
+      {%- else -%}
+        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
+          <span class="cta-text">{{ cta.cta_text }}</span>
+          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ad-sidebar ad-sidebar-right">
+      {%- assign banner = site.data.ads.right_banner -%}
+      {%- if banner and banner.enabled == true -%}
+        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
+          <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
+        </a>
+      {%- else -%}
+        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
+          <span class="cta-text">{{ cta.cta_text }}</span>
+          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+  {% comment %} --- END: Ad Sidebars --- {% endcomment %}
+
   {% include header.html %}
   <div class="content">
     {{ content }}
   </div>
   {% include footer.html %}
-
-
   <script src="{{ site.baseurl }}/assets/js/core.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/ads.js" defer></script>
-  <!-- search.js חייב לבוא לפני shared-redirect-handler כדי שהפונקציה הגלובלית תהיה זמינה -->
   <script src="{{ site.baseurl }}/assets/js/search.js" defer></script>
   <script src="{{ site.baseurl }}/assets/js/shared-redirect-handler.js" defer></script>
-
-  <!-- אם הקובץ homepage.js עדיין קיים ונטען רק בדף הבית, נשאיר אותו שם -->
   {% if page.url == '/' or page.url == '/index.html' %}
     <script src="{{ site.baseurl }}/assets/js/homepage.js" defer></script>
   {% endif %}
-
 </body>
 </html>

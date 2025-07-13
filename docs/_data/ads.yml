@@ -11,22 +11,38 @@
 #  - alt_text:  טקסט חלופי לתמונה.
 # ==============================================================================
 
-# --- הצעת פרסום קבועה (ברירת מחדל) ---
 default_cta:
   cta_text: "פרסם כאן"
   cta_subtext: "במחירי השקה מיוחדים"
   link_url: "mailto:mesader.singelim@gmail.com?subject=פרסום באתר שיר-בוט"
-
-# --- באנרים של פרסום ---
 left_banner:
-  enabled: false # הגדר כ-true כדי להציג פרסומת ספציפית בצד שמאל
+  enabled: false
   image_url: "/assets/images/ads/ad-left-placeholder.png"
   link_url: "https://example.com/left-ad"
   alt_text: "פרסומת צד שמאל"
-
 right_banner:
   enabled: true
-  type: "image" # הצגת פרסומת עם תמונה
-  image_url: "/assets/images/ads/ze-kal-channel.png" # דוגמה. עליך ליצור את התמונה הזו
+  type: "image"
+  image_url: "/assets/images/ads/ze-kal-channel.png"
   link_url: "https://www.youtube.com/@Ze-Kal"
   alt_text: "פרסומת לדוגמה"
+inline_ads:
+  enabled: true
+  frequency: 7
+  ads_list:
+    - type: "text"
+      title: "רוצים גישה למאגר המלא?"
+      text: "מאות ג'יגה של מוזיקה יהודית איכותית מחכים לכם. הרשמו עכשיו וקבלו גישה מיידית לדרייב!"
+      cta_text: "לפרטים והרשמה"
+      link_url: "https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top"
+      icon_class: "fas fa-database"
+    - type: "image"
+      link_url: "https://nhlocal.github.io/"
+      image_url: "/assets/images/ads/nhlocal-banner.png"
+      alt_text: "פרסומת לסקריפטים של NHLOCAL"
+    - type: "text"
+      title: "מסדר הסינגלים - בחינם!"
+      text: "עשו סדר במוזיקה שלכם באופן אוטומטי. תוכנה חכמה שתמיין ותארגן את כל הסינגלים במחשב שלכם."
+      cta_text: "להורדה בחינם"
+      link_url: "https://singles-sorter.ze-kal.top?utm_source=shir_bot_inline_ad&utm_medium=site"
+      icon_class: "fas fa-magic"

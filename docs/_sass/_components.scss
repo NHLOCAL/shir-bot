@@ -201,15 +201,15 @@ td {
   border-radius: 0;
   padding: 10px;
 }
-.custom-table tbody.songs-list tr:hover {
+.custom-table tbody.songs-list tr:hover:not(.inline-ad-row) {
   background-color: #e0e0e0;
   transition: background-color 0.15s ease-in-out;
 }
-.custom-table tbody.songs-list tr:hover td:first-child {
+.custom-table tbody.songs-list tr:hover:not(.inline-ad-row) td:first-child {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.custom-table tbody.songs-list tr:hover td:last-child {
+.custom-table tbody.songs-list tr:hover:not(.inline-ad-row) td:last-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -674,6 +674,90 @@ td {
   margin-right: 8px;
   transition: background 0.2s;
 }
-.terms-modal-btn:hover {
-  background: var(--primary-hover, #5C3899);
+/* --- Inline Ad Styles --- */
+.inline-ad-row {
+  /* Remove hover effect from the ad row itself to differentiate from song rows */
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.inline-ad-cell {
+  /* Add padding inside the cell to create space around the ad "card" */
+  padding: 8px 10px !important;
+  border-bottom: none;
+}
+
+.inline-ad-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 5px 12px rgba(126, 87, 194, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.inline-ad-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.inline-ad-icon {
+  flex-shrink: 0;
+  i {
+    font-size: 24px;
+    color: var(--primary-color);
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: rgba(126, 87, 194, 0.1);
+    border-radius: 50%;
+  }
+}
+
+.inline-ad-content {
+  flex-grow: 1;
+  text-align: right;
+  .ad-title {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--primary-hover);
+    margin: 0 0 4px 0;
+  }
+  .ad-text {
+    font-size: 0.95em;
+    color: #444;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.inline-ad-cta {
+  flex-shrink: 0;
+  margin-right: auto;
+  padding: 7px 16px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.inline-ad-link:hover .inline-ad-cta {
+  background-color: var(--primary-hover);
 }

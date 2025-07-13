@@ -676,11 +676,16 @@ function filterSongs(songsToFilter, query, searchBy) {
     });
 }
 
+
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-    if (!append) resultsTableBody.innerHTML = '';
+
+    if (!append) {
+        resultsTableBody.innerHTML = '';
+    }
+
     if (resultsToDisplay.length === 0 && !append) {
         const nr = document.createElement('tr'), nc = document.createElement('td');
         nc.setAttribute('colspan', colspan);
@@ -692,11 +697,56 @@ function displayResults(resultsToDisplay, append = false) {
         toggleLoadMoreButton();
         return;
     }
+
     if (resultsToDisplay.length > 0 && resultsTableThead && (resultsTableThead.style.display === "none" || !resultsTableThead.style.display)) {
         resultsTableThead.style.display = "";
     }
+
     const frag = document.createDocumentFragment();
-    resultsToDisplay.forEach(s => {
+    const adsEnabled = typeof inlineAdsConfig !== 'undefined' && inlineAdsConfig.enabled;
+    const adFrequency = adsEnabled ? inlineAdsConfig.frequency : 0;
+    const adsList = adsEnabled ? inlineAdsConfig.ads_list : [];
+    const adsListSize = adsList.length;
+
+    resultsToDisplay.forEach((s, index) => {
+        const overallIndex = (append ? displayedResults : 0) + index;
+
+        // Ad injection logic
+        if (adsEnabled && adsListSize > 0 && overallIndex > 0 && (overallIndex + 1) % adFrequency === 0) {
+            const adIndex = Math.floor(overallIndex / adFrequency) % adsListSize;
+            const ad = adsList[adIndex];
+            const adRow = document.createElement('tr');
+            adRow.className = 'inline-ad-row';
+            const adCell = document.createElement('td');
+            adCell.className = 'inline-ad-cell';
+            adCell.colSpan = colspan;
+            
+            if (ad.type === 'image') {
+                adCell.innerHTML = `
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">
+                      <img src="${baseurl || ''}${ad.image_url}" alt="${ad.alt_text}" class="inline-ad-image">
+                    </a>`;
+            } else { // Default to text ad
+                let adHTML = `
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">`;
+                if (ad.icon_class) {
+                    adHTML += `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>`;
+                }
+                adHTML += `<div class="inline-ad-content">
+                             <div class="ad-title">${ad.title}</div>
+                             <p class="ad-text">${ad.text}</p>
+                           </div>`;
+                if (ad.cta_text) {
+                    adHTML += `<div class="inline-ad-cta">${ad.cta_text}</div>`;
+                }
+                adHTML += `</a>`;
+                adCell.innerHTML = adHTML;
+            }
+            adRow.appendChild(adCell);
+            frag.appendChild(adRow);
+        }
+
+        // Song row creation
         const r = document.createElement('tr');
         r.dataset.songSerial = s.serial;
         r.dataset.driveId = s.driveId;
@@ -740,9 +790,11 @@ function displayResults(resultsToDisplay, append = false) {
         r.appendChild(acC);
         frag.appendChild(r);
     });
+
     resultsTableBody.appendChild(frag);
     toggleLoadMoreButton();
 }
+
 
 function loadMoreResults() {
     console.log(`Load More: Disp=${displayedResults}, Total=${results.length}`);

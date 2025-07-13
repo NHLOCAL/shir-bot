@@ -48,7 +48,6 @@ layout: default # Inherits from default, which loads core.js, ads.js, search.js,
           {%- assign song_counter_for_ad = 0 -%}
           {%- assign ad_display_index = 0 -%}
         {%- endif -%}
-
         {% for song in page.songs %}
           <tr data-song-serial="{{ song.number | escape }}" data-drive-id="{{ song.driveId | escape }}">
             <td>{{ song.name }}</td>
@@ -69,7 +68,6 @@ layout: default # Inherits from default, which loads core.js, ads.js, search.js,
               </div>
            </td>
           </tr>
-
           {%- if inline_ads_config.enabled and ads_list_size > 0 -%}
             {%- assign song_counter_for_ad = song_counter_for_ad | plus: 1 -%}
             {%- if song_counter_for_ad == ad_frequency and forloop.last == false -%}
@@ -77,7 +75,7 @@ layout: default # Inherits from default, which loads core.js, ads.js, search.js,
               <tr class="inline-ad-row">
                 <td class="inline-ad-cell" colspan="4">
                   {%- if ad.type == 'image' -%}
-                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link">
+                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
                       <img src="{{ site.baseurl }}{{ ad.image_url }}" alt="{{ ad.alt_text }}" class="inline-ad-image">
                     </a>
                   {%- else -%}

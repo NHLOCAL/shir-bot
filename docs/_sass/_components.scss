@@ -681,13 +681,11 @@ td {
     background-color: transparent;
   }
 }
-
 .inline-ad-cell {
   /* Add padding inside the cell to create space around the ad "card" */
   padding: 8px 10px !important;
   border-bottom: none;
 }
-
 .inline-ad-link {
   display: flex;
   align-items: center;
@@ -700,13 +698,11 @@ td {
   text-decoration: none;
   color: inherit;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-
   &:hover {
     box-shadow: 0 5px 12px rgba(126, 87, 194, 0.1);
     transform: translateY(-2px);
   }
 }
-
 .inline-ad-image {
   display: block;
   width: 100%;
@@ -714,7 +710,6 @@ td {
   border-radius: 6px;
   object-fit: cover;
 }
-
 .inline-ad-icon {
   flex-shrink: 0;
   i {
@@ -728,7 +723,6 @@ td {
     border-radius: 50%;
   }
 }
-
 .inline-ad-content {
   flex-grow: 1;
   text-align: right;
@@ -745,7 +739,6 @@ td {
     line-height: 1.5;
   }
 }
-
 .inline-ad-cta {
   flex-shrink: 0;
   margin-right: auto;
@@ -757,7 +750,13 @@ td {
   font-weight: 600;
   transition: background-color 0.2s ease-in-out;
 }
-
 .inline-ad-link:hover .inline-ad-cta {
   background-color: var(--primary-hover);
+}
+.inline-ad-link.inline-ad-link--image {
+  padding: 0;
+  overflow: hidden;
+  .inline-ad-image {
+    border-radius: 0;
+  }
 }

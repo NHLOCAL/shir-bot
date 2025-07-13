@@ -57,7 +57,6 @@ permalink: /new-songs/
                   {%- assign song_counter_for_ad = 0 -%}
                   {%- assign ad_display_index = 0 -%}
                 {%- endif -%}
-
                 {% for song in sorted_songs %}
                     <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
                         <td>{{ song.name }}</td>
@@ -74,7 +73,6 @@ permalink: /new-songs/
                             </div>
                          </td>
                     </tr>
-                    
                     {%- if inline_ads_config.enabled and ads_list_size > 0 -%}
                       {%- assign song_counter_for_ad = song_counter_for_ad | plus: 1 -%}
                       {%- if song_counter_for_ad == ad_frequency and forloop.last == false -%}
@@ -82,7 +80,7 @@ permalink: /new-songs/
                         <tr class="inline-ad-row">
                             <td class="inline-ad-cell" colspan="4">
                               {%- if ad.type == 'image' -%}
-                                <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link">
+                                <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
                                   <img src="{{ site.baseurl }}{{ ad.image_url }}" alt="{{ ad.alt_text }}" class="inline-ad-image">
                                 </a>
                               {%- else -%}

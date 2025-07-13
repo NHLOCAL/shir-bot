@@ -83,6 +83,15 @@ permalink: /new-songs/
                                 <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
                                   <img src="{{ site.baseurl }}{{ ad.image_url }}" alt="{{ ad.alt_text }}" class="inline-ad-image">
                                 </a>
+                              {%- elsif ad.type == 'email' -%}
+                                <a href="#" class="inline-ad-link dynamic-mailto-ad" data-email="{{ ad.email }}" data-subject="{{ ad.subject }}" data-body="{{ ad.body }}">
+                                  {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}
+                                  <div class="inline-ad-content">
+                                    <div class="ad-title">{{ ad.title }}</div>
+                                    <p class="ad-text">{{ ad.text }}</p>
+                                  </div>
+                                  {% if ad.cta_text %}<div class="inline-ad-cta">{{ ad.cta_text }}</div>{% endif %}
+                                </a>
                               {%- else -%}
                                 <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link">
                                   {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}

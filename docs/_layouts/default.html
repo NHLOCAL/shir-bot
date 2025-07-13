@@ -40,7 +40,11 @@
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
-        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
+        <a href="#"
+           class="ad-banner ad-cta dynamic-mailto-ad"
+           data-email="{{ cta.email }}"
+           data-subject="{{ cta.subject }}"
+           data-body="{{ cta.body }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>
@@ -64,7 +68,11 @@
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
-        <a href="{{ cta.link_url }}" target="_blank" rel="noopener" class="ad-banner ad-cta">
+        <a href="#"
+           class="ad-banner ad-cta dynamic-mailto-ad"
+           data-email="{{ cta.email }}"
+           data-subject="{{ cta.subject }}"
+           data-body="{{ cta.body }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>

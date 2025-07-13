@@ -648,6 +648,19 @@ function displayResults(resultsToDisplay, append = false) {
                     <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
                       <img src="${baseurl || ''}${ad.image_url}" alt="${ad.alt_text}" class="inline-ad-image">
                     </a>`;
+            } else if (ad.type === 'email') {
+                adCell.innerHTML = `
+                    <a href="#" class="inline-ad-link dynamic-mailto-ad"
+                       data-email="${ad.email}"
+                       data-subject="${ad.subject}"
+                       data-body="${ad.body}">
+                        ${ad.icon_class ? `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>` : ''}
+                        <div class="inline-ad-content">
+                             <div class="ad-title">${ad.title}</div>
+                             <p class="ad-text">${ad.text}</p>
+                        </div>
+                        ${ad.cta_text ? `<div class="inline-ad-cta">${ad.cta_text}</div>` : ''}
+                    </a>`;
             } else { // Default to text ad
                 let adHTML = `
                     <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">`;
@@ -712,6 +725,10 @@ function displayResults(resultsToDisplay, append = false) {
         frag.appendChild(r);
     });
     resultsTableBody.appendChild(frag);
+    // After adding new content to the DOM, initialize mailto links within that scope
+    if (typeof window.initializeDynamicMailtoLinks === 'function') {
+        window.initializeDynamicMailtoLinks(resultsTableBody);
+    }
     toggleLoadMoreButton();
 }
 function loadMoreResults() {

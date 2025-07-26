@@ -66,53 +66,48 @@ function closeHelp() {
 function initializeSidebarAds() {
     const sidebars = document.querySelectorAll('.ad-sidebar');
     if (sidebars.length === 0) return;
-    const fadeTimers = new Map();
+    const initialFadeTimers = new Map();
     const fadeOutAd = (sidebar) => {
         sidebar.classList.remove('is-visible');
         sidebar.classList.add('is-faded');
     };
-    const startFadeTimer = (sidebar) => {
-        if (fadeTimers.has(sidebar)) {
-            clearTimeout(fadeTimers.get(sidebar));
-        }
-        const timerId = setTimeout(() => {
-            fadeOutAd(sidebar);
-            fadeTimers.delete(sidebar);
-        }, 10000); // 10 seconds to show
-        fadeTimers.set(sidebar, timerId);
-    };
-    // Attach hover listeners to all sidebars regardless of initial state
     sidebars.forEach(sidebar => {
         sidebar.addEventListener('mouseenter', () => {
             sidebar.classList.add('is-visible');
             sidebar.classList.remove('is-faded');
-            if (fadeTimers.has(sidebar)) {
-                clearTimeout(fadeTimers.get(sidebar));
-                fadeTimers.delete(sidebar);
+            if (initialFadeTimers.has(sidebar)) {
+                clearTimeout(initialFadeTimers.get(sidebar));
+                initialFadeTimers.delete(sidebar);
+                console.log("Sidebar Ads: Initial fade timer cancelled by user hover.");
             }
         });
         sidebar.addEventListener('mouseleave', () => {
-            startFadeTimer(sidebar);
+            fadeOutAd(sidebar);
         });
     });
-    // Check if the initial animation has already played in this session
     const animationPlayed = sessionStorage.getItem('shirBotAdAnimationPlayed');
     if (animationPlayed) {
-        // If it has played, start the ads in their faded state immediately
-        console.log("Sidebar Ads: Animation already played this session. Starting in faded state.");
+        console.log("Sidebar Ads: Animation already played. Starting in faded state without transition.");
         sidebars.forEach(sidebar => {
+            sidebar.classList.add('no-transition');
             sidebar.classList.add('is-faded');
+            sidebar.offsetHeight; // force reflow
+            sidebar.classList.remove('no-transition');
         });
     } else {
-        // If it's the first time, run the full animation and set the flag
-        console.log("Sidebar Ads: First view this session. Playing animation.");
+        console.log("Sidebar Ads: First view this session. Playing initial animation.");
         sessionStorage.setItem('shirBotAdAnimationPlayed', 'true');
         setTimeout(() => {
             sidebars.forEach(sidebar => {
                 sidebar.classList.add('is-visible');
-                startFadeTimer(sidebar); // Start the 10-second timer to fade out
+                const timerId = setTimeout(() => {
+                    fadeOutAd(sidebar);
+                    initialFadeTimers.delete(sidebar);
+                    console.log("Sidebar Ads: Initial 10-second visibility period ended. Fading out.");
+                }, 10000);
+                initialFadeTimers.set(sidebar, timerId);
             });
-        }, 5000); // 5 seconds initial delay
+        }, 5000);
     }
 }
 document.addEventListener("DOMContentLoaded", function() {

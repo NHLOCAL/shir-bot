@@ -217,8 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Search.js: Initial data load failed in DOMContentLoaded.", error);
     });
     if (searchInput) {
-        searchInput.addEventListener('focus', () => {
+        searchInput.addEventListener('click', () => {
             if (searchInput.value.trim().length === 0) {
+                renderHistorySuggestions();
+            }
+        });
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.matches(':focus-visible') && searchInput.value.trim().length === 0) {
                 renderHistorySuggestions();
             }
         });
@@ -634,7 +639,6 @@ function displayResults(resultsToDisplay, append = false) {
     const adsListSize = adsList.length;
     resultsToDisplay.forEach((s, index) => {
         const overallIndex = (append ? displayedResults : 0) + index;
-        // Ad injection logic
         if (adsEnabled && adsListSize > 0 && overallIndex > 0 && (overallIndex + 1) % adFrequency === 0) {
             const adIndex = Math.floor(overallIndex / adFrequency) % adsListSize;
             const ad = adsList[adIndex];
@@ -661,7 +665,7 @@ function displayResults(resultsToDisplay, append = false) {
                         </div>
                         ${ad.cta_text ? `<div class="inline-ad-cta">${ad.cta_text}</div>` : ''}
                     </a>`;
-            } else { // Default to text ad
+            } else { 
                 let adHTML = `
                     <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">`;
                 if (ad.icon_class) {
@@ -680,7 +684,6 @@ function displayResults(resultsToDisplay, append = false) {
             adRow.appendChild(adCell);
             frag.appendChild(adRow);
         }
-        // Song row creation
         const r = document.createElement('tr');
         r.dataset.songSerial = s.serial;
         r.dataset.driveId = s.driveId;
@@ -725,7 +728,6 @@ function displayResults(resultsToDisplay, append = false) {
         frag.appendChild(r);
     });
     resultsTableBody.appendChild(frag);
-    // After adding new content to the DOM, initialize mailto links within that scope
     if (typeof window.initializeDynamicMailtoLinks === 'function') {
         window.initializeDynamicMailtoLinks(resultsTableBody);
     }

@@ -1,5 +1,4 @@
 ---
-layout: page
 title: "דף תשלום"
 permalink: /site/pay/
 ---

@@ -1,29 +1,25 @@
-baseurl: ""
-url: "https://shir-bot.ze-kal.top"
+# docs/_config.yml
+
+# ה-baseurl של האתר הישן ב-GitHub Pages
+# חשוב להגדרה נכונה של בנייה מקומית ושל ה-Action
+baseurl: "/shir-bot" 
+url: "https://nhlocal.github.io" # ה-url הישן של GitHub Pages
+
 language: "he"
+title: "שיר-בוט | האתר עבר כתובת"
+description: "האתר של שיר-בוט עבר לכתובת חדשה. אנו מפנים אותך כעת."
 
-title: "שיר-בוט | חיפוש והורדת מוזיקה יהודית וחסידית | מאגר עדכני"
-
-description: >-
-  שיר-בוט: חיפוש מתקדם והורדה קלה של מוזיקה יהודית וחסידית.
-  מאגר ענק ועדכני של שירים, סינגלים, אלבומים ואמנים.
-  מצאו את השיר הבא שלכם!
-
-theme: minima
-
+# רשימת פלאגינים מצומצמת - רק אלה שיוצרים את הדפים
 plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-redirect-from
   - ./_plugins/artist_page_generator.rb
   - ./_plugins/monthly_archive_generator.rb
 
-seo:
-  title: "שיר-בוט - מאגר מוזיקה יהודית וחסידית"
-  description: "חיפוש, גילוי והורדה של שירים, אלבומים ואמנים מהמוזיקה היהודית והחסידית. המאגר הגדול והמתעדכן של שיר-בוט."
-  url: "https://shir-bot.ze-kal.top"
-  image: "/assets/images/logo.png"
-
-data_dir: _data
-
 safe: false
+
+# הגדרת ברירת המחדל להפניה - זה נשאר כמו שהיה
+defaults:
+  -
+    scope:
+      path: "" 
+    values:
+      layout: "redirect"

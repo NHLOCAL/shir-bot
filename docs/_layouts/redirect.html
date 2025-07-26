@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>האתר עבר לכתובת חדשה</title>
+
+    <!-- הגדרות הפניה -->
+    <script type="text/javascript">
+        const newDomain = "https://shir-bot.ze-kal.top";
+        const repoPathPrefix = "/shir-bot";
+    </script>
+
+    <!-- SEO: תג קנוני דינמי - החלק החשוב ביותר לגוגל! -->
+    <link id="canonical-link" rel="canonical" href="https://shir-bot.ze-kal.top/" />
+
+    <!-- סקריפט ההפניה עצמו -->
+    <script type="text/javascript">
+        // קוד זהה לקוד מהתשובה הקודמת, הוא אוניברסלי
+        const currentPath = window.location.pathname;
+        const currentQuery = window.location.search;
+        const currentHash = window.location.hash;
+
+        let newPath = currentPath;
+        if (currentPath.startsWith(repoPathPrefix)) {
+            newPath = currentPath.substring(repoPathPrefix.length);
+        }
+        if (newPath === "") newPath = "/";
+
+        const newUrl = newDomain + newPath + currentQuery + currentHash;
+
+        document.getElementById("canonical-link").setAttribute("href", newUrl);
+        window.location.replace(newUrl);
+    </script>
+
+    <!-- Fallback למקרה ש-JavaScript מבוטל -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://shir-bot.ze-kal.top/" />
+    </noscript>
+</head>
+<body>
+    <!-- התוכן של הדף המקורי לא יוצג, אבל זה נוהג טוב להוסיף את זה -->
+    {{ content }}
+    
+    <p>האתר עבר לכתובת חדשה. אנו מעבירים אותך אוטומטית...</p>
+    <p>
+        אם ההעברה לא מתבצעת, אנא לחץ על הקישור:
+        <a id="redirect-link" href="https://shir-bot.ze-kal.top/">
+            https://shir-bot.ze-kal.top/
+        </a>
+    </p>
+
+    <script type="text/javascript">
+        const link = document.getElementById("redirect-link");
+        if (link) {
+            link.href = newUrl;
+            link.textContent = newUrl;
+        }
+    </script>
+</body>
+</html>

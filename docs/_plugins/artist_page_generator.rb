@@ -15,13 +15,19 @@ module Jekyll
       self.process(@name)
 
 
+      # --- START OF FIX ---
+      # BEFORE (Original code that was causing issues):
+      # self.data = site.layouts['artist'].data.dup
+      # self.data['layout'] = 'artist'
+      #
+      # AFTER (Your correct, direct approach):
+      # We explicitly tell the page to use the 'redirect' layout.
+      self.data = site.layouts['redirect'].data.dup
+      self.data['layout'] = 'redirect'
+      # --- END OF FIX ---
 
-      self.data = site.layouts['artist'].data.dup
 
-
-      self.data['layout'] = 'artist'
-
-
+      # This data is still useful for potential template logic, so we keep it.
       self.data['name']        = artist_data['name']
       self.data['title']       = artist_data['title']
       self.data['description'] = artist_data['description']
@@ -45,7 +51,7 @@ module Jekyll
     priority :lowest
 
     def generate(site)
-
+      return unless site.layouts.key? 'redirect' # Safety check
 
       puts "ArtistPageGenerator: Starting generation..."
 

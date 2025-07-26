@@ -3,26 +3,19 @@ require 'unf'
 
 module Jekyll
 
-  # Helper function to create slugs (copied from artist_page_generator.rb for standalone use)
-  # Could be refactored into a shared module if used in more places.
   def self.create_slug_for_archive(text)
     return nil if text.nil?
     text = text.to_s
 
     begin
-      # Normalize unicode characters (NFKC form) and downcase
       normalized_text = UNF::Normalizer.normalize(text, :nfkc).downcase
-      # Replace non-alphanumeric (excluding Hebrew, '-', '.', ''') with hyphens
       slug = normalized_text.gsub(/[^a-z0-9\u0590-\u05ff\-\.\']/i, '-')
-      # Replace multiple hyphens with a single hyphen
-      slug.gsub!(/\s+/, '-') # also replace spaces just in case
+      slug.gsub!(/\s+/, '-')
       slug.gsub!(/-+/, '-')
-      # Remove leading/trailing hyphens
       slug.gsub!(/^-+|-+$/, '')
-      slug = "archive-month" if slug.empty? # Fallback for empty slugs
+      slug = "archive-month" if slug.empty?
       return slug
     rescue => e
-      # Fallback for any error during slug generation
       puts "Error creating slug for '#{text}': #{e.message}. Using basic slug."
       return text.to_s.downcase.gsub(/[^a-z0-9\-]/, '-').gsub(/-+/, '-').gsub(/^-+|-+$/, '')
     end
@@ -32,27 +25,39 @@ module Jekyll
     def initialize(site, base, dir_slug, album_name, songs_for_album)
       @site = site
       @base = base
-      @dir = File.join('archive', dir_slug) # Output path: /archive/album-slug/
+      @dir = File.join('archive', dir_slug)
       @name = 'index.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'monthly_archive.html')
 
-      self.data['layout'] = 'monthly_archive'
+      # --- START OF FIX ---
+      # BEFORE (Original code that was causing issues):
+      # self.read_yaml(File.join(base, '_layouts'), 'monthly_archive.html')
+      # self.data['layout'] = 'monthly_archive'
+      #
+      # AFTER (The same direct approach that worked for artists):
+      # We explicitly tell the page to use the 'redirect' layout.
+      self.data = site.layouts['redirect'].data.dup
+      self.data['layout'] = 'redirect'
+      # --- END OF FIX ---
+
+      # This data is still useful, so we keep it.
       self.data['title'] = "ארכיון - #{album_name}"
-      self.data['album_name'] = album_name # Original album name for display
+      self.data['album_name'] = album_name
       self.data['songs'] = songs_for_album
       self.data['description'] = "ארכיון שירים מהחודש #{album_name} באתר שיר-בוט."
       self.data['keywords'] = "ארכיון, #{album_name}, מוזיקה, שירים, שיר-בוט"
-      self.data['sitemap'] = false # Exclude from sitemap, archive_index.html will cover them
+      self.data['sitemap'] = false
     end
   end
 
   class MonthlyArchiveGenerator < Generator
     safe true
-    priority :low # Run after default generators
+    priority :low
 
     def generate(site)
+      return unless site.layouts.key? 'redirect' # Safety check
+
       puts "MonthlyArchiveGenerator: Starting generation..."
 
       unless site.data['new_songs'] && site.data['new_songs'].is_a?(Array)
@@ -66,7 +71,6 @@ module Jekyll
         return
       end
 
-      # Get unique album names in order of first appearance
       unique_albums_in_order = all_new_songs.map { |song| song['album'] }.uniq.compact
       puts "MonthlyArchiveGenerator: Found #{unique_albums_in_order.size} unique album names: #{unique_albums_in_order.join(', ')}"
 
@@ -90,10 +94,6 @@ module Jekyll
         puts "MonthlyArchiveGenerator: Archiving: #{archive_album_names.join(', ')}"
       end
 
-      # Make these available to Liquid templates via site.data
-      # site.config['current_display_album_names'] = current_display_albums # Old way
-      # site.config['archive_albums_list'] = archive_albums_details # Old way
-      
       site.data['generated_archive_settings'] = {
         'current_display_album_names' => current_display_albums,
         'archive_albums_list' => archive_albums_details
@@ -101,7 +101,6 @@ module Jekyll
       
       puts "MonthlyArchiveGenerator: current_display_album_names set in site.data: #{current_display_albums.join(', ')}"
  
-      # Generate pages for archived albums
       generated_pages_count = 0
       archive_albums_details.each do |album_detail|
         album_name_for_page = album_detail['name']
@@ -109,9 +108,6 @@ module Jekyll
 
         songs_for_this_album = all_new_songs.select { |song| song['album'] == album_name_for_page }
         
-        # Sort songs within this album page similar to new-songs.html
-        # Assuming 'serial' is numeric or can be compared as such for sorting.
-        # Higher serial means newer.
         sorted_songs_for_album = songs_for_this_album.sort_by { |s| s['serial'].to_i }.reverse
 
         if sorted_songs_for_album.empty?

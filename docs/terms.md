@@ -1,6 +1,5 @@
 ---
 title: "תנאי שימוש ומדיניות פרטיות"
-layout: simple
 permalink: /terms/
 ---
 

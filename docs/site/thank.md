@@ -1,5 +1,4 @@
 ---
-layout: page
 title: "דף תודה"
 permalink: /site/thank/
 ---

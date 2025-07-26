@@ -17,10 +17,9 @@
 }
 .ad-sidebar {
   display: none;
-  flex: 0 0 var(--sidebar-width);
   width: var(--sidebar-width);
   height: 500px;
-  position: sticky;
+  position: fixed;
   top: calc(var(--fixed-top-margin) + 20px);
   opacity: 0;
   visibility: hidden;
@@ -36,6 +35,12 @@
     opacity: 0.15;
     visibility: visible;
   }
+}
+.ad-sidebar-right {
+  left: calc(50% + (1150px / 2) + var(--layout-gap));
+}
+.ad-sidebar-left {
+  left: calc(50% - (1150px / 2) - var(--layout-gap) - var(--sidebar-width));
 }
 .ad-banner {
   display: flex;

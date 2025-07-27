@@ -1,6 +1,52 @@
 var baseurl = baseurl || '';
 let footerAdInterval;
 let currentFooterIndex = 0;
+function initializeImpressionTracking() {
+    const adElements = document.querySelectorAll('a[data-ad-id]');
+    if (adElements.length === 0) {
+        return;
+    }
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+    const impressionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const adElement = entry.target;
+                if (adElement.dataset.impressionTracked) {
+                    return;
+                }
+                adElement.dataset.impressionTracked = 'true';
+                const location = adElement.dataset.adLocation;
+                const type = adElement.dataset.adType;
+                const id = adElement.dataset.adId;
+                if (location && type && id) {
+                    const eventLabel = `${location} - ${type} - ${id}`;
+                    console.log(`Ad Impression Tracked: ${eventLabel}`);
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'ad_impression', {
+                            'event_category': 'Ads',
+                            'event_label': eventLabel,
+                            'ad_location': location,
+                            'ad_type': type,
+                            'ad_id': id,
+                            'non_interaction': true
+                        });
+                    } else {
+                        console.warn('gtag function not found for impression tracking.');
+                    }
+                }
+                observer.unobserve(adElement);
+            }
+        });
+    }, observerOptions);
+    adElements.forEach(ad => {
+        impressionObserver.observe(ad);
+    });
+    console.log(`Impression Tracking: Observing ${adElements.length} ad elements.`);
+}
 function initializeAdSystem() {
     document.body.addEventListener('click', function(event) {
         const adLink = event.target.closest('a[data-ad-id]');
@@ -14,7 +60,10 @@ function initializeAdSystem() {
             if (typeof gtag === 'function') {
                 gtag('event', 'ad_click', {
                     'event_category': 'Ads',
-                    'event_label': eventLabel
+                    'event_label': eventLabel,
+                    'ad_location': location,
+                    'ad_type': type,
+                    'ad_id': id
                 });
             } else {
                 console.warn('gtag function not found for ad tracking.');
@@ -29,11 +78,11 @@ function initializeAdSystem() {
             if (ads.length === 0) return;
             const ad = ads[currentFooterIndex];
             footerAdContainer.innerHTML = `
-                ${ad.text} 
-                <a href="${ad.link_url}" 
+                ${ad.text}
+                <a href="${ad.link_url}"
                    target="_blank" rel="noopener sponsored"
-                   data-ad-location="footer" 
-                   data-ad-type="${ad.type}" 
+                   data-ad-location="footer"
+                   data-ad-type="${ad.type}"
                    data-ad-id="${ad.tracking_id}">
                    ${ad.cta_text}
                 </a>`;
@@ -129,6 +178,7 @@ function closeHelp() {
 document.addEventListener("DOMContentLoaded", function() {
     initializeAdSystem();
     initializeSidebarAds();
+    initializeImpressionTracking();
     document.body.addEventListener('click', function(event){
         if(event.target && event.target.id === 'helpButton' && typeof openHelp === 'function'){
              openHelp();

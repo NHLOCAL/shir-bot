@@ -50,6 +50,12 @@
   }
   .body-wrapper {
     padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 0;
+  }
+  .main-content-column {
+    min-width: 0;
   }
   .fixed-header-wrapper { left: 10px; right: 10px; padding: 0; }
   .header-content-unit { border-radius: 10px; }
@@ -75,12 +81,14 @@
   }
   .body-wrapper {
     padding-top: calc(var(--navbar-height) + var(--filter-section-height) + var(--fixed-top-margin) + 0.5rem);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   .fixed-header-wrapper { left: 5px; right: 5px; }
   .header-content-unit { border-radius: 8px; }
   .top-navbar-section { padding: 0 8px; gap: 0px; }
   .top-navbar-section .icons-container .feedback-button { display: none;}
-  .top-navbar-section .search-bar { margin: 0 auto; padding: 0 0.5rem 0 0.8rem; }
+  .top-navbar-section .search-bar { margin: 0 auto; padding: 0 0.5rem 0 0.8rem; min-width: 0; }
   .top-navbar-section .search-input { font-size: 0.9em; }
   .top-navbar-section .search-icons { display: none; }
   .top-navbar-section .search-icon-button { width: 32px; height: 32px; font-size: 1em; }
@@ -107,7 +115,7 @@
   }
   #resultsTable table { table-layout: fixed; width: 100%; }
   th, td { font-size: 11px; padding: 6px 3px; }
-  #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; }
+  #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; word-break: break-word; }
   #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
   #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
   #resultsTable th:nth-child(3), #resultsTable td:nth-child(3) { width: 20%; }

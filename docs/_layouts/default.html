@@ -27,6 +27,7 @@
   <script>
     var baseurl = "{{ site.baseurl }}";
     var inlineAdsConfig = {{ site.data.ads.inline_ads | jsonify }};
+    var footerAdsConfig = {{ site.data.ads.footer_banner | jsonify }};
   </script>
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
@@ -36,7 +37,8 @@
     <aside class="ad-sidebar ad-sidebar-right">
       {%- assign banner = site.data.ads.right_banner -%}
       {%- if banner and banner.enabled == true -%}
-        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
+        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner"
+           data-ad-location="right_sidebar" data-ad-type="{{ banner.type }}" data-ad-id="{{ banner.tracking_id }}">
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
@@ -44,7 +46,8 @@
            class="ad-banner ad-cta dynamic-mailto-ad"
            data-email="{{ cta.email }}"
            data-subject="{{ cta.subject }}"
-           data-body="{{ cta.body }}">
+           data-body="{{ cta.body }}"
+           data-ad-location="right_sidebar" data-ad-type="email" data-ad-id="{{ cta.tracking_id }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>
@@ -64,7 +67,8 @@
     <aside class="ad-sidebar ad-sidebar-left">
       {%- assign banner = site.data.ads.left_banner -%}
       {%- if banner and banner.enabled == true -%}
-        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner">
+        <a href="{{ banner.link_url }}" target="_blank" rel="noopener sponsored" class="ad-banner"
+           data-ad-location="left_sidebar" data-ad-type="image" data-ad-id="{{ banner.tracking_id }}">
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
@@ -72,7 +76,8 @@
            class="ad-banner ad-cta dynamic-mailto-ad"
            data-email="{{ cta.email }}"
            data-subject="{{ cta.subject }}"
-           data-body="{{ cta.body }}">
+           data-body="{{ cta.body }}"
+           data-ad-location="left_sidebar" data-ad-type="email" data-ad-id="{{ cta.tracking_id }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>

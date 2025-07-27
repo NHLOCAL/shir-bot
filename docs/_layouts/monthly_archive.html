@@ -61,11 +61,13 @@ layout: default
               <tr class="inline-ad-row">
                 <td class="inline-ad-cell" colspan="4">
                   {%- if ad.type == 'image' -%}
-                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
+                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
                       <img src="{{ site.baseurl }}{{ ad.image_url }}" alt="{{ ad.alt_text }}" class="inline-ad-image">
                     </a>
                   {%- elsif ad.type == 'email' -%}
-                    <a href="#" class="inline-ad-link dynamic-mailto-ad" data-email="{{ ad.email }}" data-subject="{{ ad.subject }}" data-body="{{ ad.body }}">
+                    <a href="#" class="inline-ad-link dynamic-mailto-ad" data-email="{{ ad.email }}" data-subject="{{ ad.subject }}" data-body="{{ ad.body }}"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
                       {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}
                       <div class="inline-ad-content">
                         <div class="ad-title">{{ ad.title }}</div>
@@ -74,7 +76,8 @@ layout: default
                       {% if ad.cta_text %}<div class="inline-ad-cta">{{ ad.cta_text }}</div>{% endif %}
                     </a>
                   {%- else -%}
-                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link">
+                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
                       {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}
                       <div class="inline-ad-content">
                         <div class="ad-title">{{ ad.title }}</div>

@@ -1,58 +1,153 @@
-var baseurl = baseurl || ''; // Ensure baseurl is available
-const footerAdElement = document.querySelector(".fixed-bottom p"); // For footer ad
-const helpOverlay = document.querySelector(".help-overlay"); // For help modal
-
-// --- GA Event Functions (Specific to Ads) ---
-function beatplus_ad() {
-    if (typeof gtag === 'function') {
-        gtag('event', 'ad_click', {
-            'event_category': 'Ads',
-            'event_label': 'BeatPlus Ad Click - Footer'
-        });
-    }
-}
-
-function conversion_music_drive() {
-    if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-            'event_category': 'Subscription',
-            'event_label': 'Music Drive Signup Click'
-        });
-    }
-}
-
-
-const footerContent = [
-    "קבלו גישה ל-500 ג'יגה של תוכן מוזיקלי <b>לשנה מלאה</b> <a id='music-in-drive-footer' href='https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top' target='_blank' onclick='conversion_music_drive()'>הרשמו כאן!</a>",
-    "<b>ביט פלוס-הבית של המוזיקאים!</b> מגוון כלי נגינה, מקצבים, ציוד הגברה ומדריכים <a id='beatplus' href='https://beatplus.co.il?utm_source=shir-bot.ze-kal.top&utm_medium=footer_ad' target='_blank' onclick='beatplus_ad()'>בקרו באתר</a>",
-];
-let currentFooterIndex = 0;
+var baseurl = baseurl || '';
 let footerAdInterval;
-
-function updateFooterContent() {
-    if (!footerAdElement) return;
-    footerAdElement.innerHTML = footerContent[currentFooterIndex];
-    currentFooterIndex = (currentFooterIndex + 1) % footerContent.length;
+let currentFooterIndex = 0;
+function initializeImpressionTracking() {
+    const adElements = document.querySelectorAll('a[data-ad-id]');
+    if (adElements.length === 0) {
+        return;
+    }
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+    const impressionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const adElement = entry.target;
+                if (adElement.dataset.impressionTracked) {
+                    return;
+                }
+                adElement.dataset.impressionTracked = 'true';
+                const location = adElement.dataset.adLocation;
+                const type = adElement.dataset.adType;
+                const id = adElement.dataset.adId;
+                if (location && type && id) {
+                    const eventLabel = `${location} - ${type} - ${id}`;
+                    console.log(`Ad Impression Tracked: ${eventLabel}`);
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'ad_impression', {
+                            'event_category': 'Ads',
+                            'event_label': eventLabel,
+                            'ad_location': location,
+                            'ad_type': type,
+                            'ad_id': id,
+                            'non_interaction': true
+                        });
+                    } else {
+                        console.warn('gtag function not found for impression tracking.');
+                    }
+                }
+                observer.unobserve(adElement);
+            }
+        });
+    }, observerOptions);
+    adElements.forEach(ad => {
+        impressionObserver.observe(ad);
+    });
+    console.log(`Impression Tracking: Observing ${adElements.length} ad elements.`);
 }
-
-function startFooterAutoChange() {
-    if (!footerAdElement) return;
-    clearInterval(footerAdInterval);
-    footerAdInterval = setInterval(updateFooterContent, 5000);
+function initializeAdSystem() {
+    document.body.addEventListener('click', function(event) {
+        const adLink = event.target.closest('a[data-ad-id]');
+        if (!adLink) return;
+        const location = adLink.dataset.adLocation;
+        const type = adLink.dataset.adType;
+        const id = adLink.dataset.adId;
+        if (location && type && id) {
+            const eventLabel = `${location} - ${type} - ${id}`;
+            console.log(`Ad Click Tracked: ${eventLabel}`);
+            if (typeof gtag === 'function') {
+                gtag('event', 'ad_click', {
+                    'event_category': 'Ads',
+                    'event_label': eventLabel,
+                    'ad_location': location,
+                    'ad_type': type,
+                    'ad_id': id
+                });
+            } else {
+                console.warn('gtag function not found for ad tracking.');
+            }
+        }
+    });
+    const footerAdContainer = document.getElementById("footer-ad-container");
+    if (footerAdContainer && typeof footerAdsConfig !== 'undefined' && footerAdsConfig.enabled && footerAdsConfig.ads_list && footerAdsConfig.ads_list.length > 0) {
+        const ads = footerAdsConfig.ads_list;
+        const delay = footerAdsConfig.rotation_delay_ms || 5000;
+        function updateFooterContent() {
+            if (ads.length === 0) return;
+            const ad = ads[currentFooterIndex];
+            footerAdContainer.innerHTML = `
+                ${ad.text}
+                <a href="${ad.link_url}"
+                   target="_blank" rel="noopener sponsored"
+                   data-ad-location="footer"
+                   data-ad-type="${ad.type}"
+                   data-ad-id="${ad.tracking_id}">
+                   ${ad.cta_text}
+                </a>`;
+            currentFooterIndex = (currentFooterIndex + 1) % ads.length;
+        }
+        function startFooterAutoChange() {
+            clearInterval(footerAdInterval);
+            footerAdInterval = setInterval(updateFooterContent, delay);
+        }
+        function pauseFooterAdRotation() {
+            clearInterval(footerAdInterval);
+        }
+        function resumeFooterAdRotation() {
+            startFooterAutoChange();
+        }
+        updateFooterContent();
+        startFooterAutoChange();
+        footerAdContainer.addEventListener('mouseenter', pauseFooterAdRotation);
+        footerAdContainer.addEventListener('mouseleave', resumeFooterAdRotation);
+    }
 }
-
-
-function pauseFooterAdRotation() {
-
-    clearInterval(footerAdInterval);
+function initializeSidebarAds() {
+    const sidebars = document.querySelectorAll('.ad-sidebar');
+    if (sidebars.length === 0) return;
+    const initialFadeTimers = new Map();
+    const fadeOutAd = (sidebar) => {
+        sidebar.classList.remove('is-visible');
+        sidebar.classList.add('is-faded');
+    };
+    sidebars.forEach(sidebar => {
+        sidebar.addEventListener('mouseenter', () => {
+            sidebar.classList.add('is-visible');
+            sidebar.classList.remove('is-faded');
+            if (initialFadeTimers.has(sidebar)) {
+                clearTimeout(initialFadeTimers.get(sidebar));
+                initialFadeTimers.delete(sidebar);
+            }
+        });
+        sidebar.addEventListener('mouseleave', () => {
+            fadeOutAd(sidebar);
+        });
+    });
+    const animationPlayed = sessionStorage.getItem('shirBotAdAnimationPlayed');
+    if (animationPlayed) {
+        sidebars.forEach(sidebar => {
+            sidebar.classList.add('no-transition');
+            sidebar.classList.add('is-faded');
+            sidebar.offsetHeight;
+            sidebar.classList.remove('no-transition');
+        });
+    } else {
+        sessionStorage.setItem('shirBotAdAnimationPlayed', 'true');
+        setTimeout(() => {
+            sidebars.forEach(sidebar => {
+                sidebar.classList.add('is-visible');
+                const timerId = setTimeout(() => {
+                    fadeOutAd(sidebar);
+                    initialFadeTimers.delete(sidebar);
+                }, 10000);
+                initialFadeTimers.set(sidebar, timerId);
+            });
+        }, 5000);
+    }
 }
-
-function resumeFooterAdRotation() {
-
-    startFooterAutoChange();
-}
-
-
+const helpOverlay = document.querySelector(".help-overlay");
 let currentStep = 1;
 function showStep(stepChange) {
     if (!helpOverlay) return;
@@ -76,25 +171,10 @@ function openHelp() {
 function closeHelp() {
 	if (helpOverlay) helpOverlay.style.display = 'none';
 }
-
-
 document.addEventListener("DOMContentLoaded", function() {
-
-    if (footerAdElement) {
-        try {
-            updateFooterContent();
-            startFooterAutoChange();
-
-
-            footerAdElement.addEventListener('mouseenter', pauseFooterAdRotation);
-            footerAdElement.addEventListener('mouseleave', resumeFooterAdRotation);
-
-        } catch (error) {
-            console.error("Error initializing footer ad:", error);
-        }
-    }
-
-
+    initializeAdSystem();
+    initializeSidebarAds();
+    initializeImpressionTracking();
     document.body.addEventListener('click', function(event){
         if(event.target && event.target.id === 'helpButton' && typeof openHelp === 'function'){
              openHelp();

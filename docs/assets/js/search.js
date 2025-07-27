@@ -3,17 +3,14 @@ let results = [];
 let displayedResults = 0;
 let showSinglesOnly = true;
 let activeFilter = 'all';
-
 const downloadQueue = [];
 let isProcessingQueue = false;
 const INTER_DOWNLOAD_DELAY_MS = 300;
 const BUTTON_RESTORE_DELAY_MS = 3000;
 const IFRAME_REMOVE_DELAY_MS = 5000;
-
 let isLoadingSongs = false;
 let songsDataLoaded = false;
 let userIsTyping = false;
-
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const filterButtons = document.querySelectorAll('.filter-button');
@@ -25,17 +22,14 @@ const resultsTableThead = document.querySelector("#resultsTable thead");
 const resultsTable = document.getElementById('resultsTable');
 const homepageContent = document.getElementById('homepage-content');
 const searchResultsArea = document.getElementById('search-results-area');
-
 let uniqueArtistNames = [];
 let uniqueSongTitles = [];
 let uniqueAlbumNames = [];
 const suggestionsContainer = document.getElementById('autocomplete-suggestions');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
-
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
 const MAX_HISTORY_ITEMS = 5;
-
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -47,7 +41,6 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
-
 function getSearchHistory() {
     try {
         const history = localStorage.getItem(SEARCH_HISTORY_KEY);
@@ -57,7 +50,6 @@ function getSearchHistory() {
         return [];
     }
 }
-
 function saveSearchToHistory(query) {
     if (!query) return;
     let history = getSearchHistory();
@@ -72,7 +64,6 @@ function saveSearchToHistory(query) {
         console.error("Failed to save search history:", e);
     }
 }
-
 function clearSearchHistory() {
     try {
         localStorage.removeItem(SEARCH_HISTORY_KEY);
@@ -82,37 +73,29 @@ function clearSearchHistory() {
         console.error("Failed to clear search history:", e);
     }
 }
-
 function prepareAutocompleteData(songs) {
     const artistSet = new Set();
     const songSet = new Set();
     const albumSet = new Set();
-
     songs.forEach(song => {
         if (song.singer) artistSet.add(song.singer.trim());
         if (song.name) songSet.add(song.name.trim());
         if (song.album) albumSet.add(song.album.trim());
     });
-
     uniqueArtistNames = Array.from(artistSet).sort((a, b) => a.localeCompare(b, 'he'));
     uniqueSongTitles = Array.from(songSet).sort((a, b) => a.localeCompare(b, 'he'));
     uniqueAlbumNames = Array.from(albumSet).sort((a, b) => a.localeCompare(b, 'he'));
-
     console.log(`Autocomplete data prepared: ${uniqueArtistNames.length} artists, ${uniqueSongTitles.length} songs, ${uniqueAlbumNames.length} albums.`);
 }
-
 function loadAllSongsData() {
     if (songsDataLoaded || isLoadingSongs) {
         if (songsDataLoaded) return Promise.resolve({ allSongs, newSongs: window.cachedNewSongs || [] });
         return window.songsDataPromise;
     }
-
     isLoadingSongs = true;
     console.log("Search.js: Starting to load both song data files...");
-
     const allSongsUrl = `${baseurl || ''}/assets/data/all_songs.json`;
     const newSongsUrl = `${baseurl || ''}/assets/data/new_songs.json`;
-
     window.songsDataPromise = Promise.all([
         fetch(allSongsUrl).then(response => {
             if (!response.ok) throw new Error(`Failed to load all_songs.json: ${response.status}`);
@@ -121,7 +104,6 @@ function loadAllSongsData() {
             console.error("Error loading all_songs.json:", error);
             return [];
         }),
-
         fetch(newSongsUrl).then(response => {
             if (!response.ok) throw new Error(`Failed to load new_songs.json: ${response.status}`);
             return response.json();
@@ -133,11 +115,9 @@ function loadAllSongsData() {
     .then(([allSongsData, newSongsData]) => {
         console.log(`Search.js: Loaded ${allSongsData.length} from all_songs.json`);
         console.log(`Search.js: Loaded ${newSongsData.length} from new_songs.json`);
-
         const validAllSongs = Array.isArray(allSongsData) ? allSongsData : [];
         const validNewSongs = Array.isArray(newSongsData) ? newSongsData : [];
         window.cachedNewSongs = validNewSongs;
-
         const songsMap = new Map();
         validNewSongs.forEach(song => {
             if (song && song.serial) {
@@ -150,7 +130,6 @@ function loadAllSongsData() {
                 songsMap.set(song.serial, song);
             }
         });
-
         validAllSongs.forEach(song => {
             if (song && song.serial && !songsMap.has(song.serial)) {
                 if (!song.driveId) {
@@ -158,19 +137,15 @@ function loadAllSongsData() {
                 songsMap.set(song.serial, song);
             }
         });
-
         allSongs = Array.from(songsMap.values());
-
         if (allSongs.length === 0 && (validAllSongs.length > 0 || validNewSongs.length > 0)) {
             console.warn("Search.js: Merged song list is empty, but source arrays were not. Check data structure/serials.");
         } else if (allSongs.length === 0) {
             console.warn("Search.js: Both source song files seem empty or failed to load/parse.");
         }
-
         songsDataLoaded = true;
         isLoadingSongs = false;
         console.log(`Search.js: Successfully merged data. Total unique songs: ${allSongs.length}.`);
-
         document.dispatchEvent(new CustomEvent('songsDataReady', {
             detail: {
                 allSongs: allSongs,
@@ -189,10 +164,8 @@ function loadAllSongsData() {
         }));
         throw error;
     });
-
     return window.songsDataPromise;
 }
-
 function displayDataLoadError() {
     if (resultsTableBody) {
         const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
@@ -206,19 +179,15 @@ function displayDataLoadError() {
     }
      hideAutocompleteSuggestions();
 }
-
 const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
-
 document.addEventListener('DOMContentLoaded', () => {
     loadAllSongsData().then(({ allSongs, newSongs }) => {
         console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
         prepareAutocompleteData(allSongs);
-
         const urlParams = new URLSearchParams(window.location.search);
         const searchValue = urlParams.get('search');
         const searchByParam = urlParams.get('searchBy') || 'all';
         const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-
         if (searchValue && searchByParam === 'serial') {
             console.log(`Search.js: Processing URL serial search: search=${searchValue}`);
             if (searchInput) searchInput.value = decodeURIComponent(searchValue);
@@ -244,18 +213,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-
     }).catch(error => {
         console.error("Search.js: Initial data load failed in DOMContentLoaded.", error);
     });
-
     if (searchInput) {
-        searchInput.addEventListener('focus', () => {
+        searchInput.addEventListener('click', () => {
             if (searchInput.value.trim().length === 0) {
                 renderHistorySuggestions();
             }
         });
-        
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.matches(':focus-visible') && searchInput.value.trim().length === 0) {
+                renderHistorySuggestions();
+            }
+        });
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
              const query = searchInput.value.trim();
@@ -265,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 debouncedHandleAutocomplete(query);
              }
         });
-
         searchInput.addEventListener("keypress", function(event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -273,12 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitForm();
             }
         });
-
         searchInput.addEventListener('blur', () => {
             setTimeout(hideAutocompleteSuggestions, 150);
         });
     }
-
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -286,28 +254,23 @@ document.addEventListener('DOMContentLoaded', () => {
             submitForm();
         });
     }
-
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             handleFilterClick(this.dataset.filter, true);
         });
     });
-
     if (loadMoreButton) {
         loadMoreButton.addEventListener('click', loadMoreResults);
     }
-
      if (suggestionsContainer) {
         suggestionsContainer.addEventListener('mousedown', (event) => {
             const suggestionItem = event.target.closest('.autocomplete-suggestion-item');
             if (!suggestionItem) return;
-
             if (suggestionItem.classList.contains('clear-history-button')) {
                 event.preventDefault();
                 clearSearchHistory();
                 return;
             }
-
             if (searchInput) {
                 const suggestionText = suggestionItem.dataset.suggestionValue;
                 if (suggestionText) {
@@ -321,15 +284,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
 async function submitForm() {
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     const searchTerm = searchInput ? searchInput.value.trim() : '';
     const searchTermLower = searchTerm.toLowerCase();
     const currentActiveFilter = activeFilter;
-    
     saveSearchToHistory(searchTerm);
-
     if (!isHomepage) {
         const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
         window.location.href = redirectUrl;
@@ -362,14 +322,12 @@ async function submitForm() {
         }
     }
 }
-
 async function searchSongs(query, searchBy) {
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
     if (isHomepage) {
         showSearchResultsViewInternal();
     }
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-
     if (!songsDataLoaded) {
         if (isLoadingSongs) {
             console.log("SearchSongs: Waiting for data...");
@@ -386,11 +344,9 @@ async function searchSongs(query, searchBy) {
             return;
         }
     }
-
     displayLoadingMessage(colspan);
     performSearch(query, searchBy);
 }
-
 function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
@@ -415,7 +371,6 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     if (resultsTableThead) resultsTableThead.style.display = "none";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
 }
-
 function updateDownloadLoadingMessage() {
     if (!loadingMessage || !progressText) return;
     const buttonsInProgress = document.querySelectorAll('button.download-button.download-in-progress, button.download-button-new.download-in-progress').length;
@@ -442,7 +397,6 @@ function updateDownloadLoadingMessage() {
         }
     }
 }
-
 function restoreDownloadButton(songSerial) {
     const btn = document.querySelector(`button.download-button[data-song-serial="${songSerial}"], button.download-button-new[data-song-serial="${songSerial}"]`);
     if (btn && btn.classList.contains('download-in-progress')) {
@@ -455,7 +409,6 @@ function restoreDownloadButton(songSerial) {
         updateDownloadLoadingMessage();
     }
 }
-
 function processDownloadQueue() {
     if (downloadQueue.length === 0) {
         isProcessingQueue = false;
@@ -492,7 +445,6 @@ function processDownloadQueue() {
         setTimeout(processDownloadQueue, 50);
     }
 }
-
 window.downloadSongWithDriveId = function(buttonElement) {
     if (!buttonElement) {
         console.error("DL Handler: Invalid button.");
@@ -532,7 +484,6 @@ window.downloadSongWithDriveId = function(buttonElement) {
         processDownloadQueue();
     }
 }
-
 function clearUrlParams() {
     try {
         const cleanUrl = window.location.origin + (baseurl || '') + '/';
@@ -544,7 +495,6 @@ function clearUrlParams() {
         console.error("Error clearing URL params:", e);
     }
 }
-
 function showSearchResultsViewInternal() {
     if (homepageContent) homepageContent.style.display = 'none';
     if (searchResultsArea) searchResultsArea.style.display = 'block';
@@ -552,25 +502,19 @@ function showSearchResultsViewInternal() {
         resultsTable.style.display = '';
     }
 }
-
 function showHomepageViewInternal() {
     if (homepageContent) homepageContent.style.display = 'block';
     if (searchResultsArea) searchResultsArea.style.display = 'none';
 }
-
 function handleFilterClick(filter, triggeredByUserClick = false) {
     if (!filter) return;
-
     const previousFilter = activeFilter;
     activeFilter = filter;
-
     filterButtons.forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) activeButton.classList.add('active');
-
     const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
     const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-
     if (triggeredByUserClick) {
          console.log(`handleFilterClick: Filter changed to '${filter}' by user click.`);
          if(isHomepage){
@@ -582,7 +526,6 @@ function handleFilterClick(filter, triggeredByUserClick = false) {
         console.log(`handleFilterClick: Filter set to '${filter}' programmatically.`);
     }
 }
-
 function performSearch(query, searchBy) {
     let baseSongsToFilter = allSongs;
     results = filterSongs(baseSongsToFilter, query, searchBy);
@@ -591,14 +534,12 @@ function performSearch(query, searchBy) {
     displayedResults = initialResultsToShow.length;
     displayResults(initialResultsToShow, false);
 }
-
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) {
         if (searchBy === 'all') {
             console.log("Filtering: Empty query, 'all' filter -> returning all valid songs.");
             return songsToFilter.filter(song => song && song.serial && song.name);
         }
-
         const keyMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
         const key = keyMap[searchBy];
         if (!key) return [];
@@ -608,7 +549,6 @@ function filterSongs(songsToFilter, query, searchBy) {
             return value != null && String(value).trim() !== '';
         });
     }
-
     const calcDice = (t1, t2) => {
         if (!t1?.length || !t2?.length) return 0;
         const i = new Set(t1.filter(t => t2.includes(t)));
@@ -626,10 +566,8 @@ function filterSongs(songsToFilter, query, searchBy) {
         const maxL = Math.max(l1, l2);
         return maxL === 0 ? 0 : m[l1][l2] / maxL;
     };
-
     const qL = query.toLowerCase(), qT = qL.split(/\s+/).filter(Boolean), fT = 0.55, lT = 0.45;
     const fMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
-
     const scored = songsToFilter.map(s => {
         s._score = 0;
         let best = 0;
@@ -654,7 +592,6 @@ function filterSongs(songsToFilter, query, searchBy) {
         s._score = best;
         return s;
     }).filter(s => s._score > 0);
-
     if (searchBy === 'serial') {
         const tS = parseInt(qL, 10);
         if (!isNaN(tS)) return scored.sort((a, b) => {
@@ -668,19 +605,19 @@ function filterSongs(songsToFilter, query, searchBy) {
             return dA !== dB ? dA - dB : sA - sB;
         });
     }
-
     return scored.sort((a, b) => {
         if (a._score !== b._score) return b._score - a._score;
         const sA = parseInt(a.serial, 10) || 0, sB = parseInt(b.serial, 10) || 0;
         return sA - sB;
     });
 }
-
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
     showSearchResultsViewInternal();
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-    if (!append) resultsTableBody.innerHTML = '';
+    if (!append) {
+        resultsTableBody.innerHTML = '';
+    }
     if (resultsToDisplay.length === 0 && !append) {
         const nr = document.createElement('tr'), nc = document.createElement('td');
         nc.setAttribute('colspan', colspan);
@@ -696,7 +633,57 @@ function displayResults(resultsToDisplay, append = false) {
         resultsTableThead.style.display = "";
     }
     const frag = document.createDocumentFragment();
-    resultsToDisplay.forEach(s => {
+    const adsEnabled = typeof inlineAdsConfig !== 'undefined' && inlineAdsConfig.enabled;
+    const adFrequency = adsEnabled ? inlineAdsConfig.frequency : 0;
+    const adsList = adsEnabled ? inlineAdsConfig.ads_list : [];
+    const adsListSize = adsList.length;
+    resultsToDisplay.forEach((s, index) => {
+        const overallIndex = (append ? displayedResults : 0) + index;
+        if (adsEnabled && adsListSize > 0 && overallIndex > 0 && (overallIndex + 1) % adFrequency === 0) {
+            const adIndex = Math.floor(overallIndex / adFrequency) % adsListSize;
+            const ad = adsList[adIndex];
+            const adRow = document.createElement('tr');
+            adRow.className = 'inline-ad-row';
+            const adCell = document.createElement('td');
+            adCell.className = 'inline-ad-cell';
+            adCell.colSpan = colspan;
+            if (ad.type === 'image') {
+                adCell.innerHTML = `
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
+                      <img src="${baseurl || ''}${ad.image_url}" alt="${ad.alt_text}" class="inline-ad-image">
+                    </a>`;
+            } else if (ad.type === 'email') {
+                adCell.innerHTML = `
+                    <a href="#" class="inline-ad-link dynamic-mailto-ad"
+                       data-email="${ad.email}"
+                       data-subject="${ad.subject}"
+                       data-body="${ad.body}">
+                        ${ad.icon_class ? `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>` : ''}
+                        <div class="inline-ad-content">
+                             <div class="ad-title">${ad.title}</div>
+                             <p class="ad-text">${ad.text}</p>
+                        </div>
+                        ${ad.cta_text ? `<div class="inline-ad-cta">${ad.cta_text}</div>` : ''}
+                    </a>`;
+            } else { 
+                let adHTML = `
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">`;
+                if (ad.icon_class) {
+                    adHTML += `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>`;
+                }
+                adHTML += `<div class="inline-ad-content">
+                             <div class="ad-title">${ad.title}</div>
+                             <p class="ad-text">${ad.text}</p>
+                           </div>`;
+                if (ad.cta_text) {
+                    adHTML += `<div class="inline-ad-cta">${ad.cta_text}</div>`;
+                }
+                adHTML += `</a>`;
+                adCell.innerHTML = adHTML;
+            }
+            adRow.appendChild(adCell);
+            frag.appendChild(adRow);
+        }
         const r = document.createElement('tr');
         r.dataset.songSerial = s.serial;
         r.dataset.driveId = s.driveId;
@@ -741,9 +728,11 @@ function displayResults(resultsToDisplay, append = false) {
         frag.appendChild(r);
     });
     resultsTableBody.appendChild(frag);
+    if (typeof window.initializeDynamicMailtoLinks === 'function') {
+        window.initializeDynamicMailtoLinks(resultsTableBody);
+    }
     toggleLoadMoreButton();
 }
-
 function loadMoreResults() {
     console.log(`Load More: Disp=${displayedResults}, Total=${results.length}`);
     const start = displayedResults, limit = displayedResults + 250, end = Math.min(limit, results.length);
@@ -757,34 +746,27 @@ function loadMoreResults() {
     displayResults(newRes, true);
     displayedResults = end;
 }
-
 function toggleLoadMoreButton() {
     if (loadMoreButton) {
         loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
     }
 }
-
 function handleAutocompleteInput(query) {
     if (!userIsTyping) {
         hideAutocompleteSuggestions();
         return;
     }
     userIsTyping = false;
-
     if (!suggestionsContainer || !songsDataLoaded) return;
-
     query = query.trim();
-
     if (query.length < MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE) {
         hideAutocompleteSuggestions();
         return;
     }
-
     const lowerQuery = query.toLowerCase();
     let suggestions = [];
     let suggestionPool = [];
     let poolType = '';
-
     switch(activeFilter) {
         case 'singer':
             suggestionPool = uniqueArtistNames;
@@ -822,7 +804,6 @@ function handleAutocompleteInput(query) {
             }
             break;
     }
-
     if (suggestionPool.length > 0) {
         suggestions = suggestions.concat(
             suggestionPool
@@ -837,30 +818,23 @@ function handleAutocompleteInput(query) {
             );
         }
     }
-
     const uniqueSuggestions = Array.from(new Map(suggestions.map(item => [item.value, item])).values());
-
     const limitedSuggestions = uniqueSuggestions.slice(0, MAX_AUTOCOMPLETE_SUGGESTIONS);
     renderAutocompleteSuggestions(limitedSuggestions, lowerQuery);
 }
-
 function renderAutocompleteSuggestions(suggestions, lowerQuery) {
     if (!suggestionsContainer || !searchForm) return;
-
     if (suggestions.length === 0) {
         hideAutocompleteSuggestions();
         return;
     }
-
     suggestionsContainer.innerHTML = '';
     const fragment = document.createDocumentFragment();
-
     suggestions.forEach(suggestion => {
         const item = document.createElement('div');
         item.classList.add('autocomplete-suggestion-item');
         item.setAttribute('role', 'option');
         item.dataset.suggestionValue = suggestion.value;
-
         const index = suggestion.value.toLowerCase().indexOf(lowerQuery);
         let highlightedText = suggestion.value;
         if (index !== -1) {
@@ -872,24 +846,19 @@ function renderAutocompleteSuggestions(suggestions, lowerQuery) {
         item.innerHTML = highlightedText;
         fragment.appendChild(item);
     });
-
     suggestionsContainer.appendChild(fragment);
     suggestionsContainer.style.display = 'block';
     searchForm.classList.add('search-bar--suggestions-open');
 }
-
 function renderHistorySuggestions() {
     if (!suggestionsContainer || !searchForm) return;
-
     const history = getSearchHistory();
     if (history.length === 0) {
         hideAutocompleteSuggestions();
         return;
     }
-
     suggestionsContainer.innerHTML = '';
     const fragment = document.createDocumentFragment();
-
     history.forEach(query => {
         const item = document.createElement('div');
         item.classList.add('autocomplete-suggestion-item', 'history-item');
@@ -899,18 +868,15 @@ function renderHistorySuggestions() {
         item.innerHTML = `<i class="fas fa-history"></i><span>${sanitizedQuery}</span>`;
         fragment.appendChild(item);
     });
-
     const clearButton = document.createElement('div');
     clearButton.classList.add('autocomplete-suggestion-item', 'clear-history-button');
     clearButton.setAttribute('role', 'button');
     clearButton.textContent = 'מחק היסטוריה';
     fragment.appendChild(clearButton);
-
     suggestionsContainer.appendChild(fragment);
     suggestionsContainer.style.display = 'block';
     searchForm.classList.add('search-bar--suggestions-open');
 }
-
 function hideAutocompleteSuggestions() {
     if (suggestionsContainer) {
         suggestionsContainer.style.display = 'none';

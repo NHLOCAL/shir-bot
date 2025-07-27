@@ -1,9 +1,7 @@
 ---
 layout: default
 ---
-
 <h2 class="page-main-title">{{ page.album_name }}</h2>
-
 <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 10px;">
   <a href="{{ site.baseurl }}/archive/"
      class="hngn-link-button"
@@ -16,7 +14,6 @@ layout: default
     <i class="fas fa-fire"></i> שירים חדשים
   </a>
 </div>
-
 <div id="resultsTable" class="custom-table">
   <table>
     <thead>
@@ -29,6 +26,14 @@ layout: default
     </thead>
     <tbody class="songs-list">
       {% if page.songs and page.songs.size > 0 %}
+        {%- assign inline_ads_config = site.data.ads.inline_ads -%}
+        {%- if inline_ads_config.enabled and inline_ads_config.ads_list.size > 0 -%}
+          {%- assign ads_list = inline_ads_config.ads_list -%}
+          {%- assign ads_list_size = ads_list | size -%}
+          {%- assign ad_frequency = inline_ads_config.frequency | plus: 0 -%}
+          {%- assign song_counter_for_ad = 0 -%}
+          {%- assign ad_display_index = 0 -%}
+        {%- endif -%}
         {% for song in page.songs %}
           <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
             <td>{{ song.name }}</td>
@@ -49,6 +54,45 @@ layout: default
               </div>
            </td>
           </tr>
+          {%- if inline_ads_config.enabled and ads_list_size > 0 -%}
+            {%- assign song_counter_for_ad = song_counter_for_ad | plus: 1 -%}
+            {%- if song_counter_for_ad == ad_frequency and forloop.last == false -%}
+              {%- assign ad = ads_list[ad_display_index] -%}
+              <tr class="inline-ad-row">
+                <td class="inline-ad-cell" colspan="4">
+                  {%- if ad.type == 'image' -%}
+                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
+                      <img src="{{ site.baseurl }}{{ ad.image_url }}" alt="{{ ad.alt_text }}" class="inline-ad-image">
+                    </a>
+                  {%- elsif ad.type == 'email' -%}
+                    <a href="#" class="inline-ad-link dynamic-mailto-ad" data-email="{{ ad.email }}" data-subject="{{ ad.subject }}" data-body="{{ ad.body }}"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
+                      {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}
+                      <div class="inline-ad-content">
+                        <div class="ad-title">{{ ad.title }}</div>
+                        <p class="ad-text">{{ ad.text }}</p>
+                      </div>
+                      {% if ad.cta_text %}<div class="inline-ad-cta">{{ ad.cta_text }}</div>{% endif %}
+                    </a>
+                  {%- else -%}
+                    <a href="{{ ad.link_url }}" target="_blank" rel="noopener sponsored" class="inline-ad-link"
+                       data-ad-location="inline" data-ad-type="{{ ad.type }}" data-ad-id="{{ ad.tracking_id }}">
+                      {% if ad.icon_class %}<div class="inline-ad-icon"><i class="{{ ad.icon_class }}"></i></div>{% endif %}
+                      <div class="inline-ad-content">
+                        <div class="ad-title">{{ ad.title }}</div>
+                        <p class="ad-text">{{ ad.text }}</p>
+                      </div>
+                      {% if ad.cta_text %}<div class="inline-ad-cta">{{ ad.cta_text }}</div>{% endif %}
+                    </a>
+                  {%- endif -%}
+                </td>
+              </tr>
+              {%- assign song_counter_for_ad = 0 -%}
+              {%- assign ad_display_index = ad_display_index | plus: 1 -%}
+              {%- if ad_display_index >= ads_list_size -%}{%- assign ad_display_index = 0 -%}{%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
         {% endfor %}
       {% else %}
         <tr>
@@ -58,7 +102,6 @@ layout: default
     </tbody>
   </table>
 </div>
-
 <div id="loadingMessage" class="loading-message" style="display: none;">
     <div class="progress-bar-container">
         <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />

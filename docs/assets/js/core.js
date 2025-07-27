@@ -1,16 +1,13 @@
-
 (function() {
     const queryParams = new URLSearchParams(window.location.search);
     const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
     let hasUtmParams = false;
-
     utmParams.forEach(param => {
         if (queryParams.has(param)) {
             hasUtmParams = true;
             queryParams.delete(param);
         }
     });
-
     if (hasUtmParams) {
         try {
             const newUrl = window.location.pathname + (queryParams.toString() ? '?' + queryParams.toString() : '') + window.location.hash;
@@ -20,57 +17,42 @@
         }
     }
 })();
-
 var baseurl = baseurl || ''; // Ensure baseurl is available, provided by Jekyll layout
 const modalOverlay = document.getElementById('modalOverlay');
 const modalMessage = document.getElementById('modalMessage');
 const modalOkButton = document.getElementById('modalOkButton');
 const nextObject = document.getElementById("nextObject");
-
-
 function setCookie(name, value, daysToExpire) {
     var expirationDate = new Date();
     expirationDate.setTime(expirationDate.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
     var expires = "expires=" + expirationDate.toUTCString();
     document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
-
-
 function showMessage(message) {
     if (!modalOverlay || !modalMessage || !modalOkButton) return;
-
     modalMessage.textContent = message;
     modalOverlay.style.display = 'flex';
-
-
     modalOkButton.addEventListener('click', hideMessage);
     document.addEventListener('click', handleOverlayClick);
     document.addEventListener('keydown', handleEnterKey);
 }
-
 function hideMessage() {
     if (!modalOverlay) return;
     modalOverlay.style.display = 'none';
-
-
     modalOkButton.removeEventListener('click', hideMessage);
     document.removeEventListener('click', handleOverlayClick);
     document.removeEventListener('keydown', handleEnterKey);
 }
-
 function handleOverlayClick(event) {
     if (event.target === modalOverlay) {
         hideMessage();
     }
 }
-
 function handleEnterKey(event) {
     if (event.key === 'Enter' && modalOverlay && modalOverlay.style.display === 'flex') {
         hideMessage();
     }
 }
-
-
 function copyToClipboard(text) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
@@ -81,31 +63,51 @@ function copyToClipboard(text) {
     try {
         document.execCommand('copy');
         console.log('Text copied to clipboard');
-        return true; // Indicate success
+        return true;
     } catch (err) {
         console.error('Failed to copy text: ', err);
-        return false; // Indicate failure
+        return false;
     } finally {
         document.body.removeChild(textArea);
     }
 }
-
-// Removed the showCopiedMessage function as it's replaced by inline feedback
-
-
-
+function initializeDynamicMailtoLinks(scope) {
+    const searchScope = scope || document;
+    searchScope.querySelectorAll('.feedback-mail-link, .email-link, .dynamic-mailto-ad').forEach(function(link) {
+        // Skip if already processed to avoid unnecessary re-bindings
+        if (link.dataset.mailtoInitialized) return;
+        var isWindows = navigator.userAgent.indexOf('Windows') !== -1;
+        var email = link.getAttribute('data-email') || 'mesader.singelim@gmail.com';
+        var subject = link.getAttribute('data-subject') || '';
+        var body = link.getAttribute('data-body') || '';
+        if (isWindows) {
+            // Gmail compose link
+            var gmailUrl = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=' + encodeURIComponent(email);
+            if(subject) gmailUrl += '&su=' + encodeURIComponent(subject);
+            if(body) gmailUrl += '&body=' + encodeURIComponent(body);
+            link.setAttribute('href', gmailUrl);
+            link.setAttribute('target', '_blank');
+        } else {
+            var mailto = 'mailto:' + email;
+            var params = [];
+            if(subject) params.push('subject=' + encodeURIComponent(subject));
+            if(body) params.push('body=' + encodeURIComponent(body));
+            if(params.length > 0) mailto += '?' + params.join('&');
+            link.setAttribute('href', mailto);
+            link.removeAttribute('target');
+        }
+        link.dataset.mailtoInitialized = 'true';
+    });
+}
+// Make the function globally accessible
+window.initializeDynamicMailtoLinks = initializeDynamicMailtoLinks;
 document.addEventListener("DOMContentLoaded", function() {
-
     if (nextObject) {
         nextObject.addEventListener("click", function(event) {
             event.preventDefault();
             window.location.href = baseurl + "/";
         });
     }
-
-
-
-
     document.body.addEventListener('click', function(event) {
         if (event.target.tagName === 'A' && event.target.hostname !== window.location.hostname) {
              gtag('event', 'click', {
@@ -115,12 +117,9 @@ document.addEventListener("DOMContentLoaded", function() {
              });
         }
     });
-
-
      const searchFormGlobal = document.querySelector('#searchForm');
      if (searchFormGlobal) {
         searchFormGlobal.addEventListener('submit', function(event) {
-
             const searchInputGlobal = document.querySelector('#searchInput');
             if (searchInputGlobal) {
                  const searchQuery = searchInputGlobal.value;
@@ -131,31 +130,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
      }
-
-
-    // Dynamic feedback mail link (Windows: Gmail, others: mailto)
-    document.querySelectorAll('.feedback-mail-link, .email-link').forEach(function(link) {
-        var isWindows = navigator.userAgent.indexOf('Windows') !== -1;
-        var email = link.getAttribute('data-email') || 'mesader.singelim@gmail.com';
-        var subject = link.getAttribute('data-subject') || '';
-        var body = link.getAttribute('data-body') || '';
-        if (isWindows) {
-            // Gmail compose link
-            var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
-            if(subject) gmailUrl += '&su=' + encodeURIComponent(subject);
-            if(body) gmailUrl += '&body=' + encodeURIComponent(body);
-            link.setAttribute('href', gmailUrl);
-            link.setAttribute('target', '_blank');
-        } else {
-            // Regular mailto
-            var mailto = 'mailto:' + email;
-            var params = [];
-            if(subject) params.push('subject=' + encodeURIComponent(subject));
-            if(body) params.push('body=' + encodeURIComponent(body));
-            if(params.length > 0) mailto += '?' + params.join('&');
-            link.setAttribute('href', mailto);
-            link.removeAttribute('target');
-        }
-    });
-
+    // Initial run for all static links on the page
+    initializeDynamicMailtoLinks();
 });

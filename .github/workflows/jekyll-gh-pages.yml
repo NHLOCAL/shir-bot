@@ -2,17 +2,15 @@
 name: Build and Deploy Jekyll site
 
 on:
-  # יופעל על כל push רגיל לענפים אלו (שלא מכיל [skip ci])
   push:
     branches:
-      - main
-      - new-singles
+      - gh-pages # רק דחיפות לענף הזה
 
   # יופעל כאשר אחד מ-workflows אלו יסתיים בהצלחה על הענפים main או new-singles
   workflow_run:
     workflows: ["Sync Drive Inventory", "Upload new singles to Drive"] # שמות ה-workflows המלאים
     types: [completed] # הפעל כשהם סיימו (ניתן גם להשתמש ב-success אם רוצים רק בהצלחה מוחלטת)
-    branches: [main, new-singles] # הפעל רק אם ה-workflow המפעיל רץ על אחד מהענפים האלה
+    branches: [gh-pages] # הפעל רק אם ה-workflow המפעיל רץ על אחד מהענפים האלה
 
   # השאר את האפשרות להפעלה ידנית
   workflow_dispatch:

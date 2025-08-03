@@ -108,12 +108,17 @@ function initializeSidebarAds() {
     const sidebars = document.querySelectorAll('.ad-sidebar');
     if (sidebars.length === 0) return;
     const initialFadeTimers = new Map();
+    const mouseleaveTimers = new Map();
     const fadeOutAd = (sidebar) => {
         sidebar.classList.remove('is-visible');
         sidebar.classList.add('is-faded');
     };
     sidebars.forEach(sidebar => {
         sidebar.addEventListener('mouseenter', () => {
+            if (mouseleaveTimers.has(sidebar)) {
+                clearTimeout(mouseleaveTimers.get(sidebar));
+                mouseleaveTimers.delete(sidebar);
+            }
             sidebar.classList.add('is-visible');
             sidebar.classList.remove('is-faded');
             if (initialFadeTimers.has(sidebar)) {
@@ -122,7 +127,11 @@ function initializeSidebarAds() {
             }
         });
         sidebar.addEventListener('mouseleave', () => {
-            fadeOutAd(sidebar);
+            const timerId = setTimeout(() => {
+                fadeOutAd(sidebar);
+                mouseleaveTimers.delete(sidebar);
+            }, 3000);
+            mouseleaveTimers.set(sidebar, timerId);
         });
     });
     const animationPlayed = sessionStorage.getItem('shirBotAdAnimationPlayed');
@@ -144,7 +153,7 @@ function initializeSidebarAds() {
                 }, 10000);
                 initialFadeTimers.set(sidebar, timerId);
             });
-        }, 5000);
+        }, 2500);
     }
 }
 const helpOverlay = document.querySelector(".help-overlay");

@@ -645,7 +645,7 @@ function displayResults(resultsToDisplay, append = false) {
             adCell.colSpan = colspan;
             if (ad.type === 'image') {
                 adCell.innerHTML = `
-                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image">
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link inline-ad-link--image" data-ad-location="inline" data-ad-type="${ad.type}" data-ad-id="${ad.tracking_id}">
                       <img src="${baseurl || ''}${ad.image_url}" alt="${ad.alt_text}" class="inline-ad-image">
                     </a>`;
             } else if (ad.type === 'email') {
@@ -653,7 +653,7 @@ function displayResults(resultsToDisplay, append = false) {
                     <a href="#" class="inline-ad-link dynamic-mailto-ad"
                        data-email="${ad.email}"
                        data-subject="${ad.subject}"
-                       data-body="${ad.body}">
+                       data-body="${ad.body}" data-ad-location="inline" data-ad-type="${ad.type}" data-ad-id="${ad.tracking_id}">
                         ${ad.icon_class ? `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>` : ''}
                         <div class="inline-ad-content">
                              <div class="ad-title">${ad.title}</div>
@@ -661,9 +661,9 @@ function displayResults(resultsToDisplay, append = false) {
                         </div>
                         ${ad.cta_text ? `<div class="inline-ad-cta">${ad.cta_text}</div>` : ''}
                     </a>`;
-            } else { 
+            } else {
                 let adHTML = `
-                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link">`;
+                    <a href="${ad.link_url}" target="_blank" rel="noopener sponsored" class="inline-ad-link" data-ad-location="inline" data-ad-type="${ad.type}" data-ad-id="${ad.tracking_id}">`;
                 if (ad.icon_class) {
                     adHTML += `<div class="inline-ad-icon"><i class="${ad.icon_class}"></i></div>`;
                 }

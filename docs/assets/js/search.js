@@ -222,9 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderHistorySuggestions();
             }
         });
-        searchInput.addEventListener('focus', () => {
-            // Empty, because we only want to show history on click, not on focus.
-        });
+        
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
              const query = searchInput.value.trim();

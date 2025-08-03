@@ -107,12 +107,19 @@ function initializeAdSystem() {
 function initializeSidebarAds() {
     const sidebars = document.querySelectorAll('.ad-sidebar');
     if (sidebars.length === 0) return;
+
+    const MOUSELEAVE_FADEOUT_DELAY_MS = 3000;
+    const INITIAL_AD_APPEARANCE_DELAY_MS = 2500;
+    const INITIAL_FADEOUT_DELAY_MS = 10000;
+
     const initialFadeTimers = new Map();
     const mouseleaveTimers = new Map();
+
     const fadeOutAd = (sidebar) => {
         sidebar.classList.remove('is-visible');
         sidebar.classList.add('is-faded');
     };
+
     sidebars.forEach(sidebar => {
         sidebar.addEventListener('mouseenter', () => {
             if (mouseleaveTimers.has(sidebar)) {
@@ -126,20 +133,22 @@ function initializeSidebarAds() {
                 initialFadeTimers.delete(sidebar);
             }
         });
+
         sidebar.addEventListener('mouseleave', () => {
             const timerId = setTimeout(() => {
                 fadeOutAd(sidebar);
                 mouseleaveTimers.delete(sidebar);
-            }, 3000);
+            }, MOUSELEAVE_FADEOUT_DELAY_MS);
             mouseleaveTimers.set(sidebar, timerId);
         });
     });
+
     const animationPlayed = sessionStorage.getItem('shirBotAdAnimationPlayed');
     if (animationPlayed) {
         sidebars.forEach(sidebar => {
             sidebar.classList.add('no-transition');
             sidebar.classList.add('is-faded');
-            sidebar.offsetHeight;
+            sidebar.offsetHeight; // Force reflow
             sidebar.classList.remove('no-transition');
         });
     } else {
@@ -150,10 +159,10 @@ function initializeSidebarAds() {
                 const timerId = setTimeout(() => {
                     fadeOutAd(sidebar);
                     initialFadeTimers.delete(sidebar);
-                }, 10000);
+                }, INITIAL_FADEOUT_DELAY_MS);
                 initialFadeTimers.set(sidebar, timerId);
             });
-        }, 2500);
+        }, INITIAL_AD_APPEARANCE_DELAY_MS);
     }
 }
 const helpOverlay = document.querySelector(".help-overlay");

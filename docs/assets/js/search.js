@@ -222,11 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderHistorySuggestions();
             }
         });
-        searchInput.addEventListener('focus', () => {
-            if (searchInput.matches(':focus-visible') && searchInput.value.trim().length === 0) {
-                renderHistorySuggestions();
-            }
-        });
+        
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
              const query = searchInput.value.trim();

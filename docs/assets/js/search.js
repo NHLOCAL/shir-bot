@@ -223,9 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         searchInput.addEventListener('focus', () => {
-            if (searchInput.matches(':focus-visible') && searchInput.value.trim().length === 0) {
-                renderHistorySuggestions();
-            }
+            // Empty, because we only want to show history on click, not on focus.
         });
         searchInput.addEventListener('input', () => {
              userIsTyping = true;

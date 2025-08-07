@@ -1,6 +1,3 @@
-# drive_data/drive_sync_inventory.py
-# Updated: Fixed f-string backslash error, added pre-sync cleanup, renamed file, changed CSV output name, suppressed IDs in standard logs.
-
 import os
 import certifi
 import time

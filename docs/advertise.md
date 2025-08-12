@@ -39,7 +39,7 @@ permalink: /advertise/
     <div class="packages-grid">
         <!-- Package Card 1: Targeted -->
         <div class="package-card">
-            <h3>פרסום ממוקד</h3>
+            <h3><i class="fas fa-bullseye"></i> פרסום ממוקד</h3>
             <p class="package-for">אידיאלי לקמפיינים, השקות ואירועים עם מסר חד.</p>
             <ul>
                 <li><i class="fas fa-check"></i>שילוב טבעי בלב התוכן (In-Feed)</li>
@@ -52,8 +52,8 @@ permalink: /advertise/
 
         <!-- Package Card 2: Maximum - Recommended -->
         <div class="package-card package-card--recommended">
-            <span class="package-badge">הכי פופולרי</span>
-            <h3>חשיפה מקסימלית</h3>
+            <span class="package-badge">מומלץ</span>
+            <h3><i class="fas fa-rocket"></i> חשיפה מקסימלית</h3>
             <p class="package-for">הפתרון המקיף לבניית מותג ונוכחות מתמשכת.</p>
             <ul>
                 <li><i class="fas fa-check"></i><strong>כל מה שבחבילה הממוקדת, ובנוסף:</strong></li>

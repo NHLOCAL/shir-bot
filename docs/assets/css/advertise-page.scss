@@ -2,6 +2,10 @@
 ---
 @import "variables";
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-base);
     background-color: #f9f9fc;
@@ -87,7 +91,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* === START: NEW AND IMPROVED PACKAGES STYLES === */
 .packages-section {
     background: transparent;
     padding: 50px 0;
@@ -149,6 +152,9 @@ body {
     font-size: 1.6em;
     color: var(--primary-hover);
     margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .package-card .package-for {
@@ -171,7 +177,7 @@ body {
     gap: 10px;
 }
 
-.package-card li i {
+.package-card li i.fa-check {
     color: #28a745;
     margin-top: 5px;
 }
@@ -217,8 +223,6 @@ body {
         transform: translateY(-5px);
     }
 }
-/* === END: NEW AND IMPROVED PACKAGES STYLES === */
-
 
 .cta-button-wrapper {
     text-align: center;

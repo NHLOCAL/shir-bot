@@ -42,12 +42,9 @@
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
-        <a href="#"
-           class="ad-banner ad-cta dynamic-mailto-ad"
-           data-email="{{ cta.email }}"
-           data-subject="{{ cta.subject }}"
-           data-body="{{ cta.body }}"
-           data-ad-location="right_sidebar" data-ad-type="email" data-ad-id="{{ cta.tracking_id }}">
+        <a href="{{ site.baseurl }}{{ cta.link_url }}"
+           class="ad-banner ad-cta"
+           data-ad-location="right_sidebar" data-ad-type="cta" data-ad-id="{{ cta.tracking_id }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>
@@ -72,12 +69,9 @@
           <img src="{{ site.baseurl }}{{ banner.image_url }}" alt="{{ banner.alt_text }}">
         </a>
       {%- else -%}
-        <a href="#"
-           class="ad-banner ad-cta dynamic-mailto-ad"
-           data-email="{{ cta.email }}"
-           data-subject="{{ cta.subject }}"
-           data-body="{{ cta.body }}"
-           data-ad-location="left_sidebar" data-ad-type="email" data-ad-id="{{ cta.tracking_id }}">
+        <a href="{{ site.baseurl }}{{ cta.link_url }}"
+           class="ad-banner ad-cta"
+           data-ad-location="left_sidebar" data-ad-type="cta" data-ad-id="{{ cta.tracking_id }}">
           <span class="cta-text">{{ cta.cta_text }}</span>
           <span class="cta-subtext">{{ cta.cta_subtext }}</span>
         </a>

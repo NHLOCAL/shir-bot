@@ -6,7 +6,6 @@
         <img width="32" src="{{ site.baseurl }}/assets/images/logo.png" alt="סמל האתר">
         <span class="site-title">שיר-בוט</span>
       </a>
-
       {% comment %} --- Search Bar (Adapted from original structure) --- {% endcomment %}
       <form class="search-bar" id="searchForm">
           <input type="text" class="search-input" placeholder="חפש שירים, אמנים, אלבומים..." id="searchInput" autofocus
@@ -20,11 +19,12 @@
             <i class="fas fa-search"></i>
           </button>
       </form>
-
       {% comment %} --- Right Side Icons (From original structure) --- {% endcomment %}
       <div class="icons-container">
+        <a href="{{ site.baseurl }}/advertise/" class="right-item" title="פרסמו אצלנו">
+          <i class="fas fa-bullhorn"></i>
+        </a>
         <a class="feedback-button feedback-mail-link" data-email="mesader.singelim@gmail.com" data-subject="משוב לאתר שיר-בוט" data-body="שלום,
-
 רציתי לשלוח משוב: " href="mailto:mesader.singelim@gmail.com" title="שלח משוב">
           <i class="fas fa-envelope"></i>
         </a>
@@ -35,7 +35,6 @@
         </a>
       </div>
     </nav>
-
     {% comment %} --- Bottom Row: Filters (Adapted from original structure) --- {% endcomment %}
     {% if page.show_search_form != false %}
     <div class="filters-section">
@@ -47,8 +46,6 @@
     {% endif %}
   </div>
 </div>
-
-<!-- תנאי שימוש - הודעה קופצת בתחתית המסך -->
 <div id="terms-modal" class="terms-modal" style="display:none;">
   <span class="terms-modal-text">
     אני מאשר את <a href="{{ site.baseurl }}/terms/" target="_blank" class="terms-link">תנאי השימוש</a>

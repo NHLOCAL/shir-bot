@@ -35,29 +35,35 @@ permalink: /advertise/
 </div>
 
 <div class="packages-section">
-    <h2>הפתרון הנכון עבורכם</h2>
-    <div class="package">
-        <h3><span class="icon"><i class="fas fa-star"></i></span> חבילת "חשיפה מקסימלית"</h3>
-        <p>הבחירה האידיאלית להטמעת המותג בתודעה ויצירת נוכחות חזקה ומתמשכת.</p>
-        <ul>
-            <li>באנר צד בולט המוצג בכל עמודי האתר (דסקטופ).</li>
-            <li><strong>בונוס מיוחד:</strong> כולל פרסום ברשימות השירים לחשיפה גם במובייל!</li>
-        </ul>
-    </div>
-    <div class="package">
-        <h3><span class="icon"><i class="fas fa-stream"></i></span> חבילת "פרסום ממוקד"</h3>
-        <p>פתרון ממוקד להשגת תשומת לב גבוהה סביב קמפיין, אירוע או השקה.</p>
-        <ul>
-            <li>מודעה המשתלבת באופן טבעי ברשימות השירים.</li>
-            <li>נחשפת בדיוק כשהמשתמש ממוקד ומחפש תוכן חדש.</li>
-        </ul>
-    </div>
-</div>
+    <h2>תוכנית לכל מטרה</h2>
+    <div class="packages-grid">
+        <!-- Package Card 1: Targeted -->
+        <div class="package-card">
+            <h3>פרסום ממוקד</h3>
+            <p class="package-for">אידיאלי לקמפיינים, השקות ואירועים עם מסר חד.</p>
+            <ul>
+                <li><i class="fas fa-check"></i>שילוב טבעי בלב התוכן (In-Feed)</li>
+                <li><i class="fas fa-check"></i>תשומת לב גבוהה בזמן גלילה</li>
+                <li><i class="fas fa-check"></i>חשיפה גבוהה למשתמשי מובייל</li>
+                <li><i class="fas fa-check"></i>מעולה להנעת תנועה מיידית</li>
+            </ul>
+            <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
+        </div>
 
-<div class="cta-button-wrapper">
-    <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="cta-button">
-        בואו נתחיל
-    </a>
+        <!-- Package Card 2: Maximum - Recommended -->
+        <div class="package-card package-card--recommended">
+            <span class="package-badge">הכי פופולרי</span>
+            <h3>חשיפה מקסימלית</h3>
+            <p class="package-for">הפתרון המקיף לבניית מותג ונוכחות מתמשכת.</p>
+            <ul>
+                <li><i class="fas fa-check"></i><strong>כל מה שבחבילה הממוקדת, ובנוסף:</strong></li>
+                <li><i class="fas fa-check"></i>באנר צד במיקום פרימיום (דסקטופ)</li>
+                <li><i class="fas fa-check"></i>נוכחות קבועה בכל עמודי האתר</li>
+                <li><i class="fas fa-check"></i>מיתוג חזק ונראות מקסימלית</li>
+            </ul>
+            <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
+        </div>
+    </div>
 </div>
 
 <div class="faq-section">
@@ -80,4 +86,10 @@ permalink: /advertise/
             <p>לאחר אישור הצעת המחיר, אנו נשלח אליכם קישור מאובטח לתשלום פשוט ונוח. אנו מקבלים את רוב אמצעי התשלום הנפוצים.</p>
         </div>
     </details>
+</div>
+
+<div class="cta-button-wrapper">
+    <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="cta-button">
+        מוכנים להתחיל? צרו קשר
+    </a>
 </div>

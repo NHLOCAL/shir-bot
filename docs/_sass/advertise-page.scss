@@ -1,0 +1,229 @@
+---
+---
+@import "variables";
+
+body {
+    font-family: var(--font-base);
+    background-color: #f9f9fc;
+    color: #444;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+.advertise-page-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+}
+
+.page-header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--primary-hover);
+}
+
+.page-header .logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero-section h1 {
+    font-size: 2.8em;
+    color: var(--primary-hover);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hero-section .sub-headline {
+    font-size: 1.4em;
+    color: #555;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin: 50px 0;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--border-color);
+}
+
+.benefit-card .icon {
+    font-size: 2.8em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 1.3em;
+    color: var(--primary-hover);
+    margin-bottom: 10px;
+}
+
+.packages-section {
+    background: linear-gradient(145deg, #f8f5fd, #ede9f6);
+    padding: 50px 30px;
+    border-radius: 16px;
+    margin: 60px 0;
+}
+
+.packages-section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--primary-hover);
+}
+
+.package {
+    background: var(--white);
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.package h3 {
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+}
+
+.package .icon { color: var(--primary-color); }
+
+.package ul {
+    list-style: none;
+    padding-right: 20px;
+    margin-top: 15px;
+}
+
+.package ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.package ul li::before {
+    font-family: "Font Awesome 5 Free";
+    content: '\f00c';
+    font-weight: 900;
+    color: #4CAF50;
+    position: absolute;
+    right: -25px;
+}
+
+.cta-button-wrapper {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 18px 40px;
+    font-size: 1.4em;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(126, 87, 194, 0.3);
+}
+
+.cta-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.4);
+}
+
+.faq-section {
+    margin-top: 60px;
+    padding-bottom: 40px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    color: var(--primary-hover);
+}
+
+.faq-section details {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+}
+
+.faq-section summary {
+    font-weight: 600;
+    font-size: 1.2em;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+.faq-section summary::-webkit-details-marker { display: none; }
+
+.faq-section summary::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f078';
+    font-weight: 900;
+    transition: transform 0.2s;
+}
+
+.faq-section details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.faq-section .faq-answer {
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.page-footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 { font-size: 2.2em; }
+    .hero-section .sub-headline { font-size: 1.2em; }
+    .cta-button { font-size: 1.2em; padding: 15px 30px; }
+}

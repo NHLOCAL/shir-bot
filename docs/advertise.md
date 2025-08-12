@@ -2,7 +2,7 @@
 layout: advertise
 title: "פרסום בשיר-בוט | הגעה מדויקת לקהל שלך"
 permalink: /advertise/
-form_url: "https://docs.google.com/forms/d/e/YOכככככככככככככ_ID_HERE/viewform"
+form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1ZBBUZIbPZ38NdXUo-hBhmw/viewform?usp=dialog"
 ---
 
 <div class="hero-section">

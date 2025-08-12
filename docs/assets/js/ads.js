@@ -31,8 +31,7 @@ function initializeImpressionTracking() {
                             'event_label': eventLabel,
                             'ad_location': location,
                             'ad_type': type,
-                            'ad_id': id,
-                            'non_interaction': true
+                            'ad_id': id
                         });
                     } else {
                         console.warn('gtag function not found for impression tracking.');

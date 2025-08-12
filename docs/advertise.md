@@ -2,6 +2,7 @@
 layout: advertise
 title: "פרסום בשיר-בוט | הגעה מדויקת לקהל שלך"
 permalink: /advertise/
+form_url: "https://docs.google.com/forms/d/e/YOכככככככככככככ_ID_HERE/viewform"
 ---
 
 <div class="hero-section">
@@ -10,7 +11,7 @@ permalink: /advertise/
         חברו את המותג שלכם לקהילה תוססת של אלפי חובבי מוזיקה יהודית בפלטפורמה שהם הכי אוהבים.
     </p>
     <div class="cta-button-wrapper">
-        <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="cta-button">
+        <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
             לקבלת הצעת מחיר
         </a>
     </div>
@@ -47,7 +48,7 @@ permalink: /advertise/
                 <li><i class="fas fa-check"></i>חשיפה גבוהה למשתמשי מובייל</li>
                 <li><i class="fas fa-check"></i>מעולה להנעת תנועה מיידית</li>
             </ul>
-            <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
         </div>
 
         <!-- Package Card 2: Maximum - Recommended -->
@@ -61,7 +62,7 @@ permalink: /advertise/
                 <li><i class="fas fa-check"></i>נוכחות קבועה בכל עמודי האתר</li>
                 <li><i class="fas fa-check"></i>מיתוג חזק ונראות מקסימלית</li>
             </ul>
-            <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
         </div>
     </div>
 </div>
@@ -89,7 +90,7 @@ permalink: /advertise/
 </div>
 
 <div class="cta-button-wrapper">
-    <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/viewform" target="_blank" rel="noopener" class="cta-button">
+    <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
         מוכנים להתחיל? צרו קשר
     </a>
 </div>

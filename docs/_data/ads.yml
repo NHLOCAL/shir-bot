@@ -24,17 +24,46 @@ left_banner:
   link_url: "https://example.com/left-ad"
   alt_text: "פרסומת צד שמאל"
   tracking_id: "left-ad-placeholder"
+
+# ==============================================================================
+# פרסומות צד
+# ==============================================================================
+
+# פרסומת פעילה
 right_banner:
   enabled: true
   type: "image"
-  image_url: "/assets/images/ads/ze-kal-channel.png"
-  link_url: "https://www.youtube.com/@Ze-Kal"
-  alt_text: "ערוץ היוטיוב 'זה קל' - לימוד אנגלית וכתוביות שירים"
-  tracking_id: "ze-kal-youtube-channel"
+  image_url: "/assets/images/ads/kley-meitar2.jpg"
+  link_url: "https://www.kley-meitar.co.il/"
+  alt_text: "כלי מיתר - כל הגיטרות במקום אחד"
+  tracking_id: "kley-meitar-right-banner"
+
+# ------------------------------------------------------------------------------
+# פרסומות שמורות בארכיון (לא פעילות)
+# ------------------------------------------------------------------------------
+
+archived_banners:
+  - name: "ze-kal-channel"
+    enabled: false
+    type: "image"
+    image_url: "/assets/images/ads/ze-kal-channel.png"
+    link_url: "https://www.youtube.com/@Ze-Kal"
+    alt_text: "ערוץ היוטיוב 'זה קל' - לימוד אנגלית וכתוביות שירים"
+    tracking_id: "ze-kal-youtube-channel"
+
+# ==============================================================================
+# פרסומות פנימיות (Inline)
+# ==============================================================================
+
 inline_ads:
   enabled: true
   frequency: 13
   ads_list:
+    - type: "image"
+      link_url: "https://www.kley-meitar.co.il/"
+      image_url: "/assets/images/ads/kley-meitar1.jpg"
+      alt_text: "כלי מיתר - כל הגיטרות במקום אחד"
+      tracking_id: "inline-kley-meitar"
     - type: "text"
       title: "רוצים גישה למאגר המוזיקה המלא?"
       text: "מאגר המוזיקה היהודית הגדול בעולם, עם מעל 500 ג'יגה של תוכן איכותי, מחכה לכם. הרשמו עכשיו וקבלו גישה מיידית!"
@@ -63,6 +92,11 @@ inline_ads:
       body: "שלום, אנו מעוניינים לקבל פרטים נוספים על אפשרויות הפרסום באתר"
       icon_class: "fas fa-bullhorn"
       tracking_id: "inline-email-contact-for-ad"
+
+# ==============================================================================
+# פרסומות תחתונות (Footer)
+# ==============================================================================
+
 footer_banner:
   enabled: true
   rotation_delay_ms: 5000

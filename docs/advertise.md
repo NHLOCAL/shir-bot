@@ -8,7 +8,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 <div class="hero-section">
     <h1>המסר שלכם. הקהל הנכון. התוצאות.</h1>
     <p class="sub-headline">
-        חברו את המותג שלכם לקהילה תוססת של אלפי חובבי מוזיקה יהודית בפלטפורמה שהם הכי אוהבים.
+        חברו את המותג שלכם לקהילה תוססת של אלפי חובבי מוזיקה יהודית בפלטפורמה שהם הכי אוהבים
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
@@ -26,17 +26,17 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-users"></i></div>
         <h3>קהל נאמן ומעורב</h3>
-        <p>הגיעו לקהל ייחודי שחוזר לאתר שוב ושוב, עם זמן שהייה גבוה המבטיח שהפרסום שלכם לא מתפספס.</p>
+        <p>הגיעו לקהל ייחודי שחוזר לאתר שוב ושוב, עם זמן שהייה גבוה המבטיח שהפרסום שלכם לא מתפספס</p>
     </div>
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-chart-line"></i></div>
         <h3>חשיפה רחבה ואיכותית</h3>
-        <p>עם מעל <strong>50,000 צפיות</strong> חודשיות, המותג שלכם יקבל נראות מקסימלית מול קהל רלוונטי במיוחד.</p>
+        <p>עם מעל <strong>50,000 צפיות</strong> חודשיות, המותג שלכם יקבל נראות מקסימלית מול קהל רלוונטי במיוחד</p>
     </div>
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-bullseye"></i></div>
         <h3>פרסום ממוקד ומדויק</h3>
-        <p>בין אם אתם אמנים, מפיקי אירועים או בעלי עסק, כאן תמצאו את הקהל שמחפש בדיוק את מה שיש לכם להציע.</p>
+        <p>בין אם אתם אמנים, מפיקי אירועים או בעלי עסק, כאן תמצאו את הקהל שמחפש בדיוק את מה שיש לכם להציע</p>
     </div>
 </div>
 
@@ -46,7 +46,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
         <!-- Package Card 1: Targeted -->
         <div class="package-card">
             <h3><i class="fas fa-bullseye"></i> פרסום ממוקד</h3>
-            <p class="package-for">אידיאלי לקמפיינים, השקות ואירועים עם מסר חד.</p>
+            <p class="package-for">אידיאלי לקמפיינים, השקות ואירועים עם מסר חד</p>
             <ul>
                 <li><i class="fas fa-check"></i>שילוב טבעי בלב התוכן (In-Feed)</li>
                 <li><i class="fas fa-check"></i>תשומת לב גבוהה בזמן גלילה</li>
@@ -60,7 +60,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
         <div class="package-card package-card--recommended">
             <span class="package-badge">מומלץ</span>
             <h3><i class="fas fa-rocket"></i> חשיפה מקסימלית</h3>
-            <p class="package-for">הפתרון המקיף לבניית מותג ונוכחות מתמשכת.</p>
+            <p class="package-for">הפתרון המקיף לבניית מותג ונוכחות מתמשכת</p>
             <ul>
                 <li><i class="fas fa-check"></i><strong>כל מה שבחבילה הממוקדת, ובנוסף:</strong></li>
                 <li><i class="fas fa-check"></i>באנר צד במיקום פרימיום (דסקטופ)</li>

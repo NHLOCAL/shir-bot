@@ -17,6 +17,11 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     </div>
 </div>
 
+<div class="pricing-highlight">
+    <i class="fas fa-tag"></i>
+    <p>פרסום אפקטיבי בתקציב שלך: <strong>החל מ-50 ש"ח בלבד!</strong></p>
+</div>
+
 <div class="benefits-grid">
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-users"></i></div>
@@ -78,7 +83,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <details>
         <summary>מהם המחירים?</summary>
         <div class="faq-answer">
-            <p>אנו מציעים מחירי השקה אטרקטיביים. כדי לתת לכם את ההצעה המדויקת והמשתלמת ביותר, אנו מזמינים אתכם למלא את הטופס הקצר. זה מאפשר לנו להבין את מטרותיכם ולהציע פתרון מותאם אישית בתקציב הנכון, ללא התחייבות.</p>
+            <p>אנו מציעים חבילות פרסום גמישות במחירי השקה אטרקטיביים, <strong>החל מ-50 ש"ח בלבד</strong>. כדי לתת לכם את ההצעה המדויקת והמשתלמת ביותר, אנו מזמינים אתכם למלא את הטופס הקצר. זה מאפשר לנו להבין את מטרותיכם ולהציע פתרון מותאם אישית בתקציב הנכון, ללא התחייבות.</p>
         </div>
     </details>
      <details>

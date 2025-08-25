@@ -45,8 +45,10 @@
         <a href="{{ site.baseurl }}{{ cta.link_url }}"
            class="ad-banner ad-cta"
            data-ad-location="right_sidebar" data-ad-type="cta" data-ad-id="{{ cta.tracking_id }}">
-          <span class="cta-text">{{ cta.cta_text }}</span>
-          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
+          <div class="ad-cta-icon"><i class="{{ cta.icon_class }}"></i></div>
+          <h3 class="ad-cta-title">{{ cta.title }}</h3>
+          <p class="ad-cta-text">{{ cta.text }}</p>
+          <span class="ad-cta-button">{{ cta.button_text }}</span>
         </a>
       {%- endif -%}
     </aside>
@@ -72,8 +74,10 @@
         <a href="{{ site.baseurl }}{{ cta.link_url }}"
            class="ad-banner ad-cta"
            data-ad-location="left_sidebar" data-ad-type="cta" data-ad-id="{{ cta.tracking_id }}">
-          <span class="cta-text">{{ cta.cta_text }}</span>
-          <span class="cta-subtext">{{ cta.cta_subtext }}</span>
+          <div class="ad-cta-icon"><i class="{{ cta.icon_class }}"></i></div>
+          <h3 class="ad-cta-title">{{ cta.title }}</h3>
+          <p class="ad-cta-text">{{ cta.text }}</p>
+          <span class="ad-cta-button">{{ cta.button_text }}</span>
         </a>
       {%- endif -%}
     </aside>

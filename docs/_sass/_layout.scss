@@ -53,29 +53,80 @@
 }
 .ad-banner.ad-cta {
   height: 500px;
-  align-items: center;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 20px;
-  background: linear-gradient(145deg, #f8f5fd, #ede9f6);
-  color: var(--primary-hover);
-  transition: all 0.2s ease-in-out;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  background-color: #3a255f;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+  background-size: 20px 20px;
+  color: var(--white);
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(44, 30, 72, 0.4);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 .ad-banner.ad-cta:hover {
-  background: linear-gradient(145deg, #ede9f6, #e1dbe9);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(44, 30, 72, 0.5);
+  transform: translateY(-5px);
 }
-.ad-banner.ad-cta .cta-text {
+.ad-cta-icon {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  width: 70px;
+  height: 70px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+.ad-banner.ad-cta:hover .ad-cta-icon {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1) rotate(15deg);
+}
+.ad-cta-title {
   font-size: 1.5em;
   font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--white);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  z-index: 1;
 }
-.ad-banner.ad-cta .cta-subtext {
+.ad-cta-text {
   font-size: 1em;
-  margin-top: 10px;
-  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0 auto 25px auto;
+  opacity: 0.9;
+  max-width: 90%;
+  z-index: 1;
+}
+.ad-cta-button {
+  display: inline-block;
+  background-color: var(--highlight-color);
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+  border: none;
+  z-index: 1;
+}
+.ad-banner.ad-cta:hover .ad-cta-button {
+  background-color: #00d4ee;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
 }
 .fixed-header-wrapper {
   position: fixed;

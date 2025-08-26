@@ -31,7 +31,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-chart-line"></i></div>
         <h3>חשיפה רחבה ואיכותית</h3>
-        <p>עם מעל <strong>50,000 צפיות</strong> חודשיות, המותג שלכם יקבל נראות מקסימלית מול קהל רלוונטי במיוחד</p>
+        <p>עם <strong>עשרות אלפי צפיות</strong> חודשיות, המותג שלכם יקבל נראות מקסימלית מול קהל רלוונטי במיוחד</p>
     </div>
     <div class="benefit-card">
         <div class="icon"><i class="fas fa-bullseye"></i></div>

@@ -1,4 +1,4 @@
-(function() {
+function cleanUtmParamsFromUrl() {
     const queryParams = new URLSearchParams(window.location.search);
     const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
     let hasUtmParams = false;
@@ -13,11 +13,12 @@
             const newUrl = window.location.pathname + (queryParams.toString() ? '?' + queryParams.toString() : '') + window.location.hash;
             window.history.replaceState(null, '', newUrl);
         } catch (e) {
-            console.error("Could not update URL", e);
+            console.error("Could not update URL to remove UTM parameters.", e);
         }
     }
-})();
-var baseurl = baseurl || ''; // Ensure baseurl is available, provided by Jekyll layout
+}
+window.addEventListener('load', cleanUtmParamsFromUrl);
+var baseurl = baseurl || '';
 const modalOverlay = document.getElementById('modalOverlay');
 const modalMessage = document.getElementById('modalMessage');
 const modalOkButton = document.getElementById('modalOkButton');
@@ -74,15 +75,13 @@ function copyToClipboard(text) {
 function initializeDynamicMailtoLinks(scope) {
     const searchScope = scope || document;
     searchScope.querySelectorAll('.feedback-mail-link, .email-link, .dynamic-mailto-ad').forEach(function(link) {
-        // Skip if already processed to avoid unnecessary re-bindings
         if (link.dataset.mailtoInitialized) return;
         var isWindows = navigator.userAgent.indexOf('Windows') !== -1;
         var email = link.getAttribute('data-email') || 'mesader.singelim@gmail.com';
         var subject = link.getAttribute('data-subject') || '';
         var body = link.getAttribute('data-body') || '';
         if (isWindows) {
-            // Gmail compose link
-            var gmailUrl = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=' + encodeURIComponent(email);
+            var gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
             if(subject) gmailUrl += '&su=' + encodeURIComponent(subject);
             if(body) gmailUrl += '&body=' + encodeURIComponent(body);
             link.setAttribute('href', gmailUrl);
@@ -99,7 +98,6 @@ function initializeDynamicMailtoLinks(scope) {
         link.dataset.mailtoInitialized = 'true';
     });
 }
-// Make the function globally accessible
 window.initializeDynamicMailtoLinks = initializeDynamicMailtoLinks;
 document.addEventListener("DOMContentLoaded", function() {
     if (nextObject) {
@@ -130,6 +128,5 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
      }
-    // Initial run for all static links on the page
     initializeDynamicMailtoLinks();
 });

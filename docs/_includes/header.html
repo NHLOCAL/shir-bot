@@ -1,12 +1,10 @@
 <div class="fixed-header-wrapper">
   <div class="header-content-unit">
-    {% comment %} --- Top Row: Logo, Search, Icons --- {% endcomment %}
     <nav class="top-navbar-section">
       <a href="{{ site.baseurl }}/" class="logo-container" id="nextObject">
         <img width="32" src="{{ site.baseurl }}/assets/images/logo.png" alt="סמל האתר">
         <span class="site-title">שיר-בוט</span>
       </a>
-      {% comment %} --- Search Bar (Adapted from original structure) --- {% endcomment %}
       <form class="search-bar" id="searchForm">
           <input type="text" class="search-input" placeholder="חפש שירים, אמנים, אלבומים..." id="searchInput" autofocus
                  autocomplete="off" aria-haspopup="listbox" aria-controls="autocomplete-suggestions">
@@ -19,7 +17,6 @@
             <i class="fas fa-search"></i>
           </button>
       </form>
-      {% comment %} --- Right Side Icons (From original structure) --- {% endcomment %}
       <div class="icons-container">
         <a href="{{ site.baseurl }}/advertise/" class="right-item" title='פרסום באתר - החל מ-50 ש"ח'>
           <i class="fas fa-bullhorn"></i>
@@ -35,7 +32,6 @@
         </a>
       </div>
     </nav>
-    {% comment %} --- Bottom Row: Filters (Adapted from original structure) --- {% endcomment %}
     {% if page.show_search_form != false %}
     <div class="filters-section">
          <button class="filter-button active" data-filter="all">הכל</button>

@@ -108,10 +108,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     document.body.addEventListener('click', function(event) {
         if (event.target.tagName === 'A' && event.target.hostname !== window.location.hostname) {
-             window.dataLayer.push({
-               'event': 'outbound_link_click',
+             gtag('event', 'click', {
                'event_category': 'Outbound Link',
-               'event_label': event.target.href
+               'event_label': event.target.href,
+               'transport_type': 'beacon'
              });
         }
     });
@@ -121,8 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const searchInputGlobal = document.querySelector('#searchInput');
             if (searchInputGlobal) {
                  const searchQuery = searchInputGlobal.value;
-                 window.dataLayer.push({
-                    'event': 'search',
+                 gtag('event', 'search', {
                     'event_category': 'Search',
                     'event_label': searchQuery
                  });

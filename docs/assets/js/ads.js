@@ -25,9 +25,8 @@ function initializeImpressionTracking() {
                 if (location && type && id) {
                     const eventLabel = `${location} - ${type} - ${id}`;
                     console.log(`Ad Impression Tracked: ${eventLabel}`);
-                    if (typeof dataLayer !== 'undefined') {
-                        window.dataLayer.push({
-                            'event': 'ad_impression',
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'ad_impression', {
                             'event_category': 'Ads',
                             'event_label': eventLabel,
                             'ad_location': location,
@@ -35,7 +34,7 @@ function initializeImpressionTracking() {
                             'ad_id': id
                         });
                     } else {
-                        console.warn('dataLayer not found for impression tracking.');
+                        console.warn('gtag function not found for impression tracking.');
                     }
                 }
                 observer.unobserve(adElement);
@@ -57,9 +56,8 @@ function initializeAdSystem() {
         if (location && type && id) {
             const eventLabel = `${location} - ${type} - ${id}`;
             console.log(`Ad Click Tracked: ${eventLabel}`);
-            if (typeof dataLayer !== 'undefined') {
-                window.dataLayer.push({
-                    'event': 'ad_click',
+            if (typeof gtag === 'function') {
+                gtag('event', 'ad_click', {
                     'event_category': 'Ads',
                     'event_label': eventLabel,
                     'ad_location': location,
@@ -67,7 +65,7 @@ function initializeAdSystem() {
                     'ad_id': id
                 });
             } else {
-                console.warn('dataLayer not found for ad tracking.');
+                console.warn('gtag function not found for ad tracking.');
             }
         }
     });
@@ -108,15 +106,19 @@ function initializeAdSystem() {
 function initializeSidebarAds() {
     const sidebars = document.querySelectorAll('.ad-sidebar');
     if (sidebars.length === 0) return;
+
     const MOUSELEAVE_FADEOUT_DELAY_MS = 3000;
     const INITIAL_AD_APPEARANCE_DELAY_MS = 2500;
     const INITIAL_FADEOUT_DELAY_MS = 10000;
+
     const initialFadeTimers = new Map();
     const mouseleaveTimers = new Map();
+
     const fadeOutAd = (sidebar) => {
         sidebar.classList.remove('is-visible');
         sidebar.classList.add('is-faded');
     };
+
     sidebars.forEach(sidebar => {
         sidebar.addEventListener('mouseenter', () => {
             if (mouseleaveTimers.has(sidebar)) {
@@ -130,6 +132,7 @@ function initializeSidebarAds() {
                 initialFadeTimers.delete(sidebar);
             }
         });
+
         sidebar.addEventListener('mouseleave', () => {
             const timerId = setTimeout(() => {
                 fadeOutAd(sidebar);
@@ -138,12 +141,13 @@ function initializeSidebarAds() {
             mouseleaveTimers.set(sidebar, timerId);
         });
     });
+
     const animationPlayed = sessionStorage.getItem('shirBotAdAnimationPlayed');
     if (animationPlayed) {
         sidebars.forEach(sidebar => {
             sidebar.classList.add('no-transition');
             sidebar.classList.add('is-faded');
-            sidebar.offsetHeight;
+            sidebar.offsetHeight; // Force reflow
             sidebar.classList.remove('no-transition');
         });
     } else {

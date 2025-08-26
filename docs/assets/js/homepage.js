@@ -1,18 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Homepage.js: DOMContentLoaded");
+
     const artistsGrid = document.getElementById('popular-artists-grid');
     const songsList = document.getElementById('random-songs-list');
     const homepageContent = document.getElementById('homepage-content');
     const searchResultsArea = document.getElementById('search-results-area');
+
     const NUM_ARTISTS_TO_SHOW = 6;
     const NUM_SONGS_TO_SHOW = 5;
-    const NUM_NEWEST_SONGS_POOL = 30;
+    const NUM_NEWEST_SONGS_POOL = 30; // Define the pool size for newest songs
+
     function getUniqueArtists(allSongs) {
         if (!Array.isArray(allSongs)) return [];
+
         const artistSongCounts = {};
         console.log("Homepage.js: Counting songs per artist (max 3 words)...");
         let initialSkippedCount = 0;
         let wordCountSkippedCount = 0;
+
         allSongs.forEach(song => {
             const singerName = song.singer;
             if (singerName && singerName.trim() !== '') {
@@ -27,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         console.log(`Homepage.js: Initial song count complete. Artists considered: ${Object.keys(artistSongCounts).length}. Skipped initial (no/empty name): ${initialSkippedCount}. Skipped word count (>3): ${wordCountSkippedCount}.`);
+
         const filteredArtists = [];
         let songCountSkippedCount = 0;
         console.log("Homepage.js: Filtering artists by song count (>= 3)...");
+
         for (const singerName in artistSongCounts) {
             if (artistSongCounts.hasOwnProperty(singerName)) {
                 const count = artistSongCounts[singerName];
@@ -60,12 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+
         if (typeof UNF === 'undefined') {
             console.warn("UNF library not loaded, using basic slug generation for artists.");
         }
         console.log(`Homepage.js: Artist filtering complete. Kept ${filteredArtists.length} artists (>= 3 songs). Skipped by song count (<3): ${songCountSkippedCount}.`);
+
         return filteredArtists.sort((a, b) => a.name.localeCompare(b.name, 'he'));
     }
+
     function getRandomItems(array, count) {
         if (!array || array.length === 0) return [];
         const shuffled = array.slice();
@@ -75,16 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return shuffled.slice(0, count);
     }
+
     function displayArtists(availableArtists) {
         if (!artistsGrid) {
             console.warn("Homepage.js: artistsGrid element not found.");
             return;
         }
+
         const randomArtists = getRandomItems(availableArtists, NUM_ARTISTS_TO_SHOW);
+
         if (randomArtists.length === 0) {
             artistsGrid.innerHTML = '<p class="loading-placeholder">לא נמצאו אמנים להצגה (עם 3 שירים לפחות).</p>';
             return;
         }
+
         let html = '';
         randomArtists.forEach(artist => {
             const artistNameEscaped = artist.name.replace(/"/g, '"');
@@ -97,12 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
         });
         artistsGrid.innerHTML = html;
+
         artistsGrid.querySelectorAll('a.artist-circle').forEach(link => {
             link.addEventListener('click', (event) => {
                 const artistName = link.closest('.artist-item')?.dataset.artistName || 'unknown';
-                 if (typeof dataLayer !== 'undefined') {
-                    window.dataLayer.push({
-                        'event': 'select_content',
+                 if (typeof gtag === 'function') {
+                    gtag('event', 'select_content', {
                         'content_type': 'artist_homepage_grid',
                         'item_id': artistName
                     });
@@ -110,44 +124,55 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
     function displaySongs(songsToDisplay) {
         if (!songsList) {
             console.warn("Homepage.js: songsList element not found.");
             return;
         }
+
         const displayableSongs = songsToDisplay.filter(song => song && song.name && song.serial && song.driveId);
         const randomSongs = getRandomItems(displayableSongs, NUM_SONGS_TO_SHOW);
+
         if (randomSongs.length === 0) {
             songsList.innerHTML = '<li class="loading-placeholder">לא נמצאו שירים להצגה.</li>';
             return;
         }
+
         let html = '';
         randomSongs.forEach(song => {
              const songNameEscaped = song.name.replace(/"/g, '"');
-             const albumName = song.album || 'לא ידוע';
-             const titleText = `חפש את '${songNameEscaped}' מאלבום '${albumName}'`;
+             const albumName = song.album || 'לא ידוע'; // Changed from singerName to albumName
+             const titleText = `חפש את '${songNameEscaped}' מאלבום '${albumName}'`; // Updated titleText
             html += `
                 <li data-song-serial="${song.serial}" title="${titleText}">
                     <i class="fas fa-music song-icon"></i>
-                    ${song.name} - ${albumName}
+                    ${song.name} - ${albumName} 
                 </li>`;
         });
         songsList.innerHTML = html;
+
         songsList.querySelectorAll('li[data-song-serial]').forEach(item => {
             item.addEventListener('click', () => {
                 const serial = item.dataset.songSerial;
                 console.log("Homepage.js: Song clicked, serial:", serial);
+
                 const searchInputGlobal = document.getElementById('searchInput');
                 const searchHandler = typeof window.searchSongs === 'function' ? window.searchSongs : null;
                 const filterHandler = typeof window.handleFilterClick === 'function' ? window.handleFilterClick : null;
                 const isDataReady = typeof songsDataLoaded !== 'undefined' && songsDataLoaded;
+
                 if (searchHandler && filterHandler && searchInputGlobal && isDataReady) {
+                     // 1. עדכן את שדה החיפוש
                      searchInputGlobal.value = serial;
+                     // 2. קבע את הפילטר הויזואלי והפנימי ל-'all'
                      filterHandler('all', false);
+                     // 3. קרא לפונקציית החיפוש והעבר לה במפורש לחפש לפי 'serial'
                      searchHandler(serial, 'serial');
-                      if (typeof dataLayer !== 'undefined') {
-                         window.dataLayer.push({
-                           'event': 'select_content',
+
+                      // 4. שלח אירוע ל-GA
+                      if (typeof gtag === 'function') {
+                         gtag('event', 'select_content', {
                            'content_type': 'song_homepage_list',
                            'item_id': serial
                          });
@@ -162,23 +187,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
     function initializeHomepageContent(mergedSongs, newSongsOnly) {
         console.log("Homepage.js: Initializing content (songsDataReady event received).");
         const urlParams = new URLSearchParams(window.location.search);
         const hasSearchParams = urlParams.has('search') || urlParams.has('searchBy');
+
         if (!hasSearchParams) {
+
             if (homepageContent) homepageContent.style.display = 'block';
             if (searchResultsArea) searchResultsArea.style.display = 'none';
+
             const uniqueArtists = getUniqueArtists(mergedSongs);
             displayArtists(uniqueArtists);
+
             if (newSongsOnly && newSongsOnly.length > 0) {
+                // Sort newSongsOnly by serial in descending order (newest first)
                 const sortedNewSongs = [...newSongsOnly].sort((a, b) => {
                     const serialA = parseInt(a.serial, 10) || 0;
                     const serialB = parseInt(b.serial, 10) || 0;
-                    return serialB - serialA;
+                    return serialB - serialA; // Descending order for newest first
                 });
+
+                // Take the top NUM_NEWEST_SONGS_POOL (e.g., 30) songs
                 const newestSongsPool = sortedNewSongs.slice(0, NUM_NEWEST_SONGS_POOL);
                 console.log(`Homepage.js: Selected ${newestSongsPool.length} newest songs for the random pool.`);
+
+                // Display a random selection from this pool
                 displaySongs(newestSongsPool);
             } else {
                 if (songsList) songsList.innerHTML = '<li class="loading-placeholder">לא נמצאו שירים חדשים במאגר.</li>';
@@ -188,19 +223,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (homepageContent) homepageContent.style.display = 'none';
         }
     }
+
     function setInitialLoadingState() {
          console.log("Homepage.js: Setting initial loading placeholders.");
          if (artistsGrid) artistsGrid.innerHTML = '<div class="loading-placeholder">טוען אמנים...</div>';
          if (songsList) songsList.innerHTML = '<li class="loading-placeholder">טוען שירים...</li>';
+
          if (homepageContent) homepageContent.style.display = 'block';
          if (searchResultsArea) searchResultsArea.style.display = 'none';
     }
+
      function displayDataLoadErrorHomepage() {
          console.error("Homepage.js: Displaying data load error.");
          if (artistsGrid) artistsGrid.innerHTML = '<p class="loading-placeholder" style="color: red;">שגיאה בטעינת נתוני האמנים.</p>';
          if (songsList) songsList.innerHTML = '<li class="loading-placeholder" style="color: red;">שגיאה בטעינת נתוני השירים.</li>';
      }
+
     console.log("Homepage.js: Setting up event listeners.");
+
     document.addEventListener('songsDataReady', (event) => {
         console.log("Homepage.js: 'songsDataReady' event caught.");
         if (event.detail && typeof event.detail === 'object' && Array.isArray(event.detail.allSongs) && Array.isArray(event.detail.newSongs)) {
@@ -210,10 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
              displayDataLoadErrorHomepage();
         }
     });
+
      document.addEventListener('songsDataError', (event) => {
          console.error("Homepage.js: 'songsDataError' event caught.", event.detail);
          displayDataLoadErrorHomepage();
      });
+
      if (typeof songsDataLoaded !== 'undefined' && songsDataLoaded && typeof allSongs !== 'undefined' && allSongs.length > 0 && typeof window.cachedNewSongs !== 'undefined') {
          console.log("Homepage.js: Data was already loaded, initializing content immediately.");
          initializeHomepageContent(allSongs, window.cachedNewSongs);
@@ -226,5 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
          console.log("Homepage.js: Waiting for 'songsDataReady' event...");
          setInitialLoadingState();
      }
+
 });
+
 console.log("homepage.js loaded");

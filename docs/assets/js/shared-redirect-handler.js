@@ -1,7 +1,7 @@
 const downloadQueue = [];
 let isProcessingQueue = false;
-const INTER_DOWNLOAD_DELAY_MS = 500;
-const BUTTON_RESTORE_DELAY_MS = 6000;
+const INTER_DOWNLOAD_DELAY_MS = 1000;
+const BUTTON_RESTORE_DELAY_MS = 10000;
 const IFRAME_REMOVE_DELAY_MS = 10000;
 function updateDownloadLoadingMessage() {
     const loadingMessage = document.getElementById('loadingMessage');

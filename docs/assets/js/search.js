@@ -3,11 +3,6 @@ let results = [];
 let displayedResults = 0;
 let showSinglesOnly = true;
 let activeFilter = 'all';
-const downloadQueue = [];
-let isProcessingQueue = false;
-const INTER_DOWNLOAD_DELAY_MS = 300;
-const BUTTON_RESTORE_DELAY_MS = 3000;
-const IFRAME_REMOVE_DELAY_MS = 5000;
 let isLoadingSongs = false;
 let songsDataLoaded = false;
 let userIsTyping = false;
@@ -222,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderHistorySuggestions();
             }
         });
-        
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
              const query = searchInput.value.trim();
@@ -366,119 +360,6 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     resultsTableBody.appendChild(lr);
     if (resultsTableThead) resultsTableThead.style.display = "none";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
-}
-function updateDownloadLoadingMessage() {
-    if (!loadingMessage || !progressText) return;
-    const buttonsInProgress = document.querySelectorAll('button.download-button.download-in-progress, button.download-button-new.download-in-progress').length;
-    const itemsInQueue = downloadQueue.length;
-    if (buttonsInProgress > 0 || itemsInQueue > 0) {
-        let msg = "";
-        if (buttonsInProgress > 0) msg += `מוריד ${buttonsInProgress}... `;
-        if (itemsInQueue > 0) msg += `(${itemsInQueue} בתור)`;
-        progressText.innerText = msg.trim();
-        if (!loadingMessage.classList.contains('show')) {
-            loadingMessage.style.display = 'flex';
-            loadingMessage.classList.add('show');
-        }
-        const pbCont = loadingMessage.querySelector('.progress-bar');
-        if (pbCont) pbCont.style.display = 'none';
-    } else {
-        if (loadingMessage.classList.contains('show')) {
-            setTimeout(() => {
-                if (document.querySelectorAll('button.download-button.download-in-progress, button.download-button-new.download-in-progress').length === 0 && downloadQueue.length === 0) {
-                    loadingMessage.style.display = 'none';
-                    loadingMessage.classList.remove('show');
-                }
-            }, 1500);
-        }
-    }
-}
-function restoreDownloadButton(songSerial) {
-    const btn = document.querySelector(`button.download-button[data-song-serial="${songSerial}"], button.download-button-new[data-song-serial="${songSerial}"]`);
-    if (btn && btn.classList.contains('download-in-progress')) {
-        const icon = btn.dataset.originalIcon || '<i class="fas fa-download"></i>';
-        btn.innerHTML = icon;
-        btn.disabled = false;
-        btn.classList.remove('download-in-progress');
-        delete btn.dataset.originalIcon;
-        console.log(`DL Restore: ${songSerial}`);
-        updateDownloadLoadingMessage();
-    }
-}
-function processDownloadQueue() {
-    if (downloadQueue.length === 0) {
-        isProcessingQueue = false;
-        console.log("DL Queue empty.");
-        updateDownloadLoadingMessage();
-        return;
-    }
-    isProcessingQueue = true;
-    const item = downloadQueue.shift();
-    console.log(`DL Proc: ${item.songSerial}. Q: ${downloadQueue.length}`);
-    updateDownloadLoadingMessage();
-    try {
-        const ifr = document.createElement('iframe');
-        ifr.style.display = 'none';
-        ifr.src = `https://drive.google.com/uc?export=download&id=${item.driveId}`;
-        document.body.appendChild(ifr);
-        console.log(`DL iframe: ${item.driveId}`);
-        setTimeout(() => {
-            restoreDownloadButton(item.songSerial);
-        }, BUTTON_RESTORE_DELAY_MS);
-        setTimeout(() => {
-            try {
-                ifr.remove();
-                console.log(`DL iframe removed: ${item.driveId}`);
-            } catch (remErr) {
-                console.warn(`iframe remove err: ${remErr}`);
-            }
-        }, IFRAME_REMOVE_DELAY_MS);
-        setTimeout(processDownloadQueue, INTER_DOWNLOAD_DELAY_MS);
-    } catch (err) {
-        console.error(`iframe err ${item.songSerial}:`, err);
-        restoreDownloadButton(item.songSerial);
-        if (typeof showMessage === 'function') showMessage(`שגיאה בהורדה ${item.songSerial}.`);
-        setTimeout(processDownloadQueue, 50);
-    }
-}
-window.downloadSongWithDriveId = function(buttonElement) {
-    if (!buttonElement) {
-        console.error("DL Handler: Invalid button.");
-        return;
-    }
-    const songSerial = buttonElement.dataset.songSerial;
-    const driveId = buttonElement.dataset.driveId;
-    if (!songSerial || !driveId) {
-        console.error(`DL Handler: Missing data. Serial: ${songSerial}, DriveID: ${driveId}`);
-        if (typeof showMessage === 'function') showMessage('שגיאה: חסר מידע להורדה.');
-        if (buttonElement.classList.contains('download-in-progress')) {
-            restoreDownloadButton(songSerial || 'unknown');
-        }
-        return;
-    }
-    if (buttonElement.disabled || buttonElement.classList.contains('download-in-progress')) {
-        console.warn(`DL Handler: Already in progress: ${songSerial}`);
-        return;
-    }
-    if (downloadQueue.some(item => item.songSerial === songSerial)) {
-        console.warn(`DL Handler: Already in queue: ${songSerial}`);
-        if (typeof showMessage === 'function') showMessage(`${songSerial} כבר בתור להורדה.`);
-        return;
-    }
-    buttonElement.disabled = true;
-    buttonElement.classList.add('download-in-progress');
-    buttonElement.dataset.originalIcon = buttonElement.innerHTML;
-    buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-    downloadQueue.push({
-        songSerial: songSerial,
-        driveId: driveId
-    });
-    console.log(`DL Handler: Added ${songSerial}. Queue: ${downloadQueue.length}`);
-    updateDownloadLoadingMessage();
-    if (!isProcessingQueue) {
-        console.log("DL Handler: Starting queue.");
-        processDownloadQueue();
-    }
 }
 function clearUrlParams() {
     try {

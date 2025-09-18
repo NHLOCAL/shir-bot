@@ -10,6 +10,29 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/x-icon" href="{{ site.baseurl }}/assets/images/favicon.png">
   <script src="https://nhlocal.github.io/general-settings.js"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T5D8XKQX');</script>
+ <!-- End Google Tag Manager -->
+
+  <script>
+  // פונקציה לשליחת אירוע המרה (Registration) ל-GTM
+  function conversion_music_drive() {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      'event': 'Registration',
+      'event_category': 'music_drive',
+      'value': 1,
+      'currency': 'NIS'
+    });
+  };
+  </script>
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,6 +53,12 @@
   </script>
 </head>
 <body dir="rtl" style="background-color:#ECEFF1;">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5D8XKQX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
   <div class="body-wrapper">
     {%- assign cta = site.data.ads.default_cta -%}
     {% comment %} --- START: Right Ad Sidebar (First in RTL) --- {% endcomment %}

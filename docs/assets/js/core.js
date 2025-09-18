@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     document.body.addEventListener('click', function(event) {
         if (event.target.tagName === 'A' && event.target.hostname !== window.location.hostname) {
-             gtag('event', 'click', {
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+               'event': 'click',
                'event_category': 'Outbound Link',
                'event_label': event.target.href,
                'transport_type': 'beacon'
@@ -121,7 +123,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const searchInputGlobal = document.querySelector('#searchInput');
             if (searchInputGlobal) {
                  const searchQuery = searchInputGlobal.value;
-                 gtag('event', 'search', {
+                 window.dataLayer = window.dataLayer || [];
+                 dataLayer.push({
+                    'event': 'search',
                     'event_category': 'Search',
                     'event_label': searchQuery
                  });

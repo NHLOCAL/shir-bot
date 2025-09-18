@@ -56,17 +56,15 @@ function initializeAdSystem() {
         if (location && type && id) {
             const eventLabel = `${location} - ${type} - ${id}`;
             console.log(`Ad Click Tracked: ${eventLabel}`);
-            if (typeof gtag === 'function') {
-                gtag('event', 'ad_click', {
-                    'event_category': 'Ads',
-                    'event_label': eventLabel,
-                    'ad_location': location,
-                    'ad_type': type,
-                    'ad_id': id
-                });
-            } else {
-                console.warn('gtag function not found for ad tracking.');
-            }
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                'event': 'ad_click',
+                'event_category': 'Ads',
+                'event_label': eventLabel,
+                'ad_location': location,
+                'ad_type': type,
+                'ad_id': id
+            });
         }
     });
     const footerAdContainer = document.getElementById("footer-ad-container");

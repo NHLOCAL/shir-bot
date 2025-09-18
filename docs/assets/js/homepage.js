@@ -115,12 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
         artistsGrid.querySelectorAll('a.artist-circle').forEach(link => {
             link.addEventListener('click', (event) => {
                 const artistName = link.closest('.artist-item')?.dataset.artistName || 'unknown';
-                 if (typeof gtag === 'function') {
-                    gtag('event', 'select_content', {
-                        'content_type': 'artist_homepage_grid',
-                        'item_id': artistName
-                    });
-                 }
+                 window.dataLayer = window.dataLayer || [];
+                 dataLayer.push({
+                    'event': 'select_content',
+                    'content_type': 'artist_homepage_grid',
+                    'item_id': artistName
+                 });
             });
         });
     }
@@ -171,12 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
                      searchHandler(serial, 'serial');
 
                       // 4. שלח אירוע ל-GA
-                      if (typeof gtag === 'function') {
-                         gtag('event', 'select_content', {
-                           'content_type': 'song_homepage_list',
-                           'item_id': serial
-                         });
-                      }
+                      window.dataLayer = window.dataLayer || [];
+                      dataLayer.push({
+                         'event': 'select_content',
+                         'content_type': 'song_homepage_list',
+                         'item_id': serial
+                      });
                 } else if (!isDataReady) {
                      console.warn("Homepage.js: Song clicked, but song data is not ready yet.");
                      if(typeof showMessage === 'function') showMessage("מאגר השירים עדיין בטעינה, נסה לחפש שוב בעוד רגע.");

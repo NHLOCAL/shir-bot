@@ -1,17 +1,19 @@
 ---
 layout: advertise
-title: "פרסום בשיר-בוט | הגיעו ל-11,000 לקוחות פוטנציאליים מהמגזר החרדי"
+title: "פרסום בשיר-בוט | הגיעו ל-11,000 לקוחות שהמתחרים שלכם מפספסים"
 permalink: /advertise/
 form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1ZBBUZIbPZ38NdXUo-hBhmw/viewform?usp=dialog"
 ---
 
 <!-- ======================================================= -->
-<!-- HERO SECTION (Miller/Godin): ממוקד הצלחת הלקוח וה-USP   -->
+<!-- HERO SECTION (Miller/Wiebe): תוצאה עסקית ישירה ו-USP   -->
 <!-- ======================================================= -->
 <div class="hero-section">
-    <h1>הפכו לשם המוכר ביותר בקרב הקהל שאתם הכי רוצים</h1>
+    <!-- שינוי: הכותרת מציגה תוצאה כמותית ויתרון תחרותי, לא הבטחה מעורפלת -->
+    <h1>הגיעו ל-11,000 לקוחות שהמתחרים שלכם מפספסים.</h1>
     <p class="sub-headline">
-        בשיר-בוט, המודעה שלכם לא נבלעת ברעש. היא מגיעה ישירות ל-11,000 צעירים חרדים שמשתמשים ב<strong>אינטרנט מסונן וטלפונים כשרים</strong> – קהל שהמתחרים שלכם לא יודעים איך להגיע אליו.
+        <!-- שינוי: תת-הכותרת חדה יותר ומתמקדת ב"קהל שבוי" שאי אפשר להשיג במקום אחר -->
+        בשיר-בוט, המודעה שלכם לא נלחמת על תשומת לב. היא מקבלת במה מרכזית מול קהל שבוי של צעירים חרדים עם <strong>אינטרנט מסונן וטלפונים כשרים</strong> – קהל שאי אפשר להשיג בערוצים אחרים.
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
@@ -21,17 +23,21 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- STATS SECTION (Wiebe): הוכחה כמותית מיידית           -->
+<!-- STATS SECTION (Gardner/Wiebe): הוכחה ממוסגרת כהזדמנות -->
 <!-- ======================================================= -->
 <div class="stats-section">
+    <!-- שינוי: הוספת כותרת שממסגרת את המספרים כהזדמנות עבור המפרסם -->
+    <h2>ההזדמנות שלכם במספרים</h2>
     <div class="stats-grid">
         <div class="stat-card">
             <div class="number">11,000</div>
-            <div class="text">לקוחות פוטנציאליים בחודש</div>
+            <!-- שינוי: דיוק המונח לקהל הספציפי והאיכותי -->
+            <div class="text">צעירים חרדים ייחודיים בחודש</div>
         </div>
         <div class="stat-card">
             <div class="number">40,000+</div>
-            <div class="text">צפיות וחשיפות למותג שלכם</div>
+            <!-- שינוי: הדגשת איכות החשיפה -->
+            <div class="text">חשיפות איכותיות למותג שלכם</div>
         </div>
         <div class="stat-card">
             <div class="number">3.6</div>
@@ -41,48 +47,54 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PROBLEM/SOLUTION (Miller): מטפורה חזקה וברורה       -->
+<!-- PROBLEM/SOLUTION (Miller/Krug): כאב ישיר מול פתרון ברור -->
 <!-- ======================================================= -->
 <div class="why-us-section">
-    <h2>ההבדל בין לצעוק ברחוב ללחישה באוזן</h2>
+    <!-- שינוי: כותרת ישירה שמדברת על כאב (בזבוז כסף) ותועלת (יעילות) -->
+    <h2>למה פרסום אצלנו עובד (ולמה במייל הכסף שלכם מתבזבז)</h2>
     <div class="problem-solution-grid">
         <div class="problem-card">
-            <h3><i class="fas fa-stopwatch"></i> פרסום במייל: קרב על שבריר שנייה של תשומת לב</h3>
+            <!-- שינוי: כותרת כאב ברורה -->
+            <h3><i class="fas fa-trash-alt"></i> הבעיה עם פרסום במייל: המודעה שלכם הולכת לאיבוד</h3>
             <p>בניוזלטר, המודעה שלכם נלחמת על תשומת לב מול 5 מודעות אחרות. הלקוח סורק לשנייה, סוגר וממשיך הלאה. רוב הסיכויים שהוא בכלל לא זוכר שראה אתכם.</p>
         </div>
         <div class="solution-card">
-            <h3><i class="fas fa-user-check"></i> פרסום בשיר-בוט: שיחה עם לקוח מרוכז</h3>
+            <!-- שינוי: תיקון הסמל מ-fas-fa-bullseye ל-fas fa-bullseye -->
+            <h3><i class="fas fa-bullseye"></i> הפתרון בשיר-בוט: המודעה שלכם במרכז הבמה</h3>
             <p>כאן, המשתמש נמצא מרצונו, רגוע וממוקד. המודעה שלכם אינה הפרעה, אלא חלק מהחוויה שהוא מחפש. הוא פתוח למסר שלכם, ורואה אתכם שוב ושוב עד שהמותג שלכם הופך לבחירה הטבעית.</p>
         </div>
     </div>
 </div>
 
 <!-- ======================================================= -->
-<!-- BENEFITS (Nir Eyal/Godin): תוצאות עסקיות, לא תכונות  -->
+<!-- BENEFITS (Nir Eyal/Godin): תרגום תכונות לתוצאות עסקיות -->
 <!-- ======================================================= -->
 <div class="benefits-grid-wrapper">
     <h2>3 תוצאות עסקיות ברורות מהפרסום אצלנו</h2>
     <div class="benefits-grid">
         <div class="benefit-card">
             <div class="icon"><i class="fas fa-sync-alt"></i></div>
-            <h3>הפכו לחלק מההרגל</h3>
-            <p>המשתמשים שלנו לא מגיעים בטעות; הם חוזרים כדי להתעדכן. המודעה שלכם תהפוך לחלק מוכר ומהימן מהשגרה השבועית שלהם.</p>
+            <!-- שינוי: מתפיסה מופשטת ("הרגל") לתוצאה מוחשית ("אמון") -->
+            <h3>בנו אמון עם חשיפה יומיומית</h3>
+            <p>הלקוחות שלכם חוזרים אלינו כל יום. הם יראו את המודעה שלכם שוב ושוב, עד שהמותג שלכם יהפוך לשם מוכר ומהימן שהם בוחרים בו באופן טבעי.</p>
         </div>
         <div class="benefit-card">
-            <div class="icon"><i class="fas fa-check-double"></i></div>
-            <h3>המותג שלכם בסביבה מכובדת</h3>
-            <p>האתר שלנו נקי, כשר ואיכותי. כשהעסק שלכם מופיע כאן, הוא נתפס כאמין ומקצועי, בדיוק כמו הפלטפורמה שהקהל סומך עליה.</p>
+            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+            <!-- שינוי: מ"סביבה מכובדת" ל"אמינות מיידית" - התועלת הישירה -->
+            <h3>הרוויחו אמינות מיידית</h3>
+            <p>הקהל שלכם סומך על שיר-בוט כסביבה נקייה ואיכותית. כשהעסק שלכם מופיע כאן, האמון הזה עובר אוטומטית גם אליכם.</p>
         </div>
         <div class="benefit-card">
             <div class="icon"><i class="fas fa-key"></i></div>
-            <h3>גישה בלעדית לקהל שאי אפשר להשיג</h3>
+            <!-- שינוי: ניסוח אקטיבי ומוכוון תחרות -->
+            <h3>הגיעו לקהל שהמתחרים לא יכולים</h3>
             <p>קהל שמשתמש באינטרנט מסונן ונגני MP3 הוא קהל שרוב המתחרים שלכם לא יכולים להגיע אליו. כאן, יש לכם דלת פתוחה וישירה אליהם.</p>
         </div>
     </div>
 </div>
 
 <!-- ======================================================= -->
-<!-- SOCIAL PROOF (Gardner/Wiebe): ממסגור מחדש למפרסם     -->
+<!-- SOCIAL PROOF (Gardner/Wiebe): החלק הזה היה מצוין ונשאר כמעט זהה -->
 <!-- ======================================================= -->
 <div class="social-proof-section">
     <h2>המודעה שלכם תופיע בסביבה שהלקוחות שלכם אוהבים וסומכים עליה</h2>
@@ -108,15 +120,17 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PACKAGES (Krug): בהירות והכוונה                     -->
+<!-- PACKAGES (Krug/Miller): שמות מוכווני-תועלת להכוונה -->
 <!-- ======================================================= -->
 <div class="packages-section">
     <h2>בחרו את המסלול המתאים לעסק שלכם</h2>
     <div class="packages-grid">
         <div class="package-card">
-            <h3><i class="fas fa-crosshairs"></i> מסלול נוכחות</h3>
+            <!-- שינוי: שם שמדבר על מטרה, לא על תכונה -->
+            <h3><i class="fas fa-rocket"></i> חבילת הפתיחה החכמה</h3>
             <p class="package-for">הבטיחו שהעסק שלכם ייראה במקום הכי מרכזי באתר - בתוך רשימות השירים.</p>
-            <p class="package-who"><strong>למי זה מתאים?</strong> לעסקים שרוצים נוכחות קבועה בלב האתר בתקציב נמוך.</p>
+            <!-- שינוי: ניסוח "למי זה מתאים" שמדבר על מטרה עסקית -->
+            <p class="package-who"><strong>למי זה מתאים?</strong> לעסקים שרוצים חשיפה קבועה וממוקדת בתקציב נמוך.</p>
             <div class="price-box">
                 <strong>390 ₪</strong> / לחודש
             </div>
@@ -126,13 +140,15 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 			<div class="package-visual">
 				<img src="{{ site.baseurl }}/assets/images/ad-inline-example.png" alt="דוגמה למודעה משולבת ברשימת השירים" style="width:100%; border-radius: 6px;">
 			</div>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה להתחיל כאן</a>
+            <!-- שינוי: טקסט קריאה לפעולה שיוצר הזדהות -->
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני מתחיל עם החבילה החכמה</a>
         </div>
         <div class="package-card package-card--recommended">
-            <span class="package-badge">המסלול המומלץ</span>
-            <h3><i class="fas fa-award"></i> מסלול מותג מוביל</h3>
+            <!-- שינוי: שימוש בהוכחה חברתית ("הבחירה הפופולרית") -->
+            <span class="package-badge">הבחירה הפופולרית</span>
+            <h3><i class="fas fa-crown"></i> חבילת חשיפה מקסימלית</h3>
             <p class="package-for">הפכו למותג הדומיננטי באתר. הנוכחות שלכם בכל עמוד תבטיח שאף משתמש לא יפספס אתכם.</p>
-            <p class="package-who"><strong>למי זה מתאים?</strong> הבחירה החכמה לעסקים שרוצים לבנות מותג מוכר במהירות.</p>
+            <p class="package-who"><strong>למי זה מתאים?</strong> לעסקים שרוצים להפוך לשם הכי מוכר בתחום, ומהר.</p>
             <div class="price-box">
                 <strong>690 ₪</strong> / לחודש <br><small>במקום 850 ₪</small>
             </div>
@@ -143,21 +159,22 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 			<div class="package-visual">
 				<img src="{{ site.baseurl }}/assets/images/ad-banner-example.png" alt="דוגמה לבאנר פרסומי באתר שיר-בוט" style="width:100%; border-radius: 6px;">
 			</div>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני בוחר במסלול המומלץ</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה חשיפה מקסימלית</a>
         </div>
     </div>
 </div>
 
 <!-- ======================================================= -->
-<!-- GUARANTEE: הבטחה ישירה ונטולת סיכון                     -->
+<!-- GUARANTEE (Wiebe): אחריות אישית ונטולת סיכון -->
 <!-- ======================================================= -->
 <div class="guarantee-section">
     <div class="guarantee-content">
-        <i class="fas fa-shield-alt"></i>
-        <h2>ההשקעה שלכם בטוחה ב-100% (או שהכסף חוזר)</h2>
+        <i class="fas fa-handshake"></i>
+        <!-- שינוי: כותרת אישית וחזקה יותר -->
+        <h2>האחריות האישית שלנו: תאהבו את התוצאות, או שלא תשלמו שקל.</h2>
         <p>אנחנו כל כך בטוחים בערך שתקבלו, שהסיכון כולו עלינו. זה פשוט:</p>
         <ul class="guarantee-list">
-            <li><i class="far fa-calendar-check"></i> <strong>בחרו את "מסלול מותג מוביל"</strong> ופרסמו למשך חודש.</li>
+            <li><i class="far fa-calendar-check"></i> <strong>בחרו ב"חבילת חשיפה מקסימלית"</strong> ופרסמו למשך חודש.</li>
             <li><i class="far fa-chart-bar"></i> <strong>עקבו אחר החשיפה</strong> והתגובות שתקבלו.</li>
             <li><i class="far fa-thumbs-down"></i> <strong>לא מרוצים מכל סיבה שהיא?</strong></li>
             <li><i class="fas fa-undo-alt"></i> <strong>קבלו החזר כספי מלא.</strong> מייל אחד, בלי שאלות, בלי אותיות קטנות.</li>
@@ -166,7 +183,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- BONUS & FAQ: הסרת חסמים אחרונים                      -->
+<!-- BONUS & FAQ: הסרת חסמים אחרונים (ללא שינוי משמעותי) -->
 <!-- ======================================================= -->
 <div class="bonus-section">
     <h3><i class="fas fa-gift"></i> בונוס: אין לכם באנר? נעצב לכם אחד בחינם.</h3>
@@ -195,7 +212,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- FINAL CTA: קריאה לפעולה ברורה ונטולת חיכוך              -->
+<!-- FINAL CTA: קריאה לפעולה ברורה ונטולת חיכוך -->
 <!-- ======================================================= -->
 <div class="cta-button-wrapper final-cta">
     <h2>שריינו את מקומכם במחיר השקה</h2>

@@ -1,17 +1,17 @@
 ---
 layout: advertise
-title: "פרסום בשיר-בוט | הפסיקו לבזבז כסף, התחילו לבנות נוכחות"
+title: "פרסום בשיר-בוט | גישה ישירה ל-11,000 צעירים חרדים במצב האזנה"
 permalink: /advertise/
 form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1ZBBUZIbPZ38NdXUo-hBhmw/viewform?usp=dialog"
 ---
 
 <!-- ======================================================= -->
-<!-- HERO SECTION - REWRITTEN (TONE-DOWN, AUTHENTIC)       -->
+<!-- HERO SECTION - REWRITTEN (MILLER & WIEBE)             -->
 <!-- ======================================================= -->
 <div class="hero-section">
-    <h1>הגעתם למקום בו 11,000 צעירים חרדים באמת מקשיבים</h1>
+    <h1>המסר שלכם, ברגע הנכון.</h1>
     <p class="sub-headline">
-        הציבו את המסר שלכם בסביבה נקייה מהסחות דעת, בפני קהל נאמן שחוזר לכאן מרצונו החופשי. הפסיקו להתחרות על תשומת לב, התחילו להיות חלק מהחוויה.
+        דמיינו את המודעה שלכם מול 11,000 צעירים חרדים, לא כשהם גוללים בעייפות בפיד, אלא ברגע של התרגשות ושמחה כשהם מוצאים את השיר החדש שהם חיפשו. זו לא עוד חשיפה. זו חשיפה איכותית.
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
@@ -21,52 +21,52 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PROBLEM/SOLUTION SECTION - REFRAMED (GROUNDED)        -->
+<!-- PROBLEM/SOLUTION SECTION - REFINED (GODIN)             -->
 <!-- ======================================================= -->
 <div class="why-us-section">
-    <h2>יש פרסום שמתבזבז, ויש פרסום שנשאר.</h2>
+    <h2>יש פרסום שמפריע, ויש פרסום שהוא חלק מהחוויה.</h2>
     <div class="problem-solution-grid">
         <div class="problem-card">
-            <h3><i class="fas fa-envelope-open-text"></i> פרסום שמפריע</h3>
-            <p>מודעה במייל או ברשת חברתית נלחמת על תשומת לב. היא מופיעה לרגע, נקברת בזרם תוך דקות, וההשקעה שלך יורדת לטמיון. <strong>הכסף עובד פעם אחת ומת.</strong></p>
+            <h3><i class="fas fa-bullhorn"></i> פרסום שצועק</h3>
+            <p>בפלטפורמות אחרות, המודעה שלך נלחמת על תשומת לב מול עשרות גירויים. היא מופיעה לרגע, נבלעת ברעש, והתקציב שלך מתבזבז על חשיפות חסרות ערך.</p>
         </div>
         <div class="solution-card">
-            <h3><i class="fas fa-chair"></i> פרסום שמחכה</h3>
-            <p>בשיר-בוט, המודעה שלך לא נעלמת. היא מחכה בסבלנות למשתמשים שחוזרים אלינו באופן קבוע. היא לא הפרעה, אלא חלק מהסביבה שהם אוהבים. <strong>ההשקעה בונה נוכחות מתמשכת.</strong></p>
+            <h3><i class="fas fa-headphones-alt"></i> פרסום שמקשיבים לו</h3>
+            <p>בשיר-בוט, המודעה שלך היא חלק מסביבה רגועה וממוקדת. היא מופיעה לצד התוכן שהמשתמש בא במיוחד לחפש. כך, המותג שלך נתפס באופן חיובי ובונה אמון מתמשך.</p>
         </div>
     </div>
 </div>
 
-
 <!-- ======================================================= -->
-<!-- BENEFITS SECTION - REWRITTEN FOR REALISM (AUTHENTIC)  -->
+<!-- BENEFITS SECTION - REWRITTEN FOR IMPACT (EYAL & WIEBE) -->
 <!-- ======================================================= -->
 <div class="benefits-grid-wrapper">
     <h2>3 סיבות להפוך את שיר-בוט לערוץ השיווק המרכזי שלכם</h2>
     <div class="benefits-grid">
         <div class="benefit-card">
-            <div class="icon"><i class="fas fa-users"></i></div>
-            <h3>קהל שבוי ונאמן</h3>
-            <p>המשתמשים שלנו לא מגיעים בטעות. הם חוזרים שוב ושוב (כ-3.6 צפיות למשתמש), כי הפכנו להרגל קבוע עבורם. אתם מקבלים חשיפה חוזרת ובונה תודעה.</p>
+            <div class="icon"><i class="fas fa-sync-alt"></i></div>
+            <h3>היכנסו להרגל שלהם</h3>
+            <p>המשתמשים שלנו לא מגיעים בטעות. הם חוזרים (ממוצע 3.6 ביקורים למשתמש) כי התעדכנות בשירים הפכה להרגל. המותג שלכם יפגוש אותם שוב ושוב, ויהפוך לחלק מהשגרה החיובית שלהם.</p>
         </div>
         <div class="benefit-card">
             <div class="icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>סביבה נקייה ומהימנה</h3>
-            <p>המותג שלכם יופיע לצד תוכן כשר ואיכותי בסביבה נקייה מפרסומות קופצות ורעש ויזואלי. האמון שלהם בנו הופך לאמון בכם.</p>
+            <h3>תיהנו מהאמון שלנו</h3>
+            <p>המותג שלכם יופיע בסביבה נקייה, כשרה ונטולת רעש ויזואלי. האמון שהמשתמשים רוכשים לפלטפורמה שלנו "זולג" באופן טבעי גם למפרסמים המופיעים בה.</p>
         </div>
         <div class="benefit-card">
-            <div class="icon"><i class="fas fa-bullseye"></i></div>
-            <h3>גישה ישירה לקהל ממוקד</h3>
-            <p>קהל צעיר וחרדי, שחלקו גולש באינטרנט מסונן ומשתמש בנגני MP3, הוא קהל שקשה להגיע אליו בערוצים רגילים. כאן אתם מקבלים דלת כניסה ישירה.</p>
+            <div class="icon"><i class="fas fa-door-open"></i></div>
+            <h3>דלת כניסה לקהל ייחודי</h3>
+            <p>צעירים חרדים, המשתמשים באינטרנט מסונן ונגני MP3, הם קהל שקשה להגיע אליו. אנחנו מספקים לכם גישה ישירה, ללא תחרות, לקהל צמא לתוכן איכותי ורלוונטי.</p>
         </div>
     </div>
 </div>
 
 <!-- ======================================================= -->
-<!-- SOCIAL PROOF SECTION - (UNCHANGED, STILL STRONG)      -->
+<!-- SOCIAL PROOF - REFRAMED (GODIN & MILLER)              -->
 <!-- ======================================================= -->
 <div class="social-proof-section">
-    <h2>אל תאמינו לנו, תראו מה המשתמשים אומרים:</h2>
+    <h2>הוכחה לאיכות הקהל: למה 11,000 איש חוזרים אלינו?</h2>
+    <p class="section-intro" style="max-width: 600px; margin: 0 auto 30px auto; color: #555;">כדי שהפרסום שלכם יצליח, הוא צריך להופיע בפני קהל מעורב ונאמן. הנה מה שהם חושבים על הפלטפורמה שתהיה הבית החדש של המותג שלכם:</p>
     <div class="testimonials-grid">
         <blockquote class="testimonial">
             <p>"מדהים!!! איפה הייתם עד היום?"</p>
@@ -84,35 +84,32 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PACKAGES SECTION - RESTRUCTURED (PROFESSIONAL TONE)   -->
+<!-- PACKAGES SECTION - REFINED COPY (WIEBE)               -->
 <!-- ======================================================= -->
 <div class="packages-section">
     <h2>הצעה מיוחדת למפרסמים ראשונים</h2>
     <div class="packages-grid">
-        <!-- Package Card 1: Standard -->
         <div class="package-card">
             <h3><i class="fas fa-crosshairs"></i> חשיפה ממוקדת</h3>
-            <p class="package-for">פרסום חכם שמשתלב בלב התוכן, בדיוק ברגע שהמשתמשים הכי מעורבים.</p>
+            <p class="package-for">אידיאלי ללכידת תשומת לב מקסימלית ברגע השיא של מעורבות המשתמש.</p>
             <div class="price-box">
                 <strong>390 ₪</strong> / לחודש
             </div>
             <ul>
-                <li><i class="fas fa-check-circle text-success"></i><strong>פרסומת משולבת ברשימות השירים</strong> (נראות גבוהה בגלילה במובייל).</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>מודעה משולבת ברשימות השירים</strong> (נצפית בזמן שהמשתמש סורק ובוחר שירים).</li>
             </ul>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה להתחיל כאן</a>
         </div>
-
-        <!-- Package Card 2: Maximum - Recommended -->
         <div class="package-card package-card--recommended">
             <span class="package-badge">החבילה המומלצת</span>
             <h3><i class="fas fa-award"></i> נוכחות מקיפה</h3>
-            <p class="package-for">הפתרון המלא לבניית מותג זכיר. נוכחות קבועה בכל פינה באתר, לחשיפה מקסימלית.</p>
+            <p class="package-for">הפתרון המלא לבניית מותג זכיר והטמעתו בתודעת המשתמשים בכל ביקור.</p>
             <div class="price-box">
                 <strong>690 ₪</strong> / לחודש <br><small>במקום 850 ₪</small>
             </div>
             <ul>
-                <li><i class="fas fa-check-circle text-success"></i><strong>באנר צד קבוע</strong> שמוצג בכל עמודי האתר.</li>
-                <li><i class="fas fa-plus-circle text-primary"></i><strong>בנוסף: פרסומת משולבת</strong> ברשימות השירים.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>באנר צד קבוע</strong> לנוכחות מתמדת בכל עמודי האתר.</li>
+                <li><i class="fas fa-plus-circle text-primary"></i><strong>בנוסף: מודעה משולבת</strong> ללכידת תשומת לב ממוקדת.</li>
             </ul>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני בוחר בנוכחות מקיפה</a>
         </div>
@@ -120,13 +117,19 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- GUARANTEE SECTION - REDESIGNED (PERSONAL & TRUSTWORTHY) -->
+<!-- GUARANTEE - REFORMATTED (KRUG & MILLER)               -->
 <!-- ======================================================= -->
 <div class="guarantee-section">
     <div class="guarantee-content">
         <i class="fas fa-shield-alt"></i>
-        <h2>אחריות להחזר כספי מלא. הסיכון כולו עלינו.</h2>
-        <p>אני כל כך בטוח באיכות הקהל וברמת החשיפה שתקבלו, שאני לוקח את כל הסיכון עליי. קחו את "חבילת הנוכחות המקיפה" לחודש ניסיון מלא. אם בסוף התקופה לא תרגישו שקיבלתם תמורה אדירה לכספכם, פשוט הודיעו לי – <strong>ואחזיר לכם כל שקל.</strong> בלי אותיות קטנות, בלי שאלות. ההזדמנות כולה שלכם.</p>
+        <h2>אחריות "ברזל" להחזר כספי מלא (0% סיכון)</h2>
+        <p>אנחנו כל כך בטוחים בערך שתקבלו, שאנחנו לוקחים את כל הסיכון עלינו. התהליך פשוט:</p>
+        <ul class="guarantee-list">
+            <li><i class="far fa-calendar-check"></i> <strong>תנסו אותנו:</strong> קחו את חבילת "נוכחות מקיפה" לחודש ניסיון מלא.</li>
+            <li><i class="far fa-chart-bar"></i> <strong>תבחנו את התוצאות:</strong> עקבו אחר החשיפה, הכניסות והתגובות.</li>
+            <li><i class="far fa-thumbs-down"></i> <strong>לא מרוצים?</strong> לא הרגשתם שקיבלתם תמורה אדירה לכספכם?</li>
+            <li><i class="fas fa-undo-alt"></i> <strong>קבלו החזר מלא:</strong> שלחו לנו מייל אחד וקבלו 100% מהכסף בחזרה. בלי שאלות.</li>
+        </ul>
     </div>
 </div>
 
@@ -137,7 +140,6 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <h3><i class="fas fa-gift"></i> בונוס: אין לכם באנר? אין בעיה.</h3>
     <p>אין לכם זמן או מעצב? שלחו לנו טקסט ולוגו, ואנחנו נכין עבורכם באנר מקצועי שיעלה לאוויר תוך 24 שעות – <strong>ללא עלות נוספת.</strong> אנחנו רוצים להסיר כל מכשול בדרך שלכם לתוצאות.</p>
 </div>
-
 <div class="faq-section">
     <h2>שאלות נפוצות</h2>
     <details>
@@ -161,12 +163,12 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- FINAL CTA - REWRITTEN FOR REAL URGENCY                  -->
+<!-- FINAL CTA - REWRITTEN FOR AUTHENTIC URGENCY             -->
 <!-- ======================================================= -->
 <div class="cta-button-wrapper final-cta">
-    <h2>ההזדמנות הזו מוגבלת בזמן</h2>
+    <h2>שריינו את מקומכם במחיר השקה</h2>
     <p class="sub-headline">
-        מחירי ההשקה והאחריות המלאה מובטחים למספר מוגבל של מפרסמים ראשונים. שריינו את מקומכם לפני שהמחירים יעלו ובנו יתרון בשוק.
+       המחירים והאחריות המלאה מובטחים למספר מוגבל של מפרסמים ראשונים. זו ההזדמנות שלכם לבנות יתרון בשוק ולהיכנס במחיר שלא יחזור.
     </p>
     <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
         כן, אני רוצה לבנות נוכחות

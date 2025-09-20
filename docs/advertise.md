@@ -84,7 +84,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PACKAGES SECTION - REBUILT FOR CLARITY (STEVE KRUG)     -->
+<!-- PACKAGES SECTION - THE ULTIMATE FUSION                  -->
 <!-- ======================================================= -->
 <div class="packages-section">
     <h2>התוכנית שלכם להצלחה: בחרו את המסלול הנכון</h2>
@@ -92,14 +92,14 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
         <!-- Package Card 1: Standard -->
         <div class="package-card">
             <h3><i class="fas fa-seedling"></i> נקודת פתיחה</h3>
-            <p class="package-for">הדרך החכמה להשתלב בלב התוכן, בדיוק ברגע שהקהל שלכם הכי מרוכז ומעורב.</p>
+            <p class="package-for">הדרך החכמה להשתלב בלב התוכן, בדיוק ברגע שהקהל שלכם הכי מרוכז.</p>
             <div class="price-box">
                 <strong>390 ₪</strong> / לחודש
             </div>
             <ul>
                 <li><i class="fas fa-check-circle text-success"></i><strong>הופכים לחלק מהחוויה:</strong> פרסומת המשולבת ברשימות השירים.</li>
                 <li><i class="fas fa-check-circle text-success"></i><strong>חשיפה גבוהה במובייל:</strong> נראות מעולה למשתמשים בגלילה.</li>
-                <li><i class="fas fa-times-circle text-muted"></i><strong>בניית מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
+                <li><i class="fas fa-times-circle text-muted"></i><strong>בונים מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
                 <li><i class="fas fa-times-circle text-muted"></i><strong>דומיננטיות ויזואלית (Top of Mind).</strong></li>
             </ul>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה להתחיל כאן</a>
@@ -116,7 +116,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
             <ul>
                 <li><i class="fas fa-check-circle text-success"></i><strong>הופכים לחלק מהחוויה:</strong> פרסומת המשולבת ברשימות השירים.</li>
                 <li><i class="fas fa-check-circle text-success"></i><strong>חשיפה גבוהה במובייל:</strong> נראות מעולה למשתמשים בגלילה.</li>
-                <li><i class="fas fa-check-circle text-success"></i><strong>בניית מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>בונים מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
                 <li><i class="fas fa-check-circle text-success"></i><strong>דומיננטיות ויזואלית (Top of Mind).</strong></li>
             </ul>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני בוחר בנוכחות מנצחת</a>

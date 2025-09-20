@@ -11,7 +11,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 <div class="hero-section">
     <h1>הפרסום שלכם, בלי תחרות על תשומת הלב</h1>
     <p class="sub-headline">
-        דמיינו את המודעה שלכם לא כהצצה חטופה בין 15 מודעות אחרות במייל, אלא כשהיא מקבלת פוקוס מלא ממשתמש שמבלה דקות ארוכות באתר בחיפוש אחר השיר הבא. כאן, אתם לא חלק מהרעש - אתם המסר המרכזי.
+        דמיינו את המודעה שלכם לא כהצצה חטופה בין 5 מודעות אחרות במייל, אלא כשהיא מקבלת פוקוס מלא ממשתמש שמבלה דקות ארוכות באתר בחיפוש אחר השיר הבא. כאן, אתם לא חלק מהרעש - אתם המסר המרכזי.
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">

@@ -87,39 +87,39 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 <!-- PACKAGES SECTION - REBUILT FOR CLARITY (STEVE KRUG)     -->
 <!-- ======================================================= -->
 <div class="packages-section">
-    <h2>הדרך שלכם לבנות נוכחות. בחרו את המסלול הנכון:</h2>
+    <h2>התוכנית שלכם להצלחה: בחרו את המסלול הנכון</h2>
     <div class="packages-grid">
-        <!-- Package Card 1: Tactical -->
+        <!-- Package Card 1: Standard -->
         <div class="package-card">
-            <h3><i class="fas fa-puzzle-piece"></i> קמפיין ממוקד</h3>
-            <p class="package-for">אידיאלי להשקות, מבצעים ואירועים. נוכחות חזקה בלב התוכן, בדיוק כשהמשתמשים מחפשים משהו חדש.</p>
+            <h3><i class="fas fa-seedling"></i> נקודת פתיחה</h3>
+            <p class="package-for">הדרך החכמה להשתלב בלב התוכן, בדיוק ברגע שהקהל שלכם הכי מרוכז ומעורב.</p>
             <div class="price-box">
                 <strong>390 ₪</strong> / לחודש
             </div>
             <ul>
-                <li><i class="fas fa-check-circle text-success"></i>פרסומת המשולבת ברשימות השירים</li>
-                <li><i class="fas fa-check-circle text-success"></i>חשיפה גבוהה תוך כדי גלילה</li>
-                <li><i class="fas fa-times-circle text-muted"></i>באנר צד קבוע בכל האתר</li>
-                <li><i class="fas fa-times-circle text-muted"></i>נוכחות מתמדת (Top of Mind)</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>הופכים לחלק מהחוויה:</strong> פרסומת המשולבת ברשימות השירים.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>חשיפה גבוהה במובייל:</strong> נראות מעולה למשתמשים בגלילה.</li>
+                <li><i class="fas fa-times-circle text-muted"></i><strong>בניית מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
+                <li><i class="fas fa-times-circle text-muted"></i><strong>דומיננטיות ויזואלית (Top of Mind).</strong></li>
             </ul>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">בחירת חבילה</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה להתחיל כאן</a>
         </div>
 
-        <!-- Package Card 2: Strategic - Recommended -->
+        <!-- Package Card 2: Maximum - Recommended -->
         <div class="package-card package-card--recommended">
             <span class="package-badge">הבחירה החכמה</span>
-            <h3><i class="fas fa-trophy"></i> נוכחות מוחלטת</h3>
-            <p class="package-for">הדרך המהירה והבטוחה להפוך לשם הראשון שהם חושבים עליו, באמצעות הטמעת המותג שלכם בכל פינה באתר.</p>
+            <h3><i class="fas fa-rocket"></i> נוכחות מנצחת</h3>
+            <p class="package-for">הפתרון המקיף להפוך לשם הראשון שהם חושבים עליו. נוכחות קבועה בכל פינה באתר.</p>
             <div class="price-box">
                 <strong>690 ₪</strong> / לחודש <br><small>במקום 850 ₪</small>
             </div>
             <ul>
-                <li><i class="fas fa-check-circle text-success"></i>פרסומת המשולבת ברשימות השירים</li>
-                <li><i class="fas fa-check-circle text-success"></i>חשיפה גבוהה תוך כדי גלילה</li>
-                <li><i class="fas fa-check-circle text-success"></i><strong>באנר צד קבוע בכל האתר</strong></li>
-                <li><i class="fas fa-check-circle text-success"></i><strong>נוכחות מתמדת (Top of Mind)</strong></li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>הופכים לחלק מהחוויה:</strong> פרסומת המשולבת ברשימות השירים.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>חשיפה גבוהה במובייל:</strong> נראות מעולה למשתמשים בגלילה.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>בניית מותג זכיר:</strong> באנר צד קבוע בכל האתר.</li>
+                <li><i class="fas fa-check-circle text-success"></i><strong>דומיננטיות ויזואלית (Top of Mind).</strong></li>
             </ul>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה נוכחות מוחלטת</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני בוחר בנוכחות מנצחת</a>
         </div>
     </div>
 </div>

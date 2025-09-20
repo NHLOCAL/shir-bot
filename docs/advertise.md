@@ -11,7 +11,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 <div class="hero-section">
     <h1>הפרסום שלכם מול קהל שמחכה לו</h1>
     <p class="sub-headline">
-        דמיינו את המודעה שלכם מול 11,000 צעירים חרדים, לא כעוד מייל פרסומי שנמחק, אלא בדיוק ברגע שהם מחפשים ומורידים את השיר החדש שהם אוהבים. כאן, הפרסום שלכם לא מפריע — הוא מתקבל בברכה.
+        דמיינו את המודעה שלכם מול 11,000 צעירים חרדים, לא כעוד מייל פרסומי שנמחק, אלא בדיוק ברגע שהם מחפשים ומורידים את השיר החדש שהם אוהבים. כאן, הפרסום שלכם לא מפריע - הוא מתקבל בברכה.
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">

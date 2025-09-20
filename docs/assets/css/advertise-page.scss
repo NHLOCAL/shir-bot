@@ -125,14 +125,11 @@ body {
     color: var(--primary-hover);
 }
 
-/* ======================================================= */
-/* <<< תיקון יישור גריד התועלות                           >>> */
-/* ======================================================= */
 .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 320px);
-    gap: 25px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 25px;
 }
 
 .benefit-card {
@@ -142,7 +139,7 @@ body {
     text-align: center;
     border: 1px solid #e9ecef;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 100%;
+    flex: 0 1 340px;
 }
 
 .benefit-card:hover {
@@ -176,14 +173,11 @@ body {
     color: var(--primary-hover);
 }
 
-/* ======================================================= */
-/* <<< תיקון יישור גריד העדויות                            >>> */
-/* ======================================================= */
 .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 320px);
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 20px;
 }
 
 .testimonial {
@@ -194,7 +188,7 @@ body {
     text-align: right;
     font-style: italic;
     margin: 0;
-    width: 100%;
+    flex: 0 1 340px;
 }
 
 .testimonial p {
@@ -460,6 +454,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
     border: none;
 }
+
 .cta-button:hover {
     background-color: #0097a7;
     transform: translateY(-3px);

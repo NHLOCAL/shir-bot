@@ -47,12 +47,12 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <h2>ההבדל בין לצעוק ברחוב ללחישה באוזן</h2>
     <div class="problem-solution-grid">
         <div class="problem-card">
-            <h3><i class="fas fa-bullhorn"></i> פרסום במייל: שלט חוצות בסופה</h3>
+            <h3><i class="fas fa-stopwatch"></i> פרסום במייל: קרב על שבריר שנייה של תשומת לב</h3>
             <p>בניוזלטר, המודעה שלכם נלחמת על תשומת לב מול 5 מודעות אחרות. הלקוח סורק לשנייה, סוגר וממשיך הלאה. רוב הסיכויים שהוא בכלל לא זוכר שראה אתכם.</p>
         </div>
         <div class="solution-card">
-            <h3><i class="fas fa-users"></i> פרסום בשיר-בוט: נותן החסות של התוכנית האהובה</h3>
-            <p>כאן, המשתמש נמצא מרצונו, רגוע וממוקד בחיפוש. המודעה שלכם היא חלק מהחוויה. הוא רואה אתכם שוב ושוב, עד שהמותג שלכם הופך לבחירה הטבעית והמוכרת.</p>
+            <h3><i class="fas fa-user-check"></i> פרסום בשיר-בוט: שיחה עם לקוח מרוכז</h3>
+            <p>כאן, המשתמש נמצא מרצונו, רגוע וממוקד. המודעה שלכם אינה הפרעה, אלא חלק מהחוויה שהוא מחפש. הוא פתוח למסר שלכם, ורואה אתכם שוב ושוב עד שהמותג שלכם הופך לבחירה הטבעית.</p>
         </div>
     </div>
 </div>
@@ -90,19 +90,19 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <div class="testimonials-grid testimonials-grid-4">
         <blockquote class="testimonial">
             <p>"כל שיר שצריך <strong>תמיד</strong> היה בשיר בוט."</p>
-            <footer>- כהן ישראל (מוכיח הרגל ונאמנות)</footer>
+            <footer>- כהן ישראל</footer>
         </blockquote>
         <blockquote class="testimonial">
             <p>"הרבה תוכן מדהים <strong>וכשר</strong>... לקוחה <strong>אסירת תודה!</strong>"</p>
-            <footer>- לאה הורביץ (מוכיח אמון וסביבה איכותית)</footer>
+            <footer>- לאה הורביץ</footer>
         </blockquote>
         <blockquote class="testimonial">
             <p>"אתר נהדר... <strong>מעודכן ויפהפה</strong>. מומלץ."</p>
-            <footer>- חיימקה פלונצ'ק (מוכיח מקצועיות ורלוונטיות)</footer>
+            <footer>- חיימקה פלונצ'ק</footer>
         </blockquote>
         <blockquote class="testimonial">
             <p>"<strong>אין עליו בעולם!!!</strong>"</p>
-            <footer>- רפאל ברוך טולדנו (מוכיח התלהבות ורגש)</footer>
+            <footer>- רפאל ברוך טולדנו</footer>
         </blockquote>
     </div>
 </div>

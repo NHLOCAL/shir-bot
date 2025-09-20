@@ -123,7 +123,9 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
             <ul>
                 <li><i class="fas fa-check-circle text-success"></i><strong>מודעה משולבת ברשימת השירים</strong></li>
             </ul>
-            <div class="package-visual">הדגמת מיקום המודעה</div>
+			<div class="package-visual">
+				<img src="{{ site.baseurl }}/assets/images/ad-inline-example.png" alt="דוגמה למודעה משולבת ברשימת השירים" style="width:100%; border-radius: 6px;">
+			</div>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה להתחיל כאן</a>
         </div>
         <div class="package-card package-card--recommended">
@@ -138,7 +140,9 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
                 <li><i class="fas fa-check-circle text-success"></i><strong>באנר קבוע בכל עמודי האתר</strong></li>
                 <li><i class="fas fa-plus-circle text-primary"></i><strong>בנוסף: מודעה משולבת ברשימות</strong></li>
             </ul>
-            <div class="package-visual">הדגמת מיקום הבאנר</div>
+			<div class="package-visual">
+				<img src="{{ site.baseurl }}/assets/images/ad-banner-example.png" alt="דוגמה לבאנר פרסומי באתר שיר-בוט" style="width:100%; border-radius: 6px;">
+			</div>
             <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני בוחר במסלול המומלץ</a>
         </div>
     </div>

@@ -6,12 +6,12 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 ---
 
 <!-- ======================================================= -->
-<!-- HERO SECTION - REWRITTEN (MILLER & WIEBE)             -->
+<!-- HERO SECTION - UPDATED                                  -->
 <!-- ======================================================= -->
 <div class="hero-section">
     <h1>המסר שלכם, ברגע הנכון.</h1>
     <p class="sub-headline">
-        דמיינו את המודעה שלכם מול 11,000 צעירים חרדים, לא כשהם גוללים בעייפות בפיד, אלא ברגע של התרגשות ושמחה כשהם מוצאים את השיר החדש שהם חיפשו. זו לא עוד חשיפה. זו חשיפה איכותית.
+        דמיינו את המודעה שלכם מול 11,000 צעירים חרדים, לא כשהיא נבלעת בתיבת מייל עמוסה, אלא ברגע של מיקוד ושמחה כשהם מוצאים את השיר החדש שהם חיפשו. זו לא עוד חשיפה. זו חשיפה איכותית.
     </p>
     <div class="cta-button-wrapper">
         <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
@@ -21,14 +21,14 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PROBLEM/SOLUTION SECTION - REFINED (GODIN)             -->
+<!-- PROBLEM/SOLUTION SECTION - UPDATED                      -->
 <!-- ======================================================= -->
 <div class="why-us-section">
     <h2>יש פרסום שמפריע, ויש פרסום שהוא חלק מהחוויה.</h2>
     <div class="problem-solution-grid">
         <div class="problem-card">
             <h3><i class="fas fa-bullhorn"></i> פרסום שצועק</h3>
-            <p>בפלטפורמות אחרות, המודעה שלך נלחמת על תשומת לב מול עשרות גירויים. היא מופיעה לרגע, נבלעת ברעש, והתקציב שלך מתבזבז על חשיפות חסרות ערך.</p>
+            <p>בניוזלטר או רשימת תפוצה, המודעה שלך נלחמת על תשומת לב. היא מופיעה לרגע כהפרעה בתיבת מייל מוצפת, והתקציב שלך מתבזבז על חשיפה שהמשתמש ממהר למחוק או להתעלם ממנה.</p>
         </div>
         <div class="solution-card">
             <h3><i class="fas fa-headphones-alt"></i> פרסום שמקשיבים לו</h3>
@@ -38,7 +38,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- BENEFITS SECTION - REWRITTEN FOR IMPACT (EYAL & WIEBE) -->
+<!-- BENEFITS SECTION - (NO CHANGE NEEDED, STILL STRONG)   -->
 <!-- ======================================================= -->
 <div class="benefits-grid-wrapper">
     <h2>3 סיבות להפוך את שיר-בוט לערוץ השיווק המרכזי שלכם</h2>
@@ -62,7 +62,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- SOCIAL PROOF - REFRAMED (GODIN & MILLER)              -->
+<!-- SOCIAL PROOF - (NO CHANGE NEEDED)                      -->
 <!-- ======================================================= -->
 <div class="social-proof-section">
     <h2>הוכחה לאיכות הקהל: למה 11,000 איש חוזרים אלינו?</h2>
@@ -84,7 +84,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- PACKAGES SECTION - REFINED COPY (WIEBE)               -->
+<!-- PACKAGES SECTION - (NO CHANGE NEEDED)               -->
 <!-- ======================================================= -->
 <div class="packages-section">
     <h2>הצעה מיוחדת למפרסמים ראשונים</h2>
@@ -117,7 +117,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- GUARANTEE - REFORMATTED (KRUG & MILLER)               -->
+<!-- GUARANTEE - (NO CHANGE NEEDED)               -->
 <!-- ======================================================= -->
 <div class="guarantee-section">
     <div class="guarantee-content">
@@ -134,7 +134,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- BONUS & FAQ SECTION - (UNCHANGED, STILL IMPORTANT)    -->
+<!-- BONUS & FAQ SECTION - UPDATED    -->
 <!-- ======================================================= -->
 <div class="bonus-section">
     <h3><i class="fas fa-gift"></i> בונוס: אין לכם באנר? אין בעיה.</h3>
@@ -151,7 +151,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <details>
         <summary>למה זה עדיף על פרסום במקומות אחרים?</summary>
         <div class="faq-answer">
-            <p>כי כאן אתם לא מתחרים על תשומת לב בפיד עמוס או בתיבת מייל מוצפת. אתם מופיעים בסביבה נקייה וממוקדת, בפני קהל שמגיע מרצונו ובמצב רוח חיובי. זו לא הפרעה, זו נוכחות.</p>
+            <p>בניגוד לניוזלטר, שבו המודעה שלכם היא הפרעה בתיבת מייל מוצפת, כאן אתם חלק מהחוויה שהמשתמש יזם ובא לחפש. אתם מופיעים בפני קהל במצב רוח חיובי וממוקד, מה שהופך את המסר שלכם לאפקטיבי הרבה יותר.</p>
         </div>
     </details>
      <details>
@@ -163,7 +163,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 </div>
 
 <!-- ======================================================= -->
-<!-- FINAL CTA - REWRITTEN FOR AUTHENTIC URGENCY             -->
+<!-- FINAL CTA - (NO CHANGE NEEDED)                  -->
 <!-- ======================================================= -->
 <div class="cta-button-wrapper final-cta">
     <h2>שריינו את מקומכם במחיר השקה</h2>

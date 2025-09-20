@@ -1,11 +1,9 @@
 ---
 ---
 @import "variables";
-
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
 body {
     font-family: var(--font-base);
     background-color: #f8f9fa;
@@ -15,19 +13,16 @@ body {
     padding: 0;
     direction: rtl;
 }
-
 .advertise-page-wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 .page-header {
     padding: 20px 0;
     text-align: center;
     margin-bottom: 30px;
 }
-
 .page-header .logo {
     display: inline-flex;
     align-items: center;
@@ -37,46 +32,65 @@ body {
     font-weight: 600;
     color: var(--primary-hover);
 }
-
 .page-header .logo img {
     width: 32px;
     height: 32px;
 }
-
 .hero-section {
     text-align: center;
     padding: 50px 20px;
     background-color: var(--white);
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(126, 87, 194, 0.08);
-    margin-bottom: 60px;
+    box-shadow: 0 8px G30px rgba(126, 87, 194, 0.08);
+    margin-bottom: 20px;
 }
-
 .hero-section h1 {
     font-size: 2.6em;
     color: var(--primary-hover);
     margin-bottom: 15px;
     line-height: 1.3;
 }
-
 .hero-section .sub-headline {
     font-size: 1.3em;
     color: #495057;
     max-width: 650px;
     margin: 0 auto 30px auto;
 }
-
+.stats-section {
+    padding: 40px 0;
+    text-align: center;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.stat-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+.stat-card .number {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+.stat-card .text {
+    font-size: 1.1em;
+    color: #495057;
+    margin-top: 5px;
+}
 .why-us-section {
     text-align: center;
     margin: 60px 0;
 }
-
 .why-us-section h2 {
     font-size: 2.2em;
     margin-bottom: 40px;
     color: var(--primary-hover);
 }
-
 .problem-solution-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -84,24 +98,20 @@ body {
     align-items: stretch;
     text-align: right;
 }
-
 .problem-card, .solution-card {
     padding: 30px;
     border-radius: 12px;
 }
-
 .problem-card {
     background-color: #fff4f4;
     border: 1px solid #f6d5d5;
 }
 .problem-card h3 { color: #d9534f; }
-
 .solution-card {
     background-color: #f0fff4;
     border: 1px solid #c3e6cb;
 }
 .solution-card h3 { color: #28a745; }
-
 .problem-card h3, .solution-card h3 {
     margin-top: 0;
     font-size: 1.3em;
@@ -109,14 +119,12 @@ body {
     align-items: center;
     gap: 10px;
 }
-
 .benefits-grid-wrapper {
     margin: 60px 0;
     padding: 50px 40px;
     background-color: #f0f3ff;
     border-radius: 12px;
 }
-
 .benefits-grid-wrapper h2 {
     text-align: center;
     font-size: 2.2em;
@@ -124,14 +132,12 @@ body {
     margin-bottom: 40px;
     color: var(--primary-hover);
 }
-
 .benefits-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
 }
-
 .benefit-card {
     background: var(--white);
     padding: 30px;
@@ -141,24 +147,20 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
     flex: 0 1 340px;
 }
-
 .benefit-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
-
 .benefit-card .icon {
     font-size: 2.5em;
     color: var(--primary-color);
     margin-bottom: 20px;
 }
-
 .benefit-card h3 {
     font-size: 1.3em;
     color: var(--primary-hover);
     margin-bottom: 10px;
 }
-
 .social-proof-section {
     background-color: var(--white);
     border-radius: 12px;
@@ -166,20 +168,16 @@ body {
     margin: 60px 0;
     text-align: center;
 }
-
 .social-proof-section h2 {
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: var(--primary-hover);
 }
-
-.testimonials-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.testimonials-grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
-
 .testimonial {
     background: #f8f9fa;
     padding: 20px;
@@ -188,31 +186,29 @@ body {
     text-align: right;
     font-style: italic;
     margin: 0;
-    flex: 0 1 340px;
+    display: flex;
+    flex-direction: column;
 }
-
 .testimonial p {
     margin-bottom: 10px;
+    flex-grow: 1;
 }
-
 .testimonial footer {
     font-style: normal;
     font-weight: bold;
     color: #555;
+    font-size: 0.9em;
 }
-
 .packages-section {
     padding: 50px 0;
     margin: 60px 0;
     text-align: center;
 }
-
 .packages-section h2 {
     font-size: 2.2em;
     margin-bottom: 40px;
     color: var(--primary-hover);
 }
-
 .packages-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -220,7 +216,6 @@ body {
     align-items: stretch;
     text-align: right;
 }
-
 .package-card {
     background: var(--white);
     border: 1px solid var(--border-color);
@@ -232,21 +227,17 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
 }
-
 .package-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
-
 .package-card--recommended {
     border: 2px solid var(--primary-color);
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
-
 .package-card--recommended:hover {
-    transform: scale(1.03) translateY(-5px);
+    transform: scale(1.05) translateY(-5px);
 }
-
 .package-badge {
     position: absolute;
     top: -15px;
@@ -259,7 +250,6 @@ body {
     font-size: 0.9em;
     font-weight: 700;
 }
-
 .package-card h3 {
     font-size: 1.6em;
     color: var(--primary-hover);
@@ -268,13 +258,19 @@ body {
     align-items: center;
     gap: 12px;
 }
-
 .package-card .package-for {
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     min-height: 60px;
 }
-
+.package-card .package-who {
+    font-size: 0.9em;
+    color: #333;
+    background: #f0f3ff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
 .price-box {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -282,34 +278,37 @@ body {
     text-align: center;
     margin-bottom: 25px;
 }
-
 .price-box strong {
     font-size: 2em;
     color: var(--primary-hover);
 }
-
 .price-box small {
     color: #6c757d;
     text-decoration: line-through;
 }
-
 .package-card ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 20px 0;
     flex-grow: 1;
 }
-
 .package-card li {
     margin-bottom: 12px;
     display: flex;
     align-items: flex-start;
     gap: 10px;
 }
-
 .package-card li i.text-success { color: #28a745; margin-top: 4px; }
 .package-card li i.text-muted { color: #ced4da; margin-top: 4px; }
-
+.package-visual {
+    background: #f1f3f5;
+    border: 1px dashed #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
 .package-cta {
     display: block;
     width: 100%;
@@ -322,7 +321,6 @@ body {
     transition: all 0.2s;
     margin-top: auto;
 }
-
 .package-card--recommended .package-cta {
     background-color: var(--primary-color);
     color: var(--white);
@@ -330,7 +328,6 @@ body {
 .package-card--recommended .package-cta:hover {
     background-color: var(--primary-hover);
 }
-
 .package-card:not(.package-card--recommended) .package-cta {
     background-color: #f1f3f5;
     color: var(--primary-color);
@@ -339,13 +336,11 @@ body {
 .package-card:not(.package-card--recommended) .package-cta:hover {
     background-color: #e9ecef;
 }
-
 .guarantee-section {
     background: #f8f9fa;
     padding: 60px 0;
     margin: 60px 0;
 }
-
 .guarantee-content {
     max-width: 800px;
     margin: 0 auto;
@@ -356,27 +351,23 @@ body {
     text-align: center;
     box-shadow: 0 10px 40px rgba(0, 123, 255, 0.1);
 }
-
 .guarantee-content i.fa-shield-alt {
     font-size: 3em;
     color: #007bff;
     margin-bottom: 15px;
 }
-
 .guarantee-content h2 {
     color: #0056b3;
     margin-top: 0;
     font-size: 1.8em;
 }
-
 .guarantee-content p {
     font-size: 1.1em;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 30px; // Add some space before the list
+    margin-bottom: 30px;
 }
-
 .guarantee-list {
     list-style: none;
     padding: 0;
@@ -384,7 +375,6 @@ body {
     max-width: 550px;
     text-align: right;
 }
-
 .guarantee-list li {
     display: flex;
     align-items: center;
@@ -392,36 +382,30 @@ body {
     font-size: 1.1em;
     margin-bottom: 20px;
 }
-
 .guarantee-list li i {
     font-size: 1.5em;
     color: #007bff;
-    width: 30px; // for alignment
+    width: 30px;
 }
-
 .bonus-section {
     text-align: center;
     margin: 40px 0;
     padding: 20px;
 }
-
 .bonus-section h3 {
     font-size: 1.5em;
     color: var(--primary-hover);
 }
-
 .faq-section {
     margin-top: 60px;
     padding-bottom: 40px;
 }
-
 .faq-section h2 {
     text-align: center;
     font-size: 2em;
     margin-bottom: 40px;
     color: var(--primary-hover);
 }
-
 .faq-section details {
     background: var(--white);
     border: 1px solid var(--border-color);
@@ -429,7 +413,6 @@ body {
     margin-bottom: 10px;
     padding: 15px 20px;
 }
-
 .faq-section summary {
     font-weight: 600;
     font-size: 1.2em;
@@ -440,9 +423,7 @@ body {
     align-items: center;
     color: #333;
 }
-
 .faq-section summary::-webkit-details-marker { display: none; }
-
 .faq-section summary::after {
     font-family: "Font Awesome 5 Free";
     content: '\f078';
@@ -452,18 +433,15 @@ body {
 .faq-section details[open] summary::after {
     transform: rotate(180deg);
 }
-
 .faq-section .faq-answer {
     padding-top: 15px;
     margin-top: 15px;
     border-top: 1px solid #eee;
 }
-
 .cta-button-wrapper {
     text-align: center;
     margin: 40px 0;
 }
-
 .cta-button {
     background-color: var(--highlight-color);
     color: var(--white);
@@ -477,25 +455,21 @@ body {
     box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
     border: none;
 }
-
 .cta-button:hover {
     background-color: #0097a7;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
 }
-
 .final-cta {
     background: var(--white);
     padding: 40px 20px;
     border-radius: 12px;
     margin-top: 50px;
 }
-
 .final-cta h2 {
     margin-top: 0;
     font-size: 2em;
 }
-
 .page-footer {
     text-align: center;
     padding: 30px 0;
@@ -504,25 +478,20 @@ body {
     color: #777;
     font-size: 0.9em;
 }
-
 @media (max-width: 768px) {
     .hero-section h1 { font-size: 2.2em; }
     .hero-section .sub-headline { font-size: 1.2em; }
-
     .cta-button {
         font-size: 1.2em;
         padding: 15px 30px;
     }
-
-    .problem-solution-grid, .packages-grid {
+    .problem-solution-grid, .packages-grid, .testimonials-grid-4 {
         grid-template-columns: 1fr;
     }
-
     .package-card--recommended {
         transform: scale(1);
         order: -1;
     }
-
     .benefits-grid-wrapper {
         padding: 40px 20px;
     }

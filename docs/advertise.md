@@ -91,7 +91,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <div class="testimonials-grid testimonials-grid-4">
         <blockquote class="testimonial">
             <p>"כל שיר שצריך <strong>תמיד</strong> היה בשיר בוט."</p>
-            <footer>- כהן ישראל</footer>
+            <footer>- ישראל כהן</footer>
         </blockquote>
         <blockquote class="testimonial">
             <p>"הרבה תוכן מדהים <strong>וכשר</strong>... לקוחה <strong>אסירת תודה!</strong>"</p>

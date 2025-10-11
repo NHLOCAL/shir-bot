@@ -119,7 +119,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
             <p class="package-for">הבטיחו שהעסק שלכם ייראה במקום הכי מרכזי באתר - בתוך רשימות השירים.</p>
             <p class="package-who"><strong>למי זה מתאים?</strong> לעסקים שרוצים לבדוק את העוצמה של שיר-בוט ולהפוך לשם מוכר בעלות של כוס קפה ליום.</p>
             <div class="price-box">
-                <strong>390 ₪</strong> / לחודש
+                <strong>190 ₪</strong> / לחודש
             </div>
             <ul>
                 <li><i class="fas fa-check-circle text-success"></i><strong>מודעה משולבת ברשימת השירים</strong></li>
@@ -135,7 +135,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
             <p class="package-for">הפכו למותג הדומיננטי באתר. הנוכחות שלכם בכל עמוד תבטיח שאף משתמש לא יפספס אתכם.</p>
             <p class="package-who"><strong>למי זה מתאים?</strong> לעסקים שרוצים להפוך לשם הכי מוכר בתחום, ומהר.</p>
             <div class="price-box">
-                <strong>690 ₪</strong> / לחודש <br><small>במקום 850 ₪</small>
+                <strong>390 ₪</strong> / לחודש <br><small>במקום 550 ₪</small>
             </div>
             <ul>
                 <li><i class="fas fa-check-circle text-success"></i><strong>באנר קבוע בכל עמודי האתר</strong></li>

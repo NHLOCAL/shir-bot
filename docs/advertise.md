@@ -35,8 +35,8 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
             <div class="text">חשיפות איכותיות למותג שלכם</div>
         </div>
         <div class="stat-card">
-            <div class="number">11</div>
-            <div class="text">כניסות בחודש לכל משתמש פעיל</div>
+            <div class="number">5.5</div>
+            <div class="text">כניסות בחודש בממוצע לכל משתמש פעיל</div>
         </div>
     </div>
 </div>

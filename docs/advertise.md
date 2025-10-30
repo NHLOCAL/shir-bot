@@ -1,6 +1,6 @@
 ---
 layout: advertise
-title: "פרסום בשיר-בוט | הגיעו ל-11,000 לקוחות שהמתחרים שלכם מפספסים"
+title: "פרסום בשיר-בוט | הגיעו ל-14,000 לקוחות שהמתחרים שלכם מפספסים"
 permalink: /advertise/
 form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1ZBBUZIbPZ38NdXUo-hBhmw/viewform?usp=dialog"
 ---
@@ -9,7 +9,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 <!-- HERO SECTION: CTA ממוקד תוצאה (שיפור ג'ואנה וויב)    -->
 <!-- ======================================================= -->
 <div class="hero-section">
-    <h1>הגיעו ל-11,000 לקוחות שהמתחרים שלכם מפספסים.</h1>
+    <h1>הגיעו ל-14,000 לקוחות שהמתחרים שלכם מפספסים.</h1>
     <p class="sub-headline">
         בשיר-בוט, המודעה שלכם לא נלחמת על תשומת לב. היא מקבלת במה מרכזית מול קהל שבוי של צעירים חרדים עם <strong>אינטרנט מסונן וטלפונים כשרים</strong> – קהל שאי אפשר להשיג בערוצים אחרים.
     </p>
@@ -27,16 +27,16 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <h2>ההזדמנות שלכם במספרים</h2>
     <div class="stats-grid">
         <div class="stat-card">
-            <div class="number">11,000</div>
-            <div class="text">צעירים חרדים ייחודיים בחודש</div>
+            <div class="number">14,000</div>
+            <div class="text">משתמשים ייחודיים בחודש</div>
         </div>
         <div class="stat-card">
-            <div class="number">40,000+</div>
+            <div class="number">45,000+</div>
             <div class="text">חשיפות איכותיות למותג שלכם</div>
         </div>
         <div class="stat-card">
-            <div class="number">3.6</div>
-            <div class="text">ביקורים חוזרים בממוצע למשתמש</div>
+            <div class="number">11</div>
+            <div class="text">כניסות בחודש לכל משתמש פעיל</div>
         </div>
     </div>
 </div>

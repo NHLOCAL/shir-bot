@@ -173,7 +173,6 @@ function handleTableClickActions(event) {
                 const searchInputGlobal = document.getElementById('searchInput');
                 searchInputGlobal.value = searchTerm;
                 searchSongs(searchTerm.toLowerCase(), searchType);
-                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
                 const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}&resetFilterTo=all`;
                 window.location.href = redirectUrl;

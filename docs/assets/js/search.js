@@ -498,6 +498,9 @@ function displayResults(resultsToDisplay, append = false) {
     showSearchResultsViewInternal();
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!append) {
+        if (resultsTable) {
+            resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
         resultsTableBody.innerHTML = '';
     }
     if (resultsToDisplay.length === 0 && !append) {

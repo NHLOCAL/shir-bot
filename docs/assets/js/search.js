@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const searchValue = urlParams.get('search');
         const searchByParam = urlParams.get('searchBy') || 'all';
+        const resetFilterTo = urlParams.get('resetFilterTo');
         const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
         if (searchValue && searchByParam === 'serial') {
             console.log(`Search.js: Processing URL serial search: search=${searchValue}`);
@@ -197,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(`Search.js: Processing URL general search: search=${searchValue}, searchBy=${searchByParam}`);
                 if (searchInput) searchInput.value = decodeURIComponent(searchValue);
                 searchSongs(searchValue.toLowerCase(), searchByParam);
+                if (resetFilterTo) {
+                    console.log(`Search.js: Resetting filter to '${resetFilterTo}' as requested by URL parameter.`);
+                    handleFilterClick(resetFilterTo, false);
+                }
                 if (isHomepage) {
                     setTimeout(clearUrlParams, 150);
                 }

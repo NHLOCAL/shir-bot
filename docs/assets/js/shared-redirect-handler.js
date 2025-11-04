@@ -172,11 +172,10 @@ function handleTableClickActions(event) {
             if (isHomepage && typeof searchSongs === 'function' && typeof handleFilterClick === 'function' && document.getElementById('searchInput')) {
                 const searchInputGlobal = document.getElementById('searchInput');
                 searchInputGlobal.value = searchTerm;
-                handleFilterClick(searchType, false);
                 searchSongs(searchTerm.toLowerCase(), searchType);
                  window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}`;
+                const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}&resetFilterTo=all`;
                 window.location.href = redirectUrl;
             }
         }

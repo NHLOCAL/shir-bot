@@ -95,6 +95,27 @@ window.downloadSongWithDriveId = function(buttonElement) {
         processDownloadQueue();
     }
 };
+// Function to handle dynamic search without page reload
+function performDynamicSearch(searchTerm, searchBy, resetFilter = false) {
+    if (typeof window.executeSearchFromState !== 'function') {
+        // Fallback to page reload if search.js isn't fully loaded or on a different page
+        const resetParam = resetFilter ? '&resetFilterTo=all' : '';
+        const redirectUrl = `${baseurl || ''}/search/?q=${encodeURIComponent(searchTerm)}&filter=${encodeURIComponent(searchBy)}${resetParam}`;
+        window.location.href = redirectUrl;
+        return;
+    }
+    const searchParams = new URLSearchParams();
+    searchParams.set('q', searchTerm);
+    searchParams.set('filter', searchBy);
+    if (resetFilter) {
+        searchParams.set('resetFilterTo', 'all');
+    }
+    const newUrl = `${baseurl || ''}/search/?${searchParams.toString()}`;
+    // Update URL without reloading
+    history.pushState({ q: searchTerm, filter: searchBy, resetFilterTo: resetFilter ? 'all' : null }, '', newUrl);
+    // Trigger the search function
+    window.executeSearchFromState();
+}
 function handleHeaderSearchRedirect(event) {
     event.preventDefault();
     const searchForm = event.currentTarget;
@@ -108,8 +129,7 @@ function handleHeaderSearchRedirect(event) {
     }
 
     if (searchInputVal) {
-        const redirectUrl = `${baseurl || ''}/search/?q=${encodeURIComponent(searchInputVal)}&filter=${encodeURIComponent(searchBy)}`;
-        window.location.href = redirectUrl;
+        performDynamicSearch(searchInputVal, searchBy);
     } else {
         searchInput?.focus();
     }
@@ -166,8 +186,7 @@ function handleTableClickActions(event) {
         const searchType = button.classList.contains('album-button') ? 'album' : 'singer';
         
         if (searchTerm) {
-            const redirectUrl = `${baseurl || ''}/search/?q=${encodeURIComponent(searchTerm)}&filter=${encodeURIComponent(searchType)}`;
-            window.location.href = redirectUrl;
+            performDynamicSearch(searchTerm, searchType, true);
         }
         return;
     }

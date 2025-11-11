@@ -256,9 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ctaFocusSearchBtn) {
         ctaFocusSearchBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            if (searchInput) {
+            if (searchInput && searchForm) {
                 searchInput.focus();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                searchForm.classList.add('highlight-animation');
+                setTimeout(() => {
+                    searchForm.classList.remove('highlight-animation');
+                }, 1500);
             }
         });
     }

@@ -127,21 +127,79 @@
     padding-right: 0.5rem;
   }
   .constrained-content-area > #resultsTable { margin-top: 0; }
+
   #resultsTable {
     margin-top: 0 !important;
-    max-height: 70vh;
+    max-height: none;
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    overflow-x: auto;
+    overflow-x: hidden;
+    padding: 0;
   }
-  #resultsTable table { table-layout: fixed; width: 100%; }
-  th, td { font-size: 11px; padding: 6px 3px; }
-  #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; word-break: break-word; }
-  #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
-  #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
-  #resultsTable th:nth-child(3), #resultsTable td:nth-child(3) { width: 20%; }
-  #resultsTable th:nth-child(4), #resultsTable td:nth-child(4) { width: 20%; }
+  #resultsTable thead {
+    display: none;
+  }
+  #resultsTable table,
+  #resultsTable tbody,
+  #resultsTable tr,
+  #resultsTable td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  #resultsTable tr:not(.inline-ad-row) {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    background: var(--white);
+  }
+  #resultsTable td {
+    border: none;
+    padding: 8px;
+    padding-right: 110px;
+    position: relative;
+    text-align: left;
+    word-break: break-word;
+    font-size: 14px;
+  }
+  #resultsTable td::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 8px;
+    width: 90px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-hover);
+    font-size: 13px;
+  }
+  #resultsTable td:nth-of-type(1)::before { content: "שם השיר"; }
+  #resultsTable td:nth-of-type(2)::before { content: "אלבום"; }
+  #resultsTable td:nth-of-type(3)::before { content: "זמר"; }
+  #resultsTable td:nth-of-type(4)::before { content: "פעולות"; }
+  #resultsTable td.actions-cell {
+    text-align: center;
+    padding-right: 8px;
+  }
+  #resultsTable td.actions-cell::before {
+    display: none;
+  }
+  th, td { font-size: 14px; padding: 8px; }
+  .inline-ad-row,
+  .inline-ad-row td {
+    display: block;
+    width: 100% !important;
+  }
+  .inline-ad-row {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
   a { padding: 7px 10px; }
   .fixed-bottom { padding-top: 10px; }
   .fixed-bottom p { font-size: 11px; padding: 4px 10px; }

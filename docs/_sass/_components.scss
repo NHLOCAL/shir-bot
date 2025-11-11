@@ -140,6 +140,29 @@
   text-decoration: none;
   margin: auto;
 }
+// Breadcrumbs styles
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5rem 1rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  display: inline-block;
+  padding: 0 .5rem;
+  color: #6c757d;
+}
+.breadcrumb-item.active {
+  color: #6c757d;
+}
 table {
   width: 100%;
   border-spacing: 0;
@@ -204,6 +227,13 @@ td {
 .custom-table tbody.songs-list tr:hover:not(.inline-ad-row) {
   background-color: #e0e0e0;
   transition: background-color 0.15s ease-in-out;
+}
+.custom-table tbody.songs-list tr.downloading {
+  background-color: #ede7f6;
+  transition: background-color 0.4s ease;
+}
+.custom-table tbody.songs-list tr.downloading:hover {
+  background-color: #d1c4e9;
 }
 .custom-table tbody.songs-list tr:hover:not(.inline-ad-row) td:first-child {
   border-top-right-radius: 8px;
@@ -719,11 +749,9 @@ td {
     border-radius: 10px;
   }
 }
-
 .top-navbar-section .search-bar.highlight-animation {
   animation: search-glow 1.5s ease-out;
 }
-
 @keyframes search-glow {
   0% {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);

@@ -1,4 +1,3 @@
-// File: assets/js/shared-redirect-handler.js
 const downloadQueue = [];
 let isProcessingQueue = false;
 const INTER_DOWNLOAD_DELAY_MS = 1000;
@@ -34,6 +33,8 @@ function updateDownloadLoadingMessage() {
 function restoreDownloadButton(songSerial) {
     const button = document.querySelector(`button.download-button[data-song-serial="${songSerial}"], button.download-button-new[data-song-serial="${songSerial}"]`);
     if (button && button.classList.contains('download-in-progress')) {
+        const row = button.closest('tr');
+        if (row) row.classList.remove('downloading');
         const originalIconHTML = button.dataset.originalIcon || '<i class="fas fa-download"></i>';
         button.innerHTML = originalIconHTML;
         button.disabled = false;
@@ -86,6 +87,8 @@ window.downloadSongWithDriveId = function(buttonElement) {
     if (buttonElement.disabled || buttonElement.classList.contains('download-in-progress')) {
         return;
     }
+    const row = buttonElement.closest('tr');
+    if (row) row.classList.add('downloading');
     buttonElement.disabled = true;
     buttonElement.classList.add('download-in-progress');
     buttonElement.dataset.originalIcon = buttonElement.innerHTML;
@@ -186,7 +189,6 @@ function handleTableClickActions(event) {
     const row = button.closest('tr');
     if (!row || !row.closest('tbody.songs-list')) {
       if(button.dataset.albumName || button.dataset.singerName){
-          // This allows buttons outside the table context, like in new-songs page
       } else {
           return;
       }

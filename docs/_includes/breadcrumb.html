@@ -1,0 +1,12 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ site.baseurl }}/">דף הבית</a></li>
+    {% if page.layout == 'artist' %}
+      <li class="breadcrumb-item"><a href="{{ site.baseurl }}/artists/">אמנים</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+    {% elsif page.layout == 'monthly_archive' %}
+      <li class="breadcrumb-item"><a href="{{ site.baseurl }}/archive/">ארכיון</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ page.album_name }}</li>
+    {% endif %}
+  </ol>
+</nav>

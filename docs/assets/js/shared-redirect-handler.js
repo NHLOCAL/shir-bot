@@ -96,22 +96,19 @@ window.downloadSongWithDriveId = function(buttonElement) {
     }
 };
 function handleHeaderSearchRedirect(event) {
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    if (isHomepage) {
-        event.preventDefault();
-        return;
-    }
     event.preventDefault();
     const searchForm = event.currentTarget;
     const searchInput = searchForm.querySelector('#searchInput');
     const searchInputVal = searchInput ? searchInput.value.trim() : '';
+
     let searchBy = 'all';
     const activeFilterButton = document.querySelector('.filter-button.active');
     if (activeFilterButton && activeFilterButton.dataset.filter) {
         searchBy = activeFilterButton.dataset.filter;
     }
+
     if (searchInputVal) {
-        const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchInputVal)}&searchBy=${encodeURIComponent(searchBy)}`;
+        const redirectUrl = `${baseurl || ''}/search/?q=${encodeURIComponent(searchInputVal)}&filter=${encodeURIComponent(searchBy)}`;
         window.location.href = redirectUrl;
     } else {
         searchInput?.focus();
@@ -139,7 +136,7 @@ function handleTableClickActions(event) {
     if (button.classList.contains('share-button') && songSerial) {
         event.preventDefault();
         event.stopPropagation();
-        const shareLink = `${window.location.origin}${baseurl || ''}/?search=${encodeURIComponent(songSerial)}&searchBy=serial`;
+        const shareLink = `${window.location.origin}${baseurl || ''}/search/?q=${encodeURIComponent(songSerial)}&filter=serial`;
         if (typeof copyToClipboard === 'function') {
             const success = copyToClipboard(shareLink);
             if (success) {
@@ -167,16 +164,10 @@ function handleTableClickActions(event) {
         event.stopPropagation();
         const searchTerm = button.dataset.albumName || button.dataset.singerName || button.textContent.trim();
         const searchType = button.classList.contains('album-button') ? 'album' : 'singer';
-        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
+        
         if (searchTerm) {
-            if (isHomepage && typeof searchSongs === 'function' && typeof handleFilterClick === 'function' && document.getElementById('searchInput')) {
-                const searchInputGlobal = document.getElementById('searchInput');
-                searchInputGlobal.value = searchTerm;
-                searchSongs(searchTerm.toLowerCase(), searchType);
-            } else {
-                const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}&resetFilterTo=all`;
-                window.location.href = redirectUrl;
-            }
+            const redirectUrl = `${baseurl || ''}/search/?q=${encodeURIComponent(searchTerm)}&filter=${encodeURIComponent(searchType)}`;
+            window.location.href = redirectUrl;
         }
         return;
     }

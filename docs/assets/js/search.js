@@ -15,8 +15,7 @@ const loadingMessage = document.getElementById('loadingMessage');
 const progressText = document.getElementById('progressText');
 const resultsTableThead = document.querySelector("#resultsTable thead");
 const resultsTable = document.getElementById('resultsTable');
-const homepageContent = document.getElementById('homepage-content');
-const searchResultsArea = document.getElementById('search-results-area');
+const searchResultsTitle = document.getElementById('search-results-title');
 let uniqueArtistNames = [];
 let uniqueSongTitles = [];
 let uniqueAlbumNames = [];
@@ -167,55 +166,45 @@ function displayDataLoadError() {
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center; color: red;">שגיאה בטעינת מאגר השירים. נסה לרענן את הדף.</td></tr>`;
         if (resultsTableThead) resultsTableThead.style.display = "none";
         if (loadMoreButton) loadMoreButton.style.display = 'none';
-        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-        if (isHomepage) {
-            showSearchResultsViewInternal();
-        }
     }
      hideAutocompleteSuggestions();
 }
 const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
 document.addEventListener('DOMContentLoaded', () => {
+    // This logic now only runs on pages that have the search results components.
+    if (!document.getElementById('search-results-area')) {
+        return;
+    }
+
     loadAllSongsData().then(({ allSongs, newSongs }) => {
-        console.log("Search.js: Song data loaded successfully after DOMContentLoaded.");
+        console.log("Search.js: Song data ready on search page.");
         prepareAutocompleteData(allSongs);
+        
         const urlParams = new URLSearchParams(window.location.search);
-        const searchValue = urlParams.get('search');
-        const searchByParam = urlParams.get('searchBy') || 'all';
-        const resetFilterTo = urlParams.get('resetFilterTo');
-        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-        if (searchValue && searchByParam === 'serial') {
-            console.log(`Search.js: Processing URL serial search: search=${searchValue}`);
-            if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-            handleFilterClick('all', false);
-            searchSongs(searchValue.toLowerCase(), 'serial');
-            if (isHomepage) {
-                setTimeout(clearUrlParams, 150);
+        const searchValue = urlParams.get('q');
+        const searchByParam = urlParams.get('filter') || 'all';
+
+        handleFilterClick(searchByParam, false);
+        if (searchInput) {
+            searchInput.value = searchValue || '';
+        }
+
+        if (searchValue) {
+            console.log(`Search.js: Processing search from URL: q=${searchValue}, filter=${searchByParam}`);
+            searchSongs(searchValue, searchByParam);
+            if (searchResultsTitle) {
+                searchResultsTitle.textContent = `תוצאות חיפוש עבור: "${searchValue}"`;
+                searchResultsTitle.style.display = 'block';
             }
         } else {
-             handleFilterClick(searchByParam, false);
-             if (searchValue) {
-                console.log(`Search.js: Processing URL general search: search=${searchValue}, searchBy=${searchByParam}`);
-                if (searchInput) searchInput.value = decodeURIComponent(searchValue);
-                searchSongs(searchValue.toLowerCase(), searchByParam);
-                if (resetFilterTo) {
-                    console.log(`Search.js: Resetting filter to '${resetFilterTo}' as requested by URL parameter.`);
-                    handleFilterClick(resetFilterTo, false);
-                }
-                if (isHomepage) {
-                    setTimeout(clearUrlParams, 150);
-                }
-            } else {
-                if (isHomepage) {
-                    console.log("Search.js: Homepage loaded without search params. Displaying homepage content.");
-                } else {
-                    console.log("Search.js: Non-homepage loaded without search params.");
-                }
-            }
+             console.log("Search.js: Search page loaded without a query.");
+             displayInitialSearchMessage();
         }
+
     }).catch(error => {
-        console.error("Search.js: Initial data load failed in DOMContentLoaded.", error);
+        console.error("Search.js: Initial data load failed on search page.", error);
     });
+
     if (searchInput) {
         searchInput.addEventListener('click', () => {
             if (searchInput.value.trim().length === 0) {
@@ -235,20 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.key === 'Enter') {
                 event.preventDefault();
                 hideAutocompleteSuggestions();
-                submitForm();
+                const searchForm = document.getElementById('searchForm');
+                if(searchForm) searchForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
             }
         });
         searchInput.addEventListener('blur', () => {
             setTimeout(hideAutocompleteSuggestions, 150);
         });
     }
-    if (searchForm) {
-        searchForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            hideAutocompleteSuggestions();
-            submitForm();
-        });
-    }
+
+    // This listener is now on shared-redirect-handler.js
+    // if (searchForm) { ... }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             handleFilterClick(this.dataset.filter, true);
@@ -261,90 +248,47 @@ document.addEventListener('DOMContentLoaded', () => {
         suggestionsContainer.addEventListener('mousedown', (event) => {
             const suggestionItem = event.target.closest('.autocomplete-suggestion-item');
             if (!suggestionItem) return;
+            event.preventDefault(); // Prevent blur
             if (suggestionItem.classList.contains('clear-history-button')) {
-                event.preventDefault();
                 clearSearchHistory();
                 return;
             }
             if (searchInput) {
                 const suggestionText = suggestionItem.dataset.suggestionValue;
                 if (suggestionText) {
-                    console.log('Suggestion selected:', suggestionText);
                     searchInput.value = suggestionText;
                     hideAutocompleteSuggestions();
                     searchInput.focus();
-                    submitForm();
+                    const searchForm = document.getElementById('searchForm');
+                    if(searchForm) searchForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
                 }
             }
         });
     }
 });
-async function submitForm() {
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    const searchTerm = searchInput ? searchInput.value.trim() : '';
-    const searchTermLower = searchTerm.toLowerCase();
-    const currentActiveFilter = activeFilter;
-    saveSearchToHistory(searchTerm);
-    if (!isHomepage) {
-        const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(currentActiveFilter)}`;
-        window.location.href = redirectUrl;
-    } else {
-        if (!songsDataLoaded) {
-            if (isLoadingSongs) {
-                console.log("SubmitForm: Data is still loading, waiting...");
-                if (loadingMessage && progressText) {
-                    loadingMessage.style.display = 'flex';
-                    progressText.textContent = 'טוען נתונים, מחפש בקרוב...';
-                }
-                try {
-                    await window.songsDataPromise;
-                    console.log("SubmitForm: Data finished loading, proceeding.");
-                    if (loadingMessage && progressText && progressText.textContent.includes('טוען נתונים')) {
-                        loadingMessage.style.display = 'none';
-                    }
-                    searchSongs(searchTermLower, currentActiveFilter);
-                    setTimeout(clearUrlParams, 100);
-                } catch (error) {
-                    console.error("SubmitForm: Error waiting for data.", error);
-                }
-            } else {
-                console.error("SubmitForm: Cannot search, data failed.");
-                if (typeof showMessage === 'function') showMessage('טעינת נתוני השירים נכשלה.');
-            }
-        } else {
-            searchSongs(searchTermLower, currentActiveFilter);
-            setTimeout(clearUrlParams, 100);
-        }
-    }
-}
 async function searchSongs(query, searchBy) {
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    if (isHomepage) {
-        showSearchResultsViewInternal();
-    }
+    saveSearchToHistory(query);
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!songsDataLoaded) {
         if (isLoadingSongs) {
-            console.log("SearchSongs: Waiting for data...");
             displayLoadingMessage(colspan, "טוען נתונים...");
-            try {
-                await window.songsDataPromise;
-                console.log("SearchSongs: Data loaded, proceeding.");
-            } catch (error) {
-                console.error("SearchSongs: Error awaiting data.", error);
-                return;
-            }
+            await window.songsDataPromise;
         } else {
-            console.error("SearchSongs: Cannot search, data failed.");
+            console.error("SearchSongs: Cannot search, data failed to load.");
             return;
         }
     }
     displayLoadingMessage(colspan);
     performSearch(query, searchBy);
 }
+function displayInitialSearchMessage() {
+    if (!resultsTableBody) return;
+    const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
+    resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">השתמשו בתיבת החיפוש למעלה כדי למצוא שירים.</td></tr>`;
+    if (resultsTableThead) resultsTableThead.style.display = "none";
+}
 function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     if (!resultsTableBody) return;
-    showSearchResultsViewInternal();
     resultsTableBody.innerHTML = '';
     const lr = document.createElement('tr'), lc = document.createElement('td');
     lc.setAttribute('colspan', colspan);
@@ -366,51 +310,23 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     if (resultsTableThead) resultsTableThead.style.display = "none";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
 }
-function clearUrlParams() {
-    try {
-        const cleanUrl = window.location.origin + (baseurl || '') + '/';
-        if (window.location.href !== cleanUrl) {
-            window.history.replaceState({}, document.title, cleanUrl);
-            console.log("URL params cleared.");
-        }
-    } catch (e) {
-        console.error("Error clearing URL params:", e);
-    }
-}
-function showSearchResultsViewInternal() {
-    if (homepageContent) homepageContent.style.display = 'none';
-    if (searchResultsArea) searchResultsArea.style.display = 'block';
-    if (resultsTable && resultsTable.style.display === 'none') {
-        resultsTable.style.display = '';
-    }
-}
-function showHomepageViewInternal() {
-    if (homepageContent) homepageContent.style.display = 'block';
-    if (searchResultsArea) searchResultsArea.style.display = 'none';
-}
 function handleFilterClick(filter, triggeredByUserClick = false) {
     if (!filter) return;
-    const previousFilter = activeFilter;
     activeFilter = filter;
     filterButtons.forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) activeButton.classList.add('active');
-    const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
+    
     if (triggeredByUserClick) {
-         console.log(`handleFilterClick: Filter changed to '${filter}' by user click.`);
-         if(isHomepage){
-            searchSongs(searchTerm, filter);
-         } else {
-             if (searchInput) searchInput.focus();
-         }
-    } else {
-        console.log(`handleFilterClick: Filter set to '${filter}' programmatically.`);
+        const searchTerm = searchInput ? searchInput.value.trim() : '';
+        if (searchTerm) {
+             const searchForm = document.getElementById('searchForm');
+             if(searchForm) searchForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
     }
 }
 function performSearch(query, searchBy) {
-    let baseSongsToFilter = allSongs;
-    results = filterSongs(baseSongsToFilter, query, searchBy);
+    results = filterSongs(allSongs, query, searchBy);
     displayedResults = 0;
     const initialResultsToShow = results.slice(0, 250);
     displayedResults = initialResultsToShow.length;
@@ -418,18 +334,7 @@ function performSearch(query, searchBy) {
 }
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) {
-        if (searchBy === 'all') {
-            console.log("Filtering: Empty query, 'all' filter -> returning all valid songs.");
-            return songsToFilter.filter(song => song && song.serial && song.name);
-        }
-        const keyMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
-        const key = keyMap[searchBy];
-        if (!key) return [];
-        console.log(`Filtering: Empty query, specific filter '${searchBy}' -> returning songs with non-empty '${key}'.`);
-        return songsToFilter.filter(song => {
-            const value = song[key];
-            return value != null && String(value).trim() !== '';
-        });
+        return [];
     }
     const calcDice = (t1, t2) => {
         if (!t1?.length || !t2?.length) return 0;
@@ -495,7 +400,6 @@ function filterSongs(songsToFilter, query, searchBy) {
 }
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
-    showSearchResultsViewInternal();
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!append) {
         if (resultsTable) {

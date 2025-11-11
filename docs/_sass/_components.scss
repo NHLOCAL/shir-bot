@@ -163,7 +163,7 @@ td {
   box-sizing: border-box;
 }
 #search-results-area {
-  display: none;
+  display: block;
 }
 #resultsTable table {
   width: 100%;
@@ -634,45 +634,41 @@ td {
   background-color: #fbe9e7 !important;
   color: #c62828 !important;
 }
-.terms-modal {
+.terms-banner {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 9999;
   display: none;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   background: var(--unit-bg, #fff);
-  color: var(--primary-color, #7E57C2);
+  color: #333;
   border-top: 1px solid var(--border-color, #e0e0e0);
   box-shadow: 0 -2px 16px rgba(0,0,0,0.07);
-  padding: 14px 10px 10px 10px;
-  font-size: 1em;
-  gap: 12px;
-  border-radius: 14px 14px 0 0;
+  padding: 12px 15px;
+  font-size: 0.95em;
+  gap: 15px;
 }
-.terms-modal-text {
-  margin: 0 8px 0 0;
-  font-size: 1em;
-  display: inline-block;
+.terms-banner-text {
+  margin: 0;
 }
 .terms-link {
   color: var(--primary-color, #7E57C2);
   text-decoration: underline;
   font-weight: 600;
 }
-.terms-modal-btn {
+.terms-banner-btn {
   background: var(--primary-color, #7E57C2);
   color: var(--white, #fff);
   border: none;
   border-radius: 6px;
   padding: 6px 18px;
-  font-size: 1em;
+  font-size: 0.95em;
   cursor: pointer;
-  margin-right: 8px;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 .inline-ad-row {
   &:hover {

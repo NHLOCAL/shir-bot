@@ -1,0 +1,41 @@
+---
+layout: default
+title: "תוצאות חיפוש"
+description: "תוצאות חיפוש עבור שירים, אמנים ואלבומים במאגר המוזיקה של שיר-בוט."
+permalink: /search/
+sitemap: false
+---
+<div id="search-results-area">
+    <div id="loadingMessage" class="loading-message">
+        <div class="progress-bar-container">
+            <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
+            <span id="progressText"></span>
+        </div>
+    </div>
+
+    <h2 id="search-results-title" class="page-main-title" style="display: none;"></h2>
+
+    <div id="resultsTable" class="custom-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>שם השיר</th>
+                    <th>שם האלבום</th>
+                    <th>שם הזמר</th>
+                    <th>פעולות</th>
+                </tr>
+            </thead>
+            <tbody class="songs-list">
+                <!-- תוצאות החיפוש יוצגו כאן על ידי search.js -->
+            </tbody>
+        </table>
+        <button id="loadMoreButton" style="display: none;">טען עוד</button>
+    </div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal-content">
+        <span id="modalMessage"></span><br>
+        <button id="modalOkButton" style="font-family: tahoma">אישור</button>
+    </div>
+</div>

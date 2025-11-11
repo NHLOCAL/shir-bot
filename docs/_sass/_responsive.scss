@@ -138,6 +138,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: 10px;
     width: 100%;
     margin-bottom: 12px;
     padding: 12px;
@@ -165,17 +166,33 @@
     color: #333;
     margin-bottom: 10px;
   }
+  // Layout for the second row of the song card
   #resultsTable td:nth-of-type(2),
-  #resultsTable td:nth-of-type(3),
-  #resultsTable td:nth-of-type(4) {
+  #resultsTable td:nth-of-type(3) {
     order: 2;
     margin: 0;
+    min-width: 0;
+    flex: 1 1 calc(50% - 10px);
   }
-  #resultsTable td:nth-of-type(4) {
-    margin-right: auto;
+  #resultsTable td:nth-of-type(4) { // Actions
+    order: 3;
+    margin: 0;
+    flex: 1 1 100%;
+    width: 100%;
   }
-  #resultsTable td:nth-of-type(2) {
-    margin-left: 8px;
+  #resultsTable td:nth-of-type(2) { // Spacing for Album
+    margin-left: 0;
+  }
+  #resultsTable td.actions-cell {
+    margin-top: 4px;
+    white-space: normal;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  #resultsTable td.actions-cell .actions-button-group {
+    max-width: 100%;
+    overflow: visible;
   }
   #resultsTable .btn-text {
     display: inline-block;

@@ -131,23 +131,17 @@
   // =======================================================
   // == START: New Mobile Song Card Styles (The Upgrade!) ==
   // =======================================================
-
   #resultsTable {
     margin-top: 0 !important;
     padding: 0;
-    max-height: none; // Unset previous height constraint
   }
-
-  // We no longer need the table header on mobile
   #resultsTable thead {
     display: none;
   }
-
   // The <tr> is now the main card container
   #resultsTable tr:not(.inline-ad-row) {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-bottom: 12px;
@@ -157,68 +151,70 @@
     background: var(--white);
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
-
-  // Reset all table cells
   #resultsTable td {
     display: block;
     width: auto;
     border: none;
     padding: 0;
     position: static;
-    text-align: right; // Set default text align for RTL
+    text-align: right;
   }
-
-  // Remove the old pseudo-element labels
   #resultsTable td::before {
     content: none;
   }
-
   // --- Row 1: Song Title ---
   #resultsTable td:nth-of-type(1) {
-    flex-basis: 100%; // Takes the full width of the top row
+    flex-basis: 100%;
+    order: 1;
     font-size: 1.1em;
     font-weight: 600;
     color: #333;
     margin-bottom: 10px;
-    padding-left: 5px; // Space from the action buttons
   }
-
-  // --- Row 2: Metadata (Album & Singer) and Actions ---
-  // We'll group Album and Singer together visually
+  // --- Row 2: Metadata (Album & Singer) ---
   #resultsTable td:nth-of-type(2),
   #resultsTable td:nth-of-type(3) {
-    display: inline-flex; // Puts them side-by-side
-    align-items: center;
-    font-size: 0.85em;
-    color: #555;
-    margin-left: 12px; // Space between them
-
-    // Remove the buttons, just show text with icons
-    .btn-text {
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: inherit;
-      color: inherit;
-      font-weight: 400;
-      &:hover {
-        text-decoration: underline;
-      }
+    order: 2;
+    margin-left: 8px; // Space between buttons
+  }
+  // --- Row 2 End: Actions ---
+  #resultsTable td:nth-of-type(4) {
+    order: 3;
+    margin-right: auto; // Push to the end of the line
+  }
+  // --- Styling for Metadata Buttons ---
+  #resultsTable .btn-text {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #f1f3f5;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    font-size: 0.8em;
+    font-weight: 500;
+    color: var(--primary-hover);
+    transition: background-color 0.2s, color 0.2s;
+    // Prevent long text from breaking layout
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    &:hover {
+      background-color: #e9ecef;
+      text-decoration: none;
     }
   }
-
-  // --- Row 2 Right Side: Actions ---
-  #resultsTable td:nth-of-type(4) {
-    margin-right: auto; // Pushes it to the far left (in RTL)
+  // --- Full-width Inline Ads ---
+  .inline-ad-row {
+    margin-bottom: 12px;
+    margin-left: -1rem; // Break out of parent padding
+    margin-right: -1rem;
+    width: auto; // Let it fill the new space
+    display: block;
   }
-  .actions-button-group {
-    border-radius: 20px; // Modern rounded buttons
-  }
-
   // =====================================================
   // == END: New Mobile Song Card Styles                ==
   // =====================================================
-
   a { padding: 7px 10px; }
   .fixed-bottom { padding-top: 10px; }
   .fixed-bottom p { font-size: 11px; padding: 4px 10px; }
@@ -240,21 +236,6 @@
   .terms-modal-btn {
     padding: 6px 10px;
     font-size: 0.98em;
-  }
-  .inline-ad-row td {
-    padding: 12px 0 !important;
-  }
-  .inline-ad-row a.inline-ad-link {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .inline-ad-row .inline-ad-icon {
-    display: none;
-  }
-  .inline-ad-row .inline-ad-cta {
-    margin-top: 8px;
-    align-self: flex-start;
   }
 }
 @media (max-width: 768px) and (min-width: 601px) {

@@ -8,19 +8,6 @@ let songsDataLoaded = false;
 let userIsTyping = false;
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
-const filterButtons = document.querySelectorAll('.filter-button');
-const loadMoreButton = document.getElementById('loadMoreButton');
-const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
-const loadingMessage = document.getElementById('loadingMessage');
-const progressText = document.getElementById('progressText');
-const resultsTableThead = document.querySelector("#resultsTable thead");
-const resultsTable = document.getElementById('resultsTable');
-const searchResultsTitle = document.getElementById('search-results-title');
-const homepageContent = document.getElementById('homepage-content');
-const searchResultsArea = document.getElementById('search-results-area');
-let uniqueArtistNames = [];
-let uniqueSongTitles = [];
-let uniqueAlbumNames = [];
 const suggestionsContainer = document.getElementById('autocomplete-suggestions');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
@@ -35,11 +22,16 @@ function debounce(func, wait) {
     };
 };
 function showHomepageView() {
+    const homepageContent = document.getElementById('homepage-content');
+    const searchResultsArea = document.getElementById('search-results-area');
+    const searchResultsTitle = document.getElementById('search-results-title');
     if (homepageContent) homepageContent.style.display = 'block';
     if (searchResultsArea) searchResultsArea.style.display = 'none';
     if (searchResultsTitle) searchResultsTitle.style.display = 'none';
 }
 function showSearchResultsView() {
+    const homepageContent = document.getElementById('homepage-content');
+    const searchResultsArea = document.getElementById('search-results-area');
     if (homepageContent) homepageContent.style.display = 'none';
     if (searchResultsArea) searchResultsArea.style.display = 'block';
 }
@@ -111,6 +103,8 @@ function loadAllSongsData() {
     return window.songsDataPromise;
 }
 function displayDataLoadError() {
+    const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
+    const resultsTableThead = document.querySelector("#resultsTable thead");
     if (resultsTableBody) {
         const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center; color: red;">שגיאה בטעינת מאגר השירים. נסה לרענן את הדף.</td></tr>`;
@@ -129,6 +123,7 @@ window.executeSearchFromState = async function() {
     }
     showSearchResultsView();
     if (searchInput) searchInput.value = query;
+    const searchResultsTitle = document.getElementById('search-results-title');
     if (searchResultsTitle) {
         searchResultsTitle.textContent = `תוצאות חיפוש עבור: "${query}"`;
         searchResultsTitle.style.display = 'block';
@@ -141,6 +136,7 @@ window.executeSearchFromState = async function() {
 }
 async function searchSongs(query, searchBy) {
     saveSearchToHistory(query);
+    const resultsTableThead = document.querySelector("#resultsTable thead");
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!songsDataLoaded) {
         displayLoadingMessage(colspan, "טוען נתונים...");
@@ -157,12 +153,18 @@ function performSearch(query, searchBy) {
     displayResults(initialResultsToShow, false);
 }
 function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
+    const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
+    const resultsTableThead = document.querySelector("#resultsTable thead");
+    const loadMoreButton = document.getElementById('loadMoreButton');
     if (!resultsTableBody) return;
     resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;"><div class="loading-container"><img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." class="loading-image"><p class="loading-text">${text}</p></div></td></tr>`;
     if (resultsTableThead) resultsTableThead.style.display = "none";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
 }
 function displayResults(resultsToDisplay, append = false) {
+    const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
+    const resultsTableThead = document.querySelector("#resultsTable thead");
+    const resultsTable = document.getElementById('resultsTable');
     if (!resultsTableBody) return;
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!append) {
@@ -219,14 +221,28 @@ function displayResults(resultsToDisplay, append = false) {
     resultsTableBody.appendChild(frag);
     toggleLoadMoreButton();
 }
-// --- Event Handlers & Initialization ---
 const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
 document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', event => {
+        const filterButton = event.target.closest('.filter-button');
+        if (filterButton) {
+            handleFilterClick(filterButton.dataset.filter, true);
+            return;
+        }
+        const loadMoreBtn = event.target.closest('#loadMoreButton');
+        if (loadMoreBtn) {
+            loadMoreResults();
+            return;
+        }
+    });
+    if (searchForm) {
+        searchForm.addEventListener('submit', hideAutocompleteSuggestions);
+    }
+    const loadMoreButton = document.getElementById('loadMoreButton');
     if (loadMoreButton) {
         loadMoreButton.classList.add('btn', 'btn-secondary');
     }
     loadAllSongsData().then(() => {
-        // Initial page load handling
         executeSearchFromState();
     });
     if (searchInput) {
@@ -239,15 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('click', () => { if (searchInput.value.trim().length === 0) renderHistorySuggestions(); });
         searchInput.addEventListener('blur', () => { setTimeout(hideAutocompleteSuggestions, 150); });
     }
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const newFilter = button.dataset.filter;
-            handleFilterClick(newFilter, true);
-        });
-    });
-    if (loadMoreButton) loadMoreButton.addEventListener('click', loadMoreResults);
     window.addEventListener('popstate', (event) => {
-        // Handle browser back/forward buttons
         executeSearchFromState();
     });
     if (suggestionsContainer) {
@@ -267,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleFilterClick(filter, triggeredByUserClick = false) {
     if (!filter) return;
     activeFilter = filter;
-    filterButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) activeButton.classList.add('active');
     if (triggeredByUserClick) {
@@ -312,14 +320,18 @@ function filterSongs(songsToFilter, query, searchBy) {
     }).filter(s => s._score > 0).sort((a, b) => b._score - a._score || (parseInt(a.serial, 10) || 0) - (parseInt(b.serial, 10) || 0));
 }
 function loadMoreResults() {
-    const start = displayedResults, end = Math.min(start + 250, results.length);
+    const start = displayedResults;
+    const end = Math.min(start + 250, results.length);
     if (start >= results.length) return;
     const newRes = results.slice(start, end);
     displayResults(newRes, true);
     displayedResults = end;
 }
 function toggleLoadMoreButton() {
-    if (loadMoreButton) loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+    const loadMoreButton = document.getElementById('loadMoreButton');
+    if (loadMoreButton) {
+        loadMoreButton.style.display = results.length > displayedResults ? 'block' : 'none';
+    }
 }
 function handleAutocompleteInput(query) {
     if (!userIsTyping) { hideAutocompleteSuggestions(); return; }

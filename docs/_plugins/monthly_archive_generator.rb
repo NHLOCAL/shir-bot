@@ -64,7 +64,6 @@ module Jekyll
         slug = Jekyll.create_slug_for_archive(album_name)
         archive_albums_details << { 'name' => album_name, 'slug' => slug, 'url' => "/archive/#{slug}/" }
       end
-      archive_albums_details.reverse!
       puts "MonthlyArchiveGenerator: Total albums to be listed in archive: #{archive_albums_details.size}"
       site.data['generated_archive_settings'] = {
         'current_display_album_names' => current_display_albums,

@@ -4,10 +4,15 @@ layout: default
 <div class="artists-list">
   <h2 class="page-main-title">{{ page.title }}</h2>
 
-  {% assign archived_albums = site.data.generated_archive_settings.archive_albums_list %}
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button id="sort-archive-button" class="hngn-link-button" data-order="asc">
+      <i class="fas fa-sort-amount-down"></i> מיון: מהישן לחדש
+    </button>
+  </div>
 
+  {% assign archived_albums = site.data.generated_archive_settings.archive_albums_list %}
   {% if archived_albums and archived_albums.size > 0 %}
-    <ul>
+    <ul id="archive-list">
       {% for album_item in archived_albums %}
         <li><a href="{{ site.baseurl }}{{ album_item.url }}">{{ album_item.name }}</a></li>
       {% endfor %}
@@ -16,3 +21,30 @@ layout: default
     <p style="text-align: center;">לא נמצאו תכנים בארכיון.</p>
   {% endif %}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sortButton = document.getElementById('sort-archive-button');
+  const archiveList = document.getElementById('archive-list');
+
+  if (sortButton && archiveList) {
+    sortButton.addEventListener('click', function() {
+      const currentOrder = this.dataset.order;
+      const listItems = Array.from(archiveList.getElementsByTagName('li'));
+      
+      listItems.reverse();
+      
+      archiveList.innerHTML = '';
+      listItems.forEach(item => archiveList.appendChild(item));
+
+      if (currentOrder === 'asc') {
+        this.dataset.order = 'desc';
+        this.innerHTML = '<i class="fas fa-sort-amount-up"></i> מיון: מהחדש לישן';
+      } else {
+        this.dataset.order = 'asc';
+        this.innerHTML = '<i class="fas fa-sort-amount-down"></i> מיון: מהישן לחדש';
+      }
+    });
+  }
+});
+</script>

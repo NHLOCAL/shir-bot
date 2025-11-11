@@ -6,15 +6,20 @@ permalink: /search/
 sitemap: false
 ---
 <div id="search-results-area">
+    <div id="cta-container" style="text-align: center; display: none; padding: 30px 15px;">
+        <h3 style="font-size: 1.6em; color: #555; margin-bottom: 20px;">מחפשים שיר?</h3>
+        <p style="font-size: 1.1em; color: #666; margin-bottom: 25px;">התחילו להקליד שם של אמן, אלבום או שיר בתיבת החיפוש למעלה.</p>
+        <button id="cta-focus-search-btn" class="btn btn-primary" style="font-size: 1.2em; padding: 12px 25px;">
+            <i class="fas fa-search"></i> לחצו כאן כדי להתחיל חיפוש
+        </button>
+    </div>
     <div id="loadingMessage" class="loading-message">
         <div class="progress-bar-container">
             <img src="{{ site.baseurl }}/assets/images/loading.gif" alt="טעינה" />
             <span id="progressText"></span>
         </div>
     </div>
-
     <h2 id="search-results-title" class="page-main-title" style="display: none;"></h2>
-
     <div id="resultsTable" class="custom-table">
         <table>
             <thead>
@@ -26,13 +31,11 @@ sitemap: false
                 </tr>
             </thead>
             <tbody class="songs-list">
-                <!-- תוצאות החיפוש יוצגו כאן על ידי search.js -->
             </tbody>
         </table>
         <button id="loadMoreButton" style="display: none;">טען עוד</button>
     </div>
 </div>
-
 <div id="modalOverlay" class="modal-overlay">
     <div class="modal-content">
         <span id="modalMessage"></span><br>

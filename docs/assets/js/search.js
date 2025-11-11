@@ -9,6 +9,8 @@ let userIsTyping = false;
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const suggestionsContainer = document.getElementById('autocomplete-suggestions');
+const ctaContainer = document.getElementById('cta-container');
+const ctaFocusSearchBtn = document.getElementById('cta-focus-search-btn');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
@@ -21,6 +23,10 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
+function toggleSearchCtaButton(show) {
+    if (!ctaContainer) return;
+    ctaContainer.style.display = show ? 'block' : 'none';
+}
 function showHomepageView() {
     const homepageContent = document.getElementById('homepage-content');
     const searchResultsArea = document.getElementById('search-results-area');
@@ -116,14 +122,19 @@ window.executeSearchFromState = async function() {
     const query = urlParams.get('q');
     const filter = urlParams.get('filter') || 'all';
     const resetFilterTo = urlParams.get('resetFilterTo');
+    const resultsTable = document.getElementById('resultsTable');
+    const searchResultsTitle = document.getElementById('search-results-title');
     if (!query) {
-        showHomepageView();
         if (searchInput) searchInput.value = '';
+        if(resultsTable) resultsTable.style.display = 'none';
+        if(searchResultsTitle) searchResultsTitle.style.display = 'none';
+        toggleSearchCtaButton(true);
         return;
     }
+    toggleSearchCtaButton(false);
+    if(resultsTable) resultsTable.style.display = 'block';
     showSearchResultsView();
     if (searchInput) searchInput.value = query;
-    const searchResultsTitle = document.getElementById('search-results-title');
     if (searchResultsTitle) {
         searchResultsTitle.textContent = `תוצאות חיפוש עבור: "${query}"`;
         searchResultsTitle.style.display = 'block';
@@ -156,9 +167,10 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
     const resultsTableThead = document.querySelector("#resultsTable thead");
     const loadMoreButton = document.getElementById('loadMoreButton');
+    toggleSearchCtaButton(false);
     if (!resultsTableBody) return;
     resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;"><div class="loading-container"><img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." class="loading-image"><p class="loading-text">${text}</p></div></td></tr>`;
-    if (resultsTableThead) resultsTableThead.style.display = "none";
+    if (resultsTableThead) resultsTableThead.style.display = "";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
 }
 function displayResults(resultsToDisplay, append = false) {
@@ -175,8 +187,10 @@ function displayResults(resultsToDisplay, append = false) {
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">לא נמצאו תוצאות.</td></tr>`;
         if (resultsTableThead) resultsTableThead.style.display = "none";
         toggleLoadMoreButton();
+        toggleSearchCtaButton(true);
         return;
     }
+    toggleSearchCtaButton(false);
     if (resultsTableThead) resultsTableThead.style.display = "";
     const frag = document.createDocumentFragment();
     const adsEnabled = typeof inlineAdsConfig !== 'undefined' && inlineAdsConfig.enabled;
@@ -235,6 +249,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     });
+    if (ctaFocusSearchBtn) {
+        ctaFocusSearchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (searchInput) {
+                searchInput.focus();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
     if (searchForm) {
         searchForm.addEventListener('submit', hideAutocompleteSuggestions);
     }

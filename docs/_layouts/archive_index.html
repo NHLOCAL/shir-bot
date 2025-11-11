@@ -3,39 +3,55 @@ layout: default
 ---
 <div class="artists-list">
   <h2 class="page-main-title">{{ page.title }}</h2>
-
   <div style="text-align: center; margin-bottom: 20px;">
-    <button id="sort-archive-button" class="hngn-link-button" data-order="asc">
+    <button id="sort-archive-button" class="btn btn-secondary" data-order="asc">
       <i class="fas fa-sort-amount-down"></i> מיון: מהישן לחדש
     </button>
   </div>
-
   {% assign archived_albums = site.data.generated_archive_settings.archive_albums_list %}
   {% if archived_albums and archived_albums.size > 0 %}
-    <ul id="archive-list">
-      {% for album_item in archived_albums %}
-        <li><a href="{{ site.baseurl }}{{ album_item.url }}">{{ album_item.name }}</a></li>
-      {% endfor %}
-    </ul>
+    {% assign current_year = "" %}
+    {% for album_item in archived_albums %}
+      {% assign album_year = album_item.name | split: ' ' | last %}
+      {% if album_year != current_year %}
+        {% unless forloop.first %}
+          </ul>
+        </div>
+        {% endunless %}
+        <div class="archive-year-group">
+          <h2>{{ album_year }}</h2>
+          <ul>
+        {% assign current_year = album_year %}
+      {% endif %}
+      <li><a href="{{ site.baseurl }}{{ album_item.url }}">{{ album_item.name }}</a></li>
+    {% endfor %}
+      </ul>
+    </div>
   {% else %}
     <p style="text-align: center;">לא נמצאו תכנים בארכיון.</p>
   {% endif %}
 </div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sortButton = document.getElementById('sort-archive-button');
-  const archiveList = document.getElementById('archive-list');
+  const archiveListContainer = document.querySelector('.artists-list');
 
-  if (sortButton && archiveList) {
+  if (sortButton && archiveListContainer) {
     sortButton.addEventListener('click', function() {
       const currentOrder = this.dataset.order;
-      const listItems = Array.from(archiveList.getElementsByTagName('li'));
+      const yearGroups = Array.from(archiveListContainer.querySelectorAll('.archive-year-group'));
       
-      listItems.reverse();
-      
-      archiveList.innerHTML = '';
-      listItems.forEach(item => archiveList.appendChild(item));
+      yearGroups.forEach(group => {
+        const list = group.querySelector('ul');
+        const listItems = Array.from(list.getElementsByTagName('li'));
+        listItems.reverse();
+        list.innerHTML = '';
+        listItems.forEach(item => list.appendChild(item));
+      });
+
+      yearGroups.reverse();
+      const parent = yearGroups[0].parentNode;
+      yearGroups.forEach(group => parent.appendChild(group));
 
       if (currentOrder === 'asc') {
         this.dataset.order = 'desc';

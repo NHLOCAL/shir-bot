@@ -10,8 +10,8 @@
                  autocomplete="off" aria-haspopup="listbox" aria-controls="autocomplete-suggestions">
           <div id="autocomplete-suggestions" class="autocomplete-suggestions-container" role="listbox"></div>
           <div class="search-icons">
-              <a href="{{ site.baseurl }}/artists" title="חפש אמנים" aria-label="חפש אמנים" class="search-icon-button"><i class="fas fa-user-friends"></i></a>
-              <a href="{{ site.baseurl }}/new-songs" title="חפש שירים חדשים" aria-label="חפש שירים חדשים" class="search-icon-button"><i class="fas fa-fire"></i></a>
+              <a href="{{ site.baseurl }}/artists" title="רשימת אמנים" aria-label="רשימת אמנים" class="search-icon-button"><i class="fas fa-user-friends"></i></a>
+              <a href="{{ site.baseurl }}/archive" title="ארכיון וחדשות" aria-label="ארכיון וחדשות" class="search-icon-button"><i class="fas fa-archive"></i></a>
           </div>
           <button type="submit" class="search-icon-button" aria-label="חפש">
             <i class="fas fa-search"></i>
@@ -32,7 +32,7 @@
         </a>
       </div>
     </nav>
-    {% if page.show_search_form != false %}
+    {% if page.url == '/search/' %}
     <div class="filters-section">
          <button class="filter-button active" data-filter="all">הכל</button>
          <button class="filter-button" data-filter="name">שם השיר</button>
@@ -42,11 +42,11 @@
     {% endif %}
   </div>
 </div>
-<div id="terms-modal" class="terms-modal" style="display:none;">
-  <span class="terms-modal-text">
-    אני מאשר את <a href="{{ site.baseurl }}/terms/" target="_blank" class="terms-link">תנאי השימוש</a>
+<div id="terms-banner" class="terms-banner" style="display:none;">
+  <span class="terms-banner-text">
+    המשך שימוש באתר מהווה הסכמה ל<a href="{{ site.baseurl }}/terms/" target="_blank" class="terms-link">תנאי השימוש</a>.
   </span>
-  <button id="terms-accept-btn" class="terms-modal-btn">אישור</button>
+  <button id="terms-accept-btn" class="terms-banner-btn">הבנתי</button>
 </div>
 <script>
 (function() {
@@ -54,12 +54,12 @@
   try {
     var accepted = localStorage.getItem('termsAccepted');
     if (!accepted) {
-      var modal = document.getElementById('terms-modal');
-      if (modal) modal.style.display = 'flex';
+      var banner = document.getElementById('terms-banner');
+      if (banner) banner.style.display = 'flex';
       var btn = document.getElementById('terms-accept-btn');
       if (btn) btn.onclick = function() {
         localStorage.setItem('termsAccepted', 'yes');
-        modal.style.display = 'none';
+        banner.style.display = 'none';
       };
     }
   } catch(e) {

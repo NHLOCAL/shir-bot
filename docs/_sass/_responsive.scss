@@ -129,27 +129,102 @@
   .constrained-content-area > #resultsTable { margin-top: 0; }
   #resultsTable {
     margin-top: 0 !important;
-    max-height: 70vh;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: auto;
+    padding: 0;
   }
-  #resultsTable table { table-layout: fixed; width: 100%; }
-  th, td { font-size: 11px; padding: 6px 3px; }
-  #resultsTable th, #resultsTable td { font-size: 11px; padding: 8px 3px; word-break: break-word; }
-  #resultsTable th:nth-child(1), #resultsTable td:nth-child(1) { width: 38%; }
-  #resultsTable th:nth-child(2), #resultsTable td:nth-child(2) { width: 22%; }
-  #resultsTable th:nth-child(3), #resultsTable td:nth-child(3) { width: 20%; }
-  #resultsTable th:nth-child(4), #resultsTable td:nth-child(4) { width: 20%; }
+  #resultsTable thead {
+    display: none;
+  }
+  #resultsTable tr:not(.inline-ad-row) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  #resultsTable td {
+    display: block;
+    width: auto;
+    border: none;
+    padding: 0;
+    position: static;
+    text-align: right;
+  }
+  #resultsTable td::before {
+    content: none;
+  }
+  #resultsTable td:nth-of-type(1) {
+    flex-basis: 100%;
+    order: 1;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  // Layout for the second row of the song card
+  #resultsTable td:nth-of-type(2),
+  #resultsTable td:nth-of-type(3) {
+    order: 2;
+    margin: 0;
+    min-width: 0;
+    flex: 1 1 calc(50% - 10px);
+  }
+  #resultsTable td:nth-of-type(4) { // Actions
+    order: 3;
+    margin: 0;
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  #resultsTable td:nth-of-type(2) { // Spacing for Album
+    margin-left: 0;
+  }
+  #resultsTable td.actions-cell {
+    margin-top: 4px;
+    white-space: normal;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  #resultsTable td.actions-cell .actions-button-group {
+    max-width: 100%;
+    overflow: visible;
+  }
+  #resultsTable .btn-text {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #f1f3f5;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    font-size: 0.8em;
+    font-weight: 500;
+    color: var(--primary-hover);
+    transition: background-color 0.2s, color 0.2s;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    &:hover {
+      background-color: #e9ecef;
+      text-decoration: none;
+    }
+  }
+  .inline-ad-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  #resultsTable .inline-ad-row .inline-ad-cell {
+    width: 100%;
+  }
   a { padding: 7px 10px; }
   .fixed-bottom { padding-top: 10px; }
   .fixed-bottom p { font-size: 11px; padding: 4px 10px; }
-  .actions-button-group .download-button,
-  .actions-button-group .share-button,
-  .actions-button-group .download-button-new {
-    padding: 5px 8px; font-size: 11px;
-  }
   .artists-list ul {
     gap: 10px;
   }
@@ -167,21 +242,6 @@
   .terms-modal-btn {
     padding: 6px 10px;
     font-size: 0.98em;
-  }
-  .inline-ad-row td {
-    padding: 12px 0 !important;
-  }
-  .inline-ad-row a.inline-ad-link {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .inline-ad-row .inline-ad-icon {
-    display: none;
-  }
-  .inline-ad-row .inline-ad-cta {
-    margin-top: 8px;
-    align-self: flex-start;
   }
 }
 @media (max-width: 768px) and (min-width: 601px) {

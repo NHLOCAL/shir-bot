@@ -14,7 +14,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
         בשיר-בוט, המודעה שלכם לא נלחמת על תשומת לב. היא מקבלת במה מרכזית מול קהל שבוי של צעירים חרדים עם <strong>אינטרנט מסונן וטלפונים כשרים</strong> – קהל שאי אפשר להשיג בערוצים אחרים.
     </p>
     <div class="cta-button-wrapper">
-        <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
+        <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="btn btn-primary cta-button">
             אני רוצה להתחיל להגיע ללקוחות האלה
         </a>
     </div>
@@ -127,7 +127,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 			<div class="package-visual">
 				<img src="{{ site.baseurl }}/assets/images/ad-inline-example.png" alt="דוגמה למודעה משולבת ברשימת השירים" style="width:100%; border-radius: 6px;">
 			</div>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני מתחיל עם החבילה החכמה</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="btn btn-secondary package-cta">אני מתחיל עם החבילה החכמה</a>
         </div>
         <div class="package-card package-card--recommended">
             <span class="package-badge">הבחירה הפופולרית</span>
@@ -144,7 +144,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
 			<div class="package-visual">
 				<img src="{{ site.baseurl }}/assets/images/ad-banner-example.png" alt="דוגמה לבאנר פרסומי באתר שיר-בוט" style="width:100%; border-radius: 6px;">
 			</div>
-            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="package-cta">אני רוצה חשיפה מקסימלית</a>
+            <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="btn btn-primary package-cta">אני רוצה חשיפה מקסימלית</a>
         </div>
     </div>
 </div>
@@ -203,7 +203,7 @@ form_url: "https://docs.google.com/forms/d/e/1FAIpQLSeVvAKfHt5ZJA_fiGXgSFIp6CB1Z
     <p class="sub-headline">
        המחירים המיוחדים והאחריות המלאה מובטחים למספר מוגבל של מפרסמים. זו ההזדמנות שלכם להגיע לקהל ייחודי במחיר שלא יחזור.
     </p>
-    <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="cta-button">
+    <a href="{{ page.form_url }}" target="_blank" rel="noopener" class="btn btn-primary cta-button">
         שריינו לי את המקום במחיר השקה
     </a>
 </div>

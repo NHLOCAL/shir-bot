@@ -9,7 +9,7 @@ permalink: /site/pay/
   <input type="hidden" name="hosted_button_id" value="N6KTYQ528G7ZG" />
   <input type="hidden" name="currency_code" value="ILS" />
   <div class="button-container">
-    <button class="helpButton" style="padding: 20px; font-size: 30px; border-radius: 20px" type="submit">
+    <button class="btn btn-primary" style="padding: 20px; font-size: 30px; border-radius: 20px" type="submit">
       שלם עכשיו
     </button>
   </div>

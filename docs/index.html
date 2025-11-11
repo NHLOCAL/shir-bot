@@ -5,40 +5,44 @@ description: "גלו אמנים פופולריים ושירים חדשים במ�
 keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, סינגלים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים"
 ---
 <div id="homepage-content" class="content-area">
-  <div class="main-columns">
-      <div class="artists-column">
-          <a href="{{ site.baseurl }}/artists/" class="column-title-link">
-              <i class="fas fa-users"></i> אמנים בולטים
-          </a>
-          <div class="artists-grid" id="popular-artists-grid">
-              <div class="loading-placeholder">טוען אמנים...</div>
-          </div>
-      </div>
-      <div class="songs-column">
-          <a href="{{ site.baseurl }}/new-songs/" class="column-title-link">
-              <i class="fas fa-headphones-alt"></i> שירים אחרונים
-          </a>
-          <ul id="random-songs-list">
-              <li class="loading-placeholder">טוען שירים...</li>
-          </ul>
-      </div>
+  <div class="navigation-cards-container">
+    <a href="{{ site.baseurl }}/search/" class="nav-card">
+      <div class="nav-card-icon"><i class="fas fa-search"></i></div>
+      <h3 class="nav-card-title">חיפוש במאגר</h3>
+      <p class="nav-card-description">חפשו שיר, אמן או אלבום ספציפי במאגר הענק והמתעדכן שלנו.</p>
+    </a>
+    <a href="{{ site.baseurl }}/archive/" class="nav-card">
+      <div class="nav-card-icon"><i class="fas fa-archive"></i></div>
+      <h3 class="nav-card-title">ארכיון וחדשות</h3>
+      <p class="nav-card-description">גלו את כל השירים החדשים שהתווספו למאגר, מסודרים לפי חודש.</p>
+    </a>
+    <a href="{{ site.baseurl }}/artists/" class="nav-card">
+      <div class="nav-card-icon"><i class="fas fa-users"></i></div>
+      <h3 class="nav-card-title">כל האמנים</h3>
+      <p class="nav-card-description">דפדפו ברשימת האמנים המלאה ומצאו את כל השירים שלהם במקום אחד.</p>
+    </a>
   </div>
-  <div class="features-container">
+
+  <div class="ad-placeholder">
+      <h2>הצעות נוספות מהאתר ושותפים</h2>
+  </div>
+
+  <div class="promo-container">
     <div class="feature-item">
         <i class="fas fa-database feature-icon"></i>
         <h3>מאגר המוזיקה בדרייב</h3>
         <p>קבלו גישה למאות ג'יגה-בייט של מוזיקה יהודית, מכל הז'אנרים. כל השירים במקום אחד.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top" target="_blank" onclick="conversion_music_drive()" class="helpButton">אני רוצה גישה למאגר!</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScfzba0porXVkKOPQR2OhY2kevGLFoPvnAkjC-Cs6KLm5idLg/viewform?usp=pp_url&entry.1611797152=https://shir-bot.ze-kal.top" target="_blank" onclick="conversion_music_drive()" class="btn btn-primary">אני רוצה גישה למאגר!</a>
     </div>
     <div class="feature-item">
         <i class="fas fa-newspaper feature-icon"></i>
         <h3>הצטרפו לקבוצת מיוזיק סקופ!</h3>
         <p>רוצים להתעדכן בכל מה שחדש במוזיקה לפני כולם?<br>קבלו הצצות לאולפנים, חשיפות ראשוניות, סקופים בלעדיים וכל מה שעתיד לצאת...</p>
         <div class="feature-item-buttons">
-            <a href="#" class="helpButton dynamic-mailto-ad" data-email="125478music@gmail.com" data-subject="אשמח להצטרף הגעתי דרך שיר בוט" data-body="שלום, אשמח להצטרף לקבוצת העדכונים של מיוזיק סקופ. הגעתי דרך שיר בוט">
+            <a href="#" class="btn btn-secondary dynamic-mailto-ad" data-email="125478music@gmail.com" data-subject="אשמח להצטרף הגעתי דרך שיר בוט" data-body="שלום, אשמח להצטרף לקבוצת העדכונים של מיוזיק סקופ. הגעתי דרך שיר בוט">
                 <i class="fas fa-envelope"></i> שלחו בקשה להצטרפות
             </a>
-            <a href="https://did.li/h8dDN" target="_blank" rel="noopener" class="helpButton">
+            <a href="https://did.li/h8dDN" target="_blank" rel="noopener" class="btn btn-secondary">
                 <i class="fab fa-youtube"></i> לצפיה בתכנים קודמים
             </a>
         </div>
@@ -47,7 +51,7 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
         <i class="fas fa-envelope-open-text feature-icon"></i>
         <h3>הישארו מעודכנים</h3>
         <p>הצטרפו וקבלו עדכונים על תכונות חדשות, טיפים ובונוסים ייחודיים ישירות למייל.</p>
-        <a href="#" class="helpButton dynamic-mailto-ad"
+        <a href="#" class="btn btn-secondary dynamic-mailto-ad"
            data-email="shir-bot+subscribe@googlegroups.com"
            data-subject="צרף אותי לרשימת התפוצה של שיר-בוט"
            target="_blank">להרשמה וקבלת הטבות</a>
@@ -61,6 +65,7 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
             <span id="progressText"></span>
         </div>
     </div>
+    <h2 id="search-results-title" class="page-main-title" style="display: none;"></h2>
     <div id="resultsTable" class="custom-table">
         <table>
             <thead>

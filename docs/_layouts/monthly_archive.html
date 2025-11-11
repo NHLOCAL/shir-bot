@@ -1,17 +1,13 @@
 ---
 layout: default
 ---
+{% include breadcrumb.html %}
 <h2 class="page-main-title">{{ page.album_name }}</h2>
 <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; gap: 10px;">
   <a href="{{ site.baseurl }}/archive/"
-     class="hngn-link-button"
+     class="btn btn-secondary"
      title="חזרה לאינדקס הארכיון">
-    <i class="fas fa-archive"></i> ארכיון המוזיקה
-  </a>
-  <a href="{{ site.baseurl }}/new-songs/"
-     class="hngn-link-button"
-     title="מעבר לדף השירים החדשים">
-    <i class="fas fa-fire"></i> שירים חדשים
+    <i class="fas fa-archive"></i> כל הארכיון
   </a>
 </div>
 <div id="resultsTable" class="custom-table">
@@ -38,10 +34,10 @@ layout: default
           <tr data-song-serial="{{ song.serial | escape }}" data-drive-id="{{ song.driveId | escape }}">
             <td>{{ song.name }}</td>
             <td>
-                <button class="album-button" data-album-name="{{ song.album | escape }}" title="כל השירים מתוך {{ song.album }}">{{ song.album }}</button>
+                <button class="btn btn-text" data-album-name="{{ song.album | escape }}" title="כל השירים מתוך {{ song.album }}">{{ song.album }}</button>
             </td>
             <td>
-                <button class="singer-button" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button>
+                <button class="btn btn-text" data-singer-name="{{ song.singer | escape }}">{{ song.singer }}</button>
             </td>
             <td class="actions-cell">
               <div class="actions-button-group">

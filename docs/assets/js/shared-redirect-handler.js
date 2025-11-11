@@ -33,6 +33,8 @@ function updateDownloadLoadingMessage() {
 function restoreDownloadButton(songSerial) {
     const button = document.querySelector(`button.download-button[data-song-serial="${songSerial}"], button.download-button-new[data-song-serial="${songSerial}"]`);
     if (button && button.classList.contains('download-in-progress')) {
+        const row = button.closest('tr');
+        if (row) row.classList.remove('downloading');
         const originalIconHTML = button.dataset.originalIcon || '<i class="fas fa-download"></i>';
         button.innerHTML = originalIconHTML;
         button.disabled = false;
@@ -85,6 +87,8 @@ window.downloadSongWithDriveId = function(buttonElement) {
     if (buttonElement.disabled || buttonElement.classList.contains('download-in-progress')) {
         return;
     }
+    const row = buttonElement.closest('tr');
+    if (row) row.classList.add('downloading');
     buttonElement.disabled = true;
     buttonElement.classList.add('download-in-progress');
     buttonElement.dataset.originalIcon = buttonElement.innerHTML;
@@ -95,12 +99,74 @@ window.downloadSongWithDriveId = function(buttonElement) {
         processDownloadQueue();
     }
 };
-function handleHeaderSearchRedirect(event) {
-    const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-    if (isHomepage) {
-        event.preventDefault();
-        return;
+async function loadPageContent(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const newContent = doc.querySelector('.content');
+        const newTitle = doc.querySelector('title').textContent;
+        const newFiltersHTML = doc.querySelector('.filters-section')?.outerHTML || null;
+        return { content: newContent.innerHTML, title: newTitle, filtersHTML: newFiltersHTML };
+    } catch (e) {
+        console.error("Could not load page content:", e);
+        return null;
     }
+}
+function performDynamicSearch(searchTerm, searchBy, resetFilter = false) {
+    const isSearchContextPage = window.location.pathname === `${baseurl || ''}/search/` || window.location.pathname === `${baseurl || ''}/`;
+    const searchParams = new URLSearchParams();
+    searchParams.set('q', searchTerm);
+    searchParams.set('filter', searchBy);
+    if (resetFilter) {
+        searchParams.set('resetFilterTo', 'all');
+    }
+    const newUrl = `${baseurl || ''}/search/?${searchParams.toString()}`;
+    if (isSearchContextPage) {
+        history.pushState({ q: searchTerm, filter: searchBy, resetFilterTo: resetFilter ? 'all' : null }, '', newUrl);
+        if (typeof window.executeSearchFromState === 'function') {
+            window.executeSearchFromState();
+        } else {
+            console.error("executeSearchFromState not found on search page context.");
+            window.location.href = newUrl;
+        }
+    } else {
+        history.pushState({ q: searchTerm, filter: searchBy, resetFilterTo: resetFilter ? 'all' : null }, '', newUrl);
+        const contentArea = document.querySelector('.content');
+        if (contentArea) {
+            contentArea.innerHTML = `<div id="loadingMessage" class="loading-message show" style="position: static; transform: none; margin: 50px auto;">
+                <div class="progress-bar-container">
+                    <img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." />
+                    <span>טוען דף חיפוש...</span>
+                </div>
+            </div>`;
+        }
+        loadPageContent(`${baseurl || ''}/search/`).then(pageData => {
+            if (pageData && contentArea) {
+                document.title = `תוצאות חיפוש עבור "${searchTerm}"`;
+                contentArea.innerHTML = pageData.content;
+                const headerContentUnit = document.querySelector('.header-content-unit');
+                let filtersSection = headerContentUnit.querySelector('.filters-section');
+                if (filtersSection) filtersSection.remove();
+                if (pageData.filtersHTML) {
+                    headerContentUnit.insertAdjacentHTML('beforeend', pageData.filtersHTML);
+                }
+                if (typeof window.executeSearchFromState === 'function') {
+                    window.executeSearchFromState();
+                } else {
+                    console.error("executeSearchFromState not found after loading search page content.");
+                }
+            } else {
+                window.location.href = newUrl;
+            }
+        });
+    }
+}
+function handleHeaderSearchRedirect(event) {
     event.preventDefault();
     const searchForm = event.currentTarget;
     const searchInput = searchForm.querySelector('#searchInput');
@@ -111,8 +177,7 @@ function handleHeaderSearchRedirect(event) {
         searchBy = activeFilterButton.dataset.filter;
     }
     if (searchInputVal) {
-        const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchInputVal)}&searchBy=${encodeURIComponent(searchBy)}`;
-        window.location.href = redirectUrl;
+        performDynamicSearch(searchInputVal, searchBy);
     } else {
         searchInput?.focus();
     }
@@ -120,8 +185,14 @@ function handleHeaderSearchRedirect(event) {
 function handleTableClickActions(event) {
     const target = event.target;
     const button = target.closest('button');
-    if (!button || !button.closest('tbody.songs-list')) return;
+    if (!button) return;
     const row = button.closest('tr');
+    if (!row || !row.closest('tbody.songs-list')) {
+      if(button.dataset.albumName || button.dataset.singerName){
+      } else {
+          return;
+      }
+    }
     const songSerial = button.dataset.songSerial || (row ? row.dataset.songSerial : null);
     const driveId = button.dataset.driveId || (row ? row.dataset.driveId : null);
     const isDownloadButton = button.classList.contains('download-button') || button.classList.contains('download-button-new');
@@ -139,7 +210,7 @@ function handleTableClickActions(event) {
     if (button.classList.contains('share-button') && songSerial) {
         event.preventDefault();
         event.stopPropagation();
-        const shareLink = `${window.location.origin}${baseurl || ''}/?search=${encodeURIComponent(songSerial)}&searchBy=serial`;
+        const shareLink = `${window.location.origin}${baseurl || ''}/search/?q=${encodeURIComponent(songSerial)}&filter=serial`;
         if (typeof copyToClipboard === 'function') {
             const success = copyToClipboard(shareLink);
             if (success) {
@@ -162,22 +233,18 @@ function handleTableClickActions(event) {
         }
         return;
     }
-    if (button.classList.contains('album-button') || button.classList.contains('singer-button')) {
+    const albumName = button.dataset.albumName;
+    const singerName = button.dataset.singerName;
+    if (albumName) {
         event.preventDefault();
         event.stopPropagation();
-        const searchTerm = button.dataset.albumName || button.dataset.singerName || button.textContent.trim();
-        const searchType = button.classList.contains('album-button') ? 'album' : 'singer';
-        const isHomepage = window.location.pathname === (baseurl || '') + '/' || window.location.pathname === (baseurl || '') + '/index.html' || window.location.pathname === (baseurl || '');
-        if (searchTerm) {
-            if (isHomepage && typeof searchSongs === 'function' && typeof handleFilterClick === 'function' && document.getElementById('searchInput')) {
-                const searchInputGlobal = document.getElementById('searchInput');
-                searchInputGlobal.value = searchTerm;
-                searchSongs(searchTerm.toLowerCase(), searchType);
-            } else {
-                const redirectUrl = `${baseurl || ''}/?search=${encodeURIComponent(searchTerm)}&searchBy=${encodeURIComponent(searchType)}&resetFilterTo=all`;
-                window.location.href = redirectUrl;
-            }
-        }
+        performDynamicSearch(albumName, 'album', true);
+        return;
+    }
+    if (singerName) {
+        event.preventDefault();
+        event.stopPropagation();
+        performDynamicSearch(singerName, 'singer', true);
         return;
     }
 }

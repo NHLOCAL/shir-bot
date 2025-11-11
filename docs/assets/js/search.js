@@ -118,16 +118,20 @@ function displayDataLoadError() {
     }
 }
 window.executeSearchFromState = async function() {
+    const isSearchPage = window.location.pathname.startsWith((baseurl || '') + '/search/');
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
     const filter = urlParams.get('filter') || 'all';
     const resetFilterTo = urlParams.get('resetFilterTo');
     const resultsTable = document.getElementById('resultsTable');
     const searchResultsTitle = document.getElementById('search-results-title');
-    if (!query) {
+    if (!query && !isSearchPage) {
+        return;
+    }
+    if (!query && isSearchPage) {
         if (searchInput) searchInput.value = '';
-        if(resultsTable) resultsTable.style.display = 'none';
-        if(searchResultsTitle) searchResultsTitle.style.display = 'none';
+        if (resultsTable) resultsTable.style.display = 'none';
+        if (searchResultsTitle) searchResultsTitle.style.display = 'none';
         toggleSearchCtaButton(true);
         return;
     }

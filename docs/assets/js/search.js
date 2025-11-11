@@ -26,8 +26,6 @@ const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
 const MAX_HISTORY_ITEMS = 5;
-
-// --- Helper Functions ---
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -36,19 +34,15 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
-
 function showHomepageView() {
     if (homepageContent) homepageContent.style.display = 'block';
     if (searchResultsArea) searchResultsArea.style.display = 'none';
     if (searchResultsTitle) searchResultsTitle.style.display = 'none';
 }
-
 function showSearchResultsView() {
     if (homepageContent) homepageContent.style.display = 'none';
     if (searchResultsArea) searchResultsArea.style.display = 'block';
 }
-
-// --- History & Autocomplete ---
 function getSearchHistory() {
     try {
         const history = localStorage.getItem(SEARCH_HISTORY_KEY);
@@ -82,8 +76,6 @@ function prepareAutocompleteData(songs) {
     uniqueSongTitles = Array.from(songSet).sort((a, b) => a.localeCompare(b, 'he'));
     uniqueAlbumNames = Array.from(albumSet).sort((a, b) => a.localeCompare(b, 'he'));
 }
-
-// --- Data Loading ---
 function loadAllSongsData() {
     if (songsDataLoaded || isLoadingSongs) {
         return songsDataLoaded ? Promise.resolve(allSongs) : window.songsDataPromise;
@@ -118,7 +110,6 @@ function loadAllSongsData() {
     });
     return window.songsDataPromise;
 }
-
 function displayDataLoadError() {
     if (resultsTableBody) {
         const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
@@ -126,49 +117,38 @@ function displayDataLoadError() {
         if (resultsTableThead) resultsTableThead.style.display = "none";
     }
 }
-
-// --- Main Search Logic ---
 window.executeSearchFromState = async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
     const filter = urlParams.get('filter') || 'all';
     const resetFilterTo = urlParams.get('resetFilterTo');
-
     if (!query) {
         showHomepageView();
         if (searchInput) searchInput.value = '';
         return;
     }
-
     showSearchResultsView();
     if (searchInput) searchInput.value = query;
-
     if (searchResultsTitle) {
         searchResultsTitle.textContent = `תוצאות חיפוש עבור: "${query}"`;
         searchResultsTitle.style.display = 'block';
     }
-
     handleFilterClick(filter, false);
     await searchSongs(query, filter);
-    
     if (resetFilterTo === 'all') {
         handleFilterClick('all', false);
     }
 }
-
 async function searchSongs(query, searchBy) {
     saveSearchToHistory(query);
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-    
     if (!songsDataLoaded) {
         displayLoadingMessage(colspan, "טוען נתונים...");
         await window.songsDataPromise;
     }
-    
     displayLoadingMessage(colspan);
     performSearch(query, searchBy);
 }
-
 function performSearch(query, searchBy) {
     results = filterSongs(allSongs, query, searchBy);
     displayedResults = 0;
@@ -176,35 +156,27 @@ function performSearch(query, searchBy) {
     displayedResults = initialResultsToShow.length;
     displayResults(initialResultsToShow, false);
 }
-
-// --- DOM Manipulation & Display ---
 function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     if (!resultsTableBody) return;
     resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;"><div class="loading-container"><img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." class="loading-image"><p class="loading-text">${text}</p></div></td></tr>`;
     if (resultsTableThead) resultsTableThead.style.display = "none";
     if (loadMoreButton) loadMoreButton.style.display = 'none';
 }
-
 function displayResults(resultsToDisplay, append = false) {
     if (!resultsTableBody) return;
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-
     if (!append) {
         resultsTableBody.innerHTML = '';
         if (resultsTable) resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-
     if (resultsToDisplay.length === 0 && !append) {
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">לא נמצאו תוצאות.</td></tr>`;
         if (resultsTableThead) resultsTableThead.style.display = "none";
         toggleLoadMoreButton();
         return;
     }
-
     if (resultsTableThead) resultsTableThead.style.display = "";
-    
     const frag = document.createDocumentFragment();
-    // ... (rest of the displayResults logic remains the same)
     const adsEnabled = typeof inlineAdsConfig !== 'undefined' && inlineAdsConfig.enabled;
     const adFrequency = adsEnabled ? inlineAdsConfig.frequency : 0;
     const adsList = adsEnabled ? inlineAdsConfig.ads_list : [];
@@ -236,9 +208,9 @@ function displayResults(resultsToDisplay, append = false) {
         r.dataset.songSerial = s.serial; r.dataset.driveId = s.driveId;
         const nC = document.createElement('td'); nC.textContent = s.name; r.appendChild(nC);
         const alC = document.createElement('td');
-        const alB = document.createElement('button'); alB.textContent = s.album; alB.className = 'album-button'; alB.dataset.albumName = s.album; alB.title = `חפש אלבום: ${s.album}`; alC.appendChild(alB); r.appendChild(alC);
+        const alB = document.createElement('button'); alB.textContent = s.album; alB.className = 'btn btn-text'; alB.dataset.albumName = s.album; alB.title = `חפש אלבום: ${s.album}`; alC.appendChild(alB); r.appendChild(alC);
         const siC = document.createElement('td');
-        const siB = document.createElement('button'); siB.textContent = s.singer; siB.className = 'singer-button'; siB.dataset.singerName = s.singer; siB.title = `חפש זמר: ${s.singer}`; siC.appendChild(siB); r.appendChild(siC);
+        const siB = document.createElement('button'); siB.textContent = s.singer; siB.className = 'btn btn-text'; siB.dataset.singerName = s.singer; siB.title = `חפש זמר: ${s.singer}`; siC.appendChild(siB); r.appendChild(siC);
         const acC = document.createElement('td'); acC.className = 'actions-cell';
         acC.innerHTML = `<div class="actions-button-group"><button class="download-button" data-song-serial="${s.serial}" data-drive-id="${s.driveId}" title="הורדה"><i class="fas fa-download"></i></button><button class="share-button" data-song-serial="${s.serial}" title="שיתוף"><i class="fas fa-share-alt"></i></button></div>`;
         r.appendChild(acC);
@@ -247,16 +219,16 @@ function displayResults(resultsToDisplay, append = false) {
     resultsTableBody.appendChild(frag);
     toggleLoadMoreButton();
 }
-
 // --- Event Handlers & Initialization ---
 const debouncedHandleAutocomplete = debounce(handleAutocompleteInput, 250);
-
 document.addEventListener('DOMContentLoaded', () => {
+    if (loadMoreButton) {
+        loadMoreButton.classList.add('btn', 'btn-secondary');
+    }
     loadAllSongsData().then(() => {
         // Initial page load handling
         executeSearchFromState();
     });
-
     if (searchInput) {
         searchInput.addEventListener('input', () => {
              userIsTyping = true;
@@ -267,21 +239,17 @@ document.addEventListener('DOMContentLoaded', () => {
         searchInput.addEventListener('click', () => { if (searchInput.value.trim().length === 0) renderHistorySuggestions(); });
         searchInput.addEventListener('blur', () => { setTimeout(hideAutocompleteSuggestions, 150); });
     }
-    
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const newFilter = button.dataset.filter;
             handleFilterClick(newFilter, true);
         });
     });
-
     if (loadMoreButton) loadMoreButton.addEventListener('click', loadMoreResults);
-    
     window.addEventListener('popstate', (event) => {
         // Handle browser back/forward buttons
         executeSearchFromState();
     });
-
     if (suggestionsContainer) {
         suggestionsContainer.addEventListener('mousedown', (event) => {
             const item = event.target.closest('.autocomplete-suggestion-item');
@@ -296,15 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-// The rest of the functions (filterSongs, loadMoreResults, toggleLoadMoreButton, autocomplete functions, handleFilterClick) remain largely the same as the previous version.
-// The key is that they are now called by `executeSearchFromState` rather than a mix of page load and form submission logic.
 function handleFilterClick(filter, triggeredByUserClick = false) {
     if (!filter) return;
     activeFilter = filter;
     filterButtons.forEach(btn => btn.classList.remove('active'));
     const activeButton = document.querySelector(`.filter-button[data-filter="${filter}"]`);
     if (activeButton) activeButton.classList.add('active');
-    
     if (triggeredByUserClick) {
         if (searchForm) searchForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
     }
@@ -364,7 +329,6 @@ function handleAutocompleteInput(query) {
     let suggestions = [];
     const poolMap = { singer: uniqueArtistNames, name: uniqueSongTitles, album: uniqueAlbumNames };
     const pools = activeFilter === 'all' ? [uniqueArtistNames, uniqueSongTitles, uniqueAlbumNames] : [poolMap[activeFilter] || []];
-    
     for (const pool of pools) {
         if (suggestions.length >= MAX_AUTOCOMPLETE_SUGGESTIONS) break;
         for (const item of pool) {

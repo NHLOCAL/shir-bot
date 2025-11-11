@@ -299,54 +299,62 @@ td {
   border-radius: 8px;
   margin-top: 10px;
 }
-.helpButton {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 20px;
   font-family: var(--font-base);
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 13px;
-  padding: 8px 20px;
-  background-color: var(--white);
-  color: var(--primary-color);
-  border-radius: 24px;
-  border: 1px solid var(--primary-color);
+  font-weight: 600;
+  font-size: 1em;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+  line-height: 1.4;
 }
-.helpButton:hover {
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+.btn-primary {
+  background-color: var(--primary-color);
   color: var(--white);
-  background-color: var(--primary-hover);
+  border-color: var(--primary-color);
 }
-.hngn-link-button {
-  display: inline-block;
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: var(--white);
+}
+.btn-secondary {
   background-color: rgba(126, 87, 194, 0.08);
   color: var(--primary-hover);
-  border: 1px solid rgba(126, 87, 194, 0.25);
-  padding: 7px 16px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-size: 0.9em;
-  font-family: var(--font-base);
-  font-weight: 500;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  text-align: center;
-  cursor: pointer;
+  border-color: rgba(126, 87, 194, 0.25);
 }
-.hngn-link-button:hover,
-.hngn-link-button:focus {
-  background-color: rgba(126, 87, 194, 0.12);
+.btn-secondary:hover {
+  background-color: rgba(126, 87, 194, 0.15);
   color: var(--primary-color);
   border-color: rgba(126, 87, 194, 0.4);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  text-decoration: none;
-  outline: none;
 }
-.hngn-link-button i.fa-external-link-alt {
-  margin-left: 6px;
-  font-size: 0.8em;
-  vertical-align: middle;
+.btn-text {
+  background: rgba(126, 87, 194, 0.08);
+  border: 1px solid rgba(126, 87, 194, 0.15);
+  padding: 3px 10px;
+  font-size: 0.9em;
+  color: var(--primary-hover);
+  border-radius: 20px;
+  font-weight: 400;
+}
+.btn-text:hover {
+  background-color: rgba(126, 87, 194, 0.15);
+  color: var(--primary-color);
+  border-color: rgba(126, 87, 194, 0.3);
+  box-shadow: none;
+  transform: none;
 }
 @keyframes shimmer {
   0% {
@@ -404,57 +412,9 @@ td {
 #loadMoreButton {
   display: none;
   margin: 25px auto;
-  padding: 10px 25px;
-  font-family: var(--font-base);
-  font-size: 0.95em;
-  font-weight: 500;
-  color: var(--primary-hover);
-  background-color: rgba(126, 87, 194, 0.1);
-  border: 1px solid rgba(126, 87, 194, 0.25);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-shadow: none;
 }
 #loadMoreButton.show {
   display: block;
-}
-#loadMoreButton:hover,
-#loadMoreButton:focus {
-  color: var(--white);
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  box-shadow: 0 3px 6px rgba(126, 87, 194, 0.2);
-  transform: translateY(-2px);
-  outline: none;
-}
-.album-button,
-.singer-button {
-  display: inline-block;
-  background: rgba(126, 87, 194, 0.08);
-  border: 1px solid rgba(126, 87, 194, 0.15);
-  padding: 3px 10px;
-  font-size: 0.9em;
-  font-family: inherit;
-  color: var(--primary-hover);
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-align: center;
-  line-height: 1.4;
-  font-weight: 400;
-  text-decoration: none;
-}
-.album-button:hover,
-.singer-button:hover,
-.album-button:focus,
-.singer-button:focus {
-  background-color: rgba(126, 87, 194, 0.15);
-  color: var(--primary-color);
-  border-color: rgba(126, 87, 194, 0.3);
-  box-shadow: none;
-  text-decoration: none;
-  outline: none;
 }
 #prevSection, #nextSection {
   position: fixed;

@@ -128,86 +128,101 @@
   }
   .constrained-content-area > #resultsTable { margin-top: 0; }
 
+  // =======================================================
+  // == START: New Mobile Song Card Styles (The Upgrade!) ==
+  // =======================================================
+
   #resultsTable {
     margin-top: 0 !important;
-    max-height: none;
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    overflow-x: hidden;
     padding: 0;
+    max-height: none; // Unset previous height constraint
   }
+
+  // We no longer need the table header on mobile
   #resultsTable thead {
     display: none;
   }
-  #resultsTable table,
-  #resultsTable tbody,
-  #resultsTable tr,
-  #resultsTable td {
-    display: block;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
+
+  // The <tr> is now the main card container
   #resultsTable tr:not(.inline-ad-row) {
-    margin-bottom: 1rem;
-    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    padding: 0.5rem;
+    border-radius: 8px;
     background: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
+
+  // Reset all table cells
   #resultsTable td {
-    border: none;
-    padding: 8px;
-    padding-right: 110px;
-    position: relative;
-    text-align: left;
-    word-break: break-word;
-    font-size: 14px;
-  }
-  #resultsTable td::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 8px;
-    width: 90px;
-    text-align: right;
-    font-weight: 600;
-    color: var(--primary-hover);
-    font-size: 13px;
-  }
-  #resultsTable td:nth-of-type(1)::before { content: "שם השיר"; }
-  #resultsTable td:nth-of-type(2)::before { content: "אלבום"; }
-  #resultsTable td:nth-of-type(3)::before { content: "זמר"; }
-  #resultsTable td:nth-of-type(4)::before { content: "פעולות"; }
-  #resultsTable td.actions-cell {
-    text-align: center;
-    padding-right: 8px;
-  }
-  #resultsTable td.actions-cell::before {
-    display: none;
-  }
-  th, td { font-size: 14px; padding: 8px; }
-  .inline-ad-row,
-  .inline-ad-row td {
     display: block;
-    width: 100% !important;
-  }
-  .inline-ad-row {
-    background: transparent;
+    width: auto;
     border: none;
-    box-shadow: none;
     padding: 0;
+    position: static;
+    text-align: right; // Set default text align for RTL
   }
+
+  // Remove the old pseudo-element labels
+  #resultsTable td::before {
+    content: none;
+  }
+
+  // --- Row 1: Song Title ---
+  #resultsTable td:nth-of-type(1) {
+    flex-basis: 100%; // Takes the full width of the top row
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 5px; // Space from the action buttons
+  }
+
+  // --- Row 2: Metadata (Album & Singer) and Actions ---
+  // We'll group Album and Singer together visually
+  #resultsTable td:nth-of-type(2),
+  #resultsTable td:nth-of-type(3) {
+    display: inline-flex; // Puts them side-by-side
+    align-items: center;
+    font-size: 0.85em;
+    color: #555;
+    margin-left: 12px; // Space between them
+
+    // Remove the buttons, just show text with icons
+    .btn-text {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      color: inherit;
+      font-weight: 400;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // --- Row 2 Right Side: Actions ---
+  #resultsTable td:nth-of-type(4) {
+    margin-right: auto; // Pushes it to the far left (in RTL)
+  }
+  .actions-button-group {
+    border-radius: 20px; // Modern rounded buttons
+  }
+
+  // =====================================================
+  // == END: New Mobile Song Card Styles                ==
+  // =====================================================
+
   a { padding: 7px 10px; }
   .fixed-bottom { padding-top: 10px; }
   .fixed-bottom p { font-size: 11px; padding: 4px 10px; }
-  .actions-button-group .download-button,
-  .actions-button-group .share-button,
-  .actions-button-group .download-button-new {
-    padding: 5px 8px; font-size: 11px;
-  }
+
   .artists-list ul {
     gap: 10px;
   }

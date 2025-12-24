@@ -33,7 +33,9 @@ TOKEN_FILE = SCRIPT_DIR / "token.json"
 CLIENT_SECRET_FILE = SCRIPT_DIR / 'client_secret_auth.json'
 
 # --- Google Drive IDs ---
-SOURCE_FOLDER_ID = "1VL6ljwqFVLVgLpUWp6T-ea7_h2Nq7EDr" # Public source folder
+# תיקית מקור חלופית
+# "1VL6ljwqFVLVgLpUWp6T-ea7_h2Nq7EDr"
+SOURCE_FOLDER_ID = "1rSmPFwZcFsobxBuS4aT1_ysYtiVnvBiG" # Public source folder
 TARGET_BASE_FOLDER_ID = "1Rh2QafUuSjb4inShuqXwpHmh_V5HlJac" # Private target base folder
 
 # --- Google API ---

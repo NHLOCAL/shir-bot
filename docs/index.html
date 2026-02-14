@@ -6,42 +6,50 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
 ---
 <div id="homepage-content" class="content-area">
   
-  {% comment %} --- UX LOGIC: Fetch the latest album from the generator settings --- {% endcomment %}
+  {% comment %} --- UX LOGIC: Fetch the latest album for the primary action --- {% endcomment %}
   {% assign archive_settings = site.data.generated_archive_settings %}
   {% assign latest_album = archive_settings.archive_albums_list | last %}
 
   <div class="navigation-cards-container">
+    
+    <!-- Card 1: Search -->
     <a href="{{ site.baseurl }}/search/" class="nav-card">
       <div class="nav-card-icon"><i class="fas fa-search"></i></div>
       <h3 class="nav-card-title">חיפוש במאגר</h3>
-      <p class="nav-card-description">חפשו שיר, אמן או אלבום ספציפי במאגר הענק והמתעדכן שלנו.</p>
+      <p class="nav-card-description">חפשו שיר, אמן או אלבום ספציפי במאגר.</p>
     </a>
 
-    {% comment %} --- UX IMPROVEMENT: Dynamic "Newest" Card instead of generic Archive --- {% endcomment %}
-    {% if latest_album %}
-    <a href="{{ site.baseurl }}{{ latest_album.url }}" class="nav-card featured-card">
-      <div class="nav-card-icon"><i class="fas fa-fire"></i></div>
-      <h3 class="nav-card-title">החדשים של {{ latest_album.name }}</h3>
-      <p class="nav-card-description">לחצו כאן להאזנה והורדה של כל הלהיטים שיצאו בחודש האחרון.</p>
-    </a>
-    {% else %}
-    <a href="{{ site.baseurl }}/archive/" class="nav-card">
-      <div class="nav-card-icon"><i class="fas fa-archive"></i></div>
-      <h3 class="nav-card-title">ארכיון וחדשות</h3>
-      <p class="nav-card-description">גלו את כל השירים החדשים שהתווספו למאגר, מסודרים לפי חודש.</p>
-    </a>
-    {% endif %}
+    <!-- Card 2: The Music Hub (Split Action Card) -->
+    <div class="nav-card-hub">
+      {% if latest_album %}
+        <!-- Primary Action: Newest Month -->
+        <a href="{{ site.baseurl }}{{ latest_album.url }}" class="hub-main-action">
+          <div class="hub-badge">חדש באתר!</div>
+          <div class="hub-icon"><i class="fas fa-fire-alt"></i></div>
+          <h3 class="hub-title">{{ latest_album.name }}</h3>
+          <span class="hub-cta">האזינו ללהיטים האחרונים &larr;</span>
+        </a>
+        <!-- Secondary Action: Full Archive -->
+        <a href="{{ site.baseurl }}/archive/" class="hub-footer-action">
+          <span>מחפשים שירים ישנים יותר?</span>
+          <strong>למעבר לארכיון המלא <i class="fas fa-history"></i></strong>
+        </a>
+      {% else %}
+        <!-- Fallback if no new songs exist -->
+        <a href="{{ site.baseurl }}/archive/" class="hub-main-action full-height">
+          <div class="hub-icon"><i class="fas fa-archive"></i></div>
+          <h3 class="hub-title">ארכיון וחדשות</h3>
+          <p class="nav-card-description">גלו את כל השירים החדשים שהתווספו למאגר.</p>
+        </a>
+      {% endif %}
+    </div>
 
+    <!-- Card 3: Artists -->
     <a href="{{ site.baseurl }}/artists/" class="nav-card">
       <div class="nav-card-icon"><i class="fas fa-users"></i></div>
       <h3 class="nav-card-title">כל האמנים</h3>
-      <p class="nav-card-description">דפדפו ברשימת האמנים המלאה ומצאו את כל השירים שלהם במקום אחד.</p>
+      <p class="nav-card-description">אינדקס האמנים המלא של שיר-בוט.</p>
     </a>
-  </div>
-
-  {% comment %} --- UX: Secondary link to full archive if they didn't want the latest month --- {% endcomment %}
-  <div style="text-align: center; margin-bottom: 30px;">
-      <a href="{{ site.baseurl }}/archive/" style="font-size: 0.9em; color: #777; text-decoration: underline;">למעבר לארכיון המלא (חודשים קודמים)</a>
   </div>
 
   <div class="ad-placeholder">

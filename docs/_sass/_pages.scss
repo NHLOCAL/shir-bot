@@ -239,6 +239,7 @@ a.artist-circle:hover {
   gap: 20px;
   margin-bottom: 40px;
 }
+/* Default Nav Card */
 .nav-card {
   display: flex;
   flex-direction: column;
@@ -252,21 +253,11 @@ a.artist-circle:hover {
   color: inherit;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  height: 100%; /* Ensure full height in grid */
 }
 .nav-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(126, 87, 194, 0.1);
-}
-/* Style specifically for the "Newest/Featured" card */
-.nav-card.featured-card {
-  border: 2px solid var(--primary-color);
-  background-color: #F8F5FD; /* Very light purple tint */
-}
-.nav-card.featured-card .nav-card-icon {
-  color: #FF5722; /* Use an accent color like Orange for "New/Fire" */
-}
-.nav-card.featured-card:hover {
-  box-shadow: 0 10px 25px rgba(126, 87, 194, 0.2);
 }
 .nav-card-icon {
   font-size: 2.5em;
@@ -283,4 +274,102 @@ a.artist-circle:hover {
   color: #555;
   line-height: 1.6;
   margin: 0;
+}
+/* --- SPECIAL HUB CARD (New Songs) --- */
+.nav-card-hub {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 2px solid var(--primary-color); /* Highlight color */
+  border-radius: 16px;
+  overflow: hidden; /* For inner borders */
+  box-shadow: 0 6px 15px rgba(126, 87, 194, 0.15);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
+}
+.nav-card-hub:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(126, 87, 194, 0.25);
+}
+.hub-main-action {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 25px 20px;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(to bottom, #fff, #f9f7fd);
+  position: relative;
+  transition: background-color 0.2s;
+}
+.hub-main-action:hover {
+  background: #f3effa;
+}
+.hub-main-action.full-height {
+  justify-content: center;
+}
+.hub-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #FF5722; /* Warning/Action color */
+  color: white;
+  font-size: 0.75em;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.hub-icon {
+  font-size: 2.8em;
+  color: #FF5722; /* Distinct from regular purple */
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 6px rgba(255, 87, 34, 0.2));
+}
+.hub-title {
+  font-size: 1.6em;
+  color: var(--primary-hover);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+.hub-cta {
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.hub-main-action:hover .hub-cta {
+  border-color: var(--primary-color);
+}
+.hub-footer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f3f5;
+  padding: 12px 10px;
+  border-top: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.85em;
+  transition: background-color 0.2s, color 0.2s;
+  line-height: 1.4;
+}
+.hub-footer-action:hover {
+  background-color: #e9ecef;
+  color: var(--primary-hover);
+}
+.hub-footer-action span {
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+.hub-footer-action strong {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

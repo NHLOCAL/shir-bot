@@ -5,17 +5,33 @@ description: "גלו אמנים פופולריים ושירים חדשים במ�
 keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שירים חסידיים, סינגלים, אמנים חרדיים, מוזיקה בדרייב, מאגר שירים, חיפוש שירים, זמרים חרדיים, אברהם פריד, יעקב שוואקי, ישי ריבו, חנן בן ארי, נפתלי קמפה, שירים חדשים"
 ---
 <div id="homepage-content" class="content-area">
+  
+  {% comment %} --- UX LOGIC: Fetch the latest album from the generator settings --- {% endcomment %}
+  {% assign archive_settings = site.data.generated_archive_settings %}
+  {% assign latest_album = archive_settings.archive_albums_list | last %}
+
   <div class="navigation-cards-container">
     <a href="{{ site.baseurl }}/search/" class="nav-card">
       <div class="nav-card-icon"><i class="fas fa-search"></i></div>
       <h3 class="nav-card-title">חיפוש במאגר</h3>
       <p class="nav-card-description">חפשו שיר, אמן או אלבום ספציפי במאגר הענק והמתעדכן שלנו.</p>
     </a>
+
+    {% comment %} --- UX IMPROVEMENT: Dynamic "Newest" Card instead of generic Archive --- {% endcomment %}
+    {% if latest_album %}
+    <a href="{{ site.baseurl }}{{ latest_album.url }}" class="nav-card featured-card">
+      <div class="nav-card-icon"><i class="fas fa-fire"></i></div>
+      <h3 class="nav-card-title">החדשים של {{ latest_album.name }}</h3>
+      <p class="nav-card-description">לחצו כאן להאזנה והורדה של כל הלהיטים שיצאו בחודש האחרון.</p>
+    </a>
+    {% else %}
     <a href="{{ site.baseurl }}/archive/" class="nav-card">
       <div class="nav-card-icon"><i class="fas fa-archive"></i></div>
       <h3 class="nav-card-title">ארכיון וחדשות</h3>
       <p class="nav-card-description">גלו את כל השירים החדשים שהתווספו למאגר, מסודרים לפי חודש.</p>
     </a>
+    {% endif %}
+
     <a href="{{ site.baseurl }}/artists/" class="nav-card">
       <div class="nav-card-icon"><i class="fas fa-users"></i></div>
       <h3 class="nav-card-title">כל האמנים</h3>
@@ -23,10 +39,14 @@ keywords: "שיר-בוט, מוזיקה יהודית, הורדת שירים, שי
     </a>
   </div>
 
+  {% comment %} --- UX: Secondary link to full archive if they didn't want the latest month --- {% endcomment %}
+  <div style="text-align: center; margin-bottom: 30px;">
+      <a href="{{ site.baseurl }}/archive/" style="font-size: 0.9em; color: #777; text-decoration: underline;">למעבר לארכיון המלא (חודשים קודמים)</a>
+  </div>
+
   <div class="ad-placeholder">
       <h2>הצעות נוספות מהאתר ושותפים</h2>
   </div>
-
   <div class="promo-container">
     <div class="feature-item">
         <i class="fas fa-database feature-icon"></i>

@@ -66,14 +66,8 @@ module Jekyll
       puts "ArtistPageGenerator: Grouped songs into #{singers.size} artist groups."
       target_dir_base = 'artists'
       generated_count = 0
-      skipped_word_count = 0
       singers.each do |singer_name, songs|
         next if singer_name.nil? || singer_name.strip.empty?
-        word_count = singer_name.split.length
-        if word_count > 3
-          skipped_word_count += 1
-          next
-        end
         safe_singer_slug = create_slug(singer_name)
         next if safe_singer_slug.nil? || safe_singer_slug.strip.empty?
         artist_output_dir = File.join(target_dir_base, safe_singer_slug)
@@ -99,7 +93,6 @@ module Jekyll
         generated_count += 1
       end
       puts "ArtistPageGenerator: Finished generation. Generated #{generated_count} artist pages."
-      puts "ArtistPageGenerator: Skipped #{skipped_word_count} artists due to word count > 3."
     end
     private
     def create_slug(text)

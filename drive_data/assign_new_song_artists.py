@@ -14,6 +14,8 @@ DEFAULT_SINGER_LIST_CANDIDATES = [
 ]
 SERIAL_MARKER_REGEX = re.compile(r"\[SN(?P<serial>\d+)\](?:_\d+)?$", re.IGNORECASE)
 INVALID_FILENAME_CHARS_REGEX = re.compile(r'[<>:"/\\|?*]')
+BIDI_MARKS_REGEX = re.compile(r"[\u200e\u200f\u202a-\u202e\u2066-\u2069]")
+SEPARATOR_REGEX = re.compile(r"\s*(?:,|&|/| feat\.?| ft\.?| x )\s*", re.IGNORECASE)
 
 
 def sanitize_filename_component(text: str, max_length: int = 170) -> str:
@@ -22,6 +24,13 @@ def sanitize_filename_component(text: str, max_length: int = 170) -> str:
     if not cleaned:
         cleaned = "song"
     return cleaned[:max_length]
+
+
+def normalize_text(value: str) -> str:
+    text = value or ""
+    text = BIDI_MARKS_REGEX.sub("", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
 def parse_args() -> argparse.Namespace:
@@ -105,7 +114,7 @@ def resolve_singer_list_txt_path(candidate: str) -> Path:
     )
 
 
-def build_sorter_singer_csv(temp_work_dir: Path, singer_list_txt: Path) -> None:
+def build_sorter_singer_csv(temp_work_dir: Path, singer_list_txt: Path) -> list[str]:
     app_dir = temp_work_dir / "app"
     app_dir.mkdir(parents=True, exist_ok=True)
     singer_csv_path = app_dir / "singer-list.csv"
@@ -129,6 +138,43 @@ def build_sorter_singer_csv(temp_work_dir: Path, singer_list_txt: Path) -> None:
         writer = csv.writer(csv_handle)
         for name in unique_names:
             writer.writerow([name, name])
+
+    return unique_names
+
+
+def infer_singer_from_song_name(song_name: str, singer_names: list[str]) -> str | None:
+    if not song_name:
+        return None
+
+    normalized_song = normalize_text(song_name)
+    if not normalized_song:
+        return None
+
+    left_side = normalized_song.split(" - ", 1)[0].strip() if " - " in normalized_song else normalized_song
+    left_primary = SEPARATOR_REGEX.split(left_side, maxsplit=1)[0].strip()
+
+    candidates = []
+    for name in singer_names:
+        normalized_name = normalize_text(name)
+        if not normalized_name:
+            continue
+        pos_song = normalized_song.find(normalized_name)
+        pos_left = left_side.find(normalized_name)
+        if pos_song >= 0:
+            candidates.append((0, -len(normalized_name), pos_song, normalized_name))
+        elif pos_left >= 0:
+            candidates.append((1, -len(normalized_name), pos_left, normalized_name))
+
+    if candidates:
+        candidates.sort()
+        return candidates[0][3]
+
+    if left_primary:
+        word_count = len(left_primary.split())
+        if 1 <= word_count <= 8 and left_primary not in DEFAULT_PLACEHOLDER_SINGERS:
+            return left_primary
+
+    return None
 
 
 def build_source_files(
@@ -264,7 +310,7 @@ def main() -> int:
         target_dir = temp_dir / "target"
         source_dir.mkdir(parents=True, exist_ok=True)
         target_dir.mkdir(parents=True, exist_ok=True)
-        build_sorter_singer_csv(temp_dir, singer_list_txt)
+        singer_names = build_sorter_singer_csv(temp_dir, singer_list_txt)
 
         serial_to_row_index, rows_targeted = build_source_files(rows, source_dir, placeholder_values)
         if rows_targeted == 0:
@@ -283,21 +329,38 @@ def main() -> int:
         artist_by_serial = collect_artist_by_serial(target_dir)
 
         updated_rows = 0
+        fallback_updated_rows = 0
         for serial, artist in artist_by_serial.items():
             index = serial_to_row_index.get(serial)
             if index is None:
                 continue
-            current_value = (rows[index].get("Singer") or "").strip()
+            current_value = normalize_text(rows[index].get("Singer") or "")
             if current_value != artist:
                 rows[index]["Singer"] = artist
                 updated_rows += 1
+
+        for serial, index in serial_to_row_index.items():
+            current_value = normalize_text(rows[index].get("Singer") or "")
+            if current_value and current_value not in DEFAULT_PLACEHOLDER_SINGERS:
+                continue
+
+            song_name = normalize_text(rows[index].get("Song Name") or "")
+            inferred = infer_singer_from_song_name(song_name, singer_names)
+            if not inferred:
+                continue
+
+            if current_value != inferred:
+                rows[index]["Singer"] = inferred
+                updated_rows += 1
+                fallback_updated_rows += 1
 
     if updated_rows > 0:
         write_rows(csv_path, rows, fieldnames)
 
     print(
         "Artist assignment completed: "
-        f"targeted={rows_targeted}, assigned={len(artist_by_serial)}, updated={updated_rows}"
+        f"targeted={rows_targeted}, assigned={len(artist_by_serial)}, "
+        f"fallback_updated={fallback_updated_rows}, updated={updated_rows}"
     )
     return 0
 

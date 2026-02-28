@@ -1,7 +1,9 @@
 let allSongs = [];
 let allArtists = [];
+let allDateEntries = [];
 let results = [];
 let artistResults = [];
+let dateResults = [];
 let displayedResults = 0;
 let showSinglesOnly = true;
 let activeFilter = 'all';
@@ -9,6 +11,8 @@ let isLoadingSongs = false;
 let songsDataLoaded = false;
 let isLoadingArtists = false;
 let artistsDataLoaded = false;
+let isLoadingDateEntries = false;
+let dateEntriesLoaded = false;
 let userIsTyping = false;
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -18,6 +22,7 @@ const ctaFocusSearchBtn = document.getElementById('cta-focus-search-btn');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
 const MAX_ARTIST_RESULTS_DISPLAY = 8;
+const MAX_DATE_RESULTS_DISPLAY = 8;
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
 const MAX_HISTORY_ITEMS = 5;
 function debounce(func, wait) {
@@ -127,6 +132,68 @@ function displayArtistResults(artistsToDisplay, query = '') {
     }
     container.style.display = 'block';
 }
+function getDateResultElements() {
+    return {
+        container: document.getElementById('dateResultsContainer'),
+        list: document.getElementById('dateResultsList'),
+        count: document.getElementById('dateResultsCount')
+    };
+}
+function hideDateResults() {
+    const { container, list, count } = getDateResultElements();
+    if (container) container.style.display = 'none';
+    if (list) list.innerHTML = '';
+    if (count) count.textContent = '';
+}
+function displayDateResults(entriesToDisplay, query = '') {
+    const { container, list, count } = getDateResultElements();
+    if (!container || !list) return;
+    if (!entriesToDisplay.length) {
+        hideDateResults();
+        return;
+    }
+    const lowerQuery = query.toLowerCase();
+    const fragment = document.createDocumentFragment();
+    entriesToDisplay.forEach(entry => {
+        const link = document.createElement('a');
+        const isNewsEntry = entry.source === 'news';
+        const sourceLabel = isNewsEntry ? 'חדשות' : 'ארכיון';
+        const sourceClass = isNewsEntry ? 'date-result-badge--news' : 'date-result-badge--archive';
+        link.className = 'date-result-item';
+        link.href = entry.url;
+        link.title = `מעבר ל${sourceLabel}: ${entry.name}`;
+        link.innerHTML = `
+            <span class="date-result-icon" aria-hidden="true"><i class="fas fa-calendar-alt"></i></span>
+            <span class="date-result-name">${highlightMatch(entry.name, lowerQuery)}</span>
+            <span class="date-result-badge ${sourceClass}">${sourceLabel}</span>
+        `;
+        fragment.appendChild(link);
+    });
+    list.innerHTML = '';
+    list.appendChild(fragment);
+    if (count) {
+        count.textContent = entriesToDisplay.length === 1
+            ? 'תאריך תואם אחד'
+            : `${entriesToDisplay.length} תאריכים תואמים`;
+    }
+    container.style.display = 'block';
+}
+function extractArchiveDateEntriesFromHtml(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const links = Array.from(doc.querySelectorAll('.archive-year-group ul li a, .artists-list ul li a'));
+    const uniqueMap = new Map();
+    links.forEach(link => {
+        const name = link.textContent ? link.textContent.trim() : '';
+        const url = link.getAttribute('href') ? link.getAttribute('href').trim() : '';
+        if (!name || !url) return;
+        const key = name.toLowerCase();
+        if (!uniqueMap.has(key)) {
+            uniqueMap.set(key, { name, url, source: 'archive' });
+        }
+    });
+    return Array.from(uniqueMap.values());
+}
 function loadArtistsData() {
     if (artistsDataLoaded || isLoadingArtists) {
         return artistsDataLoaded ? Promise.resolve(allArtists) : window.artistsDataPromise;
@@ -168,6 +235,37 @@ function loadArtistsData() {
         });
     return window.artistsDataPromise;
 }
+function loadDateEntriesData() {
+    if (dateEntriesLoaded || isLoadingDateEntries) {
+        return dateEntriesLoaded ? Promise.resolve(allDateEntries) : window.dateEntriesDataPromise;
+    }
+    isLoadingDateEntries = true;
+    const archiveUrl = `${baseurl || ''}/archive/`;
+    window.dateEntriesDataPromise = fetch(archiveUrl).then(response => response.ok ? response.text() : '').catch(() => '')
+        .then(archiveHtml => {
+            const archiveEntries = archiveHtml ? extractArchiveDateEntriesFromHtml(archiveHtml) : [];
+            const latestNewsEntries = archiveEntries.slice(-3).map(entry => ({
+                name: entry.name,
+                url: `${baseurl || ''}/new-songs/`,
+                source: 'news'
+            }));
+            const newsEntries = latestNewsEntries.reverse();
+            allDateEntries = [...newsEntries, ...archiveEntries];
+            dateEntriesLoaded = true;
+            isLoadingDateEntries = false;
+            document.dispatchEvent(new CustomEvent('dateEntriesReady', { detail: { allDateEntries } }));
+            return allDateEntries;
+        })
+        .catch(error => {
+            console.error('Failed to load date entries from archive/news:', error);
+            allDateEntries = [];
+            dateEntriesLoaded = true;
+            isLoadingDateEntries = false;
+            document.dispatchEvent(new CustomEvent('dateEntriesError', { detail: error }));
+            return allDateEntries;
+        });
+    return window.dateEntriesDataPromise;
+}
 function toggleSearchCtaButton(show) {
     const currentCtaContainer = document.getElementById('cta-container') || ctaContainer;
     if (!currentCtaContainer) return;
@@ -181,6 +279,7 @@ function showHomepageView() {
     if (searchResultsArea) searchResultsArea.style.display = 'none';
     if (searchResultsTitle) searchResultsTitle.style.display = 'none';
     hideArtistResults();
+    hideDateResults();
 }
 function showSearchResultsView() {
     const homepageContent = document.getElementById('homepage-content');
@@ -280,6 +379,7 @@ window.executeSearchFromState = async function() {
         if (resultsTable) resultsTable.style.display = 'none';
         if (searchResultsTitle) searchResultsTitle.style.display = 'none';
         hideArtistResults();
+        hideDateResults();
         toggleSearchCtaButton(true);
         return;
     }
@@ -301,11 +401,14 @@ async function searchSongs(query, searchBy) {
     saveSearchToHistory(query);
     const resultsTableThead = document.querySelector("#resultsTable thead");
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-    if (!artistsDataLoaded || !songsDataLoaded) {
+    if (!artistsDataLoaded || !dateEntriesLoaded || !songsDataLoaded) {
         displayLoadingMessage(colspan, "טוען נתונים...");
     }
     if (!artistsDataLoaded) {
         await (window.artistsDataPromise || loadArtistsData());
+    }
+    if (!dateEntriesLoaded) {
+        await (window.dateEntriesDataPromise || loadDateEntriesData());
     }
     if (!songsDataLoaded) {
         await window.songsDataPromise;
@@ -315,10 +418,15 @@ async function searchSongs(query, searchBy) {
 }
 function performSearch(query, searchBy) {
     const shouldIncludeArtists = searchBy === 'all' || searchBy === 'singer';
+    const shouldIncludeDates = searchBy === 'all' || searchBy === 'album';
     artistResults = shouldIncludeArtists
         ? filterArtists(allArtists, query).slice(0, MAX_ARTIST_RESULTS_DISPLAY)
         : [];
+    dateResults = shouldIncludeDates
+        ? filterDateEntries(allDateEntries, query).slice(0, MAX_DATE_RESULTS_DISPLAY)
+        : [];
     displayArtistResults(artistResults, query);
+    displayDateResults(dateResults, query);
     results = filterSongs(allSongs, query, searchBy);
     displayedResults = 0;
     const initialResultsToShow = results.slice(0, 250);
@@ -330,6 +438,7 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     const resultsTableThead = document.querySelector("#resultsTable thead");
     const loadMoreButton = document.getElementById('loadMoreButton');
     hideArtistResults();
+    hideDateResults();
     toggleSearchCtaButton(false);
     if (!resultsTableBody) return;
     resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;"><div class="loading-container"><img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." class="loading-image"><p class="loading-text">${text}</p></div></td></tr>`;
@@ -345,18 +454,22 @@ function displayResults(resultsToDisplay, append = false) {
     if (!append) {
         resultsTableBody.innerHTML = '';
         const artistContainer = document.getElementById('artistResultsContainer');
-        const scrollTarget = artistResults.length > 0 && artistContainer ? artistContainer : resultsTable;
+        const dateContainer = document.getElementById('dateResultsContainer');
+        const hasArtistMatches = artistResults.length > 0 && artistContainer;
+        const hasDateMatches = dateResults.length > 0 && dateContainer;
+        const scrollTarget = hasArtistMatches ? artistContainer : (hasDateMatches ? dateContainer : resultsTable);
         if (scrollTarget) scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     if (resultsToDisplay.length === 0 && !append) {
         const hasArtistMatches = artistResults.length > 0;
-        const noResultsMessage = hasArtistMatches
-            ? 'לא נמצאו שירים עבור החיפוש. נמצאו אמנים תואמים למעלה.'
+        const hasDateMatches = dateResults.length > 0;
+        const noResultsMessage = (hasArtistMatches || hasDateMatches)
+            ? 'לא נמצאו שירים עבור החיפוש. נמצאו למעלה תוצאות תואמות של אמנים/תאריכים.'
             : 'לא נמצאו תוצאות.';
         resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">${noResultsMessage}</td></tr>`;
         if (resultsTableThead) resultsTableThead.style.display = "none";
         toggleLoadMoreButton();
-        toggleSearchCtaButton(!hasArtistMatches);
+        toggleSearchCtaButton(!(hasArtistMatches || hasDateMatches));
         return;
     }
     toggleSearchCtaButton(false);
@@ -438,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loadMoreButton) {
         loadMoreButton.classList.add('btn', 'btn-secondary');
     }
-    Promise.allSettled([loadAllSongsData(), loadArtistsData()]).then(() => {
+    Promise.allSettled([loadAllSongsData(), loadArtistsData(), loadDateEntriesData()]).then(() => {
         executeSearchFromState();
     });
     if (searchInput) {
@@ -505,6 +618,23 @@ function filterArtists(artistsToFilter, query) {
         return { ...artist, _score: calculateTextSearchScore(qL, qT, valueLower, true) };
     }).filter(artist => artist._score > 0)
       .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name, 'he'));
+}
+function filterDateEntries(entriesToFilter, query) {
+    if (!query || !entriesToFilter?.length) return [];
+    const qL = query.toLowerCase();
+    const qT = qL.split(/\s+/).filter(Boolean);
+    return entriesToFilter.map(entry => {
+        const valueLower = entry.name.toLowerCase();
+        return { ...entry, _score: calculateTextSearchScore(qL, qT, valueLower, true) };
+    }).filter(entry => entry._score > 0)
+      .sort((a, b) => {
+          const sourcePriority = { news: 0, archive: 1 };
+          const scoreDiff = b._score - a._score;
+          if (scoreDiff !== 0) return scoreDiff;
+          const sourceDiff = (sourcePriority[a.source] ?? 10) - (sourcePriority[b.source] ?? 10);
+          if (sourceDiff !== 0) return sourceDiff;
+          return a.name.localeCompare(b.name, 'he');
+      });
 }
 function loadMoreResults() {
     const start = displayedResults;

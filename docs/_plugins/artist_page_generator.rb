@@ -25,15 +25,44 @@ module Jekyll
     priority :lowest
     def generate(site)
       puts "ArtistPageGenerator: Starting generation..."
-      unless site.data['all_songs']
-        puts "ArtistPageGenerator: Error - site.data['all_songs'] not found. Check _data folder/files."
+      all_songs_data = site.data['all_songs']
+      new_songs_data = site.data['new_songs']
+
+      all_songs_array = all_songs_data.is_a?(Array) ? all_songs_data : []
+      new_songs_array = new_songs_data.is_a?(Array) ? new_songs_data : []
+
+      if all_songs_array.empty?
+        puts "ArtistPageGenerator: Warning - site.data['all_songs'] is empty or missing."
+      end
+      if new_songs_array.empty?
+        puts "ArtistPageGenerator: Warning - site.data['new_songs'] is empty or missing."
+      end
+
+      combined_songs = []
+      seen_drive_ids = {}
+      [all_songs_array, new_songs_array].each do |songs_array|
+        songs_array.each do |song|
+          next unless song.is_a?(Hash)
+
+          drive_id = song['driveId'].to_s.strip
+          unless drive_id.empty?
+            next if seen_drive_ids[drive_id]
+            seen_drive_ids[drive_id] = true
+          end
+
+          combined_songs << song
+        end
+      end
+
+      if combined_songs.empty?
+        puts "ArtistPageGenerator: Warning - no songs available for artist page generation."
         return
       end
-      all_songs_data = site.data['all_songs']
-      unless all_songs_data.is_a?(Array) && !all_songs_data.empty?
-        puts "ArtistPageGenerator: Warning - site.data['all_songs'] is empty or not an array."
-      end
-      singers = all_songs_data.group_by { |song| song['singer'] }.compact
+
+      puts "ArtistPageGenerator: Loaded #{all_songs_array.size} all_songs entries and #{new_songs_array.size} new_songs entries."
+      puts "ArtistPageGenerator: Using #{combined_songs.size} deduplicated songs for artist grouping."
+
+      singers = combined_songs.group_by { |song| song['singer'] }.compact
       puts "ArtistPageGenerator: Grouped songs into #{singers.size} artist groups."
       target_dir_base = 'artists'
       generated_count = 0

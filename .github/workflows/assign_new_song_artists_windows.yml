@@ -42,19 +42,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Download singles-sorter-cli
-        run: |
-          SORTER_EXE="${RUNNER_TEMP}/singles-sorter-cli-14.0.exe"
-          curl -L "https://github.com/NHLOCAL/Singles-Sorter/releases/download/v14.0/singles-sorter-cli-14.0.exe" -o "$SORTER_EXE"
-          test -f "$SORTER_EXE"
-          echo "SORTER_EXE=$SORTER_EXE" >> "$GITHUB_ENV"
+          pip install "singlesorter[ai]"
 
       - name: Assign artists to new songs
         run: |
           python drive_data/assign_new_song_artists.py \
-            --csv-path drive_data/new-songs.csv \
-            --sorter-exe "$SORTER_EXE"
+            --csv-path drive_data/new-songs.csv
 
       - name: Convert new-songs.csv to YAML
         run: |
@@ -82,7 +75,7 @@ jobs:
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == 'true'
         run: |
-          git commit -m "Assign artists to new songs via singles-sorter [skip ci]"
+          git commit -m "Assign artists to new songs via singlesorter package [skip ci]"
           retry_count=0
           max_retries=3
           until git pull --rebase origin "${{ github.ref_name }}" && git push origin "${{ github.ref_name }}" || [ $retry_count -eq $max_retries ]; do

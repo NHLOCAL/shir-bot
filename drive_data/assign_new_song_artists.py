@@ -36,7 +36,8 @@ def normalize_text(value: str) -> str:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Infer artist names for rows in new-songs.csv using singles-sorter-cli "
+            "Infer artist names for rows in new-songs.csv using the singlesorter "
+            "Python package "
             "and write them back to the Singer column."
         )
     )
@@ -44,19 +45,6 @@ def parse_args() -> argparse.Namespace:
         "--csv-path",
         default="drive_data/new-songs.csv",
         help="Path to the CSV file to update.",
-    )
-    parser.add_argument(
-        "--sorter-exe",
-        required=True,
-        help="Path to singles-sorter-cli executable.",
-    )
-    parser.add_argument(
-        "--sorter-runner",
-        default="",
-        help=(
-            "Optional wrapper command used to run the sorter executable "
-            "(for example: wine)."
-        ),
     )
     parser.add_argument(
         "--singer-list-txt",
@@ -79,7 +67,7 @@ def parse_args() -> argparse.Namespace:
         "--log-level",
         default="ERROR",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        help="Log level passed to singles-sorter-cli.",
+        help="Log level passed to singlesorter.",
     )
     return parser.parse_args()
 
@@ -215,27 +203,22 @@ def build_source_files(
 
 
 def run_sorter(
-    sorter_exe: Path,
     source_dir: Path,
     target_dir: Path,
     log_level: str,
     cwd: Path,
-    sorter_runner: str = "",
 ) -> None:
-    command = []
-    if sorter_runner.strip():
-        command.append(sorter_runner.strip())
-    command.extend(
-        [
-            str(sorter_exe),
-            str(source_dir),
-            str(target_dir),
-            "-n",
-            "-m",
-            "-l",
-            log_level,
-        ]
-    )
+    command = [
+        sys.executable,
+        "-m",
+        "singlesorter.cli",
+        str(source_dir),
+        str(target_dir),
+        "-n",
+        "-m",
+        "-l",
+        log_level,
+    ]
     result = subprocess.run(
         command,
         cwd=str(cwd),
@@ -247,7 +230,7 @@ def run_sorter(
     )
     if result.returncode != 0:
         message = (
-            "singles-sorter-cli failed.\n"
+            "singlesorter failed.\n"
             f"exit_code={result.returncode}\n"
             f"stdout:\n{result.stdout}\n"
             f"stderr:\n{result.stderr}\n"
@@ -290,10 +273,6 @@ def write_rows(csv_path: Path, rows: list[dict], fieldnames: list[str]) -> None:
 def main() -> int:
     args = parse_args()
     csv_path = Path(args.csv_path).resolve()
-    sorter_exe = Path(args.sorter_exe).resolve()
-
-    if not sorter_exe.is_file():
-        raise FileNotFoundError(f"Sorter executable was not found: {sorter_exe}")
     singer_list_txt = resolve_singer_list_txt_path(args.singer_list_txt)
 
     placeholder_values = set(DEFAULT_PLACEHOLDER_SINGERS)
@@ -318,12 +297,10 @@ def main() -> int:
             return 0
 
         run_sorter(
-            sorter_exe=sorter_exe,
             source_dir=source_dir,
             target_dir=target_dir,
             log_level=args.log_level,
             cwd=temp_dir,
-            sorter_runner=args.sorter_runner,
         )
 
         artist_by_serial = collect_artist_by_serial(target_dir)

@@ -1,10 +1,14 @@
 let allSongs = [];
+let allArtists = [];
 let results = [];
+let artistResults = [];
 let displayedResults = 0;
 let showSinglesOnly = true;
 let activeFilter = 'all';
 let isLoadingSongs = false;
 let songsDataLoaded = false;
+let isLoadingArtists = false;
+let artistsDataLoaded = false;
 let userIsTyping = false;
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
@@ -13,6 +17,7 @@ const ctaContainer = document.getElementById('cta-container');
 const ctaFocusSearchBtn = document.getElementById('cta-focus-search-btn');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
+const MAX_ARTIST_RESULTS_DISPLAY = 8;
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
 const MAX_HISTORY_ITEMS = 5;
 function debounce(func, wait) {
@@ -23,9 +28,150 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 };
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+function highlightMatch(text, lowerQuery) {
+    const safeText = String(text || '');
+    if (!lowerQuery) return escapeHtml(safeText);
+    const index = safeText.toLowerCase().indexOf(lowerQuery);
+    if (index === -1) return escapeHtml(safeText);
+    const before = escapeHtml(safeText.substring(0, index));
+    const match = escapeHtml(safeText.substring(index, index + lowerQuery.length));
+    const after = escapeHtml(safeText.substring(index + lowerQuery.length));
+    return `${before}<strong>${match}</strong>${after}`;
+}
+function calculateDiceCoefficient(tokensA, tokensB) {
+    if (!tokensA?.length || !tokensB?.length) return 0;
+    const intersection = new Set(tokensA.filter(token => tokensB.includes(token)));
+    return (2 * intersection.size) / (tokensA.length + tokensB.length);
+}
+function calculateLevenshteinRatio(source = '', target = '') {
+    const sourceLength = source.length;
+    const targetLength = target.length;
+    if (sourceLength === 0) return targetLength > 0 ? 1 : 0;
+    if (targetLength === 0) return sourceLength > 0 ? 1 : 0;
+    if (Math.abs(sourceLength - targetLength) > Math.max(sourceLength, targetLength) * 0.6) return 1;
+    const matrix = Array.from({ length: sourceLength + 1 }, (_, index) => [index]);
+    for (let column = 1; column <= targetLength; column++) matrix[0][column] = column;
+    for (let row = 1; row <= sourceLength; row++) {
+        for (let column = 1; column <= targetLength; column++) {
+            matrix[row][column] = Math.min(
+                matrix[row - 1][column] + 1,
+                matrix[row][column - 1] + 1,
+                matrix[row - 1][column - 1] + (source[row - 1] === target[column - 1] ? 0 : 1)
+            );
+        }
+    }
+    const maxLength = Math.max(sourceLength, targetLength);
+    return maxLength === 0 ? 0 : matrix[sourceLength][targetLength] / maxLength;
+}
+function calculateTextSearchScore(queryLower, queryTokens, valueLower, allowContainsMatch = true) {
+    let score = 0;
+    if (!valueLower) return score;
+    if (valueLower.startsWith(queryLower) || (allowContainsMatch && valueLower.includes(queryLower))) {
+        return 1;
+    }
+    const valueTokens = valueLower.split(/\s+/).filter(Boolean);
+    const diceScore = calculateDiceCoefficient(queryTokens, valueTokens);
+    if (diceScore >= 0.55) score = Math.max(score, diceScore);
+    if (score < 0.55) {
+        const levenshtein = calculateLevenshteinRatio(queryLower, valueLower);
+        if (levenshtein <= 0.45) score = Math.max(score, 1 - levenshtein);
+    }
+    return score;
+}
+function getArtistResultElements() {
+    return {
+        container: document.getElementById('artistResultsContainer'),
+        list: document.getElementById('artistResultsList'),
+        count: document.getElementById('artistResultsCount')
+    };
+}
+function hideArtistResults() {
+    const { container, list, count } = getArtistResultElements();
+    if (container) container.style.display = 'none';
+    if (list) list.innerHTML = '';
+    if (count) count.textContent = '';
+}
+function displayArtistResults(artistsToDisplay, query = '') {
+    const { container, list, count } = getArtistResultElements();
+    if (!container || !list) return;
+    if (!artistsToDisplay.length) {
+        hideArtistResults();
+        return;
+    }
+    const lowerQuery = query.toLowerCase();
+    const fragment = document.createDocumentFragment();
+    artistsToDisplay.forEach(artist => {
+        const link = document.createElement('a');
+        link.className = 'artist-result-item';
+        link.href = artist.url;
+        link.title = `מעבר לדף האמן: ${artist.name}`;
+        link.innerHTML = `
+            <span class="artist-result-icon" aria-hidden="true"><i class="fas fa-microphone-alt"></i></span>
+            <span class="artist-result-name">${highlightMatch(artist.name, lowerQuery)}</span>
+            <span class="artist-result-cta">לדף האמן</span>
+        `;
+        fragment.appendChild(link);
+    });
+    list.innerHTML = '';
+    list.appendChild(fragment);
+    if (count) {
+        count.textContent = artistsToDisplay.length === 1 ? 'אמן תואם אחד' : `${artistsToDisplay.length} אמנים תואמים`;
+    }
+    container.style.display = 'block';
+}
+function loadArtistsData() {
+    if (artistsDataLoaded || isLoadingArtists) {
+        return artistsDataLoaded ? Promise.resolve(allArtists) : window.artistsDataPromise;
+    }
+    isLoadingArtists = true;
+    const artistsUrl = `${baseurl || ''}/artists/`;
+    window.artistsDataPromise = fetch(artistsUrl)
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to load artists list: ${response.status}`);
+            return response.text();
+        })
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const artistAnchors = Array.from(doc.querySelectorAll('.artists-list ul li a'));
+            const artistMap = new Map();
+            artistAnchors.forEach(anchor => {
+                const name = anchor.textContent ? anchor.textContent.trim() : '';
+                const url = anchor.getAttribute('href') ? anchor.getAttribute('href').trim() : '';
+                if (!name || !url) return;
+                const key = name.toLowerCase();
+                if (!artistMap.has(key)) {
+                    artistMap.set(key, { name, url });
+                }
+            });
+            allArtists = Array.from(artistMap.values()).sort((a, b) => a.name.localeCompare(b.name, 'he'));
+            artistsDataLoaded = true;
+            isLoadingArtists = false;
+            document.dispatchEvent(new CustomEvent('artistsDataReady', { detail: { allArtists } }));
+            return allArtists;
+        })
+        .catch(error => {
+            console.error('Failed to load artist pages list:', error);
+            allArtists = [];
+            artistsDataLoaded = true;
+            isLoadingArtists = false;
+            document.dispatchEvent(new CustomEvent('artistsDataError', { detail: error }));
+            return allArtists;
+        });
+    return window.artistsDataPromise;
+}
 function toggleSearchCtaButton(show) {
-    if (!ctaContainer) return;
-    ctaContainer.style.display = show ? 'block' : 'none';
+    const currentCtaContainer = document.getElementById('cta-container') || ctaContainer;
+    if (!currentCtaContainer) return;
+    currentCtaContainer.style.display = show ? 'block' : 'none';
 }
 function showHomepageView() {
     const homepageContent = document.getElementById('homepage-content');
@@ -34,6 +180,7 @@ function showHomepageView() {
     if (homepageContent) homepageContent.style.display = 'block';
     if (searchResultsArea) searchResultsArea.style.display = 'none';
     if (searchResultsTitle) searchResultsTitle.style.display = 'none';
+    hideArtistResults();
 }
 function showSearchResultsView() {
     const homepageContent = document.getElementById('homepage-content');
@@ -132,6 +279,7 @@ window.executeSearchFromState = async function() {
         if (searchInput) searchInput.value = '';
         if (resultsTable) resultsTable.style.display = 'none';
         if (searchResultsTitle) searchResultsTitle.style.display = 'none';
+        hideArtistResults();
         toggleSearchCtaButton(true);
         return;
     }
@@ -153,14 +301,24 @@ async function searchSongs(query, searchBy) {
     saveSearchToHistory(query);
     const resultsTableThead = document.querySelector("#resultsTable thead");
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
-    if (!songsDataLoaded) {
+    if (!artistsDataLoaded || !songsDataLoaded) {
         displayLoadingMessage(colspan, "טוען נתונים...");
+    }
+    if (!artistsDataLoaded) {
+        await (window.artistsDataPromise || loadArtistsData());
+    }
+    if (!songsDataLoaded) {
         await window.songsDataPromise;
     }
     displayLoadingMessage(colspan);
     performSearch(query, searchBy);
 }
 function performSearch(query, searchBy) {
+    const shouldIncludeArtists = searchBy === 'all' || searchBy === 'singer';
+    artistResults = shouldIncludeArtists
+        ? filterArtists(allArtists, query).slice(0, MAX_ARTIST_RESULTS_DISPLAY)
+        : [];
+    displayArtistResults(artistResults, query);
     results = filterSongs(allSongs, query, searchBy);
     displayedResults = 0;
     const initialResultsToShow = results.slice(0, 250);
@@ -171,6 +329,7 @@ function displayLoadingMessage(colspan = 4, text = 'מחפש...') {
     const resultsTableBody = document.querySelector('#resultsTable tbody.songs-list');
     const resultsTableThead = document.querySelector("#resultsTable thead");
     const loadMoreButton = document.getElementById('loadMoreButton');
+    hideArtistResults();
     toggleSearchCtaButton(false);
     if (!resultsTableBody) return;
     resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;"><div class="loading-container"><img src="${baseurl || ''}/assets/images/loading.gif" alt="טוען..." class="loading-image"><p class="loading-text">${text}</p></div></td></tr>`;
@@ -185,13 +344,19 @@ function displayResults(resultsToDisplay, append = false) {
     const colspan = resultsTableThead ? resultsTableThead.rows[0].cells.length : 4;
     if (!append) {
         resultsTableBody.innerHTML = '';
-        if (resultsTable) resultsTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const artistContainer = document.getElementById('artistResultsContainer');
+        const scrollTarget = artistResults.length > 0 && artistContainer ? artistContainer : resultsTable;
+        if (scrollTarget) scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     if (resultsToDisplay.length === 0 && !append) {
-        resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">לא נמצאו תוצאות.</td></tr>`;
+        const hasArtistMatches = artistResults.length > 0;
+        const noResultsMessage = hasArtistMatches
+            ? 'לא נמצאו שירים עבור החיפוש. נמצאו אמנים תואמים למעלה.'
+            : 'לא נמצאו תוצאות.';
+        resultsTableBody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center;">${noResultsMessage}</td></tr>`;
         if (resultsTableThead) resultsTableThead.style.display = "none";
         toggleLoadMoreButton();
-        toggleSearchCtaButton(true);
+        toggleSearchCtaButton(!hasArtistMatches);
         return;
     }
     toggleSearchCtaButton(false);
@@ -273,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loadMoreButton) {
         loadMoreButton.classList.add('btn', 'btn-secondary');
     }
-    loadAllSongsData().then(() => {
+    Promise.allSettled([loadAllSongsData(), loadArtistsData()]).then(() => {
         executeSearchFromState();
     });
     if (searchInput) {
@@ -315,40 +480,31 @@ function handleFilterClick(filter, triggeredByUserClick = false) {
 }
 function filterSongs(songsToFilter, query, searchBy) {
     if (!query) return [];
-    const calcDice = (t1, t2) => {
-        if (!t1?.length || !t2?.length) return 0;
-        const i = new Set(t1.filter(t => t2.includes(t)));
-        return (2 * i.size) / (t1.length + t2.length);
-    };
-    const calcLev = (s1 = '', s2 = '') => {
-        const l1 = s1.length, l2 = s2.length;
-        if (l1 == 0) return l2 > 0 ? 1 : 0; if (l2 == 0) return l1 > 0 ? 1 : 0;
-        if (Math.abs(l1 - l2) > Math.max(l1, l2) * 0.6) return 1;
-        const m = Array.from({ length: l1 + 1 }, (_, i) => [i]);
-        for (let j = 1; j <= l2; j++) m[0][j] = j;
-        for (let i = 1; i <= l1; i++) for (let j = 1; j <= l2; j++) m[i][j] = Math.min(m[i - 1][j] + 1, m[i][j - 1] + 1, m[i - 1][j - 1] + (s1[i - 1] === s2[j - 1] ? 0 : 1));
-        const maxL = Math.max(l1, l2);
-        return maxL === 0 ? 0 : m[l1][l2] / maxL;
-    };
-    const qL = query.toLowerCase(), qT = qL.split(/\s+/).filter(Boolean), fT = 0.55, lT = 0.45;
+    const qL = query.toLowerCase();
+    const qT = qL.split(/\s+/).filter(Boolean);
     const fMap = { name: 'name', album: 'album', singer: 'singer', serial: 'serial' };
     return songsToFilter.map(s => {
         let best = 0;
         const keys = searchBy === 'all' ? ['serial', 'name', 'album', 'singer'] : (fMap[searchBy] ? [fMap[searchBy]] : []);
         for (const k of keys) {
-            const sv = s[k] ? String(s[k]) : ''; if (!sv) continue;
+            const sv = s[k] ? String(s[k]) : '';
+            if (!sv) continue;
             const lv = sv.toLowerCase();
-            let current = 0;
-            if ((k === 'serial' && lv.startsWith(qL)) || (k !== 'serial' && lv.includes(qL))) current = 1.0;
-            else {
-                const vT = lv.split(/\s+/).filter(Boolean), dice = calcDice(qT, vT);
-                if (dice >= fT) current = Math.max(current, dice);
-                if (current < fT) { const lev = calcLev(qL, lv); if (lev <= lT) current = Math.max(current, (1 - lev)); }
-            }
+            const current = calculateTextSearchScore(qL, qT, lv, k !== 'serial');
             best = Math.max(best, current);
         }
-        s._score = best; return s;
+        return { ...s, _score: best };
     }).filter(s => s._score > 0).sort((a, b) => b._score - a._score || (parseInt(a.serial, 10) || 0) - (parseInt(b.serial, 10) || 0));
+}
+function filterArtists(artistsToFilter, query) {
+    if (!query || !artistsToFilter?.length) return [];
+    const qL = query.toLowerCase();
+    const qT = qL.split(/\s+/).filter(Boolean);
+    return artistsToFilter.map(artist => {
+        const valueLower = artist.name.toLowerCase();
+        return { ...artist, _score: calculateTextSearchScore(qL, qT, valueLower, true) };
+    }).filter(artist => artist._score > 0)
+      .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name, 'he'));
 }
 function loadMoreResults() {
     const start = displayedResults;

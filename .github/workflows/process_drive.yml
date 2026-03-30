@@ -95,8 +95,3 @@ jobs:
           else
             echo "Changes committed and pushed successfully."
           fi
-
-      # --- שלב חדש: הפעלת פריסה ב-Cloudflare ---
-      - name: Trigger Cloudflare Deploy
-        if: success() && steps.check_changes.outputs.changed == 'true'
-        run: curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}"

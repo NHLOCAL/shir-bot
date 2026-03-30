@@ -11,6 +11,14 @@ on:
       - 'drive_data/csv_to_yaml_converter.py'
       - '.github/workflows/assign_new_song_artists_windows.yml'
       - 'requirements.txt'
+  workflow_run:
+    workflows:
+      - Upload new singles to Drive
+    types:
+      - completed
+    branches:
+      - main
+      - new-singles
   workflow_dispatch:
 
 permissions:
@@ -18,7 +26,10 @@ permissions:
 
 jobs:
   assign-new-song-artists:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: windows-latest
+    env:
+      TARGET_BRANCH: ${{ github.event.workflow_run.head_branch || github.ref_name }}
     defaults:
       run:
         shell: bash
@@ -27,11 +38,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.TARGET_BRANCH }}
 
       - name: Sync with latest branch head
         run: |
-          git pull --ff-only origin "${{ github.ref_name }}"
+          git pull --ff-only origin "${{ env.TARGET_BRANCH }}"
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -78,7 +89,7 @@ jobs:
           git commit -m "Assign artists to new songs via singlesorter package [skip ci]"
           retry_count=0
           max_retries=3
-          until git pull --rebase origin "${{ github.ref_name }}" && git push origin "${{ github.ref_name }}" || [ $retry_count -eq $max_retries ]; do
+          until git pull --rebase origin "${{ env.TARGET_BRANCH }}" && git push origin "${{ env.TARGET_BRANCH }}" || [ $retry_count -eq $max_retries ]; do
             retry_count=$((retry_count+1))
             echo "Push failed or conflict detected. Retrying ($retry_count/$max_retries) in 15 seconds..."
             sleep 15
@@ -91,5 +102,5 @@ jobs:
           fi
 
       - name: Trigger Cloudflare Deploy
-        if: success() && steps.check_changes.outputs.changed == 'true'
+        if: success()
         run: curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}"

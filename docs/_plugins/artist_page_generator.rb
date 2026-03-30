@@ -72,7 +72,8 @@ module Jekyll
         next if safe_singer_slug.nil? || safe_singer_slug.strip.empty?
         artist_output_dir = File.join(target_dir_base, safe_singer_slug)
         puts "ArtistPageGenerator: Preparing page for '#{singer_name}' (#{songs.length} songs) -> /#{artist_output_dir}/"
-        page_songs = songs.map do |song|
+        sorted_songs = songs.sort_by { |song| song['serial'].to_i }.reverse
+        page_songs = sorted_songs.map do |song|
           {
             'number' => song['serial'],
             'name' => song['name'],

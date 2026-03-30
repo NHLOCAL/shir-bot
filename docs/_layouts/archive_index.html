@@ -4,11 +4,11 @@ layout: default
 <div class="artists-list">
   <h2 class="page-main-title">{{ page.title }}</h2>
   <div style="text-align: center; margin-bottom: 20px;">
-    <button id="sort-archive-button" class="btn btn-secondary" data-order="asc">
-      <i class="fas fa-sort-amount-down"></i> מיון: מהישן לחדש
+    <button id="sort-archive-button" class="btn btn-secondary" data-order="desc">
+      <i class="fas fa-sort-amount-up"></i> מיון: מהחדש לישן
     </button>
   </div>
-  {% assign archived_albums = site.data.generated_archive_settings.archive_albums_list %}
+  {% assign archived_albums = site.data.generated_archive_settings.archive_albums_list | reverse %}
   {% if archived_albums and archived_albums.size > 0 %}
     {% assign current_year = "" %}
     {% for album_item in archived_albums %}

@@ -21,7 +21,7 @@ const ctaContainer = document.getElementById('cta-container');
 const ctaFocusSearchBtn = document.getElementById('cta-focus-search-btn');
 const MIN_QUERY_LENGTH_FOR_AUTOCOMPLETE = 2;
 const MAX_AUTOCOMPLETE_SUGGESTIONS = 7;
-const MAX_ARTIST_RESULTS_DISPLAY = 8;
+const MAX_FUZZY_ARTIST_RESULTS_DISPLAY = 5;
 const MAX_DATE_RESULTS_DISPLAY = 8;
 const SEARCH_HISTORY_KEY = 'shirBotSearchHistory';
 const MAX_HISTORY_ITEMS = 5;
@@ -244,13 +244,12 @@ function loadDateEntriesData() {
     window.dateEntriesDataPromise = fetch(archiveUrl).then(response => response.ok ? response.text() : '').catch(() => '')
         .then(archiveHtml => {
             const archiveEntries = archiveHtml ? extractArchiveDateEntriesFromHtml(archiveHtml) : [];
-            const latestNewsEntries = archiveEntries.slice(-3).map(entry => ({
+            const latestNewsEntries = archiveEntries.slice(0, 3).map(entry => ({
                 name: entry.name,
                 url: `${baseurl || ''}/new-songs/`,
                 source: 'news'
             }));
-            const newsEntries = latestNewsEntries.reverse();
-            allDateEntries = [...newsEntries, ...archiveEntries];
+            allDateEntries = [...latestNewsEntries, ...archiveEntries];
             dateEntriesLoaded = true;
             isLoadingDateEntries = false;
             document.dispatchEvent(new CustomEvent('dateEntriesReady', { detail: { allDateEntries } }));
@@ -420,7 +419,7 @@ function performSearch(query, searchBy) {
     const shouldIncludeArtists = searchBy === 'all' || searchBy === 'singer';
     const shouldIncludeDates = searchBy === 'all' || searchBy === 'album';
     artistResults = shouldIncludeArtists
-        ? filterArtists(allArtists, query).slice(0, MAX_ARTIST_RESULTS_DISPLAY)
+        ? limitArtistResults(filterArtists(allArtists, query))
         : [];
     dateResults = shouldIncludeDates
         ? filterDateEntries(allDateEntries, query).slice(0, MAX_DATE_RESULTS_DISPLAY)
@@ -611,13 +610,32 @@ function filterSongs(songsToFilter, query, searchBy) {
 }
 function filterArtists(artistsToFilter, query) {
     if (!query || !artistsToFilter?.length) return [];
-    const qL = query.toLowerCase();
+    const qL = query.trim().toLowerCase();
     const qT = qL.split(/\s+/).filter(Boolean);
     return artistsToFilter.map(artist => {
         const valueLower = artist.name.toLowerCase();
-        return { ...artist, _score: calculateTextSearchScore(qL, qT, valueLower, true) };
+        return {
+            ...artist,
+            _score: calculateTextSearchScore(qL, qT, valueLower, true),
+            _isExactMatch: valueLower === qL,
+            _isDirectMatch: valueLower.includes(qL)
+        };
     }).filter(artist => artist._score > 0)
-      .sort((a, b) => b._score - a._score || a.name.localeCompare(b.name, 'he'));
+      .sort((a, b) =>
+          Number(b._isExactMatch) - Number(a._isExactMatch) ||
+          Number(b._isDirectMatch) - Number(a._isDirectMatch) ||
+          b._score - a._score ||
+          a.name.localeCompare(b.name, 'he')
+      );
+}
+function limitArtistResults(artists) {
+    if (!artists?.length) return [];
+    const fullExactMatches = artists.filter(artist => artist._isExactMatch);
+    if (fullExactMatches.length > 0) return fullExactMatches;
+    const directNameMatches = artists.filter(artist => artist._isDirectMatch);
+    if (directNameMatches.length > 0) return directNameMatches;
+    const fuzzyMatches = artists.filter(artist => !artist._isDirectMatch);
+    return fuzzyMatches.slice(0, MAX_FUZZY_ARTIST_RESULTS_DISPLAY);
 }
 function filterDateEntries(entriesToFilter, query) {
     if (!query || !entriesToFilter?.length) return [];
